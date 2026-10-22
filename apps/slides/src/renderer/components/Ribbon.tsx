@@ -12,7 +12,7 @@ import React, {
   type ReactNode,
 } from 'react'
 import type { AnimEffectKind, GradientFillSpec, TransitionKind } from '../../shared/ipc'
-import type { ChartStyleInfo } from '@genoffice/pptx-render'
+import type { ChartStyleInfo } from '@plotdocs/pptx-render'
 import {
   useDismissablePopover,
   useRibbonCollapse,
@@ -20,7 +20,7 @@ import {
   THEME_COLORS,
   THEME_COLOR_SHADES,
   STANDARD_COLORS,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { getRecentColors, pushRecentColor } from '../recent-colors'
 import { ICON_COLORS } from '../insert-presets'
 import { THEME_PRESETS, type SlideThemePreset } from '../themes'
@@ -126,7 +126,7 @@ import { RibbonInsertTab } from './RibbonInsertTab'
 import { ShapeGalleryContent } from './ShapeGalleryPopover'
 import { autoContextTabForElement, contextTabForElement, type ContextTab } from './context-tabs'
 import { MODEL3D_VIEWS } from '../model3d/views'
-import { NO_ROTATION } from '@genoffice/pptx-engine/model3d'
+import { NO_ROTATION } from '@plotdocs/pptx-engine/model3d'
 
 const IS_MAC = navigator.platform.toLowerCase().includes('mac')
 /** shell tab mode: the tab strip above owns traffic lights / caption buttons */

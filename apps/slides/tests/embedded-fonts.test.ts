@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
-import type { RunStyle } from '@genoffice/pptx-render'
+import type { RunStyle } from '@plotdocs/pptx-render'
 
 vi.mock('../src/main/shaped-metrics', () => ({
   initShapedMetrics: () => {},

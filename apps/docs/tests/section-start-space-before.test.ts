@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { SectionInfo } from '@genoffice/docx-engine'
+import type { SectionInfo } from '@plotdocs/docx-engine'
 import { assignSections } from '../src/renderer/pagination-sections'
 import type { BlockBox } from '../src/renderer/pagination-types'
 

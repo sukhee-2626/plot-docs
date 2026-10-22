@@ -113,18 +113,18 @@ describe('tabStripHeight', () => {
   it('grows with the interface scale', () => {
     // The strip is `zoom`ed by `--ui-scale` (apps/shell/src/main/ui-scale.ts),
     // and the main process positions every editor view at this number. Using
-    // the unscaled 40 would leave a 150% strip painting 20px down into the
+    // the unscaled 46 would leave a 150% strip painting 23px down into the
     // document — the document under a tab strip, with nothing on screen saying
     // why.
-    expect(tabStripHeight(1.5)).toBe(60)
-    expect(tabStripHeight(1.25)).toBe(50)
+    expect(tabStripHeight(1.5)).toBe(69)
+    expect(tabStripHeight(1.25)).toBe(58)
   })
 
   it('rounds to whole pixels', () => {
     // The strip is a CSS box: a fractional height makes the view bounds below
     // it land on a half pixel, and the seam shows.
     expect(Number.isInteger(tabStripHeight(1.1))).toBe(true)
-    expect(tabStripHeight(1.1)).toBe(44)
+    expect(tabStripHeight(1.1)).toBe(51)
   })
 
   it('grows the dock band with it', () => {

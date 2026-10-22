@@ -1,5 +1,5 @@
 import { Editor } from '@tiptap/core'
-import { parseDocx, patchChartPartXml, saveDocx } from '@genoffice/docx-engine'
+import { parseDocx, patchChartPartXml, saveDocx } from '@plotdocs/docx-engine'
 import { describe, expect, it } from 'vitest'
 import { buildChartDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { blocksToPmDoc, pmDocToSavePlan, type PmNode } from '../src/renderer/editor/convert'

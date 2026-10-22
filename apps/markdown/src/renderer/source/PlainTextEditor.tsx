@@ -31,7 +31,7 @@ import {
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete'
 import { json } from '@codemirror/lang-json'
 import { tags } from '@lezer/highlight'
-import type { FindTarget } from '@genoffice/ui'
+import type { FindTarget } from '@plotdocs/ui'
 import type { TextMode } from '../../shared/text-mode'
 import { buildFindTarget, findHighlight } from './plain-find'
 

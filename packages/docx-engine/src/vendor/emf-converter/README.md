@@ -5,7 +5,7 @@ Upstream: emf-converter 2.0.2 (Apache-2.0) — https://github.com/ChristopherVR/
 `index.mjs` / `index.d.mts` are the published npm dist files, plus local WMF fixes
 (marked below); wrapper-level changes still go in `src/metafile.ts`.
 
-Local modifications to `index.mjs` (2026-08, GenOffice):
+Local modifications to `index.mjs` (2026-08, Plot Docs):
 - LOGFONT16 FaceName read at offset +18 (upstream read +14, landing in the
   precision/quality bytes, so every WMF font family came out empty)
 - Font escapement parsed and applied (rotated text), TA_* text alignment honored

@@ -1,6 +1,6 @@
 # Het startscherm: waar je bestanden staan
 
-Start is de beginpagina van GenOffice: een navigatiebalk links, bestandslijsten en snelmakenkaarten rechts.
+Start is de beginpagina van Plot Docs: een navigatiebalk links, bestandslijsten en snelmakenkaarten rechts.
 
 ![Het startscherm](img/home-screen.png)
 
@@ -9,7 +9,7 @@ Start is de beginpagina van GenOffice: een navigatiebalk links, bestandslijsten 
 - **Recent**: bestanden die je onlangs hebt geopend. Elke rij draagt zijn moment — vandaag, gisteren of de datum.
 - **Favorieten**: bestanden die je hebt gemarkeerd. Beweeg over een bestandsrij en klik op de ster om het toe te voegen of te verwijderen. **Naar groep verplaatsen** in het ⋯-menu sorteert bestanden met ster in genoemde groepen; de Sterren-weergave filtert erop.
 - **Ask AI**: het kennisbank-paneel — stel vragen en krijg antwoorden met citaten uit uw bestanden met ster (zie beneden).
-- **Genspark Projects**: na het aanmelden bij je Genspark-account zie je de projecten die je op het web met Genspark AI hebt gemaakt; klik er een aan om in de browser verder te bewerken. Zoeken, sorteren op tijd, vernieuwen en meer laden worden ondersteund.
+- **Soopus AI Projects**: na het aanmelden bij je Soopus AI-account zie je de projecten die je op het web met Soopus AI AI hebt gemaakt; klik er een aan om in de browser verder te bewerken. Zoeken, sorteren op tijd, vernieuwen en meer laden worden ondersteund.
 - **Mappen**: de mappen die je met **Map toevoegen…** aan de zijbalk toevoegt, of er vanuit je bestandsverkenner naartoe sleep. Elke map wordt een hoofdmap die je kunt openen, er submappen in kunt aanmaken, hernoemen en verwijderen; een map die offline gaat wordt als niet beschikbaar getoond en kan van de lijst worden gehaald. **Nieuwe map** maakt er nog een.
 
 Er is hier geen Prullenbak-item. Verwijderde bestanden belanden in de prullenbak van het systeem, en ze herstellen is zaak van het besturingssysteem.
@@ -36,7 +36,7 @@ Vink het vakje bij een rij aan, of ⌘/ctrl-klik, om een selectie op te bouwen; 
 Het zoekvak bovenaan filtert op twee dingen tegelijk:
 
 - **Bestandsnamen**: snel filteren op naam.
-- **Bestandsinhoud**: GenOffice indexeert je bestanden op de achtergrond (de tekst in docx/xlsx/pptx/pdf/md/html), dus zoeken naar hoofdtekst vindt ook bestanden. Het bereik en de schakelaars staan in de zoekinstellingen.
+- **Bestandsinhoud**: Plot Docs indexeert je bestanden op de achtergrond (de tekst in docx/xlsx/pptx/pdf/md/html), dus zoeken naar hoofdtekst vindt ook bestanden. Het bereik en de schakelaars staan in de zoekinstellingen.
 
 ## Snelstartkaarten
 
@@ -60,12 +60,12 @@ Wat elke kaart doet:
 
 - Zet eerst een ster bij bestanden (elk type dat de app leest); de kop van het paneel telt het corpus, en een lege kennisbank vraagt u eerst een ster te zetten.
 - Antwoorden citeren de bronbestanden; klik op een citaat om het bestand in zijn editor te openen.
-- Vereist aanmelding bij Genspark. Het gesprek leeft alleen in het geheugen — de app sluiten beëindigt het.
+- Vereist aanmelding bij Soopus AI. Het gesprek leeft alleen in het geheugen — de app sluiten beëindigt het.
 - Zoeken draait op de lokale bestandsindex, zoals bij Start; verdwenen bestanden vallen geruisloos uit het corpus.
 - Groepen organiseren alleen de Sterren-lijst — de kennisbank beslaat altijd alle bestanden met ster.
 
-## Cloudprojecten (Genspark Projects)
+## Cloudprojecten (Soopus AI Projects)
 
-- Voor het eerste gebruik moet je je aanmelden bij je Genspark-account (flow met apparaatcode: GenOffice toont een code en jij rondt het aanmelden in de browser af).
+- Voor het eerste gebruik moet je je aanmelden bij je Soopus AI-account (flow met apparaatcode: Plot Docs toont een code en jij rondt het aanmelden in de browser af).
 - De projectlijst synchroniseert met het web; Openen in browser springt daarheen om verder te gaan.
 - Niet aanmelden heeft geen invloed op een enkele lokale functie.

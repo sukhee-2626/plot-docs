@@ -67,7 +67,7 @@ function syncFileBestEffortSync(path: string): void {
 /**
  * Same-dir temp file, best-effort fsync, then rename. Rename-over-existing fails
  * transiently on Windows (Defender/indexer locks: retry) and permanently on some
- * network mounts (gvfs SMB refuses with EEXIST, genoffice#1877); either way the
+ * network mounts (gvfs SMB refuses with EEXIST, plotdocs#1877); either way the
  * save falls back to an in-place write rather than failing.
  */
 export async function atomicWriteFile(filePath: string, data: Buffer): Promise<void> {

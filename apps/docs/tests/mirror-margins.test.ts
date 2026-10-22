@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { SectionInfo, SectionSettings } from '@genoffice/docx-engine'
+import type { SectionInfo, SectionSettings } from '@plotdocs/docx-engine'
 import { mirrorShiftPx, pageMargins } from '../src/renderer/page-margins'
 import {
   insertParityBlanks,

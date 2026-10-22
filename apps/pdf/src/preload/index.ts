@@ -1,8 +1,8 @@
-import type { AiPanelPrefs } from '@genoffice/ui'
+import type { AiPanelPrefs } from '@plotdocs/ui'
 import { contextBridge, ipcRenderer } from 'electron'
-import type { Lang } from '@genoffice/i18n'
-import type { AiStreamChunk } from '@genoffice/ai-provider'
-import { installDropOpenBridge } from '@genoffice/electron-utils/drop-open'
+import type { Lang } from '@plotdocs/i18n'
+import type { AiStreamChunk } from '@plotdocs/ai-provider'
+import { installDropOpenBridge } from '@plotdocs/electron-utils/drop-open'
 import { AI_CHANNELS, PDF_CHANNELS } from '../shared/ipc'
 import type { PdfApi, UiTheme } from '../shared/ipc'
 
@@ -115,7 +115,7 @@ const api: PdfApi = {
     return () => ipcRenderer.removeListener(AI_CHANNELS.settingsChanged, listener)
   },
   openAiModelSettings: () => ipcRenderer.invoke(AI_CHANNELS.openModelSettings),
-  gskStatus: () => ipcRenderer.invoke(AI_CHANNELS.gskStatus),
+  soopusStatus: () => ipcRenderer.invoke(AI_CHANNELS.soopusStatus),
   aiStream: (request) => ipcRenderer.invoke(AI_CHANNELS.stream, request),
   aiStreamCancel: (requestId) => ipcRenderer.invoke(AI_CHANNELS.streamCancel, requestId),
   onAiStream: (handler) => {

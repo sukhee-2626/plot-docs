@@ -1,4 +1,4 @@
-import { htmlLang, type Lang } from '@genoffice/i18n'
+import { htmlLang, type Lang } from '@plotdocs/i18n'
 
 /**
  * A minimal, standards-mode document, for a blank one to start from.

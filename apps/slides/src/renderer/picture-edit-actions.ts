@@ -2,7 +2,7 @@
  * Picture crop and cutout (background removal) actions. Extracted from
  * App.tsx; functions read the latest App state through ActionCtx.
  */
-import type { PictureRenderNode } from '@genoffice/pptx-render'
+import type { PictureRenderNode } from '@plotdocs/pptx-render'
 import { FIT_WIDTH } from './app-constants'
 import type { ActionCtx } from './action-context'
 import { renderSelectionToPngBase64 } from './selection-image'

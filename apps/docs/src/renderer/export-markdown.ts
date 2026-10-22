@@ -21,7 +21,7 @@ const IMAGE_EXT: Record<string, string> = {
 function imageExt(src: string): string | null {
   const data = /^data:(image\/[\w.+-]+);base64,/.exec(src)
   if (data) return IMAGE_EXT[data[1]] ?? null
-  if (src.startsWith('genoffice-docx-media://')) {
+  if (src.startsWith('plotdocs-docx-media://')) {
     const ext = /\.(\w+)$/.exec(src)?.[1]?.toLowerCase()
     if (!ext) return null
     return Object.values(IMAGE_EXT).includes(ext === 'jpeg' ? 'jpg' : ext) ? ext : null

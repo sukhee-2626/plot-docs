@@ -5,13 +5,16 @@ import {
   AI_PROVIDERS,
   AI_SEARCH_PROVIDERS,
   getProviderAdapter,
-} from '@genoffice/ai-provider/browser'
-import type { AiSettings, CodexModelCatalog } from '@genoffice/ai-provider/browser'
-import { installDropOpenBridge } from '@genoffice/electron-utils/drop-open'
+} from '@plotdocs/ai-provider/browser'
+import type { AiSettings, CodexModelCatalog } from '@plotdocs/ai-provider/browser'
+import { installDropOpenBridge } from '@plotdocs/electron-utils/drop-open'
 import type { UpdateUiState } from '../shared/update-api'
-import { normalizeAiPanelPrefs } from '@genoffice/ui/ai-panel-prefs'
+import { normalizeAiPanelPrefs } from '@plotdocs/ui/ai-panel-prefs'
 import type {
+  AccountAuthResult,
+  AccountCreateInput,
   AccountLoginEvent,
+  AccountSignInInput,
   AccountStatus,
   CloudProjectsSnapshot,
   DefaultAppStatus,
@@ -28,7 +31,7 @@ import type {
   FileSearchRerank,
   FileSearchSettings,
 } from '../shared/home-api'
-import type { ProjectApi } from '@genoffice/project-store'
+import type { ProjectApi } from '@plotdocs/project-store'
 import { HOME_CHANNELS } from '../shared/home-api'
 import { INTEGRATIONS_CHANNELS } from '../shared/integrations-api'
 import type {
@@ -188,8 +191,8 @@ const homeApi: HomeApi = {
     ipcRenderer.on('ai:stream-chunk', listener)
     return () => ipcRenderer.removeListener('ai:stream-chunk', listener)
   },
-  async aiGskStatus() {
-    return ipcRenderer.invoke('ai:gsk-status')
+  async aiSoopusStatus() {
+    return ipcRenderer.invoke('ai:soopus-status')
   },
   async openPath(path) {
     if (typeof path !== 'string' || !path) throw new Error('Invalid path.')
@@ -215,6 +218,14 @@ const homeApi: HomeApi = {
   },
   async newPdf(opts) {
     await ipcRenderer.invoke(HOME_CHANNELS.newPdf, opts)
+  },
+  async newFromTemplate(templateId, opts) {
+    const result: unknown = await ipcRenderer.invoke(
+      HOME_CHANNELS.newFromTemplate,
+      templateId,
+      opts,
+    )
+    return result as { path: string }
   },
   async removeRecent(paths) {
     await ipcRenderer.invoke(HOME_CHANNELS.removeRecent, paths)
@@ -307,6 +318,14 @@ const homeApi: HomeApi = {
     const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.accountStatus)
     return (result ?? { loggedIn: false }) as AccountStatus
   },
+  async accountCreate(input: AccountCreateInput) {
+    const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.accountCreate, input)
+    return (result ?? { ok: false, error: 'storage' }) as AccountAuthResult
+  },
+  async accountSignIn(input: AccountSignInInput) {
+    const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.accountSignIn, input)
+    return (result ?? { ok: false, error: 'storage' }) as AccountAuthResult
+  },
   async accountLogin() {
     const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.accountLogin)
     return result === true
@@ -360,6 +379,27 @@ const homeApi: HomeApi = {
     if (theme !== 'light' && theme !== 'dark' && theme !== 'system')
       throw new Error('Invalid theme.')
     await ipcRenderer.invoke(HOME_CHANNELS.setTheme, theme)
+  },
+  async minimizeWindow() {
+    await ipcRenderer.invoke(HOME_CHANNELS.windowMinimize)
+  },
+  async toggleMaximizeWindow() {
+    const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.windowToggleMaximize)
+    return result === true
+  },
+  async closeWindow() {
+    await ipcRenderer.invoke(HOME_CHANNELS.windowClose)
+  },
+  async isWindowMaximized() {
+    const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.windowIsMaximized)
+    return result === true
+  },
+  onWindowMaximizedChanged(handler) {
+    const listener = (_event: IpcRendererEvent, maximized: unknown) => {
+      if (typeof maximized === 'boolean') handler(maximized)
+    }
+    ipcRenderer.on(HOME_CHANNELS.windowMaximizedChanged, listener)
+    return () => ipcRenderer.removeListener(HOME_CHANNELS.windowMaximizedChanged, listener)
   },
   async getDocumentTheme() {
     const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.getDocumentTheme)
@@ -496,14 +536,17 @@ const homeApi: HomeApi = {
     ipcRenderer.on('app:document-theme-changed', listener)
     return () => ipcRenderer.removeListener('app:document-theme-changed', listener)
   },
-  async openGenTeam() {
-    await ipcRenderer.invoke(HOME_CHANNELS.openGenTeam)
+  async openPlotCommunity() {
+    await ipcRenderer.invoke(HOME_CHANNELS.openPlotCommunity)
   },
   async openCreditUsage() {
     await ipcRenderer.invoke(HOME_CHANNELS.openCreditUsage)
   },
   async openGitHubRepo() {
     await ipcRenderer.invoke(HOME_CHANNELS.openGitHubRepo)
+  },
+  async openWebsite() {
+    await ipcRenderer.invoke(HOME_CHANNELS.openWebsite)
   },
   async githubStars() {
     const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.githubStars)
@@ -554,8 +597,8 @@ const homeApi: HomeApi = {
   getAiProviders() {
     return AI_PROVIDERS.map((meta) => {
       let defaultBaseUrl = ''
-      // genspark routes by model and custom has no default — both stay ''
-      if (meta.id !== 'genspark' && !meta.needsBaseUrl && !meta.needsCliPath) {
+      // Soopus routes by model and custom has no default — both stay ''
+      if (meta.id !== 'soopus' && !meta.needsBaseUrl && !meta.needsCliPath) {
         defaultBaseUrl = getProviderAdapter(meta.id).resolveEndpoint({
           apiKey: '',
           model: meta.defaultModel,

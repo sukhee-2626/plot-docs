@@ -125,7 +125,7 @@ export function restorePreview(preview: Preview): void {
 /**
  * Starts a Word-style border drag when prosemirror-tables has a live resize
  * handle. Runs before the library's own mousedown so its single-column preview
- * (which let the whole table shrink or spill past the margin, genoffice#1156)
+ * (which let the whole table shrink or spill past the margin, plotdocs#1156)
  * never starts; the library still owns hover detection and the handle widget.
  */
 function startDrag(view: EditorView, event: MouseEvent): boolean {

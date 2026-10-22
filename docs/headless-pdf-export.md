@@ -1,6 +1,6 @@
 # Headless PDF export
 
-Every "export to PDF" path in GenOffice can be driven without a visible
+Every "export to PDF" path in Plot Docs can be driven without a visible
 editor window, behind one entry point:
 
 ```
@@ -12,7 +12,7 @@ one line to stdout and exits. It does **not** take the single-instance lock,
 so it runs happily alongside a GUI instance.
 
 ```
-$ GenOffice --headless-export report.docx --to pdf --out report.pdf --json
+$ Plot Docs --headless-export report.docx --to pdf --out report.pdf --json
 {"status":"ok","summary":"Exported /w/report.docx to /w/report.pdf","output_path":"/w/report.pdf"}
 ```
 
@@ -45,7 +45,7 @@ On failure the JSON envelope is
 
 The grammar, the exit codes and the renderer-side waiting helpers live in
 `packages/electron-utils/src/headless-export.ts`; the renderer half is
-imported through the `@genoffice/electron-utils/headless-export` subpath so a
+imported through the `@plotdocs/electron-utils/headless-export` subpath so a
 renderer bundle never pulls in `node:` builtins.
 
 `apps/shell/src/main/headless-export.ts` validates the paths and routes by

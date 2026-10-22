@@ -6,7 +6,7 @@ import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 import { launchShell, waitForPageWithUrl, closeAndSaveVideo } from './helpers'
 
 test('Form Design auto-detects blanks, boxes and label gaps as fields', async () => {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-pdf-formdetect-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-pdf-formdetect-'))
   const pdfPath = join(dir, 'form.pdf')
   const doc = await PDFDocument.create()
   const page = doc.addPage([612, 792])

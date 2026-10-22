@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { parseDocx } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { checkMissingFonts, collectDocFonts } from '../src/renderer/font-check'
 
@@ -65,8 +65,8 @@ describe('checkMissingFonts', () => {
   })
 
   it('declared bundled subset faces still count as missing', () => {
-    // 'GenOffice Songti SC' (internal alias) resolves but is never reported
-    stubCanvas(['Noto Sans CJK SC', 'GenOffice Songti SC', 'STSong'])
+    // 'Plot Docs Songti SC' (internal alias) resolves but is never reported
+    stubCanvas(['Noto Sans CJK SC', 'Plot Docs Songti SC', 'STSong'])
     expect(checkMissingFonts(['Noto Sans CJK SC'])).toEqual([
       { name: 'Noto Sans CJK SC', substitute: 'STSong' },
     ])

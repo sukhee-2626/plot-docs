@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
 
 /**
- * Settings → General → "User name" (genoffice#2029): comments were signed with
+ * Settings → General → "User name" (plotdocs#2029): comments were signed with
  * the OS account name and nothing in the app could change it. Type a name in
  * Settings, open a new deck and leave a comment; the card must carry that name.
  */

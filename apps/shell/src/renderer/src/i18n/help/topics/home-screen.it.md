@@ -1,6 +1,6 @@
 # La schermata Home: dove si trovano i tuoi file
 
-Home è la pagina iniziale di GenOffice: una barra di navigazione a sinistra, elenchi di file e schede di creazione rapida a destra.
+Home è la pagina iniziale di Plot Docs: una barra di navigazione a sinistra, elenchi di file e schede di creazione rapida a destra.
 
 ![La schermata Home](img/home-screen.png)
 
@@ -9,7 +9,7 @@ Home è la pagina iniziale di GenOffice: una barra di navigazione a sinistra, el
 - **Recenti**: i file che hai aperto di recente. Ogni riga è datata — oggi, ieri o la data.
 - **Preferiti**: i file che hai messo tra i preferiti. Passa il puntatore su una riga di file e fai clic sulla stella per aggiungerlo o rimuoverlo. **Sposta nel gruppo** nel menu ⋯ ordina i preferiti in gruppi con nome; la vista Preferiti filtra per gruppo.
 - **Ask AI**: il pannello della base di conoscenza — poni domande e ottieni risposte citate dai tuoi file preferiti (vedi sotto).
-- **Genspark Projects**: dopo aver effettuato l'accesso al tuo account Genspark, mostra i progetti che hai creato sul web con Genspark AI; fai clic su uno per continuare a modificarlo nel browser. Sono disponibili ricerca, ordinamento per data, aggiornamento e caricamento di altri elementi.
+- **Soopus AI Projects**: dopo aver effettuato l'accesso al tuo account Soopus AI, mostra i progetti che hai creato sul web con Soopus AI AI; fai clic su uno per continuare a modificarlo nel browser. Sono disponibili ricerca, ordinamento per data, aggiornamento e caricamento di altri elementi.
 - **Cartelle**: le directory che aggiungi alla barra laterale con **Aggiungi cartella…**, oppure che ci trascini dal gestore di file. Ognuna diventa una radice che puoi aprire, riempire di sottocartelle, rinominare e rimuovere; una radice che va offline viene mostrata come non disponibile e può essere tolta dall'elenco. **Nuova cartella** ne crea un'altra.
 
 Qui non c’è alcuna voce Cestino. I file eliminati finiscono nel cestino di sistema, e recuperarli è compito del sistema operativo.
@@ -36,7 +36,7 @@ Spunta la casella di una riga, o fai ⌘/ctrl-clic, per comporre una selezione; 
 La casella di ricerca in alto filtra contemporaneamente due cose:
 
 - **Nomi dei file**: filtro rapido per nome.
-- **Contenuto dei file**: GenOffice indicizza i tuoi file in background (il testo dentro docx/xlsx/pptx/pdf/md/html), così cercando nel corpo del testo trovi file. L'ambito e le opzioni si impostano nelle impostazioni di ricerca.
+- **Contenuto dei file**: Plot Docs indicizza i tuoi file in background (il testo dentro docx/xlsx/pptx/pdf/md/html), così cercando nel corpo del testo trovi file. L'ambito e le opzioni si impostano nelle impostazioni di ricerca.
 
 ## Schede di avvio rapido
 
@@ -60,12 +60,12 @@ Cosa fa ogni scheda:
 
 - Preferisci prima dei file (qualsiasi tipo che l'app legga); l'intestazione del pannello conta il corpus, e una base vuota ti invita a preferire qualcosa.
 - Le risposte citano i file di provenienza; clicca una citazione per aprire il file nel suo editor.
-- Richiede l'accesso a Genspark. La conversazione vive solo in memoria — chiudere l'app la termina.
+- Richiede l'accesso a Soopus AI. La conversazione vive solo in memoria — chiudere l'app la termina.
 - La ricerca gira sull'indice locale dei file, come quella della Home; i file spariti escono dal corpus in silenzio.
 - I gruppi ordinano solo l'elenco Preferiti — la base di conoscenza abbraccia sempre tutti i file preferiti.
 
-## Progetti cloud (Genspark Projects)
+## Progetti cloud (Soopus AI Projects)
 
-- Il primo utilizzo richiede l'accesso al tuo account Genspark (flusso con codice dispositivo: GenOffice mostra un codice e tu completi l'accesso nel browser).
+- Il primo utilizzo richiede l'accesso al tuo account Soopus AI (flusso con codice dispositivo: Plot Docs mostra un codice e tu completi l'accesso nel browser).
 - L'elenco dei progetti si sincronizza con il web; Apri nel browser porta a quella pagina per continuare.
 - Non effettuare l'accesso non compromette nessuna delle funzioni locali.

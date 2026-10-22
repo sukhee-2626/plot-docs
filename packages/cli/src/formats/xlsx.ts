@@ -5,8 +5,8 @@ import {
   decodeCsvBuffer,
   isNumericCell,
   parseCsv,
-} from '@genoffice/xlsx-gateway/gateway/csv-import'
-import { columnLabel, parseAddress } from '@genoffice/xlsx-gateway/domain/cell-address'
+} from '@plotdocs/xlsx-gateway/gateway/csv-import'
+import { columnLabel, parseAddress } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import {
   assembleWithJsZip,
   createBufferEntrySource,
@@ -16,13 +16,13 @@ import {
   type SheetFormulaValues,
   type SheetStructuralOps,
   type XlsxMutation,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
 import {
   nextFreeRelationshipId,
   type SheetEditPlan,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-sheets'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-sheets'
 import { EMPTY_PAYLOADS, type GatewayPayloads } from './xlsx-gateway-ops'
-import type { WorkbookStyleEdit } from '@genoffice/xlsx-gateway/shared/edit-schemas'
+import type { WorkbookStyleEdit } from '@plotdocs/xlsx-gateway/shared/edit-schemas'
 import {
   echoStyleColor,
   fillDisplayColor,
@@ -31,11 +31,11 @@ import {
   resolveStyleColor,
   type StyleColor,
   type StyleColorEcho,
-} from '@genoffice/xlsx-gateway/domain/style-color'
+} from '@plotdocs/xlsx-gateway/domain/style-color'
 import {
   parseStylesheetFormats,
   type StylesheetFormats,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-style-read'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-style-read'
 import { readFile } from 'node:fs/promises'
 import { atomicWriteFile } from '../../../../apps/sheets/src/main/atomic-write'
 import { XlsxSidecarClient } from '../../../../apps/sheets/src/main/xlsx-sidecar-client'
@@ -187,7 +187,7 @@ async function withSidecar<T>(fn: (client: XlsxSidecarClient) => Promise<T>): Pr
   const binary = xlsxSidecarPath()
   if (!binary) {
     throw new CliError(EXIT.conversion, 'xlsx engine (xlsx-sidecar) not found', {
-      hint: 'set XLSX_SIDECAR_PATH or run a packaged GenOffice',
+      hint: 'set XLSX_SIDECAR_PATH or run a packaged Plot Docs',
     })
   }
   const client = new XlsxSidecarClient(binary)
@@ -482,7 +482,7 @@ export async function readSheet(path: string, opts: ReadOptions): Promise<SheetR
           pending.push({ row: c.row, column: c.column })
       }
     }
-    // formulas written without a cached value (e.g. by genoffice itself) are evaluated on the fly
+    // formulas written without a cached value (e.g. by plotdocs itself) are evaluated on the fly
     if (pending.length) {
       const box = boundingBox(pending)
       const cells = await recalcRange(client, path, meta.name, box)

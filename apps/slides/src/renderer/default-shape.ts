@@ -2,7 +2,7 @@
  * "Set as Default Shape": the fill/line that new gallery shapes start with.
  * PowerPoint stores it per deck; ours is per install (localStorage).
  */
-import type { RenderNode } from '@genoffice/pptx-render'
+import type { RenderNode } from '@plotdocs/pptx-render'
 
 export interface DefaultShapeStyle {
   fillColor?: string

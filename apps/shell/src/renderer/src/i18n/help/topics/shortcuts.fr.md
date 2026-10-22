@@ -26,7 +26,7 @@ Chaque éditeur a ses propres combinaisons de touches, et seules quelques-unes f
 
 - La colonne macOS utilise les symboles habituels : `⌘` Commande, `⌥` Option, `⇧` Maj, `⌃` Contrôle.
 - La colonne Windows / Linux les écrit en toutes lettres : `Ctrl`, `Alt`, `Shift`.
-- Lorsque GenOffice a réellement besoin de touches différentes sur les deux plateformes, la table le montre. Les cas courants sont `⌃H` pour Rechercher et remplacer (sur macOS, `⌘H` est réservé à Masquer), `⌥⌘G` pour Aller à, et la touche de fermeture de Slides.
+- Lorsque Plot Docs a réellement besoin de touches différentes sur les deux plateformes, la table le montre. Les cas courants sont `⌃H` pour Rechercher et remplacer (sur macOS, `⌘H` est réservé à Masquer), `⌥⌘G` pour Aller à, et la touche de fermeture de Slides.
 - Une combinaison qui ne fonctionne qu’avec une sélection est écrite dans la colonne Action plutôt que de recevoir une colonne à elle, afin que chaque table reste large de trois colonnes.
 
 ## Word
@@ -159,7 +159,7 @@ F1 ouvre le **guide de l’utilisateur**, pas cette liste. La feuille des raccou
 
 ## Sheets
 
-GenOffice Sheets est une grille compatible avec Excel. La plupart des raccourcis ci-dessous sont ceux d’Excel que vous connaissez déjà.
+Plot Docs Sheets est une grille compatible avec Excel. La plupart des raccourcis ci-dessous sont ceux d’Excel que vous connaissez déjà.
 
 > **L’édition l’emporte.** Presque tous les raccourcis de Sheets sont ignorés pendant que vous modifiez une cellule ou que vous tapez dans la **barre de formule**, afin que la saisie, le déplacement du curseur et la touche Retour arrière conservent leur sens habituel en édition de texte. Si une touche semble ne rien faire, vérifiez si vous êtes en cours d’édition : appuyez d’abord sur Esc ou Enter, puis réessayez. Les commandes qui agissent sur la sélection ne font rien non plus tant qu’une boîte de dialogue est ouverte. Lorsqu’une combinaison fait exception à cette règle, la table le précise.
 
@@ -287,7 +287,7 @@ Le raccourci de filtre d’Excel, Ctrl+Shift+L, ne fait rien sous Windows ni sou
 
 ## Slides
 
-GenOffice Slides est un éditeur de présentations de style PowerPoint. La plupart des touches font la même chose où que vous soyez, mais quelques-unes changent de sens selon l’élément qui a le focus — dans une zone de texte, ou quand le **volet des miniatures**, le **volet du plan** ou le **mode trieur de diapositives** a le focus clavier. Ces cas sont signalés dans la colonne Action.
+Plot Docs Slides est un éditeur de présentations de style PowerPoint. La plupart des touches font la même chose où que vous soyez, mais quelques-unes changent de sens selon l’élément qui a le focus — dans une zone de texte, ou quand le **volet des miniatures**, le **volet du plan** ou le **mode trieur de diapositives** a le focus clavier. Ces cas sont signalés dans la colonne Action.
 
 ### Fichier et application
 
@@ -482,7 +482,7 @@ Actif uniquement lorsqu’une annotation, un tampon, une occultation ou une imag
 
 ## Markdown
 
-GenOffice Markdown édite du Markdown avec un aperçu en direct à côté.
+Plot Docs Markdown édite du Markdown avec un aperçu en direct à côté.
 
 ### Fichier et affichage
 
@@ -523,7 +523,7 @@ Appliquer une formule vide supprime le bloc. L’éditeur se ferme aussi dès qu
 
 ## HTML
 
-GenOffice HTML affiche un éditeur de code à côté d’un aperçu en direct. Les touches qui agissent sur un élément de page ne s’appliquent que lorsque l’aperçu lui-même a le focus clavier.
+Plot Docs HTML affiche un éditeur de code à côté d’un aperçu en direct. Les touches qui agissent sur un élément de page ne s’appliquent que lorsque l’aperçu lui-même a le focus clavier.
 
 ### Fichier et vue source
 

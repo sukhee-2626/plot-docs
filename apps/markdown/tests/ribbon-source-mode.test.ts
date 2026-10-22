@@ -6,7 +6,7 @@ import { buildExtensions } from '../src/renderer/editor/extensions'
 import { Ribbon } from '../src/renderer/components/Ribbon'
 
 // The assistant is unrelated to the formatting buttons under test.
-vi.mock('../src/renderer/ai/AiPanel', () => ({ GensparkMark: () => null }))
+vi.mock('../src/renderer/ai/AiPanel', () => ({ SoopusMark: () => null }))
 
 beforeEach(() => vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true))
 const cleanups: Array<() => void> = []
@@ -16,7 +16,7 @@ afterEach(() => {
 })
 
 /**
- * @param sourceMode the .txt/.json "this file is source text" flag from genoffice#1848
+ * @param sourceMode the .txt/.json "this file is source text" flag from plotdocs#1848
  * @param sourceViewOpen this PR's markdown source view, kept a separate flag
  *   because the two mean different things and can never both be on
  */

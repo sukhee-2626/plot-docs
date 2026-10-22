@@ -13,8 +13,8 @@ import {
   uninstallSkill,
   type BundledSkill,
   type SkillLedger,
-} from '@genoffice/cli/agent-skills'
-import { inspectCliLink } from '@genoffice/cli/install'
+} from '@plotdocs/cli/agent-skills'
+import { inspectCliLink } from '@plotdocs/cli/install'
 import { readAppSettings, writeAppSetting } from './app-settings'
 import { isEphemeralInstall } from './cli-link'
 import {
@@ -37,9 +37,9 @@ export interface IntegrationsDeps {
   settingsPath: () => string
   /** the shell window dialogs attach to */
   window: () => BrowserWindow | null
-  /** directory holding genoffice / genoffice.cmd and, packaged, skills/genoffice/SKILL.md */
+  /** directory holding plotdocs / plotdocs.cmd and, packaged, skills/plotdocs/SKILL.md */
   cliDir: string
-  /** skills/genoffice/SKILL.md (repo file in dev, Resources/cli/skills/... packaged) */
+  /** skills/plotdocs/SKILL.md (repo file in dev, Resources/cli/skills/... packaged) */
   skillPath: string
   /** packages/cli/package.json (its version is the CLI version) */
   cliPackageJson: string
@@ -62,7 +62,7 @@ export function registerIntegrationsIpc(deps: IntegrationsDeps): void {
   ipcMain.handle(INTEGRATIONS_CHANNELS.status, (): IntegrationsStatus => {
     const skill = bundled()
     const l = ledger()
-    const launcher = join(deps.cliDir, process.platform === 'win32' ? 'genoffice.cmd' : 'genoffice')
+    const launcher = join(deps.cliDir, process.platform === 'win32' ? 'plotdocs.cmd' : 'plotdocs')
     return {
       cli: {
         ...inspectCliLink({ launcher }),
@@ -124,7 +124,7 @@ export function registerIntegrationsIpc(deps: IntegrationsDeps): void {
       const skill = bundled()
       const opts: Electron.SaveDialogOptions = {
         title: String(title ?? ''),
-        defaultPath: join(app.getPath('downloads'), `genoffice-skill-${skill.version}.zip`),
+        defaultPath: join(app.getPath('downloads'), `plotdocs-skill-${skill.version}.zip`),
         filters: [{ name: 'ZIP', extensions: ['zip'] }],
       }
       const win = deps.window()

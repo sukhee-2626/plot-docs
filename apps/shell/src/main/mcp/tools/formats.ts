@@ -56,7 +56,7 @@ export const FORMAT_FAMILIES: readonly FormatFamily[] = [
     family: 'docx',
     label: 'Word document',
     // .odt/.ott open as converted copies and save as .docx, so they are open-only
-    // formats: they must not appear in editorSave (GenOffice never writes ODF)
+    // formats: they must not appear in editorSave (Plot Docs never writes ODF)
     editorOpen: ['docx', 'odt', 'ott'],
     editorSave: ['docx'],
     editorExport: ['pdf'],
@@ -67,7 +67,7 @@ export const FORMAT_FAMILIES: readonly FormatFamily[] = [
     label: 'spreadsheet',
     // .tsv opens as a converted copy and saves as .xlsx, so it is an open-only
     // format: it must not appear in editorSave. .ods is open-only for the same
-    // reason, and GenOffice never writes ODF.
+    // reason, and Plot Docs never writes ODF.
     editorOpen: ['xlsx', 'xlsm', 'xls', 'csv', 'tsv', 'ods', 'ots'],
     // the interactive Save As also offers .xlsm/.csv; the explicit-path save the
     // MCP bridge uses writes .xlsx only (sheets-main.ts forces the extension),

@@ -19,7 +19,7 @@ const OVERLOADED_PATTERN = new RegExp(
   'i',
 )
 
-// Credits-exhausted notices ("Your Genspark credits have been exhausted…") are
+// Credits-exhausted notices ("Your Soopus credits have been exhausted…") are
 // a different failure class (errorCode 'credits', "top up" message) — never
 // misreport them as a transient capacity problem.
 const CREDITS_PATTERN = /credit|pricing/i

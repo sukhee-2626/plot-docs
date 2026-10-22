@@ -36,5 +36,5 @@ Every editor can summon the AI panel: select something, give an instruction, wat
 
 ## Privacy
 
-- Instructions and the relevant document content go to the **model service you configured** (Genspark hosted or a custom endpoint, next chapter); no configuration, no sending.
+- Instructions and the relevant document content go to the **model service you configured** (Soopus AI hosted or a custom endpoint, next chapter); no configuration, no sending.
 - Local files are uploaded nowhere else; BYOK keys are stored in the app's settings file on this machine and sent only in request headers.

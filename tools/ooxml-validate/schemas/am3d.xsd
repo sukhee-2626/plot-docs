@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  http://schemas.microsoft.com/office/drawing/2017/model3d (am3d), from [MS-ODRAWXML]
- 5.29. GenOffice amendments: the drawingml/2006/main imports point at dml-main.xsd;
+ 5.29. PlotDocs amendments: the drawingml/2006/main imports point at dml-main.xsd;
  the 2016/11/main and 2018/animation/model3d imports are dropped, and with them the
  optional am3d:attrSrcUrl element, the only use of either.
 -->

@@ -30,7 +30,7 @@ the PresentationML closure is kept: `pml`, `dml-main`, `dml-chart`,
 `dml-chartDrawing`, `dml-diagram`, `dml-lockedCanvas`, `dml-picture`,
 `shared-commonSimpleTypes`, `shared-relationshipReference`.
 
-Local amendment (marked `GenOffice amendment` in the file):
+Local amendment (marked `Plot Docs amendment` in the file):
 
 - `dml-main.xsd` `CT_TextBulletSizePercent/@val` is bound to `ST_TextBulletSize`
   (the union that includes the 25000..400000 decimal form). The published

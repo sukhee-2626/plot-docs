@@ -3,10 +3,10 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 
-vi.mock('../src/gsk', () => ({
-  gskGenerateImage: vi.fn(),
-  gskAnalyzeMedia: vi.fn(),
-  hasGskAuth: vi.fn(() => true),
+vi.mock('../src/soopus', () => ({
+  soopusGenerateImage: vi.fn(),
+  soopusAnalyzeMedia: vi.fn(),
+  hasSoopusAuth: vi.fn(() => true),
 }))
 
 import {
@@ -17,10 +17,10 @@ import {
   generateImageTool,
   loadMediaReferences,
 } from '../src/media-tools'
-import { gskAnalyzeMedia, gskGenerateImage } from '../src/gsk'
+import { soopusAnalyzeMedia, soopusGenerateImage } from '../src/soopus'
 
-const gskGen = vi.mocked(gskGenerateImage)
-const gskAnalyze = vi.mocked(gskAnalyzeMedia)
+const soopusGen = vi.mocked(soopusGenerateImage)
+const soopusAnalyze = vi.mocked(soopusAnalyzeMedia)
 
 /** A data URL whose decoded payload is `bytes` long. */
 function dataUrl(bytes: number, mime = 'image/png'): string {
@@ -31,7 +31,7 @@ function dataUrl(bytes: number, mime = 'image/png'): string {
 const TINY = { maxItems: 3, maxItemBytes: 64, maxTotalBytes: 128, concurrency: 2 }
 
 function writeSettings(mediaProvider: string): string {
-  const dir = mkdtempSync(join(tmpdir(), 'genoffice-media-budget-'))
+  const dir = mkdtempSync(join(tmpdir(), 'plotdocs-media-budget-'))
   const path = join(dir, 'ai-settings.json')
   writeFileSync(
     path,
@@ -54,8 +54,8 @@ function writeSettings(mediaProvider: string): string {
 }
 
 beforeEach(() => {
-  gskGen.mockReset()
-  gskAnalyze.mockReset()
+  soopusGen.mockReset()
+  soopusAnalyze.mockReset()
 })
 
 describe('loadMediaReferences budget', () => {
@@ -86,7 +86,7 @@ describe('loadMediaReferences budget', () => {
 
   it('rejects a total that only crosses the cap once the bytes have landed', async () => {
     // local files declare no encoded size, so only the running total can catch this
-    const dir = mkdtempSync(join(tmpdir(), 'genoffice-media-files-'))
+    const dir = mkdtempSync(join(tmpdir(), 'plotdocs-media-files-'))
     const refs = Array.from({ length: 3 }, (_, i) => {
       const path = join(dir, `shot-${i}.png`)
       writeFileSync(path, Buffer.alloc(50, 1))
@@ -121,20 +121,20 @@ describe('media tool aggregate budget', () => {
       requirements: 'describe these',
     })
     expect(result.error).toMatch(/Too many media items/)
-    expect(gskAnalyze).not.toHaveBeenCalled()
+    expect(soopusAnalyze).not.toHaveBeenCalled()
   })
 
-  it('analyze_media still hands a budget failure to Genspark when only one provider is configured', async () => {
-    gskAnalyze.mockResolvedValue('from genspark' as never)
+  it('analyze_media still hands a budget failure to Soopus when only one provider is configured', async () => {
+    soopusAnalyze.mockResolvedValue('from soopus' as never)
     // openai reads images but not video, so a budget failure still has a
-    // Genspark route to fall back to (the pre-existing size-cap behavior)
+    // Soopus route to fall back to (the pre-existing size-cap behavior)
     const result = await analyzeMediaTool(writeSettings('openai'), {
       mediaUrls: Array.from({ length: 13 }, () => dataUrl(8)),
       requirements: 'describe these',
     })
     // the fallback enforces the same item ceiling: the CLI argv stays bounded
     expect(result.error).toMatch(/Too many media items/)
-    expect(gskAnalyze).not.toHaveBeenCalled()
+    expect(soopusAnalyze).not.toHaveBeenCalled()
   })
 
   it('generate_image refuses too many references', async () => {

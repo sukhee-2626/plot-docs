@@ -26,7 +26,7 @@ Mỗi trình soạn thảo có tổ hợp phím riêng, và chỉ vài tổ hợ
 
 - Cột macOS dùng các ký hiệu quen thuộc: `⌘` Command, `⌥` Option, `⇧` Shift, `⌃` Control.
 - Cột Windows / Linux viết tên đầy đủ: `Ctrl`, `Alt`, `Shift`.
-- Khi GenOffice thực sự cần phím khác nhau trên hai nền tảng, bảng sẽ ghi rõ. Các trường hợp thường gặp là `⌃H` cho Tìm và Thay thế (macOS dành `⌘H` cho Ẩn), `⌥⌘G` cho Đi tới, và phím đóng của Slides.
+- Khi Plot Docs thực sự cần phím khác nhau trên hai nền tảng, bảng sẽ ghi rõ. Các trường hợp thường gặp là `⌃H` cho Tìm và Thay thế (macOS dành `⌘H` cho Ẩn), `⌥⌘G` cho Đi tới, và phím đóng của Slides.
 - Một tổ hợp phím chỉ chạy khi có vùng được chọn thì được viết trong cột Hành động thay vì tách thành cột riêng, để bảng vẫn chỉ rộng ba cột.
 
 ## Word
@@ -159,7 +159,7 @@ F1 mở **Hướng dẫn sử dụng**, không phải danh sách này. Bảng ph
 
 ## Sheets
 
-GenOffice Sheets là một lưới tương thích Excel. Hầu hết các phím tắt bên dưới chính là những phím Excel mà bạn đã quen.
+Plot Docs Sheets là một lưới tương thích Excel. Hầu hết các phím tắt bên dưới chính là những phím Excel mà bạn đã quen.
 
 > **Khi đang soạn thảo thì thắng.** Hầu như mọi phím tắt trong Sheets bị bỏ qua khi bạn đang soạn một ô hoặc gõ trong **thanh công thức**, để việc gõ, di chuyển con trỏ và phím Backspace giữ nguyên nghĩa soạn văn bản. Nếu một phím tưởng như không làm gì, hãy kiểm tra xem bạn đang ở giữa chừng một lần soạn thảo: nhấn Esc hoặc Enter trước đã, rồi thử lại. Những lệnh tác động tới vùng chọn cũng không làm gì khi một hộp thoại đang mở. Ở những nơi một tổ hợp phím là ngoại lệ của quy tắc này, bảng sẽ ghi rõ.
 
@@ -287,7 +287,7 @@ Phím lọc của Excel là Ctrl+Shift+L, không làm gì trên Windows hay Linu
 
 ## Slides
 
-GenOffice Slides là một trình soạn thảo trình chiếu kiểu PowerPoint. Hầu hết phím đều làm cùng một việc ở mọi nơi, nhưng vài phím đổi nghĩa theo tiêu điểm — bên trong một hộp văn bản, hoặc khi **khung hình thu nhỏ**, **khung dàn ý** hay **bộ sắp xếp** có tiêu điểm bàn phím. Những trường hợp đó được đánh dấu ở cột Hành động.
+Plot Docs Slides là một trình soạn thảo trình chiếu kiểu PowerPoint. Hầu hết phím đều làm cùng một việc ở mọi nơi, nhưng vài phím đổi nghĩa theo tiêu điểm — bên trong một hộp văn bản, hoặc khi **khung hình thu nhỏ**, **khung dàn ý** hay **bộ sắp xếp** có tiêu điểm bàn phím. Những trường hợp đó được đánh dấu ở cột Hành động.
 
 ### Tệp và ứng dụng
 
@@ -482,7 +482,7 @@ Esc lùi từng lớp một — trước hết là hộp thoại đang mở, r�
 
 ## Markdown
 
-GenOffice Markdown soạn thảo Markdown với bản xem trước trực tiếp bên cạnh.
+Plot Docs Markdown soạn thảo Markdown với bản xem trước trực tiếp bên cạnh.
 
 ### Tệp và chế độ xem
 
@@ -523,7 +523,7 @@ Những phím này chỉ áp dụng khi trình soạn thảo LaTeX nổi đang m
 
 ## HTML
 
-GenOffice HTML hiển thị một trình soạn thảo mã bên cạnh bản xem trước trực tiếp. Những phím tác động tới một phần tử của trang chỉ áp dụng khi chính khung xem trước có tiêu điểm bàn phím.
+Plot Docs HTML hiển thị một trình soạn thảo mã bên cạnh bản xem trước trực tiếp. Những phím tác động tới một phần tử của trang chỉ áp dụng khi chính khung xem trước có tiêu điểm bàn phím.
 
 ### Tệp và chế độ xem mã nguồn
 

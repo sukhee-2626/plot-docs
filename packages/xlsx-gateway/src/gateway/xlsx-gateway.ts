@@ -4,7 +4,7 @@ import { rename, rm } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 
 import JSZip from 'jszip'
-import { assertZipInflatesWithinLimits } from '@genoffice/zip-gate'
+import { assertZipInflatesWithinLimits } from '@plotdocs/zip-gate'
 
 import type {
   CellState,
@@ -1921,7 +1921,7 @@ export function sha256(input: Buffer | string): string {
 
 /// Package-relative form of a ZIP entry name, null when it escapes the root.
 /// '\' separators, a leading '/' and empty segments are producer quirks Excel
-/// tolerates (genoffice#196 shipped `/xl/workbook.xml`); folding them keeps
+/// tolerates (plotdocs#196 shipped `/xl/workbook.xml`); folding them keeps
 /// lookups and the saved package on conformant names.
 function canonicalEntryName(raw: string): string | null {
   if (raw.includes('\0')) return null

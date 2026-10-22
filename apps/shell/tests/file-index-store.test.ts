@@ -8,7 +8,7 @@ let dir: string
 let store: FileIndexStore
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), 'genoffice-index-'))
+  dir = mkdtempSync(join(tmpdir(), 'plotdocs-index-'))
   store = new FileIndexStore(join(dir, 'index.db'))
 })
 afterEach(() => {

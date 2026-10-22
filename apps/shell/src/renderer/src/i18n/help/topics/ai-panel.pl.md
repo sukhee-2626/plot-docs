@@ -36,5 +36,5 @@ Każdy edytor może przywołać panel AI: zaznacz coś, wydaj polecenie i obserw
 
 ## Prywatność
 
-- Polecenia i odpowiednia treść dokumentu trafiają do **usługi modelu, którą skonfigurowałeś** (Genspark w chmurze lub własny punkt końcowy, następny rozdział); bez konfiguracji nic nie jest wysyłane.
+- Polecenia i odpowiednia treść dokumentu trafiają do **usługi modelu, którą skonfigurowałeś** (Soopus AI w chmurze lub własny punkt końcowy, następny rozdział); bez konfiguracji nic nie jest wysyłane.
 - Pliki lokalne nie są nigdzie indziej przesyłane; klucze BYK są przechowywane w pliku ustawień aplikacji na tym komputerze i wysyłane wyłącznie w nagłówkach żądań.

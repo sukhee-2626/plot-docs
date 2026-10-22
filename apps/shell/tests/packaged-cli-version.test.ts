@@ -9,7 +9,7 @@ const shellRoot = resolve(import.meta.dirname, '..')
 const shellPackage = JSON.parse(readFileSync(resolve(shellRoot, 'package.json'), 'utf-8')) as {
   version: string
 }
-const CLI_BUNDLE_REL = '../../packages/cli/dist/genoffice.cjs'
+const CLI_BUNDLE_REL = '../../packages/cli/dist/plotdocs.cjs'
 
 interface Rebuild {
   script: string
@@ -19,7 +19,7 @@ interface Rebuild {
 /**
  * Loads the real packaging config and drives its beforePack hook with a stand-in
  * CLI bundle: `rebuiltWith` is the version the fake rebuild bakes in, so the hook
- * sees exactly what a real GENOFFICE_APP_VERSION rebuild would leave behind.
+ * sees exactly what a real PLOTDOCS_APP_VERSION rebuild would leave behind.
  */
 function loadConfig(opts: {
   baked: string
@@ -41,8 +41,8 @@ function loadConfig(opts: {
       if (id === 'node:child_process') {
         return {
           execFileSync: (_file: string, args: string[], runOpts: { env?: NodeJS.ProcessEnv }) => {
-            rebuilds.push({ script: args[0], appVersion: runOpts.env?.GENOFFICE_APP_VERSION })
-            if (opts.rebuildApplies !== false) baked = runOpts.env?.GENOFFICE_APP_VERSION ?? baked
+            rebuilds.push({ script: args[0], appVersion: runOpts.env?.PLOTDOCS_APP_VERSION })
+            if (opts.rebuildApplies !== false) baked = runOpts.env?.PLOTDOCS_APP_VERSION ?? baked
             return Buffer.from('')
           },
         }
@@ -52,7 +52,7 @@ function loadConfig(opts: {
           ...require(id),
           existsSync: () => true,
           readFileSync: (path: string, encoding: string) => {
-            if (String(path).endsWith('genoffice.cjs')) {
+            if (String(path).endsWith('plotdocs.cjs')) {
               return `const __cliAppVersion = ${JSON.stringify(baked)};\n`
             }
             // Packaging also gates on a generated third-party notice. Serve a

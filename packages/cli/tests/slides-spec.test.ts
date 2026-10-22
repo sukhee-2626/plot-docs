@@ -25,7 +25,7 @@ function specFile(dir: string, spec: unknown): string {
   return path
 }
 
-describe('genoffice create --type pptx --spec', () => {
+describe('plotdocs create --type pptx --spec', () => {
   it('builds one slide per page, embeds local images and reports dropped elements', async () => {
     const dir = tempDir()
     writeFileSync(join(dir, 'pic.png'), PNG_1PX)
@@ -83,7 +83,7 @@ describe('genoffice create --type pptx --spec', () => {
   })
 })
 
-describe('genoffice slides audit', () => {
+describe('plotdocs slides audit', () => {
   it('reports text taller than its box with durable ids and passes a clean deck', async () => {
     const dir = tempDir()
     const spec = specFile(dir, {
@@ -125,7 +125,7 @@ describe('genoffice slides audit', () => {
   })
 })
 
-describe('genoffice slides render', () => {
+describe('plotdocs slides render', () => {
   it('rasterizes every PDF page to PNG', async () => {
     const dir = tempDir()
     const pdf = writeMinimalPdf(join(dir, 'one.pdf'))
@@ -147,9 +147,9 @@ describe('genoffice slides render', () => {
     })
     const pptx = join(dir, 'r.pptx')
     expect((await run(['create', '--type', 'pptx', '--spec', spec, '--out', pptx])).code).toBe(0)
-    // a stand-in for the GenOffice binary: copies a prepared PDF to --out and prints the envelope
+    // a stand-in for the Plot Docs binary: copies a prepared PDF to --out and prints the envelope
     const pdf = writeMinimalPdf(join(dir, 'export.pdf'))
-    const fake = join(dir, 'fake-genoffice.sh')
+    const fake = join(dir, 'fake-plotdocs.sh')
     writeFileSync(
       fake,
       `#!/bin/sh\nwhile [ $# -gt 0 ]; do if [ "$1" = "--out" ]; then out="$2"; fi; shift; done\ncp "${pdf}" "$out"\necho '{"status":"ok","summary":"exported"}'\n`,
@@ -157,7 +157,7 @@ describe('genoffice slides render', () => {
     chmodSync(fake, 0o755)
     const shots = join(dir, 'shots')
     const r = await run(['slides', 'render', pptx, '--out', shots, '--scale', '2', '--json'], {
-      env: { ...process.env, GENOFFICE_APP_BIN: fake },
+      env: { ...process.env, PLOTDOCS_APP_BIN: fake },
     })
     expect(r.code).toBe(0)
     const files = r.json().detail.files as { path: string; width: number }[]
@@ -197,7 +197,7 @@ function deckDir(dir: string, pages: unknown[]): string {
   return pagesDir
 }
 
-describe('genoffice create --type pptx --spec <dir>', () => {
+describe('plotdocs create --type pptx --spec <dir>', () => {
   it('builds one slide per page file in name order and names the file in issues', async () => {
     const dir = tempDir()
     const pagesDir = deckDir(dir, [
@@ -357,7 +357,7 @@ describe('genoffice create --type pptx --spec <dir>', () => {
   })
 })
 
-describe('genoffice slides check', () => {
+describe('plotdocs slides check', () => {
   it('validates an outline: errors exit 1 with the findings, warnings pass', async () => {
     const dir = tempDir()
     const outline = join(dir, 'outline.json')
@@ -640,7 +640,7 @@ describe('staged deck folder: outline and style checks', () => {
   })
 })
 
-describe('genoffice slides replace', () => {
+describe('plotdocs slides replace', () => {
   it('rebuilds one slide from its spec and leaves the others alone', async () => {
     const dir = tempDir()
     const pagesDir = deckDir(dir, [
@@ -730,7 +730,7 @@ async function slideTextsInOrder(pptx: string): Promise<string[]> {
   return Promise.all(ids.map((id) => zip.file(`ppt/${targets.get(id)!}`)!.async('string')))
 }
 
-describe('genoffice guide slides design|spec', () => {
+describe('plotdocs guide slides design|spec', () => {
   it('prints the deck design workflow and the spec reference', async () => {
     const design = await run(['guide', 'slides', 'design'])
     expect(design.code).toBe(0)
@@ -740,6 +740,6 @@ describe('genoffice guide slides design|spec', () => {
     expect(spec.stdout).toContain('1280 × 720')
     expect(spec.stdout).toContain('"type": "image"')
     const catalog = await run(['guide', 'slides'])
-    expect(catalog.stdout).toContain('genoffice guide slides design')
+    expect(catalog.stdout).toContain('plotdocs guide slides design')
   })
 })

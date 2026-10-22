@@ -5,13 +5,13 @@
  * per-sheet print settings; nothing renders in the grid (Univer has no
  * page-layout view), everything lands in the saved file.
  */
-import { isMetafileMime, metafileToDataUrl } from '@genoffice/docx-engine/metafile'
+import { isMetafileMime, metafileToDataUrl } from '@plotdocs/docx-engine/metafile'
 import type { PrinterInfo, WorkbookExportPdfRequest } from '../shared/desktop-api'
 import type { FWorksheet } from '@univerjs/sheets/facade'
-import type { WorkbookOperation } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
-import type { ApplyOutcome } from '@genoffice/xlsx-gateway/domain/workbook.types'
+import type { WorkbookOperation } from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
+import type { ApplyOutcome } from '@plotdocs/xlsx-gateway/domain/workbook.types'
 
-import { columnLabel } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { columnLabel } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import {
   isSheetRemoved,
   journalSize,

@@ -12,7 +12,7 @@
  * one whose start lies at or before its flow position, not the clone whose
  * box happens to contain it.
  */
-import type { Block } from '@genoffice/docx-engine'
+import type { Block } from '@plotdocs/docx-engine'
 import type { PdfInternalLink } from '../shared/ipc'
 
 interface PageBox {

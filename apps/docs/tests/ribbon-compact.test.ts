@@ -10,7 +10,7 @@ import {
   readRibbonDensity,
   useRibbonCollapse,
   type RibbonDensity,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 
 const TABS = ['home', 'insert'] as const
 // the opt-in labels: without `compact`/`expandFull` the hook stays two-state

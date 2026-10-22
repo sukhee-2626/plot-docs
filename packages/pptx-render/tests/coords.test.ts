@@ -9,7 +9,7 @@ import {
   placeTransform,
   EMU_PER_PX_96,
 } from '../src/coords'
-import type { Transform } from '@genoffice/pptx-engine'
+import type { Transform } from '@plotdocs/pptx-engine'
 
 describe('2.1 coordinate system', () => {
   it('emuToPx: 1px = 9525 EMU at scale 1', () => {

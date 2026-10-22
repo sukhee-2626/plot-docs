@@ -6,8 +6,8 @@
  * encode/decode plus hit testing.
  */
 import { describe, it, expect } from 'vitest'
-import { addPicture, createBlankPptx, openPptx, savePptx } from '@genoffice/pptx-engine'
-import { buildRenderSlide, type PictureRenderNode } from '@genoffice/pptx-render'
+import { addPicture, createBlankPptx, openPptx, savePptx } from '@plotdocs/pptx-engine'
+import { buildRenderSlide, type PictureRenderNode } from '@plotdocs/pptx-render'
 import {
   decodeInkPayload,
   encodeInkPayload,

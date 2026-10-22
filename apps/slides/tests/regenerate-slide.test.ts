@@ -1,7 +1,7 @@
 /** Skill-layer behavior of the regenerate_slide (redo one page in place) tool. */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createSlidesSkill, type DeckAccess } from '../src/renderer/ai/slides-skill'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import type { AgentToolCall } from '../src/shared/ipc'
 
 const page = { widthPx: 1280, heightPx: 720, nodes: [] } as unknown as RenderSlide

@@ -26,7 +26,7 @@ Cada editor tiene sus propias combinaciones de teclas, y solo unas cuantas funci
 
 - La columna de macOS usa los símbolos habituales: `⌘` Command, `⌥` Option, `⇧` Shift, `⌃` Control.
 - La columna de Windows / Linux los escribe: `Ctrl`, `Alt`, `Shift`.
-- Donde GenOffice necesita de verdad teclas distintas en las dos plataformas, la tabla lo muestra. Los casos habituales son `⌃H` para Buscar y reemplazar (en macOS, `⌘H` es para Ocultar), `⌥⌘G` para Ir a, y la tecla de cierre de Slides.
+- Donde Plot Docs necesita de verdad teclas distintas en las dos plataformas, la tabla lo muestra. Los casos habituales son `⌃H` para Buscar y reemplazar (en macOS, `⌘H` es para Ocultar), `⌥⌘G` para Ir a, y la tecla de cierre de Slides.
 - Una combinación que solo funciona con una selección se escribe en la columna Acción en lugar de tener su propia columna, para que la tabla siga teniendo tres columnas.
 
 ## Word
@@ -159,7 +159,7 @@ F1 abre la **guía del usuario**, no esta lista. La hoja de atajos es `⌘/` o C
 
 ## Sheets
 
-GenOffice Sheets es una cuadrícula compatible con Excel. La mayoría de los atajos de abajo son los de Excel que ya conoces.
+Plot Docs Sheets es una cuadrícula compatible con Excel. La mayoría de los atajos de abajo son los de Excel que ya conoces.
 
 > **La edición manda.** Casi todos los atajos de Sheets se ignoran mientras editas una celda o escribes en la **barra de fórmulas**, para que escribir, mover el cursor y la tecla Retroceso conserven su significado habitual de edición de texto. Si una tecla parece no hacer nada, comprueba si estás a mitad de una edición: pulsa primero Esc o Enter y vuelve a intentarlo. Los comandos que actúan sobre la selección tampoco hacen nada mientras haya un cuadro de diálogo abierto. Donde una combinación sea la excepción a esta regla, la tabla lo indica.
 
@@ -287,7 +287,7 @@ El atajo de filtro de Excel, Ctrl+Shift+L, no hace nada en Windows ni en Linux. 
 
 ## Slides
 
-GenOffice Slides es un editor de presentaciones al estilo de PowerPoint. La mayoría de las teclas hacen lo mismo estés donde estés, pero algunas cambian de significado según dónde esté el foco — dentro de un cuadro de texto, o mientras el **panel de miniaturas**, el **panel de esquema** o el **clasificador de diapositivas** tiene el foco del teclado. Esos casos están marcados en la columna Acción.
+Plot Docs Slides es un editor de presentaciones al estilo de PowerPoint. La mayoría de las teclas hacen lo mismo estés donde estés, pero algunas cambian de significado según dónde esté el foco — dentro de un cuadro de texto, o mientras el **panel de miniaturas**, el **panel de esquema** o el **clasificador de diapositivas** tiene el foco del teclado. Esos casos están marcados en la columna Acción.
 
 ### Archivo y aplicación
 
@@ -482,7 +482,7 @@ Escape desenvuelve una capa cada vez — primero un cuadro de diálogo abierto, 
 
 ## Markdown
 
-GenOffice Markdown edita Markdown con una vista previa en vivo al lado.
+Plot Docs Markdown edita Markdown con una vista previa en vivo al lado.
 
 ### Archivo y vista
 
@@ -523,7 +523,7 @@ Aplicar una fórmula vacía elimina el bloque en su lugar. El editor también se
 
 ## HTML
 
-GenOffice HTML muestra un editor de código junto a una vista previa en vivo. Las teclas que actúan sobre un elemento de la página solo se aplican cuando la propia vista previa tiene el foco del teclado.
+Plot Docs HTML muestra un editor de código junto a una vista previa en vivo. Las teclas que actúan sobre un elemento de la página solo se aplican cuando la propia vista previa tiene el foco del teclado.
 
 ### Archivo y vista de código
 

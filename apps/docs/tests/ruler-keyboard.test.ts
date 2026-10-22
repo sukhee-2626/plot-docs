@@ -2,7 +2,7 @@ import { act, createElement } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import type { Editor } from '@tiptap/core'
-import type { SectionSettings, TabStop } from '@genoffice/docx-engine'
+import type { SectionSettings, TabStop } from '@plotdocs/docx-engine'
 import {
   MAX_RULER_INCHES,
   Ruler,

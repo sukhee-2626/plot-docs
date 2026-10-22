@@ -71,7 +71,7 @@ const run = (win: TestPrintWindow, platform?: string) =>
     html: '<html><body>doc</body></html>',
     window: win,
     fileName: 'print.html',
-    dirPrefix: 'genoffice-html-print-',
+    dirPrefix: 'plotdocs-html-print-',
     platform: platform as NodeJS.Platform,
   })
 
@@ -157,7 +157,7 @@ describe('HTML print window', () => {
     await run(ok)
     expect(ok.destroyed).toBe(true)
     expect(ok.dirExistedAtDestroy).toBe(true)
-    expect(ok.loadedPath).toMatch(/genoffice-html-print-.*print\.html$/)
+    expect(ok.loadedPath).toMatch(/plotdocs-html-print-.*print\.html$/)
     expect(ok.loadedHtml).toBe('<html><body>doc</body></html>')
     expect(existsSync(dirname(ok.loadedPath!))).toBe(false)
 

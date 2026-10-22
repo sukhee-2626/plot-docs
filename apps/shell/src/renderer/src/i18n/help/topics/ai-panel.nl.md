@@ -36,5 +36,5 @@ Elke editor kan het AI-paneel oproepen: selecteer iets, geef een instructie en z
 
 ## Privacy
 
-- Instructies en de relevante documentinhoud gaan naar de **modelservice die je hebt ingesteld** (Genspark gehost of een eigen eindpunt, volgend hoofdstuk); zonder instelling wordt er niets verstuurd.
+- Instructies en de relevante documentinhoud gaan naar de **modelservice die je hebt ingesteld** (Soopus AI gehost of een eigen eindpunt, volgend hoofdstuk); zonder instelling wordt er niets verstuurd.
 - Lokale bestanden worden nergens anders heen geüpload; BYOK-sleutels worden opgeslagen in het instellingenbestand van de app op deze machine en alleen in aanvraagheaders verzonden.

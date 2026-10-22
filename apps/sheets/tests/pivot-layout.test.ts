@@ -4,7 +4,7 @@ import {
   buildPivotLayout,
   PivotLayoutError,
   pivotOutputArea,
-} from '@genoffice/xlsx-gateway/domain/pivot-layout'
+} from '@plotdocs/xlsx-gateway/domain/pivot-layout'
 import { readPivotSourceGrid } from '../src/renderer/workbook-ops'
 
 const GRID = [

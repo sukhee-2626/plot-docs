@@ -1,5 +1,5 @@
-/** Main-process i18n strings for GenOffice Slides (dialogs, native menus, export, autosave prompts). */
-import { createI18n, getUiLang } from '@genoffice/i18n'
+/** Main-process i18n strings for Plot Docs Slides (dialogs, native menus, export, autosave prompts). */
+import { createI18n, getUiLang } from '@plotdocs/i18n'
 
 export const tMain = createI18n({
   zh: {
@@ -42,7 +42,7 @@ export const tMain = createI18n({
     legacyPptTitle: '无法打开 .ppt 旧格式',
     odpImportMsg: '转换 .{ext} 演示文稿？',
     odpImportDetail:
-      'GenOffice 只编辑 .pptx，不编辑 ODF。每页会变成一张幻灯片，文字框和图片按原位置摆放；母版、占位符版式、表格和图形样式不会保留。原文件不会被修改，转换出的 .pptx 是一份独立副本，之后的保存都写入它。',
+      'Plot Docs 只编辑 .pptx，不编辑 ODF。每页会变成一张幻灯片，文字框和图片按原位置摆放；母版、占位符版式、表格和图形样式不会保留。原文件不会被修改，转换出的 .pptx 是一份独立副本，之后的保存都写入它。',
     odpImportConvertBtn: '转换并打开',
     odpImportFailedTitle: '无法转换 .odp',
     odpImportFailedBody: '文件可能已损坏或不是有效的 ODF 演示文稿。',
@@ -77,10 +77,10 @@ export const tMain = createI18n({
     errParseFailed: '文件解析失败',
     errImageNoText: '图片附件不提供文本,已作为图像随用户消息发送,直接看图即可',
     errNotImage: '不是支持的图片类型',
-    errGskNotLoggedIn: '未登录 Genspark:请点击下方「登录 Genspark」完成登录后重试',
+    errSoopusNotLoggedIn: '未登录 Soopus:请点击下方「登录 Soopus」完成登录后重试',
     errNoApiKey: '未配置 {provider} 的 API Key',
     errNoModel: '未配置模型名称',
-    errGskCli: 'gsk 未登录:请先运行 gsk login 登录 Genspark 账号',
+    errSoopusCli: 'soopus 未登录:请先运行 soopus login 登录 Soopus 账号',
     errNoDeckAppend:
       '当前没有可追加的文稿（会话不存在）。请先用 mode:"replace" 生成首页，或改用原生工具新增页面。',
     errAppendFailed: '追加失败：{reason}',
@@ -160,7 +160,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Cannot open legacy .ppt',
     odpImportMsg: 'Convert this .{ext} presentation?',
     odpImportDetail:
-      'GenOffice edits .pptx, not ODF. Each page becomes a slide with its text boxes and pictures placed at their original positions; masters, placeholder layouts, tables and shape styling are not preserved. The original file is never changed; the converted .pptx is a separate copy that later saves write to.',
+      'Plot Docs edits .pptx, not ODF. Each page becomes a slide with its text boxes and pictures placed at their original positions; masters, placeholder layouts, tables and shape styling are not preserved. The original file is never changed; the converted .pptx is a separate copy that later saves write to.',
     odpImportConvertBtn: 'Convert and open',
     odpImportFailedTitle: 'Cannot convert this .odp',
     odpImportFailedBody: 'The file may be damaged or not a valid ODF presentation.',
@@ -195,11 +195,11 @@ export const tMain = createI18n({
     errParseFailed: 'Failed to parse file',
     errImageNoText: 'Image attachments have no text; the image is sent along with the user message',
     errNotImage: 'not a supported image type',
-    errGskNotLoggedIn:
-      'Not signed in to Genspark: click “Sign in to Genspark” below, sign in, then retry',
+    errSoopusNotLoggedIn:
+      'Not signed in to Soopus: click “Sign in to Soopus” below, sign in, then retry',
     errNoApiKey: 'No API key configured for {provider}',
     errNoModel: 'No model name configured',
-    errGskCli: 'gsk not signed in: run gsk login to sign in to your Genspark account first',
+    errSoopusCli: 'soopus not signed in: run soopus login to sign in to your Soopus account first',
     errNoDeckAppend:
       'No deck to append to (session missing). Generate the first page with mode:"replace" or add pages with the native tools.',
     errAppendFailed: 'Append failed: {reason}',
@@ -279,7 +279,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Không thể mở tệp .ppt phiên bản cũ',
     odpImportMsg: 'Chuyển đổi bản trình bày .{ext} này?',
     odpImportDetail:
-      'GenOffice chỉnh sửa .pptx chứ không chỉnh sửa ODF. Mỗi trang trở thành một slide với hộp văn bản và hình ảnh đặt đúng vị trí gốc; mẫu trình chiếu, bố cục giữ chỗ, bảng và kiểu hình khối không được giữ lại. Tệp gốc không bao giờ bị sửa; bản .pptx sau chuyển đổi là một bản sao độc lập để tiếp tục chỉnh sửa và lưu.',
+      'Plot Docs chỉnh sửa .pptx chứ không chỉnh sửa ODF. Mỗi trang trở thành một slide với hộp văn bản và hình ảnh đặt đúng vị trí gốc; mẫu trình chiếu, bố cục giữ chỗ, bảng và kiểu hình khối không được giữ lại. Tệp gốc không bao giờ bị sửa; bản .pptx sau chuyển đổi là một bản sao độc lập để tiếp tục chỉnh sửa và lưu.',
     odpImportConvertBtn: 'Chuyển đổi và mở',
     odpImportFailedTitle: 'Không thể chuyển đổi .odp này',
     odpImportFailedBody: 'Tệp có thể bị hỏng hoặc không phải bản trình bày ODF hợp lệ.',
@@ -315,12 +315,12 @@ export const tMain = createI18n({
     errImageNoText:
       'Tệp đính kèm hình ảnh không có văn bản; hình ảnh được gửi cùng với tin nhắn của người dùng',
     errNotImage: 'loại hình ảnh không được hỗ trợ',
-    errGskNotLoggedIn:
-      'Chưa đăng nhập vào Genspark: nhấp vào “Đăng nhập vào Genspark” bên dưới, đăng nhập, sau đó thử lại',
+    errSoopusNotLoggedIn:
+      'Chưa đăng nhập vào Soopus: nhấp vào “Đăng nhập vào Soopus” bên dưới, đăng nhập, sau đó thử lại',
     errNoApiKey: 'Chưa cấu hình khóa API cho {provider}',
     errNoModel: 'Chưa cấu hình tên mô hình',
-    errGskCli:
-      'gsk chưa đăng nhập: trước tiên hãy chạy gsk login để đăng nhập vào tài khoản Genspark của bạn',
+    errSoopusCli:
+      'soopus chưa đăng nhập: trước tiên hãy chạy soopus login để đăng nhập vào tài khoản Soopus của bạn',
     errNoDeckAppend:
       'Không có bản trình bày để nối thêm vào (thiếu phiên làm việc). Hãy tạo trang đầu tiên với mode:"replace" hoặc thêm trang bằng các công cụ gốc.',
     errAppendFailed: 'Nối thêm thất bại: {reason}',
@@ -402,7 +402,7 @@ export const tMain = createI18n({
     legacyPptTitle: '.ppt 形式は開けません',
     odpImportMsg: 'この .{ext} プレゼンテーションを変換しますか？',
     odpImportDetail:
-      'GenOffice は ODF ではなく .pptx を編集します。各ページがスライドになり、テキストボックスと画像は元の位置に配置されます。マスター・プレースホルダーレイアウト・表・図形スタイルは保持されません。元のファイルは変更されず、変換後の .pptx は独立したコピーとして以後の保存先になります。',
+      'Plot Docs は ODF ではなく .pptx を編集します。各ページがスライドになり、テキストボックスと画像は元の位置に配置されます。マスター・プレースホルダーレイアウト・表・図形スタイルは保持されません。元のファイルは変更されず、変換後の .pptx は独立したコピーとして以後の保存先になります。',
     odpImportConvertBtn: '変換して開く',
     odpImportFailedTitle: 'この .odp を変換できません',
     odpImportFailedBody:
@@ -439,12 +439,12 @@ export const tMain = createI18n({
     errImageNoText:
       '画像添付はテキストを提供しません。画像としてユーザー メッセージと一緒に送信済みのため、そのまま画像をご覧ください',
     errNotImage: 'サポートされていない画像形式です',
-    errGskNotLoggedIn:
-      'Genspark にサインインしていません。下の「Genspark にサインイン」からサインインして再試行してください',
+    errSoopusNotLoggedIn:
+      'Soopus にサインインしていません。下の「Soopus にサインイン」からサインインして再試行してください',
     errNoApiKey: '{provider} の API キーが設定されていません',
     errNoModel: 'モデル名が設定されていません',
-    errGskCli:
-      'gsk が未サインインです。先に gsk login を実行して Genspark アカウントにサインインしてください',
+    errSoopusCli:
+      'soopus が未サインインです。先に soopus login を実行して Soopus アカウントにサインインしてください',
     errNoDeckAppend:
       '追加先のプレゼンテーションがありません（セッションが存在しません）。まず mode:"replace" で最初のページを生成するか、ネイティブ ツールでページを追加してください。',
     errAppendFailed: '追加に失敗しました: {reason}',
@@ -527,7 +527,7 @@ export const tMain = createI18n({
     legacyPptTitle: '.ppt 형식을 열 수 없음',
     odpImportMsg: '이 .{ext} 프레젠테이션을 변환할까요?',
     odpImportDetail:
-      'GenOffice은 ODF가 아니라 .pptx를 편집합니다. 각 페이지가 슬라이드가 되고 텍스트 상자와 이미지는 원래 위치에 배치됩니다. 마스터, 자리 표시자 레이아웃, 표, 도형 스타일은 유지되지 않습니다. 원본 파일은 변경되지 않으며, 변환된 .pptx는 이후 저장이 기록되는 독립적인 사본입니다.',
+      'Plot Docs은 ODF가 아니라 .pptx를 편집합니다. 각 페이지가 슬라이드가 되고 텍스트 상자와 이미지는 원래 위치에 배치됩니다. 마스터, 자리 표시자 레이아웃, 표, 도형 스타일은 유지되지 않습니다. 원본 파일은 변경되지 않으며, 변환된 .pptx는 이후 저장이 기록되는 독립적인 사본입니다.',
     odpImportConvertBtn: '변환 후 열기',
     odpImportFailedTitle: '이 .odp을 변환할 수 없습니다',
     odpImportFailedBody: '파일이 손상되었거나 유효한 ODF 프레젠테이션이 아닐 수 있습니다.',
@@ -563,12 +563,12 @@ export const tMain = createI18n({
     errImageNoText:
       '이미지 첨부는 텍스트를 제공하지 않으며, 이미지로 사용자 메시지와 함께 전송되었으니 이미지를 직접 확인하세요',
     errNotImage: '지원되는 이미지 형식이 아님',
-    errGskNotLoggedIn:
-      'Genspark에 로그인되어 있지 않습니다. 아래 "Genspark 로그인"을 눌러 로그인한 뒤 다시 시도하세요',
+    errSoopusNotLoggedIn:
+      'Soopus에 로그인되어 있지 않습니다. 아래 "Soopus 로그인"을 눌러 로그인한 뒤 다시 시도하세요',
     errNoApiKey: '{provider}의 API 키가 설정되지 않았습니다',
     errNoModel: '모델 이름이 설정되지 않았습니다',
-    errGskCli:
-      'gsk가 로그인되어 있지 않습니다. 먼저 gsk login을 실행해 Genspark 계정에 로그인하세요',
+    errSoopusCli:
+      'soopus가 로그인되어 있지 않습니다. 먼저 soopus login을 실행해 Soopus 계정에 로그인하세요',
     errNoDeckAppend:
       '추가할 수 있는 문서가 없습니다(세션 없음). 먼저 mode:"replace"로 첫 페이지를 생성하거나 네이티브 도구로 페이지를 추가하세요.',
     errAppendFailed: '추가 실패: {reason}',
@@ -648,7 +648,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Impossible d’ouvrir le format .ppt',
     odpImportMsg: 'Convertir cette présentation .{ext} ?',
     odpImportDetail:
-      'GenOffice modifie des .pptx, pas de l’ODF. Chaque page devient une diapositive, avec les zones de texte et les images à leur position d’origine ; les masques, les dispositions d’espaces réservés, les tableaux et les styles de formes ne sont pas conservés. Le fichier d’origine n’est jamais modifié ; le .pptx converti est une copie distincte où s’effectuent les enregistrements suivants.',
+      'Plot Docs modifie des .pptx, pas de l’ODF. Chaque page devient une diapositive, avec les zones de texte et les images à leur position d’origine ; les masques, les dispositions d’espaces réservés, les tableaux et les styles de formes ne sont pas conservés. Le fichier d’origine n’est jamais modifié ; le .pptx converti est une copie distincte où s’effectuent les enregistrements suivants.',
     odpImportConvertBtn: 'Convertir et ouvrir',
     odpImportFailedTitle: 'Impossible de convertir ce .odp',
     odpImportFailedBody:
@@ -685,12 +685,12 @@ export const tMain = createI18n({
     errImageNoText:
       "Les pièces jointes image ne fournissent pas de texte ; l'image a été envoyée avec le message de l'utilisateur, consultez-la directement",
     errNotImage: "n'est pas un type d'image pris en charge",
-    errGskNotLoggedIn:
-      'Non connecté à Genspark : cliquez sur « Se connecter à Genspark » ci-dessous, connectez-vous puis réessayez',
+    errSoopusNotLoggedIn:
+      'Non connecté à Soopus : cliquez sur « Se connecter à Soopus » ci-dessous, connectez-vous puis réessayez',
     errNoApiKey: 'Aucune clé API configurée pour {provider}',
     errNoModel: 'Aucun nom de modèle configuré',
-    errGskCli:
-      "gsk non connecté : exécutez d'abord gsk login pour vous connecter à votre compte Genspark",
+    errSoopusCli:
+      "soopus non connecté : exécutez d'abord soopus login pour vous connecter à votre compte Soopus",
     errNoDeckAppend:
       'Aucune présentation à compléter (session inexistante). Générez d\'abord la première page avec mode:"replace" ou ajoutez des pages avec les outils natifs.',
     errAppendFailed: "Échec de l'ajout : {reason}",
@@ -758,7 +758,7 @@ export const tMain = createI18n({
     untitledDeck: 'Unbenannte Präsentation',
     autosaveFoundTitle: 'Wiederhergestellte Version gefunden',
     autosaveDiskNewer:
-      'Hinweis: Die Datei auf dem Datenträger wurde nach dem Speichern dieser Wiederherstellungskopie geändert. Beim Wiederherstellen werden diese neueren Änderungen ersetzt.',
+      'Hinweis: Die Datei auf dem Datenträger wurde nach dem Speichern dieser Wiederherstellunsoopusopie geändert. Beim Wiederherstellen werden diese neueren Änderungen ersetzt.',
     autosaveFoundBody:
       'Es gibt ungespeicherte Änderungen. Automatisch gespeicherte Version wiederherstellen?',
     autosaveRestore: 'Wiederherstellen',
@@ -775,7 +775,7 @@ export const tMain = createI18n({
     legacyPptTitle: '.ppt kann nicht geöffnet werden',
     odpImportMsg: 'Diese .{ext}-Präsentation konvertieren?',
     odpImportDetail:
-      'GenOffice bearbeitet .pptx, nicht ODF. Jede Seite wird eine Folie, mit Textfeldern und Bildern an ihren ursprünglichen Positionen; Masters, Platzhalterlayouts, Tabellen und Formatstile werden nicht übernommen. Die Originaldatei bleibt unverändert; die konvertierte .pptx-Kopie ist eigenständig, und spätere Speicherungen landen in ihr.',
+      'Plot Docs bearbeitet .pptx, nicht ODF. Jede Seite wird eine Folie, mit Textfeldern und Bildern an ihren ursprünglichen Positionen; Masters, Platzhalterlayouts, Tabellen und Formatstile werden nicht übernommen. Die Originaldatei bleibt unverändert; die konvertierte .pptx-Kopie ist eigenständig, und spätere Speicherungen landen in ihr.',
     odpImportConvertBtn: 'Konvertieren und öffnen',
     odpImportFailedTitle: 'Diese .odp-Datei kann nicht konvertiert werden',
     odpImportFailedBody:
@@ -812,12 +812,12 @@ export const tMain = createI18n({
     errImageNoText:
       'Bildanlagen liefern keinen Text; das Bild wurde mit der Benutzernachricht gesendet, bitte direkt ansehen',
     errNotImage: 'kein unterstütztes Bildformat',
-    errGskNotLoggedIn:
-      'Nicht bei Genspark angemeldet: Klicken Sie unten auf „Bei Genspark anmelden“, melden Sie sich an und versuchen Sie es erneut',
+    errSoopusNotLoggedIn:
+      'Nicht bei Soopus angemeldet: Klicken Sie unten auf „Bei Soopus anmelden“, melden Sie sich an und versuchen Sie es erneut',
     errNoApiKey: 'Kein API-Schlüssel für {provider} konfiguriert',
     errNoModel: 'Kein Modellname konfiguriert',
-    errGskCli:
-      'gsk nicht angemeldet: Führen Sie zuerst gsk login aus, um sich bei Ihrem Genspark-Konto anzumelden',
+    errSoopusCli:
+      'soopus nicht angemeldet: Führen Sie zuerst soopus login aus, um sich bei Ihrem Soopus-Konto anzumelden',
     errNoDeckAppend:
       'Keine Präsentation zum Anfügen vorhanden (Sitzung fehlt). Generieren Sie zuerst die erste Seite mit mode:"replace" oder fügen Sie Seiten mit den nativen Tools hinzu.',
     errAppendFailed: 'Anfügen fehlgeschlagen: {reason}',
@@ -901,7 +901,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'No se puede abrir el formato .ppt',
     odpImportMsg: '¿Convertir esta presentación .{ext}?',
     odpImportDetail:
-      'GenOffice edita .pptx, no ODF. Cada página se convierte en una diapositiva, con los cuadros de texto y las imágenes en su posición original; los patrones, los diseños de marcadores de posición, las tablas y los estilos de forma no se conservan. El archivo original nunca se modifica; el .pptx convertido es una copia independiente en la que se guardan los cambios posteriores.',
+      'Plot Docs edita .pptx, no ODF. Cada página se convierte en una diapositiva, con los cuadros de texto y las imágenes en su posición original; los patrones, los diseños de marcadores de posición, las tablas y los estilos de forma no se conservan. El archivo original nunca se modifica; el .pptx convertido es una copia independiente en la que se guardan los cambios posteriores.',
     odpImportConvertBtn: 'Convertir y abrir',
     odpImportFailedTitle: 'No se puede convertir este .odp',
     odpImportFailedBody: 'El archivo puede estar dañado o no ser una presentación ODF válida.',
@@ -937,12 +937,12 @@ export const tMain = createI18n({
     errImageNoText:
       'Las imágenes adjuntas no proporcionan texto; la imagen se envió junto con el mensaje del usuario, consúltala directamente',
     errNotImage: 'no es un tipo de imagen compatible',
-    errGskNotLoggedIn:
-      'No has iniciado sesión en Genspark: pulsa «Iniciar sesión en Genspark» abajo, inicia sesión y vuelve a intentarlo',
+    errSoopusNotLoggedIn:
+      'No has iniciado sesión en Soopus: pulsa «Iniciar sesión en Soopus» abajo, inicia sesión y vuelve a intentarlo',
     errNoApiKey: 'No hay clave de API configurada para {provider}',
     errNoModel: 'No hay nombre de modelo configurado',
-    errGskCli:
-      'gsk sin sesión iniciada: ejecuta primero gsk login para iniciar sesión en tu cuenta de Genspark',
+    errSoopusCli:
+      'soopus sin sesión iniciada: ejecuta primero soopus login para iniciar sesión en tu cuenta de Soopus',
     errNoDeckAppend:
       'No hay ninguna presentación a la que anexar (no existe la sesión). Genera primero la primera página con mode:"replace" o añade páginas con las herramientas nativas.',
     errAppendFailed: 'Error al anexar: {reason}',
@@ -1025,7 +1025,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'ไม่สามารถเปิดไฟล์ .ppt',
     odpImportMsg: 'แปลงงานนำเสนอ .{ext} นี้ไหม?',
     odpImportDetail:
-      'GenOffice แก้ไข .pptx ไม่ใช่ ODF แต่ละหน้าจะกลายเป็นสไลด์ โดยกล่องข้อความและรูปภาพจะอยู่ตำแหน่งเดิม ส่วนต้นแบบ เลย์เอาต์ตัวยึด ตาราง และสไตล์รูปทรงจะไม่ถูกเก็บไว้ ไฟล์ต้นทางจะไม่ถูกแก้ไข และไฟล์ .pptx ที่แปลงแล้วเป็นสำเนาแยกต่างหากที่การบันทึกครั้งต่อไปจะเขียนลง',
+      'Plot Docs แก้ไข .pptx ไม่ใช่ ODF แต่ละหน้าจะกลายเป็นสไลด์ โดยกล่องข้อความและรูปภาพจะอยู่ตำแหน่งเดิม ส่วนต้นแบบ เลย์เอาต์ตัวยึด ตาราง และสไตล์รูปทรงจะไม่ถูกเก็บไว้ ไฟล์ต้นทางจะไม่ถูกแก้ไข และไฟล์ .pptx ที่แปลงแล้วเป็นสำเนาแยกต่างหากที่การบันทึกครั้งต่อไปจะเขียนลง',
     odpImportConvertBtn: 'แปลงแล้วเปิด',
     odpImportFailedTitle: 'ไม่สามารถแปลงไฟล์ .odp นี้ได้',
     odpImportFailedBody: 'ไฟล์อาจเสียหายหรือไม่ใช่งานนำเสนอ ODF ที่ถูกต้อง',
@@ -1061,11 +1061,11 @@ export const tMain = createI18n({
     errImageNoText:
       'สิ่งที่แนบเป็นรูปภาพไม่มีข้อความ รูปถูกส่งไปพร้อมข้อความของผู้ใช้แล้ว โปรดดูรูปโดยตรง',
     errNotImage: 'ไม่ใช่ชนิดรูปภาพที่รองรับ',
-    errGskNotLoggedIn:
-      'ยังไม่ได้ลงชื่อเข้าใช้ Genspark: แตะ “ลงชื่อเข้าใช้ Genspark” ด้านล่าง แล้วลองอีกครั้ง',
+    errSoopusNotLoggedIn:
+      'ยังไม่ได้ลงชื่อเข้าใช้ Soopus: แตะ “ลงชื่อเข้าใช้ Soopus” ด้านล่าง แล้วลองอีกครั้ง',
     errNoApiKey: 'ยังไม่ได้ตั้งค่า API Key ของ {provider}',
     errNoModel: 'ยังไม่ได้ตั้งค่าชื่อโมเดล',
-    errGskCli: 'gsk ยังไม่ได้เข้าสู่ระบบ: โปรดรัน gsk login เพื่อเข้าสู่ระบบบัญชี Genspark ก่อน',
+    errSoopusCli: 'soopus ยังไม่ได้เข้าสู่ระบบ: โปรดรัน soopus login เพื่อเข้าสู่ระบบบัญชี Soopus ก่อน',
     errNoDeckAppend:
       'ไม่มีเอกสารให้เพิ่มต่อท้าย (ไม่มีเซสชัน) โปรดสร้างหน้าแรกด้วย mode:"replace" ก่อน หรือใช้เครื่องมือเนทีฟเพิ่มหน้าแทน',
     errAppendFailed: 'เพิ่มต่อท้ายไม่สำเร็จ: {reason}',
@@ -1145,7 +1145,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Tidak dapat membuka format .ppt',
     odpImportMsg: 'Konversi presentasi .{ext} ini?',
     odpImportDetail:
-      'GenOffice mengedit .pptx, bukan ODF. Setiap halaman menjadi satu salindia dengan kotak teks dan gambar pada posisi aslinya; master, tata letak placeholder, tabel, dan gaya bentuk tidak dipertahankan. File asli tidak pernah diubah; salinan .pptx hasil konversi berdiri sendiri dan penyimpanan berikutnya ditulis ke sana.',
+      'Plot Docs mengedit .pptx, bukan ODF. Setiap halaman menjadi satu salindia dengan kotak teks dan gambar pada posisi aslinya; master, tata letak placeholder, tabel, dan gaya bentuk tidak dipertahankan. File asli tidak pernah diubah; salinan .pptx hasil konversi berdiri sendiri dan penyimpanan berikutnya ditulis ke sana.',
     odpImportConvertBtn: 'Konversi dan buka',
     odpImportFailedTitle: 'Tidak dapat mengonversi .odp ini',
     odpImportFailedBody: 'File mungkin rusak atau bukan presentasi ODF yang valid.',
@@ -1181,10 +1181,10 @@ export const tMain = createI18n({
     errImageNoText:
       'Lampiran gambar tidak menyediakan teks; gambar telah dikirim bersama pesan pengguna, silakan lihat gambarnya langsung',
     errNotImage: 'bukan jenis gambar yang didukung',
-    errGskNotLoggedIn: 'Belum masuk ke Genspark: klik “Masuk ke Genspark” di bawah, lalu coba lagi',
+    errSoopusNotLoggedIn: 'Belum masuk ke Soopus: klik “Masuk ke Soopus” di bawah, lalu coba lagi',
     errNoApiKey: 'API Key untuk {provider} belum dikonfigurasi',
     errNoModel: 'Nama model belum dikonfigurasi',
-    errGskCli: 'gsk belum masuk: jalankan gsk login dulu untuk masuk ke akun Genspark',
+    errSoopusCli: 'soopus belum masuk: jalankan soopus login dulu untuk masuk ke akun Soopus',
     errNoDeckAppend:
       'Tidak ada dokumen yang bisa ditambahi (sesi tidak ada). Buat halaman pertama dengan mode:"replace" dulu, atau tambahkan halaman dengan alat bawaan.',
     errAppendFailed: 'Gagal menambahkan: {reason}',
@@ -1268,7 +1268,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Не удаётся открыть формат .ppt',
     odpImportMsg: 'Преобразовать эту презентацию .{ext}?',
     odpImportDetail:
-      'GenOffice редактирует .pptx, а не ODF. Каждая страница становится слайдом, текстовые поля и изображения располагаются на исходных местах; образцы, макеты заполнителей, таблицы и стили фигур не сохраняются. Исходный файл никогда не изменяется; преобразованный .pptx — отдельная копия, в которую записывается дальнейшее сохранение.',
+      'Plot Docs редактирует .pptx, а не ODF. Каждая страница становится слайдом, текстовые поля и изображения располагаются на исходных местах; образцы, макеты заполнителей, таблицы и стили фигур не сохраняются. Исходный файл никогда не изменяется; преобразованный .pptx — отдельная копия, в которую записывается дальнейшее сохранение.',
     odpImportConvertBtn: 'Преобразовать и открыть',
     odpImportFailedTitle: 'Не удалось преобразовать этот .odp',
     odpImportFailedBody: 'Возможно, файл повреждён или не является допустимой презентацией ODF.',
@@ -1304,12 +1304,12 @@ export const tMain = createI18n({
     errImageNoText:
       'Вложения-изображения не содержат текста; изображение отправлено вместе с сообщением пользователя, просто посмотрите на него',
     errNotImage: 'неподдерживаемый тип изображения',
-    errGskNotLoggedIn:
-      'Вы не вошли в Genspark: нажмите «Войти в Genspark» ниже, войдите и повторите попытку',
+    errSoopusNotLoggedIn:
+      'Вы не вошли в Soopus: нажмите «Войти в Soopus» ниже, войдите и повторите попытку',
     errNoApiKey: 'API-ключ для {provider} не настроен',
     errNoModel: 'Не указано имя модели',
-    errGskCli:
-      'gsk не авторизован: сначала выполните gsk login, чтобы войти в учётную запись Genspark',
+    errSoopusCli:
+      'soopus не авторизован: сначала выполните soopus login, чтобы войти в учётную запись Soopus',
     errNoDeckAppend:
       'Нет презентации для добавления страниц (сессия отсутствует). Сначала создайте первую страницу с mode:"replace" или добавьте страницы нативными инструментами.',
     errAppendFailed: 'Сбой добавления: {reason}',
@@ -1392,7 +1392,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'تعذّر فتح تنسيق .ppt',
     odpImportMsg: 'تحويل هذا العرض التقديمي ‎.{ext}؟',
     odpImportDetail:
-      'يحرّر GenOffice ملفات ‎.pptx ولا يحرّر ODF. تصبح كل صفحة شريحة، مع مربعات النصوص والصور في مواضعها الأصلية؛ أما الشرائح الرئيسية وتخطيطات العناصر النائبة والجداول وأنماط الأشكال فلا تُحفظ. لا يتغيّر الملف الأصلي أبدًا؛ والملف ‎.pptx المحوَّل نسخة مستقلة تُكتب فيها عمليات الحفظ اللاحقة.',
+      'يحرّر Plot Docs ملفات ‎.pptx ولا يحرّر ODF. تصبح كل صفحة شريحة، مع مربعات النصوص والصور في مواضعها الأصلية؛ أما الشرائح الرئيسية وتخطيطات العناصر النائبة والجداول وأنماط الأشكال فلا تُحفظ. لا يتغيّر الملف الأصلي أبدًا؛ والملف ‎.pptx المحوَّل نسخة مستقلة تُكتب فيها عمليات الحفظ اللاحقة.',
     odpImportConvertBtn: 'تحويل وفتح',
     odpImportFailedTitle: 'تعذّر تحويل هذا الملف ‎.odp',
     odpImportFailedBody: 'قد يكون الملف تالفًا أو ليس عرضًا تقديميًا بصيغة ODF صالحًا.',
@@ -1428,11 +1428,11 @@ export const tMain = createI18n({
     errImageNoText:
       'المرفقات من نوع الصور لا توفر نصًا؛ وقد أُرسلت الصورة مع رسالة المستخدم، يكفي النظر إليها مباشرة',
     errNotImage: 'ليس نوع صورة مدعومًا',
-    errGskNotLoggedIn:
-      'لم تسجّل الدخول إلى Genspark: انقر على «تسجيل الدخول إلى Genspark» أدناه ثم أعد المحاولة',
+    errSoopusNotLoggedIn:
+      'لم تسجّل الدخول إلى Soopus: انقر على «تسجيل الدخول إلى Soopus» أدناه ثم أعد المحاولة',
     errNoApiKey: 'لم يتم تكوين مفتاح API لـ {provider}',
     errNoModel: 'لم يتم تكوين اسم النموذج',
-    errGskCli: 'gsk غير مسجَّل الدخول: شغّل gsk login أولًا لتسجيل الدخول إلى حساب Genspark',
+    errSoopusCli: 'soopus غير مسجَّل الدخول: شغّل soopus login أولًا لتسجيل الدخول إلى حساب Soopus',
     errNoDeckAppend:
       'لا يوجد مستند يمكن الإلحاق به (الجلسة غير موجودة). أنشئ الصفحة الأولى باستخدام mode:"replace" أولًا، أو أضف صفحات بالأدوات الأصلية.',
     errAppendFailed: 'فشل الإلحاق: {reason}',
@@ -1512,7 +1512,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Não é possível abrir o formato .ppt antigo',
     odpImportMsg: 'Converter esta apresentação .{ext}?',
     odpImportDetail:
-      'O GenOffice edita .pptx, não ODF. Cada página torna-se um slide, com caixas de texto e imagens nas posições originais; mestres, layouts de espaços reservados, tabelas e estilos de formas não são preservados. O arquivo original nunca é alterado; o .pptx convertido é uma cópia independente em que os salvamentos seguintes são gravados.',
+      'O Plot Docs edita .pptx, não ODF. Cada página torna-se um slide, com caixas de texto e imagens nas posições originais; mestres, layouts de espaços reservados, tabelas e estilos de formas não são preservados. O arquivo original nunca é alterado; o .pptx convertido é uma cópia independente em que os salvamentos seguintes são gravados.',
     odpImportConvertBtn: 'Converter e abrir',
     odpImportFailedTitle: 'Não foi possível converter este .odp',
     odpImportFailedBody: 'O arquivo pode estar danificado ou não é uma apresentação ODF válida.',
@@ -1548,11 +1548,11 @@ export const tMain = createI18n({
     errImageNoText:
       'Anexos de imagem não têm texto; a imagem é enviada junto com a mensagem do usuário',
     errNotImage: 'não é um tipo de imagem suportado',
-    errGskNotLoggedIn:
-      'Não conectado ao Genspark: clique em “Entrar no Genspark” abaixo, entre e tente novamente',
+    errSoopusNotLoggedIn:
+      'Não conectado ao Soopus: clique em “Entrar no Soopus” abaixo, entre e tente novamente',
     errNoApiKey: 'Nenhuma chave de API configurada para {provider}',
     errNoModel: 'Nenhum nome de modelo configurado',
-    errGskCli: 'gsk não conectado: execute gsk login primeiro para entrar na sua conta Genspark',
+    errSoopusCli: 'soopus não conectado: execute soopus login primeiro para entrar na sua conta Soopus',
     errNoDeckAppend:
       'Não há apresentação para anexar (sessão inexistente). Gere a primeira página com mode:"replace" ou adicione páginas com as ferramentas nativas.',
     errAppendFailed: 'Falha ao anexar: {reason}',
@@ -1636,7 +1636,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Impossibile aprire il vecchio formato .ppt',
     odpImportMsg: 'Convertire questa presentazione .{ext}?',
     odpImportDetail:
-      'GenOffice modifica .pptx, non ODF. Ogni pagina diventa una diapositiva, con caselle di testo e immagini nelle posizioni originali; schemi, layout dei segnaposto, tabelle e stili delle forme non sono conservati. Il file originale non viene mai modificato; il .pptx convertito è una copia indipendente su cui vengono salvate le modifiche successive.',
+      'Plot Docs modifica .pptx, non ODF. Ogni pagina diventa una diapositiva, con caselle di testo e immagini nelle posizioni originali; schemi, layout dei segnaposto, tabelle e stili delle forme non sono conservati. Il file originale non viene mai modificato; il .pptx convertito è una copia indipendente su cui vengono salvate le modifiche successive.',
     odpImportConvertBtn: 'Converti e apri',
     odpImportFailedTitle: 'Impossibile convertire questo .odp',
     odpImportFailedBody:
@@ -1673,12 +1673,12 @@ export const tMain = createI18n({
     errImageNoText:
       "Gli allegati immagine non hanno testo; l'immagine viene inviata insieme al messaggio dell'utente",
     errNotImage: 'tipo di immagine non supportato',
-    errGskNotLoggedIn:
-      'Accesso a Genspark non effettuato: fai clic su “Accedi a Genspark” qui sotto, accedi e riprova',
+    errSoopusNotLoggedIn:
+      'Accesso a Soopus non effettuato: fai clic su “Accedi a Soopus” qui sotto, accedi e riprova',
     errNoApiKey: 'Nessuna chiave API configurata per {provider}',
     errNoModel: 'Nessun nome di modello configurato',
-    errGskCli:
-      "gsk non ha effettuato l'accesso: esegui prima gsk login per accedere al tuo account Genspark",
+    errSoopusCli:
+      "soopus non ha effettuato l'accesso: esegui prima soopus login per accedere al tuo account Soopus",
     errNoDeckAppend:
       'Nessuna presentazione a cui aggiungere pagine (sessione mancante). Genera la prima pagina con mode:"replace" o aggiungi pagine con gli strumenti nativi.',
     errAppendFailed: 'Aggiunta non riuscita: {reason}',
@@ -1763,7 +1763,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Nie można otworzyć starego formatu .ppt',
     odpImportMsg: 'Skonwertować tę prezentację .{ext}?',
     odpImportDetail:
-      'GenOffice edytuje .pptx, a nie ODF. Każda strona staje się slajdem, a pola tekstowe i obrazy trafiają na swoje pierwotne pozycje; wzorce, układy symboli zastępczych, tabele i style kształtów nie są zachowywane. Plik oryginalny nigdy nie jest zmieniany; skonwertowany .pptx to niezależna kopia, do której trafiają kolejne zapisy.',
+      'Plot Docs edytuje .pptx, a nie ODF. Każda strona staje się slajdem, a pola tekstowe i obrazy trafiają na swoje pierwotne pozycje; wzorce, układy symboli zastępczych, tabele i style kształtów nie są zachowywane. Plik oryginalny nigdy nie jest zmieniany; skonwertowany .pptx to niezależna kopia, do której trafiają kolejne zapisy.',
     odpImportConvertBtn: 'Konwertuj i otwórz',
     odpImportFailedTitle: 'Nie można skonwertować tego pliku .odp',
     odpImportFailedBody: 'Plik może być uszkodzony lub nie jest prawidłową prezentacją ODF.',
@@ -1799,12 +1799,12 @@ export const tMain = createI18n({
     errImageNoText:
       'Załączniki graficzne nie zawierają tekstu; obraz jest wysyłany razem z wiadomością użytkownika',
     errNotImage: 'nieobsługiwany typ obrazu',
-    errGskNotLoggedIn:
-      'Nie zalogowano do Genspark: kliknij „Zaloguj się do Genspark” poniżej, zaloguj się i spróbuj ponownie',
+    errSoopusNotLoggedIn:
+      'Nie zalogowano do Soopus: kliknij „Zaloguj się do Soopus” poniżej, zaloguj się i spróbuj ponownie',
     errNoApiKey: 'Nie skonfigurowano klucza API dla {provider}',
     errNoModel: 'Nie skonfigurowano nazwy modelu',
-    errGskCli:
-      'gsk nie jest zalogowany: najpierw uruchom gsk login, aby zalogować się na konto Genspark',
+    errSoopusCli:
+      'soopus nie jest zalogowany: najpierw uruchom soopus login, aby zalogować się na konto Soopus',
     errNoDeckAppend:
       'Brak prezentacji do rozszerzenia (brak sesji). Najpierw wygeneruj pierwszą stronę z mode:"replace" albo dodaj strony narzędziami natywnymi.',
     errAppendFailed: 'Dołączanie nie powiodło się: {reason}',
@@ -1887,7 +1887,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Nelze otevřít starší formát .ppt',
     odpImportMsg: 'Převést tuto prezentaci .{ext}?',
     odpImportDetail:
-      'GenOffice upravuje .pptx, nikoli ODF. Každá stránka se stane snímkem, textová pole a obrázky zůstanou na původních pozicích; předlohy, rozložení zástupných symbolů, tabulky a styly tvarů se nepřevezmou. Původní soubor se nikdy nemění; převedený .pptx je samostatná kopie, do níž se dalším ukládáním zapisuje.',
+      'Plot Docs upravuje .pptx, nikoli ODF. Každá stránka se stane snímkem, textová pole a obrázky zůstanou na původních pozicích; předlohy, rozložení zástupných symbolů, tabulky a styly tvarů se nepřevezmou. Původní soubor se nikdy nemění; převedený .pptx je samostatná kopie, do níž se dalším ukládáním zapisuje.',
     odpImportConvertBtn: 'Převést a otevřít',
     odpImportFailedTitle: 'Tento soubor .odp nelze převést',
     odpImportFailedBody: 'Soubor může být poškozený nebo to není platná prezentace ODF.',
@@ -1923,11 +1923,11 @@ export const tMain = createI18n({
     errImageNoText:
       'Obrázkové přílohy neobsahují text; obrázek je odeslán spolu se zprávou uživatele',
     errNotImage: 'nepodporovaný typ obrázku',
-    errGskNotLoggedIn:
-      'Nejste přihlášeni ke Genspark: klikněte níže na „Přihlásit se ke Genspark“, přihlaste se a zkuste to znovu',
+    errSoopusNotLoggedIn:
+      'Nejste přihlášeni ke Soopus: klikněte níže na „Přihlásit se ke Soopus“, přihlaste se a zkuste to znovu',
     errNoApiKey: 'Pro {provider} není nakonfigurován žádný klíč API',
     errNoModel: 'Není nakonfigurován název modelu',
-    errGskCli: 'gsk není přihlášen: nejprve spusťte gsk login a přihlaste se k účtu Genspark',
+    errSoopusCli: 'soopus není přihlášen: nejprve spusťte soopus login a přihlaste se k účtu Soopus',
     errNoDeckAppend:
       'Není k čemu přidávat (chybí relace). Vygenerujte první stránku s mode:"replace" nebo přidejte stránky nativními nástroji.',
     errAppendFailed: 'Přidání se nezdařilo: {reason}',
@@ -2009,7 +2009,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Kan het oude .ppt-formaat niet openen',
     odpImportMsg: 'Deze .{ext}-presentatie converteren?',
     odpImportDetail:
-      'GenOffice bewerkt .pptx, niet ODF. Elke pagina wordt een dia, met tekstvakken en afbeeldingen op hun oorspronkelijke positie; modellen, plaatsaanduidingslay-outs, tabellen en vormstijlen worden niet overgenomen. Het oorspronkelijke bestand wordt nooit gewijzigd; de omgezette .pptx is een zelfstandige kopie waarin volgende opslaan-acties terechtkomen.',
+      'Plot Docs bewerkt .pptx, niet ODF. Elke pagina wordt een dia, met tekstvakken en afbeeldingen op hun oorspronkelijke positie; modellen, plaatsaanduidingslay-outs, tabellen en vormstijlen worden niet overgenomen. Het oorspronkelijke bestand wordt nooit gewijzigd; de omgezette .pptx is een zelfstandige kopie waarin volgende opslaan-acties terechtkomen.',
     odpImportConvertBtn: 'Converteren en openen',
     odpImportFailedTitle: 'Deze .odp kan niet worden omgezet',
     odpImportFailedBody: 'Het bestand is mogelijk beschadigd of geen geldige ODF-presentatie.',
@@ -2045,12 +2045,12 @@ export const tMain = createI18n({
     errImageNoText:
       'Afbeeldingsbijlagen bevatten geen tekst; de afbeelding wordt samen met het gebruikersbericht verzonden',
     errNotImage: 'geen ondersteund afbeeldingstype',
-    errGskNotLoggedIn:
-      'Niet aangemeld bij Genspark: klik hieronder op “Aanmelden bij Genspark”, meld u aan en probeer het opnieuw',
+    errSoopusNotLoggedIn:
+      'Niet aangemeld bij Soopus: klik hieronder op “Aanmelden bij Soopus”, meld u aan en probeer het opnieuw',
     errNoApiKey: 'Geen API-sleutel geconfigureerd voor {provider}',
     errNoModel: 'Geen modelnaam geconfigureerd',
-    errGskCli:
-      'gsk is niet aangemeld: voer eerst gsk login uit om u aan te melden bij uw Genspark-account',
+    errSoopusCli:
+      'soopus is niet aangemeld: voer eerst soopus login uit om u aan te melden bij uw Soopus-account',
     errNoDeckAppend:
       'Geen presentatie om aan toe te voegen (sessie ontbreekt). Genereer eerst de eerste pagina met mode:"replace" of voeg pagina\'s toe met de native tools.',
     errAppendFailed: 'Toevoegen mislukt: {reason}',
@@ -2133,7 +2133,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'Tidak dapat membuka format .ppt lama',
     odpImportMsg: 'Tukar pembentangan .{ext} ini?',
     odpImportDetail:
-      'GenOffice menyunting .pptx, bukan ODF. Setiap halaman menjadi satu slaid, dengan kotak teks dan imej pada kedudukan asalnya; induk, susun atur pemegang tempat, jadual dan gaya bentuk tidak dikekalkan. Fail asal tidak pernah diubah; salinan .pptx yang ditukar ialah salinan berasingan tempat simpanan seterusnya ditulis.',
+      'Plot Docs menyunting .pptx, bukan ODF. Setiap halaman menjadi satu slaid, dengan kotak teks dan imej pada kedudukan asalnya; induk, susun atur pemegang tempat, jadual dan gaya bentuk tidak dikekalkan. Fail asal tidak pernah diubah; salinan .pptx yang ditukar ialah salinan berasingan tempat simpanan seterusnya ditulis.',
     odpImportConvertBtn: 'Tukar dan buka',
     odpImportFailedTitle: 'Tidak dapat menukar .odp ini',
     odpImportFailedBody: 'Fail mungkin rosak atau bukan pembentangan ODF yang sah.',
@@ -2168,12 +2168,12 @@ export const tMain = createI18n({
     errParseFailed: 'Gagal menghurai fail',
     errImageNoText: 'Lampiran imej tiada teks; imej dihantar bersama mesej pengguna',
     errNotImage: 'bukan jenis imej yang disokong',
-    errGskNotLoggedIn:
-      'Belum log masuk ke Genspark: klik “Log masuk ke Genspark” di bawah, kemudian cuba lagi',
+    errSoopusNotLoggedIn:
+      'Belum log masuk ke Soopus: klik “Log masuk ke Soopus” di bawah, kemudian cuba lagi',
     errNoApiKey: 'Kunci API untuk {provider} belum dikonfigurasikan',
     errNoModel: 'Nama model belum dikonfigurasikan',
-    errGskCli:
-      'gsk belum log masuk: jalankan gsk login dahulu untuk log masuk ke akaun Genspark anda',
+    errSoopusCli:
+      'soopus belum log masuk: jalankan soopus login dahulu untuk log masuk ke akaun Soopus anda',
     errNoDeckAppend:
       'Tiada persembahan untuk ditambah (sesi tidak wujud). Jana halaman pertama dengan mode:"replace" dahulu, atau tambah halaman dengan alat asli.',
     errAppendFailed: 'Gagal menambah: {reason}',
@@ -2255,7 +2255,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'לא ניתן לפתוח את הפורמט הישן .ppt',
     odpImportMsg: 'להמיר את מצגת ה‑.{ext} הזו?',
     odpImportDetail:
-      'GenOffice עורך קבצי ‎.pptx ולא ODF. כל עמוד הופך לשקופית, עם תיבות הטקסט והתמונות במקומן המקורי; גבות, פריסות של מצייני מקום, טבלאות וסגנונות צורות אינם נשמרים. קובץ המקור לעולם אינו משתנה; קובץ ה‑.pptx שהומר הוא עותק נפרד שאליו נכתבות השמירות הבאות.',
+      'Plot Docs עורך קבצי ‎.pptx ולא ODF. כל עמוד הופך לשקופית, עם תיבות הטקסט והתמונות במקומן המקורי; גבות, פריסות של מצייני מקום, טבלאות וסגנונות צורות אינם נשמרים. קובץ המקור לעולם אינו משתנה; קובץ ה‑.pptx שהומר הוא עותק נפרד שאליו נכתבות השמירות הבאות.',
     odpImportConvertBtn: 'המר ופתח',
     odpImportFailedTitle: 'לא ניתן להמיר את קובץ ה‑.odp הזה',
     odpImportFailedBody: 'ייתכן שהקובץ פגום או שאינו מצגת ODF תקינה.',
@@ -2290,10 +2290,10 @@ export const tMain = createI18n({
     errParseFailed: 'ניתוח הקובץ נכשל',
     errImageNoText: 'קבצים מצורפים מסוג תמונה אינם מכילים טקסט; התמונה נשלחת יחד עם הודעת המשתמש',
     errNotImage: 'סוג תמונה שאינו נתמך',
-    errGskNotLoggedIn: 'לא מחובר ל-Genspark: לחץ על "התחבר ל-Genspark" למטה, התחבר ונסה שוב',
+    errSoopusNotLoggedIn: 'לא מחובר ל-Soopus: לחץ על "התחבר ל-Soopus" למטה, התחבר ונסה שוב',
     errNoApiKey: 'לא הוגדר מפתח API עבור {provider}',
     errNoModel: 'לא הוגדר שם מודל',
-    errGskCli: 'gsk אינו מחובר: הרץ תחילה gsk login כדי להיכנס לחשבון Genspark שלך',
+    errSoopusCli: 'soopus אינו מחובר: הרץ תחילה soopus login כדי להיכנס לחשבון Soopus שלך',
     errNoDeckAppend:
       'אין מצגת להוסיף אליה (הפעלה חסרה). צור תחילה את העמוד הראשון עם mode:"replace" או הוסף עמודים בכלים המקוריים.',
     errAppendFailed: 'ההוספה נכשלה: {reason}',
@@ -2373,7 +2373,7 @@ export const tMain = createI18n({
     legacyPptTitle: 'पुराना .ppt प्रारूप नहीं खोला जा सकता',
     odpImportMsg: 'इस .{ext} प्रेजेंटेशन को बदलें?',
     odpImportDetail:
-      'GenOffice .pptx संपादित करता है, ODF नहीं। हर पृष्ठ एक स्लाइड बन जाता है, टेक्स्ट बॉक्स और चित्र अपनी मूल स्थिति पर रखे जाते हैं; मास्टर, प्लेसहोल्डर लेआउट, तालिकाएँ और आकृति शैलियाँ नहीं रखी जातीं। मूल फ़ाइल कभी नहीं बदलती; बदली हुई .pptx एक स्वतंत्र प्रति है जिसमें आगे के सेव लिखे जाते हैं।',
+      'Plot Docs .pptx संपादित करता है, ODF नहीं। हर पृष्ठ एक स्लाइड बन जाता है, टेक्स्ट बॉक्स और चित्र अपनी मूल स्थिति पर रखे जाते हैं; मास्टर, प्लेसहोल्डर लेआउट, तालिकाएँ और आकृति शैलियाँ नहीं रखी जातीं। मूल फ़ाइल कभी नहीं बदलती; बदली हुई .pptx एक स्वतंत्र प्रति है जिसमें आगे के सेव लिखे जाते हैं।',
     odpImportConvertBtn: 'बदलकर खोलें',
     odpImportFailedTitle: 'यह .odp बदला नहीं जा सका',
     odpImportFailedBody: 'फ़ाइल क्षतिग्रस्त हो सकती है या मान्य ODF प्रेजेंटेशन नहीं है।',
@@ -2408,11 +2408,11 @@ export const tMain = createI18n({
     errParseFailed: 'फ़ाइल पार्स करने में विफल',
     errImageNoText: 'छवि अनुलग्नक में टेक्स्ट नहीं होता; छवि उपयोगकर्ता संदेश के साथ भेजी जाती है',
     errNotImage: 'समर्थित छवि प्रकार नहीं है',
-    errGskNotLoggedIn:
-      'Genspark में साइन इन नहीं है: नीचे “Genspark में साइन इन करें” पर क्लिक करें, साइन इन करें और फिर से कोशिश करें',
+    errSoopusNotLoggedIn:
+      'Soopus में साइन इन नहीं है: नीचे “Soopus में साइन इन करें” पर क्लिक करें, साइन इन करें और फिर से कोशिश करें',
     errNoApiKey: '{provider} के लिए कोई API कुंजी कॉन्फ़िगर नहीं है',
     errNoModel: 'कोई मॉडल नाम कॉन्फ़िगर नहीं है',
-    errGskCli: 'gsk साइन इन नहीं है: पहले gsk login चलाकर अपने Genspark खाते में साइन इन करें',
+    errSoopusCli: 'soopus साइन इन नहीं है: पहले soopus login चलाकर अपने Soopus खाते में साइन इन करें',
     errNoDeckAppend:
       'जोड़ने के लिए कोई प्रस्तुति नहीं है (सत्र मौजूद नहीं)। पहले mode:"replace" से पहला पृष्ठ बनाएँ, या नेटिव टूल से पृष्ठ जोड़ें।',
     errAppendFailed: 'जोड़ना विफल: {reason}',
@@ -2493,7 +2493,7 @@ export const tMain = createI18n({
     legacyPptTitle: '無法開啟 .ppt 舊格式',
     odpImportMsg: '轉換這個 .{ext} 簡報？',
     odpImportDetail:
-      'GenOffice 只編輯 .pptx，不編輯 ODF。每一頁會變成一張投影片，文字方塊與圖片按原始位置擺放；母片、預留位置版面、表格與圖形樣式不會保留。原始檔案不會被修改，轉換後的 .pptx 是獨立副本，之後的儲存都寫入它。',
+      'Plot Docs 只編輯 .pptx，不編輯 ODF。每一頁會變成一張投影片，文字方塊與圖片按原始位置擺放；母片、預留位置版面、表格與圖形樣式不會保留。原始檔案不會被修改，轉換後的 .pptx 是獨立副本，之後的儲存都寫入它。',
     odpImportConvertBtn: '轉換並開啟',
     odpImportFailedTitle: '無法轉換這個 .odp',
     odpImportFailedBody: '檔案可能已損壞，或不是有效的 ODF 簡報。',
@@ -2528,10 +2528,10 @@ export const tMain = createI18n({
     errParseFailed: '檔案解析失敗',
     errImageNoText: '圖片附件不提供文字,已作為影像隨使用者訊息傳送,直接看圖即可',
     errNotImage: '不是支援的圖片類型',
-    errGskNotLoggedIn: '未登入 Genspark:請點擊下方「登入 Genspark」完成登入後重試',
+    errSoopusNotLoggedIn: '未登入 Soopus:請點擊下方「登入 Soopus」完成登入後重試',
     errNoApiKey: '未設定 {provider} 的 API Key',
     errNoModel: '未設定模型名稱',
-    errGskCli: 'gsk 未登入:請先執行 gsk login 登入 Genspark 帳號',
+    errSoopusCli: 'soopus 未登入:請先執行 soopus login 登入 Soopus 帳號',
     errNoDeckAppend:
       '目前沒有可附加的簡報（工作階段不存在）。請先用 mode:"replace" 產生首頁，或改用原生工具新增頁面。',
     errAppendFailed: '附加失敗：{reason}',

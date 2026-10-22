@@ -1,4 +1,4 @@
-import { useRedactLabelField } from '@genoffice/ui'
+import { useRedactLabelField } from '@plotdocs/ui'
 import { useI18n } from '../i18n/locale'
 
 interface Props {

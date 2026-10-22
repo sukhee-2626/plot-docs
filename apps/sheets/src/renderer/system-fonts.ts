@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-import { BUILTIN_FONT_FAMILIES, partitionFontFamilies } from '@genoffice/ui'
+import { BUILTIN_FONT_FAMILIES, partitionFontFamilies } from '@plotdocs/ui'
 
 /** Suite-wide font dropdown candidates, kept under the historical sheets-side name. */
 export const DEFAULT_FONT_FAMILIES: readonly string[] = BUILTIN_FONT_FAMILIES

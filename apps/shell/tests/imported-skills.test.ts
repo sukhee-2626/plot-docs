@@ -50,7 +50,7 @@ describe('findSkills', () => {
     const { save, cleanup } = scaffold({ 'my-skill': SKILL('my-skill', 'Make a docx report') })
     const [skill] = await usableSkills(save)
     expect(skill.name).toBe('my-skill')
-    expect(skill.source).toBe('genoffice')
+    expect(skill.source).toBe('plotdocs')
     expect(skill.agent).toBeUndefined()
     expect(skill.relevance.relevant).toBe(true)
     cleanup()
@@ -74,7 +74,7 @@ describe('findSkills', () => {
     const { save, home, cleanup } = scaffold({ shared: SHARED_BODY }, { shared: SHARED_BODY })
     const all = await findSkills(save, {}, home)
     expect(all).toHaveLength(1)
-    expect(all[0].source).toBe('genoffice')
+    expect(all[0].source).toBe('plotdocs')
     cleanup()
   })
 
@@ -162,7 +162,7 @@ describe('importSkill', () => {
     writeFileSync(join(src, 'notes.md'), 'side notes')
 
     const imported = importSkill(join(src, 'SKILL.md'), save)
-    expect(imported).toMatchObject({ name: 'pptx-builder', source: 'genoffice' })
+    expect(imported).toMatchObject({ name: 'pptx-builder', source: 'plotdocs' })
     expect(imported.agent).toBeUndefined()
     const dest = join(save, 'skills', 'pptx-builder')
     expect(existsSync(join(dest, 'reference', 'layout.md'))).toBe(true)

@@ -34,7 +34,7 @@ import {
   type ParagraphFormatPatch,
   type TextBody,
   type TextElement,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 import type { EditParagraph } from '../types'
 import {
   applyEditParagraphs,

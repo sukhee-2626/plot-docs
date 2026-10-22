@@ -55,7 +55,7 @@ test.describe('MCP read_pdf', () => {
   test('extracts pdf text through the real app server', async () => {
     test.setTimeout(60_000)
     const port = await freePort()
-    const outDir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-pdf-'))
+    const outDir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-pdf-'))
     const pdfPath = join(outDir, 'handout.pdf')
     const doc = await PDFDocument.create()
     doc.setTitle('E2E Handout')
@@ -65,7 +65,7 @@ test.describe('MCP read_pdf', () => {
     doc.addPage([400, 300]) // no text layer
     await writeFile(pdfPath, await doc.save())
 
-    const userDataDir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-pdf-userdata-'))
+    const userDataDir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-pdf-userdata-'))
     await writeFile(
       join(userDataDir, 'app-settings.json'),
       JSON.stringify({ onboardingSeen: true, mcpEnabled: true, mcpPort: port }),

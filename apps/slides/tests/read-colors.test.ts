@@ -9,7 +9,7 @@ import type {
   ShapeRenderNode,
   PictureRenderNode,
   PlacedBox,
-} from '@genoffice/pptx-render'
+} from '@plotdocs/pptx-render'
 import { runLayoutScript, type LayoutScriptElement } from '../src/renderer/ai/layout-script'
 import { createSlidesSkill, type DeckAccess } from '../src/renderer/ai/slides-skill'
 

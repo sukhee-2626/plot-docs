@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { AgentToolDef } from '@genoffice/agent-core'
+import type { AgentToolDef } from '@plotdocs/agent-core'
 import { toGeminiSchema } from '../src/protocols/gemini-schema'
 import { streamForProvider } from '../src/stream'
 import { okResponse, sseStream } from './test-utils'
@@ -180,7 +180,7 @@ describe('toGeminiSchema', () => {
   })
 
   it('fills an items-less array with the object items the API demands (docs generate_mindmap)', () => {
-    // genoffice#2059: the API refused the whole request with
+    // plotdocs#2059: the API refused the whole request with
     // "...properties[children].items: missing field" for a tool whose
     // leaf arrays carry no items — legal JSON Schema, illegal proto.
     expect(toGeminiSchema({ type: 'array', description: 'sub-topics' })).toEqual({

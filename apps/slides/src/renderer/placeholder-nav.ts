@@ -3,7 +3,7 @@
  * caret into the next placeholder in spTree order; past the last one it inserts a
  * slide with the same layout and enters that slide's first placeholder.
  */
-import type { RenderNode } from '@genoffice/pptx-render'
+import type { RenderNode } from '@plotdocs/pptx-render'
 import type { ActionCtx } from './action-context'
 import type { EditParagraph } from '../shared/ipc'
 import { FIT_WIDTH } from './app-constants'

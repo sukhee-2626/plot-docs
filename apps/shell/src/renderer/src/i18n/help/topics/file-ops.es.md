@@ -17,7 +17,7 @@ Reglas: la extensión se conserva automáticamente; los caracteres no permitidos
 
 ## Eliminar
 
-- **⋯ ▸ Eliminar** en Inicio: pregunta qué archivos y luego los mueve a la **papelera del sistema**, desde donde el sistema operativo puede restaurarlos. GenOffice no guarda ningún deshacer propio para esto — la recuperación es cosa de la papelera, no de una notificación.
+- **⋯ ▸ Eliminar** en Inicio: pregunta qué archivos y luego los mueve a la **papelera del sistema**, desde donde el sistema operativo puede restaurarlos. Plot Docs no guarda ningún deshacer propio para esto — la recuperación es cosa de la papelera, no de una notificación.
 
 ## Duplicar
 

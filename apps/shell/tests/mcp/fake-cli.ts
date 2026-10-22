@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import type { CliRunner, CliRunOutcome } from '../../src/main/mcp/cli-runner'
 
 /**
- * Test double for the bundled genoffice CLI.
+ * Test double for the bundled plotdocs CLI.
  *
  * The MCP headless tools are a *client* of the CLI: what they own is the argv
  * they build (and the stdin they pipe), not document fidelity — that belongs to

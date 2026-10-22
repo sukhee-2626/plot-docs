@@ -4,7 +4,7 @@
  *  - createSlideFixSkill: tool allowlist wraps the full slides skill without losing the executor
  */
 import { describe, it, expect } from 'vitest'
-import type { AgentStreamRequest, AgentTransport } from '@genoffice/agent-core'
+import type { AgentStreamRequest, AgentTransport } from '@plotdocs/agent-core'
 import {
   generatedPageRange,
   mergeQcPages,
@@ -14,7 +14,7 @@ import {
   qcSlidePage,
   settingsSupportVision,
 } from '../src/renderer/ai/slide-qc'
-import { defaultAiSettings, type AiProviderId } from '@genoffice/ai-provider'
+import { defaultAiSettings, type AiProviderId } from '@plotdocs/ai-provider'
 import type { DeckAccess } from '../src/renderer/ai/slides-skill'
 
 const access: DeckAccess = {
@@ -124,9 +124,9 @@ describe('vision capability fallback', () => {
 
   it('does not send screenshots to text-only models under a vision-capable provider', () => {
     const settings = defaultAiSettings()
-    settings.providers.genspark.model = 'deep-seek-v4-flash'
+    settings.providers.soopus.model = 'deep-seek-v4-flash'
     expect(settingsSupportVision(settings)).toBe(false)
-    settings.providers.genspark.model = 'claude-opus-4-7'
+    settings.providers.soopus.model = 'claude-opus-4-7'
     expect(settingsSupportVision(settings)).toBe(true)
   })
 

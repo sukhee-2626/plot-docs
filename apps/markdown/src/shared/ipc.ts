@@ -1,11 +1,11 @@
-import type { AiPanelPrefs } from '@genoffice/ui'
-import type { Lang } from '@genoffice/i18n'
+import type { AiPanelPrefs } from '@plotdocs/ui'
+import type { Lang } from '@plotdocs/i18n'
 import type {
   AiSettings,
   AiStreamChunk,
   AiStreamRequest,
-  GenSparkAccountStatus,
-} from '@genoffice/ai-provider'
+  SoopusAccountStatus,
+} from '@plotdocs/ai-provider'
 import type { ExportImageMime } from './export-image-mime'
 
 export const MAX_PASTED_IMAGE_BYTES = 50 * 1024 * 1024
@@ -42,7 +42,7 @@ export const MARKDOWN_CHANNELS = {
   getMarkdownTheme: 'markdown:get-theme',
   setMarkdownTheme: 'markdown:set-theme',
   uploadImage: 'markdown:upload-image',
-  viewImage: 'genoffice:view-image',
+  viewImage: 'plotdocs:view-image',
   exportRequest: 'markdown:export-request',
   exportDocx: 'markdown:export-docx',
   exportPdf: 'markdown:export-pdf',
@@ -131,14 +131,14 @@ export interface WikiGraph {
 export type UiTheme = 'light' | 'dark' | 'system'
 
 /**
- * Document page theme preference (genoffice#1811): what the editors' canvas/paper does
+ * Document page theme preference (plotdocs#1811): what the editors' canvas/paper does
  * relative to the UI theme. 'follow' keeps the previous single-theme behavior.
  */
 export type DocTheme = 'follow' | 'light' | 'dark'
 
 /**
  * Bring-your-own image host for pasted/dropped pictures in Markdown
- * (genoffice#388). Keys are stored plaintext in the user's own settings file,
+ * (plotdocs#388). Keys are stored plaintext in the user's own settings file,
  * like every other credential in the app. The local assets/ copy stays the
  * fallback whenever the host is disabled, unconfigured or the upload fails.
  */
@@ -220,7 +220,7 @@ export const AI_CHANNELS = {
   setSettings: 'ai:set-settings',
   settingsChanged: 'ai:settings-changed',
   openModelSettings: 'ai:open-model-settings',
-  gskStatus: 'ai:gsk-status',
+  soopusStatus: 'ai:soopus-status',
   stream: 'ai:stream',
   streamChunk: 'ai:stream-chunk',
   streamCancel: 'ai:stream-cancel',
@@ -351,7 +351,7 @@ export interface MarkdownApi {
    */
   saveImage(data: { base64: string; ext: string }): Promise<string | null>
   /**
-   * The configured image host (genoffice#388), or null when none was ever
+   * The configured image host (plotdocs#388), or null when none was ever
    * saved. Pasted/dropped images upload here first and fall back to the
    * local `assets/` copy when the upload fails or the host is disabled.
    */
@@ -414,8 +414,8 @@ export interface MarkdownApi {
   onAiSettingsChanged(handler: () => void): () => void
   /** shell only: switch to Home and open Settings › AI Model (rejects in standalone) */
   openAiModelSettings(): Promise<void>
-  /** Genspark login state (shell-registered ai:gsk-status) — gates generate_image with the cloud-tools toggle */
-  aiGskStatus(): Promise<GenSparkAccountStatus>
+  /** Soopus login state (shell-registered ai:soopus-status) — gates generate_image with the cloud-tools toggle */
+  aiSoopusStatus(): Promise<SoopusAccountStatus>
   aiStream(request: AiStreamRequest): Promise<void>
   aiStreamCancel(requestId: string): Promise<void>
   onAiStream(handler: (chunk: AiStreamChunk) => void): () => void
@@ -425,7 +425,7 @@ export interface MarkdownApi {
   imageSearch(query: string, maxResults?: number): Promise<ImageSearchResult>
   /** Download an image URL in the main process (CORS-free, scheme/target validated) */
   fetchImage(url: string): Promise<{ base64: string; mime: string } | null>
-  /** Genspark cloud image generation (markdown-owned channel, gsk login required) */
+  /** Soopus cloud image generation (markdown-owned channel, soopus login required) */
   aiGenerateImage(op: { prompt: string; aspectRatio?: string }): Promise<{
     url?: string
     error?: string

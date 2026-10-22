@@ -40,13 +40,13 @@ describe('isAiNetworkError', () => {
 
   it('matches DNS and unreachable-host failures', () => {
     expect(isAiNetworkError(new Error('getaddrinfo ENOTFOUND api.anthropic.com'))).toBe(true)
-    expect(isAiNetworkError(new Error('getaddrinfo EAI_AGAIN llm.genspark.ai'))).toBe(true)
+    expect(isAiNetworkError(new Error('getaddrinfo EAI_AGAIN llm.plotxyz.ai'))).toBe(true)
     expect(isAiNetworkError(new Error('connect ENETUNREACH 1.2.3.4:443'))).toBe(true)
   })
 
   it('does not match HTTP, credits, or content errors', () => {
     expect(isAiNetworkError(new Error('Claude HTTP 500: internal error'))).toBe(false)
-    expect(isAiNetworkError(new Error('Your Genspark credits have been exhausted.'))).toBe(false)
+    expect(isAiNetworkError(new Error('Your Soopus credits have been exhausted.'))).toBe(false)
     expect(isAiNetworkError(new Error('Claude returned no content (empty stream)'))).toBe(false)
     expect(isAiNetworkError(new Error('A custom provider requires a Base URL'))).toBe(false)
     expect(isAiNetworkError(null)).toBe(false)

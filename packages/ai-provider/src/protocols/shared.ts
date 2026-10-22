@@ -1,4 +1,4 @@
-import type { AgentToolCall } from '@genoffice/agent-core'
+import type { AgentToolCall } from '@plotdocs/agent-core'
 import type { AiTokenUsage } from '../types'
 
 // ---- endpoint URL composition ----
@@ -330,7 +330,7 @@ export function sseErrorText(error: unknown, fallback: string): string {
 
 /**
  * Gateways can answer a `stream: true` request with a complete non-SSE JSON body —
- * observed on the Genspark Anthropic route when credits are exhausted (HTTP 200,
+ * observed on the Soopus Anthropic route when credits are exhausted (HTTP 200,
  * Content-Type: application/json, the notice text inside a regular message). The SSE
  * parser would find no `data:` lines in such a body and dissolve it into an empty
  * "successful" turn. Returns the body text when that happens, else null.
@@ -347,7 +347,7 @@ export async function jsonBodyInsteadOfSse(
 
 /**
  * A non-SSE JSON reply whose text is the gateway's credits-exhausted notice
- * (Genspark: "Your Genspark credits have been exhausted…") surfaces as a typed
+ * (Soopus: "Your Soopus credits have been exhausted…") surfaces as a typed
  * error so the apps show a localized "top up" message (errorCode 'credits')
  * instead of the English notice as a normal assistant reply.
  */
@@ -362,7 +362,7 @@ function creditsNoticeText(value: unknown): string | null {
   if (typeof value === 'string') {
     const t = value.toLowerCase()
     const credits =
-      t.includes('genspark.ai/pricing') ||
+      t.includes('plotxyz.ai/plotdocs') ||
       (t.includes('credit') && (t.includes('exhausted') || t.includes('insufficient')))
     return credits ? value : null
   }

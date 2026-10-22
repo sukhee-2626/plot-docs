@@ -4,7 +4,7 @@ import { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
 import { addRowAfter, deleteRow } from '@tiptap/pm/tables'
 import { editorExtensions } from '../src/renderer/editor/extensions'
-import { parseDocx, saveDocx } from '@genoffice/docx-engine'
+import { parseDocx, saveDocx } from '@plotdocs/docx-engine'
 import {
   blocksToPmDoc,
   pmDocToSavePlan,
@@ -1119,7 +1119,7 @@ describe('repeated backspace under track changes', () => {
   })
 })
 
-describe('moves and paragraph marks (genoffice#2086)', () => {
+describe('moves and paragraph marks (plotdocs#2086)', () => {
   const AT = 'w:author="X" w:date="2026-01-01T00:00:00Z"'
   const R = (t: string) => `<w:r><w:t xml:space="preserve">${t}</w:t></w:r>`
   const DR = (t: string) => `<w:r><w:delText xml:space="preserve">${t}</w:delText></w:r>`

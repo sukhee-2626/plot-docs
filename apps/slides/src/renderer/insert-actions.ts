@@ -9,7 +9,7 @@ import type { ActionCtx } from './action-context'
 import { applySelectionLink, saveEditSelection, selectionLink } from './TextEditOverlay'
 import { FIT_WIDTH } from './app-constants'
 import { fileExt } from '../shared/media-kinds'
-import type { WordArtPreset } from '@genoffice/ui'
+import type { WordArtPreset } from '@plotdocs/ui'
 import {
   chartSampleData,
   iconSvg,

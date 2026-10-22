@@ -1,4 +1,4 @@
-import type { Block, TableModel } from '@genoffice/docx-engine'
+import type { Block, TableModel } from '@plotdocs/docx-engine'
 
 /**
  * Opening tiers by document weight = blocks + characters / CHARS_PER_BLOCK.

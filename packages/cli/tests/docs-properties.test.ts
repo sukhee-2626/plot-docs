@@ -68,7 +68,7 @@ async function docxWithProps(path: string): Promise<string> {
   return path
 }
 
-describe('genoffice docs (document properties)', () => {
+describe('plotdocs docs (document properties)', () => {
   it('reads the core, app and custom properties of a document', async () => {
     const dir = tempDir()
     const file = await docxWithProps(join(dir, 'motion.docx'))

@@ -3,7 +3,7 @@
  * tables (journal tableAdds, rendered by Univer's table plugin) and tables
  * that came with the file (banding baked at load time, journal tableEdits).
  */
-import { parseRange } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { parseRange } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import type { WorkbookFile, WorkbookTableAdd, WorkbookTableEdit } from '../shared/desktop-api'
 import {

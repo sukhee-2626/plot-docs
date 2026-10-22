@@ -1,5 +1,5 @@
 /// Local store for AI-generated images that arrive as bytes (BYOK image
-/// providers answer with base64, unlike the Genspark CDN URLs the insert
+/// providers answer with base64, unlike the Soopus CDN URLs the insert
 /// pipelines were built around). The bytes are written to a fixed temp
 /// directory and handed back as a file:// URL, which is the only file:// shape
 /// fetchRemoteImage accepts — anything outside this directory stays refused.
@@ -10,7 +10,7 @@ import { tmpdir } from 'node:os'
 import { basename, join, resolve, sep } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
-export const GENERATED_IMAGE_DIR = join(tmpdir(), 'genoffice-ai-images')
+export const GENERATED_IMAGE_DIR = join(tmpdir(), 'plotdocs-ai-images')
 
 const MIME_BY_EXT: Record<string, string> = {
   png: 'image/png',

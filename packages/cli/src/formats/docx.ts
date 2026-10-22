@@ -29,7 +29,7 @@ import {
   type StyleUpsert,
   type PictureWatermarkSpec,
   type WatermarkSpec,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import type { FloatSpec } from '../../../../apps/docs/src/renderer/ai/floating-ops'
 import type { AiNotesAccess, NoteKind } from '../../../../apps/docs/src/renderer/ai/note-ops'
 import type { AiCommentsAccess } from '../../../../apps/docs/src/renderer/ai/tools'
@@ -52,7 +52,7 @@ import { applySectionEdits, pageSetupAccess } from './docx-sections'
 /**
  * The Word editing surface lives in the docs renderer (Tiptap document,
  * restricted-HTML parser, op executor, save plan). Those modules are pure
- * apart from needing a DOM, so genoffice runs them under jsdom. They are loaded
+ * apart from needing a DOM, so plotdocs runs them under jsdom. They are loaded
  * lazily, after the DOM exists, and by relative path until they move into a
  * package of their own.
  */
@@ -605,10 +605,10 @@ export async function applyDocOps(
       else results.push({ index, op: name, output: r.output! })
     } else {
       const call = HTML_TOOLS.has(name)
-        ? { id: `genoffice-${index}`, name, input: htmlToolInput(doc, name, op) }
+        ? { id: `plotdocs-${index}`, name, input: htmlToolInput(doc, name, op) }
         : SIDE_TOOLS.has(name)
-          ? { id: `genoffice-${index}`, name, input: sideToolInput(doc, name, op) }
-          : { id: `genoffice-${index}`, name: 'apply_ops', input: { ops: [op] } }
+          ? { id: `plotdocs-${index}`, name, input: sideToolInput(doc, name, op) }
+          : { id: `plotdocs-${index}`, name: 'apply_ops', input: { ops: [op] } }
       const exec = await doc.mods.tools.executeTool(
         doc.editor,
         call,
@@ -1318,36 +1318,36 @@ const CONTENT_NOTES: Record<(typeof CONTENT_OPS)[number], string> = {
   set_watermark:
     'watermark behind every page, written into the page header (Word Design > Watermark): gray text (color "#RRGGBB", opacity 0-1, diagonal true/false) or a picture (image = local path / data: / http(s) URL; scale percent, default fits the margins; washout true/false); text null or image null removes it',
   define_style:
-    'create or patch a style in styles.xml; only the given fields change; put it on paragraphs with the block op { op: "applyStyle", target, styleId }; `genoffice docs read --styles` lists ids',
+    'create or patch a style in styles.xml; only the given fields change; put it on paragraphs with the block op { op: "applyStyle", target, styleId }; `plotdocs docs read --styles` lists ids',
   insert_chart:
     'native Word chart; values per series match the categories; appended when afterBlockIndex is omitted',
   edit_chart:
-    'change the data of a chart block (`genoffice docs read` lists blocks with kind "chart"); counts must match the original, null keeps a position',
+    'change the data of a chart block (`plotdocs docs read` lists blocks with kind "chart"); counts must match the original, null keeps a position',
   set_header_footer:
-    'plain text, \\n between lines, {PAGE} / {NUMPAGES} become page-number fields, "" clears; view first/even switches the different-first-page / odd-even setting on; `genoffice docs read --header-footer` shows the current text',
+    'plain text, \\n between lines, {PAGE} / {NUMPAGES} become page-number fields, "" clears; view first/even switches the different-first-page / odd-even setting on; `plotdocs docs read --header-footer` shows the current text',
   set_page_setup:
-    'paper (A3/A4/A5/B5/Letter/Legal/Tabloid) or width/height, orientation, margins {top,right,bottom,left,header,footer,gutter}, columns {count,spacing}, titlePg, pageNumberStart/pageNumberFormat; lengths as "2.54cm" / "1in" / "72pt" or twips; section or blockIndex picks one section, neither = all; `genoffice docs read --sections` lists them',
+    'paper (A3/A4/A5/B5/Letter/Legal/Tabloid) or width/height, orientation, margins {top,right,bottom,left,header,footer,gutter}, columns {count,spacing}, titlePg, pageNumberStart/pageNumberFormat; lengths as "2.54cm" / "1in" / "72pt" or twips; section or blockIndex picks one section, neither = all; `plotdocs docs read --sections` lists them',
   insert_section_break:
     'the blocks after afterBlockIndex become a new section (a copy of the current setup, then change it with set_page_setup section: N); type nextPage (default) / continuous / evenPage / oddPage',
   add_comment:
     'new thread on a block, or on an exact text span inside it (occurrence picks one of several matches); the document text is untouched; author defaults to "AI Assistant"',
-  reply_comment: 'ids from `genoffice docs read --comments`; replies attach to the thread root',
-  resolve_comment: 'ids from `genoffice docs read --comments`',
+  reply_comment: 'ids from `plotdocs docs read --comments`; replies attach to the thread root',
+  resolve_comment: 'ids from `plotdocs docs read --comments`',
   accept_changes:
-    'selector: all: true, ids from `genoffice docs read --revisions` (positional, re-read after every edit), or author / type / blockIndex / blockRange / before; insertions become plain text, deleted text goes, moved text stays at its destination; all / author / type / before also cover headers, footers, footnotes and endnotes',
+    'selector: all: true, ids from `plotdocs docs read --revisions` (positional, re-read after every edit), or author / type / blockIndex / blockRange / before; insertions become plain text, deleted text goes, moved text stays at its destination; all / author / type / before also cover headers, footers, footnotes and endnotes',
   reject_changes:
     'same selector as accept_changes; inserted text goes, deleted text comes back, formatting reverts',
   insert_footnote:
-    'a superscript reference mark goes into blockIndex (right after afterText, else at the block end) and the note text prints at the page bottom; `genoffice docs read --notes` lists notes',
+    'a superscript reference mark goes into blockIndex (right after afterText, else at the block end) and the note text prints at the page bottom; `plotdocs docs read --notes` lists notes',
   insert_endnote: 'like insert_footnote, but the note text collects at the end of the document',
   edit_note:
-    'findReplace inside one footnote or endnote (id from `genoffice docs read --notes`; kind only when a footnote and an endnote share the id): every occurrence of find becomes replace, the note keeps its id, reference mark and formatting; matchCase defaults to true',
+    'findReplace inside one footnote or endnote (id from `plotdocs docs read --notes`; kind only when a footnote and an endnote share the id): every occurrence of find becomes replace, the note keeps its id, reference mark and formatting; matchCase defaults to true',
   delete_note:
-    'kind footnote|endnote and an id from `genoffice docs read --notes`; removes the reference mark too',
+    'kind footnote|endnote and an id from `plotdocs docs read --notes`; removes the reference mark too',
   delete_comment:
     'removes the comment and its anchor; a thread root with replies needs withReplies: true, a reply id removes just that reply',
   set_properties:
-    'the document properties of the file: core (title, subject, creator, keywords, description, lastModifiedBy, revision, created, modified, category, contentStatus, identifier, language, version), app (template, totalTime, pages, words, characters, application, docSecurity, lines, paragraphs, scaleCrop, company, linksUpToDate, charactersWithSpaces, sharedDoc, hyperlinksChanged, appVersion, manager) and custom (by name); a string sets the value, null removes the property, clear: "all" empties all three parts; `genoffice docs read --properties` lists the current ones',
+    'the document properties of the file: core (title, subject, creator, keywords, description, lastModifiedBy, revision, created, modified, category, contentStatus, identifier, language, version), app (template, totalTime, pages, words, characters, application, docSecurity, lines, paragraphs, scaleCrop, company, linksUpToDate, charactersWithSpaces, sharedDoc, hyperlinksChanged, appVersion, manager) and custom (by name); a string sets the value, null removes the property, clear: "all" empties all three parts; `plotdocs docs read --properties` lists the current ones',
 }
 
 const AFTER_BLOCK_INDEX =

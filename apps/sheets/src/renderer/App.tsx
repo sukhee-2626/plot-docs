@@ -36,7 +36,7 @@ import { installGridGrowth } from './grid-growth'
 import {
   pollUntilReady,
   runHeadlessRendererExport,
-} from '@genoffice/electron-utils/headless-export'
+} from '@plotdocs/electron-utils/headless-export'
 import {
   commitActiveCellEditor,
   installJournalSuppressionUndoFilter,
@@ -75,7 +75,7 @@ import {
   ImageViewer,
   type AiTokenUsageView,
   type AiScopeQuoteData,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 
 import {
   CellValueType,
@@ -142,14 +142,14 @@ import {
   COMPLETED_VIA_TOOLS_TEXT,
   composeSkills,
   type AgentImage,
-} from '@genoffice/agent-core'
-import { imageGenerationAvailable, type AiSettings } from '@genoffice/ai-provider/browser'
-import { type WorkbookOperation } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
+} from '@plotdocs/agent-core'
+import { imageGenerationAvailable, type AiSettings } from '@plotdocs/ai-provider/browser'
+import { type WorkbookOperation } from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
 import {
   columnLabel,
   parseAddress,
   rangeCellCount,
-} from '@genoffice/xlsx-gateway/domain/cell-address'
+} from '@plotdocs/xlsx-gateway/domain/cell-address'
 import { aggregateWorkbookRange } from './ai/aggregate-range'
 import { collectCellFormulaTexts, quadraticFormulaError } from './formula-cost'
 import {
@@ -158,9 +158,9 @@ import {
   chartSupportsSeriesReplace,
   withDefaultBarLabels,
   type CellBounds,
-} from '@genoffice/xlsx-gateway/domain/chart-visual'
-import { InMemoryWorkbookAdapter } from '@genoffice/xlsx-gateway/domain/in-memory-workbook'
-import { cfRuleUnsaveableReason, iconSetSaveable } from '@genoffice/xlsx-gateway/gateway/xlsx-cf'
+} from '@plotdocs/xlsx-gateway/domain/chart-visual'
+import { InMemoryWorkbookAdapter } from '@plotdocs/xlsx-gateway/domain/in-memory-workbook'
+import { cfRuleUnsaveableReason, iconSetSaveable } from '@plotdocs/xlsx-gateway/gateway/xlsx-cf'
 import { installLazyFindBridge } from './lazy-find'
 import { startFullLoad } from './full-load'
 import { opensInFormulaMode, workbookCellCounts } from './load-budget'
@@ -180,7 +180,7 @@ import {
   toggleOutlineGroup,
 } from './outline-actions'
 import { moveOutlineEntries, shiftOutlineEntries } from './outline-model'
-import type { ApplyOutcome, ChangePlan } from '@genoffice/xlsx-gateway/domain/workbook.types'
+import type { ApplyOutcome, ChangePlan } from '@plotdocs/xlsx-gateway/domain/workbook.types'
 import { createElectronTransport } from './ai/transport'
 import {
   MAX_READ_RANGE_CELLS,
@@ -296,7 +296,7 @@ import {
   type SlicerPickerState,
   type TimelinePickerState,
 } from './pivot-actions'
-import type { ChartRecommendations } from '@genoffice/xlsx-gateway/domain/chart-recommend'
+import type { ChartRecommendations } from '@plotdocs/xlsx-gateway/domain/chart-recommend'
 import {
   cellAtClientPoint,
   handleInsertChart as handleInsertChartImpl,
@@ -343,7 +343,7 @@ import { installCfFormulaFold } from './cf-formula-fold'
 import { installSheetRenameFix } from './sheet-rename-fix'
 import { installArrowCollapse } from './arrow-collapse-fix'
 import { effectiveSheetProtection, installSheetProtectionGuard } from './sheet-protection'
-import type { SheetProtectionAllow } from '@genoffice/xlsx-gateway/gateway/xlsx-protection'
+import type { SheetProtectionAllow } from '@plotdocs/xlsx-gateway/gateway/xlsx-protection'
 import { installCtrlDragFill } from './ctrl-drag-fill'
 import { installContextSubmenuReopenFix } from './context-submenu-reopen-fix'
 import { installMenuInputEnter } from './menu-input-enter'
@@ -1077,15 +1077,15 @@ export function App({
   const aiSettingsRef = useRef<AiSettings | null>(null)
   aiSettingsRef.current = aiSettings
 
-  /** gsk login state for the cloud-tools gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  /** soopus login state for the cloud-tools gate (refreshed on mount and window focus) */
+  const soopusLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
       void window.desktopApi
-        ?.aiGskStatus()
+        ?.aiSoopusStatus()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) soopusLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -1405,7 +1405,7 @@ export function App({
         }),
         createSearchSkill(),
         createImageSkill(() =>
-          imageGenerationAvailable(aiSettingsRef.current, gskLoggedInRef.current),
+          imageGenerationAvailable(aiSettingsRef.current, soopusLoggedInRef.current),
         ),
       ]),
       events: {
@@ -1548,14 +1548,14 @@ export function App({
             return next
           })
           // Signed-out failures get an inline sign-in button; detected via
-          // gsk status rather than matching the localized error text — but only
-          // when Genspark is the provider: a BYOK user's error (e.g. their own
-          // provider's rate limit) must not advertise a Genspark sign-in (genoffice#1948)
+          // soopus status rather than matching the localized error text — but only
+          // when Soopus is the provider: a BYOK user's error (e.g. their own
+          // provider's rate limit) must not advertise a Soopus sign-in (plotdocs#1948)
           void window.desktopApi
-            .aiGskStatus()
+            .aiSoopusStatus()
             .then((status) => {
               if (status.loggedIn) return
-              if ((aiSettingsRef.current?.provider ?? 'genspark') !== 'genspark') return
+              if ((aiSettingsRef.current?.provider ?? 'soopus') !== 'soopus') return
               setChat((previous) => {
                 const next = [...previous]
                 const last = next.at(-1)
@@ -1578,10 +1578,10 @@ export function App({
     if (!settings) return false
     const config = settings.providers[settings.provider]
     if (!config?.model) return false
-    // Genspark's key never lands in the settings file; the main process injects
-    // it from the gsk login state. When logged out, requests return an error
+    // Soopus's key never lands in the settings file; the main process injects
+    // it from the soopus login state. When logged out, requests return an error
     // guiding sign-in — not intercepted here.
-    return settings.provider === 'genspark' || !!config.apiKey
+    return settings.provider === 'soopus' || !!config.apiKey
   }
 
   /** Image attachments read as base64 and sent multimodal with this user message
@@ -1752,7 +1752,7 @@ export function App({
   useEffect(() => {
     // Univer paints the grid on canvas, so it can't follow the CSS tokens —
     // mirror the canvas state into its official darkMode flag: an explicit
-    // <html data-doc-theme> pin (genoffice#1811) wins, otherwise the <html data-theme>
+    // <html data-doc-theme> pin (plotdocs#1811) wins, otherwise the <html data-theme>
     // state as before
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)')
     const isDarkTheme = () => {
@@ -1827,8 +1827,8 @@ export function App({
     univerRef.current = runtime
     // The hidden spare can have a canvas/editor before Univer finishes booting.
     // Expose its lifecycle readiness only to explicitly enabled e2e drivers.
-    if ((window as unknown as Record<string, unknown>).__genofficeDebugHooks === true) {
-      ;(window as unknown as Record<string, unknown>).__genofficeSpareViewReady = () =>
+    if ((window as unknown as Record<string, unknown>).__plotdocsDebugHooks === true) {
+      ;(window as unknown as Record<string, unknown>).__plotdocsSpareViewReady = () =>
         runtime.univerAPI.getCurrentLifecycleStage() ===
         runtime.univerAPI.Enum.LifecycleStages.Steady
     }
@@ -2000,7 +2000,7 @@ export function App({
     })
     const ctrlDragFillDisposable = installCtrlDragFill(runtime)
     // A context-menu submenu re-hovered within Univer's close delay stays
-    // invisible; re-trigger its positioning (genoffice#337).
+    // invisible; re-trigger its positioning (plotdocs#337).
     const contextSubmenuReopenDisposable = installContextSubmenuReopenFix()
     // Enter in a context-menu count box (insert N rows/columns, column
     // width) runs the row's action instead of only committing the number.
@@ -2041,7 +2041,7 @@ export function App({
     )
     // Wide expression CF rules register folded/windowed formula ranges so
     // the engine stops rebuilding millions of per-cell dependency trees on
-    // every stream-in recalculation (genoffice#158).
+    // every stream-in recalculation (plotdocs#158).
     const cfFormulaFoldDisposable = installCfFormulaFold(runtime)
     // duplicateValues / uniqueValues compare display text like Excel (1981233
     // and "1981233" are duplicates).
@@ -4446,10 +4446,10 @@ export function App({
       ;(window as unknown as Record<string, unknown>).__ribbonCommand = handleRibbonCommand
     }
     // Built-app e2e hook, off by default: the preload exposes
-    // __genofficeDebugHooks only when GENOFFICE_DEBUG_HOOKS=1 (scroll/freeze
+    // __plotdocsDebugHooks only when PLOTDOCS_DEBUG_HOOKS=1 (scroll/freeze
     // drivers read Univer's render state through the Facade).
-    if ((window as unknown as Record<string, unknown>).__genofficeDebugHooks === true) {
-      ;(window as unknown as Record<string, unknown>).__genofficeDebug = {
+    if ((window as unknown as Record<string, unknown>).__plotdocsDebugHooks === true) {
+      ;(window as unknown as Record<string, unknown>).__plotdocsDebug = {
         univerAPI: univerRef.current?.univerAPI,
         findReplaceService: univerRef.current?.univer.__getInjector().get(IFindReplaceService),
         // ground truth for typing-into-the-adopted-spare failures: the
@@ -5021,9 +5021,9 @@ export function App({
     }
   })()
 
-  // genoffice CLI (`open --range`, `selection`): the shell evaluates this hook
+  // plotdocs CLI (`open --range`, `selection`): the shell evaluates this hook
   useEffect(() => {
-    ;(window as unknown as Record<string, unknown>).__genofficeControl = (req: ControlRequest) =>
+    ;(window as unknown as Record<string, unknown>).__plotdocsControl = (req: ControlRequest) =>
       handleSheetsControl(
         req,
         univerRef.current?.univerAPI.getActiveWorkbook(),

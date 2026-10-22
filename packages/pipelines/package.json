@@ -1,10 +1,10 @@
 {
-  "name": "@genoffice/pipelines",
+  "name": "@plotdocs/pipelines",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
   "type": "module",
-  "description": "Electron-free generation stages and agent guides shared by the apps' AI pipelines and the genoffice CLI (slides today; docs and html to follow)",
+  "description": "Electron-free generation stages and agent guides shared by the apps' AI pipelines and the plotdocs CLI (slides today; docs and html to follow)",
   "exports": {
     ".": "./src/index.ts",
     "./slides": "./src/slides/index.ts",
@@ -16,8 +16,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@genoffice/pptx-engine": "*",
-    "@genoffice/pptx-render": "*"
+    "@plotdocs/pptx-engine": "*",
+    "@plotdocs/pptx-render": "*"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

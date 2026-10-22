@@ -1,61 +1,61 @@
 /* Bundled metric substitutes for fonts most decks assume but macOS/Linux lack:
  * Carlito ↔ Calibri (document content rendering — the canvas font chains in
  * konva-adapter.ts list Carlito right after Calibri). The files are the suite's
- * shared copy (@genoffice/ui/fonts); their internal family name is "Carlito GO"
+ * shared copy (@plotdocs/ui/fonts); their internal family name is "Carlito GO"
  * (docs' Vietnamese-diacritics rebuild), which is what the main-process metrics
  * report as the draw family — declare both names. */
 @font-face {
   font-family: 'Carlito';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   font-weight: bold;
   font-style: normal;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   font-weight: normal;
   font-style: italic;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   font-weight: bold;
   font-style: italic;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   font-weight: bold;
   font-style: normal;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   font-weight: normal;
   font-style: italic;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   font-weight: bold;
   font-style: italic;
   font-display: block;
@@ -63,7 +63,7 @@
 
 /* Per-app accent (powerpoint-orange family) + slides-only tokens.
  * Chrome tokens (surface/text/border/…, AI panel --color-*) come from
- * @genoffice/ui/tokens.css; nothing here may shadow those names. */
+ * @plotdocs/ui/tokens.css; nothing here may shadow those names. */
 :root {
   --accent: #c43e1c;
   --accent-dark: #a33517;
@@ -633,15 +633,15 @@ button {
   box-shadow: var(--slides-shadow-badge-soft);
 }
 
-/* Genspark brand logo (Ribbon AI button / AI panel title / collapsed entry) */
-.genspark-badge {
+/* Soopus brand logo (Ribbon AI button / AI panel title / collapsed entry) */
+.soopus-badge {
   display: block;
   width: 22px;
   height: 22px;
   border-radius: 50%;
 }
 
-.ai-panel-title .genspark-badge {
+.ai-panel-title .soopus-badge {
   width: 18px;
   height: 18px;
 }
@@ -671,7 +671,7 @@ button {
   overflow-x: scroll;
   overflow-y: hidden;
   /* Slim visible scrollbar so mouse users can reach overflowed groups
-     (genspark-ai/genoffice#55). Its 5px lane is carved out of the bottom
+     (plotxyz-ai/plot-docs#55). Its 5px lane is carved out of the bottom
      padding, keeping the 80px band and the content area unchanged; Chromium
      paints a thumb only while the row actually overflows. */
   padding-bottom: 1px;
@@ -757,7 +757,7 @@ button {
   color: var(--text-primary);
 }
 
-/* Home-tab Genspark AI entry: black circular "+" badge with a dropdown caret,
+/* Home-tab Soopus AI entry: black circular "+" badge with a dropdown caret,
    brand label below (mirrors the sheets Home ribbon). */
 /* AI feature buttons next to the entry: purple glyphs, label below */
 .ai-feature-icon {
@@ -803,7 +803,7 @@ button {
   background: var(--active-bg);
 }
 
-/* The Genspark AI entry keeps a black label even while the panel is open. */
+/* The Soopus AI entry keeps a black label even while the panel is open. */
 .rb-big.ai-entry.active {
   color: var(--text);
 }
@@ -820,7 +820,7 @@ button {
 }
 
 .rb-big.ai-entry.active {
-  /* neutral gray, shared with the docs/sheets Genspark entries */
+  /* neutral gray, shared with the docs/sheets Soopus entries */
   background: var(--active-bg);
 }
 
@@ -2709,7 +2709,7 @@ body.vib .slide-list {
 .ai-attachments {
   display: flex;
   gap: 8px;
-  /* single row inside the prompt box, above the textarea (Genspark composer style):
+  /* single row inside the prompt box, above the textarea (Soopus composer style):
      extra images run past the box edge and scroll horizontally.
      scroll (not auto) + zero bottom padding: the always-present 4px scrollbar lane
      doubles as the bottom padding, so overflowing never grows the strip and
@@ -2817,7 +2817,7 @@ body.vib .slide-list {
   background: var(--slides-att-bg);
 }
 
-/* the type icon sits in its own bordered white tile, like the Genspark card */
+/* the type icon sits in its own bordered white tile, like the Soopus card */
 .ai-attachment-card-icon {
   display: flex;
   flex-shrink: 0;
@@ -3431,7 +3431,7 @@ body.vib .slide-list {
   margin-top: 18px;
 }
 
-/* Genspark DS modal footer buttons: secondary = bg-subtle, primary = black (#232425) */
+/* Soopus DS modal footer buttons: secondary = bg-subtle, primary = black (#232425) */
 .modal-actions button {
   display: inline-flex;
   align-items: center;
@@ -3563,7 +3563,7 @@ body.vib .slide-list {
   margin-top: 5.6px;
 }
 
-/* 形状选项 / 文本选项 primary tabs under the pane header (Genspark style:
+/* 形状选项 / 文本选项 primary tabs under the pane header (Soopus style:
    left-aligned text tabs, active = bold + text-colored underline) */
 .fp-tabs {
   display: flex;
@@ -3597,7 +3597,7 @@ body.vib .slide-list {
   border-bottom-color: var(--accent);
 }
 
-/* Second-level tabs (填充与线条 / 效果 / 大小与属性 …): Genspark segmented pill track —
+/* Second-level tabs (填充与线条 / 效果 / 大小与属性 …): Soopus segmented pill track —
    pills sit in one rounded gray track; active = accent-filled pill. Long locales
    (fr/de/es labels exceed the 260px pane) wrap onto a second row instead of
    clipping at the pane edge; 16px ≈ the stadium radius at single-row height. */
@@ -4044,7 +4044,7 @@ body.vib .slide-list {
   box-shadow: var(--slides-thumb-shadow);
 }
 
-/* Shared dropdown (@genoffice/ui gs-dd) app sizing: format-pane rows, the
+/* Shared dropdown (@plotdocs/ui gs-dd) app sizing: format-pane rows, the
  * ribbon animation-timing group, and modal dialogs */
 .fp-prow .gs-dd {
   width: 120px;
@@ -4809,7 +4809,7 @@ body.vib .slide-list {
   border-radius: 1px;
 }
 
-/* Anchor positioning for the shared Word-style color panel (@genoffice/ui
+/* Anchor positioning for the shared Word-style color panel (@plotdocs/ui
    .gcp-palette draws the chrome; this wrapper only places it under the trigger). */
 .rb-color-pop {
   position: fixed;
@@ -5778,10 +5778,10 @@ body.vib .slide-list {
 }
 
 /* AI quick actions anchored right above the slide card (mirrors the Home-tab
-   Genspark AI group); absolute so it doesn't distort the zoom-box extent.
+   Soopus AI group); absolute so it doesn't distort the zoom-box extent.
    z-index lifts it over the Konva stage's transparent 160px bleed, which
    otherwise swallows the clicks */
-/* Genspark SAS floating toolbar, matched to the reference stage-toolbar:
+/* Soopus SAS floating toolbar, matched to the reference stage-toolbar:
    white bar (padding 3px 5px, ~35px tall); 24px borderless tool buttons
    with 12px #374151 labels; thin span dividers separate the groups; the
    assistant toggle shows a gray selected state while the panel is open */
@@ -5853,7 +5853,7 @@ body.vib .slide-list {
 }
 
 /* the brand mark uses currentColor and keeps the button's ink, not the blue */
-.stage-ai-btn svg.genspark-mark {
+.stage-ai-btn svg.soopus-mark {
   color: var(--slides-stagebar-ink);
 }
 

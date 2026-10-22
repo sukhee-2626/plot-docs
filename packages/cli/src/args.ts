@@ -7,7 +7,7 @@ export interface ParsedArgs {
 
 /**
  * `--key value`, `--key=value`, `--flag`, `-h`; a lone `--` ends flag parsing.
- * Names in `booleans` never take a value, so `genoffice --json info a.docx` keeps
+ * Names in `booleans` never take a value, so `plotdocs --json info a.docx` keeps
  * `info` as the command.
  */
 export function parseArgs(

@@ -17,7 +17,7 @@ import {
   saveDocx,
   type NumberingDef,
   type StyleUpsert,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import { blocksToPmDoc, pmDocToSavePlan } from '../src/renderer/editor/convert'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { EMPTY_PENDING_NUMBERING, type PendingNumbering } from '../src/renderer/doc-state'

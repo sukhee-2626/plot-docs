@@ -1,13 +1,13 @@
 /**
  * Opt-in model-turn trace for building fine-tuning corpora. With
- * GENOFFICE_AI_TRACE_DIR set, every ai:stream request appends one JSON line
+ * PLOTDOCS_AI_TRACE_DIR set, every ai:stream request appends one JSON line
  * (full request as sent to the provider, full response as streamed back) to
  * <dir>/ai-trace-<yyyymmdd>-<pid>.jsonl. Off by default; never written from the
  * renderer; the provider config (API keys) is not part of the record.
  */
 import { appendFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
-import type { AgentMessage, AgentToolCall, AgentToolDef } from '@genoffice/agent-core'
+import type { AgentMessage, AgentToolCall, AgentToolDef } from '@plotdocs/agent-core'
 import type { AiTokenUsage } from './types'
 
 export interface AiTraceRequest {
@@ -34,7 +34,7 @@ export interface AiTraceRecorder {
 }
 
 export function aiTraceDir(env: NodeJS.ProcessEnv = process.env): string | null {
-  const dir = env.GENOFFICE_AI_TRACE_DIR?.trim()
+  const dir = env.PLOTDOCS_AI_TRACE_DIR?.trim()
   return dir ? dir : null
 }
 

@@ -1,4 +1,4 @@
-// Range-resumable installer downloads (genoffice#1777): electron-updater
+// Range-resumable installer downloads (plotdocs#1777): electron-updater
 // restarts every retry from byte 0. This wraps httpExecutor.download so the
 // bytes land in <resume>/<artifact>.part via Range requests; anything the
 // wrapper cannot handle falls back to the stock implementation.

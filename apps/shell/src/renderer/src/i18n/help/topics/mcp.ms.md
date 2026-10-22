@@ -1,43 +1,43 @@
 # Menyambungkan ejen penulisan kod
 
-GenOffice bercakap dengan Model Context Protocol, jadi ejen penulisan kod boleh membaca, menulis dan memaparkan dokumen anda melalui enjin yang sama seperti yang digunakan oleh aplikasi. Ejen itu tidak meneka format fail: ia mendapat skema op bertip daripada definisi yang sama seperti yang disahkan oleh pelaku.
+Plot Docs bercakap dengan Model Context Protocol, jadi ejen penulisan kod boleh membaca, menulis dan memaparkan dokumen anda melalui enjin yang sama seperti yang digunakan oleh aplikasi. Ejen itu tidak meneka format fail: ia mendapat skema op bertip daripada definisi yang sama seperti yang disahkan oleh pelaku.
 
 ## Mendaftarkannya dari aplikasi
 
 Tempatnya ialah **Tetapan ▸ Integrasi**. Panel itu mempunyai dua bahagian, dan anda boleh menggunakan satu sahaja atau kedua-duanya.
 
-**Skill.** Satu baris bagi setiap ejen penulisan kod yang ditemui pada mesin ini — Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf —, setiap satu dengan **Pasang**, **Kemas kini** dan **Nyahpasang**, tambahan lagi **Pasang ke folder lain…**, **Muat turun skill (zip)** dan **Salin laluan**. Jika pembantu anda tidak tersenarai, tunjukkan GenOffice folder tempat ia membaca `SKILL.md`, atau simpan fail zip itu dan biarkan pembantu memasangnya. Skill dan MCP boleh bersebelahan: pembantu akan memilih salah satu, dan keduanya melakukan perkara yang sama sekali.
+**Skill.** Satu baris bagi setiap ejen penulisan kod yang ditemui pada mesin ini — Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf —, setiap satu dengan **Pasang**, **Kemas kini** dan **Nyahpasang**, tambahan lagi **Pasang ke folder lain…**, **Muat turun skill (zip)** dan **Salin laluan**. Jika pembantu anda tidak tersenarai, tunjukkan Plot Docs folder tempat ia membaca `SKILL.md`, atau simpan fail zip itu dan biarkan pembantu memasangnya. Skill dan MCP boleh bersebelahan: pembantu akan memilih salah satu, dan keduanya melakukan perkara yang sama sekali.
 
-**MCP.** Dua laluan ditawarkan: **Dimulakan oleh pembantu (disyorkan)**, di mana anda menambah konfigurasi yang dipaparkan pada klien anda dan pembantu memulakan pelayan itu sendiri, serta **Pelayan HTTP tempatan**, yang dijalankan aplikasi untuk anda. Bagaimanapun, pembantu akhirnya bercakap dengan GenOffice dan anda tidak sekali pun perlu menaip arahan.
+**MCP.** Dua laluan ditawarkan: **Dimulakan oleh pembantu (disyorkan)**, di mana anda menambah konfigurasi yang dipaparkan pada klien anda dan pembantu memulakan pelayan itu sendiri, serta **Pelayan HTTP tempatan**, yang dijalankan aplikasi untuk anda. Bagaimanapun, pembantu akhirnya bercakap dengan Plot Docs dan anda tidak sekali pun perlu menaip arahan.
 
 ## Mendaftarkannya dari baris arahan
 
 Perkara yang sama daripada satu terminal — inilah laluan lanjutan, dan laluan yang perlu digunakan apabila ejen berada di tempat yang tidak dapat dicari oleh panel:
 
 ```sh
-genoffice mcp install all
+plotdocs mcp install all
 ```
 
 Ia menemui ejen penulisan kod pada mesin ini — Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf — lalu menulis entri pelayan stdio ke dalam konfigurasi sendiri setiap satu, dan meninggalkan bahagian lain fail itu seperti yang dijumpainya.
 
 ```sh
-genoffice mcp list             # where each agent stands
-genoffice mcp install cursor    # just one
-genoffice mcp uninstall cursor  # take it back out
+plotdocs mcp list             # where each agent stands
+plotdocs mcp install cursor    # just one
+plotdocs mcp uninstall cursor  # take it back out
 ```
 
 Ejen yang anda pasang di tempat yang luar biasa menggunakan `--dir <path>`; `--force` menulis semula entri yang sudah ada di situ.
 
 Segala yang diterima oleh pelayan itu muat pada satu skrin — borang untuk memasang, mengeluarkan dan menyenaraikan, menyajikan melalui HTTP, dan dua pilihan skema:
 
-![Keluaran sebenar genoffice mcp --help: borang install, uninstall dan list, bersama pilihan --http, --host, --token, --compact-schemas, --dir dan --force](img/mcp.png)
+![Keluaran sebenar plotdocs mcp --help: borang install, uninstall dan list, bersama pilihan --http, --host, --token, --compact-schemas, --dir dan --force](img/mcp.png)
 
 ## Menjalankannya tanpa pembantu
 
 Bagi klien pada mesin lain, layankannya melalui HTTP:
 
 ```sh
-genoffice mcp --http 8765 --token <secret>
+plotdocs mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>` menukar tempat ia mendengarkan. Berikan token yang sama kepada klien.
@@ -57,22 +57,22 @@ Setiap perintah ialah sebuah alat. Yang menarik:
 
 ## Skema, dan bajet yang lebih kecil
 
-`apply` dan `create` membentangkan parameter `ops`, `cells` dan `data` mereka bersama skema bertip bagi setiap op, yang dijana daripada `genoffice guide <domain> --json`. Itu tepat, tetapi tidak kecil. Klien dengan tetingkap konteks yang sempit boleh meminta tatasusunan biasa sebagai gantinya:
+`apply` dan `create` membentangkan parameter `ops`, `cells` dan `data` mereka bersama skema bertip bagi setiap op, yang dijana daripada `plotdocs guide <domain> --json`. Itu tepat, tetapi tidak kecil. Klien dengan tetingkap konteks yang sempit boleh meminta tatasusunan biasa sebagai gantinya:
 
 ```sh
-genoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 genoffice mcp
+plotdocs mcp --compact-schemas
+PLOTDOCS_MCP_COMPACT_SCHEMAS=1 plotdocs mcp
 ```
 
 ## Mengapa perlu skill
 
-Ejen yang tidak tahu kosa kata op akan meneka. Skill itu membawa rujukan dan panduan reka bentuk — bahan yang sama seperti yang dicetak oleh `genoffice guide` —, jadi pembantu menulis op yang spesifikasinya memang telah dibaca. Pasang ia daripada panel di atas, atau dengan `genoffice skill` daripada terminal.
+Ejen yang tidak tahu kosa kata op akan meneka. Skill itu membawa rujukan dan panduan reka bentuk — bahan yang sama seperti yang dicetak oleh `plotdocs guide` —, jadi pembantu menulis op yang spesifikasinya memang telah dibaca. Pasang ia daripada panel di atas, atau dengan `plotdocs skill` daripada terminal.
 
 ## Apa yang boleh dicapainya dalam aplikasi
 
-Pelayan itu tidak terhad kepada fail pada cakera. Selagi GenOffice berjalan, ejen juga boleh bekerja melalui tetingkap:
+Pelayan itu tidak terhad kepada fail pada cakera. Selagi Plot Docs berjalan, ejen juga boleh bekerja melalui tetingkap:
 
-- **`open_in_genoffice`** membuka fail dalam satu tab dan memberikan tumpu kepadanya.
+- **`open_in_plotdocs`** membuka fail dalam satu tab dan memberikan tumpu kepadanya.
 - **`open_documents`** menyenaraikan setiap dokumen yang anda buka — id, jenis, laluan, dan sama ada ia mempunyai perubahan yang belum disimpan —, kemudian membaca kandungan terkini sesuatu dokumen, menyimpannya di tempatnya, atau menutupnya, dengan menyimpan dahulu melainkan anda menyuruhnya membuang.
 - **Alat kandungan** mengambil id itu (atau laluannya) sebagai argumen `document`, jadi satu suntingan mendarat pada tab yang memang sudah anda buka, dan tetingkap bertukar untuk mempaparkannya.
 

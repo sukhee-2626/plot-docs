@@ -7,7 +7,7 @@
 import { Editor } from '@tiptap/core'
 import { NodeSelection } from '@tiptap/pm/state'
 import { describe, expect, it } from 'vitest'
-import { parseDocx, type TextboxDisplay } from '@genoffice/docx-engine'
+import { parseDocx, type TextboxDisplay } from '@plotdocs/docx-engine'
 import {
   buildDocx,
   IMAGE_PARAGRAPH_XML,

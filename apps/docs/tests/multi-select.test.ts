@@ -9,7 +9,7 @@ import {
 } from '../src/renderer/editor/multi-select'
 
 /**
- * Ctrl/⌘+click adds a non-contiguous selection range (genoffice#2013).
+ * Ctrl/⌘+click adds a non-contiguous selection range (plotdocs#2013).
  * ProseMirror's Selection holds one {from, to}, so the added ranges live in
  * plugin state and are painted as decorations; the live selection stays the
  * one the core owns.

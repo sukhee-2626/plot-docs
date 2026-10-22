@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { NO_SCREENSHOT_NOTE, screenshotAllowed } from '../src/renderer/ai/slide-qc'
 import { redactionCount } from '../src/renderer/ai/redact-view'
-import type { RenderNode } from '@genoffice/pptx-render'
+import type { RenderNode } from '@plotdocs/pptx-render'
 
 /**
  * A screenshot is the one outbound path no text projection can reach.

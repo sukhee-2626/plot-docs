@@ -1882,9 +1882,9 @@ export function IconClose(props: IconProps) {
   )
 }
 
-/** Genspark brand mark (rounded-square sparkle badge), inline so it renders
+/** Soopus brand mark (rounded-square sparkle badge), inline so it renders
  * crisply at device resolution instead of going through <img> rasterization */
-export function GensparkMark({ size = 30 }: { size?: number }) {
+export function SoopusMark({ size = 30 }: { size?: number }) {
   return (
     <svg
       width={size}
@@ -1897,6 +1897,88 @@ export function GensparkMark({ size = 30 }: { size?: number }) {
       <path
         d="M105.115 0H24.6428C11.0443 0 0 11.0686 0 24.6915V105.334C0 118.981 11.0199 130.025 24.6428 130.025H105.115C118.714 130.025 129.758 118.957 129.758 105.334V24.6915C129.758 11.0443 118.714 0 105.115 0ZM71.5201 35.2735C85.5078 33.1571 86.7729 31.9164 88.865 17.88C88.938 17.4421 89.3028 17.1259 89.7407 17.1259C90.1786 17.1259 90.5435 17.4421 90.6164 17.88C92.7328 31.8921 93.9735 33.1571 107.961 35.2735C108.399 35.3465 108.715 35.7114 108.715 36.1493C108.715 36.5871 108.399 36.952 107.961 37.025C93.9249 39.1414 92.7085 40.4064 90.5677 54.6131C90.5191 54.9537 90.2516 55.197 89.911 55.197C89.5704 55.197 89.3028 54.9537 89.2542 54.6131C87.1134 40.4064 85.5565 39.1658 71.4958 37.025C71.0579 36.952 70.7417 36.5871 70.7417 36.1493C70.7417 35.7114 71.0579 35.3465 71.4958 35.2735H71.5201ZM101.758 78.5261C101.758 78.8181 101.563 79.037 101.271 79.0856C92.3193 80.4236 91.5652 81.2264 90.2029 90.2759C90.1786 90.4948 89.9839 90.6408 89.7893 90.6408C89.5703 90.6408 89.4001 90.4948 89.3758 90.2759C88.0135 81.2507 87.0161 80.4479 78.0883 79.0856C77.7964 79.037 77.6017 78.7937 77.6017 78.5261C77.6017 78.2342 77.7964 78.0153 78.0883 77.9666C86.9918 76.6287 87.7703 75.8259 89.1326 66.898C89.1812 66.6061 89.4244 66.4115 89.692 66.4115C89.9839 66.4115 90.2028 66.6061 90.2515 66.898C91.5894 75.8259 92.3923 76.6043 101.296 77.9666C101.588 78.0153 101.782 78.2585 101.782 78.5261H101.758ZM16.5178 54.8077C16.5178 54.1023 17.0286 53.4941 17.7341 53.3968C40.1388 50.0154 42.1093 47.9963 45.4907 25.5672C45.588 24.8861 46.1961 24.3509 46.9016 24.3509C47.6071 24.3509 48.191 24.8617 48.3126 25.5672C51.694 47.9963 53.6887 50.0154 76.0691 53.3968C76.7503 53.4941 77.2855 54.1023 77.2855 54.8077C77.2855 55.5132 76.7746 56.1214 76.0691 56.2187C53.5914 59.6244 51.6696 61.6192 48.2639 84.3645C48.1909 84.8754 47.7287 85.2889 47.2179 85.2889C46.707 85.2889 46.2448 84.8997 46.1718 84.3645C42.7418 61.6435 40.2604 59.6244 17.7584 56.2187C17.0772 56.1214 16.542 55.5132 16.542 54.8077H16.5178ZM112.097 109.591C112.097 111.416 110.613 112.9 108.813 112.9H21.2614C19.4369 112.9 17.9774 111.416 17.9774 109.591V102.658C17.9774 100.834 19.4612 99.3497 21.2614 99.3497H108.813C110.637 99.3497 112.097 100.834 112.097 102.658V109.591Z"
         fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+/** Plot Docs squircle mark, inlined at the size of the surrounding UI. */
+export function PlotMark({ size = 30 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id="plotMarkBg" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stopColor="#0F172A" />
+          <stop offset="55%" stopColor="#1E1B4B" />
+          <stop offset="100%" stopColor="#090D16" />
+        </linearGradient>
+        <linearGradient id="plotMarkBorder" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stopColor="#00F2FE" />
+          <stop offset="50%" stopColor="#4F46E5" />
+          <stop offset="100%" stopColor="#9333EA" />
+        </linearGradient>
+        <linearGradient id="plotMarkCyan" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stopColor="#38BDF8" />
+          <stop offset="55%" stopColor="#0284C7" />
+          <stop offset="100%" stopColor="#2563EB" />
+        </linearGradient>
+        <linearGradient id="plotMarkViolet" x1="0%" x2="100%" y1="0%" y2="100%">
+          <stop offset="0%" stopColor="#4338CA" />
+          <stop offset="60%" stopColor="#7C3AED" />
+          <stop offset="100%" stopColor="#A855F7" />
+        </linearGradient>
+      </defs>
+      <rect
+        fill="url(#plotMarkBg)"
+        height="472"
+        rx="112"
+        stroke="url(#plotMarkBorder)"
+        strokeWidth="6"
+        width="472"
+        x="20"
+        y="20"
+      />
+      <path
+        d="M 175 110 C 175 96 186 85 200 85 L 320 85 C 334 85 345 96 345 110 L 345 355 C 345 369 334 380 320 380 L 200 380 C 186 380 175 369 175 355 Z"
+        fill="#1E293B"
+        stroke="#4338CA"
+        strokeWidth="4"
+        transform="rotate(7 260 235)"
+      />
+      <rect
+        fill="#0F172A"
+        height="300"
+        rx="28"
+        stroke="#38BDF8"
+        strokeOpacity="0.55"
+        strokeWidth="4"
+        width="222"
+        x="145"
+        y="95"
+      />
+      <path
+        d="M 175 345 L 255 245 L 305 345 L 260 345 L 230 295 L 202 345 Z"
+        fill="url(#plotMarkViolet)"
+      />
+      <path
+        d="M 175 200 C 175 160 196 142 225 142 L 295 142 C 330 142 355 166 355 202 C 355 236 328 260 290 260 L 238 260 L 210 292 L 175 292 L 210 252 C 190 244 175 222 175 200 Z"
+        fill="url(#plotMarkCyan)"
+      />
+      <path
+        d="M 225 174 L 288 174 C 308 174 320 186 320 202 C 320 218 308 228 288 228 L 225 228 Z"
+        fill="#0F172A"
+      />
+      <rect fill="#67E8F9" height="9" rx="4.5" width="62" x="236" y="190" />
+      <path
+        d="M 375 155 Q 375 175 395 175 Q 375 175 375 195 Q 375 175 355 175 Q 375 175 375 155 Z"
+        fill="#67E8F9"
       />
     </svg>
   )

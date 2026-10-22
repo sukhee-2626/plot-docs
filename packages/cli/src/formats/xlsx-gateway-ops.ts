@@ -5,38 +5,38 @@ import {
   ResponseTooLargeError,
   fetchRemoteImage,
   readBodyCapped,
-} from '@genoffice/electron-utils/remote-image'
+} from '@plotdocs/electron-utils/remote-image'
 import {
   columnIndex,
   columnLabel,
   parseAddress,
   parseRange,
   type RangeBounds,
-} from '@genoffice/xlsx-gateway/domain/cell-address'
-import type { ChartVisualState } from '@genoffice/xlsx-gateway/domain/chart-visual'
+} from '@plotdocs/xlsx-gateway/domain/cell-address'
+import type { ChartVisualState } from '@plotdocs/xlsx-gateway/domain/chart-visual'
 import {
   matchableCellText,
   type WorkbookOperation,
-} from '@genoffice/xlsx-gateway/domain/workbook-dsl'
+} from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
 import type {
   WorkbookSnapshot,
   WorksheetState,
-} from '@genoffice/xlsx-gateway/domain/workbook.types'
-import type { CfWireRule } from '@genoffice/xlsx-gateway/gateway/xlsx-cf'
+} from '@plotdocs/xlsx-gateway/domain/workbook.types'
+import type { CfWireRule } from '@plotdocs/xlsx-gateway/gateway/xlsx-cf'
 import type {
   DefinedNameEntry,
   DefinedNamesState,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-defined-names'
-import type { ChartAdd, DrawingAnchor } from '@genoffice/xlsx-gateway/gateway/xlsx-drawing-add'
-import type { DvWireRule } from '@genoffice/xlsx-gateway/gateway/xlsx-dv'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-defined-names'
+import type { ChartAdd, DrawingAnchor } from '@plotdocs/xlsx-gateway/gateway/xlsx-drawing-add'
+import type { DvWireRule } from '@plotdocs/xlsx-gateway/gateway/xlsx-dv'
 import {
   areasOverlap,
   buildPivotLayout,
   PivotLayoutError,
   pivotOutputArea,
   type PivotScalar,
-} from '@genoffice/xlsx-gateway/domain/pivot-layout'
-import type { SheetFilterState } from '@genoffice/xlsx-gateway/gateway/xlsx-filter'
+} from '@plotdocs/xlsx-gateway/domain/pivot-layout'
+import type { SheetFilterState } from '@plotdocs/xlsx-gateway/gateway/xlsx-filter'
 import type {
   SheetCfState,
   SheetDvState,
@@ -48,10 +48,10 @@ import type {
   SheetStructuralOps,
   SheetTableAddition,
   SheetVisualAddition,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
-import type { SheetNote } from '@genoffice/xlsx-gateway/gateway/xlsx-notes'
-import type { SheetPageSetupState } from '@genoffice/xlsx-gateway/gateway/xlsx-page-setup'
-import type { WorkbookChartEdit } from '@genoffice/xlsx-gateway/shared/edit-schemas'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
+import type { SheetNote } from '@plotdocs/xlsx-gateway/gateway/xlsx-notes'
+import type { SheetPageSetupState } from '@plotdocs/xlsx-gateway/gateway/xlsx-page-setup'
+import type { WorkbookChartEdit } from '@plotdocs/xlsx-gateway/shared/edit-schemas'
 import { assertAllowed, type PathContext } from '../fs'
 import { classifyOpError } from '../op-errors'
 import { CliError, EXIT } from '../result'
@@ -220,7 +220,7 @@ export interface GatewayBuildInput {
 
 const MAX_SPARKLINES_PER_OP = 200
 
-const NOTE_AUTHOR = 'GenOffice'
+const NOTE_AUTHOR = 'Plot Docs'
 const MAX_IMAGE_BYTES = 20 * 1024 * 1024
 
 type FilterDraft = { range: RangeBounds; columns: Map<number, string[]>; cleared: boolean }
@@ -246,7 +246,7 @@ export async function buildGatewayPayloads(input: GatewayBuildInput): Promise<Ga
       { failures: [classifyOpError(index, op, message)] },
       {
         reason: 'op_rejected',
-        suggestion: 'fix the op against `genoffice guide sheets`, then resend the whole batch',
+        suggestion: 'fix the op against `plotdocs guide sheets`, then resend the whole batch',
       },
     )
   }
@@ -412,7 +412,7 @@ export async function buildGatewayPayloads(input: GatewayBuildInput): Promise<Ga
             reject(
               i,
               op.op,
-              `${sheet}'s filter already has criteria the CLI cannot re-save; run set_filter on the range first (it clears them) or use the GenOffice app`,
+              `${sheet}'s filter already has criteria the CLI cannot re-save; run set_filter on the range first (it clears them) or use the Plot Docs app`,
             )
           }
           draft = { range: existing!.range, columns: new Map(), cleared: false }
@@ -479,11 +479,11 @@ export async function buildGatewayPayloads(input: GatewayBuildInput): Promise<Ga
           reject(
             i,
             op.op,
-            'chartPath must be a chart part of the file (xl/charts/chartN.xml); `genoffice info` lists them',
+            'chartPath must be a chart part of the file (xl/charts/chartN.xml); `plotdocs info` lists them',
           )
         }
         if (op.seriesData !== undefined) {
-          reject(i, op.op, 'seriesData (repointing a series at new cells) needs the GenOffice app')
+          reject(i, op.op, 'seriesData (repointing a series at new cells) needs the Plot Docs app')
         }
         const edit: Record<string, unknown> = { chartPath: op.chartPath }
         for (const k of [

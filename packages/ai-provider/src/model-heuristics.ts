@@ -10,7 +10,7 @@
 
 /**
  * Model families that fix sampling and reject a temperature field, on any
- * route — vendor API, the Genspark proxy, OpenRouter's vendor-prefixed ids,
+ * route — vendor API, the Soopus proxy, OpenRouter's vendor-prefixed ids,
  * or a mirror behind a custom base URL. Kimi K3 answers "only 1 is allowed";
  * OpenAI's GPT-5 and GPT-6 reasoning families reject any temperature other
  * than the default outright, and the o-series reasoning models (o1/o3/o4) likewise

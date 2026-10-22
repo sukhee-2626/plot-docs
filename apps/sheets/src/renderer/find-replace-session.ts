@@ -14,7 +14,7 @@
  */
 import type { IFindMatch, IFindReplaceService, IFindReplaceState } from '@univerjs/find-replace'
 import type { IRange, Nullable, Workbook } from '@univerjs/core'
-import { formatAddress, type RangeBounds } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { formatAddress, type RangeBounds } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import { scalarToText } from './lazy-find'
 
 interface FindReplaceServiceInternals {
@@ -124,8 +124,8 @@ export function buildFindAllRows(
   return { rows, total }
 }
 
-export const FIND_HISTORY_KEY = 'genoffice.sheets.findHistory'
-export const REPLACE_HISTORY_KEY = 'genoffice.sheets.replaceHistory'
+export const FIND_HISTORY_KEY = 'plotdocs.sheets.findHistory'
+export const REPLACE_HISTORY_KEY = 'plotdocs.sheets.replaceHistory'
 export const HISTORY_LIMIT = 10
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem'>

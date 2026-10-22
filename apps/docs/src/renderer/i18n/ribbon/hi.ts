@@ -191,7 +191,7 @@ export const hi = {
   ribbonReplaceTip: 'पाठ ढूँढें और बदलें',
   ribbonSelectAll: 'सभी चुनें',
   ribbonSelectAllTip: 'पूरा दस्तावेज़ चुनें',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'AI सहायक खोलें',
   ribbonRemoveTableStyleTip: 'तालिका शैली हटाएँ',
   ribbonNoStyle: 'कोई शैली नहीं',

@@ -16,7 +16,7 @@ import type {
 import { removeBackground, sampleBackgroundColors, type PixelImage, type RGB } from './cutout'
 import { useModalKeys } from './modal-keys'
 import { CROP_EDGE_LABELS } from './strings-crop-edges'
-import type { Lang } from '@genoffice/i18n'
+import type { Lang } from '@plotdocs/i18n'
 
 export interface ImageDialogLabels {
   cancel: string

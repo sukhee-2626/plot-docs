@@ -3,7 +3,7 @@ import { connect } from 'node:net'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { ControlReply, ControlRequest } from '@genoffice/cli/control-protocol'
+import type { ControlReply, ControlRequest } from '@plotdocs/cli/control-protocol'
 import { controlHandler, type ControlHost } from '../src/main/control-handlers'
 import { parseEnvelope, startControlServer, type ControlServer } from '../src/main/control-server'
 
@@ -26,7 +26,7 @@ function roundTrip(endpoint: string, line: string): Promise<{ reply: string; clo
 
 describe('control server', () => {
   it('publishes a token-protected endpoint and answers one request per connection', async () => {
-    const userData = mkdtempSync(join(tmpdir(), 'genoffice-control-'))
+    const userData = mkdtempSync(join(tmpdir(), 'plotdocs-control-'))
     const seen: ControlRequest[] = []
     const server = await startControlServer(userData, async (req) => {
       seen.push(req)

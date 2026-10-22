@@ -7,7 +7,7 @@ import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
 
 /**
  * Switching editors swaps the application menu, and `withUserGuide()` puts the
- * manual's F1 item into whatever Help menu it finds (genoffice#1863).
+ * manual's F1 item into whatever Help menu it finds (plotdocs#1863).
  *
  * It used to destructure two items out of a two-element template. Electron
  * drops a separator that sits at either end of a template, so that build
@@ -33,7 +33,7 @@ const menuReport = (app: ElectronApplication) =>
 test('the manual survives an editor switch that swaps the application menu', async () => {
   test.setTimeout(300_000)
 
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-menu-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-menu-'))
   const fixture = join(dir, 'fixture')
   await cp(join(__dirname, 'assets/font-manager-rubik'), fixture, { recursive: true })
   const slideXml = join(fixture, 'ppt/slides/slide1.xml')

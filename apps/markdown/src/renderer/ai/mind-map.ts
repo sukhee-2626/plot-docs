@@ -1,4 +1,4 @@
-import type { AgentToolDef, MindMapTreeNode } from '@genoffice/agent-core'
+import type { AgentToolDef, MindMapTreeNode } from '@plotdocs/agent-core'
 
 /**
  * Mind map generation for the docs assistant: the tool definition the model
@@ -43,7 +43,7 @@ export const MIND_MAP_EXPORT_COLORS = {
 
 /** Bounded recursion: the schema inlines down to the enforced depth limit; the
  *  deepest level carries a leaf-node shape, because Gemini's function schema
- *  refuses an array without `items` for the whole request (genoffice#2059). */
+ *  refuses an array without `items` for the whole request (plotdocs#2059). */
 const nodeSchema = (depth: number): Record<string, unknown> => ({
   type: 'object',
   properties: {

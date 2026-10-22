@@ -6,7 +6,7 @@ import { PDFDocument } from 'pdf-lib'
 import { launchShell, waitForPageWithUrl, closeAndSaveVideo } from './helpers'
 
 test('Insert blank page is a pending, undoable edit that lands in the file on save', async () => {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-pdf-blank-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-pdf-blank-'))
   const pdfPath = join(dir, 'two.pdf')
   const doc = await PDFDocument.create()
   doc.addPage([400, 600])

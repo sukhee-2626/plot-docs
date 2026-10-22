@@ -11,6 +11,7 @@ import {
   IconPageNumber,
 } from './icons'
 import { BIG, toggleDropdown, type TabProps } from './ribbon-tabs'
+import type { PageDesignerTab } from './PageDesignDialog'
 import { LengthInput } from './LengthInput'
 
 /** what the contextual Header & Footer tab is looking at */
@@ -52,11 +53,13 @@ export function HeaderFooterTab({
   dropdown,
   setDropdown,
   onAction,
+  onOpenPageDesigner,
 }: {
   info: HfEditingInfo
   dropdown: string | null
   setDropdown: TabProps['setDropdown']
   onAction: (action: HfAction) => void
+  onOpenPageDesigner?: (tab?: PageDesignerTab) => void
 }) {
   const { t } = useI18n()
   const act = (action: HfAction) => {
@@ -142,6 +145,27 @@ export function HeaderFooterTab({
             </button>
             {dropdown === 'hf-pagenum' && (
               <div data-rb-panel="" className="layout-menu">
+                {onOpenPageDesigner && (
+                  <>
+                    <button
+                      onClick={() => {
+                        setDropdown(() => null)
+                        onOpenPageDesigner('numbers')
+                      }}
+                    >
+                      ✦ Page number designs…
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDropdown(() => null)
+                        onOpenPageDesigner('layouts')
+                      }}
+                    >
+                      ✦ Header &amp; footer layouts…
+                    </button>
+                    <div className="layout-menu-sep" />
+                  </>
+                )}
                 {positions.map(([label, kind, align]) => (
                   <button key={label} onClick={() => act({ type: 'pageNumber', kind, align })}>
                     {label}

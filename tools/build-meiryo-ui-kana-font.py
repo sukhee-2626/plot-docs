@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build GenOffice UI Kana JP: Noto Sans JP kana/JP punctuation condensed to
+"""Build PlotDocs UI Kana JP: Noto Sans JP kana/JP punctuation condensed to
 Meiryo UI advances, full glyph height preserved.
 
 Meiryo UI kana are proportional (Word probe 2026-09-03 from Word's private
@@ -35,8 +35,8 @@ from fontTools.varLib.instancer import instantiateVariableFont
 ROOT = Path(__file__).resolve().parent.parent
 ADVANCES = ROOT / "tools/meiryo-ui-kana-advances.json"
 OUT_DIR = ROOT / "apps/docs/src/renderer/fonts"
-FAMILY = "GenOffice UI Kana JP"
-PS_PREFIX = "GenOfficeUIKanaJP"
+FAMILY = "PlotDocs UI Kana JP"
+PS_PREFIX = "PlotDocsUIKanaJP"
 WEIGHTS = {"regular": (400, "Regular"), "bold": (700, "Bold")}
 # Chromium places fallback glyphs by their own ascent; mirror the Hiragino face
 # these glyphs sit next to so mixed lines share one baseline geometry.

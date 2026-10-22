@@ -19,8 +19,8 @@ import {
   savePptx,
   setSlideBackground,
   type TextElement,
-} from '@genoffice/pptx-engine'
-import { buildRenderSlide } from '@genoffice/pptx-render'
+} from '@plotdocs/pptx-engine'
+import { buildRenderSlide } from '@plotdocs/pptx-render'
 import { THEME_PRESETS } from '../src/renderer/themes'
 
 const FIT = 1280

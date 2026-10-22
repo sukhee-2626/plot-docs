@@ -23,12 +23,12 @@ import {
   placeholderInstruction as buildInstruction,
   placeholderSource,
   type PlaceholderSpec,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'
 
 import {
   redactTextBetween as sharedRedactTextBetween,
   type WithheldNode,
-} from '@genoffice/agent-core/redact-range'
+} from '@plotdocs/agent-core/redact-range'
 
 /** The mark's node name, shared so the mark, the model view and the guard agree. */
 export const REDACT_MARK = 'redaction'
@@ -225,4 +225,4 @@ export {
   readPlaceholderLabel,
   sanitizeLabel,
   type PlaceholderIssue,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'

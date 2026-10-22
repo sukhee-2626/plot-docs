@@ -17,7 +17,7 @@ import type {
   RenderNodeType,
   RenderSlide,
   TableRenderNode,
-} from '@genoffice/pptx-render'
+} from '@plotdocs/pptx-render'
 import type { StringKey } from '../i18n/locale'
 
 /** Localized noun for an element kind, shared by the popover title and the queue rows */

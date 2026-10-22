@@ -1,22 +1,22 @@
 <p align="center">
-  <a href="https://genoffice.ai/">
+  <a href="https://plotxyz.ai/">
     <picture>
       <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="GenOffice — het open-source AI-kantoorpakket: Docs, Sheets, Slides, PDF, Markdown en HTML met een ingebouwd AI-paneel" width="100%">
+      <img src="../assets/readme/hero.webp" alt="Plot Docs — het open-source AI-kantoorpakket: Docs, Sheets, Slides, PDF, Markdown en HTML met een ingebouwd AI-paneel" width="100%">
     </picture>
   </a>
 </p>
 
-<h1 align="center">GenOffice</h1>
+<h1 align="center">Plot Docs</h1>
 
 <p align="center"><b>De eerste volwaardige open-source AI-officesuite ter wereld.</b><br>
 Word-, Excel-, PowerPoint- en PDF-bestanden, bewerkt door jou en je AI, opgeslagen in de echte formaten.</p>
 
 <p align="center">
-  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/genspark-ai/genoffice" alt="Licentie: Apache-2.0"></a>
-  <a href="https://github.com/genspark-ai/genoffice/releases/latest"><img src="https://img.shields.io/github/v/release/genspark-ai/genoffice" alt="Nieuwste release"></a>
-  <a href="https://github.com/genspark-ai/genoffice/releases"><img src="https://img.shields.io/github/downloads/genspark-ai/genoffice/total" alt="Downloads"></a>
-  <a href="https://github.com/genspark-ai/genoffice/stargazers"><img src="https://img.shields.io/github/stars/genspark-ai/genoffice?style=flat" alt="GitHub-sterren"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/github/license/plotxyz-ai/plot-docs" alt="Licentie: Apache-2.0"></a>
+  <a href="https://github.com/plotxyz-ai/plot-docs/releases/latest"><img src="https://img.shields.io/github/v/release/plotxyz-ai/plot-docs" alt="Nieuwste release"></a>
+  <a href="https://github.com/plotxyz-ai/plot-docs/releases"><img src="https://img.shields.io/github/downloads/plotxyz-ai/plot-docs/total" alt="Downloads"></a>
+  <a href="https://github.com/plotxyz-ai/plot-docs/stargazers"><img src="https://img.shields.io/github/stars/plotxyz-ai/plot-docs?style=flat" alt="GitHub-sterren"></a>
 </p>
 
 <p align="center"><a href="../../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.pt-BR.md">Português (Brasil)</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.ar.md">العربية</a> · <a href="README.ru.md">Русский</a> · <a href="README.it.md">Italiano</a> · <b>Nederlands</b> · <a href="README.pl.md">Polski</a> · <a href="README.cs.md">Čeština</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.ms.md">Bahasa Melayu</a> · <a href="README.th.md">ไทย</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.he.md">עברית</a> · <a href="README.vi.md">Tiếng Việt</a></p>
@@ -25,12 +25,12 @@ Word-, Excel-, PowerPoint- en PDF-bestanden, bewerkt door jou en je AI, opgeslag
   <a href="#download"><b>Download</b></a> ·
   <a href="#command-line-and-agent-skill"><b>CLI</b></a> ·
   <a href="#mcp-server"><b>MCP</b></a> ·
-  <a href="https://genoffice.ai/"><b>Website</b></a> ·
-  <a href="https://genoffice.ai/join"><b>Community</b></a> ·
+  <a href="https://plotxyz.ai/"><b>Website</b></a> ·
+  <a href="https://plotxyz.ai"><b>Community</b></a> ·
   <a href="../../PRIVACY.md"><b>Privacy</b></a>
 </p>
 
-GenOffice is een gratis, open-source alternatief voor Microsoft Office voor
+Plot Docs is een gratis, open-source alternatief voor Microsoft Office voor
 macOS, Windows en Linux. Het opent en bewaart native `.docx`-, `.xlsx`- en
 `.pptx`-bestanden, bewerkt PDF, Markdown en HTML, en zet bij elk document een
 AI-agent — geen los chatvenstertje erbij geplakt, maar een editor die het
@@ -48,19 +48,19 @@ aangepast.
   opgeslagen en geconverteerd. PDF → Word / Excel / PowerPoint, Markdown →
   Word en HTML → Word draaien allemaal on-device. Alleen de AI-aanroepen
   verlaten de machine, naar de provider die jij kiest.
-- **Jouw eigen keys, of geen enkele.** Log in met Genspark en je hoeft niets te
+- **Jouw eigen keys, of geen enkele.** Log in met Soopus en je hoeft niets te
   regelen, of gebruik je eigen key voor Claude, OpenAI, Gemini, DeepSeek,
   Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, of elk
   OpenAI-compatibel endpoint, inclusief lokale servers.
 - **Scriptbaar en klaar voor agents.** De app levert een
-  `genoffice`-opdrachtregel en een skill voor Claude Code, Codex, Cursor,
+  `plotdocs`-opdrachtregel en een skill voor Claude Code, Codex, Cursor,
   Gemini CLI, GitHub Copilot, OpenCode en Windsurf mee, zodat een coding
   agent echte Office-bestanden op je eigen machine kan maken, converteren,
   lezen en bewerken zonder een venster te openen.
 
-**Haal het hier:** [macOS](https://github.com/genspark-ai/genoffice/releases/latest) (Apple Silicon en Intel) ·
-[Windows](https://github.com/genspark-ai/genoffice/releases/latest) (x64 en Arm) ·
-[Linux](https://github.com/genspark-ai/genoffice/releases/latest) (deb, rpm, AppImage) —
+**Haal het hier:** [macOS](https://github.com/plotxyz-ai/plot-docs/releases/latest) (Apple Silicon en Intel) ·
+[Windows](https://github.com/plotxyz-ai/plot-docs/releases/latest) (x64 en Arm) ·
+[Linux](https://github.com/plotxyz-ai/plot-docs/releases/latest) (deb, rpm, AppImage) —
 details en vereisten in [Download](#download).
 
 ## Demo
@@ -73,8 +73,8 @@ prompt die je in het paneel kunt lezen.
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="GenOffice Docs toont een pagina van een jaarverslag in twee kolommen met een cover-afbeelding over de volledige breedte, een KPI-tabel met arcering, koptekst en voettekst, op 80% zoom met het AI-paneel ingeklapt"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="GenOffice Docs: een bedrijfsoverzicht met een bannerafbeelding; de AI heeft de Overview compacter gemaakt en een nieuwe sectie met opsommingstekens toegevoegd, en het paneel biedt een terugdraaifunctie met één klik"></td>
+<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs toont een pagina van een jaarverslag in twee kolommen met een cover-afbeelding over de volledige breedte, een KPI-tabel met arcering, koptekst en voettekst, op 80% zoom met het AI-paneel ingeklapt"></td>
+<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: een bedrijfsoverzicht met een bannerafbeelding; de AI heeft de Overview compacter gemaakt en een nieuwe sectie met opsommingstekens toegevoegd, en het paneel biedt een terugdraaifunctie met één klik"></td>
 </tr>
 <tr>
 <td><b>Opent het bestand precies zoals Word het opmaakt</b> — secties in twee kolommen, beeldvullende afbeeldingen, tabellen met arcering, koppen en voetteksten, paginering op basis van Words regelmetriek. Stijlen, opmerkingen, tracked changes, vergelijkingen en inkt komen ongewijzigd terug.</td>
@@ -86,8 +86,8 @@ prompt die je in het paneel kunt lezen.
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="GenOffice Sheets: de AI heeft een Summary-blad toegevoegd met omzet per regio en categorie via SUMIF-formules, plus een kolomdiagram, en meldt 43 toegepaste wijzigingen met een knop om ongedaan te maken"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="GenOffice Sheets: gevraagd welke regio de omzet in Q2 aanvoerde, antwoordt de AI Europa met de uitsplitsing per categorie en verwijst als links naar de cellen die het heeft gebruikt, naast het Orders-blad"></td>
+<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: de AI heeft een Summary-blad toegevoegd met omzet per regio en categorie via SUMIF-formules, plus een kolomdiagram, en meldt 43 toegepaste wijzigingen met een knop om ongedaan te maken"></td>
+<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: gevraagd welke regio de omzet in Q2 aanvoerde, antwoordt de AI Europa met de uitsplitsing per categorie en verwijst als links naar de cellen die het heeft gebruikt, naast het Orders-blad"></td>
 </tr>
 <tr>
 <td><b>Bouw het</b> — met één zin voegt de agent een Summary-blad toe met echte <code>SUMIF</code>-formules per regio en categorie, voegt een kolomdiagram in, en past de 43 wijzigingen toe als één batch die je in één keer ongedaan kunt maken.</td>
@@ -97,15 +97,15 @@ prompt die je in het paneel kunt lezen.
 
 ### 3 · Slides — van een prompt naar een `.pptx`-deck
 
-<img src="../assets/readme/slides-generate.webp" alt="Timelapse van GenOffice Slides dat de Aurora Home investeerdersdeck genereert: de AI plant het verhaal in het paneel, dia's verschijnen één voor één op het canvas, en de voltooide deck eindigt met de afsluitende vraag" width="100%">
+<img src="../assets/readme/slides-generate.webp" alt="Timelapse van Plot Docs Slides dat de Aurora Home investeerdersdeck genereert: de AI plant het verhaal in het paneel, dia's verschijnen één voor één op het canvas, en de voltooide deck eindigt met de afsluitende vraag" width="100%">
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="GenOffice Slides: de openingsslide van een door AI gegenereerd investeerdersdeck voor Aurora Home op het canvas, met de oorspronkelijke prompt van één regel en de samenvatting van de AI over wat het heeft gebouwd, in het paneel"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="GenOffice Slides: de vormgegeven slotslide van hetzelfde deck van 11 slides, met de miniaturenstrook links en het AI-paneel dat de verhaallijn samenvat"></td>
+<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: de openingsslide van een door AI gegenereerd investeerdersdeck voor Aurora Home op het canvas, met de oorspronkelijke prompt van één regel en de samenvatting van de AI over wat het heeft gebouwd, in het paneel"></td>
+<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: de vormgegeven slotslide van hetzelfde deck van 11 slides, met de miniaturenstrook links en het AI-paneel dat de verhaallijn samenvat"></td>
 </tr>
 <tr>
-<td><b>Eén regel als input</b> — "Create a 10-slide investor pitch deck for Aurora Home…". GenOffice bepaalt de verhaallijn, zoekt de cijfers uit en zet elke slide als een echte <code>.pptx</code> op het canvas.</td>
+<td><b>Eén regel als input</b> — "Create a 10-slide investor pitch deck for Aurora Home…". Plot Docs bepaalt de verhaallijn, zoekt de cijfers uit en zet elke slide als een echte <code>.pptx</code> op het canvas.</td>
 <td><b>Een afgewerkt deck als resultaat</b> — elf vormgegeven slides met consistente typografie, beeldmateriaal en een afsluitende call-to-action; blijf bewerken met masters, layouts, slimme hulplijnen en niet-destructief bijsnijden, of laat het paneel de stijl, tekst en volgorde aanpassen.</td>
 </tr>
 </table>
@@ -114,8 +114,8 @@ prompt die je in het paneel kunt lezen.
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="GenOffice PDF: Edit text mode omkadert elk tekstblok op de pagina voor bewerking op de plek zelf, terwijl het AI-paneel een vraag over het rapport beantwoordt met paginaverwijzingen"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="GenOffice Docs toont een Word-document dat lokaal is geconverteerd vanuit de kwartaalrapportage-PDF van Helios, geopend in een tweede tab naast de originele PDF"></td>
+<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: Edit text mode omkadert elk tekstblok op de pagina voor bewerking op de plek zelf, terwijl het AI-paneel een vraag over het rapport beantwoordt met paginaverwijzingen"></td>
+<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs toont een Word-document dat lokaal is geconverteerd vanuit de kwartaalrapportage-PDF van Helios, geopend in een tweede tab naast de originele PDF"></td>
 </tr>
 <tr>
 <td><b>Bewerk binnen de pagina</b> — Edit text mode omkadert elk tekstblok voor herschrijven op de plek zelf; de content stream wordt via PDFium herschreven met de originele fonts, geen overplaknotitie. Stel de AI een vraag over een lang rapport en krijg antwoorden met paginaverwijzingen.</td>
@@ -129,11 +129,11 @@ Vertel waarvoor de pagina dient en voor wie hij bedoeld is. De AI stelt eerst
 een **design brief** voor — hook, kleurenpalet, typografie en stijlrichtingen
 — en bouwt daarna op basis van die tokens één zelfstandig `.html`-bestand.
 
-<img src="../assets/readme/html-restyle-motion.webp" alt="Timelapse van GenOffice HTML dat de Lumen landingspagina van stijl verandert: één Restyle-verzoek in het paneel verandert de donkere Midnight Studio-pagina in de warme Solar Daybreak-versie, terwijl elke sectie en alle inhoud op hun plek blijven" width="100%">
+<img src="../assets/readme/html-restyle-motion.webp" alt="Timelapse van Plot Docs HTML dat de Lumen landingspagina van stijl verandert: één Restyle-verzoek in het paneel verandert de donkere Midnight Studio-pagina in de warme Solar Daybreak-versie, terwijl elke sectie en alle inhoud op hun plek blijven" width="100%">
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="GenOffice HTML: een gegenereerde landingspagina voor een zonne-energie bureaulamp in de donkere stijlrichting Midnight Studio, getoond in de live preview met het AI-paneel dat de net gebouwde pagina samenvat"></td>
+<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: een gegenereerde landingspagina voor een zonne-energie bureaulamp in de donkere stijlrichting Midnight Studio, getoond in de live preview met het AI-paneel dat de net gebouwde pagina samenvat"></td>
 <td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Dezelfde Lumen-landingspagina, door de AI omgezet naar de warme stijlrichting Solar Daybreak: papieren achtergrond, serif-koppen en een oranje accent, met behoud van elke sectie en alle tekst"></td>
 </tr>
 <tr>
@@ -143,11 +143,11 @@ een **design brief** voor — hook, kleurenpalet, typografie en stijlrichtingen
 </table>
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="GenOffice HTML: een gegenereerde persoonlijke dashboard-UI voor een freelance designer in een warme linnen stijl, met een navigatiebalk links, een begroeting in serif en vier metriekkaarten"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="GenOffice HTML: een gegenereerd datarapport over de EV-markt in broadsheet-stijl, met een kopregel in serif, een hoofdcijfer van 17,3 miljoen en een rij met kerncijfers"></td>
+<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: een gegenereerde persoonlijke dashboard-UI voor een freelance designer in een warme linnen stijl, met een navigatiebalk links, een begroeting in serif en vier metriekkaarten"></td>
+<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: een gegenereerd datarapport over de EV-markt in broadsheet-stijl, met een kopregel in serif, een hoofdcijfer van 17,3 miljoen en een rij met kerncijfers"></td>
 </tr>
 <tr>
-<td><b>UI-mockups</b> — de starter "personal dashboard" zet een persona om in een werkende layout: navigatiebalk links, begroeting, sparkline voor factureerbare uren, facturen- en bezettingskaarten, allemaal echte HTML die je zo aan een developer kunt overdragen.</td>
+<td><b>UI-mockups</b> — de starter "personal dashboard" zet een persona om in een werkende layout: navigatiebalk links, begroeting, sparkline voor factureerbare uren, facturen- en bezettinsoopusaarten, allemaal echte HTML die je zo aan een developer kunt overdragen.</td>
 <td><b>Datastories</b> — de starter "data report" bouwt een redactioneel broadsheet: kopregel in serif, één hoofdcijfer, een met lijnen afgescheiden rij kerncijfers, inline SVG-grafieken en een methodologienoot.</td>
 </tr>
 </table>
@@ -156,8 +156,8 @@ een **design brief** voor — hook, kleurenpalet, typografie en stijlrichtingen
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="GenOffice Markdown: bij een geselecteerde alinea verschijnt een Ask AI-popover met een getypte instructie en suggestiechips zoals Polish, Make more concise, Expand en Fix grammar, plus de knoppen Send now en Add to queue"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="GenOffice Markdown toont een document met lanceringsnotities met een tabel, een Mermaid-stroomdiagram en een taaklijst, met de startprompts van het AI-paneel aan de linkerkant"></td>
+<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: bij een geselecteerde alinea verschijnt een Ask AI-popover met een getypte instructie en suggestiechips zoals Polish, Make more concise, Expand en Fix grammar, plus de knoppen Send now en Add to queue"></td>
+<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown toont een document met lanceringsnotities met een tabel, een Mermaid-stroomdiagram en een taaklijst, met de startprompts van het AI-paneel aan de linkerkant"></td>
 </tr>
 <tr>
 <td><b>Ask AI over een selectie</b> — selecteer een willekeurige passage en er verschijnt een <b>Ask AI</b>-chip: typ een instructie of kies een suggestie, verstuur die direct, of verzamel meerdere aan tekst verankerde wijzigingen en voer ze in één keer uit. Dezelfde toegang bestaat in elke app.</td>
@@ -165,42 +165,42 @@ een **design brief** voor — hook, kleurenpalet, typografie en stijlrichtingen
 </tr>
 </table>
 
-### 7 · CLI — je coding agent stuurt GenOffice aan, op je eigen machine
+### 7 · CLI — je coding agent stuurt Plot Docs aan, op je eigen machine
 
-GenOffice levert een `genoffice`-opdrachtregel en een agent-skill mee.
+Plot Docs levert een `plotdocs`-opdrachtregel en een agent-skill mee.
 Installeer de skill en Claude Code, Codex, Cursor, Gemini CLI, GitHub
 Copilot, OpenCode of Windsurf kunnen echte Office-bestanden maken,
 converteren, lezen en bewerken via dezelfde engines als de apps, zonder een
 venster te openen.
 
-<img src="../assets/readme/cli-deck-in-app.webp" alt="GenOffice Slides toont een deck van acht slides over het zonnestelsel dat een coding agent via de genoffice-opdrachtregel heeft gebouwd: de openingsslide op het canvas, acht miniaturen links en het AI-paneel geopend" width="100%">
+<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides toont een deck van acht slides over het zonnestelsel dat een coding agent via de plotdocs-opdrachtregel heeft gebouwd: de openingsslide op het canvas, acht miniaturen links en het AI-paneel geopend" width="100%">
 
 <table>
 <tr>
 <td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="De acht gerenderde slides van het zonnestelsel-deck naast elkaar: cover, tijdlijn van de ruimteverkenning, vier kerncijfers, staafdiagram van planeetdiameters, rotsplaneten tegenover reuzen, het hoofdcijfer van 99,8% voor de zon, het raster van de vier reuzen en de conclusies"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="GenOffice-instellingen, pagina Integraties: de genoffice-skill geïnstalleerd in Claude Code, met Installeren-knoppen naast Codex en Cursor"></td>
+<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs-instellingen, pagina Integraties: de plotdocs-skill geïnstalleerd in Claude Code, met Installeren-knoppen naast Codex en Cursor"></td>
 </tr>
 <tr>
-<td><b>Eén prompt aan je agent</b> — "Bouw een deck van acht slides over het zonnestelsel." De agent leest de skill, schrijft een stylesheet, een outline en één paginaspecificatie per slide, genereert de twee foto's met <code>genoffice image</code> en laat <code>genoffice slides check</code> alles afwijzen wat overloopt of overlapt, voordat <code>genoffice create</code> de <code>.pptx</code> samenstelt en <code>slides render</code> per slide een PNG teruggeeft om te bekijken.</td>
-<td><b>Eén keer installeren, via Instellingen → Integraties</b> — GenOffice toont de coding agents die het op deze computer vindt en schrijft de skill naar elke agent die je kiest. Of download de skill als zip, of voer <code>npx skills add genspark-ai/genoffice</code> uit. Commando's en de volledige workflow staan in <a href="#command-line-and-agent-skill">Opdrachtregel en agent-skill</a>.</td>
+<td><b>Eén prompt aan je agent</b> — "Bouw een deck van acht slides over het zonnestelsel." De agent leest de skill, schrijft een stylesheet, een outline en één paginaspecificatie per slide, genereert de twee foto's met <code>plotdocs image</code> en laat <code>plotdocs slides check</code> alles afwijzen wat overloopt of overlapt, voordat <code>plotdocs create</code> de <code>.pptx</code> samenstelt en <code>slides render</code> per slide een PNG teruggeeft om te bekijken.</td>
+<td><b>Eén keer installeren, via Instellingen → Integraties</b> — Plot Docs toont de coding agents die het op deze computer vindt en schrijft de skill naar elke agent die je kiest. Of download de skill als zip, of voer <code>npx skills add plotxyz-ai/plot-docs</code> uit. Commando's en de volledige workflow staan in <a href="#command-line-and-agent-skill">Opdrachtregel en agent-skill</a>.</td>
 </tr>
 </table>
 
 ### 8 · MCP — dezelfde tools via het Model Context Protocol
 
-Elk `genoffice`-commando is ook een MCP-tool. Claude Code, Claude Desktop,
-Cursor en elke andere MCP-client kunnen zelf `genoffice mcp` starten,
+Elk `plotdocs`-commando is ook een MCP-tool. Claude Code, Claude Desktop,
+Cursor en elke andere MCP-client kunnen zelf `plotdocs mcp` starten,
 zonder skill om te installeren en zonder venster te openen, en krijgen 29
 tools plus de op-referenties als resources. Een tweede, HTTP-server in de
 app laat een agent een Word-document opbouwen in een zichtbaar
 editortabblad terwijl je toekijkt.
 
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Time-lapse van Claude Code dat via de genoffice MCP-server een investeerderspresentatie van acht slides over hernieuwbare energie bouwt: zoekt naar figuren en foto's, controleert elke kandidaat-afbeelding met media, deck_start schrijft de stylesheet en de outline, deck_page voegt telkens één gecontroleerde pagina toe, deck_build stelt de .pptx samen en slides_render geeft een afbeelding van elke slide terug; het afgeronde deck opent daarna in GenOffice Slides" width="100%">
+<img src="../assets/readme/mcp-deck-motion.webp" alt="Time-lapse van Claude Code dat via de plotdocs MCP-server een investeerderspresentatie van acht slides over hernieuwbare energie bouwt: zoekt naar figuren en foto's, controleert elke kandidaat-afbeelding met media, deck_start schrijft de stylesheet en de outline, deck_page voegt telkens één gecontroleerde pagina toe, deck_build stelt de .pptx samen en slides_render geeft een afbeelding van elke slide terug; het afgeronde deck opent daarna in Plot Docs Slides" width="100%">
 
 <table>
 <tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="GenOffice Slides toont het deck Renewable Energy 2026 van acht slides dat Claude Code via de genoffice MCP-server heeft gebouwd: de openingsslide met een foto van een windmolenpark op het canvas en acht miniaturen links"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="GenOffice-instellingen, pagina Integraties, MCP-onderdeel: het eenregelige commando claude mcp add voor Claude Code, het JSON-blok voor Cursor, Claude Desktop en andere MCP-clients, en de optie voor de lokale HTTP-server daaronder"></td>
+<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides toont het deck Renewable Energy 2026 van acht slides dat Claude Code via de plotdocs MCP-server heeft gebouwd: de openingsslide met een foto van een windmolenpark op het canvas en acht miniaturen links"></td>
+<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs-instellingen, pagina Integraties, MCP-onderdeel: het eenregelige commando claude mcp add voor Claude Code, het JSON-blok voor Cursor, Claude Desktop en andere MCP-clients, en de optie voor de lokale HTTP-server daaronder"></td>
 </tr>
 <tr>
 <td><b>Eén prompt, 38 tool-aanroepen, geen terminal</b> — "Bouw een investeerderspresentatie van acht slides over hernieuwbare energie in 2026, met een echte foto op de omslag en overal waar een foto helpt." De agent haalt de figuren en de foto's op met <code>search</code>, vraagt <code>media</code> of elke kandidaat-afbeelding een echte foto is, roept <code>deck_start</code> aan met een stylesheet en een outline, daarna <code>deck_page</code> één keer per slide; elke pagina wordt tegen de outline en het kleurenpalet gecontroleerd voordat ze wordt bewaard, <code>deck_build</code> stelt de <code>.pptx</code> samen, <code>slides_audit</code> zoekt naar overloop, <code>slides_render</code> geeft per slide een PNG terug als beeldinhoud die het model kan bekijken, en <code>deck_replace</code> verbetert de drie pagina's die niet bevielen.</td>
@@ -208,7 +208,7 @@ editortabblad terwijl je toekijkt.
 </tr>
 </table>
 
-## Waarom GenOffice
+## Waarom Plot Docs
 
 - **Open source**, Apache-2.0, in het openbaar ontwikkeld op GitHub.
 - **Van jou om te draaien.** Native apps voor macOS, Windows en Linux;
@@ -220,22 +220,22 @@ editortabblad terwijl je toekijkt.
 - **Een AI die het document zelf bewerkt.** Tracked changes in Docs, live
   formules en grafieken in Sheets, slides die direct op het canvas worden
   getekend, elke AI-beurt een snapshot waarnaar je kunt teruggaan.
-- **Je eigen model, je eigen key.** Log in met Genspark, of gebruik een key
+- **Je eigen model, je eigen key.** Log in met Soopus, of gebruik een key
   voor Claude, OpenAI, Gemini, DeepSeek en meer, inclusief lokale servers en
   elk OpenAI-compatibel endpoint.
 - **PDF goed gedaan.** Bewerk tekst direct op de pagina en converteer PDF
   naar Word, Excel of PowerPoint on-device, met systeem-OCR voor scans.
 - **Ook Markdown en HTML**, met hetzelfde AI-paneel en lokale export naar
   Word.
-- **Scriptbaar.** Een `genoffice`-opdrachtregel, een agent-skill en een
+- **Scriptbaar.** Een `plotdocs`-opdrachtregel, een agent-skill en een
   MCP-server stellen elke engine ter beschikking van Claude Code, Claude
   Desktop, Codex, Cursor en andere agents, nog altijd on-device.
 - **Gratis**, voor individuen en teams.
 
 ## AI-backends
 
-**Log in met Genspark** en er is niets te configureren: modelaanroepen lopen
-via de Genspark-proxy (de Claude-, GPT- en Gemini-families) en de agents
+**Log in met Soopus** en er is niets te configureren: modelaanroepen lopen
+via de Soopus-proxy (de Claude-, GPT- en Gemini-families) en de agents
 krijgen toegang tot web- en beeldzoeken, beeldgeneratie en analyse van beeld,
 audio en video.
 
@@ -256,10 +256,10 @@ opgeslagen bestanden behouden altijd de eigen kleuren van het document.
 
 ## Opdrachtregel en agent-skill
 
-Alles wat de apps met een bestand kunnen, kan de `genoffice`-opdrachtregel
+Alles wat de apps met een bestand kunnen, kan de `plotdocs`-opdrachtregel
 vanuit een terminal: Word, Excel, PowerPoint, PDF, Markdown en HTML
 inspecteren, converteren, maken, lezen en bewerken op dezelfde engines,
-headless. Hij wordt samen met GenOffice geïnstalleerd, heeft geen eigen
+headless. Hij wordt samen met Plot Docs geïnstalleerd, heeft geen eigen
 runtime nodig en stuurt nooit een document ergens naartoe. In combinatie met
 de meegeleverde **agent-skill** maakt hij van een coding agent een
 documentenwerker die echte Office-bestanden oplevert in plaats van
@@ -274,30 +274,30 @@ MCP-client.
 
 | Hoe                                       | Wat er gebeurt                                                                                                                                                                                                            |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Instellingen → Integraties** in de app  | Toont de agents die op deze computer zijn gevonden; met één klik wordt de skill naar elke agent geschreven die je kiest. Er verschijnt een knop **Bijwerken** wanneer een GenOffice-release een nieuwere skill meebrengt. |
+| **Instellingen → Integraties** in de app  | Toont de agents die op deze computer zijn gevonden; met één klik wordt de skill naar elke agent geschreven die je kiest. Er verschijnt een knop **Bijwerken** wanneer een Plot Docs-release een nieuwere skill meebrengt. |
 | **Downloaden als zip** op dezelfde pagina | De indeling die claude.ai, de Claude-desktop-apps en andere assistenten accepteren als geüploade skill.                                                                                                                   |
-| `npx skills add genspark-ai/genoffice`    | Installeert vanuit deze repository in elke agent die skills ondersteunt.                                                                                                                                                  |
+| `npx skills add plotxyz-ai/plot-docs`    | Installeert vanuit deze repository in elke agent die skills ondersteunt.                                                                                                                                                  |
 
 Start daarna een nieuwe chat en vraag om een document. De skill leert de
-agent wanneer hij naar `genoffice` moet grijpen, hoe hij een bestand leest
+agent wanneer hij naar `plotdocs` moet grijpen, hoe hij een bestand leest
 voordat hij het bewerkt en hoe hij zijn eigen werk controleert.
 
 ### Snelstart vanuit de terminal
 
 ```bash
-genoffice --version
-genoffice info report.docx --json                  # headings and blocks; or sheets, slides, pages
-genoffice convert report.md --to pdf               # md/html/docx/xlsx/pptx → pdf, pdf → docx/xlsx/pptx/md/html, …
-genoffice create --type docx --from notes.md --out notes.docx
-genoffice create --type xlsx --from table.json --out sales.xlsx   # "=SUM(B2:B9)" cells stay live formulas
-genoffice docs read report.docx --range 0-9 --json # then `docs apply --ops edits.json` edits in place
-genoffice render report.docx --out shots/          # one PNG per page, to look at what you made
-genoffice open sales.xlsx                          # hand the result to the editor
+plotdocs --version
+plotdocs info report.docx --json                  # headings and blocks; or sheets, slides, pages
+plotdocs convert report.md --to pdf               # md/html/docx/xlsx/pptx → pdf, pdf → docx/xlsx/pptx/md/html, …
+plotdocs create --type docx --from notes.md --out notes.docx
+plotdocs create --type xlsx --from table.json --out sales.xlsx   # "=SUM(B2:B9)" cells stay live formulas
+plotdocs docs read report.docx --range 0-9 --json # then `docs apply --ops edits.json` edits in place
+plotdocs render report.docx --out shots/          # one PNG per page, to look at what you made
+plotdocs open sales.xlsx                          # hand the result to the editor
 ```
 
 Elk commando print een samenvatting van één regel, of één JSON-object met
 `--json`. Bewerkingen zijn atomair: een afgewezen op laat het bestand
-onaangeroerd en komt terug met een begeleide foutmelding. `genoffice help`
+onaangeroerd en komt terug met een begeleide foutmelding. `plotdocs help`
 toont de huidige set commando's; de volledige referentie staat in
 [packages/cli/README.md](../../packages/cli/README.md).
 
@@ -308,22 +308,22 @@ Daarachter volgde de agent de gefaseerde workflow van de skill en
 controleerde de CLI elke fase voordat de volgende begon:
 
 ```bash
-genoffice capabilities --json                        # which cloud tools GenOffice has configured
-genoffice guide slides design                        # the deck workflow and layout library
-genoffice image "the eight planets in a row …" --aspect 16:9 --out deck/assets/cover.jpg
-genoffice slides check deck/outline.json --json      # 8 pages, no findings
-genoffice slides check deck/pages/01.json --json     # builds one slide, audits overflow and overlap
+plotdocs capabilities --json                        # which cloud tools Plot Docs has configured
+plotdocs guide slides design                        # the deck workflow and layout library
+plotdocs image "the eight planets in a row …" --aspect 16:9 --out deck/assets/cover.jpg
+plotdocs slides check deck/outline.json --json      # 8 pages, no findings
+plotdocs slides check deck/pages/01.json --json     # builds one slide, audits overflow and overlap
 …                                                    # one page file per slide, fixed until each check is clean
-genoffice create --type pptx --spec deck/pages --outline deck/outline.json --out deck/solar-system.pptx --json
-genoffice slides render deck/solar-system.pptx --out deck/shots --json
-genoffice slides audit deck/solar-system.pptx --json    # 8 slides, no layout issues
-genoffice slides replace deck/solar-system.pptx --slide 4 --spec deck/pages/05.json --json
-genoffice open deck/solar-system.pptx
+plotdocs create --type pptx --spec deck/pages --outline deck/outline.json --out deck/solar-system.pptx --json
+plotdocs slides render deck/solar-system.pptx --out deck/shots --json
+plotdocs slides audit deck/solar-system.pptx --json    # 8 slides, no layout issues
+plotdocs slides replace deck/solar-system.pptx --slide 4 --spec deck/pages/05.json --json
+plotdocs open deck/solar-system.pptx
 ```
 
-Binnen `genoffice` vindt geen enkele modelaanroep plaats: de agent doet het
+Binnen `plotdocs` vindt geen enkele modelaanroep plaats: de agent doet het
 denkwerk, de CLI het bouwen en controleren, en het resultaat opent in
-GenOffice of PowerPoint als een gewone `.pptx`.
+Plot Docs of PowerPoint als een gewone `.pptx`.
 
 <a id="mcp-server"></a>
 
@@ -337,32 +337,32 @@ kant-en-klare snippets in **Instellingen → Integraties → MCP**:
 
 | Manier                               | Wat het is                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A · `genoffice mcp`** (aanbevolen) | Een stdio-server die de assistent zelf start; GenOffice hoeft niet open te staan. Eén tool per commando (`info`, `convert`, `create_docx`, `create_xlsx`, `create_pptx`, `create_pdf`, `docs_read` / `docs_apply` / `docs_check`, `sheet_*`, `slides_*`, `render`, `guide`, `search`, `image`, `media`, `open`) plus de gefaseerde deck-flow `deck_start` → `deck_page` → `deck_build` → `deck_replace`. Ops, specs en Markdown worden inline doorgegeven, dus werkt ook een client zonder bestandssysteem. |
-| **B · Lokale HTTP-server**           | Draait binnen de GenOffice-app op `http://127.0.0.1:3093/mcp` (Streamable HTTP, met legacy SSE). De tools ervan sturen een zichtbaar Word-editortabblad aan: `create_session`, `insert_content`, `replace_blocks`, `apply_ops`, `read_document`, `save_session`, en je ziet het document vorm aannemen. Standaard uit; zet hem aan in hetzelfde instellingenscherm.                                                                                                                                         |
+| **A · `plotdocs mcp`** (aanbevolen) | Een stdio-server die de assistent zelf start; Plot Docs hoeft niet open te staan. Eén tool per commando (`info`, `convert`, `create_docx`, `create_xlsx`, `create_pptx`, `create_pdf`, `docs_read` / `docs_apply` / `docs_check`, `sheet_*`, `slides_*`, `render`, `guide`, `search`, `image`, `media`, `open`) plus de gefaseerde deck-flow `deck_start` → `deck_page` → `deck_build` → `deck_replace`. Ops, specs en Markdown worden inline doorgegeven, dus werkt ook een client zonder bestandssysteem. |
+| **B · Lokale HTTP-server**           | Draait binnen de Plot Docs-app op `http://127.0.0.1:3093/mcp` (Streamable HTTP, met legacy SSE). De tools ervan sturen een zichtbaar Word-editortabblad aan: `create_session`, `insert_content`, `replace_blocks`, `apply_ops`, `read_document`, `save_session`, en je ziet het document vorm aannemen. Standaard uit; zet hem aan in hetzelfde instellingenscherm.                                                                                                                                         |
 
 ```bash
 # Claude Code
-claude mcp add --transport stdio genoffice -- genoffice mcp
+claude mcp add --transport stdio plotdocs -- plotdocs mcp
 ```
 
 ```jsonc
 // Cursor, Claude Desktop of een andere MCP-client
-{ "mcpServers": { "genoffice": { "command": "genoffice", "args": ["mcp"] } } }
+{ "mcpServers": { "plotdocs": { "command": "plotdocs", "args": ["mcp"] } } }
 ```
 
-`genoffice` is hier de CLI die met de app wordt meegeleverd (op macOS
-`/Applications/GenOffice.app/Contents/Resources/cli/genoffice`; het
+`plotdocs` is hier de CLI die met de app wordt meegeleverd (op macOS
+`/Applications/Plot Docs.app/Contents/Resources/cli/plotdocs`; het
 instellingenscherm toont het exacte pad voor jouw installatie). De server
 draagt zijn eigen workflow-instructies mee en stelt de op-referenties
-beschikbaar als `genoffice://guide/*`-resources, dus is er geen skill
+beschikbaar als `plotdocs://guide/*`-resources, dus is er geen skill
 nodig; de skill en de MCP-server kunnen naast elkaar bestaan en de
 assistent kiest er één. Cloudfuncties (`search`, `image`, `media`) lopen
-nog steeds via de provider die in GenOffice is ingesteld; al het andere
-draait lokaal, en `GENOFFICE_ALLOWED_ROOTS` beperkt elke tool tot de
+nog steeds via de provider die in Plot Docs is ingesteld; al het andere
+draait lokaal, en `PLOTDOCS_ALLOWED_ROOTS` beperkt elke tool tot de
 mappen die je opgeeft.
 
 Het deck over hernieuwbare energie uit de demo hierboven laat zien hoe één
-prompt in Claude Code met alleen de `genoffice` MCP-server aangesloten er
+prompt in Claude Code met alleen de `plotdocs` MCP-server aangesloten er
 aan de protocolkant uitziet:
 
 ```text
@@ -384,7 +384,7 @@ Achtendertig aanroepen, ongeveer dertien minuten, en de assistent heeft
 nooit een terminal aangeraakt: de figuren, de foto's, de gidsen, de
 controles en de renders reisden allemaal als MCP-tool-resultaten. Alleen
 `search` en `media` verlieten de machine, naar de provider die in
-GenOffice is geconfigureerd.
+Plot Docs is geconfigureerd.
 
 <a id="download"></a>
 
@@ -392,32 +392,32 @@ GenOffice is geconfigureerd.
 
 | Platform                             | Vereisten                                               | Download                                                                                    |
 | ------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| **macOS** — Apple Silicon (arm64)    | macOS 11+                                               | [Nieuwste `.dmg` (arm64)](https://github.com/genspark-ai/genoffice/releases/latest)         |
-| **macOS** — Intel (x64)              | macOS 11+                                               | [Nieuwste `.dmg` (x64)](https://github.com/genspark-ai/genoffice/releases/latest)           |
-| **Windows** (x64, de meeste pc's)    | Windows 10+, Intel/AMD                                  | [Nieuwste `-x64.exe`-installer](https://github.com/genspark-ai/genoffice/releases/latest)   |
-| **Windows** op Arm (ARM64)           | Windows 11 op Arm (Snapdragon X en vergelijkbare chips) | [Nieuwste `-arm64.exe`-installer](https://github.com/genspark-ai/genoffice/releases/latest) |
-| **Linux** — Debian / Ubuntu          | x86_64, glibc 2.34+ (Ubuntu 22.04 of nieuwer)           | [Nieuwste `.deb`](https://github.com/genspark-ai/genoffice/releases/latest)                 |
-| **Linux** — Fedora / RHEL / openSUSE | x86_64, glibc 2.34+ (Fedora 35+, RHEL 9+, Leap 15.6+)   | [Nieuwste `.rpm`](https://github.com/genspark-ai/genoffice/releases/latest)                 |
-| **Linux** — overige distributies     | x86_64, glibc 2.34+, FUSE 2                             | [Nieuwste `.AppImage`](https://github.com/genspark-ai/genoffice/releases/latest)            |
+| **macOS** — Apple Silicon (arm64)    | macOS 11+                                               | [Nieuwste `.dmg` (arm64)](https://github.com/plotxyz-ai/plot-docs/releases/latest)         |
+| **macOS** — Intel (x64)              | macOS 11+                                               | [Nieuwste `.dmg` (x64)](https://github.com/plotxyz-ai/plot-docs/releases/latest)           |
+| **Windows** (x64, de meeste pc's)    | Windows 10+, Intel/AMD                                  | [Nieuwste `-x64.exe`-installer](https://github.com/plotxyz-ai/plot-docs/releases/latest)   |
+| **Windows** op Arm (ARM64)           | Windows 11 op Arm (Snapdragon X en vergelijkbare chips) | [Nieuwste `-arm64.exe`-installer](https://github.com/plotxyz-ai/plot-docs/releases/latest) |
+| **Linux** — Debian / Ubuntu          | x86_64, glibc 2.34+ (Ubuntu 22.04 of nieuwer)           | [Nieuwste `.deb`](https://github.com/plotxyz-ai/plot-docs/releases/latest)                 |
+| **Linux** — Fedora / RHEL / openSUSE | x86_64, glibc 2.34+ (Fedora 35+, RHEL 9+, Leap 15.6+)   | [Nieuwste `.rpm`](https://github.com/plotxyz-ai/plot-docs/releases/latest)                 |
+| **Linux** — overige distributies     | x86_64, glibc 2.34+, FUSE 2                             | [Nieuwste `.AppImage`](https://github.com/plotxyz-ai/plot-docs/releases/latest)            |
 
 Alle builds komen van `main`; de macOS- en Windows-installers zijn gesigneerd.
-Oudere versies staan op de pagina [Releases](https://github.com/genspark-ai/genoffice/releases).
+Oudere versies staan op de pagina [Releases](https://github.com/plotxyz-ai/plot-docs/releases).
 
 <details>
 <summary><b>Installeren op Linux</b></summary>
 
 De deb installeer je met apt — dat haalt de afhankelijkheden op en voegt
-GenOffice toe aan het toepassingenmenu:
+Plot Docs toe aan het toepassingenmenu:
 
 ```bash
-sudo apt install ./genoffice_<version>_amd64.deb
+sudo apt install ./plotdocs_<version>_amd64.deb
 ```
 
 Op Fedora, de RHEL-familie of openSUSE installeer je in plaats daarvan de rpm:
 
 ```bash
-sudo dnf install ./genoffice-<version>.x86_64.rpm     # Fedora / RHEL family
-sudo zypper install ./genoffice-<version>.x86_64.rpm  # openSUSE
+sudo dnf install ./plotdocs-<version>.x86_64.rpm     # Fedora / RHEL family
+sudo zypper install ./plotdocs-<version>.x86_64.rpm  # openSUSE
 ```
 
 De AppImage draait direct: installeer de FUSE 2-runtime
@@ -425,8 +425,8 @@ De AppImage draait direct: installeer de FUSE 2-runtime
 maak het bestand uitvoerbaar en start het:
 
 ```bash
-chmod +x GenOffice-<version>.AppImage
-./GenOffice-<version>.AppImage
+chmod +x Plot Docs-<version>.AppImage
+./Plot Docs-<version>.AppImage
 ```
 
 </details>
@@ -467,37 +467,37 @@ npm run dist:linux   # package Linux AppImage + deb + rpm
 ```
 
 De sheets-app heeft daarnaast een Rust-toolchain nodig voor de xlsx-sidecar
-(`cargo` op je PATH); `npm run build -w @genoffice/sheets` compileert die
+(`cargo` op je PATH); `npm run build -w @plotdocs/sheets` compileert die
 automatisch. Zie [CONTRIBUTING.md](../../CONTRIBUTING.md) voor de checks die
 elke wijziging moet doorstaan en hoe pull requests worden gemerged.
 
 ## Community
 
-GenOffice wordt actief doorontwikkeld en jouw feedback bepaalt mee de
+Plot Docs wordt actief doorontwikkeld en jouw feedback bepaalt mee de
 richting.
 
 - **Meld een bug of vraag een functie aan** via
-  [GitHub Issues](https://github.com/genspark-ai/genoffice/issues).
-- **Doe mee aan de GenOffice-groepschat** op
-  [GenTeam](https://genoffice.ai/join) om met het team en andere gebruikers te
+  [GitHub Issues](https://github.com/plotxyz-ai/plot-docs/issues).
+- **Doe mee aan de Plot Docs-groepschat** op
+  [PlotCommunity](https://plotxyz.ai) om met het team en andere gebruikers te
   praten.
-- **Geef de repo een ster** als je iets aan GenOffice hebt — dat is de beste
+- **Geef de repo een ster** als je iets aan Plot Docs hebt — dat is de beste
   manier om het project te steunen.
 
 ## Veelgestelde vragen
 
 <details>
-<summary><b>Is GenOffice gratis?</b></summary>
+<summary><b>Is Plot Docs gratis?</b></summary>
 
-Ja. GenOffice is gratis en open source onder de Apache-2.0-licentie — geen
+Ja. Plot Docs is gratis en open source onder de Apache-2.0-licentie — geen
 proefperiode, geen betaalde laag voor de apps zelf.
 
 </details>
 
 <details>
-<summary><b>Kan GenOffice bestanden van Microsoft Word, Excel en PowerPoint openen?</b></summary>
+<summary><b>Kan Plot Docs bestanden van Microsoft Word, Excel en PowerPoint openen?</b></summary>
 
-Ja. GenOffice opent en bewaart native `.docx`-, `.xlsx`- en `.pptx`-bestanden.
+Ja. Plot Docs opent en bewaart native `.docx`-, `.xlsx`- en `.pptx`-bestanden.
 Opslaan is byte-behoudend: delen van het bestand die je niet hebt aangeraakt,
 worden byte-voor-byte terugweggeschreven, zodat documenten gewoon blijven
 werken in Microsoft Office.
@@ -505,17 +505,17 @@ werken in Microsoft Office.
 </details>
 
 <details>
-<summary><b>Werkt GenOffice offline?</b></summary>
+<summary><b>Werkt Plot Docs offline?</b></summary>
 
 Documenten bewerken is volledig lokaal — bestanden verlaten je machine nooit
 om te worden geopend, bewerkt, opgeslagen of geconverteerd. De AI-functies
 (agents, search, beeldtools) hebben een netwerkverbinding nodig, met ofwel
-een Genspark-login of je eigen model-API-key.
+een Soopus-login of je eigen model-API-key.
 
 </details>
 
 <details>
-<summary><b>Kan GenOffice PDF-bestanden bewerken?</b></summary>
+<summary><b>Kan Plot Docs PDF-bestanden bewerken?</b></summary>
 
 Ja — echte bewerking van PDF-tekst en -afbeeldingen, waarbij de content
 stream van de pagina wordt herschreven met behoud van de originele fonts,
@@ -524,7 +524,7 @@ niet met overplaknotities.
 </details>
 
 <details>
-<summary><b>Kan GenOffice PDF converteren naar Word, Excel of PowerPoint?</b></summary>
+<summary><b>Kan Plot Docs PDF converteren naar Word, Excel of PowerPoint?</b></summary>
 
 Ja — volledig on-device: tekenniveau-extractie met PDFium plus
 geometrie-gebaseerde layout-analyse, geen cloudservice, geen upload. Gescande
@@ -537,7 +537,7 @@ pagina-afbeelding.
 <details>
 <summary><b>Kan ik mijn eigen AI-model of API-key gebruiken?</b></summary>
 
-Ja. Naast de keyless Genspark-login ondersteunt GenOffice je eigen key voor
+Ja. Naast de keyless Soopus-login ondersteunt Plot Docs je eigen key voor
 Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok,
 Mistral, OpenRouter, Requesty en OpenCode Zen/Go, plus elk OpenAI-compatibel endpoint —
 inclusief lokale modelservers. Search, beeldgeneratie en analyse van beeld en
@@ -546,7 +546,7 @@ video gebruiken hun eigen keys onder Settings → AI Media & Search.
 </details>
 
 <details>
-<summary><b>Kan GenOffice HTML converteren naar Word?</b></summary>
+<summary><b>Kan Plot Docs HTML converteren naar Word?</b></summary>
 
 Ja — Export as Word in de HTML-app levert volledig on-device een native,
 bewerkbare `.docx` op. De pagina wordt gerenderd in de ingebouwde Chromium en
@@ -558,9 +558,9 @@ afbeelding ingevoegd.
 </details>
 
 <details>
-<summary><b>Kan ik GenOffice aansturen vanuit Claude Code, Codex, Cursor of een script?</b></summary>
+<summary><b>Kan ik Plot Docs aansturen vanuit Claude Code, Codex, Cursor of een script?</b></summary>
 
-Ja. GenOffice installeert een `genoffice`-opdrachtregel die dezelfde engines
+Ja. Plot Docs installeert een `plotdocs`-opdrachtregel die dezelfde engines
 headless draait: documenten inspecteren, converteren, maken, lezen en
 bewerken vanuit een terminal of een script, met `--json`-uitvoer voor
 programma's. De meegeleverde agent-skill leert Claude Code, Codex, Cursor,
@@ -571,13 +571,13 @@ via **Instellingen → Integraties**. Zie
 </details>
 
 <details>
-<summary><b>Verzamelt GenOffice gegevens?</b></summary>
+<summary><b>Verzamelt Plot Docs gegevens?</b></summary>
 
 De officiële, kant-en-klare builds versturen standaard beperkte
 gebruiksanalyse, en je kunt rapportage op elk moment uitschakelen onder
 Settings → General. Analytics verstuurt nooit documentinhoud, bestandsnamen,
 bestandspaden, accountidentiteit of e-mailadressen. Zie
-[GenOffice Privacy](../../PRIVACY.md) voor de volledige lijst van events en
+[Plot Docs Privacy](../../PRIVACY.md) voor de volledige lijst van events en
 gegevens die worden gedeeld.
 
 </details>
@@ -590,7 +590,7 @@ dreigingsmodellen voor door AI gegenereerde content.
 
 ## Met dank aan
 
-GenOffice zou niet mogelijk zijn zonder deze open-source projecten:
+Plot Docs zou niet mogelijk zijn zonder deze open-source projecten:
 
 - [Electron](https://www.electronjs.org/) — de desktop-runtime voor elke app.
 - [Univer](https://github.com/dream-num/univer) (Apache-2.0) — de
@@ -636,11 +636,11 @@ MIT/Apache-2.0/BSD-3-Clause/OFL.
 
 ## Licentie
 
-GenOffice wordt uitgebracht onder de [Apache License 2.0](../../LICENSE), met
+Plot Docs wordt uitgebracht onder de [Apache License 2.0](../../LICENSE), met
 één uitzondering: de map `ee/` is gereserveerd voor toekomstige
 enterprise-modules en valt onder de
-[GenOffice Enterprise License](../../ee/LICENSE).
+[Plot Docs Enterprise License](../../ee/LICENSE).
 
-De namen en logo's van GenOffice en Genspark zijn handelsmerken van Mainfunc,
+De namen en logo's van Plot Docs en Soopus zijn handelsmerken van Mainfunc,
 Inc. De Apache-2.0-licentie geeft geen toestemming om deze te gebruiken (zie
 sectie 6); forks moeten hun eigen branding gebruiken.

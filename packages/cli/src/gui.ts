@@ -4,9 +4,9 @@ import { join } from 'node:path'
 import { realizedPath } from './fs'
 import { CliError, EXIT } from './result'
 
-/** The shell's Electron userData directory, located without Electron (GENOFFICE_USER_DATA overrides). */
-export function genofficeUserDataDir(env: NodeJS.ProcessEnv): string {
-  if (env.GENOFFICE_USER_DATA) return env.GENOFFICE_USER_DATA
+/** The shell's Electron userData directory, located without Electron (PLOTDOCS_USER_DATA overrides). */
+export function plotdocsUserDataDir(env: NodeJS.ProcessEnv): string {
+  if (env.PLOTDOCS_USER_DATA) return env.PLOTDOCS_USER_DATA
   // Resolve the home from the env we were given (as os.homedir() does with process.env.HOME), so
   // an in-process caller with a substituted HOME never lands in the real user directories.
   const home = env.HOME || homedir()
@@ -16,28 +16,28 @@ export function genofficeUserDataDir(env: NodeJS.ProcessEnv): string {
       : process.platform === 'win32'
         ? env.APPDATA || join(home, 'AppData', 'Roaming')
         : env.XDG_CONFIG_HOME || join(home, '.config')
-  return join(base, 'GenOffice')
+  return join(base, 'Plot Docs')
 }
 
 /**
- * Every directory a live GenOffice may have published its registries under: the
+ * Every directory a live Plot Docs may have published its registries under: the
  * packaged profile, then the dev profiles.
  *
  * The dev profile has been spelled two ways. It was `<name> Dev` until
- * genoffice#1879 moved the shell to `<name>-Dev` — a space breaks XDG config
- * entries, which are meant to be one token (genoffice#1817) — and the shell renames the
+ * plotdocs#1879 moved the shell to `<name>-Dev` — a space breaks XDG config
+ * entries, which are meant to be one token (plotdocs#1817) — and the shell renames the
  * old directory on first run after that. Both spellings are scanned here, new
  * first, because a profile that was never migrated still has to be reachable:
- * a custom `GENOFFICE_USER_DATA`, a checkout whose shell has not run since the
+ * a custom `PLOTDOCS_USER_DATA`, a checkout whose shell has not run since the
  * rename, or a migration that could not move a busy directory.
  *
- * Both readers used to spell this list out on their own, and genoffice#1879
+ * Both readers used to spell this list out on their own, and plotdocs#1879
  * changed the shell without either of them, so the CLI went on looking for a
  * directory nothing wrote to any more.
  */
-export function genofficeUserDataDirs(env: NodeJS.ProcessEnv): string[] {
-  if (env.GENOFFICE_USER_DATA) return [env.GENOFFICE_USER_DATA]
-  const packaged = genofficeUserDataDir(env)
+export function plotdocsUserDataDirs(env: NodeJS.ProcessEnv): string[] {
+  if (env.PLOTDOCS_USER_DATA) return [env.PLOTDOCS_USER_DATA]
+  const packaged = plotdocsUserDataDir(env)
   return [packaged, `${packaged}-Dev`, `${packaged} Dev`]
 }
 
@@ -47,13 +47,13 @@ export interface GuiOpenDocuments {
 }
 
 /**
- * Files the running GenOffice shell has open, from the registries it publishes
+ * Files the running Plot Docs shell has open, from the registries it publishes
  * on every tab change (apps/shell/src/main/open-documents.ts). Empty when no
  * shell is running: a registry whose pid is gone is a crash leftover.
  */
 export function guiOpenDocuments(
   env: NodeJS.ProcessEnv,
-  dirs = genofficeUserDataDirs(env),
+  dirs = plotdocsUserDataDirs(env),
 ): GuiOpenDocuments[] {
   const live: GuiOpenDocuments[] = []
   for (const dir of dirs) {
@@ -90,12 +90,12 @@ export function assertNotOpenInGui(abs: string, env: NodeJS.ProcessEnv): void {
     if (!open.paths.some((p) => realizedPath(p) === target)) continue
     throw new CliError(
       EXIT.file,
-      `GenOffice has this file open: ${abs}`,
+      `Plot Docs has this file open: ${abs}`,
       { gui_pid: open.pid },
       {
         reason: 'file_open_in_gui',
         suggestion:
-          'close the tab in GenOffice first, or pass --force to write anyway (the editor may overwrite your change on its next save)',
+          'close the tab in Plot Docs first, or pass --force to write anyway (the editor may overwrite your change on its next save)',
       },
     )
   }

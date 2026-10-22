@@ -1,6 +1,6 @@
 # Mulai cepat: antarmuka dan dasar-dasarnya
 
-GenOffice adalah rangkaian perkantoran yang berjalan sepenuhnya di komputer Anda: satu jendela, satu deret tab, dengan enam editor — Docs (pemrosesan kata), Sheets (spreadsheet), Slides (presentasi), PDF, Markdown, dan HTML. File yang dibuka dan disimpan adalah .docx / .xlsx / .pptx / .pdf asli, sepenuhnya serasi dengan Word, Excel, dan PowerPoint. Tidak perlu jaringan.
+Plot Docs adalah rangkaian perkantoran yang berjalan sepenuhnya di komputer Anda: satu jendela, satu deret tab, dengan enam editor — Docs (pemrosesan kata), Sheets (spreadsheet), Slides (presentasi), PDF, Markdown, dan HTML. File yang dibuka dan disimpan adalah .docx / .xlsx / .pptx / .pdf asli, sepenuhnya serasi dengan Word, Excel, dan PowerPoint. Tidak perlu jaringan.
 
 ## Sekilas antarmuka
 
@@ -18,7 +18,7 @@ Pilih salah satu:
 
 - Klik salah satu kartu pembuatan cepat di bagian [Mulai cepat](help://getting-started) pada **Beranda** (AI Docs, AI Sheets, AI Slides, ...).
 - Menu **File ▸ Baru**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML, atau PDF.
-- Seret sebuah file ke jendela, atau klik dua kali di aplikasi file Anda (jika GenOffice adalah aplikasi default).
+- Seret sebuah file ke jendela, atau klik dua kali di aplikasi file Anda (jika Plot Docs adalah aplikasi default).
 
 Dokumen baru terbuka tanpa nama; file di disk baru dibuat saat disimpan pertama kali.
 
@@ -26,7 +26,7 @@ Dokumen baru terbuka tanpa nama; file di disk baru dibuat saat disimpan pertama 
 
 - Menu **File ▸ Buka…** (⌘O/ctrl+O) membuka pemilih file sistem: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klik apa pun di daftar **Terbaru** pada Beranda.
-- `genoffice <file>` dari terminal juga dapat membuka file.
+- `plotdocs <file>` dari terminal juga dapat membuka file.
 
 ## Cara kerja penyimpanan
 
@@ -52,7 +52,7 @@ Pintasan di dalam tiap editor (penyalin format, cari dan ganti, operasi tabel, .
 
 ## Pintasan Option+Command
 
-Option+Command adalah lapisan yang dicadangkan Word untuk lompatan terstruktur, dan GenOffice mengisinya dengan cara yang sama. Docs mengambil sebagian besarnya, Sheets mengambil dua miliknya sendiri demi kesetaraan dengan Excel, dan satu pintasan berlaku di mana-mana.
+Option+Command adalah lapisan yang dicadangkan Word untuk lompatan terstruktur, dan Plot Docs mengisinya dengan cara yang sama. Docs mengambil sebagian besarnya, Sheets mengambil dua miliknya sendiri demi kesetaraan dengan Excel, dan satu pintasan berlaku di mana-mana.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Perhatikan bahwa **⌥⌘0 berarti Normal di Docs dan Batas luar di Sheets**. Ke
 
 **Setiap editor**: **⌥⌘R / Ctrl+F1** melipat pita, seperti yang dijelaskan di atas.
 
-Dengan begitu ⌥⌘D tetap bebas untuk dipakai GenOffice di macOS, bila suatu perintah memutuskan membutuhkannya.
+Dengan begitu ⌥⌘D tetap bebas untuk dipakai Plot Docs di macOS, bila suatu perintah memutuskan membutuhkannya.
 
 ## Ke mana selanjutnya
 

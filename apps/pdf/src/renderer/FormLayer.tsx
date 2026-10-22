@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactElement } from 'react'
-import { Dropdown } from '@genoffice/ui'
+import { Dropdown } from '@plotdocs/ui'
 import { pdfRectToCss } from './annotations'
 import type { PageGeom } from './annotations'
 import type { FormValueInput } from '../shared/ipc'

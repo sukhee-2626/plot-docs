@@ -4,7 +4,7 @@
  * item callbacks dispatch into the extracted action modules.
  */
 import { canEditPoints } from './edit-points'
-import type { PictureRenderNode } from '@genoffice/pptx-render'
+import type { PictureRenderNode } from '@plotdocs/pptx-render'
 import type { ActionCtx } from './action-context'
 import type { CtxItem } from './components/ContextMenu'
 import { isEditableText } from './konva-adapter'

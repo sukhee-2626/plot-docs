@@ -155,7 +155,7 @@ describe('buildOcrPageData word joining', () => {
     expect(data.entry.text.slice(shang.start, shang.end)).toBe('商')
   })
 
-  it('folds case length-preservingly so OCR offsets agree with text-layer search (genoffice#1130)', () => {
+  it('folds case length-preservingly so OCR offsets agree with text-layer search (plotdocs#1130)', () => {
     const line: PdfOcrLine = {
       text: '\u0130stanbul Ankara',
       confidence: 1,

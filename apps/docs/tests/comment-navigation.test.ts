@@ -5,7 +5,7 @@
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Editor } from '@tiptap/core'
-import type { CommentInfo } from '@genoffice/docx-engine'
+import type { CommentInfo } from '@plotdocs/docx-engine'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import {
   commentAnchors,

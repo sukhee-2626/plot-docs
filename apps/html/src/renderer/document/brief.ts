@@ -37,9 +37,9 @@ export interface Brief {
   version: 1
 }
 
-export const BRIEF_META_NAME = 'genoffice:brief'
+export const BRIEF_META_NAME = 'plotdocs:brief'
 
-const META_RE = /<meta\s+[^>]*name\s*=\s*["']genoffice:brief["'][^>]*>/i
+const META_RE = /<meta\s+[^>]*name\s*=\s*["']plotdocs:brief["'][^>]*>/i
 
 function decodeAttr(value: string): string {
   return value

@@ -5,8 +5,8 @@
  * expose the object height as --doc-obj-h; docStyleCss turns it into padding.
  */
 import { Editor } from '@tiptap/core'
-import { parseDocx } from '@genoffice/docx-engine'
-import type { ParsedDocFull } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
+import type { ParsedDocFull } from '@plotdocs/docx-engine'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   buildDocx,

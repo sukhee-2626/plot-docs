@@ -45,7 +45,7 @@ export class CommandRegistry {
 }
 
 export function commandHelp(def: CommandDef): string {
-  const lines = [`Usage: genoffice ${def.usage}`, '', def.summary]
+  const lines = [`Usage: plotdocs ${def.usage}`, '', def.summary]
   if (def.options?.length) {
     lines.push('', 'Options:')
     const width = Math.max(...def.options.map((o) => optionLabel(o).length))

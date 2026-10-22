@@ -23,7 +23,7 @@ Hell / Dunkel / System folgen. „System folgen“ richtet sich nach dem Erschei
 - **Position der KI-Seitenleiste** (links oder rechts), **Textgröße im KI-Bereich** und **Rechtschreibprüfung im KI-Chat**.
 - **KI-Panel in neuen Dokumenten öffnen** — aus, ein neues Dokument startet mit eingeklapptem Panel, einen Klick entfernt.
 - **Alle Dokumente automatisch speichern** schaltet AutoSave in jedem Editor standardmäßig ein; für ein einzelnes Fenster können Sie es weiterhin abschalten.
-- **Speicherort** mit der Schaltfläche **Ändern** und **Standard-App für Office-Dokumente**, um .docx / .xlsx / .pptx für GenOffice zu beanspruchen.
+- **Speicherort** mit der Schaltfläche **Ändern** und **Standard-App für Office-Dokumente**, um .docx / .xlsx / .pptx für Plot Docs zu beanspruchen.
 
 ## KI-Medien & Suche
 
@@ -39,22 +39,22 @@ Keine Schalter — jede Fähigkeit wählt den Anbieter, der sie bedient, und Sch
 
 ## Standard-App-Zuordnungen
 
-Die Einstellungen können GenOffice als Programm für .docx / .xlsx / .pptx / .pdf und verwandte Formate hinterlegen (Registrierung als Standard-App auf Plattformebene; bestätigen Sie, wenn Sie dazu aufgefordert werden).
+Die Einstellungen können Plot Docs als Programm für .docx / .xlsx / .pptx / .pdf und verwandte Formate hinterlegen (Registrierung als Standard-App auf Plattformebene; bestätigen Sie, wenn Sie dazu aufgefordert werden).
 
 ## Hinweise zu Drittanbietersoftware und Updates
 
 - Hilfe ▸ Hinweise zu Drittanbietersoftware: das vollständige Verzeichnis der mitgelieferten Open-Source-Lizenzen.
 - Hilfe ▸ Nach Updates suchen: löst eine manuelle Prüfung aus; bei einer neueren Version werden Sie zur Installation aufgefordert.
 
-## Bei Genspark anmelden
+## Bei Soopus AI anmelden
 
-- Der Anmeldeeinstieg (Einstellungen oder Liste der Cloud-Projekte) nutzt ein **Gerätecode**-Verfahren: GenOffice zeigt einen Code und öffnet die Anmeldung im Browser; danach geht es automatisch weiter.
-- Die Anmeldung wird nur genutzt für: die Liste der Cloud-Projekte und die gehosteten Modelle von Genspark. Ohne sie funktionieren alle lokalen Funktionen und benutzerdefinierten Modelle weiter.
+- Der Anmeldeeinstieg (Einstellungen oder Liste der Cloud-Projekte) nutzt ein **Gerätecode**-Verfahren: Plot Docs zeigt einen Code und öffnet die Anmeldung im Browser; danach geht es automatisch weiter.
+- Die Anmeldung wird nur genutzt für: die Liste der Cloud-Projekte und die gehosteten Modelle von Soopus AI. Ohne sie funktionieren alle lokalen Funktionen und benutzerdefinierten Modelle weiter.
 - Das Abmelden ist in den Einstellungen ein Klick.
 
 ## MCP-Integration (für erfahrene Anwender / KI-Clients)
 
-**Integrationen** ist der Bereich, der GenOffice mit einem Coding-Agenten verbindet, und er hat einen eigenen Artikel: Einen Coding-Agenten anbinden. Die Kurzfassung — wählen Sie einen Weg (die Kommandozeile oder MCP), folgen Sie dem jeweiligen Abschnitt und starten Sie dann einen neuen Chat.
+**Integrationen** ist der Bereich, der Plot Docs mit einem Coding-Agenten verbindet, und er hat einen eigenen Artikel: Einen Coding-Agenten anbinden. Die Kurzfassung — wählen Sie einen Weg (die Kommandozeile oder MCP), folgen Sie dem jeweiligen Abschnitt und starten Sie dann einen neuen Chat.
 
 ![Einstellungen ▸ Integrationen: die drei Schritte, dann die Skill-Zeilen und die MCP-Optionen](img/settings-integrations.png)
 
@@ -64,6 +64,6 @@ Unter **Lokaler HTTP-Server** kann die App den Server auch selbst betreiben — 
 
 | Befehl             | Was er bewirkt             |
 | ------------------ | -------------------------- |
-| `genoffice <file>` | eine Datei öffnen          |
-| `genoffice mcp`    | lokalen MCP-Server starten |
-| `genoffice --help` | alle Befehle und Optionen  |
+| `plotdocs <file>` | eine Datei öffnen          |
+| `plotdocs mcp`    | lokalen MCP-Server starten |
+| `plotdocs --help` | alle Befehle und Optionen  |

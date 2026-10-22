@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import type { MouseEvent as ReactMouseEvent, KeyboardEvent as ReactKeyboardEvent } from 'react'
 import type { Editor } from '@tiptap/core'
-import type { SectionSettings, TabStop } from '@genoffice/docx-engine'
+import type { SectionSettings, TabStop } from '@plotdocs/docx-engine'
 import { t, type StringKey } from '../i18n/locale'
 import { useMeasurement } from '../use-measurement'
 import type { MeasurementUnit } from '../units'

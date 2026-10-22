@@ -1,14 +1,14 @@
 /** Home tab of the slides ribbon. Extracted from Ribbon.tsx. */
 import { useState } from 'react'
-import { platformShortcuts } from '@genoffice/i18n'
-import { ColorPicker, isSymbolFontFamily, partitionFontFamilies } from '@genoffice/ui'
+import { platformShortcuts } from '@plotdocs/i18n'
+import { ColorPicker, isSymbolFontFamily, partitionFontFamilies } from '@plotdocs/ui'
 import { saveEditSelection } from '../TextEditOverlay'
 import { armColorInput } from '../color-input'
 import { displayFontFamily } from '../konva-adapter'
 import { useSystemFontFamilies } from '../system-fonts'
 import { useFontCatalog } from '../font-manager'
 import {
-  GensparkMark,
+  SoopusMark,
   IconAiBeautify,
   IconAiFactCheck,
   IconAiImage,
@@ -229,16 +229,16 @@ export function RibbonHomeTab({ rb }: { rb: RibbonTabCtx }) {
   }
   return (
     <>
-      <Group label="Genspark AI">
+      <Group label="Soopus AI">
         <button
           className={`rb-big ai-entry${aiOpen ? ' active' : ''}`}
           data-tip={t('aiOpenAssistant')}
           onClick={onToggleAi}
         >
           <span className="rb-big-icon">
-            <GensparkMark size={26} />
+            <SoopusMark size={26} />
           </span>
-          <span>Genspark AI</span>
+          <span>Soopus AI</span>
         </button>
         <button
           className="rb-big ai-entry"

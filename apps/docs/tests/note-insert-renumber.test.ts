@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import { nextNoteId, type NoteInfo } from '@genoffice/docx-engine'
+import { nextNoteId, type NoteInfo } from '@plotdocs/docx-engine'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { deleteNote, submitNote, type ReviewContext } from '../src/renderer/review-actions'
 

@@ -1,6 +1,6 @@
 /**
- * Type shim: @genoffice/file-parse ships as TS source, and its dependency
- * @genoffice/docx-engine fails under sheets' stricter compiler options
+ * Type shim: @plotdocs/file-parse ships as TS source, and its dependency
+ * @plotdocs/docx-engine fails under sheets' stricter compiler options
  * (exactOptionalPropertyTypes/noUncheckedIndexedAccess). tsconfig paths point
  * type resolution here; runtime bundling (electron-vite) still uses the real
  * source. Keep the export signatures in sync with packages/file-parse/src/parse.ts.

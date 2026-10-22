@@ -2,8 +2,8 @@
  * 3D models in the editor: the renderer draws them (scene.ts), the main process stores the
  * rotation and the drawing as PowerPoint does (pptx-engine/model3d.ts).
  */
-import { NO_ROTATION, type Model3dRotation } from '@genoffice/pptx-engine/model3d'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import { NO_ROTATION, type Model3dRotation } from '@plotdocs/pptx-engine/model3d'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import type { ActionCtx } from '../action-context'
 import { FIT_WIDTH } from '../app-constants'
 import { t } from '../i18n/locale'

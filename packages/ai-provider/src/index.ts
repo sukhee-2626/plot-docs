@@ -23,7 +23,7 @@ export type {
   AiStreamChunk,
   AiStreamRequest,
   AiTokenUsage,
-  GenSparkAccountStatus,
+  SoopusAccountStatus,
   LegacyAiSettings,
 } from './types'
 export {

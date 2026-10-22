@@ -7,8 +7,8 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
-import { openPptx, savePptx, type TextElement } from '@genoffice/pptx-engine'
-import { buildRenderSlide, EMU_PER_PX_96, type RenderSlide } from '@genoffice/pptx-render'
+import { openPptx, savePptx, type TextElement } from '@plotdocs/pptx-engine'
+import { buildRenderSlide, EMU_PER_PX_96, type RenderSlide } from '@plotdocs/pptx-render'
 import {
   fillToKonva,
   glyphToDraw,

@@ -3,7 +3,7 @@ import {
   AiPanelSideButton,
   AiModelPicker,
   type AiModelPickerBridge,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 import {
   AgentLoop,
@@ -11,9 +11,9 @@ import {
   IPC_STREAM_SILENCE_TIMEOUT_MS,
   type AgentImage,
   type ToolDisplay,
-} from '@genoffice/agent-core'
-import type { RenderSlide } from '@genoffice/pptx-render'
-import { imageGenerationAvailable, mediaAnalysisAvailable } from '@genoffice/ai-provider/browser'
+} from '@plotdocs/agent-core'
+import type { RenderSlide } from '@plotdocs/pptx-render'
+import { imageGenerationAvailable, mediaAnalysisAvailable } from '@plotdocs/ai-provider/browser'
 import type { AiSettings, AttachmentAddResult, AttachmentMeta } from '../../shared/ipc'
 import { ATTACHMENT_IMAGE_EXTS } from '../../shared/ipc'
 import {
@@ -57,8 +57,8 @@ import {
   useChatRunQueue,
   type AiScopeQuoteData,
   type AiTokenUsageView,
-} from '@genoffice/ui'
-import { GensparkMark } from '../components/icons'
+} from '@plotdocs/ui'
+import { SoopusMark } from '../components/icons'
 import sendEnterOn from '../assets/send-enter-on.png'
 import sendEnterOff from '../assets/send-enter-off.png'
 import sendStop from '../assets/send-stop.png'
@@ -100,7 +100,7 @@ const PASTE_MIME_EXT: Record<string, string> = {
   'image/webp': 'webp',
 }
 
-/** File-type icons for attachment cards (Genspark attachment icon set); exts the
+/** File-type icons for attachment cards (Soopus attachment icon set); exts the
  *  attachment allowlist doesn't accept yet are mapped ahead so they light up when added */
 const ATTACHMENT_CARD_ICON_GROUPS: [icon: string, exts: string[]][] = [
   [fileWordIcon, ['doc', 'docx']],
@@ -236,7 +236,7 @@ interface ChatEntry {
   text: string
   error?: string
   streaming?: boolean
-  /** the run failed because Genspark is signed out — render an inline sign-in button */
+  /** the run failed because Soopus is signed out — render an inline sign-in button */
   loginRequired?: boolean
   tools?: ToolActivity[]
   /** Generation progress card (only one per turn, replaced in real time) */
@@ -372,7 +372,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.slidesApi.getAiSettings(),
   setSettings: (settings) => window.slidesApi.setAiSettings(settings),
   onSettingsChanged: (handler) => window.slidesApi.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.slidesApi.aiGskStatus().then((s) => !!s?.loggedIn),
+  soopusLoggedIn: () => window.slidesApi.aiSoopusStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.slidesApi.openAiModelSettings().catch(() => {}),
 }
 
@@ -431,7 +431,7 @@ export function AiPanel({
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null)
   const [attachments, setAttachments] = useState<AttachmentMeta[]>([])
   const [attachNotice, setAttachNotice] = useState<string | null>(null)
-  /** data-URL previews for image attachments, keyed by path (Genspark composer thumbnails) */
+  /** data-URL previews for image attachments, keyed by path (Soopus composer thumbnails) */
   const [attachmentPreviews, setAttachmentPreviews] = useState<Record<string, string>>({})
   /** image paths with a read already issued — one readAttachmentImage per attach, even while pending */
   const previewRequestedRef = useRef(new Set<string>())
@@ -544,15 +544,15 @@ export function AiPanel({
   const settingsRef = useRef(settings)
   settingsRef.current = settings
 
-  /** gsk login state for the cloud-tools gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  /** soopus login state for the cloud-tools gate (refreshed on mount and window focus) */
+  const soopusLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
       void window.slidesApi
-        ?.aiGskStatus()
+        ?.aiSoopusStatus()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) soopusLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -1320,9 +1320,9 @@ export function AiPanel({
         }
       },
       imageGenAvailable: () =>
-        imageGenerationAvailable(settingsRef.current, gskLoggedInRef.current),
+        imageGenerationAvailable(settingsRef.current, soopusLoggedInRef.current),
       mediaAnalysisAvailable: () =>
-        mediaAnalysisAvailable(settingsRef.current, gskLoggedInRef.current),
+        mediaAnalysisAvailable(settingsRef.current, soopusLoggedInRef.current),
       unreadTextAttachments: () =>
         availableAttachments()
           .filter(
@@ -1480,14 +1480,14 @@ export function AiPanel({
             return next
           })
           // Signed-out failures get an inline sign-in button; detected via
-          // gsk status rather than matching the localized error text — but only
-          // when Genspark is the provider: a BYOK user's error (e.g. their own
-          // provider's rate limit) must not advertise a Genspark sign-in (genoffice#1948)
+          // soopus status rather than matching the localized error text — but only
+          // when Soopus is the provider: a BYOK user's error (e.g. their own
+          // provider's rate limit) must not advertise a Soopus sign-in (plotdocs#1948)
           void window.slidesApi
-            .aiGskStatus()
+            .aiSoopusStatus()
             .then((status) => {
               if (status.loggedIn) return
-              if ((settingsRef.current?.provider ?? 'genspark') !== 'genspark') return
+              if ((settingsRef.current?.provider ?? 'soopus') !== 'soopus') return
               setChat((prev) => {
                 const next = [...prev]
                 const last = next.at(-1)
@@ -2091,7 +2091,7 @@ export function AiPanel({
         aria-label={t('appAiRailExpand')}
         onClick={onExpand}
       >
-        <GensparkMark size={22} />
+        <SoopusMark size={22} />
       </button>
     )
   }
@@ -2123,7 +2123,7 @@ export function AiPanel({
       />
       <div className="ai-panel-header">
         <span className="ai-panel-title">
-          <GensparkMark size={22} />
+          <SoopusMark size={22} />
           {t('aiPanelTitle')}
         </span>
         <div className="ai-panel-header-actions">
@@ -2254,8 +2254,8 @@ export function AiPanel({
                 <div className="ai-msg-error">{t('aiMsgError', { error: entry.error })}</div>
               )}
               {entry.loginRequired && (
-                <button className="ai-login-btn" onClick={() => void window.slidesApi.aiGskLogin()}>
-                  {t('aiGskLoginBtn')}
+                <button className="ai-login-btn" onClick={() => void window.slidesApi.aiSoopusLogin()}>
+                  {t('aiSoopusLoginBtn')}
                 </button>
               )}
               {entry.deckProgress && <DeckProgressCard progress={entry.deckProgress} />}

@@ -195,7 +195,7 @@ export const ko = {
   ribbonSelectAll: '모두 선택',
   ribbonSelectAllTip: '문서 전체 선택',
   // Home · AI
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'AI 도우미 열기',
   // Table Design
   ribbonRemoveTableStyleTip: '표 스타일 제거',

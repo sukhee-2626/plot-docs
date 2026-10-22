@@ -19,7 +19,7 @@ runInNewContext(readFileSync(resolve(import.meta.dirname, '../electron-builder.c
 const config = configModule.exports
 
 describe('packaged file associations', () => {
-  // The OS can only offer GenOffice in "Open With" (mac CFBundleDocumentTypes,
+  // The OS can only offer Plot Docs in "Open With" (mac CFBundleDocumentTypes,
   // the Linux desktop MimeType list, the NSIS ProgIds) for types the bundle
   // declares. A routing entry without a matching declaration means a file the
   // app opens fine can never reach it from Finder/Explorer — the .txt/.json

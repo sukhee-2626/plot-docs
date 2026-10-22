@@ -1,10 +1,10 @@
 {
-  "name": "@genoffice/xlsx-gateway",
+  "name": "@plotdocs/xlsx-gateway",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
   "type": "module",
-  "description": "xlsx write gateway and workbook domain logic (OOXML patching, CSV import, workbook DSL, pivots, charts) shared by the sheets app and the genoffice CLI; no Electron, no Univer",
+  "description": "xlsx write gateway and workbook domain logic (OOXML patching, CSV import, workbook DSL, pivots, charts) shared by the sheets app and the plotdocs CLI; no Electron, no Univer",
   "exports": {
     "./*": "./src/*.ts"
   },
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "jszip": "^3.10.1",
-    "@genoffice/zip-gate": "*",
+    "@plotdocs/zip-gate": "*",
     "numfmt": "^3.2.6",
     "zod": "^4.3.6"
   },

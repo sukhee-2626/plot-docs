@@ -4,7 +4,7 @@
  * formula shifted by the follower's offset, derived here on demand so a
  * 150k-follower column costs one entry instead of 150k strings.
  */
-import { offsetFormulaRefs } from '@genoffice/xlsx-gateway/domain/formula-shift'
+import { offsetFormulaRefs } from '@plotdocs/xlsx-gateway/domain/formula-shift'
 
 import type { WorkbookSharedFormulaGroup } from '../shared/desktop-api'
 

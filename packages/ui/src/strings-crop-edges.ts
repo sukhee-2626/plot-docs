@@ -1,4 +1,4 @@
-import type { Lang } from '@genoffice/i18n'
+import type { Lang } from '@plotdocs/i18n'
 import type { CropEdge } from './image-dialogs'
 
 // Shared accessible names for the crop edge handles, so every edge is reachable

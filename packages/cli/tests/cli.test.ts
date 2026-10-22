@@ -10,15 +10,15 @@ const DOCX = join(REPO, 'apps/docs/tests/pagination-corpus/docx/01-simple-englis
 const PPTX = join(REPO, 'packages/pptx-engine/tests/fixtures/01_standard_business.pptx')
 const XLSX = join(REPO, 'apps/sheets/fixtures/generated/compatibility-basic.xlsx')
 
-describe('genoffice cli', () => {
+describe('plotdocs cli', () => {
   it('prints help and usage errors with the documented exit codes', async () => {
     expect((await run([])).code).toBe(1)
     expect((await run(['--help'])).code).toBe(0)
-    expect((await run(['help', 'convert'])).stdout).toContain('Usage: genoffice convert')
+    expect((await run(['help', 'convert'])).stdout).toContain('Usage: plotdocs convert')
     const unknown = await run(['frobnicate', '--json'])
     expect(unknown.code).toBe(1)
     expect(unknown.json()).toMatchObject({ status: 'error', code: 1, command: 'frobnicate' })
-    expect((await run(['--version'])).stdout).toMatch(/^genoffice \d/)
+    expect((await run(['--version'])).stdout).toMatch(/^plotdocs \d/)
   })
 
   it('reports a missing file as exit code 2', async () => {
@@ -87,7 +87,7 @@ describe('genoffice cli', () => {
 
   it('converts pdf to docx through the local engine', async () => {
     const dir = tempDir()
-    const pdf = writeMinimalPdf(join(dir, 'one.pdf'), 'Converted by genoffice')
+    const pdf = writeMinimalPdf(join(dir, 'one.pdf'), 'Converted by plotdocs')
     const r = await run([
       'convert',
       pdf,
@@ -103,7 +103,7 @@ describe('genoffice cli', () => {
     expect(existsSync(out)).toBe(true)
     const zip = await JSZip.loadAsync(readFileSync(out))
     const doc = await zip.file('word/document.xml')!.async('string')
-    expect(doc).toContain('Converted by genoffice')
+    expect(doc).toContain('Converted by plotdocs')
   })
 
   it.skipIf(!xlsxSidecarPath())('info reads workbook sheets through the xlsx sidecar', async () => {
@@ -114,14 +114,14 @@ describe('genoffice cli', () => {
   })
 
   it('open fails with exit code 4 when no app binary is available', async () => {
-    // A GenOffice already running on this machine publishes its control endpoint in the
+    // A Plot Docs already running on this machine publishes its control endpoint in the
     // user-data dir; `open` would then hand the file to that live instance and exit 0,
     // never reaching the missing-binary path. Isolate the lookup like control.test.ts does.
     const r = await run(['open', DOCX, '--json'], {
       env: {
-        GENOFFICE_APP_BIN: '/nonexistent/GenOffice',
-        GENOFFICE_USER_DATA: tempDir(),
-        GENOFFICE_AUDIT_LOG: 'off',
+        PLOTDOCS_APP_BIN: '/nonexistent/Plot Docs',
+        PLOTDOCS_USER_DATA: tempDir(),
+        PLOTDOCS_AUDIT_LOG: 'off',
       },
     })
     expect(r.code).toBe(4)

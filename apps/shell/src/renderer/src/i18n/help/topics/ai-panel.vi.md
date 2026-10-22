@@ -36,5 +36,5 @@ Mọi trình soạn thảo đều có thể gọi bảng AI: chọn một nội 
 
 ## Quyền riêng tư
 
-- Chỉ dẫn và nội dung tài liệu liên quan được gửi tới **dịch vụ mô hình mà bạn đã cấu hình** (Genspark đám mây hoặc một điểm cuối tùy chỉnh, xem chương sau); không cấu hình thì không gửi gì.
+- Chỉ dẫn và nội dung tài liệu liên quan được gửi tới **dịch vụ mô hình mà bạn đã cấu hình** (Soopus AI đám mây hoặc một điểm cuối tùy chỉnh, xem chương sau); không cấu hình thì không gửi gì.
 - Tập tin cục bộ không được tải lên nơi khác; khóa BYOK được lưu trong tệp cài đặt của ứng dụng trên máy này và chỉ được gửi trong phần đầu yêu cầu.

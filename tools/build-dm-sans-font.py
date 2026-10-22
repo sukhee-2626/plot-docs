@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build GenOffice DM Sans from upstream DM Sans 1.200 statics, metrics untouched.
+"""Build PlotDocs DM Sans from upstream DM Sans 1.200 statics, metrics untouched.
 
 Word lays a DM Sans document out with the installed Google Fonts static face
 (corpus 2026-09-30: the PDF embeds DMSans-Regular/Bold whose hmtx equals the
@@ -25,8 +25,8 @@ from fontTools.subset import Options, Subsetter
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.woff2 import WOFF2FlavorData
 
-FAMILY = "GenOffice DM Sans"
-PS_FAMILY = "GenOfficeDMSans"
+FAMILY = "PlotDocs DM Sans"
+PS_FAMILY = "PlotDocsDMSans"
 OUT_DIR = "apps/docs/src/renderer/fonts"
 
 # Latin + Latin Extended + combining marks + punctuation/currency + f-ligatures
@@ -77,7 +77,7 @@ def main() -> None:
         sys.exit(f"expected DMSans-Regular.ttf or DMSans-Bold.ttf, got {src.name}")
     subfamily = m.group(1)
     root = Path(__file__).resolve().parent.parent
-    default_out = root / OUT_DIR / f"GenOfficeDMSans-{subfamily}-subset.woff2"
+    default_out = root / OUT_DIR / f"PlotDocsDMSans-{subfamily}-subset.woff2"
     out = Path(sys.argv[2]) if len(sys.argv) > 2 else default_out
 
     font = TTFont(str(src), recalcTimestamp=False)

@@ -1,43 +1,43 @@
 # コーディングエージェントの接続
 
-GenOffice は Model Context Protocol を話せます。コーディングエージェントは、アプリが使うのと同じエンジンであなたの文書を読み、書き、レンダリングできます。エージェントがファイル形式を当て推量しているわけではありません。executor が検証するのと同じ定義から、型付きの op スキーマを受け取ります。
+Plot Docs は Model Context Protocol を話せます。コーディングエージェントは、アプリが使うのと同じエンジンであなたの文書を読み、書き、レンダリングできます。エージェントがファイル形式を当て推量しているわけではありません。executor が検証するのと同じ定義から、型付きの op スキーマを受け取ります。
 
 ## アプリから登録する
 
 **設定 ▸ 連携**が今回の操作場所になります。このパネルは 2 つの半分に分かれていて、片方だけでも、両方使ってもかまいません。
 
-**スキル。**このマシンにあるコーディングエージェントが 1 つにつき 1 行ずつ並んでいます——Claude Code、Codex、Cursor、Gemini CLI、Copilot CLI、OpenCode、Windsurf——どの行にも **インストール**、**更新**、**アンインストール** があり、さらに **別のフォルダにインストール…**、**skill をダウンロード（zip）**、**パスをコピー** が付きます。お使いのアシスタントが一覧にない場合は、`SKILL.md` を読むフォルダを GenOffice に指定するか、zip を保存してアシスタントにインストールさせましょう。スキルと MCP は並べて置けます。アシスタントはどちらかを自分で選び、そして做的事情はまったく同じです。
+**スキル。**このマシンにあるコーディングエージェントが 1 つにつき 1 行ずつ並んでいます——Claude Code、Codex、Cursor、Gemini CLI、Copilot CLI、OpenCode、Windsurf——どの行にも **インストール**、**更新**、**アンインストール** があり、さらに **別のフォルダにインストール…**、**skill をダウンロード（zip）**、**パスをコピー** が付きます。お使いのアシスタントが一覧にない場合は、`SKILL.md` を読むフォルダを Plot Docs に指定するか、zip を保存してアシスタントにインストールさせましょう。スキルと MCP は並べて置けます。アシスタントはどちらかを自分で選び、そして做的事情はまったく同じです。
 
-**MCP。**用意されている経路は 2 つです。**アシスタントが起動する（推奨）** では、表示された設定をクライアントに追加すれば、アシスタントが自分でサーバーを起動します。**ローカル HTTP サーバー** は、アプリが代わりに実行してくれます。どちらを選んでも、アシスタントは最終的に GenOffice とやり取りし、あなたがコマンドを 1 つも入力することはありません。
+**MCP。**用意されている経路は 2 つです。**アシスタントが起動する（推奨）** では、表示された設定をクライアントに追加すれば、アシスタントが自分でサーバーを起動します。**ローカル HTTP サーバー** は、アプリが代わりに実行してくれます。どちらを選んでも、アシスタントは最終的に Plot Docs とやり取りし、あなたがコマンドを 1 つも入力することはありません。
 
 ## コマンドラインから登録する
 
 同じことをターミナルから行うこともできます——これは上級者向けの経路で、パネルが見つけられない場所にエージェントがいるときはこちらを使ってください：
 
 ```sh
-genoffice mcp install all
+plotdocs mcp install all
 ```
 
 このマシンにあるコーディングエージェントを見つけ、それぞれの設定に stdio サーバーのエントリを書き、そのファイルの残りは見つかったときの様子のままにしておきます。
 
 ```sh
-genoffice mcp list             # where each agent stands
-genoffice mcp install cursor    # just one
-genoffice mcp uninstall cursor  # take it back out
+plotdocs mcp list             # where each agent stands
+plotdocs mcp install cursor    # just one
+plotdocs mcp uninstall cursor  # take it back out
 ```
 
 通常以外の場所にインストールしたエージェントには `--dir <path>` を指定します。`--force` を付けると、すでに存在するエントリを上書きします。
 
 サーバーが受け取れるものは 1 画面にまとまっています——登録・削除・一覧の各形、HTTP での配信、そして 2 つのスキーマ用のフラグ：
 
-![genoffice mcp --help の実際の出力：install、uninstall、list の各形と、--http、--host、--token、--compact-schemas、--dir、--force の各オプション](img/mcp.png)
+![plotdocs mcp --help の実際の出力：install、uninstall、list の各形と、--http、--host、--token、--compact-schemas、--dir、--force の各オプション](img/mcp.png)
 
 ## アシスタントなしで動かす
 
 別のマシンにあるクライアントには、代わりに HTTP で配信します。
 
 ```sh
-genoffice mcp --http 8765 --token <secret>
+plotdocs mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>` で待ち受ける先が変わります。クライアントには同じトークンを渡してください。
@@ -57,22 +57,22 @@ HTTP の上でもファイルは運べます。`PUT /files/<name>` で 1 つを�
 
 ## スキーマと小さめの予算
 
-`apply` と `create` は `ops`、`cells`、`data` パラメーターを、op ごとの型付きスキーマ付きで公開します。そのスキーマは `genoffice guide <domain> --json` から生成されます。正確ですが、大きなものです。コンテキストウィンドウの狭いクライアントは、代わりに単純な配列を要求できます：
+`apply` と `create` は `ops`、`cells`、`data` パラメーターを、op ごとの型付きスキーマ付きで公開します。そのスキーマは `plotdocs guide <domain> --json` から生成されます。正確ですが、大きなものです。コンテキストウィンドウの狭いクライアントは、代わりに単純な配列を要求できます：
 
 ```sh
-genoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 genoffice mcp
+plotdocs mcp --compact-schemas
+PLOTDOCS_MCP_COMPACT_SCHEMAS=1 plotdocs mcp
 ```
 
 ## なぜスキルなのか
 
-op の語彙を知らないエージェントは当て推量します。スキルにはリファレンスとデザインガイド—— `genoffice guide` が出すのと同じ内容——が入っているので、アシスタントは実際に spec を読んでから op を書けます。上のパネルからインストールするか、ターミナルの `genoffice skill` で入れてください。
+op の語彙を知らないエージェントは当て推量します。スキルにはリファレンスとデザインガイド—— `plotdocs guide` が出すのと同じ内容——が入っているので、アシスタントは実際に spec を読んでから op を書けます。上のパネルからインストールするか、ターミナルの `plotdocs skill` で入れてください。
 
 ## アプリの中で何に手が届くか
 
-サーバーはディスク上のファイルだけに限られません。GenOffice が動いている間、エージェントはウィンドウ越しにも作業できます：
+サーバーはディスク上のファイルだけに限られません。Plot Docs が動いている間、エージェントはウィンドウ越しにも作業できます：
 
-- **`open_in_genoffice`** はファイルをタブで開き、そのタブを前面に出します。
+- **`open_in_plotdocs`** はファイルをタブで開き、そのタブを前面に出します。
 - **`open_documents`** は、開いているすべてのドキュメントを id・種類・パス・未保存の変更の有無まで一覧し、あるドキュメントの内容をその場で読むか、そのまま保存するか、閉じるかを行います。閉じる前に保存しますが、破棄するよう指示されれば保存しません。
 - **コンテンツツール群** は、その id（またはパス）を `document` 引数として取るので、編集はすでに開いているタブに反映され、ウィンドウもそのタブを表示に切り替わります。
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { PAGE_MARK, type HfParagraph } from '@genoffice/docx-engine'
+import { PAGE_MARK, type HfParagraph } from '@plotdocs/docx-engine'
 import {
   hfTabSegments,
   hfWithoutPageMarks,

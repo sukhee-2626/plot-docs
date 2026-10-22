@@ -1,5 +1,5 @@
 /**
- * The shape of a SKILL.md GenOffice found on this machine, shared by the main
+ * The shape of a SKILL.md Plot Docs found on this machine, shared by the main
  * process that reads the files and the renderer that lists them.
  *
  * It lives here rather than beside the reader (`main/imported-skills.ts`) so the
@@ -8,7 +8,7 @@
  * like a bundling mistake tomorrow.
  */
 
-import type { SkillRelevance } from '@genoffice/agent-core'
+import type { SkillRelevance } from '@plotdocs/agent-core'
 
 /** one SKILL.md we found, with everything the palette needs to show it */
 export interface FoundSkill {
@@ -18,9 +18,9 @@ export interface FoundSkill {
   /** absolute path of the SKILL.md, read when the user picks it */
   path: string
   /** where it came from: our own folder, or an agent's directory */
-  source: 'genoffice' | 'agent'
+  source: 'plotdocs' | 'agent'
   /** the agent whose directory it came from, when source is 'agent' */
   agent?: string
-  /** whether it talks about a format GenOffice opens, and on what */
+  /** whether it talks about a format Plot Docs opens, and on what */
   relevance: SkillRelevance
 }

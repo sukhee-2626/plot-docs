@@ -5,7 +5,7 @@
  */
 import React from 'react'
 import { Rect, Text, Line, Circle, Arc, Path } from 'react-konva'
-import type { ChartRenderNode } from '@genoffice/pptx-render'
+import type { ChartRenderNode } from '@plotdocs/pptx-render'
 
 const CHART_FONT = 'Calibri, Carlito, Arial, sans-serif'
 import { displayFontFamily, fillToKonva, smoothTension } from './konva-adapter'

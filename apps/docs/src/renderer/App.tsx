@@ -25,7 +25,7 @@ import {
   createZoomWheelClassifier,
   useAutoSavePref,
   useAiSidebarEnabled,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { wordRangeAtCaret } from './editor/comments'
 import { setFieldInstr, toggleAllFieldCodes, type FieldRange } from './editor/field-codes'
 import { linkTarget } from './editor/link-actions'
@@ -90,7 +90,7 @@ import {
   type ThemeFonts,
   type PictureWatermarkSpec,
   type WatermarkSpec,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import type { AiDocContent, AiSettings, MenuCommand, OpenDocxResult } from '../shared/ipc'
 import { AI_PROVIDERS } from '../shared/ipc'
 import { ZoteroDocumentController } from './zotero/controller'
@@ -818,7 +818,7 @@ export function App() {
   const multipageActiveRef = useRef<number | null>(null)
   const mpFramesRef = useRef<PageFrame[]>([])
   // Word-style dark page (editor/dark-page.ts): the shell's document-page-theme
-  // setting (genoffice#1811) decides which theme the page follows; a light
+  // setting (plotdocs#1811) decides which theme the page follows; a light
   // page theme never shows a dark page, in the dark one it is on by default
   // until the user switches it off, and that choice sticks (dark-page-pref.ts)
   const themeDark = useUiThemeIsDark()
@@ -1871,7 +1871,7 @@ export function App() {
 
   // window title follows the document, so the OS window list and Switch Window show file names
   useEffect(() => {
-    document.title = doc ? doc.fileName : 'GenOffice Docs'
+    document.title = doc ? doc.fileName : 'Plot Docs Docs'
   }, [doc])
 
   useEffect(() => window.desktop.onTeardown?.(() => setTornDown(true)), [])
@@ -2163,7 +2163,7 @@ export function App() {
         bootHandledRef.current = true
         // A failed open (corrupt file etc.) falls back to a blank document —
         // otherwise the tab shows "Opening…" forever with only a status-bar
-        // line explaining why (github.com/genspark-ai/genoffice issue #102).
+        // line explaining why (github.com/Soopus-ai/plotdocs issue #102).
         // 'password': the prompt is up; its cancel path lands on blank instead.
         const outcome = pending ? await loadFile(pending) : 'canceled'
         if (outcome === 'canceled') await resetFile()
@@ -2625,7 +2625,7 @@ export function App() {
       window.desktop.onZoteroRequest(async (request) => {
         try {
           const activeEditor = editorRef.current
-          if (!activeEditor) throw new Error('No active GenOffice document')
+          if (!activeEditor) throw new Error('No active Plot Docs document')
           const controller =
             zoteroControllerRef.current ??
             new ZoteroDocumentController(activeEditor, {
@@ -2694,6 +2694,66 @@ export function App() {
       start: sec?.pageNumberStart !== undefined ? String(sec.pageNumberStart) : '',
     })
   }, [sections, activeSection])
+
+  /** Apply a numbering format chosen in the design studio to the document or cursor section. */
+  const setPageNumeral = useCallback(
+    (next: string, scope: 'document' | 'section' = 'document') => {
+      if (sections.length === 0) return
+      const fmt = next === 'decimal' ? undefined : next
+      const lastIdx = sections.length - 1
+      const indexes =
+        scope === 'document'
+          ? sections.map((_, i) => i)
+          : [Math.min(activeSection, lastIdx)]
+      setSections((prev) =>
+        prev.map((s, i) => (indexes.includes(i) ? { ...s, pageNumberFmt: fmt } : s)),
+      )
+      if (indexes.includes(lastIdx)) {
+        setPgNumEdit((prev) => {
+          const start =
+            prev?.start !== undefined ? prev.start : sections[lastIdx]?.pageNumberStart
+          return {
+            ...(fmt !== undefined ? { fmt } : {}),
+            ...(start !== undefined ? { start } : {}),
+          }
+        })
+      }
+      const dirty = indexes.filter((i) => i !== lastIdx)
+      if (dirty.length) {
+        setPgNumDirtySections((prev) => Array.from(new Set([...prev, ...dirty])))
+      }
+    },
+    [sections, activeSection],
+  )
+
+  /** Custom "start at" from the design studio; the same document/section scope applies. */
+  const setPageStart = useCallback(
+    (start: number, scope: 'document' | 'section' = 'document') => {
+      if (sections.length === 0) return
+      const lastIdx = sections.length - 1
+      const indexes =
+        scope === 'document'
+          ? sections.map((_, i) => i)
+          : [Math.min(activeSection, lastIdx)]
+      setSections((prev) =>
+        prev.map((s, i) => (indexes.includes(i) ? { ...s, pageNumberStart: start } : s)),
+      )
+      if (indexes.includes(lastIdx)) {
+        setPgNumEdit((prev) => {
+          const fmt = prev !== null ? prev.fmt : sections[lastIdx]?.pageNumberFmt
+          return {
+            ...(fmt !== undefined ? { fmt } : {}),
+            start,
+          }
+        })
+      }
+      const dirty = indexes.filter((i) => i !== lastIdx)
+      if (dirty.length) {
+        setPgNumDirtySections((prev) => Array.from(new Set([...prev, ...dirty])))
+      }
+    },
+    [sections, activeSection],
+  )
 
   /** Apply the page-number format to the cursor's section: final section via SaveOptions.pgNumType, others rewrite their sectPr */
   const applyPgNumFormat = useCallback(() => {
@@ -3620,7 +3680,7 @@ export function App() {
     // pixels, so block heights read under a 10% (or 88%) canvas zoom differ from
     // the 100% layout by up to a pixel per line — enough to move page breaks and
     // to park a paragraph in the wrong column of an unequal-width section
-    // (genoffice#1970). Passes measure the canvas at zoom 1 and restore the
+    // (plotdocs#1970). Passes measure the canvas at zoom 1 and restore the
     // view zoom before the viewport-dependent reads (locate).
     let factor = zoom / 100
     const mTopPx = canvasTop
@@ -6211,9 +6271,9 @@ export function App() {
     if (gap) startGapHfEditRef.current(gap)
   }, [])
 
-  // genoffice CLI (`open --block`, `selection`): the shell evaluates this hook
+  // plotdocs CLI (`open --block`, `selection`): the shell evaluates this hook
   useEffect(() => {
-    ;(window as unknown as Record<string, unknown>).__genofficeControl = (req: ControlRequest) =>
+    ;(window as unknown as Record<string, unknown>).__plotdocsControl = (req: ControlRequest) =>
       handleDocsControl(req, editor, doc !== null)
   })
 
@@ -6764,6 +6824,13 @@ export function App() {
       const earlier = sections.slice(0, -1).map((_, i) => i)
       if (earlier.length > 0) setSectionsDirty((d) => [...new Set([...d, ...earlier])])
     },
+    onSectionAll: (next: SectionSettings) => {
+      setSections((prev) => prev.map((s) => ({ ...s, settings: next })))
+      setSection(next)
+      setSectionDirty(true)
+      const earlier = sections.slice(0, -1).map((_, i) => i)
+      if (earlier.length > 0) setSectionsDirty((d) => [...new Set([...d, ...earlier])])
+    },
     onMirrorMargins: (on: boolean) => {
       if (on === mirrorMargins) return
       setMirrorMargins(on)
@@ -6814,6 +6881,20 @@ export function App() {
     },
     onHeader: (next: HeaderFooter) => commitHfAt(0, 'header', headerAreaView, next),
     onPageNumFormat: openPgNumModal,
+    onSetPageNumeral: setPageNumeral,
+    onSetPageStart: setPageStart,
+    onApplyHfVariant: (
+      kind: 'header' | 'footer',
+      variant: HfView,
+      next: HeaderFooter,
+      scope: 'document' | 'section',
+    ) => {
+      const indexes =
+        scope === 'document'
+          ? hfSections.map((_, i) => i)
+          : [Math.min(activeSection, Math.max(0, hfSections.length - 1))]
+      for (const si of indexes) commitHfAt(si, kind, variant, next)
+    },
     onInsertField: insertField,
     onFooter: (next: HeaderFooter) => commitHfAt(lastSectionIdx, 'footer', footerAreaView, next),
     onHfAction: (action: HfAction) => onHfAction(action),

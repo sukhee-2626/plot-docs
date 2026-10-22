@@ -3,9 +3,9 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createHash } from 'node:crypto'
 import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createBlankPptx, openPptx } from '@genoffice/pptx-engine'
+import { createBlankPptx, openPptx } from '@plotdocs/pptx-engine'
 
-// The adapter, not the store: download discipline lives in @genoffice/electron-utils and is tested there, while the mirror URL's origin and the deck's font asks are only knowable here.
+// The adapter, not the store: download discipline lives in @plotdocs/electron-utils and is tested there, while the mirror URL's origin and the deck's font asks are only knowable here.
 
 const storeDir = mkdtempSync(join(tmpdir(), 'slides-font-store-'))
 const fontCdnBaseUrl = 'https://fonts.example.test/v1'
@@ -57,7 +57,7 @@ function serve(entry: { file: string; style: string }): string {
 beforeEach(() => {
   availability.clear()
   payloads.clear()
-  vi.stubEnv('GENOFFICE_FONT_CDN_URL', fontCdnBaseUrl)
+  vi.stubEnv('PLOTDOCS_FONT_CDN_URL', fontCdnBaseUrl)
   vi.mocked(net.fetch).mockReset()
 })
 afterEach(() => {
@@ -101,7 +101,7 @@ describe('the catalog rows this app hands its ribbon', () => {
   })
 
   it('hides the downloadable catalog when no CDN URL is configured', () => {
-    vi.stubEnv('GENOFFICE_FONT_CDN_URL', '')
+    vi.stubEnv('PLOTDOCS_FONT_CDN_URL', '')
     expect(listFontCatalog()).toEqual([])
   })
 
@@ -126,7 +126,7 @@ describe('extractFontCdnBaseUrl', () => {
   it('reads and normalises the packaged mirror URL', () => {
     expect(
       extractFontCdnBaseUrl({
-        genofficeFontCdn: { baseUrl: ' https://fonts.example.test/v1/ ' },
+        plotdocsFontCdn: { baseUrl: ' https://fonts.example.test/v1/ ' },
       }),
     ).toBe(fontCdnBaseUrl)
   })
@@ -180,7 +180,7 @@ describe('downloadFontFamily, through this app env', () => {
   })
 
   it('rejects downloads when no CDN URL is configured', async () => {
-    vi.stubEnv('GENOFFICE_FONT_CDN_URL', '')
+    vi.stubEnv('PLOTDOCS_FONT_CDN_URL', '')
     await expect(downloadFontFamily(FONT_CATALOG[0]!.family)).rejects.toThrow(/unavailable/)
     expect(net.fetch).not.toHaveBeenCalled()
   })
@@ -251,7 +251,7 @@ describe('missingCatalogFonts', () => {
     const missing = missingCatalogFonts({ deck } as never)
     expect(missing).toEqual(['Poppins', 'Rubik'])
 
-    vi.stubEnv('GENOFFICE_FONT_CDN_URL', '')
+    vi.stubEnv('PLOTDOCS_FONT_CDN_URL', '')
     expect(missingCatalogFonts({ deck } as never)).toEqual([])
   })
 })

@@ -2,7 +2,7 @@ import { checkPlaceholders, placeholderSource, REDACT_MARK } from './redact'
 import type { Editor } from '@tiptap/core'
 import type { Node as PmDocNode, Schema } from '@tiptap/pm/model'
 import type { Transaction } from '@tiptap/pm/state'
-import { generateTocFieldXml, type TabStop, type TocEntry } from '@genoffice/docx-engine'
+import { generateTocFieldXml, type TabStop, type TocEntry } from '@plotdocs/docx-engine'
 import { isEastAsianFontName } from '../font-list'
 import { t } from '../i18n/locale'
 import { blockRangePositions, isTrackedDeleted, liveText } from './doc-utils'
@@ -960,7 +960,7 @@ function runFindReplace(op: Op, env: RunEnv): OpResult {
     //    block with none is the document's own text, and a `{{token}}` in it
     //    is content to be filled in rather than a marker of ours — a mail
     //    merge template is the normal case, and policing it is what stopped
-    //    `genoffice merge` from filling a docx at all. Where a block is
+    //    `plotdocs merge` from filling a docx at all. Where a block is
     //    policed, the whole `{{...}}` bag has to match, so a marker cannot be
     //    renamed, split, or shadowed by a token the model invented.
     //

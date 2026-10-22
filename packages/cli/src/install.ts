@@ -13,10 +13,10 @@ import {
 import { basename, dirname, isAbsolute, join, resolve, win32 } from 'node:path'
 
 /**
- * Making `genoffice` reachable from a terminal. The launcher ships inside the app
- * (Resources/cli/genoffice, or genoffice.cmd on Windows); nothing at install time puts
+ * Making `plotdocs` reachable from a terminal. The launcher ships inside the app
+ * (Resources/cli/plotdocs, or plotdocs.cmd on Windows); nothing at install time puts
  * it on PATH for the dmg, so the app tries this on every launch until it
- * succeeds and `genoffice install-cli` repeats it on demand. Best effort
+ * succeeds and `plotdocs install-cli` repeats it on demand. Best effort
  * everywhere: no prompts, no elevation, never an error on the app's startup
  * path. `inspectCliLink` reports the same states without writing anything.
  */
@@ -49,9 +49,9 @@ export interface InstallOutcome {
  * inherit, so it is the target even when it does not exist yet: a missing
  * directory is reported as unwritable (creating it needs root), not skipped.
  * When it is not writable the user's own bin dir takes the link, so a
- * non-admin install still gets a `genoffice` command.
+ * non-admin install still gets a `plotdocs` command.
  *
- * The Homebrew prefix is never a candidate (genoffice#1914): `/opt/homebrew/bin` on
+ * The Homebrew prefix is never a candidate (plotdocs#1914): `/opt/homebrew/bin` on
  * Apple Silicon, `/usr/local/bin` on an Intel Mac with a classic install,
  * `/home/linuxbrew/.linuxbrew/bin` on Linux. Homebrew manages and tracks that
  * directory itself; a link we leave there is untracked by brew, dangles once
@@ -61,7 +61,7 @@ export interface InstallOutcome {
  * without Homebrew keeps `/usr/local/bin`.
  *
  * A user who wants it there anyway still can: `ln -sf "$(dirname "$(which
- * genoffice)")/genoffice" "$(brew --prefix)/bin/genoffice"`. What is removed
+ * plotdocs)")/plotdocs" "$(brew --prefix)/bin/plotdocs"`. What is removed
  * is the uninvited write, not the possibility.
  */
 export function defaultCandidateDirs(
@@ -121,13 +121,13 @@ export function installCliLink(opts: InstallOptions): InstallOutcome {
   const manual = manualCommand(opts.launcher)
   let occupied: string | undefined
   for (const dir of dirs) {
-    const link = join(dir, 'genoffice')
+    const link = join(dir, 'plotdocs')
     const state = linkState(link, opts.launcher)
     if (state === 'ours' && readlinkSync(link) === opts.launcher) {
       return withPathHint({ status: 'present', location: link }, dir, userDirs, env)
     }
     if (state === 'file' || state === 'foreign') {
-      // somebody else's genoffice (a file, or npm's symlink): never clobber it
+      // somebody else's plotdocs (a file, or npm's symlink): never clobber it
       occupied = link
       continue
     }
@@ -149,7 +149,7 @@ export function installCliLink(opts: InstallOptions): InstallOutcome {
     }
   }
   if (occupied) return { status: 'occupied', location: occupied, manual }
-  return { status: 'unwritable', location: join(dirs[0] ?? '/usr/local/bin', 'genoffice'), manual }
+  return { status: 'unwritable', location: join(dirs[0] ?? '/usr/local/bin', 'plotdocs'), manual }
 }
 
 /** Read-only twin of `installCliLink`: what a fresh terminal would find, without changing anything. */
@@ -164,7 +164,7 @@ export function inspectCliLink(opts: InstallOptions): InstallOutcome {
   let occupied: string | undefined
   // same walk installCliLink does: an occupied name is skipped, the first free writable dir wins
   for (const dir of dirs) {
-    const link = join(dir, 'genoffice')
+    const link = join(dir, 'plotdocs')
     const state = linkState(link, opts.launcher)
     if (state === 'ours' && readlinkSync(link) === opts.launcher) {
       return withPathHint({ status: 'present', location: link }, dir, userDirs, env)
@@ -178,11 +178,11 @@ export function inspectCliLink(opts: InstallOptions): InstallOutcome {
     }
   }
   if (occupied) return { status: 'occupied', location: occupied, manual }
-  return { status: 'unwritable', location: join(dirs[0] ?? '/usr/local/bin', 'genoffice'), manual }
+  return { status: 'unwritable', location: join(dirs[0] ?? '/usr/local/bin', 'plotdocs'), manual }
 }
 
 function manualCommand(launcher: string): string {
-  return `sudo mkdir -p /usr/local/bin && sudo ln -sf "${launcher}" /usr/local/bin/genoffice`
+  return `sudo mkdir -p /usr/local/bin && sudo ln -sf "${launcher}" /usr/local/bin/plotdocs`
 }
 
 function linkState(
@@ -204,9 +204,9 @@ function linkState(
 
 /**
  * A link is ours when it resolves to the launcher we are installing, or to a
- * `genoffice` launcher shipped by another copy of the app (an earlier version,
+ * `plotdocs` launcher shipped by another copy of the app (an earlier version,
  * a second install dir): one that has our CLI bundle or the Windows twin beside
- * it. A path that merely ends in `/cli/genoffice` belongs to whoever put it there.
+ * it. A path that merely ends in `/cli/plotdocs` belongs to whoever put it there.
  */
 export function isOurLauncher(target: string, launcher: string): boolean {
   let real: string
@@ -218,9 +218,9 @@ export function isOurLauncher(target: string, launcher: string): boolean {
   try {
     if (real === realpathSync(launcher)) return true
   } catch {}
-  if (basename(real) !== 'genoffice') return false
+  if (basename(real) !== 'plotdocs') return false
   const dir = dirname(real)
-  return existsSync(join(dir, 'genoffice.cjs')) || existsSync(join(dir, 'genoffice.cmd'))
+  return existsSync(join(dir, 'plotdocs.cjs')) || existsSync(join(dir, 'plotdocs.cmd'))
 }
 
 function writable(dir: string): boolean {
@@ -269,9 +269,9 @@ const WIN_PATH_READ =
 // best effort: a locked-down PowerShell may refuse Add-Type, the PATH edit still stands
 const WIN_BROADCAST =
   'try { ' +
-  'Add-Type -Namespace GenOfficePath -Name Native -MemberDefinition \'[DllImport("user32.dll", SetLastError=true, CharSet=CharSet.Auto)] public static extern IntPtr SendMessageTimeout(IntPtr hWnd, uint Msg, UIntPtr wParam, string lParam, uint fuFlags, uint uTimeout, out UIntPtr lpdwResult);\'; ' +
+  'Add-Type -Namespace SSOfficePath -Name Native -MemberDefinition \'[DllImport("user32.dll", SetLastError=true, CharSet=CharSet.Auto)] public static extern IntPtr SendMessageTimeout(IntPtr hWnd, uint Msg, UIntPtr wParam, string lParam, uint fuFlags, uint uTimeout, out UIntPtr lpdwResult);\'; ' +
   '$r = [UIntPtr]::Zero; ' +
-  "[void][GenOfficePath.Native]::SendMessageTimeout([IntPtr]0xffff, 0x1A, [UIntPtr]::Zero, 'Environment', 2, 5000, [ref]$r) " +
+  "[void][SSOfficePath.Native]::SendMessageTimeout([IntPtr]0xffff, 0x1A, [UIntPtr]::Zero, 'Environment', 2, 5000, [ref]$r) " +
   '} catch {}; '
 
 function psQuote(text: string): string {

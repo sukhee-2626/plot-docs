@@ -132,7 +132,7 @@ Common mistakes
 Adds a typeset equation (PowerPoint's own math format) as a centered paragraph
 at the `position` (`"end"`, default, or `"start"`) of a text or shape element,
 or in a new text box at `box` (EMU, unit suffixes allowed). Older readers and
-the GenOffice preview show the linearized text (`E=mc²`); PowerPoint 2010+
+the Plot Docs preview show the linearized text (`E=mc²`); PowerPoint 2010+
 renders the formula. LaTeX subset: `\frac`, `\sqrt[n]`, `^`, `_`,
 `\sum`/`\int`/`\prod` with limits, `\left(` `\right)`, matrices, Greek
 letters, accents, `\text{}`.

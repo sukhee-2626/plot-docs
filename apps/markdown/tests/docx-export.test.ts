@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import { parseDocx } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
 import { buildExtensions } from '../src/renderer/editor/extensions'
 import { exportDocxBytes, mapDocToSaveBlocks } from '../src/renderer/export/docxExport'
 
@@ -158,11 +158,11 @@ describe('docx export', () => {
   })
 
   it('links survive as hyperlink runs', async () => {
-    const parsed = await exportAndParse('Visit [Genspark](https://genspark.ai) now.')
+    const parsed = await exportAndParse('Visit [Soopus](https://plotxyz.ai) now.')
     const para = parsed.blocks.find((b) => b.type === 'paragraph')
     const link = para?.runs?.find((r) => r.link)
-    expect(link?.text).toBe('Genspark')
-    expect(link?.link?.href).toBe('https://genspark.ai')
+    expect(link?.text).toBe('Soopus')
+    expect(link?.link?.href).toBe('https://plotxyz.ai')
   })
 
   it('unresolvable images fall back to alt text', async () => {

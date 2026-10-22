@@ -25,8 +25,8 @@ import { IShortcutService, KeyCode, MetaKeys } from '@univerjs/ui'
 import { whenSheetEditorActivated } from '@univerjs/sheets-ui'
 import type { UniverRuntime } from './univer-state'
 
-const MOVE_WORD_ID = 'genoffice.command.editor-move-word'
-const SELECT_WORD_ID = 'genoffice.command.editor-select-word'
+const MOVE_WORD_ID = 'plotdocs.command.editor-move-word'
+const SELECT_WORD_ID = 'plotdocs.command.editor-select-word'
 
 /** every control char is a stream token except TAB, which is just whitespace */
 const isBoundary = (ch: string | undefined): boolean =>

@@ -6,7 +6,7 @@ import { launchShell, closeAndSaveVideo, waitForPageWithUrl, screenshotPath } fr
 
 test.describe('markdown editor', () => {
   test('newly opened long Markdown starts at the title', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-scroll-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-scroll-'))
     const mdPath = join(dir, 'scroll-repro.md')
     const lines = Array.from(
       { length: 30 },
@@ -59,7 +59,7 @@ test.describe('markdown editor', () => {
   })
 
   test('legacy fenced divs degrade on open; slash menu inserts a GFM task list', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-'))
     const mdPath = join(dir, 'legacy.md')
     await writeFile(mdPath, '# Doc\n\n:::callout {type="info"}\nBe careful.\n:::\n')
 
@@ -99,7 +99,7 @@ test.describe('markdown editor', () => {
   })
 
   test('opens a .md file from argv, edits and saves it back', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-'))
     const mdPath = join(dir, 'note.md')
     await writeFile(mdPath, '---\ntitle: Note\n---\n\n# Hello\n\nSome **bold** text.\n')
 
@@ -167,7 +167,7 @@ test.describe('markdown editor', () => {
   })
 
   test('ribbon AI preset button opens the panel and sends the instruction', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-'))
     const mdPath = join(dir, 'summary.md')
     await writeFile(mdPath, '# Topic\n\nSome content worth summarizing.\n')
 
@@ -197,7 +197,7 @@ test.describe('markdown editor', () => {
   })
 
   test('ribbon bold serializes as GFM; quick-access save and undo work', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-'))
     const mdPath = join(dir, 'style.md')
     await writeFile(mdPath, 'Hello style\n')
 
@@ -238,7 +238,7 @@ test.describe('markdown editor', () => {
   })
 
   test('renders a relative assets/ image through the md-asset protocol', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-'))
     const PNG_1PX =
       'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='
     await mkdir(join(dir, 'assets'))
@@ -268,7 +268,7 @@ test.describe('markdown editor', () => {
   })
 
   test('Ctrl+F finds across the document and Replace All rewrites the saved file', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-md-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-md-'))
     const mdPath = join(dir, 'find.md')
     await writeFile(mdPath, '# Alpha\n\nalpha beta **alpha**\n')
 

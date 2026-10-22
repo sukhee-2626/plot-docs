@@ -6,7 +6,7 @@
  */
 import { describe, it, expect } from 'vitest'
 import { connectorPoints, connectorBezier } from '../src/preset-geometry'
-import { openPptx } from '@genoffice/pptx-engine'
+import { openPptx } from '@plotdocs/pptx-engine'
 import { buildRenderSlide } from '../src/index'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'

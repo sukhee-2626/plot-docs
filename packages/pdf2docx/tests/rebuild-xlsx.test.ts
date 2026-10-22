@@ -622,7 +622,7 @@ describe('splitBandRows via rebuildXlsx (P40)', () => {
     }
   }
 
-  it('split sub-rows keep the list marker and the TOC page number (genoffice#1380)', () => {
+  it('split sub-rows keep the list marker and the TOC page number (plotdocs#1380)', () => {
     const table = bandTable(4)
     const [refCell, descCell] = table.rows[1]! as [TableCellBlock, TableCellBlock]
     const refBlock = refCell.blocks[0] as TextBlock

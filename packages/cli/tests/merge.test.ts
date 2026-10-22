@@ -54,7 +54,7 @@ async function templateDocx(dir: string): Promise<string> {
   return out
 }
 
-describe('genoffice merge', () => {
+describe('plotdocs merge', () => {
   it('fills a docx template, keeps table cells and reports split and unknown placeholders', async () => {
     const dir = tempDir()
     const template = await templateDocx(dir)
@@ -397,7 +397,7 @@ describe('genoffice merge', () => {
     const out = join(dir, 'deck.pptx')
     const r = await run(['merge', template, '--data', dataFile(dir, DATA), '--out', out, '--json'])
     expect(r.code).toBe(0)
-    // the deck engine fills a placeholder split over runs (genoffice#1052); only the
+    // the deck engine fills a placeholder split over runs (plotdocs#1052); only the
     // nested-group and missing-key cases stay unresolved
     expect(r.json().summary).toBe('6 placeholders filled, 2 unresolved')
     expect(r.json().detail.used_keys).toEqual(['name', 'amount', 'item'])

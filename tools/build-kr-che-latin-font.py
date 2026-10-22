@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Build GenOffice Che Latin KR: half-width Latin for -Che fixed-pitch faces.
+"""Build PlotDocs Che Latin KR: half-width Latin for -Che fixed-pitch faces.
 
 Word renders BatangChe/GulimChe/DotumChe/GungsuhChe declares with the real
 Office faces, whose Latin is fixed-pitch at exactly 0.5 em (probe 2026-08-24);
 our KR chains laid those runs with proportional Latin instead, drifting line
 breaks (prod100r3/50 uses DotumChe on 3.7k runs). This builds a tiny
-ASCII-only face from the GenOffice Sans KR outlines (Noto-derived, OFL),
+ASCII-only face from the PlotDocs Sans KR outlines (Noto-derived, OFL),
 advances forced to 0.5 em and each glyph reshaped to DotumChe's per-glyph ink
 box measured from the local Office font at build time. Only the transformed
 Noto outlines ship.
@@ -23,11 +23,11 @@ from fontTools.pens.transformPen import TransformPen
 from fontTools.subset import Options, Subsetter
 from fontTools.ttLib import TTFont
 
-SOURCE = "apps/docs/src/renderer/fonts/GenOfficeSansKR-Regular-subset.woff2"
-DEFAULT_OUT = "apps/docs/src/renderer/fonts/GenOfficeCheLatinKR.woff2"
+SOURCE = "apps/docs/src/renderer/fonts/PlotDocsSansKR-Regular-subset.woff2"
+DEFAULT_OUT = "apps/docs/src/renderer/fonts/PlotDocsCheLatinKR.woff2"
 DOTUMCHE = ("/Applications/Microsoft Word.app/Contents/Resources/DFonts/gulim.ttc", 3)
-FAMILY = "GenOffice Che Latin KR"
-PS_NAME = "GenOfficeCheLatinKR"
+FAMILY = "PlotDocs Che Latin KR"
+PS_NAME = "PlotDocsCheLatinKR"
 
 
 def main() -> None:

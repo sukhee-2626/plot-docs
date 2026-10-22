@@ -14,7 +14,7 @@ import {
 import { basename, dirname, extname, isAbsolute, join, relative, resolve, sep } from 'node:path'
 import { atomicWriteFile } from './atomic-write'
 
-export const ASSET_MANIFEST_FILENAME = '.genoffice-assets.json'
+export const ASSET_MANIFEST_FILENAME = '.plotdocs-assets.json'
 
 export interface OwnedAssetRecord {
   name: string

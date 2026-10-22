@@ -11,7 +11,7 @@ import {
 let dir: string
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), 'genoffice-kb-read-'))
+  dir = mkdtempSync(join(tmpdir(), 'plotdocs-kb-read-'))
 })
 afterEach(() => {
   rmSync(dir, { recursive: true, force: true })

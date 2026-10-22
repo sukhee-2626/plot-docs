@@ -1,19 +1,19 @@
 # Command line and agents
 
-Every install ships a `genoffice` command that drives the same engines the window does — the same parsers, the same writer, the same renderer. A file the app saves and a file the command writes are the same file, and a check the app's AI panel passes is a check the command passes.
+Every install ships a `plotdocs` command that drives the same engines the window does — the same parsers, the same writer, the same renderer. A file the app saves and a file the command writes are the same file, and a check the app's AI panel passes is a check the command passes.
 
 ```sh
-genoffice --help          # every command
-genoffice guide slides    # the op reference, for writing your own
+plotdocs --help          # every command
+plotdocs guide slides    # the op reference, for writing your own
 ```
 
 That is the whole surface in one screen — every command with a line saying what it does, then the global options and the exit codes:
 
-![The real output of genoffice --help: the version banner, every command with a one-line description, and the global options and exit codes](img/cli.png)
+![The real output of plotdocs --help: the version banner, every command with a one-line description, and the global options and exit codes](img/cli.png)
 
 ## Getting the command
 
-macOS and Windows ship it inside the app bundle. To use it by name, run `genoffice install-cli` once: it links the bundled binary into a directory on your PATH — on macOS `/usr/local/bin` where that is not a Homebrew prefix (Homebrew's own directories are never touched), otherwise your user bin — or into your user `PATH` on Windows.
+macOS and Windows ship it inside the app bundle. To use it by name, run `plotdocs install-cli` once: it links the bundled binary into a directory on your PATH — on macOS `/usr/local/bin` where that is not a Homebrew prefix (Homebrew's own directories are never touched), otherwise your user bin — or into your user `PATH` on Windows.
 
 ## The commands worth knowing
 
@@ -31,26 +31,26 @@ macOS and Windows ship it inside the app bundle. To use it by name, run `genoffi
 | `merge`           | Fill `{{key}}` placeholders in a `.docx`, `.pptx` or `.xlsx` template.                                                                                                                                              |
 | `capabilities`    | Report which cloud features are configured on this machine.                                                                                                                                                         |
 | `guide`           | The op reference and design guides, generated from the same definitions the executor validates against — so it cannot drift from what `apply` accepts. `--json` returns it with each op's schema.                   |
-| `install-cli`     | Put `genoffice` on the `PATH`.                                                                                                                                                                                      |
-| `skill`           | List the coding agents found on this machine and install or update the GenOffice skill in them.                                                                                                                     |
+| `install-cli`     | Put `plotdocs` on the `PATH`.                                                                                                                                                                                      |
+| `skill`           | List the coding agents found on this machine and install or update the Plot Docs skill in them.                                                                                                                     |
 | `mcp`             | Serve every command as a Model Context Protocol tool. See **Connecting a coding agent**.                                                                                                                            |
 
 ## Editing: docs, sheets, slides
 
-Each of `genoffice docs`, `genoffice sheet` and `genoffice slides` takes a sub-command first — `read`, `apply`, `check`, and for slides `audit`, `render`, `replace` — and goes through the same write path the app uses. They share one vocabulary: an **op** is a single edit, and a **spec** is a list of ops applied in order.
+Each of `plotdocs docs`, `plotdocs sheet` and `plotdocs slides` takes a sub-command first — `read`, `apply`, `check`, and for slides `audit`, `render`, `replace` — and goes through the same write path the app uses. They share one vocabulary: an **op** is a single edit, and a **spec** is a list of ops applied in order.
 
 ```sh
-genoffice sheet read report.xlsx
-genoffice slides apply deck.pptx --ops ops.json --dry-run
-genoffice docs apply brief.docx --ops ops.json
+plotdocs sheet read report.xlsx
+plotdocs slides apply deck.pptx --ops ops.json --dry-run
+plotdocs docs apply brief.docx --ops ops.json
 ```
 
 `--dry-run` reports what a batch would do and writes nothing, which is the cheap way to check a spec before it lands. The AI panel in the app runs on exactly these ops, so anything you can ask it to do you can script.
 
 ## Model Context Protocol
 
-`genoffice mcp` serves every command as an MCP tool, and `genoffice mcp install <agent|all>` registers it in a coding agent's own config. See **Connecting a coding agent** for that side.
+`plotdocs mcp` serves every command as an MCP tool, and `plotdocs mcp install <agent|all>` registers it in a coding agent's own config. See **Connecting a coding agent** for that side.
 
 ## What the command does not do
 
-It reads and writes the file. It is not the app: there is no window, and the in-app update dialog does not apply. Anything that needs the window — the AI panel, the QC pass over a rendered slide — has to wait for you to open the file. `genoffice render` gets you the pixels without it, and `genoffice slides` audits a deck's layout on its own.
+It reads and writes the file. It is not the app: there is no window, and the in-app update dialog does not apply. Anything that needs the window — the AI panel, the QC pass over a rendered slide — has to wait for you to open the file. `plotdocs render` gets you the pixels without it, and `plotdocs slides` audits a deck's layout on its own.

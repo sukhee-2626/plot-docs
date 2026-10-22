@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { moveSectionDir } from '../src/renderer/slide-actions'
 import type { ActionCtx } from '../src/renderer/action-context'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 
 // export-render pulls node-canvas, which the jsdom test environment cannot load
 vi.mock('../src/renderer/export-render', () => ({ renderSlidesToPngBase64: vi.fn() }))

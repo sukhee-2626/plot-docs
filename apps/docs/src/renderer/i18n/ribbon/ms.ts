@@ -191,7 +191,7 @@ export const ms = {
   ribbonReplaceTip: 'Cari dan ganti teks',
   ribbonSelectAll: 'Pilih Semua',
   ribbonSelectAllTip: 'Pilih seluruh dokumen',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Buka pembantu AI',
   ribbonRemoveTableStyleTip: 'Alih keluar gaya jadual',
   ribbonNoStyle: 'Tiada Gaya',

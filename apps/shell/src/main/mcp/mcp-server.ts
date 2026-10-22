@@ -7,7 +7,7 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import type { ZodRawShape } from 'zod'
 
 /**
- * Local MCP server for GenOffice.
+ * Local MCP server for Plot Docs.
  *
  * Lives in the Electron main process, so it only exists while the app runs.
  * Speaks both the current Streamable HTTP transport (`/mcp`) and the legacy SSE
@@ -96,7 +96,7 @@ export class McpServerService {
   // ── tool registration ─────────────────────────────────────────────────────
 
   private createSessionServer(): McpServer {
-    const server = new McpServer({ name: 'GenOffice', version: this.version })
+    const server = new McpServer({ name: 'Plot Docs', version: this.version })
     // a factory gives each connected client its own tool instances (session
     // state lives in their closures); otherwise the fixed set is shared
     const tools = this.toolsFactory ? this.toolsFactory() : this.tools
@@ -146,7 +146,7 @@ export class McpServerService {
     if (url.pathname === '/health' && req.method === 'GET') {
       return this.json(res, 200, {
         status: 'ok',
-        server: 'GenOffice',
+        server: 'Plot Docs',
         transport: 'StreamableHTTP + SSE',
         port: this.port,
       })
@@ -309,7 +309,7 @@ export class McpServerService {
   /**
    * A malformed body is a client error, not a server fault: answering 500
    * "internal error" hides the actual problem (bad JSON) from the caller and
-   * reads as a GenOffice bug. Answers the JSON-RPC parse error itself and
+   * reads as a Plot Docs bug. Answers the JSON-RPC parse error itself and
    * returns null; the caller stops there.
    */
   private async readBodyOrReject(

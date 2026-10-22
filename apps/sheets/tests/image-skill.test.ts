@@ -65,7 +65,7 @@ describe('image skill: generate_image', () => {
 
   it('propagates generation errors (e.g. not logged in)', async () => {
     stubDesktopApi({
-      generateImage: vi.fn().mockResolvedValue({ error: 'Genspark account is not logged in' }),
+      generateImage: vi.fn().mockResolvedValue({ error: 'Soopus account is not logged in' }),
     })
     const result = await createImageSkill().executeTool(
       call('generate_image', { prompt: 'a chart mascot' }),

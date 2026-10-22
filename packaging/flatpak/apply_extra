@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Unpack the extra-data GenOffice deb into /app/extra/app (genoffice#1858).
+"""Unpack the extra-data PlotDocs deb into /app/extra/app (plotdocs#1858).
 
 The deb is fetched by flatpak at install time (see the extra-data source in
-com.genoffice.app.json) and lands at /app/extra/genoffice.deb. The freedesktop
+ai.plotxyz.plotdocs.app.json) and lands at /app/extra/plotdocs.deb. The freedesktop
 runtime ships no ar/dpkg, so the 60-byte ar headers are walked by hand and the
 payload member data.tar.* is extracted with the standard library's tarfile.
-The first launch runs this (see genoffice.sh); /app/extra is the only
+The first launch runs this (see plotdocs.sh); /app/extra is the only
 writable location under /app once the app is installed.
 """
 
@@ -16,7 +16,7 @@ import sys
 import tarfile
 
 EXTRA = "/app/extra"
-DEB = os.path.join(EXTRA, "genoffice.deb")
+DEB = os.path.join(EXTRA, "plotdocs.deb")
 OUT = os.path.join(EXTRA, "app")
 
 
@@ -64,11 +64,11 @@ def main():
         tar.extractall(OUT, filter="data")
     os.remove(tar_path)
     os.remove(DEB)
-    binary = os.path.join(OUT, "opt/GenOffice/genoffice")
+    binary = os.path.join(OUT, "opt/PlotDocs/plotdocs")
     if not os.path.isfile(binary):
         die(f"deb payload lacks {binary}")
     os.chmod(binary, os.stat(binary).st_mode | stat.S_IXUSR)
-    print("apply_extra: GenOffice unpacked to", OUT)
+    print("apply_extra: PlotDocs unpacked to", OUT)
 
 
 if __name__ == "__main__":

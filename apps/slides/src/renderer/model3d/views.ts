@@ -1,4 +1,4 @@
-import { NO_ROTATION, type Model3dRotation } from '@genoffice/pptx-engine/model3d'
+import { NO_ROTATION, type Model3dRotation } from '@plotdocs/pptx-engine/model3d'
 import type { StringKey } from '../i18n/locale'
 
 /** am3d:rot units */

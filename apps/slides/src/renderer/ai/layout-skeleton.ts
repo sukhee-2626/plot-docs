@@ -1,7 +1,7 @@
 /**
  * Layout skeleton: the recurring "chrome" geometry of a deck (title box, brand
  * image slot, accent shapes, background), extracted deterministically from the
- * current slides and stored inside a style template (genoffice#1821).
+ * current slides and stored inside a style template (plotdocs#1821).
  *
  * A saved style template used to carry only the Style Skill text — colors and
  * fonts — so pages generated from it reinvented the layout every time and brand
@@ -12,7 +12,7 @@
  * Pure and Node-testable: input is the render tree (absolute px boxes), output
  * is plain JSON (what ai:save-style-template stores) or prompt text.
  */
-import type { RenderNode, RenderSlide, ShapeRenderNode } from '@genoffice/pptx-render'
+import type { RenderNode, RenderSlide, ShapeRenderNode } from '@plotdocs/pptx-render'
 
 export type SkeletonRole = 'cover' | 'content' | 'closing'
 

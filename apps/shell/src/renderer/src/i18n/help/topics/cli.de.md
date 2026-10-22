@@ -1,19 +1,19 @@
 # Kommandozeile und Agenten
 
-Jede Installation bringt den Befehl `genoffice` mit, der dieselben Engines antreibt wie das Fenster: dieselben Parser, denselben Writer, denselben Renderer. Eine Datei, die die App speichert, und eine Datei, die der Befehl schreibt, sind dieselbe Datei, und eine Prüfung, die der KI-Bereich der App besteht, besteht auch der Befehl.
+Jede Installation bringt den Befehl `plotdocs` mit, der dieselben Engines antreibt wie das Fenster: dieselben Parser, denselben Writer, denselben Renderer. Eine Datei, die die App speichert, und eine Datei, die der Befehl schreibt, sind dieselbe Datei, und eine Prüfung, die der KI-Bereich der App besteht, besteht auch der Befehl.
 
 ```sh
-genoffice --help          # every command
-genoffice guide slides    # the op reference, for writing your own
+plotdocs --help          # every command
+plotdocs guide slides    # the op reference, for writing your own
 ```
 
 Das ist die gesamte Oberfläche auf einem Bildschirm — jeder Befehl mit einer Zeile dazu, was er bewirkt, dann die globalen Optionen und die Exit-Codes:
 
-![Die echte Ausgabe von genoffice --help: die Versionsbanner, jeder Befehl mit einzeiliger Beschreibung sowie die globalen Optionen und die Exit-Codes](img/cli.png)
+![Die echte Ausgabe von plotdocs --help: die Versionsbanner, jeder Befehl mit einzeiliger Beschreibung sowie die globalen Optionen und die Exit-Codes](img/cli.png)
 
 ## Den Befehl bereitstellen
 
-macOS und Windows liefern es im App-Bundle mit. Um es beim Namen aufzurufen, einmal `genoffice install-cli` ausführen: es verlinkt die gebündelte Binärdatei in ein Verzeichnis Ihres PATH — auf macOS `/usr/local/bin`, sofern das kein Homebrew-Präfix ist (Homebrews eigene Verzeichnisse werden nie angetastet), sonst Ihr Benutzer-bin — oder unter Windows in Ihren Benutzer-`PATH`.
+macOS und Windows liefern es im App-Bundle mit. Um es beim Namen aufzurufen, einmal `plotdocs install-cli` ausführen: es verlinkt die gebündelte Binärdatei in ein Verzeichnis Ihres PATH — auf macOS `/usr/local/bin`, sofern das kein Homebrew-Präfix ist (Homebrews eigene Verzeichnisse werden nie angetastet), sonst Ihr Benutzer-bin — oder unter Windows in Ihren Benutzer-`PATH`.
 
 ## Die Befehle, die man kennen sollte
 
@@ -31,26 +31,26 @@ macOS und Windows liefern es im App-Bundle mit. Um es beim Namen aufzurufen, ein
 | `merge`           | Die Platzhalter `{{key}}` in einer Vorlage `.docx`, `.pptx` oder `.xlsx` füllen.                                                                                                                                                                                      |
 | `capabilities`    | Melden, welche Cloud-Funktionen auf diesem Rechner konfiguriert sind.                                                                                                                                                                                                 |
 | `guide`           | Die op-Referenz und die Design-Leitfäden, erzeugt aus genau den Definitionen, gegen die der Executor prüft — sie kann also nicht von dem abweichen, was `apply` akzeptiert. `--json` liefert sie mit dem Schema jedes ops.                                            |
-| `install-cli`     | `genoffice` in den `PATH` legen.                                                                                                                                                                                                                                      |
-| `skill`           | Die auf diesem Rechner gefundenen Coding-Agenten auflisten und den GenOffice-Skill dort installieren oder aktualisieren.                                                                                                                                              |
+| `install-cli`     | `plotdocs` in den `PATH` legen.                                                                                                                                                                                                                                      |
+| `skill`           | Die auf diesem Rechner gefundenen Coding-Agenten auflisten und den Plot Docs-Skill dort installieren oder aktualisieren.                                                                                                                                              |
 | `mcp`             | Jeden Befehl als Model-Context-Protocol-Werkzeug bereitstellen. Siehe **Einen Coding-Agenten anbinden**.                                                                                                                                                              |
 
 ## Bearbeiten: Dokumente, Tabellen, Folien
 
-`genoffice docs`, `genoffice sheet` und `genoffice slides` lesen und schreiben über denselben Pfad wie die App und teilen ein Vokabular: ein **op** ist eine einzelne Änderung, und eine **spec** ist eine Liste von ops, die der Reihe nach angewendet werden.
+`plotdocs docs`, `plotdocs sheet` und `plotdocs slides` lesen und schreiben über denselben Pfad wie die App und teilen ein Vokabular: ein **op** ist eine einzelne Änderung, und eine **spec** ist eine Liste von ops, die der Reihe nach angewendet werden.
 
 ```sh
-genoffice sheet read report.xlsx
-genoffice slides apply deck.pptx --ops ops.json --dry-run
-genoffice docs apply brief.docx --ops ops.json
+plotdocs sheet read report.xlsx
+plotdocs slides apply deck.pptx --ops ops.json --dry-run
+plotdocs docs apply brief.docx --ops ops.json
 ```
 
 `--dry-run` meldet, was ein Stapel tun würde, und schreibt nichts — so prüfen Sie eine spec günstig, bevor sie landet. Der KI-Bereich der App läuft auf genau diesen ops, Sie können also alles, was Sie ihm anvertrauen können, auch skripten.
 
 ## Model Context Protocol
 
-`genoffice mcp` stellt jeden Befehl als MCP-Werkzeug bereit, und `genoffice mcp install <agent|all>` registriert es in der Konfiguration eines Coding-Agenten. Diese Seite steht in **Einen Coding-Agenten anbinden**.
+`plotdocs mcp` stellt jeden Befehl als MCP-Werkzeug bereit, und `plotdocs mcp install <agent|all>` registriert es in der Konfiguration eines Coding-Agenten. Diese Seite steht in **Einen Coding-Agenten anbinden**.
 
 ## Was der Befehl nicht tut
 
-Er liest und schreibt die Datei. Er ist nicht die App: es gibt kein Fenster, und der Aktualisierungsdialog in der App gilt hierfür nicht. Alles, was das Fenster braucht — der KI-Bereich, die QC-Prüfung einer gerenderten Folie —, wartet darauf, dass Sie die Datei öffnen. `genoffice render` liefert Ihnen die Pixel auch ohne Fenster, und `genoffice slides` prüft das Layout eines Decks eigenständig.
+Er liest und schreibt die Datei. Er ist nicht die App: es gibt kein Fenster, und der Aktualisierungsdialog in der App gilt hierfür nicht. Alles, was das Fenster braucht — der KI-Bereich, die QC-Prüfung einer gerenderten Folie —, wartet darauf, dass Sie die Datei öffnen. `plotdocs render` liefert Ihnen die Pixel auch ohne Fenster, und `plotdocs slides` prüft das Layout eines Decks eigenständig.

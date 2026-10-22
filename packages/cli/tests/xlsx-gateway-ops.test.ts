@@ -43,7 +43,7 @@ async function apply(path: string, ops: unknown[], extra: string[] = []) {
   return run(['sheet', 'apply', path, '--ops', file, '--json', ...extra])
 }
 
-describe('genoffice sheet apply --ops: gateway-written features', () => {
+describe('plotdocs sheet apply --ops: gateway-written features', () => {
   it('writes freeze panes, hidden rows/cols, page setup, hyperlinks and a note', async () => {
     const dir = tempDir()
     const out = await book(dir)
@@ -80,7 +80,7 @@ describe('genoffice sheet apply --ops: gateway-written features', () => {
     const comments = [...p.keys()].find((k) => /xl\/comments\d*\.xml$/.test(k))
     expect(comments).toBeDefined()
     expect(p.get(comments!)).toContain('Provisional figure')
-    expect(p.get(comments!)).toContain('<author>GenOffice</author>')
+    expect(p.get(comments!)).toContain('<author>Plot Docs</author>')
 
     // a second batch keeps the first note (the whole comment set is rewritten from the file's state)
     const again = await apply(out, [{ op: 'set_note', address: 'C2', text: 'Second note' }])
@@ -438,7 +438,7 @@ describe('genoffice sheet apply --ops: gateway-written features', () => {
   })
 })
 
-describe('genoffice sheet read: features and --formats', () => {
+describe('plotdocs sheet read: features and --formats', () => {
   it.skipIf(!xlsxSidecarPath())(
     'reports panes, filter, merges, charts and cell formats',
     async () => {
@@ -497,7 +497,7 @@ describe('genoffice sheet read: features and --formats', () => {
   )
 })
 
-describe('genoffice sheet apply --ops: pivots, sparklines, print setup', () => {
+describe('plotdocs sheet apply --ops: pivots, sparklines, print setup', () => {
   const SALES = [
     ['region', 'product', 'amount'],
     ['North', 'A', 10],

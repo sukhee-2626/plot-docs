@@ -1,7 +1,7 @@
 import { modelTextOf, redactJson, redactTextBetween } from '../editor/redact'
 import type { Editor, JSONContent } from '@tiptap/core'
 import type { Node as PmNode } from '@tiptap/pm/model'
-import type { AgentToolCall, AgentToolDef, ToolExecution } from '@genoffice/agent-core'
+import type { AgentToolCall, AgentToolDef, ToolExecution } from '@plotdocs/agent-core'
 import {
   OP_SPECS,
   blockIndexRange,

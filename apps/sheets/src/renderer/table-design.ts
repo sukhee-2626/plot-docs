@@ -1,4 +1,4 @@
-import { columnLabel } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { columnLabel } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import type { WorkbookFile, WorkbookTableAdd, WorkbookTableEdit } from '../shared/desktop-api'
 import { expandContiguousRegion, type TableRegion } from './table-actions'

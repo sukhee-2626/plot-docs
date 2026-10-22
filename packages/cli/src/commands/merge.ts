@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { basename } from 'node:path'
-import { columnLabel } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { columnLabel } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import { flagBool, flagString } from '../args'
 import {
   applyDocOps,
@@ -24,7 +24,7 @@ import { readSheet, workbookSummary, writeWorkbook } from '../formats/xlsx'
 import { runWorkbookDsl } from '../formats/xlsx-dsl'
 import { extension, readInput, resolveInput, resolveOutput, writeOutput } from '../fs'
 import { readOpsStream } from '../ops-input'
-import type { OpenedPptx } from '@genoffice/pptx-engine'
+import type { OpenedPptx } from '@plotdocs/pptx-engine'
 import type { CommandContext, CommandDef } from '../registry'
 import { CliError, EXIT, type CommandResult } from '../result'
 
@@ -71,7 +71,7 @@ export const mergeCommand: CommandDef = {
     { name: 'out', value: 'path', description: 'output file (required)' },
     {
       name: 'force',
-      description: 'overwrite an existing output file, or write while GenOffice has the file open',
+      description: 'overwrite an existing output file, or write while Plot Docs has the file open',
     },
     {
       name: 'strict',

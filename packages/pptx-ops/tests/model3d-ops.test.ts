@@ -6,7 +6,7 @@ import {
   openPptx,
   solidPng,
   type PictureElement,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 import { OP_DOCS, opVocabulary } from '../src/op-docs'
 import { runTxn } from '../src/ops/executor'
 import '../src/ops/index'

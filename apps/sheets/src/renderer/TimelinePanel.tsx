@@ -2,7 +2,7 @@ import {
   monthKeyParts,
   type MonthKey,
   type TimelineMember,
-} from '@genoffice/xlsx-gateway/domain/pivot-timeline'
+} from '@plotdocs/xlsx-gateway/domain/pivot-timeline'
 import { useI18n } from './i18n/locale'
 import { useModalDialog } from './modal-dialog'
 

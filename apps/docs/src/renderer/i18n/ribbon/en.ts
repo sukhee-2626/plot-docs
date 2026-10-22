@@ -189,7 +189,7 @@ export const en = {
   ribbonReplaceTip: 'Find and replace text',
   ribbonSelectAll: 'Select All',
   ribbonSelectAllTip: 'Select the whole document',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Open the AI assistant',
   ribbonRemoveTableStyleTip: 'Remove table style',
   ribbonNoStyle: 'No Style',

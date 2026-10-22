@@ -380,7 +380,7 @@ const MODELLED_ELEMENTS: Readonly<Record<string, { attrs: string; children: stri
   ext: { attrs: 'uri', children: 'aio:aioPivotGroupings' },
   'aio:aioPivotGroupings': { attrs: 'v', children: '' },
   // refreshOnLoad: set by setPivotRefreshOnLoad on every recompute/relayout
-  // save, so a pivot GenOffice itself relaid out carries it on reopen.
+  // save, so a pivot Plot Docs itself relaid out carries it on reopen.
   pivotCacheDefinition: {
     attrs:
       'r:id refreshedBy createdVersion refreshedVersion minRefreshableVersion recordCount ' +

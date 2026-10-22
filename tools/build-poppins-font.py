@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build GenOffice Poppins from upstream Poppins, metrics untouched.
+"""Build PlotDocs Poppins from upstream Poppins, metrics untouched.
 
 Poppins is an M365 cloud font: Word downloads the real face and lays out with
 its metrics (hhea = typo = 1.500em line box, geometric-round advances — Word
@@ -24,8 +24,8 @@ from fontTools.subset import Options, Subsetter
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.woff2 import WOFF2FlavorData
 
-FAMILY = "GenOffice Poppins"
-PS_FAMILY = "GenOfficePoppins"
+FAMILY = "PlotDocs Poppins"
+PS_FAMILY = "PlotDocsPoppins"
 OUT_DIR = "apps/docs/src/renderer/fonts"
 
 # Latin + Latin Extended + combining marks + punctuation/currency + f-ligatures
@@ -76,7 +76,7 @@ def main() -> None:
         sys.exit(f"expected Poppins-Regular.ttf or Poppins-Bold.ttf, got {src.name}")
     subfamily = m.group(1)
     root = Path(__file__).resolve().parent.parent
-    default_out = root / OUT_DIR / f"GenOfficePoppins-{subfamily}-subset.woff2"
+    default_out = root / OUT_DIR / f"PlotDocsPoppins-{subfamily}-subset.woff2"
     out = Path(sys.argv[2]) if len(sys.argv) > 2 else default_out
 
     font = TTFont(str(src), recalcTimestamp=False)

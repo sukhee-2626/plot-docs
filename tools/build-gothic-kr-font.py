@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build GenOffice Gothic KR from upstream NanumGothic, with metrics untouched.
+"""Build PlotDocs Gothic KR from upstream NanumGothic, with metrics untouched.
 
 Documents declaring NanumGothic hit Word's macOS *downloadable* source face
 (a FontServices subset Chromium cannot see), so Word lays out with its real
@@ -25,10 +25,10 @@ from fontTools.subset import Options, Subsetter
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.woff2 import WOFF2FlavorData
 
-DEFAULT_OUT = "apps/docs/src/renderer/fonts/GenOfficeGothicKR-Regular-subset.woff2"
-FAMILY = "GenOffice Gothic KR"
-PS_NAME = "GenOfficeGothicKR-Regular"
-PS_PREFIX = "GenOfficeGothicKR"
+DEFAULT_OUT = "apps/docs/src/renderer/fonts/PlotDocsGothicKR-Regular-subset.woff2"
+FAMILY = "PlotDocs Gothic KR"
+PS_NAME = "PlotDocsGothicKR-Regular"
+PS_PREFIX = "PlotDocsGothicKR"
 PRIMARY_NAME_IDS = {1, 2, 3, 4, 6, 16, 17, 18, 20, 21, 22, 25}
 
 

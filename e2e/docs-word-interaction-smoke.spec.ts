@@ -248,7 +248,7 @@ test.describe.serial('docs Word interaction smoke', () => {
 
   test.beforeAll(async () => {
     test.setTimeout(90_000)
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-word-smoke-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-word-smoke-')))
     launched = await launchShell({
       onboardingSeen: true,
       videoDir: 'docs-word-interaction-smoke',

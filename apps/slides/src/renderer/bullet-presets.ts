@@ -1,4 +1,4 @@
-import { formatAutoNum } from '@genoffice/pptx-render'
+import { formatAutoNum } from '@plotdocs/pptx-render'
 
 /**
  * PowerPoint's Bullets gallery (WPS ships the same seven). Each preset is the font + code

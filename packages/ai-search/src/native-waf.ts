@@ -4,11 +4,11 @@ type Fetcher = (url: string, init: RequestInit) => Promise<Response>
 export function nativeWafHosts(env: NodeJS.ProcessEnv = process.env): Set<string> {
   const hosts = new Set<string>()
   try {
-    hosts.add(new URL(env.GSK_BASE_URL || 'https://www.genspark.ai').hostname)
+    hosts.add(new URL(env.SOOPUS_BASE_URL || 'https://www.genspark.ai').hostname)
   } catch {
     hosts.add('www.genspark.ai')
   }
-  for (const host of (env.GENOFFICE_NATIVE_WAF_HOSTS ?? '').split(',')) {
+  for (const host of (env.PLOTDOCS_NATIVE_WAF_HOSTS ?? '').split(',')) {
     const trimmed = host.trim().toLowerCase()
     if (trimmed) hosts.add(trimmed)
   }
@@ -32,7 +32,7 @@ export class NativeWaf {
 
   async prepare(url: string, init: RequestInit, fetcher: Fetcher): Promise<RequestInit> {
     const headers = new Headers(init.headers)
-    headers.delete('X-Genspark-Native-Pass')
+    headers.delete('X-Soopus-Native-Pass')
     const target = new URL(url)
     const cookies = (headers.get('Cookie') ?? '')
       .split(';')
@@ -76,7 +76,7 @@ export class NativeWaf {
     }
     init.signal?.throwIfAborted()
     if (generation === this.generation && pass && this.remaining(pass) > 0) {
-      headers.set('X-Genspark-Native-Pass', pass)
+      headers.set('X-Soopus-Native-Pass', pass)
     }
     // Explicit cookies and passes may never ride a redirect or an ambient Chromium cookie jar.
     return { ...init, headers, credentials: 'omit', redirect: 'manual' }

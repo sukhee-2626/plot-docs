@@ -186,7 +186,7 @@ export const es = {
   ribbonFlipH: 'Voltear horizontalmente',
   ribbonFlipV: 'Voltear verticalmente',
   ribbonDistributeHint: '{title} (seleccione 3 o más elementos)',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Mostrar u ocultar el panel del asistente de IA',
   ribbonGroupTable: 'Tabla',
   ribbonInsertTableTip: 'Insertar una tabla (estilo predeterminado; elija filas y columnas)',

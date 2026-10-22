@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import { buildBlankDocx, parseDocx, type StyleInfo } from '@genoffice/docx-engine'
+import { buildBlankDocx, parseDocx, type StyleInfo } from '@plotdocs/docx-engine'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import {
   activeStyleKey,

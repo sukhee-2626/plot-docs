@@ -1,5 +1,5 @@
 /**
- * @genoffice/pptx-render — high-fidelity pptx render layer (Phase 2).
+ * @plotdocs/pptx-render — high-fidelity pptx render layer (Phase 2).
  *
  * Layering (approach A: data-driven + thin adapters):
  *   coords      2.1 EMU→px coordinate system + viewport

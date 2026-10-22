@@ -6,7 +6,7 @@ import { PDFDocument, StandardFonts } from 'pdf-lib'
 import { launchShell, waitForPageWithUrl, closeAndSaveVideo } from './helpers'
 
 test('redaction stays in the current tab and accumulates on its working copy', async () => {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-redaction-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-redaction-'))
   const source = join(dir, 'original.pdf')
   const copy = join(dir, 'redacted.pdf')
   const pdf = await PDFDocument.create()

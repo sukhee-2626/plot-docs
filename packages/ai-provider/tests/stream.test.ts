@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { AgentMessage, AgentToolCall } from '@genoffice/agent-core'
+import type { AgentMessage, AgentToolCall } from '@plotdocs/agent-core'
 import { AiCreditsError, sseLines, streamForProvider } from '../src/stream'
 import {
   MAX_RESPONSE_BODY_BYTES,
@@ -239,7 +239,7 @@ describe('streamForProvider: temperature policy', () => {
     expect(bodies[1].temperature).toBe(0.3)
   })
 
-  // issue genspark-ai/genoffice#147: every model in the OpenAI BYOK dropdown is GPT-5.x,
+  // issue plotxyz-ai/plot-docs#147: every model in the OpenAI BYOK dropdown is GPT-5.x,
   // and api.openai.com 400s `max_tokens` for that family
   it('caps OpenAI via max_completion_tokens and other vendors via max_tokens', async () => {
     const fetchMock = vi.fn().mockImplementation(() => Promise.resolve(okTurn()))
@@ -667,7 +667,7 @@ describe('streamForProvider: anthropic', () => {
 
   it('never sends an empty assistant content array when history has edits-only replies', async () => {
     // Prior empty terminal turns would map to content:[] and break follow-ups
-    // on Anthropic (genoffice#12 / #22 class of multi-turn failures).
+    // on Anthropic (plotdocs#12 / #22 class of multi-turn failures).
     const fetchMock = vi
       .fn()
       .mockResolvedValue(
@@ -705,7 +705,7 @@ describe('streamForProvider: anthropic', () => {
 
   it('replaces an HTML error body (e.g. a gateway block page) with a readable note', async () => {
     const html =
-      '<!doctype html>\n<html>\n<head><title>Genspark</title></head><body>app shell</body></html>'
+      '<!doctype html>\n<html>\n<head><title>Soopus</title></head><body>app shell</body></html>'
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(html, { status: 403 })))
     const { cb } = collector()
     await expect(
@@ -736,7 +736,7 @@ describe('streamForProvider: gemini', () => {
     expect(toolCalls[0]).toMatchObject({ name: 'set_cell', input: { a1: '42' } })
   })
 
-  it('flags array functionCall args as inputError (genoffice#1106)', async () => {
+  it('flags array functionCall args as inputError (plotdocs#1106)', async () => {
     const body = sseStream([
       'data: {"candidates":[{"content":{"parts":[{"functionCall":{"name":"set_cell","args":[1,2]}}]},"finishReason":"STOP"}]}',
     ])
@@ -997,7 +997,7 @@ describe('streamForProvider: openai-compatible', () => {
     expect(toolCalls).toEqual([{ id: 'c1', name: 'replace', input: { x: 1 } }])
   })
 
-  it('turns non-object tool arguments into inputError instead of executing them (genoffice#1106)', async () => {
+  it('turns non-object tool arguments into inputError instead of executing them (plotdocs#1106)', async () => {
     const body = sseStream([
       'data: {"choices":[{"delta":{"tool_calls":[{"index":0,"id":"c1","function":{"name":"replace","arguments":"null"}}]}}]}',
       'data: {"choices":[{"delta":{},"finish_reason":"tool_calls"}]}',
@@ -1360,14 +1360,14 @@ describe('streamForProvider: openai-compatible', () => {
   })
 })
 
-describe('streamForProvider: genspark', () => {
+describe('streamForProvider: soopus', () => {
   it('routes claude models to the Anthropic-compatible proxy endpoint', async () => {
     const fetchMock = vi.fn().mockResolvedValue(okResponse(sseStream([])))
     vi.stubGlobal('fetch', fetchMock)
     const { cb } = collector()
     await streamForProvider(
-      'genspark',
-      { apiKey: 'gsk-k', model: 'claude-opus-4-7' },
+      'soopus',
+      { apiKey: 'soopus-k', model: 'claude-opus-4-7' },
       'sys',
       [],
       [],
@@ -1376,7 +1376,7 @@ describe('streamForProvider: genspark', () => {
     ).catch(() => {})
     expect(fetchMock).toHaveBeenCalledWith(
       'https://www.genspark.ai/api/anthropic/v1/messages',
-      expect.objectContaining({ headers: expect.objectContaining({ 'x-api-key': 'gsk-k' }) }),
+      expect.objectContaining({ headers: expect.objectContaining({ 'x-api-key': 'soopus-k' }) }),
     )
   })
 
@@ -1385,8 +1385,8 @@ describe('streamForProvider: genspark', () => {
     vi.stubGlobal('fetch', fetchMock)
     const { cb } = collector()
     await streamForProvider(
-      'genspark',
-      { apiKey: 'gsk-k', model: 'gpt-5.2' },
+      'soopus',
+      { apiKey: 'soopus-k', model: 'gpt-5.2' },
       'sys',
       [],
       [],
@@ -1404,13 +1404,13 @@ describe('streamForProvider: genspark', () => {
       const fetchMock = vi.fn().mockResolvedValue(okResponse(sseStream([])))
       vi.stubGlobal('fetch', fetchMock)
       const { cb } = collector()
-      await streamForProvider('genspark', { apiKey: 'gsk-k', model }, 'sys', [], [], 100, cb).catch(
+      await streamForProvider('soopus', { apiKey: 'soopus-k', model }, 'sys', [], [], 100, cb).catch(
         () => {},
       )
       expect(fetchMock).toHaveBeenCalledWith(
         expect.anything(),
         expect.objectContaining({
-          headers: expect.objectContaining({ 'X-Agent-Type': 'genoffice' }),
+          headers: expect.objectContaining({ 'X-Agent-Type': 'plotdocs' }),
         }),
       )
     }
@@ -1482,7 +1482,7 @@ describe('streamForProvider: genspark', () => {
 
 describe('streamForProvider: 200 + non-stream JSON instead of SSE', () => {
   const creditsNotice =
-    'Your Genspark credits have been exhausted. Please visit https://www.genspark.ai/pricing to purchase more credits.'
+    'Your Soopus credits have been exhausted. Please visit https://www.genspark.ai/pricing to purchase more credits.'
   const json = (value: unknown) =>
     new Response(JSON.stringify(value), {
       status: 200,
@@ -1701,7 +1701,7 @@ describe('streamForProvider: interleaved-thinking reasoning', () => {
     const reasoning: string[] = []
     const { deltas, cb } = collector()
     await streamForProvider(
-      'genspark',
+      'soopus',
       { apiKey: 'k', model: 'deep-seek-v4-flash' },
       'sys',
       toolLoopMessages,
@@ -1720,7 +1720,7 @@ describe('streamForProvider: interleaved-thinking reasoning', () => {
     const fetchMock = vi.fn().mockImplementation(() => Promise.resolve(reasoningTurn()))
     vi.stubGlobal('fetch', fetchMock)
     await streamForProvider(
-      'genspark',
+      'soopus',
       { apiKey: 'k', model: 'gpt-5.6-luna' },
       'sys',
       toolLoopMessages,
@@ -1735,7 +1735,7 @@ describe('streamForProvider: interleaved-thinking reasoning', () => {
 })
 
 describe('streamForProvider: a connection dropped mid tool arguments is not an empty stream', () => {
-  // Tool arguments are buffered upstream; the Genspark gateway closes the SSE
+  // Tool arguments are buffered upstream; the Soopus gateway closes the SSE
   // after ~125s of that silence. The turn was billed and in progress, so it
   // must not match the "(empty stream)" contract that agent-core replays.
   it('anthropic: open tool_use block with no stop_reason rejects as a dropped connection', async () => {
@@ -1823,7 +1823,7 @@ describe('jsonBodyInsteadOfSse', () => {
 })
 
 describe('parseToolInput', () => {
-  it('rejects non-object JSON through the inputError channel (genoffice#1106)', () => {
+  it('rejects non-object JSON through the inputError channel (plotdocs#1106)', () => {
     for (const raw of ['null', '[]', '42', '"x"', 'true']) {
       const r = parseToolInput(raw)
       expect(r.input).toEqual({})

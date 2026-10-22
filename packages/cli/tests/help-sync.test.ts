@@ -5,15 +5,15 @@ import { defaultRegistry, runCli } from '../src/cli'
 import { commandHelp } from '../src/registry'
 
 // Help/registry/README/skill sync: every command and option in the registry must
-// surface in `genoffice help`, in the CLI README examples and in the genoffice
+// surface in `plotdocs help`, in the CLI README examples and in the plotdocs
 // agent skill, so adding a flag without documenting it fails loudly instead of
 // drifting. Fast and deterministic: in-process runCli plus file reads only.
 
 const REPO = resolve(__dirname, '../../..')
 const README_PATH = resolve(__dirname, '..', 'README.md')
 const SKILL_CANDIDATES = [
-  resolve(REPO, 'skills/genoffice/SKILL.md'),
-  resolve(__dirname, '..', 'skills/genoffice/SKILL.md'),
+  resolve(REPO, 'skills/plotdocs/SKILL.md'),
+  resolve(__dirname, '..', 'skills/plotdocs/SKILL.md'),
 ]
 
 function readFirst(paths: string[], label: string): { path: string; text: string } {
@@ -28,7 +28,7 @@ function readFirst(paths: string[], label: string): { path: string; text: string
 }
 
 const readme = readFileSync(README_PATH, 'utf-8')
-const skillFile = readFirst(SKILL_CANDIDATES, 'genoffice SKILL.md')
+const skillFile = readFirst(SKILL_CANDIDATES, 'plotdocs SKILL.md')
 
 function fencesOf(markdown: string): string {
   return [...markdown.matchAll(/```[\s\S]*?```/g)].map((m) => m[0]).join('\n')
@@ -57,7 +57,7 @@ async function helpFor(argv: string[]): Promise<string> {
 /**
  * Host-only commands the agent skill legitimately omits: `install-cli` puts the
  * launcher on the PATH, not a document workflow an agent reads the skill for.
- * It must stay in `genoffice help` and the CLI README. Enforced in both
+ * It must stay in `plotdocs help` and the CLI README. Enforced in both
  * directions below, so extending the skill (or dropping a command) fails loudly
  * instead of silently changing coverage.
  */
@@ -65,7 +65,7 @@ const SKILL_COMMAND_OMISSIONS = new Map([['install-cli', 'host setup, not a docu
 
 /**
  * Flags the README example fences legitimately omit: the fences show one common
- * invocation per command while `genoffice help <command>` is the complete
+ * invocation per command while `plotdocs help <command>` is the complete
  * reference. Enforced exactly like the skill omissions: a new flag must gain a
  * fence example or be added here deliberately, and removing a flag without
  * updating this set fails.
@@ -119,15 +119,15 @@ describe('cli help/registry/readme/skill sync', () => {
     }
   })
 
-  it('lists every registry command and global flag in genoffice help', async () => {
+  it('lists every registry command and global flag in plotdocs help', async () => {
     const global = norm(await helpFor(['help']))
     const names = defaultRegistry()
       .list()
       .map((d) => d.name)
     const missing = names.filter((n) => !global.includes(n))
-    expect(missing, `genoffice help is missing commands: ${missing.join(', ')}`).toEqual([])
+    expect(missing, `plotdocs help is missing commands: ${missing.join(', ')}`).toEqual([])
     for (const flag of ['--json', '--help', '--version']) {
-      expect(global.includes(flag), `genoffice help is missing global flag ${flag}`).toBe(true)
+      expect(global.includes(flag), `plotdocs help is missing global flag ${flag}`).toBe(true)
     }
   })
 
@@ -136,7 +136,7 @@ describe('cli help/registry/readme/skill sync', () => {
     for (const def of defaultRegistry().list()) {
       const built = norm(commandHelp(def))
       const shown = norm(await helpFor(['help', def.name]))
-      if (!shown.includes(norm(`usage: genoffice ${def.usage}`))) {
+      if (!shown.includes(norm(`usage: plotdocs ${def.usage}`))) {
         gaps.push(`${def.name}: 'help ${def.name}' omits its usage line`)
       }
       for (const opt of def.options ?? []) {
@@ -154,8 +154,8 @@ describe('cli help/registry/readme/skill sync', () => {
     const names = defaultRegistry()
       .list()
       .map((d) => d.name)
-    const missingFile = names.filter((n) => !body.includes(norm(`genoffice ${n}`)))
-    const missingFence = names.filter((n) => !fence.includes(norm(`genoffice ${n}`)))
+    const missingFile = names.filter((n) => !body.includes(norm(`plotdocs ${n}`)))
+    const missingFence = names.filter((n) => !fence.includes(norm(`plotdocs ${n}`)))
     expect(missingFile, `packages/cli/README.md never mentions: ${missingFile.join(', ')}`).toEqual(
       [],
     )
@@ -165,12 +165,12 @@ describe('cli help/registry/readme/skill sync', () => {
     ).toEqual([])
   })
 
-  it('covers every command in the genoffice skill except documented host-only ones', () => {
+  it('covers every command in the plotdocs skill except documented host-only ones', () => {
     const body = norm(skillFile.text)
     const names = defaultRegistry()
       .list()
       .map((d) => d.name)
-    const missing = names.filter((n) => !body.includes(norm(`genoffice ${n}`)))
+    const missing = names.filter((n) => !body.includes(norm(`plotdocs ${n}`)))
     const unexpected = missing.filter((n) => !SKILL_COMMAND_OMISSIONS.has(n))
     const stale = [...SKILL_COMMAND_OMISSIONS.keys()].filter((n) => !missing.includes(n))
     expect(

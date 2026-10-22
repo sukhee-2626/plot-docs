@@ -1,4 +1,4 @@
-import type { TabStop } from '@genoffice/docx-engine'
+import type { TabStop } from '@plotdocs/docx-engine'
 import { parseTwips } from './lengths'
 
 export interface TabSpec {

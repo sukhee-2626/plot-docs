@@ -1,7 +1,7 @@
 // PowerPoint zoom stepping: +/- walk a preset ladder, a Ctrl+wheel notch and the
 // status-bar buttons move 10 percentage points, everything clamps to 10-400%.
 
-import { clampZoom as clampZoomTo, notchStep as notchStepTo } from '@genoffice/ui'
+import { clampZoom as clampZoomTo, notchStep as notchStepTo } from '@plotdocs/ui'
 
 export const ZOOM_MIN = 0.1
 export const ZOOM_MAX = 4

@@ -1,4 +1,4 @@
-import type { ImageDpi } from '@genoffice/pptx-render'
+import type { ImageDpi } from '@plotdocs/pptx-render'
 import type { Size } from './video-size'
 
 /** PowerPoint for Mac lays untagged bitmaps out at 2 px per point; Windows at 96 dpi. */

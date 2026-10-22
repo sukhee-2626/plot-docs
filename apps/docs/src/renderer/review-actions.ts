@@ -6,7 +6,7 @@
  */
 import type { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
-import { nextNoteId, parseDocx, type CommentInfo, type NoteInfo } from '@genoffice/docx-engine'
+import { nextNoteId, parseDocx, type CommentInfo, type NoteInfo } from '@plotdocs/docx-engine'
 import type { Dispatch, SetStateAction } from 'react'
 import { authorName } from './author-name'
 import { fetchDocBytes } from './doc-bytes'

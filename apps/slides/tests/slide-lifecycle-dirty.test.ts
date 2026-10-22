@@ -40,7 +40,7 @@ vi.mock('../src/main/shaped-metrics', () => ({
   shapedMeasure: () => ({ width: 0 }),
 }))
 
-import { createBlankPptx, openPptx } from '@genoffice/pptx-engine'
+import { createBlankPptx, openPptx } from '@plotdocs/pptx-engine'
 import { registerSlidesIpc, slidesIsDirty } from '../src/main/slides-main'
 import { sessions, type Session } from '../src/main/session-state'
 

@@ -1,24 +1,24 @@
 import { z } from 'zod'
-import type { AgentToolCall, AgentToolDef } from '@genoffice/agent-core'
+import type { AgentToolCall, AgentToolDef } from '@plotdocs/agent-core'
 import {
   copyTargetBounds,
   describeOperationErrors,
   workbookOperationSchema,
   type WorkbookOperation,
-} from '@genoffice/xlsx-gateway/domain/workbook-dsl'
+} from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
 import {
   columnLabel,
   parseRange,
   rangeCellCount,
   formatAddress,
   type RangeBounds,
-} from '@genoffice/xlsx-gateway/domain/cell-address'
+} from '@plotdocs/xlsx-gateway/domain/cell-address'
 import type {
   ApplyOutcome,
   CellFormatState,
   CellScalar,
   ChangePlan,
-} from '@genoffice/xlsx-gateway/domain/workbook.types'
+} from '@plotdocs/xlsx-gateway/domain/workbook.types'
 import { t } from '../i18n/locale'
 import { formatRangeAggregate, type RangeAggregate } from './aggregate'
 import { guideCatalogSummary, loadGuides } from './guides'

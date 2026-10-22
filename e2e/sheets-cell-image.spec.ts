@@ -56,7 +56,7 @@ async function insertIconPicture(sheets: Page): Promise<void> {
 
 test.describe('sheets: picture in cell', () => {
   test('embeds floating pictures, previews them, and round-trips Excel rich values', async () => {
-    const scratch = await mkdtemp(join(tmpdir(), 'genoffice-cell-image-e2e-'))
+    const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-cell-image-e2e-'))
     const workbook = join(scratch, 'cell-image.xlsx')
     await copyFile(FIXTURE, workbook)
 

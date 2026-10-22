@@ -13,14 +13,14 @@ import { createContext, disposeContext, type McpContext } from './run'
 import { createMcpServer, type ServeOptions } from './server'
 
 /**
- * `genoffice mcp --http <port>`: the same tools over Streamable HTTP for clients
+ * `plotdocs mcp --http <port>`: the same tools over Streamable HTTP for clients
  * on other machines. Routes:
  *   POST /mcp            the MCP session (GET for the notification stream, DELETE to end it)
  *   PUT  /files/<name>   upload a file (also POST /files?name=), reply { url, name, size }
  *   GET  /files/<id>/<name>   download an upload or a tool output
  *   GET  /health
  * Each MCP session gets its own scratch directory, working directory and deck
- * state, so two clients never see each other's files. With GENOFFICE_ALLOWED_ROOTS
+ * state, so two clients never see each other's files. With PLOTDOCS_ALLOWED_ROOTS
  * unset, the tools are confined to the server's own file store.
  */
 export interface HttpServeOptions extends ServeOptions {
@@ -51,12 +51,12 @@ export async function startHttp(opts: HttpServeOptions): Promise<HttpHandle> {
   // '' would bypass the loopback default and bind every interface
   const host = opts.host?.trim() || '127.0.0.1'
   const files = new FileStore(
-    join(tmpdir(), `genoffice-mcp-http-${process.pid}-${randomBytes(4).toString('hex')}`),
+    join(tmpdir(), `plotdocs-mcp-http-${process.pid}-${randomBytes(4).toString('hex')}`),
   )
-  const roots = opts.env.GENOFFICE_ALLOWED_ROOTS?.trim()
+  const roots = opts.env.PLOTDOCS_ALLOWED_ROOTS?.trim()
   const env = {
     ...opts.env,
-    GENOFFICE_ALLOWED_ROOTS: roots ? `${roots}${delimiter}${files.root}` : files.root,
+    PLOTDOCS_ALLOWED_ROOTS: roots ? `${roots}${delimiter}${files.root}` : files.root,
   }
   const sessions = new Map<string, Session>()
   const sockets = new Set<Socket>()
@@ -82,8 +82,8 @@ export async function startHttp(opts: HttpServeOptions): Promise<HttpHandle> {
     // Security: X-Forwarded-Host/Proto are client-controlled, so a poisoned
     // header would make us hand out download URLs pointing at an attacker host.
     // Ignore them by default; only honor them when the operator explicitly opts
-    // in behind a trusted reverse proxy via GENOFFICE_TRUST_PROXY_HEADERS=1.
-    const trustProxy = opts.env.GENOFFICE_TRUST_PROXY_HEADERS === '1'
+    // in behind a trusted reverse proxy via PLOTDOCS_TRUST_PROXY_HEADERS=1.
+    const trustProxy = opts.env.PLOTDOCS_TRUST_PROXY_HEADERS === '1'
     const forwardedProto = trustProxy ? header(req.headers['x-forwarded-proto']) : undefined
     const forwardedHost = trustProxy ? header(req.headers['x-forwarded-host']) : undefined
     const proto = forwardedProto?.split(',')[0]?.trim() || 'http'
@@ -242,7 +242,7 @@ export async function startHttp(opts: HttpServeOptions): Promise<HttpHandle> {
   const route = async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     const url = new URL(req.url ?? '/', 'http://placeholder')
     if (url.pathname === '/health' && req.method === 'GET') {
-      json(res, 200, { status: 'ok', server: 'genoffice', sessions: sessions.size })
+      json(res, 200, { status: 'ok', server: 'plotdocs', sessions: sessions.size })
       return
     }
     // no token and a loopback bind: refuse Host headers a rebound DNS name would carry

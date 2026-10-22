@@ -21,7 +21,7 @@
  *   the right page margin instead of the bubble column; click focuses the
  *   thread in the Comments panel.
  */
-import type { CommentInfo } from '@genoffice/docx-engine'
+import type { CommentInfo } from '@plotdocs/docx-engine'
 import type { EditorView } from '@tiptap/pm/view'
 import type { Mark as PmMark, Node as PmNode } from '@tiptap/pm/model'
 import { t } from '../i18n/locale'

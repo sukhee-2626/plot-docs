@@ -21,10 +21,10 @@ export const DEEPSEEK_MEDIA_BASE_URL = 'https://api.deepseek.com/v1'
 // models in step with the chat catalog in providers.ts.
 export const AI_MEDIA_PROVIDERS: AiMediaProviderMeta[] = [
   {
-    id: 'genspark',
-    label: 'Genspark',
-    description: 'Image generation, media analysis and search through your Genspark sign-in',
-    keyPlaceholder: 'Not required - sign in to Genspark',
+    id: 'soopus',
+    label: 'Soopus AI',
+    description: 'Image generation, media analysis and search through your Soopus sign-in',
+    keyPlaceholder: 'Not required - sign in to Soopus AI',
     defaultBaseUrl: '',
     imageProtocol: 'openai-images',
     imageModels: [],
@@ -230,9 +230,9 @@ export function defaultAiMediaSettings(): AiMediaSettings {
     }
   }
   return {
-    imageProvider: 'genspark',
-    analysisProvider: 'genspark',
-    videoAnalysisProvider: 'genspark',
+    imageProvider: 'soopus',
+    analysisProvider: 'soopus',
+    videoAnalysisProvider: 'soopus',
     providers,
   }
 }
@@ -291,7 +291,7 @@ export function mediaConfigUsable(
 
 /**
  * The stored provider for one capability, honored only when it exists, has
- * that capability and is usable; anything else falls back to genspark so a
+ * that capability and is usable; anything else falls back to soopus so a
  * half-filled setup degrades to the signed-in default.
  */
 export function activeMediaProvider(
@@ -299,27 +299,27 @@ export function activeMediaProvider(
   capability: MediaCapability,
 ): AiMediaProviderId {
   const media = settings.media
-  if (!media) return 'genspark'
+  if (!media) return 'soopus'
   const id =
     capability === 'image'
       ? media.imageProvider
       : capability === 'video'
         ? media.videoAnalysisProvider
         : media.analysisProvider
-  if (!id || id === 'genspark') return 'genspark'
+  if (!id || id === 'soopus') return 'soopus'
   const meta = getMediaProviderMeta(id)
-  if (!meta || !providerHasCapability(meta, capability)) return 'genspark'
-  if (!mediaConfigUsable(meta, media.providers?.[id])) return 'genspark'
+  if (!meta || !providerHasCapability(meta, capability)) return 'soopus'
+  if (!mediaConfigUsable(meta, media.providers?.[id])) return 'soopus'
   return id
 }
 
-/** the active BYOK config for one capability, or null when it runs through Genspark */
+/** the active BYOK config for one capability, or null when it runs through Soopus */
 export function activeMediaConfig(
   settings: Pick<AiSettings, 'media'>,
   capability: MediaCapability,
-): { provider: Exclude<AiMediaProviderId, 'genspark'>; config: AiMediaProviderConfig } | null {
+): { provider: Exclude<AiMediaProviderId, 'soopus'>; config: AiMediaProviderConfig } | null {
   const provider = activeMediaProvider(settings, capability)
-  if (provider === 'genspark') return null
+  if (provider === 'soopus') return null
   return { provider, config: settings.media!.providers[provider] }
 }
 
@@ -336,38 +336,38 @@ function byokModel(
 }
 
 function capabilityAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'soopusToolsEnabled'> | null | undefined,
+  soopusLoggedIn: boolean,
   capability: MediaCapability,
 ): boolean {
-  if (!settings) return gskLoggedIn
+  if (!settings) return soopusLoggedIn
   const model = byokModel(settings, capability)
   if (model !== null) return model !== ''
-  return gskLoggedIn && settings.gskToolsEnabled !== false
+  return soopusLoggedIn && settings.soopusToolsEnabled !== false
 }
 
-/** live predicate for the generate_image tool: BYOK image model configured, or gsk login + cloud tools on */
+/** live predicate for the generate_image tool: BYOK image model configured, or soopus login + cloud tools on */
 export function imageGenerationAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'soopusToolsEnabled'> | null | undefined,
+  soopusLoggedIn: boolean,
 ): boolean {
-  return capabilityAvailable(settings, gskLoggedIn, 'image')
+  return capabilityAvailable(settings, soopusLoggedIn, 'image')
 }
 
 /** live predicate for the analyze_media tool: image analysis or video analysis reachable */
 export function mediaAnalysisAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'soopusToolsEnabled'> | null | undefined,
+  soopusLoggedIn: boolean,
 ): boolean {
   return (
-    capabilityAvailable(settings, gskLoggedIn, 'analysis') ||
-    capabilityAvailable(settings, gskLoggedIn, 'video')
+    capabilityAvailable(settings, soopusLoggedIn, 'analysis') ||
+    capabilityAvailable(settings, soopusLoggedIn, 'video')
   )
 }
 
 export function videoAnalysisAvailable(
-  settings: Pick<AiSettings, 'media' | 'gskToolsEnabled'> | null | undefined,
-  gskLoggedIn: boolean,
+  settings: Pick<AiSettings, 'media' | 'soopusToolsEnabled'> | null | undefined,
+  soopusLoggedIn: boolean,
 ): boolean {
-  return capabilityAvailable(settings, gskLoggedIn, 'video')
+  return capabilityAvailable(settings, soopusLoggedIn, 'video')
 }

@@ -5,7 +5,7 @@ import { run, tempDir } from './helpers'
 
 const REPO = resolve(__dirname, '../../..')
 const bundledVersion = /^\s+version:\s*(\S+)/m.exec(
-  readFileSync(join(REPO, 'skills/genoffice/SKILL.md'), 'utf-8'),
+  readFileSync(join(REPO, 'skills/plotdocs/SKILL.md'), 'utf-8'),
 )![1]!
 
 function fakeMachine(agents: string[]) {
@@ -13,10 +13,10 @@ function fakeMachine(agents: string[]) {
   for (const dot of agents) mkdirSync(join(home, dot), { recursive: true })
   const userData = join(home, 'userData')
   mkdirSync(userData)
-  return { home, env: { GENOFFICE_HOME: home, GENOFFICE_USER_DATA: userData } }
+  return { home, env: { PLOTDOCS_HOME: home, PLOTDOCS_USER_DATA: userData } }
 }
 
-describe('genoffice skill', () => {
+describe('plotdocs skill', () => {
   it('path prints the bundled SKILL.md', async () => {
     const r = await run(['skill', 'path', '--json'])
     expect(r.code).toBe(0)
@@ -47,9 +47,9 @@ describe('genoffice skill', () => {
     const m = fakeMachine(['.claude'])
     const first = await run(['skill', 'install', 'claude-code', '--json'], { env: m.env })
     expect(first.code).toBe(0)
-    const path = join(m.home, '.claude', 'skills', 'genoffice', 'SKILL.md')
+    const path = join(m.home, '.claude', 'skills', 'plotdocs', 'SKILL.md')
     expect(readFileSync(path, 'utf-8')).toBe(
-      readFileSync(join(REPO, 'skills/genoffice/SKILL.md'), 'utf-8'),
+      readFileSync(join(REPO, 'skills/plotdocs/SKILL.md'), 'utf-8'),
     )
     expect(first.json().detail.agents[0]).toMatchObject({
       agent: 'claude-code',
@@ -58,7 +58,7 @@ describe('genoffice skill', () => {
       installed_version: bundledVersion,
     })
     const settings = JSON.parse(
-      readFileSync(join(m.env.GENOFFICE_USER_DATA, 'app-settings.json'), 'utf-8'),
+      readFileSync(join(m.env.PLOTDOCS_USER_DATA, 'app-settings.json'), 'utf-8'),
     )
     expect(settings.agentSkillInstalls[path]).toMatchObject({
       version: bundledVersion,
@@ -100,15 +100,15 @@ describe('genoffice skill', () => {
 
     const forced = await run(['skill', 'install', 'cursor', '--force', '--json'], { env: m.env })
     expect(forced.code).toBe(0)
-    expect(existsSync(join(m.home, '.cursor', 'skills', 'genoffice', 'SKILL.md'))).toBe(true)
+    expect(existsSync(join(m.home, '.cursor', 'skills', 'plotdocs', 'SKILL.md'))).toBe(true)
   })
 
   it('refuses to downgrade a newer skill or overwrite a hand-edited one without --force', async () => {
     const m = fakeMachine(['.claude'])
-    const dir = join(m.home, '.claude', 'skills', 'genoffice')
+    const dir = join(m.home, '.claude', 'skills', 'plotdocs')
     mkdirSync(dir, { recursive: true })
     const path = join(dir, 'SKILL.md')
-    writeFileSync(path, '---\nname: genoffice\nmetadata:\n  version: 99.0.0\n---\nfuture\n')
+    writeFileSync(path, '---\nname: plotdocs\nmetadata:\n  version: 99.0.0\n---\nfuture\n')
     const newer = await run(['skill', 'install', 'claude-code', '--json'], { env: m.env })
     expect(newer.code).toBe(2)
     expect(newer.json()).toMatchObject({ error: 'output_exists', detail: { status: 'newer' } })
@@ -120,7 +120,7 @@ describe('genoffice skill', () => {
     expect(occupied.code).toBe(2)
     expect(occupied.json().detail.status).toBe('occupied')
 
-    writeFileSync(path, '---\nname: genoffice\nmetadata:\n  version: 0.0.1\n---\nold\n')
+    writeFileSync(path, '---\nname: plotdocs\nmetadata:\n  version: 0.0.1\n---\nold\n')
     const foreign = await run(['skill', 'install', 'claude-code', '--json'], { env: m.env })
     expect(foreign.code).toBe(0)
     expect(foreign.json().detail.agents[0].action).toBe('written')
@@ -143,33 +143,33 @@ describe('genoffice skill', () => {
       cwd: m.home,
     })
     expect(r.code).toBe(0)
-    expect(existsSync(join(dir, 'genoffice', 'SKILL.md'))).toBe(true)
+    expect(existsSync(join(dir, 'plotdocs', 'SKILL.md'))).toBe(true)
     expect(r.json().detail.agents[0]).toMatchObject({ agent: null, skills_dir: dir })
     const settings = JSON.parse(
-      readFileSync(join(m.env.GENOFFICE_USER_DATA, 'app-settings.json'), 'utf-8'),
+      readFileSync(join(m.env.PLOTDOCS_USER_DATA, 'app-settings.json'), 'utf-8'),
     )
-    expect(Object.keys(settings.agentSkillInstalls)).toEqual([join(dir, 'genoffice', 'SKILL.md')])
+    expect(Object.keys(settings.agentSkillInstalls)).toEqual([join(dir, 'plotdocs', 'SKILL.md')])
     const none = await run(['skill', 'install', 'all', '--json'], { env: m.env })
     expect(none.code).toBe(1)
   })
 
   it('creates the app data folder for the ledger on a machine that never ran the app', async () => {
     const m = fakeMachine(['.claude'])
-    const env = { ...m.env, GENOFFICE_USER_DATA: join(m.home, 'never', 'launched') }
+    const env = { ...m.env, PLOTDOCS_USER_DATA: join(m.home, 'never', 'launched') }
     const r = await run(['skill', 'install', 'claude-code', '--json'], { env })
     expect(r.code).toBe(0)
-    expect(existsSync(join(env.GENOFFICE_USER_DATA, 'app-settings.json'))).toBe(true)
+    expect(existsSync(join(env.PLOTDOCS_USER_DATA, 'app-settings.json'))).toBe(true)
   })
 
   it('install all refuses before writing anything when one target is blocked', async () => {
     const m = fakeMachine(['.claude', '.codex'])
-    const codex = join(m.home, '.codex', 'skills', 'genoffice')
+    const codex = join(m.home, '.codex', 'skills', 'plotdocs')
     mkdirSync(codex, { recursive: true })
     writeFileSync(join(codex, 'SKILL.md'), '---\nname: other-skill\n---\nx\n')
     const r = await run(['skill', 'install', 'all', '--json'], { env: m.env })
     expect(r.code).toBe(2)
     expect(r.json().detail).toMatchObject({ agent: 'codex', status: 'occupied' })
-    expect(existsSync(join(m.home, '.claude', 'skills', 'genoffice'))).toBe(false)
-    expect(existsSync(join(m.env.GENOFFICE_USER_DATA, 'app-settings.json'))).toBe(false)
+    expect(existsSync(join(m.home, '.claude', 'skills', 'plotdocs'))).toBe(false)
+    expect(existsSync(join(m.env.PLOTDOCS_USER_DATA, 'app-settings.json'))).toBe(false)
   })
 })

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import type { StyleInfo } from '@genoffice/docx-engine'
+import type { StyleInfo } from '@plotdocs/docx-engine'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { effectiveSizeHalfPoints } from '../src/renderer/editor/text-style-resolve'
 

@@ -36,5 +36,5 @@ Chaque éditeur peut appeler le panneau IA: sélectionnez quelque chose, donnez 
 
 ## Confidentialité
 
-- Les instructions et le contenu pertinent du document vont au **service de modèle que vous avez configuré** (Genspark hébergé ou un point de terminaison personnalisé, chapitre suivant); sans configuration, rien n’est envoyé.
+- Les instructions et le contenu pertinent du document vont au **service de modèle que vous avez configuré** (Soopus AI hébergé ou un point de terminaison personnalisé, chapitre suivant); sans configuration, rien n’est envoyé.
 - Les fichiers locaux ne sont envoyés nulle part ailleurs; les clés BYOK sont stockées dans le fichier de paramètres de l'application sur cet ordinateur et envoyées uniquement dans les en-têtes de requête.

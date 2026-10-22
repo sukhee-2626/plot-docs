@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { ReactNode } from 'react'
+import type { FormEvent, ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import {
   AI_CUSTOM_FONT_MAX_PX,
   AI_CUSTOM_FONT_MIN_PX,
@@ -7,11 +8,18 @@ import {
   Dropdown,
   aiPanelFontPx,
   clampAiCustomFontSize,
-} from '@genoffice/ui'
-import type { AiFontSize, AiPanelPrefs, AiPanelSide } from '@genoffice/ui'
-import type { DecisionEndpoint, DefaultAppStatus, FileSearchSettings } from '../../shared/home-api'
+} from '@plotdocs/ui'
+import type { AiFontSize, AiPanelPrefs, AiPanelSide } from '@plotdocs/ui'
+import type {
+  AccountAuthError,
+  AccountStatus,
+  DecisionEndpoint,
+  DefaultAppStatus,
+  FileSearchSettings,
+} from '../../shared/home-api'
 import { AUTHOR_NAME_MAX, isCloudflareEndpoint } from '../../shared/home-api'
 import type { UpdateUiState } from '../../shared/update-api'
+import plotDocsMark from './assets/plotdocs-mark.svg'
 import {
   DEFAULT_MAX_OUTPUT_TOKENS,
   MAX_MAX_OUTPUT_TOKENS,
@@ -25,7 +33,7 @@ import {
   selectCustomEndpoint,
   upsertCustomEndpoint,
   AI_CUSTOM_PROTOCOLS,
-} from '@genoffice/ai-provider/browser'
+} from '@plotdocs/ai-provider/browser'
 import type {
   AiCustomCompat,
   AiCustomEndpoint,
@@ -37,11 +45,10 @@ import type {
   AiSearchProviderMeta,
   AiSearchSettings,
   AiSettings,
-} from '@genoffice/ai-provider'
+} from '@plotdocs/ai-provider'
 import { useI18n } from './locale'
 import type { StringKey, TFunc } from './locale'
 import type {
-  AccountStatus,
   AiCatalogEntry,
   AuthorNameSetting,
   DocTheme,
@@ -52,7 +59,7 @@ import { IntegrationsPane, skillUpdateDue } from './IntegrationsPane'
 import './settings.css'
 
 // ── Settings modal (opened from the account menu) ─────────
-// Genspark-style two-pane dialog: section nav on the left, fields on the right.
+// Soopus-style two-pane dialog: section nav on the left, fields on the right.
 // All values go through the existing home IPC; nothing is stored locally.
 
 // sorted by ISO 639 language code — native-script labels have no natural
@@ -88,7 +95,7 @@ const THEME_OPTIONS = [
   { value: 'dark', labelKey: 'themeDark' },
 ] as const satisfies readonly { value: UiTheme; labelKey: StringKey }[]
 
-// Document page theme (genoffice#1811): the canvas/paper preference the editors follow;
+// Document page theme (plotdocs#1811): the canvas/paper preference the editors follow;
 // 'follow' keeps the pre-existing behavior of riding the UI theme
 const DOC_THEME_OPTIONS = [
   { value: 'follow', labelKey: 'docThemeFollowApp' },
@@ -107,14 +114,6 @@ const CHANNEL_OPTIONS = [
   { value: 'stable', labelKey: 'channelStable' },
   { value: 'beta', labelKey: 'channelBeta' },
 ] as const satisfies readonly { value: 'stable' | 'beta'; labelKey: StringKey }[]
-
-/** GitHub-style abbreviated stargazer count (2591 → "2.6k") — the number is
- * social proof, not a metric; the cached/exact value would only look stale */
-function formatStars(n: number): string {
-  if (n < 1000) return String(n)
-  const k = n / 1000
-  return `${k >= 100 ? Math.round(k) : (Math.round(k * 10) / 10).toString().replace(/\.0$/, '')}k`
-}
 
 /** px stepper for the custom AI panel text size; in-range values apply live,
  * out-of-range or partial input is clamped on blur */
@@ -169,6 +168,16 @@ function CustomFontSizeInput({
 }
 
 export type SectionId = 'account' | 'aiModel' | 'aiMedia' | 'general' | 'integrations' | 'about'
+
+const ACCOUNT_AUTH_ERROR_KEYS: Record<AccountAuthError, StringKey> = {
+  'invalid-name': 'accountErrName',
+  'invalid-email': 'accountErrEmail',
+  'weak-password': 'accountErrWeak',
+  exists: 'accountErrExists',
+  'no-account': 'accountErrNoAccount',
+  'bad-credentials': 'accountErrBad',
+  storage: 'accountErrStorage',
+}
 
 const SECTIONS: readonly { id: SectionId; labelKey: StringKey }[] = [
   { id: 'account', labelKey: 'setSecAccount' },
@@ -344,13 +353,13 @@ function AiModelPane({ t }: { t: TFunc }) {
         setTesting(false)
         setTestResult(null)
         setSaved(false)
-        // The switch is disabled with genspark, so never present it stranded
+        // The switch is disabled with Soopus, so never present it stranded
         // off. Display-only: s.provider may be the activeProvider fallback for
         // a half-configured BYOK selection, so writing anything back here would
         // clobber the stored choice — the main process heals a genuine legacy
-        // genspark+off file itself, judged on the raw stored provider.
-        if (s.provider === 'genspark' && s.gskToolsEnabled === false) {
-          s = { ...s, gskToolsEnabled: true }
+        // Soopus+off file itself, judged on the raw stored provider.
+        if (s.provider === 'soopus' && s.soopusToolsEnabled === false) {
+          s = { ...s, soopusToolsEnabled: true }
         }
         setSettings(s)
         const codex = s.providers.codex
@@ -373,7 +382,7 @@ function AiModelPane({ t }: { t: TFunc }) {
   // endpoint itself. Keyed on the catalog's `needsBaseUrl` flag rather than on
   // the literal 'custom' id, so it follows the slot rather than the name, and
   // stays a no-op while any other provider is selected — a local server saved
-  // months ago is never contacted while Genspark is in use. Aggregators flagged
+  // months ago is never contacted while Soopus is in use. Aggregators flagged
   // `liveModels` (OpenRouter) join in at their default address, their shipped
   // list standing in until the catalog answers.
   const liveEntry = catalog.find(
@@ -451,7 +460,7 @@ function AiModelPane({ t }: { t: TFunc }) {
     baseUrl: undefined,
     cliPath: undefined,
   }
-  const isGenspark = provider === 'genspark'
+  const isSoopus = provider === 'soopus'
   const isCodex = provider === 'codex'
 
   const touch = () => {
@@ -537,11 +546,11 @@ function AiModelPane({ t }: { t: TFunc }) {
     touch()
   }
   const selectProvider = (id: AiSettings['provider']) => {
-    // cloud tools cannot be off with genspark (chat runs through gsk anyway)
+    // cloud tools cannot be off with Soopus (chat runs through soopus anyway)
     setSettings({
       ...settings,
       provider: id,
-      ...(id === 'genspark' ? { gskToolsEnabled: true } : {}),
+      ...(id === 'soopus' ? { soopusToolsEnabled: true } : {}),
     })
     touch()
   }
@@ -641,7 +650,7 @@ function AiModelPane({ t }: { t: TFunc }) {
         />
       </div>
       <div className="set-field-desc set-ai-note">
-        {isGenspark ? t('setAiGensparkHint') : isCodex ? t('setAiCodexHint') : t('setAiByokNote')}
+        {isSoopus ? t('setAiSoopusHint') : isCodex ? t('setAiCodexHint') : t('setAiByokNote')}
       </div>
       {meta?.needsBaseUrl && (
         <>
@@ -748,7 +757,7 @@ function AiModelPane({ t }: { t: TFunc }) {
             }}
           />
         </div>
-      ) : !isGenspark ? (
+      ) : !isSoopus ? (
         <>
           <div className="set-field">
             <div className="set-field-text">
@@ -1021,19 +1030,19 @@ function AiModelPane({ t }: { t: TFunc }) {
       <div className="set-field">
         <div className="set-field-text">
           <div className="set-field-stack">
-            <div className="set-field-label">{t('setAiGskTools')}</div>
-            <div className="set-field-desc">{t('setAiGskToolsDesc')}</div>
+            <div className="set-field-label">{t('setAiSoopusTools')}</div>
+            <div className="set-field-desc">{t('setAiSoopusToolsDesc')}</div>
           </div>
         </div>
-        {/* locked on with the genspark provider — chat runs through gsk anyway */}
+        {/* locked on with the Soopus provider — chat runs through soopus anyway */}
         <button
           className="set-switch"
           role="switch"
-          aria-checked={settings.gskToolsEnabled !== false}
-          aria-label={t('setAiGskTools')}
-          disabled={isGenspark}
+          aria-checked={settings.soopusToolsEnabled !== false}
+          aria-label={t('setAiSoopusTools')}
+          disabled={isSoopus}
           onClick={() => {
-            setSettings({ ...settings, gskToolsEnabled: settings.gskToolsEnabled === false })
+            setSettings({ ...settings, soopusToolsEnabled: settings.soopusToolsEnabled === false })
             touch()
           }}
         />
@@ -1213,7 +1222,7 @@ function AiMediaPane({
           window.aiOffice.testAiSearchSettings?.({
             provider: search.provider,
             apiKey:
-              search.provider === 'genspark'
+              search.provider === 'soopus'
                 ? ''
                 : (search.providers[search.provider]?.apiKey ?? ''),
           }) ?? Promise.resolve(fallback),
@@ -1486,9 +1495,9 @@ function AiMediaPane({
         {subhead(cap, title)}
         {providerRow(title, id, options, pick)}
         <div className="set-field-desc set-ai-note">
-          {id === 'genspark' ? t('setAiMediaGensparkHint') : meta.description}
+          {id === 'soopus' ? t('setAiMediaSoopusHint') : meta.description}
         </div>
-        {id !== 'genspark' && (
+        {id !== 'soopus' && (
           <>
             {modelRow(
               `set-ai-${cap}-model`,
@@ -1511,7 +1520,7 @@ function AiMediaPane({
 
   const searchMeta = searchCatalog.find((m) => m.id === search.provider)
   const searchKey =
-    search.provider === 'genspark' ? '' : (search.providers[search.provider]?.apiKey ?? '')
+    search.provider === 'soopus' ? '' : (search.providers[search.provider]?.apiKey ?? '')
 
   return (
     <>
@@ -1534,8 +1543,8 @@ function AiMediaPane({
           setSearch({ ...search, provider: v as AiSearchSettings['provider'] }),
         )}
         <div className="set-field-desc set-ai-note">
-          {search.provider === 'genspark'
-            ? t('setAiSearchGensparkHint')
+          {search.provider === 'soopus'
+            ? t('setAiSearchSoopusHint')
             : search.provider === 'parallel'
               ? t('setAiSearchParallelHint')
               : search.provider === 'serply'
@@ -1544,7 +1553,7 @@ function AiMediaPane({
                   ? t('setAiSearchSerperHint')
                   : t('setAiSearchTavilyHint')}
         </div>
-        {search.provider !== 'genspark' &&
+        {search.provider !== 'soopus' &&
           keyRow('set-ai-search-key', searchKey, searchMeta?.keyPlaceholder ?? 'API Key', (v) =>
             setSearch({
               ...search,
@@ -1708,9 +1717,13 @@ export interface SettingsModalProps {
   onClose: () => void
   /** the decision-model search settings were saved; the home search re-judges or drops its current order */
   onFileSearchChange?: () => void
-  /** closes the modal and launches the Genspark login flow (progress shows on the account entry) */
+  /** closes the modal and opens the in-app Soopus sign-in window */
   onLogin: () => void
+  /** same real account window, entered through its create-account path */
+  onSignUp: () => void
   onLogout: () => void
+  /** refresh the parent's account banner after a local create/sign-in */
+  onAccountChanged?: (status: AccountStatus) => void
   /** an installed skill is older than the bundled one: dot on the Integrations entry */
   skillUpdateDue?: boolean
   onSkillUpdateDue?: (due: boolean) => void
@@ -1729,7 +1742,9 @@ export function SettingsModal({
   onClose,
   onFileSearchChange,
   onLogin,
+  onSignUp,
   onLogout,
+  onAccountChanged,
   skillUpdateDue: updateDue = false,
   onSkillUpdateDue,
   target,
@@ -1741,6 +1756,18 @@ export function SettingsModal({
   }, [target])
   const [theme, setTheme] = useState<UiTheme>('system')
   const [docTheme, setDocTheme] = useState<DocTheme>('follow')
+  const [launchHold, setLaunchHold] = useState<number>(() => {
+    try {
+      const stored = localStorage.getItem('plotdocs.splash.hold')
+      if (stored !== null) {
+        const value = Number(stored)
+        if (Number.isFinite(value) && value >= 0) return value
+      }
+    } catch {
+      // localStorage can be unavailable in hardened windows; keep the default
+    }
+    return 30_000
+  })
   const [saveDir, setSaveDir] = useState('')
   const [analyticsOn, setAnalyticsOn] = useState(true)
   const [analyticsSaving, setAnalyticsSaving] = useState(false)
@@ -1752,7 +1779,6 @@ export function SettingsModal({
   const [authorName, setAuthorName] = useState<AuthorNameSetting>({ value: '', fallback: '' })
   const [channel, setChannel] = useState<'stable' | 'beta'>('stable')
   const [appVersion, setAppVersion] = useState('')
-  const [githubStars, setGithubStars] = useState<number | null>(null)
   const [updateState, setUpdateState] = useState<UpdateUiState | null>(null)
 
   useEffect(() => {
@@ -1796,9 +1822,6 @@ export function SettingsModal({
         if (alive) setUpdateState(s)
       })
       .catch(() => undefined)
-    void window.aiOffice.githubStars?.().then((n) => {
-      if (alive && n !== null) setGithubStars(n)
-    })
     return () => {
       alive = false
     }
@@ -1879,8 +1902,66 @@ export function SettingsModal({
 
   const loggedIn = status?.loggedIn ?? false
   const email = status?.email ?? ''
+  const [authMode, setAuthMode] = useState<'create' | 'signin'>(
+    status?.hasAccount ? 'signin' : 'create',
+  )
+  const [authName, setAuthName] = useState('')
+  const [authEmail, setAuthEmail] = useState('')
+  const [authPassword, setAuthPassword] = useState('')
+  const [authConfirm, setAuthConfirm] = useState('')
+  const [authError, setAuthError] = useState('')
+  const [authBusy, setAuthBusy] = useState(false)
 
-  return (
+  useEffect(() => {
+    if (loggedIn) {
+      setAuthError('')
+      setAuthPassword('')
+      setAuthConfirm('')
+      return
+    }
+    setAuthMode(status?.hasAccount ? 'signin' : 'create')
+  }, [loggedIn, status?.hasAccount])
+
+  const submitAuth = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (authBusy) return
+    if (authMode === 'create' && authPassword !== authConfirm) {
+      setAuthError(t('accountErrMismatch'))
+      return
+    }
+    setAuthBusy(true)
+    setAuthError('')
+    try {
+      const result =
+        authMode === 'create'
+          ? await window.aiOffice.accountCreate?.({
+              name: authName,
+              email: authEmail,
+              password: authPassword,
+            })
+          : await window.aiOffice.accountSignIn?.({
+              email: authEmail,
+              password: authPassword,
+            })
+      if (!result) {
+        setAuthError(t('accountErrStorage'))
+        return
+      }
+      if (!result.ok) {
+        setAuthError(t(ACCOUNT_AUTH_ERROR_KEYS[result.error]))
+        return
+      }
+      setAuthPassword('')
+      setAuthConfirm('')
+      onAccountChanged?.(result.status)
+    } catch {
+      setAuthError(t('accountErrStorage'))
+    } finally {
+      setAuthBusy(false)
+    }
+  }
+
+  return createPortal(
     <div
       className="set-overlay"
       onMouseDown={(e) => {
@@ -1922,49 +2003,123 @@ export function SettingsModal({
             {section === 'account' && (
               <>
                 <h3 className="set-pane-title">{t('setSecAccount')}</h3>
-                <Field label={t('setEmail')} value={loggedIn ? email : t('setNotLoggedIn')} />
-                {loggedIn && (
-                  <Field
-                    label={t('credits')}
-                    value={
-                      status?.creditBalance === undefined
-                        ? '—'
-                        : Math.floor(status.creditBalance).toLocaleString('en-US')
-                    }
-                    action={
-                      <button
-                        className="set-btn"
-                        data-tip={t('creditsTip')}
-                        onClick={() => void window.aiOffice.openCreditUsage?.()}
-                      >
-                        {t('setViewUsage')}
+                {loggedIn ? (
+                  <>
+                    <Field label={t('setEmail')} value={email} />
+                    {status?.name && <Field label={t('accountName')} value={status.name} />}
+                    {status?.creditBalance !== undefined && (
+                      <Field
+                        label={t('credits')}
+                        value={Math.floor(status.creditBalance).toLocaleString('en-US')}
+                        action={
+                          <button
+                            className="set-btn"
+                            data-tip={t('creditsTip')}
+                            onClick={() => void window.aiOffice.openCreditUsage?.()}
+                          >
+                            {t('setViewUsage')}
+                          </button>
+                        }
+                      />
+                    )}
+                    <div className="set-field-desc">{t('accountLocalNote')}</div>
+                    <div className="set-pane-footer">
+                      <button className="set-btn danger" disabled={loggingOut} onClick={onLogout}>
+                        {loggingOut ? t('loggingOut') : t('logout')}
                       </button>
-                    }
-                  />
+                    </div>
+                  </>
+                ) : (
+                  <form className="set-auth-form" onSubmit={submitAuth}>
+                    <div className="set-auth-intro">
+                      {authMode === 'create' ? t('accountCreateHelp') : t('accountSignInHelp')}
+                    </div>
+                    {authMode === 'create' && (
+                      <div className="set-field">
+                        <div className="set-field-text">
+                          <label className="set-field-label" htmlFor="plotdocs-account-name">
+                            {t('accountName')}
+                          </label>
+                        </div>
+                        <input
+                          id="plotdocs-account-name"
+                          className="set-input"
+                          type="text"
+                          autoComplete="name"
+                          value={authName}
+                          onChange={(e) => setAuthName(e.target.value)}
+                          required
+                        />
+                      </div>
+                    )}
+                    <div className="set-field">
+                      <div className="set-field-text">
+                        <label className="set-field-label" htmlFor="plotdocs-account-email">
+                          {t('setEmail')}
+                        </label>
+                      </div>
+                      <input
+                        id="plotdocs-account-email"
+                        className="set-input"
+                        type="email"
+                        autoComplete="email"
+                        value={authEmail}
+                        onChange={(e) => setAuthEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="set-field">
+                      <div className="set-field-text">
+                        <label className="set-field-label" htmlFor="plotdocs-account-password">
+                          {t('accountPassword')}
+                        </label>
+                      </div>
+                      <input
+                        id="plotdocs-account-password"
+                        className="set-input"
+                        type="password"
+                        autoComplete={authMode === 'create' ? 'new-password' : 'current-password'}
+                        value={authPassword}
+                        onChange={(e) => setAuthPassword(e.target.value)}
+                        minLength={8}
+                        required
+                      />
+                    </div>
+                    {authMode === 'create' && (
+                      <div className="set-field">
+                        <div className="set-field-text">
+                          <label className="set-field-label" htmlFor="plotdocs-account-confirm">
+                            {t('accountConfirm')}
+                          </label>
+                        </div>
+                        <input
+                          id="plotdocs-account-confirm"
+                          className="set-input"
+                          type="password"
+                          autoComplete="new-password"
+                          value={authConfirm}
+                          onChange={(e) => setAuthConfirm(e.target.value)}
+                          minLength={8}
+                          required
+                        />
+                      </div>
+                    )}
+                    {authError && (
+                      <div className="set-auth-error" role="alert">
+                        {authError}
+                      </div>
+                    )}
+                    <div className="set-pane-footer">
+                      <button className="set-btn primary" type="submit" disabled={authBusy}>
+                        {authBusy
+                          ? t('waitingShort')
+                          : authMode === 'create'
+                            ? t('createAccount')
+                            : t('login')}
+                      </button>
+                    </div>
+                  </form>
                 )}
-                <div className="set-pane-footer">
-                  {loggedIn ? (
-                    <button className="set-btn danger" disabled={loggingOut} onClick={onLogout}>
-                      {loggingOut ? t('loggingOut') : t('logout')}
-                    </button>
-                  ) : (
-                    <>
-                      {loginWaiting && loginUrl && (
-                        <>
-                          <button className="set-btn" onClick={onOpenLoginUrl}>
-                            {t('loginOpenManually')}
-                          </button>
-                          <button className="set-btn" onClick={onCopyLoginUrl}>
-                            {urlCopied ? t('loginCopied') : t('loginCopyUrl')}
-                          </button>
-                        </>
-                      )}
-                      <button className="set-btn primary" onClick={onLogin}>
-                        {loginWaiting ? t('waitingShort') : t('loginGenspark')}
-                      </button>
-                    </>
-                  )}
-                </div>
               </>
             )}
             {section === 'aiModel' && <AiModelPane t={t} />}
@@ -2018,6 +2173,35 @@ export function SettingsModal({
                       label: t(opt.labelKey),
                     }))}
                     onPick={(v) => applyDocumentTheme(v as DocTheme)}
+                  />
+                </div>
+                <div className="set-field">
+                  <div className="set-field-text">
+                    <div className="set-field-stack">
+                      <label className="set-field-label">Launch animation</label>
+                      <div className="set-field-desc">
+                        The cinematic Plot Docs opening sequence. Applies the next time the app starts.
+                      </div>
+                    </div>
+                  </div>
+                  <Dropdown
+                    className="set-dd"
+                    value={String(launchHold)}
+                    ariaLabel="Launch animation"
+                    options={[
+                      { value: '30000', label: '30 seconds · cinematic' },
+                      { value: '6000', label: '6 seconds · quick' },
+                      { value: '0', label: 'Off · instant start' },
+                    ]}
+                    onPick={(value) => {
+                      const next = Number(value)
+                      setLaunchHold(next)
+                      try {
+                        localStorage.setItem('plotdocs.splash.hold', String(next))
+                      } catch {
+                        // persistence is best-effort; the in-memory value still applies
+                      }
+                    }}
                   />
                 </div>
                 <div className="set-field">
@@ -2258,27 +2442,42 @@ export function SettingsModal({
                   />
                 </div>
                 <Field
-                  label={t('setGithub')}
-                  value={
-                    githubStars === null
-                      ? 'github.com/genspark-ai/genoffice'
-                      : `github.com/genspark-ai/genoffice · ★ ${formatStars(githubStars)}`
-                  }
+                  label="Website"
+                  value="plotxyz.ai"
                   action={
                     <button
                       className="set-btn"
-                      onClick={() => void window.aiOffice.openGitHubRepo?.()}
+                      onClick={() => void window.aiOffice.openWebsite?.()}
                     >
-                      {t('starOnGitHub')}
+                      Visit
                     </button>
                   }
                 />
+                <div className="set-credits">
+                  <div className="set-credits-head">
+                    <img className="set-credits-mark" src={plotDocsMark} alt="" />
+                    <div>
+                      <strong>Plot Docs by plotxyz.ai</strong>
+                      <span>AI-native document design studio · Apache-2.0</span>
+                    </div>
+                  </div>
+                  <p>
+                    Built on an open-source document engine. Thank you to every upstream contributor
+                    who made this work possible.
+                  </p>
+                  <p className="set-credits-fine">
+                    Plot Docs is an independent fork by plotxyz.ai, licensed under the Apache License
+                    2.0. Upstream copyright notices are preserved in THIRD-PARTY-NOTICES. Third-party
+                    notices ship with the app.
+                  </p>
+                </div>
               </>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 

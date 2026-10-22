@@ -1,4 +1,4 @@
-import { parseDocx } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
 import type { ParseWorkerRequest, ParseWorkerResponse } from './parse-off-thread'
 
 /** Worker entry: parse a .docx off the UI thread and hand the model back. */

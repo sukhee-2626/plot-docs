@@ -1,6 +1,6 @@
 # Bắt đầu nhanh: giao diện và những điều cơ bản
 
-GenOffice là bộ ứng dụng văn phòng chạy hoàn toàn trên máy của bạn: một cửa sổ, một hàng thẻ, chứa sáu trình soạn thảo — Docs (xử lý văn bản), Sheets (bảng tính), Slides (trình chiếu), PDF, Markdown và HTML. Tập tin đều là .docx / .xlsx / .pptx / .pdf thật, hoàn toàn tương thích với Word, Excel và PowerPoint. Không cần mạng.
+Plot Docs là bộ ứng dụng văn phòng chạy hoàn toàn trên máy của bạn: một cửa sổ, một hàng thẻ, chứa sáu trình soạn thảo — Docs (xử lý văn bản), Sheets (bảng tính), Slides (trình chiếu), PDF, Markdown và HTML. Tập tin đều là .docx / .xlsx / .pptx / .pdf thật, hoàn toàn tương thích với Word, Excel và PowerPoint. Không cần mạng.
 
 ## Tổng quan giao diện
 
@@ -18,7 +18,7 @@ Bất kỳ cách nào sau đây:
 
 - Nhấp vào một thẻ tạo nhanh trong mục [Bắt đầu nhanh](help://getting-started) của **Trang chủ** (AI Docs, AI Sheets, AI Slides, ...).
 - Menu **File ▸ Mới**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML hoặc PDF.
-- Kéo một tập tin vào cửa sổ, hoặc nhấp đúp vào nó trong trình quản lý tập tin (nếu GenOffice là ứng dụng mặc định).
+- Kéo một tập tin vào cửa sổ, hoặc nhấp đúp vào nó trong trình quản lý tập tin (nếu Plot Docs là ứng dụng mặc định).
 
 Tài liệu mới mở ra chưa có tiêu đề; tập tin trên đĩa chỉ được tạo ở lần lưu đầu tiên.
 
@@ -26,7 +26,7 @@ Tài liệu mới mở ra chưa có tiêu đề; tập tin trên đĩa chỉ đ�
 
 - Menu **File ▸ Mở** (⌘O/ctrl+O) mở bộ chọn của hệ thống: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Nhấp vào bất kỳ mục nào trong danh sách **Gần đây** của Trang chủ.
-- `genoffice <file>` từ terminal cũng mở được tập tin.
+- `plotdocs <file>` từ terminal cũng mở được tập tin.
 
 ## Mô hình lưu
 
@@ -52,7 +52,7 @@ Các phím tắt bên trong từng trình soạn thảo (công cụ định dạ
 
 ## Các phím tắt Option+Command
 
-Option+Command là lớp mà Word dành riêng cho các bước nhảy có cấu trúc, và GenOffice lấp đầy lớp đó theo đúng cách. Docs chiếm phần lớn, Sheets chiếm hai phím riêng để tương đương với Excel, và có một tổ hợp dùng được ở mọi nơi.
+Option+Command là lớp mà Word dành riêng cho các bước nhảy có cấu trúc, và Plot Docs lấp đầy lớp đó theo đúng cách. Docs chiếm phần lớn, Sheets chiếm hai phím riêng để tương đương với Excel, và có một tổ hợp dùng được ở mọi nơi.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Lưu ý rằng **⌥⌘0 nghĩa là Bình thường trong Docs và Viền ngoài
 
 **Mọi trình soạn thảo**: **⌥⌘R / Ctrl+F1** thu gọn Ribbon, như đã mô tả ở trên.
 
-Như vậy ⌥⌘D vẫn còn trống để GenOffice dùng trên macOS, nếu một lệnh nào trong tương lai cần đến nó.
+Như vậy ⌥⌘D vẫn còn trống để Plot Docs dùng trên macOS, nếu một lệnh nào trong tương lai cần đến nó.
 
 ## Nên đọc tiếp ở đâu
 

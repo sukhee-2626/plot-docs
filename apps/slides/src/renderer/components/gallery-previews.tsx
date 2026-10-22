@@ -1,16 +1,16 @@
 /**
  * Geometry-driven gallery previews. The shape geometry/preview implementation
- * is shared across apps via @genoffice/ui (re-exported here for existing
+ * is shared across apps via @plotdocs/ui (re-exported here for existing
  * imports); SmartArt thumbs reuse the engine's layout math so preview and
  * insert result always match.
  */
-import { shapePreviewPath } from '@genoffice/ui'
+import { shapePreviewPath } from '@plotdocs/ui'
 import {
   layoutShapes,
   type SmartArtLayout,
 } from '../../../../../packages/pptx-engine/src/smartart-layout'
 
-export { ShapePreview, shapePreviewBox, shapePreviewPath } from '@genoffice/ui'
+export { ShapePreview, shapePreviewBox, shapePreviewPath } from '@plotdocs/ui'
 
 /** Same virtual canvas scale as real insertion (EMU) so layout ratios/minimums behave identically. */
 const SA_CX = 4800000

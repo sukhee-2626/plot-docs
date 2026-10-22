@@ -116,7 +116,7 @@ test.describe('docs selection bar and format painter', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-selbar-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-selbar-')))
     docPath = join(dir, 'selbar.docx')
     writeFileSync(docPath, await minimalDocx(PARAS))
   })

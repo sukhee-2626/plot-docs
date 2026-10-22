@@ -1,7 +1,7 @@
 /**
  * Dragging a column border previews the new grid while the mouse is still
  * down: the dragged cell widens and the text reflows before mouseup, for
- * tables with and without a saved tblGrid (genoffice#1156).
+ * tables with and without a saved tblGrid (plotdocs#1156).
  */
 import { test, expect } from '@playwright/test'
 import { mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
@@ -47,7 +47,7 @@ async function docx(): Promise<Buffer> {
 
 test('column border drag previews the width before mouseup', async () => {
   test.setTimeout(150_000)
-  const dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-col-resize-')))
+  const dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-col-resize-')))
   const docPath = join(dir, 'tables.docx')
   writeFileSync(docPath, await docx())
   const launched = await launchShell({

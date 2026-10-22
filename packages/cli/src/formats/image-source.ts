@@ -5,7 +5,7 @@ import {
   ResponseTooLargeError,
   fetchRemoteImage,
   readBodyCapped,
-} from '@genoffice/electron-utils/remote-image'
+} from '@plotdocs/electron-utils/remote-image'
 import { assertAllowed, type PathContext } from '../fs'
 import { imageSize } from './image-size'
 
@@ -16,7 +16,7 @@ export interface ImageSource {
 }
 
 /**
- * Image bytes for a spec or op field: a data: URL, an http(s) URL genoffice
+ * Image bytes for a spec or op field: a data: URL, an http(s) URL plotdocs
  * downloads, or a local path (absolute, else relative to the current directory
  * and then to the file the reference came from).
  */

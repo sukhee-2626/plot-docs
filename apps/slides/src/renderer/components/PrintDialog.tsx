@@ -6,7 +6,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useEscOverlay } from '../esc-overlay'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import { useI18n } from '../i18n/locale'
 import {
   buildPrintDocumentHtml,

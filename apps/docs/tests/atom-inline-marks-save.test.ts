@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import { parseDocx, type Run } from '@genoffice/docx-engine'
+import { parseDocx, type Run } from '@plotdocs/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import {
@@ -12,7 +12,7 @@ import {
 } from '../src/renderer/editor/convert'
 
 /**
- * genoffice#524: inline atoms (note refs, XE marks, formulas, ruby, pictures)
+ * plotdocs#524: inline atoms (note refs, XE marks, formulas, ruby, pictures)
  * used to drop their run marks on the way into the editor, so a footnote
  * reference inside a w:ins never matched its original signature; the paragraph
  * regenerated and lost the tracked change and the character style.

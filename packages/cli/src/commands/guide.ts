@@ -42,15 +42,15 @@ export const guideCommand: CommandDef = {
       throw new CliError(
         EXIT.usage,
         'guides available for: slides, docs, sheets',
-        { usage: 'genoffice guide slides | genoffice guide docs | genoffice guide sheets' },
+        { usage: 'plotdocs guide slides | plotdocs guide docs | plotdocs guide sheets' },
         {
           reason: domain === undefined ? 'missing_argument' : 'invalid_argument',
-          suggestion: 'run `genoffice guide slides|docs|sheets`',
+          suggestion: 'run `plotdocs guide slides|docs|sheets`',
         },
       )
     }
     if (domain === 'slides' && (topic === 'design' || topic === 'spec')) {
-      const { SLIDES_GUIDES } = await import('@genoffice/pipelines/slides')
+      const { SLIDES_GUIDES } = await import('@plotdocs/pipelines/slides')
       return { summary: SLIDES_GUIDES[topic].content }
     }
     const { catalog, text } = await load(domain, topic, flagBool(args, 'index'))
@@ -77,7 +77,7 @@ export const guideCommand: CommandDef = {
           reason: 'invalid_argument',
           suggestion: guess
             ? `did you mean ${guess}?`
-            : `run \`genoffice guide ${domain}\` for the groups and ops`,
+            : `run \`plotdocs guide ${domain}\` for the groups and ops`,
         },
       )
     }
@@ -109,7 +109,7 @@ async function load(
     const { catalog, htmlRules } = await docsCatalog()
     return { catalog, text: (group) => docsGuideText(catalog, htmlRules, group) }
   }
-  const docs = await import('@genoffice/pptx-ops/op-docs')
+  const docs = await import('@plotdocs/pptx-ops/op-docs')
   const catalog = slidesCatalog(docs)
   return {
     catalog,
@@ -117,13 +117,13 @@ async function load(
       if (index) return docs.opSignatureIndex()
       if (group) return docs.opGuide(group)!
       return [
-        'Op groups (genoffice guide slides <group> prints one; genoffice guide slides <op> prints one op):',
+        'Op groups (plotdocs guide slides <group> prints one; plotdocs guide slides <op> prints one op):',
         docs.opGuideCatalog(),
         '',
-        'Building a new deck: `genoffice guide slides design` (the staged workflow: style sheet, outline, one page file at a time, build, QC) and `genoffice guide slides spec` (the outline and page spec JSON for `genoffice slides check` and `genoffice create --type pptx --spec`).',
+        'Building a new deck: `plotdocs guide slides design` (the staged workflow: style sheet, outline, one page file at a time, build, QC) and `plotdocs guide slides spec` (the outline and page spec JSON for `plotdocs slides check` and `plotdocs create --type pptx --spec`).',
         '',
         'Every op: { "op": "<name>", "target": { "slide": <index|"s_n">, "el"?: "e_*" }, ...fields }.',
-        'Units are EMU (914400 per inch; suffixes in/cm/mm/pt/px accepted); font sizes are pt. `genoffice slides read <file>` lists ids and geometry.',
+        'Units are EMU (914400 per inch; suffixes in/cm/mm/pt/px accepted); font sizes are pt. `plotdocs slides read <file>` lists ids and geometry.',
         'Vocabulary:',
         docs.opVocabulary(),
       ].join('\n')
@@ -131,7 +131,7 @@ async function load(
   }
 }
 
-type SlidesOpDocs = typeof import('@genoffice/pptx-ops/op-docs')
+type SlidesOpDocs = typeof import('@plotdocs/pptx-ops/op-docs')
 
 function slidesCatalog(docs: SlidesOpDocs): OpCatalog {
   const ops: OpEntry[] = Object.entries(docs.OP_DOCS)
@@ -147,8 +147,8 @@ function slidesCatalog(docs: SlidesOpDocs): OpCatalog {
 
 function docsGuideText(catalog: OpCatalog, htmlRules: string, group?: string): string {
   const lines = [
-    'Word ops (genoffice docs apply --ops): a JSON array; every entry has "op".',
-    'Targets: { "blockIndexes": [..] } or { "nodeType": "docHeading"|"docParagraph"|"docListItem"|"image", "headingLevel"? }; get indexes from `genoffice docs read`.',
+    'Word ops (plotdocs docs apply --ops): a JSON array; every entry has "op".',
+    'Targets: { "blockIndexes": [..] } or { "nodeType": "docHeading"|"docParagraph"|"docListItem"|"image", "headingLevel"? }; get indexes from `plotdocs docs read`.',
     'Field notation: bare = string, n = number, bool = boolean, ? = optional, a|b = one of.',
     '',
     ...renderGroups(catalog, group),

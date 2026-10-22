@@ -1,5 +1,5 @@
 import { basename } from 'node:path'
-import { PdfLoadError } from '@genoffice/pdf2docx'
+import { PdfLoadError } from '@plotdocs/pdf2docx'
 import { flagBool, flagString } from '../args'
 import { PDF_DEFAULT_PAGES, PDF_PAGE_PREVIEW_CHARS, pdfText } from '../formats/pdf'
 import { extension, readInput, resolveInput } from '../fs'
@@ -34,7 +34,7 @@ export const pdfCommand: CommandDef = {
     if (verb !== 'read') {
       throw new CliError(EXIT.usage, 'expected "pdf read <file.pdf>"', undefined, {
         reason: verb === undefined ? 'missing_argument' : 'invalid_argument',
-        suggestion: 'run `genoffice help pdf`',
+        suggestion: 'run `plotdocs help pdf`',
       })
     }
     return read(file, args, ctx)

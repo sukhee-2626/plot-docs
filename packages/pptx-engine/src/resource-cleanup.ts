@@ -187,7 +187,7 @@ function removeUnreferencedOwnedParts(
     }
   }
 
-  // GenOffice's simplified 3D placeholder records the model path in cNvPr@descr
+  // Plot Docs's simplified 3D placeholder records the model path in cNvPr@descr
   // rather than an OOXML relationship, so include those direct references.
   for (const [path, bytes] of archive.entries) {
     if (closure.has(path) || !mayCarryModel3dRef(path)) continue

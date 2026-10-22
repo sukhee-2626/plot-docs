@@ -1,10 +1,17 @@
 /// The default folder where new/untitled files land on their first (silent)
-/// save and where AI-generated drafts go. Historically hardcoded to
-/// <Documents>/GenOffice; now user-configurable via the `defaultSaveDir` key
-/// in userData/app-settings.json (set from the home screen's account menu).
+/// save and where AI-generated drafts go. The default is <Documents>/Plot Docs;
+/// it is user-configurable via the `defaultSaveDir` key in
+/// userData/app-settings.json (set from the home screen's account menu).
 /// Every editor main module resolves through here so they all honor the same
 /// setting.
-import { accessSync, constants, existsSync, mkdirSync, readFileSync, statSync } from 'node:fs'
+import {
+  accessSync,
+  constants,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  statSync,
+} from 'node:fs'
 import { dirname, isAbsolute, join, resolve } from 'node:path'
 
 /** the subset of Electron's `app` needed here (kept structural: this package has no Electron dependency) */
@@ -13,6 +20,7 @@ export interface PathProvider {
 }
 
 export const DEFAULT_SAVE_DIR_KEY = 'defaultSaveDir'
+export const DEFAULT_SAVE_DIR_NAME = 'Plot Docs'
 
 /**
  * Create `dir` and any missing parents one level at a time.
@@ -77,6 +85,6 @@ export function resolveDefaultSaveDir(configured: string | null, fallbackDir: st
 /** convenience for the Electron mains: settings lookup + fallback in one call */
 export function configuredDefaultSaveDir(app: PathProvider): string {
   const settingsPath = join(app.getPath('userData'), 'app-settings.json')
-  const fallback = join(app.getPath('documents'), 'GenOffice')
+  const fallback = join(app.getPath('documents'), DEFAULT_SAVE_DIR_NAME)
   return resolveDefaultSaveDir(readDefaultSaveDirSetting(settingsPath), fallback)
 }

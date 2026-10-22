@@ -48,6 +48,7 @@ export {
 } from './dialog-memory'
 export {
   DEFAULT_SAVE_DIR_KEY,
+  DEFAULT_SAVE_DIR_NAME,
   configuredDefaultSaveDir,
   isUsableSaveDir,
   mkdirDirs,

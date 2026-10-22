@@ -22,7 +22,7 @@ const realFetch = globalThis.fetch
 let dir: string
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'genoffice-resume-'))
+  dir = await mkdtemp(join(tmpdir(), 'plotdocs-resume-'))
   // electron-updater mkdir's its cache dir and its pending/ subdir before the
   // download; the wrapper mkdir's the resume/ sibling itself
   await mkdir(join(dir, 'pending'), { recursive: true })
@@ -67,7 +67,7 @@ function makeUpdater(stallTimeoutMs?: number, responseTimeoutMs?: number) {
   return { executor, fallbackCalls: calls }
 }
 
-const url = new URL('https://cdn.example.test/genoffice-setup-1.2.3.exe')
+const url = new URL('https://cdn.example.test/plotdocs-setup-1.2.3.exe')
 /** what electron-updater passes as the destination: inside <cacheDir>/pending/ */
 const destOf = (): string => join(dir, 'pending', 'installer.exe')
 /** where the wrapper keeps the part: a `resume/` sibling of `pending/` */

@@ -1,18 +1,18 @@
 import ReactDOM from 'react-dom/client'
-import { htmlDir, htmlLang, type Lang } from '@genoffice/i18n'
-import { applyAiPanelPrefs, installScreenTips } from '@genoffice/ui'
+import { htmlDir, htmlLang, type Lang } from '@plotdocs/i18n'
+import { applyAiPanelPrefs, installScreenTips } from '@plotdocs/ui'
 
-import '@genoffice/ui/tokens.css'
-import '@genoffice/ui/screentip.css'
-import '@genoffice/ui/ai-model-picker.css'
-import '@genoffice/ui/ai-queue-strip.css'
-import '@genoffice/ui/ai-usage.css'
-import '@genoffice/ui/color-picker.css'
-import '@genoffice/ui/dropdown.css'
-import '@genoffice/ui/ribbon-collapse.css'
-import '@genoffice/ui/markdown.css'
-import '@genoffice/ui/ai-panel-prefs.css'
-import '@genoffice/ui/ai-scope-quote.css'
+import '@plotdocs/ui/tokens.css'
+import '@plotdocs/ui/screentip.css'
+import '@plotdocs/ui/ai-model-picker.css'
+import '@plotdocs/ui/ai-queue-strip.css'
+import '@plotdocs/ui/ai-usage.css'
+import '@plotdocs/ui/color-picker.css'
+import '@plotdocs/ui/dropdown.css'
+import '@plotdocs/ui/ribbon-collapse.css'
+import '@plotdocs/ui/markdown.css'
+import '@plotdocs/ui/ai-panel-prefs.css'
+import '@plotdocs/ui/ai-scope-quote.css'
 import '@univerjs/preset-sheets-core/lib/index.css'
 
 import { App } from './App'
@@ -46,7 +46,7 @@ function applyTheme(theme: UiTheme): void {
 }
 
 function applyDocumentTheme(theme: DocTheme): void {
-  // data-doc-theme drives the canvas/paper (genoffice#1811); absent means 'follow' the UI theme
+  // data-doc-theme drives the canvas/paper (plotdocs#1811); absent means 'follow' the UI theme
   if (theme === 'follow') document.documentElement.removeAttribute('data-doc-theme')
   else document.documentElement.setAttribute('data-doc-theme', theme)
 }

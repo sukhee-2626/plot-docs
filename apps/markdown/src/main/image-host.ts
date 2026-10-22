@@ -1,4 +1,4 @@
-// Bring-your-own image host for Markdown pastes/drops (genoffice#388): the
+// Bring-your-own image host for Markdown pastes/drops (plotdocs#388): the
 // maintainer-accepted shape is "configure your own storage, keep the local
 // assets/ copy as the fallback". Three adapters cover the hosts the issue
 // names — S3-compatible (Cloudflare R2 / Aliyun OSS / Tencent COS / MinIO),

@@ -3,7 +3,7 @@
  * tick and the crash-recovery push. Only persisted state counts — transient UI
  * state (AI highlights, selection, view modes) must never appear here.
  */
-import type { DefaultFonts, HeaderFooter, SectionInfo, StyleUpsert } from '@genoffice/docx-engine'
+import type { DefaultFonts, HeaderFooter, SectionInfo, StyleUpsert } from '@plotdocs/docx-engine'
 
 import { EMPTY_PENDING_NUMBERING } from './doc-state'
 import type { PendingNumbering } from './doc-state'

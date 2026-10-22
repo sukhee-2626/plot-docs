@@ -1,19 +1,19 @@
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
-import type { RunStyle } from '@genoffice/pptx-render'
+import type { RunStyle } from '@plotdocs/pptx-render'
 
 // Vitest turns ?asset imports into /@fs URLs, while font metrics reads the files from disk.
-vi.mock('@genoffice/ui/fonts/Carlito-Regular.ttf?asset', () => ({
+vi.mock('@plotdocs/ui/fonts/Carlito-Regular.ttf?asset', () => ({
   default: resolve(process.cwd(), '../../packages/ui/src/fonts/Carlito-Regular.ttf'),
 }))
-vi.mock('@genoffice/ui/fonts/Carlito-Bold.ttf?asset', () => ({
+vi.mock('@plotdocs/ui/fonts/Carlito-Bold.ttf?asset', () => ({
   default: resolve(process.cwd(), '../../packages/ui/src/fonts/Carlito-Bold.ttf'),
 }))
-vi.mock('@genoffice/ui/fonts/Carlito-Italic.ttf?asset', () => ({
+vi.mock('@plotdocs/ui/fonts/Carlito-Italic.ttf?asset', () => ({
   default: resolve(process.cwd(), '../../packages/ui/src/fonts/Carlito-Italic.ttf'),
 }))
-vi.mock('@genoffice/ui/fonts/Carlito-BoldItalic.ttf?asset', () => ({
+vi.mock('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf?asset', () => ({
   default: resolve(process.cwd(), '../../packages/ui/src/fonts/Carlito-BoldItalic.ttf'),
 }))
 

@@ -10,4 +10,4 @@ export {
   markerTabAdvance,
   type ListItemRef,
   type ListMarkerInfo,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'

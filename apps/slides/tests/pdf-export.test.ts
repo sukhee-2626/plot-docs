@@ -19,7 +19,7 @@ afterEach(async () => {
 })
 
 async function outputPath(): Promise<string> {
-  const root = await mkdtemp(join(tmpdir(), 'genoffice-slides-pdf-test-'))
+  const root = await mkdtemp(join(tmpdir(), 'plotdocs-slides-pdf-test-'))
   roots.push(root)
   return join(root, 'export.pdf')
 }
@@ -109,7 +109,7 @@ describe('slides PDF export', () => {
 
     expect(result).toEqual({ ok: true, path: filePath })
     expect(basename(win.loadedPath!)).toBe('slides.html')
-    expect(basename(dirname(win.loadedPath!))).toMatch(/^genoffice-slides-pdf-/)
+    expect(basename(dirname(win.loadedPath!))).toMatch(/^plotdocs-slides-pdf-/)
     expect(win.loadedHtml).toContain(`data:image/png;base64,${firstPng}`)
     expect(win.loadedHtml.length).toBeGreaterThan(chromiumDataUrlLimit)
     expect(win.loadedHtml.endsWith(`${secondPng}"></div></body></html>`)).toBe(true)

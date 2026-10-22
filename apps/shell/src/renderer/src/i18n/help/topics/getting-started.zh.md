@@ -1,6 +1,6 @@
 # 快速入门：界面与基本操作
 
-GenOffice 是一个完全运行在本机的办公套件：一个窗口、一排标签页，装着文档（Docs）、表格（Sheets）、幻灯片（Slides）、PDF、Markdown 和网页（HTML）六个编辑器。文件读写的是真正的 .docx / .xlsx / .pptx / .pdf，与 Word、Excel、PowerPoint 完全互通，不需要联网。
+Plot Docs 是一个完全运行在本机的办公套件：一个窗口、一排标签页，装着文档（Docs）、表格（Sheets）、幻灯片（Slides）、PDF、Markdown 和网页（HTML）六个编辑器。文件读写的是真正的 .docx / .xlsx / .pptx / .pdf，与 Word、Excel、PowerPoint 完全互通，不需要联网。
 
 ## 界面总览
 
@@ -18,7 +18,7 @@ GenOffice 是一个完全运行在本机的办公套件：一个窗口、一排�
 
 - 在**主页**的[快速开始](help://getting-started)区点对应的卡片（AI 文档、AI 表格、AI 幻灯片等）。
 - 菜单 **文件 ▸ 新建**：Docs（⌘N/ctrl+N）、表格、幻灯片、Markdown、网页、PDF 六种。
-- 直接把文件拖进窗口，或双击系统里的文件（若 GenOffice 已设为默认应用）。
+- 直接把文件拖进窗口，或双击系统里的文件（若 Plot Docs 已设为默认应用）。
 
 新建的文档先以「未命名」状态打开，第一次保存时才会在磁盘上创建文件。
 
@@ -26,7 +26,7 @@ GenOffice 是一个完全运行在本机的办公套件：一个窗口、一排�
 
 - 菜单 **文件 ▸ 打开**（⌘O/ctrl+O）弹出系统选择框，支持 .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html。
 - 主页的「最近使用」列表直接点开。
-- 命令行 `genoffice <文件>` 也可以打开（适配脚本）。
+- 命令行 `plotdocs <文件>` 也可以打开（适配脚本）。
 
 ## 保存模型
 
@@ -52,7 +52,7 @@ GenOffice 是一个完全运行在本机的办公套件：一个窗口、一排�
 
 ## Option+Command 这一组快捷键
 
-Option+Command 是 Word 留给结构化跳转的层级，GenOffice 也按同样的方式填充。其中大部分归 Docs，Sheets 也有两个自己的快捷键，用来对齐 Excel；另外还有一个组合在所有编辑器里都能用。
+Option+Command 是 Word 留给结构化跳转的层级，Plot Docs 也按同样的方式填充。其中大部分归 Docs，Sheets 也有两个自己的快捷键，用来对齐 Excel；另外还有一个组合在所有编辑器里都能用。
 
 **Docs**
 
@@ -81,7 +81,7 @@ Windows 并不是把 Mac 上那两个组合改写一遍。Excel for Mac 给 Shee
 
 **所有编辑器**：**⌥⌘R / Ctrl+F1** 按上文所说的折叠功能区。
 
-这样一来，macOS 上的 ⌥⌘D 就空着留给 GenOffice，将来若有命令想用，随时可以拿。
+这样一来，macOS 上的 ⌥⌘D 就空着留给 Plot Docs，将来若有命令想用，随时可以拿。
 
 ## 从这里开始
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { NativeWaf, nativeWaf, nativeWafHosts } from '../src/native-waf'
-import { reloadGenofficeAuth } from '../src/genoffice-auth'
+import { reloadPlotdocsAuth } from '../src/plotdocs-auth'
 
 const url = 'https://www.genspark.ai/api/api_tokens/create'
 const pass = () => `${Math.floor(Date.now() / 1000)}-${'a'.repeat(43)}`
@@ -19,9 +19,9 @@ describe('optional cookie admission', () => {
           finish = resolve
         }),
     )
-    reloadGenofficeAuth()
+    reloadPlotdocsAuth()
     finish(Response.json({ data: { token } }))
-    expect(new Headers((await pending).headers).get('X-Genspark-Native-Pass')).toBe(token)
+    expect(new Headers((await pending).headers).get('X-Soopus-Native-Pass')).toBe(token)
     nativeWaf.clear()
   })
   it('coalesces cookie-bound issuer requests and preserves legacy headers', async () => {
@@ -41,7 +41,7 @@ describe('optional cookie admission', () => {
     ])
     expect(calls).toBe(1)
     for (const request of requests) {
-      expect(new Headers(request.headers).get('X-Genspark-Native-Pass')).toBe(token)
+      expect(new Headers(request.headers).get('X-Soopus-Native-Pass')).toBe(token)
       expect(request.credentials).toBe('omit')
     }
   })
@@ -68,7 +68,7 @@ describe('optional cookie admission', () => {
     for (let i = 0; i < 2; i++) {
       const outgoing = await admission.prepare(url, init(), failing)
       expect(new Headers(outgoing.headers).get('Cookie')).toBe('session_id=original')
-      expect(new Headers(outgoing.headers).has('X-Genspark-Native-Pass')).toBe(false)
+      expect(new Headers(outgoing.headers).has('X-Soopus-Native-Pass')).toBe(false)
     }
     expect(calls).toBe(1)
     admission.clear()
@@ -83,16 +83,16 @@ describe('optional cookie admission', () => {
     )
     admission.clear()
     finish(Response.json({ data: { token: pass() } }))
-    expect(new Headers((await pending).headers).has('X-Genspark-Native-Pass')).toBe(false)
+    expect(new Headers((await pending).headers).has('X-Soopus-Native-Pass')).toBe(false)
   })
 
   it('admitted hosts come from the configured base URL and the extra-hosts setting', async () => {
     expect([...nativeWafHosts({})]).toEqual(['www.genspark.ai'])
-    expect([...nativeWafHosts({ GSK_BASE_URL: 'https://office.example.com/' })]).toEqual([
+    expect([...nativeWafHosts({ SOOPUS_BASE_URL: 'https://office.example.com/' })]).toEqual([
       'office.example.com',
     ])
     expect([
-      ...nativeWafHosts({ GENOFFICE_NATIVE_WAF_HOSTS: ' Tenant.Example.com, ,second.example.com' }),
+      ...nativeWafHosts({ PLOTDOCS_NATIVE_WAF_HOSTS: ' Tenant.Example.com, ,second.example.com' }),
     ]).toEqual(['www.genspark.ai', 'tenant.example.com', 'second.example.com'])
 
     const admission = new NativeWaf()
@@ -101,18 +101,18 @@ describe('optional cookie admission', () => {
     const tenant = 'https://tenant.example.com/api/api_tokens/create'
     expect(
       new Headers((await admission.prepare(tenant, init(), fetcher)).headers).has(
-        'X-Genspark-Native-Pass',
+        'X-Soopus-Native-Pass',
       ),
     ).toBe(false)
-    process.env.GENOFFICE_NATIVE_WAF_HOSTS = 'tenant.example.com'
+    process.env.PLOTDOCS_NATIVE_WAF_HOSTS = 'tenant.example.com'
     try {
       expect(
         new Headers((await admission.prepare(tenant, init(), fetcher)).headers).get(
-          'X-Genspark-Native-Pass',
+          'X-Soopus-Native-Pass',
         ),
       ).toBe(token)
     } finally {
-      delete process.env.GENOFFICE_NATIVE_WAF_HOSTS
+      delete process.env.PLOTDOCS_NATIVE_WAF_HOSTS
     }
   })
 })

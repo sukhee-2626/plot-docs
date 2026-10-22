@@ -1,5 +1,5 @@
 import { EditorView } from '@codemirror/view'
-import type { FindOptions, FindTarget } from '@genoffice/ui'
+import type { FindOptions, FindTarget } from '@plotdocs/ui'
 import { collectMatches, setFindHits, type FindRange } from './cm-find'
 import { External } from './cm-setup'
 

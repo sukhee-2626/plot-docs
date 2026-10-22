@@ -1,5 +1,5 @@
 /* Composer model chip + its upward popover (AiModelPicker). Chrome tokens only;
- * each app imports this next to its other @genoffice/ui sheets. */
+ * each app imports this next to its other @plotdocs/ui sheets. */
 
 .ai-model-picker {
   display: inline-flex;

@@ -2,7 +2,7 @@ import { randomBytes } from 'node:crypto'
 import { open, rename, unlink, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
 
-export { atomicCopyFile } from '@genoffice/electron-utils/atomic-write'
+export { atomicCopyFile } from '@plotdocs/electron-utils/atomic-write'
 
 const RETRYABLE_RENAME_CODES = new Set(['EPERM', 'EACCES', 'EBUSY'])
 // cloud-sync folders, AV locks and fsync-less filesystems refuse the flush after a

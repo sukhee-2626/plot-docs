@@ -42,7 +42,7 @@ import {
   type WriteProtection,
   type PictureWatermarkSpec,
   type WatermarkSpec,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import type { Dispatch, SetStateAction } from 'react'
 import type { AiDocContent, OpenDocxResult } from '../shared/ipc'
 import {
@@ -101,7 +101,7 @@ import { collectPdfInternalLinks } from './pdf-internal-links'
 import type { PdfInternalLink } from '../shared/ipc'
 import { showToast } from './components/toast-bus'
 import { buildStandaloneHtml } from './html-export'
-import { aiPanelInitiallyOpen } from '@genoffice/ui'
+import { aiPanelInitiallyOpen } from '@plotdocs/ui'
 
 /** An export waiting for the pagination preview to mount; resolve settles the caller's exportPdf promise. */
 export type PendingPdfExport = {
@@ -1176,7 +1176,7 @@ async function saveOnce(
       // The caret's marks — the ribbon's font/size live here as storedMarks and
       // apply to whatever is typed next. setContent replaces the doc, so they
       // have to travel with the selection or an autosave silently drops the
-      // font the user just picked (genoffice#2004). Both are read live, not
+      // font the user just picked (plotdocs#2004). Both are read live, not
       // before the await: a font chosen or a caret moved during the save must
       // win, and the marks must belong to the position they are restored at.
       const selectionPos = editor.state.selection.from

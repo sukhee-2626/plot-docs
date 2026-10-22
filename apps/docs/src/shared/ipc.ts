@@ -33,7 +33,7 @@ export interface PickImageResult {
   name: string
 }
 
-// ---- AI provider settings/config/streaming: canonical types live in @genoffice/ai-provider ----
+// ---- AI provider settings/config/streaming: canonical types live in @plotdocs/ai-provider ----
 
 import type {
   AiChatRequest,
@@ -41,11 +41,11 @@ import type {
   AiSettings,
   AiStreamChunk,
   AiStreamRequest,
-  GenSparkAccountStatus,
-} from '@genoffice/ai-provider'
-import type { HeadlessExportTarget } from '@genoffice/electron-utils/headless-export'
-import type { FaceVerticalMetrics } from '@genoffice/font-metrics'
-import type { AiPanelPrefs } from '@genoffice/ui'
+  SoopusAccountStatus,
+} from '@plotdocs/ai-provider'
+import type { HeadlessExportTarget } from '@plotdocs/electron-utils/headless-export'
+import type { FaceVerticalMetrics } from '@plotdocs/font-metrics'
+import type { AiPanelPrefs } from '@plotdocs/ui'
 
 export type { FaceVerticalMetrics }
 
@@ -58,18 +58,18 @@ export type {
   AiSettings,
   AiStreamChunk,
   AiStreamRequest,
-  GenSparkAccountStatus,
-} from '@genoffice/ai-provider'
-export { AI_PROVIDERS } from '@genoffice/ai-provider/browser'
+  SoopusAccountStatus,
+} from '@plotdocs/ai-provider'
+export { AI_PROVIDERS } from '@plotdocs/ai-provider/browser'
 
-// ---- agent protocol: canonical types live in @genoffice/agent-core ----
+// ---- agent protocol: canonical types live in @plotdocs/agent-core ----
 
 export type {
   AgentMessage,
   AgentToolCall,
   AgentToolDef,
   AgentToolResult,
-} from '@genoffice/agent-core'
+} from '@plotdocs/agent-core'
 
 // ---- PDF export ----
 
@@ -102,7 +102,7 @@ export interface MarkdownImage {
  * for the real `<file>_files` folder once the save path is known. User text
  * can never spell it: `_` is escaped on the way out.
  */
-export const MARKDOWN_MEDIA_DIR_TOKEN = '__genoffice_media__'
+export const MARKDOWN_MEDIA_DIR_TOKEN = '__plotdocs_media__'
 
 // ---- chat attachments (local files fed to the agent via tools) ----
 
@@ -226,7 +226,7 @@ export type MenuCommand =
 export type UiTheme = 'light' | 'dark' | 'system'
 
 /**
- * Document page theme preference (genoffice#1811): what the canvas/paper does relative
+ * Document page theme preference (plotdocs#1811): what the canvas/paper does relative
  * to the UI theme. 'follow' keeps the previous single-theme behavior.
  */
 export type DocTheme = 'follow' | 'light' | 'dark'
@@ -360,7 +360,7 @@ export interface DesktopApi {
   getTheme(): Promise<UiTheme>
   /** theme switched from the shell home page */
   onThemeChanged(handler: (theme: UiTheme) => void): () => void
-  /** current document page theme preference (genoffice#1811, persisted by the shell in app-settings.json) */
+  /** current document page theme preference (plotdocs#1811, persisted by the shell in app-settings.json) */
   getDocumentTheme(): Promise<DocTheme>
   /** document page theme switched from the shell home page */
   onDocumentThemeChanged(handler: (theme: DocTheme) => void): () => void
@@ -559,10 +559,10 @@ export interface DesktopApi {
   /** start a streaming AI call; deltas arrive via onAiStream with the same requestId */
   aiStream(request: AiStreamRequest): Promise<void>
   aiStreamCancel(requestId: string): Promise<void>
-  /** Genspark account status (gsk login state); withEmail also returns the email (needs a network request, slower) */
-  aiGskStatus(withEmail?: boolean): Promise<GenSparkAccountStatus>
-  /** Open the browser to log in to Genspark (fire-and-forget; aiGskStatus flips to logged-in when done) */
-  aiGskLogin(): Promise<void>
+  /** Soopus account status (soopus login state); withEmail also returns the email (needs a network request, slower) */
+  aiSoopusStatus(withEmail?: boolean): Promise<SoopusAccountStatus>
+  /** Open the browser to log in to Soopus (fire-and-forget; aiSoopusStatus flips to logged-in when done) */
+  aiSoopusLogin(): Promise<void>
   webSearch(
     query: string,
     maxResults?: number,
@@ -595,7 +595,7 @@ export interface DesktopApi {
     requirements: string
   }): Promise<{ text?: string; error?: string }>
   fetchImage(url: string): Promise<{ base64: string; mime: string } | null>
-  /** AI image generation via the Genspark cloud channel (requires login + cloud tools) */
+  /** AI image generation via the Soopus cloud channel (requires login + cloud tools) */
   aiGenerateImage(op: {
     prompt: string
     aspectRatio?: string
@@ -660,7 +660,7 @@ export interface DesktopApi {
   skillsList(): Promise<UserSkillEntry[]>
   /** the body of one installed skill, by name — the main process resolves the path */
   skillText(name: string): Promise<string>
-  /** run the bundled genoffice CLI; failures come back as ok:false, never a throw */
+  /** run the bundled plotdocs CLI; failures come back as ok:false, never a throw */
   runCli(args: string[]): Promise<UserCliRun>
 }
 
@@ -685,5 +685,5 @@ export interface UserCliRun {
   stderr: string
 }
 
-/** mirrors VIEW_IMAGE_CHANNEL in @genoffice/electron-utils (kept literal so the preload stays free of main-only deps) */
-export const VIEW_IMAGE_CHANNEL = 'genoffice:view-image'
+/** mirrors VIEW_IMAGE_CHANNEL in @plotdocs/electron-utils (kept literal so the preload stays free of main-only deps) */
+export const VIEW_IMAGE_CHANNEL = 'plotdocs:view-image'

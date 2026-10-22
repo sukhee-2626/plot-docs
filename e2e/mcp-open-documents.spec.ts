@@ -106,11 +106,11 @@ async function waitForHealth(port: number, timeoutMs = 20_000): Promise<void> {
 test.describe('MCP open documents', () => {
   test('lists, reads and closes a document the app opened', async () => {
     const port = await freePort()
-    const outDir = await mkdtemp(join(tmpdir(), 'genoffice-open-docs-e2e-'))
+    const outDir = await mkdtemp(join(tmpdir(), 'plotdocs-open-docs-e2e-'))
     const docPath = join(outDir, 'opened.md')
     await writeFile(docPath, '# Handwritten\n\nA paragraph the agent must see.\n')
 
-    const userDataDir = await mkdtemp(join(tmpdir(), 'genoffice-open-docs-userdata-'))
+    const userDataDir = await mkdtemp(join(tmpdir(), 'plotdocs-open-docs-userdata-'))
     await writeFile(
       join(userDataDir, 'app-settings.json'),
       JSON.stringify({ onboardingSeen: true, mcpEnabled: true, mcpPort: port }),
@@ -155,7 +155,7 @@ test.describe('MCP open documents', () => {
       expect(JSON.parse(empty.text).documents).toEqual([])
 
       // open the file through the app's own routing: a tab the session does not own
-      const opened = await call('open_in_genoffice', { path: docPath })
+      const opened = await call('open_in_plotdocs', { path: docPath })
       expect(opened.isError, opened.text).toBeFalsy()
       const editorTab = page.locator('.tab-bar .tab-item:not(.tab-home)')
       await expect(editorTab).toHaveCount(1)
@@ -204,7 +204,7 @@ test.describe('MCP open documents', () => {
 
   test('reads a Word document the app opened, through the docs bridge', async () => {
     const port = await freePort()
-    const outDir = await mkdtemp(join(tmpdir(), 'genoffice-open-docs-docx-'))
+    const outDir = await mkdtemp(join(tmpdir(), 'plotdocs-open-docs-docx-'))
     const docxPath = join(outDir, 'report.docx')
     // build the .docx with the repo's own CLI, the way a user's file would exist
     const { execFileSync } = await import('node:child_process')
@@ -213,7 +213,7 @@ test.describe('MCP open documents', () => {
     execFileSync(
       process.execPath,
       [
-        join(APP_ROOT, 'packages', 'cli', 'dist', 'genoffice.cjs'),
+        join(APP_ROOT, 'packages', 'cli', 'dist', 'plotdocs.cjs'),
         'create',
         '--type',
         'docx',
@@ -226,7 +226,7 @@ test.describe('MCP open documents', () => {
     )
     expect(existsSync(docxPath)).toBe(true)
 
-    const userDataDir = await mkdtemp(join(tmpdir(), 'genoffice-open-docs-docx-userdata-'))
+    const userDataDir = await mkdtemp(join(tmpdir(), 'plotdocs-open-docs-docx-userdata-'))
     await writeFile(
       join(userDataDir, 'app-settings.json'),
       JSON.stringify({ onboardingSeen: true, mcpEnabled: true, mcpPort: port }),
@@ -261,7 +261,7 @@ test.describe('MCP open documents', () => {
         return { isError: body?.result?.isError === true, text }
       }
 
-      const opened = await call('open_in_genoffice', { path: docxPath })
+      const opened = await call('open_in_plotdocs', { path: docxPath })
       expect(opened.isError, opened.text).toBeFalsy()
       const editorTab = page.locator('.tab-bar .tab-item:not(.tab-home)')
       await expect(editorTab).toHaveCount(1)
@@ -291,11 +291,11 @@ test.describe('MCP open documents', () => {
 
   test('saves unsaved edits before closing when asked to close a dirty document', async () => {
     const port = await freePort()
-    const outDir = await mkdtemp(join(tmpdir(), 'genoffice-open-docs-dirty-'))
+    const outDir = await mkdtemp(join(tmpdir(), 'plotdocs-open-docs-dirty-'))
     const docPath = join(outDir, 'edited.md')
     await writeFile(docPath, '# Original\n\nBefore the edit.\n')
 
-    const userDataDir = await mkdtemp(join(tmpdir(), 'genoffice-open-docs-dirty-userdata-'))
+    const userDataDir = await mkdtemp(join(tmpdir(), 'plotdocs-open-docs-dirty-userdata-'))
     await writeFile(
       join(userDataDir, 'app-settings.json'),
       JSON.stringify({ onboardingSeen: true, mcpEnabled: true, mcpPort: port }),
@@ -331,9 +331,9 @@ test.describe('MCP open documents', () => {
         return { isError: body?.result?.isError === true, text }
       }
 
-      const opened = await call('open_in_genoffice', { path: docPath })
+      const opened = await call('open_in_plotdocs', { path: docPath })
       expect(opened.isError, opened.text).toBeFalsy()
-      const editorPage = await waitForPageWithUrl(app, 'genoffice-app://markdown')
+      const editorPage = await waitForPageWithUrl(app, 'plotdocs-app://markdown')
       await expect(editorPage.locator('.doc-editor')).toBeVisible()
 
       // type into the live editor: the tab is now dirty, and the change exists

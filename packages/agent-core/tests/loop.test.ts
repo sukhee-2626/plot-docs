@@ -1080,7 +1080,7 @@ describe('AgentLoop', () => {
   })
 
   it('after tools mutate, an empty final model turn still stores non-empty history for follow-ups', async () => {
-    // Regression for genoffice#12 / #22: first AI prompt mutates via tools with no
+    // Regression for plotdocs#12 / #22: first AI prompt mutates via tools with no
     // prose, second prompt must not inherit an empty assistant content block.
     const transport = scriptedTransport([
       (cb) => {
@@ -1991,16 +1991,16 @@ describe('AgentLoop compaction', () => {
       invalidArgumentFields(readCells, { addresses: ['A1', 'B2'], sheetId: 'Sheet1' }),
     ).toEqual([])
     expect(invalidArgumentFields(readCells, { addresses: [] })).toEqual([])
-    expect(invalidArgumentFields(webSearch, { query: 'genoffice', maxResults: 6 })).toEqual([])
+    expect(invalidArgumentFields(webSearch, { query: 'plotdocs', maxResults: 6 })).toEqual([])
     // omitted optional field, and an undeclared extra key, are both fine
-    expect(invalidArgumentFields(webSearch, { query: 'genoffice' })).toEqual([])
+    expect(invalidArgumentFields(webSearch, { query: 'plotdocs' })).toEqual([])
     expect(invalidArgumentFields(webSearch, { query: 'x', page: 2 })).toEqual([])
     expect(invalidArgumentFields(loadGuides, { guides: ['writing', 'formatting'] })).toEqual([])
     // the same tools do catch a mangled argument
     expect(invalidArgumentFields(readCells, { addresses: 'A1:D20' })).toEqual([
       '"addresses" expected array',
     ])
-    expect(invalidArgumentFields(webSearch, { query: 'genoffice', maxResults: '6' })).toEqual([
+    expect(invalidArgumentFields(webSearch, { query: 'plotdocs', maxResults: '6' })).toEqual([
       '"maxResults" expected integer',
     ])
   })

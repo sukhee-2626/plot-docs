@@ -1,19 +1,19 @@
 # Dòng lệnh và tác nhân
 
-Mọi bản cài đặt đều kèm lệnh `genoffice` điều khiển đúng những engine mà cửa sổ dùng — cùng bộ phân tích, cùng bộ ghi, cùng bộ kết xuất. Một tệp do ứng dụng lưu và một tệp do lệnh ghi là cùng một tệp, và một kiểm tra mà bảng AI của ứng dụng vượt qua thì lệnh cũng vượt qua.
+Mọi bản cài đặt đều kèm lệnh `plotdocs` điều khiển đúng những engine mà cửa sổ dùng — cùng bộ phân tích, cùng bộ ghi, cùng bộ kết xuất. Một tệp do ứng dụng lưu và một tệp do lệnh ghi là cùng một tệp, và một kiểm tra mà bảng AI của ứng dụng vượt qua thì lệnh cũng vượt qua.
 
 ```sh
-genoffice --help          # every command
-genoffice guide slides    # the op reference, for writing your own
+plotdocs --help          # every command
+plotdocs guide slides    # the op reference, for writing your own
 ```
 
 Đó là toàn bộ bề mặt trong một màn hình — mọi lệnh đều có một dòng giải thích nó làm gì, rồi đến các tùy chọn toàn cục và mã thoát:
 
-![Kết quả thực tế của genoffice --help: biểu ngữ phiên bản, từng lệnh kèm mô tả một dòng, cùng các tùy chọn toàn cục và mã thoát](img/cli.png)
+![Kết quả thực tế của plotdocs --help: biểu ngữ phiên bản, từng lệnh kèm mô tả một dòng, cùng các tùy chọn toàn cục và mã thoát](img/cli.png)
 
 ## Lấy lệnh
 
-macOS và Windows kèm nó trong bó ứng dụng. Để gọi bằng tên, chạy một lần `genoffice install-cli`: nó liên kết tệp nhị phân trong bó vào một thư mục trên PATH của bạn — trên macOS là `/usr/local/bin` khi đó không phải tiền tố Homebrew (thư mục của Homebrew không bao giờ bị động vào), không thì vào bin của người dùng — hoặc trên Windows vào `PATH` người dùng của bạn.
+macOS và Windows kèm nó trong bó ứng dụng. Để gọi bằng tên, chạy một lần `plotdocs install-cli`: nó liên kết tệp nhị phân trong bó vào một thư mục trên PATH của bạn — trên macOS là `/usr/local/bin` khi đó không phải tiền tố Homebrew (thư mục của Homebrew không bao giờ bị động vào), không thì vào bin của người dùng — hoặc trên Windows vào `PATH` người dùng của bạn.
 
 ## Những lệnh đáng biết
 
@@ -31,26 +31,26 @@ macOS và Windows kèm nó trong bó ứng dụng. Để gọi bằng tên, ch�
 | `merge`           | Điền các vùng chờ `{{key}}` trong một mẫu `.docx`, `.pptx` hoặc `.xlsx`.                                                                                                                                                                                               |
 | `capabilities`    | Báo cáo những tính năng đám mây nào đã được cấu hình trên máy này.                                                                                                                                                                                                     |
 | `guide`           | Tra cứu thao tác và các hướng dẫn thiết kế, sinh ra từ đúng những định nghĩa mà bộ thực thi dùng để kiểm tra — nên nó không thể lệch khỏi những gì `apply` chấp nhận. `--json` trả về tra cứu kèm lược đồ của từng thao tác.                                           |
-| `install-cli`     | Đưa `genoffice` vào `PATH`.                                                                                                                                                                                                                                            |
-| `skill`           | Liệt kê các tác nhân lập trình tìm thấy trên máy này rồi cài hoặc cập nhật kỹ năng GenOffice trong chúng.                                                                                                                                                              |
+| `install-cli`     | Đưa `plotdocs` vào `PATH`.                                                                                                                                                                                                                                            |
+| `skill`           | Liệt kê các tác nhân lập trình tìm thấy trên máy này rồi cài hoặc cập nhật kỹ năng Plot Docs trong chúng.                                                                                                                                                              |
 | `mcp`             | Phục vụ mọi lệnh như một công cụ của Model Context Protocol. Xem **Kết nối tác nhân lập trình**.                                                                                                                                                                       |
 
 ## Soạn thảo: tài liệu, bảng tính, bản trình chiếu
 
-`genoffice docs`, `genoffice sheet` và `genoffice slides` đọc và sửa qua đúng lối ghi mà ứng dụng dùng, và chúng chia sẻ một từ vựng: một **thao tác** (op) là một lần sửa, còn một **đặc tả** (spec) là danh sách các thao tác áp dụng theo thứ tự.
+`plotdocs docs`, `plotdocs sheet` và `plotdocs slides` đọc và sửa qua đúng lối ghi mà ứng dụng dùng, và chúng chia sẻ một từ vựng: một **thao tác** (op) là một lần sửa, còn một **đặc tả** (spec) là danh sách các thao tác áp dụng theo thứ tự.
 
 ```sh
-genoffice sheet read report.xlsx
-genoffice slides apply deck.pptx --ops ops.json --dry-run
-genoffice docs apply brief.docx --ops ops.json
+plotdocs sheet read report.xlsx
+plotdocs slides apply deck.pptx --ops ops.json --dry-run
+plotdocs docs apply brief.docx --ops ops.json
 ```
 
 `--dry-run` cho biết một lô sẽ làm gì và không ghi gì cả, đây là cách rẻ nhất để kiểm tra một đặc tả trước khi nó áp dụng. Bảng AI trong ứng dụng chạy đúng trên những thao tác này, nên bất cứ điều gì bạn nhờ nó làm thì bạn cũng viết kịch bản được.
 
 ## Model Context Protocol
 
-`genoffice mcp` phục vụ mọi lệnh như một công cụ MCP, và `genoffice mcp install <agent|all>` đăng ký nó vào cấu hình riêng của một tác nhân lập trình. Xem **Kết nối tác nhân lập trình** cho phần bên kia.
+`plotdocs mcp` phục vụ mọi lệnh như một công cụ MCP, và `plotdocs mcp install <agent|all>` đăng ký nó vào cấu hình riêng của một tác nhân lập trình. Xem **Kết nối tác nhân lập trình** cho phần bên kia.
 
 ## Điều lệnh không làm
 
-Nó đọc tệp và ghi tệp. Nó không phải ứng dụng: không có cửa sổ, và hộp thoại cập nhật trong ứng dụng không áp dụng. Bất cứ thứ gì cần cửa sổ — bảng AI, lượt kiểm tra chất lượng trên một trang chiếu đã kết xuất — đều phải chờ bạn mở tệp ra. `genoffice render` đưa cho bạn các điểm ảnh mà không cần cửa sổ, và `genoffice slides` tự kiểm tra bố cục của một bộ trình chiếu.
+Nó đọc tệp và ghi tệp. Nó không phải ứng dụng: không có cửa sổ, và hộp thoại cập nhật trong ứng dụng không áp dụng. Bất cứ thứ gì cần cửa sổ — bảng AI, lượt kiểm tra chất lượng trên một trang chiếu đã kết xuất — đều phải chờ bạn mở tệp ra. `plotdocs render` đưa cho bạn các điểm ảnh mà không cần cửa sổ, và `plotdocs slides` tự kiểm tra bố cục của một bộ trình chiếu.

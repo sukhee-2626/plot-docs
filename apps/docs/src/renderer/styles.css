@@ -1,6 +1,6 @@
 /* Per-app accent (word-blue family) + docs-only tokens.
  * Chrome tokens (surface/text/border/…, AI panel --color-*) come from
- * @genoffice/ui/tokens.css; nothing here may shadow those names. */
+ * @plotdocs/ui/tokens.css; nothing here may shadow those names. */
 :root {
   --word-blue: #185abd;
   --word-blue-dark: #124a9e;
@@ -430,7 +430,7 @@ button {
 
 /* While a popover is open the row must deliver presses (drag regions swallow
    them), so outside-press dismissal can see presses on the blank band */
-html.genoffice-popover-open .ribbon-tabs {
+html.plotdocs-popover-open .ribbon-tabs {
   -webkit-app-region: no-drag;
 }
 
@@ -595,15 +595,15 @@ html.genoffice-popover-open .ribbon-tabs {
   box-shadow: var(--docs-shadow-badge);
 }
 
-/* Genspark brand logo (Ribbon AI button and AI panel title) */
-.genspark-badge {
+/* Soopus brand logo (Ribbon AI button and AI panel title) */
+.Soopus-badge {
   display: block;
   width: 22px;
   height: 22px;
   border-radius: 50%;
 }
 
-.ai-panel-title .genspark-badge {
+.ai-panel-title .Soopus-badge {
   width: 18px;
   height: 18px;
 }
@@ -634,7 +634,7 @@ html.genoffice-popover-open .ribbon-tabs {
 }
 
 /* Slim visible scrollbar so mouse users can reach overflowed groups
-   (genspark-ai/genoffice#55 precedent from the sheets ribbon). */
+   (Soopus-ai/plotdocs#55 precedent from the sheets ribbon). */
 .ribbon-body::-webkit-scrollbar {
   height: 5px;
 }
@@ -1002,7 +1002,7 @@ html.genoffice-popover-open .ribbon-tabs {
   background: var(--active-bg);
 }
 
-/* The Genspark AI entry keeps a black label even while the panel is open. */
+/* The Soopus AI entry keeps a black label even while the panel is open. */
 .rb-big.ai-entry.active {
   color: var(--text);
 }
@@ -1395,7 +1395,7 @@ html.genoffice-popover-open .ribbon-tabs {
   background: var(--hover);
 }
 
-/* Anchor positioning for the shared Word-style color panel (@genoffice/ui
+/* Anchor positioning for the shared Word-style color panel (@plotdocs/ui
    .gcp-palette draws the chrome; this only places it under its trigger). */
 .docs-color-pop {
   position: fixed;
@@ -1430,7 +1430,7 @@ html.genoffice-popover-open .ribbon-tabs {
 }
 
 /* line spacing dropdown */
-/* Home-tab Genspark AI entry: black circular "+" badge with a dropdown caret,
+/* Home-tab Soopus AI entry: black circular "+" badge with a dropdown caret,
    brand label below (mirrors the sheets Home ribbon). */
 /* AI feature buttons next to the entry: purple glyphs, label below */
 .ai-feature-icon {
@@ -4472,7 +4472,7 @@ th.cell-rev-del {
    on this span made the table-row cut measuring split a two-line row across
    pages. */
 .doc-hangul-space {
-  font-family: 'GenOffice Hangul Space';
+  font-family: 'Plot Docs Hangul Space';
 }
 
 /* dark page in the light theme: Word's gray band around the dark paper — one
@@ -7799,7 +7799,7 @@ body.docs-crop-active
   display: flex;
   flex-direction: column;
   background: var(--color-bg-page);
-  /* Same visible divider as the GenOffice Sheets panel: the editor canvas is gray, so the default border would drown */
+  /* Same visible divider as the Plot Docs Sheets panel: the editor canvas is gray, so the default border would drown */
   border-left: var(--ai-panel-border-left, 0px) solid var(--color-border-strong);
   border-right: var(--ai-panel-border-right, 1px) solid var(--color-border-strong);
   font-family: var(--gs-font-sans);
@@ -8934,7 +8934,7 @@ body.docs-crop-active
   cursor: pointer;
 }
 
-/* a non-contiguous range added with ctrl/cmd+click (genoffice#2013): painted
+/* a non-contiguous range added with ctrl/cmd+click (plotdocs#2013): painted
    as a decoration, never as document data, so it survives without editing
    anything */
 .doc-multi-range {
@@ -9416,7 +9416,7 @@ body.docs-crop-active
 .ai-attachments {
   display: flex;
   gap: 8px;
-  /* single row inside the prompt box, above the textarea (Genspark composer style):
+  /* single row inside the prompt box, above the textarea (Soopus composer style):
      extra images run past the box edge and scroll horizontally.
      scroll (not auto) + zero bottom padding: the always-present 4px scrollbar lane
      doubles as the bottom padding, so overflowing never grows the strip and
@@ -9524,7 +9524,7 @@ body.docs-crop-active
   background: var(--bg-content);
 }
 
-/* the type icon sits in its own bordered white tile, like the Genspark card */
+/* the type icon sits in its own bordered white tile, like the Soopus card */
 .ai-attachment-card-icon {
   display: flex;
   flex-shrink: 0;
@@ -9903,7 +9903,7 @@ body.docs-crop-active
   background: var(--surface);
 }
 
-/* Genspark DS modal footer buttons: secondary = bg-subtle, primary = black (#232425) */
+/* Soopus DS modal footer buttons: secondary = bg-subtle, primary = black (#232425) */
 .modal-actions button {
   display: inline-flex;
   align-items: center;
@@ -10037,7 +10037,7 @@ body.docs-crop-active
   margin-top: 18px;
 }
 
-/* ---- Genspark DS form dialogs (password prompts + Protect Document) ---- */
+/* ---- Soopus DS form dialogs (password prompts + Protect Document) ---- */
 
 .modal.gs-form {
   padding: 24px;
@@ -10173,7 +10173,7 @@ body.docs-crop-active
   border-color: var(--word-blue);
 }
 
-/* Shared dropdown (@genoffice/ui gs-dd) app sizing: modal dialogs keep the old
+/* Shared dropdown (@plotdocs/ui gs-dd) app sizing: modal dialogs keep the old
    `.modal select` footprint; ribbon/table/page-number rows scope their own
    width/height below */
 .modal .gs-dd {
@@ -10247,7 +10247,7 @@ body.docs-crop-active
 }
 
 /* checkbox / radio rows: the native input is visually replaced by the .ctl
-   box (18px, black checked state per the Genspark DS palette) */
+   box (18px, black checked state per the Soopus DS palette) */
 .protect-dialog label.protect-check {
   position: relative;
   display: flex;
@@ -13639,4 +13639,472 @@ tr > .page-gap-cut {
   padding: 4px 6px;
   margin-bottom: 14px;
   word-break: break-all;
+}
+
+/* ============================================================
+   PLOT AI � violet agent rail (right side)
+   A calmer, premium treatment layered over the shared AI panel:
+   amethyst aura, animated agent mark, glass composer, staggered
+   starter prompts. Every color derives from theme tokens so light
+   and dark stay legible.
+   ============================================================ */
+
+.ai-panel {
+  --plot-ai-violet: #7c3aed;
+  --plot-ai-cyan: #0891b2;
+  isolation: isolate;
+  background:
+    radial-gradient(420px 230px at 92% -8%, color-mix(in srgb, var(--plot-ai-violet) 13%, transparent), transparent 68%),
+    radial-gradient(320px 230px at 0% 108%, color-mix(in srgb, var(--plot-ai-cyan) 7%, transparent), transparent 62%),
+    var(--color-bg-page);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 8%, transparent);
+}
+
+.ai-panel-header {
+  position: relative;
+  flex-shrink: 0;
+  padding: 11px 12px 11px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--plot-ai-violet) 17%, var(--color-border-default));
+  background:
+    linear-gradient(100deg, color-mix(in srgb, var(--plot-ai-violet) 9%, transparent), transparent 55%),
+    color-mix(in srgb, var(--color-bg-page) 84%, transparent);
+  backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.ai-panel-header::after {
+  content: '';
+  position: absolute;
+  right: 14%;
+  bottom: -1px;
+  left: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--plot-ai-violet) 62%, transparent), transparent);
+  opacity: 0.75;
+  animation: plotAiHeaderShimmer 5s ease-in-out infinite;
+}
+
+@keyframes plotAiHeaderShimmer {
+  0%, 100% { opacity: 0.25; transform: scaleX(0.7); }
+  50% { opacity: 0.9; transform: scaleX(1); }
+}
+
+.ai-panel-title {
+  gap: 9px;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+}
+
+.ai-panel-title svg {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--plot-ai-violet) 55%, transparent));
+  animation: plotAiMarkPulse 3.4s ease-in-out infinite;
+}
+
+.ai-panel-title::after {
+  content: '✦';
+  display: inline-block;
+  margin-left: -1px;
+  font-size: 9px;
+  line-height: 1;
+  color: color-mix(in srgb, var(--plot-ai-violet) 72%, #c4b5fd);
+  animation: plotAiSpark 2.7s ease-in-out infinite;
+}
+
+@keyframes plotAiMarkPulse {
+  0%, 100% { filter: drop-shadow(0 0 7px color-mix(in srgb, var(--plot-ai-violet) 42%, transparent)); transform: translateY(0); }
+  50% { filter: drop-shadow(0 0 15px color-mix(in srgb, var(--plot-ai-violet) 72%, transparent)); transform: translateY(-1px); }
+}
+
+@keyframes plotAiSpark {
+  0%, 100% { opacity: 0.45; transform: scale(0.82) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.18) rotate(18deg); }
+}
+
+.ai-header-btn {
+  border: 1px solid transparent;
+}
+
+.ai-header-btn:hover {
+  border-color: color-mix(in srgb, var(--plot-ai-violet) 14%, transparent);
+  background: color-mix(in srgb, var(--plot-ai-violet) 9%, transparent);
+  color: color-mix(in srgb, var(--plot-ai-violet) 70%, var(--color-text-primary));
+}
+
+.ai-chat {
+  scrollbar-color: color-mix(in srgb, var(--plot-ai-violet) 18%, transparent) transparent;
+}
+
+.ai-chat-empty {
+  position: relative;
+  margin-top: 18px;
+  padding: 24px 10px 0;
+  animation: plotAiEmptyIn 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ai-chat-empty::before {
+  content: '✦';
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 16px;
+  border: 1px solid color-mix(in srgb, var(--plot-ai-violet) 20%, transparent);
+  border-radius: 15px;
+  background:
+    radial-gradient(circle at 32% 24%, color-mix(in srgb, #67e8f9 20%, transparent), transparent 55%),
+    linear-gradient(140deg, color-mix(in srgb, var(--plot-ai-violet) 17%, transparent), color-mix(in srgb, var(--plot-ai-violet) 4%, transparent));
+  box-shadow:
+    0 12px 30px -18px color-mix(in srgb, var(--plot-ai-violet) 55%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 22%, transparent);
+  color: color-mix(in srgb, var(--plot-ai-violet) 70%, #e9d5ff);
+  font-size: 21px;
+  line-height: 44px;
+  text-align: center;
+  animation: plotAiOrb 4.2s ease-in-out infinite;
+}
+
+@keyframes plotAiOrb {
+  0%, 100% { transform: translateY(0) rotate(-2deg); box-shadow: 0 12px 30px -18px color-mix(in srgb, var(--plot-ai-violet) 55%, transparent), inset 0 1px 0 color-mix(in srgb, #ffffff 22%, transparent); }
+  50% { transform: translateY(-3px) rotate(2deg); box-shadow: 0 20px 40px -18px color-mix(in srgb, var(--plot-ai-violet) 72%, transparent), inset 0 1px 0 color-mix(in srgb, #ffffff 28%, transparent); }
+}
+
+@keyframes plotAiEmptyIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.ai-chat-empty-title {
+  font-size: 18px;
+  letter-spacing: -0.022em;
+  background: linear-gradient(105deg, var(--color-text-primary) 32%, color-mix(in srgb, var(--plot-ai-violet) 64%, var(--color-text-primary)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ai-chat-empty-body {
+  max-width: 280px;
+  margin-inline: auto;
+}
+
+.ai-starter-list {
+  margin-top: 22px;
+  gap: 7px;
+}
+
+.ai-starter {
+  width: 100%;
+  padding: 9px 14px;
+  border-color: color-mix(in srgb, var(--plot-ai-violet) 13%, var(--color-border-default));
+  background:
+    linear-gradient(110deg, color-mix(in srgb, var(--plot-ai-violet) 4%, transparent), transparent 62%),
+    color-mix(in srgb, var(--color-bg-page) 88%, transparent);
+  box-shadow: 0 7px 20px -18px color-mix(in srgb, var(--plot-ai-violet) 45%, transparent);
+  opacity: 0;
+  animation: plotAiStarterIn 440ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.ai-starter:nth-child(1) { animation-delay: 80ms; }
+.ai-starter:nth-child(2) { animation-delay: 130ms; }
+.ai-starter:nth-child(3) { animation-delay: 180ms; }
+.ai-starter:nth-child(4) { animation-delay: 230ms; }
+.ai-starter:nth-child(5) { animation-delay: 280ms; }
+.ai-starter:nth-child(6) { animation-delay: 330ms; }
+
+@keyframes plotAiStarterIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.ai-starter:hover {
+  border-color: color-mix(in srgb, var(--plot-ai-violet) 32%, var(--color-border-default));
+  background:
+    linear-gradient(110deg, color-mix(in srgb, var(--plot-ai-violet) 10%, transparent), color-mix(in srgb, var(--plot-ai-cyan) 4%, transparent)),
+    var(--color-bg-page);
+  box-shadow: 0 12px 28px -18px color-mix(in srgb, var(--plot-ai-violet) 55%, transparent);
+  transform: translateY(-1px);
+}
+
+.ai-msg {
+  animation: plotAiMsgIn 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes plotAiMsgIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: none; }
+}
+
+.ai-msg-user {
+  border: 1px solid color-mix(in srgb, var(--plot-ai-violet) 12%, transparent);
+  background:
+    linear-gradient(125deg, color-mix(in srgb, var(--plot-ai-violet) 9%, transparent), color-mix(in srgb, var(--plot-ai-cyan) 3%, transparent)),
+    var(--color-bg-subtle);
+  box-shadow: 0 8px 22px -20px color-mix(in srgb, var(--plot-ai-violet) 55%, transparent);
+}
+
+.ai-composer {
+  position: relative;
+  background:
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--plot-ai-violet) 3%, transparent)),
+    var(--color-bg-page);
+}
+
+.ai-input-box {
+  border-color: color-mix(in srgb, var(--plot-ai-violet) 14%, var(--color-border-default));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--plot-ai-violet) 3%, transparent), transparent 56%),
+    color-mix(in srgb, var(--color-bg-page) 92%, transparent);
+  box-shadow:
+    0 12px 34px -26px color-mix(in srgb, var(--plot-ai-violet) 48%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 8%, transparent);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.ai-input-box:focus-within {
+  border-color: color-mix(in srgb, var(--plot-ai-violet) 42%, var(--color-border-default));
+  box-shadow:
+    0 16px 42px -26px color-mix(in srgb, var(--plot-ai-violet) 62%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--plot-ai-violet) 8%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 10%, transparent);
+}
+
+.ai-rail {
+  background:
+    radial-gradient(120px 180px at 50% 0%, color-mix(in srgb, var(--plot-ai-violet) 19%, transparent), transparent 64%),
+    var(--surface);
+  color: color-mix(in srgb, var(--plot-ai-violet) 58%, var(--text));
+  transition: background 180ms ease, color 180ms ease, width 180ms ease;
+}
+
+.ai-rail:hover {
+  background:
+    radial-gradient(140px 200px at 50% 0%, color-mix(in srgb, var(--plot-ai-violet) 28%, transparent), transparent 66%),
+    var(--hover);
+  color: color-mix(in srgb, var(--plot-ai-violet) 76%, var(--text));
+}
+
+.ai-rail svg {
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--plot-ai-violet) 60%, transparent));
+  animation: plotAiRailPulse 3.2s ease-in-out infinite;
+}
+
+@keyframes plotAiRailPulse {
+  0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 7px color-mix(in srgb, var(--plot-ai-violet) 45%, transparent)); }
+  50% { transform: translateY(-1px) scale(1.06); filter: drop-shadow(0 0 15px color-mix(in srgb, var(--plot-ai-violet) 75%, transparent)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-panel-title svg,
+  .ai-panel-title::after,
+  .ai-panel-header::after,
+  .ai-chat-empty,
+  .ai-chat-empty::before,
+  .ai-starter,
+  .ai-msg,
+  .ai-rail svg {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ── Plot Docs 3.0 finish: motion, depth and focus ──────────────────────
+ * Small, compositor-friendly touches layered over the shipped ribbon and
+ * dialogs. Nothing here changes layout metrics: only paint, transforms and
+ * opacity, so page geometry and pagination stay pixel-identical. */
+
+.ribbon-tab {
+  transition: color 160ms ease, background-color 160ms ease;
+  border-radius: 6px 6px 0 0;
+}
+
+.ribbon-tab:hover {
+  background: color-mix(in srgb, var(--word-blue) 7%, transparent);
+}
+
+.ribbon-tab.active {
+  background: color-mix(in srgb, var(--word-blue) 6%, transparent);
+}
+
+.ribbon-tab.active::after {
+  left: 10px;
+  right: 10px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--word-blue), #8b5cf6 58%, #22d3ee);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--word-blue) 45%, transparent);
+  animation: pdzUnderlineIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes pdzUnderlineIn {
+  from { transform: scaleX(0.35); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+.ribbon-body > .ribbon-group,
+.ribbon-body > .ribbon-sep {
+  animation: pdzRibbonGroupIn 240ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ribbon-body > *:nth-child(2) { animation-delay: 14ms; }
+.ribbon-body > *:nth-child(3) { animation-delay: 28ms; }
+.ribbon-body > *:nth-child(4) { animation-delay: 42ms; }
+.ribbon-body > *:nth-child(5) { animation-delay: 56ms; }
+.ribbon-body > *:nth-child(6) { animation-delay: 70ms; }
+.ribbon-body > *:nth-child(7) { animation-delay: 84ms; }
+
+@keyframes pdzRibbonGroupIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+
+.rb-big,
+.rb-small,
+.rb-icon,
+.rb-caret,
+.rb-select {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease,
+    transform 150ms ease, box-shadow 150ms ease;
+}
+
+.rb-big:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.rb-big:active:not(:disabled) {
+  transform: translateY(0) scale(0.985);
+}
+
+.rb-icon:hover:not(:disabled),
+.rb-small:hover:not(:disabled) {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 8%, transparent) inset;
+}
+
+.file-menu {
+  transform-origin: top left;
+  animation: pdzMenuIn 150ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes pdzMenuIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+.modal-backdrop {
+  animation: pdzBackdropIn 180ms ease both;
+}
+
+.modal {
+  animation: pdzModalIn 260ms cubic-bezier(0.16, 0.84, 0.24, 1) both;
+}
+
+@keyframes pdzBackdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pdzModalIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.975); }
+  to { opacity: 1; transform: none; }
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: var(--word-blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--word-blue) 18%, transparent);
+}
+
+.modal-actions button {
+  transition: background-color 150ms ease, color 150ms ease, transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.modal-actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.modal-actions button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-tab.active::after,
+  .ribbon-body > .ribbon-group,
+  .ribbon-body > .ribbon-sep,
+  .file-menu,
+  .modal-backdrop,
+  .modal {
+    animation: none;
+  }
+  .rb-big:hover:not(:disabled),
+  .modal-actions button:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* ── Plot Docs 3.1: studio chrome ────────────────────────────────────── */
+
+.ribbon {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #8b5cf6 3.5%, var(--chrome-bg)), var(--chrome-bg) 58%),
+    var(--chrome-bg);
+}
+
+.ribbon-tab-file {
+  border: 1px solid color-mix(in srgb, #a5b4fc 32%, transparent);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 52%, #7c3aed 100%);
+  box-shadow:
+    0 5px 16px -7px color-mix(in srgb, #4f46e5 80%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 24%, transparent);
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.ribbon-tab-file:hover,
+.ribbon-tab-file.open {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 52%, #8b5cf6 100%);
+  box-shadow:
+    0 8px 22px -7px color-mix(in srgb, #6366f1 85%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 30%, transparent);
+  transform: translateY(-1px);
+  filter: saturate(1.06);
+}
+
+.ribbon-tab-file:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.workspace {
+  background:
+    radial-gradient(900px 520px at 50% -8%, color-mix(in srgb, #6366f1 7%, transparent), transparent 62%),
+    radial-gradient(720px 480px at 100% 100%, color-mix(in srgb, #22d3ee 3.5%, transparent), transparent 65%),
+    var(--canvas);
+}
+
+.doc-page {
+  transition: box-shadow 220ms ease;
+}
+
+.view-print .doc-page {
+  box-shadow:
+    0 2px 3px color-mix(in srgb, #000 18%, transparent),
+    0 18px 52px -24px color-mix(in srgb, #000 60%, transparent);
+}
+
+.status-bar {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, #8b5cf6 4%, var(--chrome-bg)), var(--chrome-bg));
+  border-top-color: color-mix(in srgb, #8b5cf6 12%, var(--border-strong));
+}
+
+.ai-chat-empty::before {
+  font-family: 'Segoe UI Symbol', 'Segoe UI', sans-serif;
+  font-weight: 400;
+  text-shadow: 0 0 16px color-mix(in srgb, #a78bfa 65%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-tab-file,
+  .ribbon-tab-file:hover {
+    transform: none;
+  }
 }

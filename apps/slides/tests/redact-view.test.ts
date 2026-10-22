@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { parseSlide } from '@genoffice/pptx-engine'
-import { setRedactExt } from '@genoffice/pptx-engine'
-import { buildRenderSlide, type RenderSlide, type RenderNode } from '@genoffice/pptx-render'
+import { parseSlide } from '@plotdocs/pptx-engine'
+import { setRedactExt } from '@plotdocs/pptx-engine'
+import { buildRenderSlide, type RenderSlide, type RenderNode } from '@plotdocs/pptx-render'
 import {
   lineTextForModel,
   mediaLineForModel,

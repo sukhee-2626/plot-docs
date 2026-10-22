@@ -6,7 +6,7 @@ import { join, resolve } from 'node:path'
 import { createRequire } from 'node:module'
 
 /**
- * An RTL UI must not re-author a deck that gets exported (genoffice#1861).
+ * An RTL UI must not re-author a deck that gets exported (plotdocs#1861).
  *
  * The six document surfaces pin `direction: ltr`, but Konva hosts in Slides sit
  * outside the pinned ones: the thumbnail stages in `.slide-list`, the slideshow,
@@ -44,7 +44,7 @@ interface Run {
 
 /** One deck, one language: the PNG bytes a selection copy puts on the clipboard. */
 async function run(lang: string): Promise<Run> {
-  const dir = await mkdtemp(join(tmpdir(), `genoffice-rtl-png-${lang}-`))
+  const dir = await mkdtemp(join(tmpdir(), `plotdocs-rtl-png-${lang}-`))
   try {
     const fixture = join(dir, 'fixture')
     await cp(resolve('e2e/assets/font-manager-rubik'), fixture, { recursive: true })
@@ -64,7 +64,7 @@ async function run(lang: string): Promise<Run> {
         resolve('apps/slides'),
         pptx,
       ],
-      env: { ...env, GENOFFICE_USER_DATA: join(dir, 'user-data'), GENOFFICE_LANG: lang },
+      env: { ...env, PLOTDOCS_USER_DATA: join(dir, 'user-data'), PLOTDOCS_LANG: lang },
     })
     try {
       const page = await app.firstWindow()

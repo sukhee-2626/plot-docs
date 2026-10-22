@@ -15,8 +15,8 @@ afterEach(() => {
 
 describe('FileIndexer when a parse exhausts the worker heap', () => {
   it('records the file as an error, keeps indexing, and does not retry it unchanged', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'genoffice-indexer-oom-'))
-    const storeDir = mkdtempSync(join(tmpdir(), 'genoffice-indexer-oom-db-'))
+    const dir = mkdtempSync(join(tmpdir(), 'plotdocs-indexer-oom-'))
+    const storeDir = mkdtempSync(join(tmpdir(), 'plotdocs-indexer-oom-db-'))
     const store = new FileIndexStore(join(storeDir, 'index.db'))
     try {
       const hog = join(dir, 'hog.xlsx')

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { run, tempDir, writeMinimalPdf } from './helpers'
 
-describe('genoffice convert pdf → md', () => {
+describe('plotdocs convert pdf → md', () => {
   it('reconstructs the text through the docx route', async () => {
     const dir = tempDir()
     const pdf = writeMinimalPdf(join(dir, 'notes.pdf'), ['Alpha line', 'Beta line'])

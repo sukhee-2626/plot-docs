@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import type { HfParagraph, ParsedDocFull, StyleDisplay, StyleInfo } from '@genoffice/docx-engine'
+import type { HfParagraph, ParsedDocFull, StyleDisplay, StyleInfo } from '@plotdocs/docx-engine'
 import { docStyleCss } from '../src/renderer/doc-style-css'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { paraBorderMergePluginKey } from '../src/renderer/editor/decoration-extensions'

@@ -6,9 +6,9 @@
  * model via the readWorkbookFormulas sidecar channel with session edits
  * overlaid from the journal — for references covering the target cell.
  */
-import { formatAddress, parseAddress } from '@genoffice/xlsx-gateway/domain/cell-address'
-import type { CellScalar } from '@genoffice/xlsx-gateway/domain/workbook.types'
-import { qualifierMatches, type StructuralOp } from '@genoffice/xlsx-gateway/gateway/xlsx-structure'
+import { formatAddress, parseAddress } from '@plotdocs/xlsx-gateway/domain/cell-address'
+import type { CellScalar } from '@plotdocs/xlsx-gateway/domain/workbook.types'
+import { qualifierMatches, type StructuralOp } from '@plotdocs/xlsx-gateway/gateway/xlsx-structure'
 import { containsUnresolvedNames, parseFormulaReferences } from '../formula-closure'
 import { lazySheetScreenExtent } from '../univer-state'
 import { readSheetRangeMapped } from '../univer-sync'

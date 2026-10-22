@@ -6,7 +6,7 @@
 // spellings literally would hide a font that is really installed — in either
 // direction, so both the localized-named and the English-named candidates are covered.
 import { describe, expect, it } from 'vitest'
-import { CJK_FAMILY_ALIASES, SIMPLIFIED_CJK_FAMILIES } from '@genoffice/i18n'
+import { CJK_FAMILY_ALIASES, SIMPLIFIED_CJK_FAMILIES } from '@plotdocs/i18n'
 import {
   BUILTIN_FONT_FAMILIES,
   fontFamiliesFor,
@@ -16,7 +16,7 @@ import {
 
 // Nanum Myeongjo (the other Korean serif) is not a built-in candidate: it ships in the
 // downloadable catalog, so the pickers surface it as a catalog row with a download marker
-// (@genoffice/electron-utils/font-catalog, covered by packages/electron-utils/tests/font-store.test.ts).
+// (@plotdocs/electron-utils/font-catalog, covered by packages/electron-utils/tests/font-store.test.ts).
 
 /** every spelling the alias table knows for a family, its own name first */
 function spellingsOf(family: string): readonly string[] {

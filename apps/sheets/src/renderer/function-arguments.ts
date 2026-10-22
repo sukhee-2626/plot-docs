@@ -283,7 +283,7 @@ export const DEFAULT_RECENT_FUNCTIONS: readonly string[] = [
   'STDEV',
 ]
 
-export const RECENT_FUNCTIONS_KEY = 'genoffice.sheets.recentFunctions'
+export const RECENT_FUNCTIONS_KEY = 'plotdocs.sheets.recentFunctions'
 
 /// Sheet names need quoting unless they are a bare identifier that cannot be
 /// read as a cell reference.

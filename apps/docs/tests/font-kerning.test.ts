@@ -3,11 +3,11 @@
  * threshold up); Chromium kerns every run by default. Document text therefore
  * renders with font-kerning:none unless the document, style or run asks
  * (SAS batch 2: unkerned Calibri lines 0.7-1.9px over a cell width wrapped in
- * Word but not in GenOffice).
+ * Word but not in Plot Docs).
  */
 import { describe, expect, it } from 'vitest'
 import { DOMSerializer } from '@tiptap/pm/model'
-import type { ParsedDocFull, StyleDisplay, StyleInfo, TextboxDisplay } from '@genoffice/docx-engine'
+import type { ParsedDocFull, StyleDisplay, StyleInfo, TextboxDisplay } from '@plotdocs/docx-engine'
 import { docStyleCss } from '../src/renderer/doc-style-css'
 import { renderTextboxSpec } from '../src/renderer/editor/protected-render'
 import { TextStyleMark } from '../src/renderer/editor/marks'

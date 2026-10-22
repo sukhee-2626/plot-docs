@@ -1,6 +1,6 @@
 /* Per-app accent (excel-green family) + sheets-only tokens.
  * Chrome tokens (surface/text/border/…, AI panel --color-*) come from
- * @genoffice/ui/tokens.css; nothing here may shadow those names. */
+ * @plotdocs/ui/tokens.css; nothing here may shadow those names. */
 :root {
   --excel-green: #217346;
   --excel-green-dark: #185c37;
@@ -189,14 +189,14 @@
  * Office sans families the OS lacks silently fall back to Chromium's serif
  * default on the grid canvas. local() keeps a real installed font first; the
  * bundled Carlito (metric-compatible with Calibri, shared via
- * @genoffice/ui/fonts) guarantees Excel-matching widths before the
+ * @plotdocs/ui/fonts) guarantees Excel-matching widths before the
  * Helvetica/Arial approximations. Canvas fillText never triggers @font-face
  * downloads, so main.tsx loads these explicitly. */
 @font-face {
   font-family: Aptos;
   src:
     local('Aptos'), local('Calibri'), local('Carlito'),
-    url('@genoffice/ui/fonts/Carlito-Regular.ttf'), local('Helvetica Neue'), local('Arial');
+    url('@plotdocs/ui/fonts/Carlito-Regular.ttf'), local('Helvetica Neue'), local('Arial');
   font-display: block;
 }
 
@@ -205,7 +205,7 @@
   font-weight: bold;
   src:
     local('Aptos Bold'), local('Calibri Bold'), local('Carlito Bold'),
-    url('@genoffice/ui/fonts/Carlito-Bold.ttf'), local('Helvetica Neue Bold'), local('Arial Bold');
+    url('@plotdocs/ui/fonts/Carlito-Bold.ttf'), local('Helvetica Neue Bold'), local('Arial Bold');
   font-display: block;
 }
 
@@ -214,7 +214,7 @@
   font-style: italic;
   src:
     local('Aptos Italic'), local('Calibri Italic'), local('Carlito Italic'),
-    url('@genoffice/ui/fonts/Carlito-Italic.ttf'), local('Helvetica Neue Italic'),
+    url('@plotdocs/ui/fonts/Carlito-Italic.ttf'), local('Helvetica Neue Italic'),
     local('Arial Italic');
   font-display: block;
 }
@@ -225,7 +225,7 @@
   font-style: italic;
   src:
     local('Aptos Bold Italic'), local('Calibri Bold Italic'), local('Carlito Bold Italic'),
-    url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf'), local('Helvetica Neue Bold Italic'),
+    url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf'), local('Helvetica Neue Bold Italic'),
     local('Arial Bold Italic');
   font-display: block;
 }
@@ -236,21 +236,21 @@
 
 @font-face {
   font-family: Carlito;
-  src: local('Carlito'), url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: local('Carlito'), url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   font-display: block;
 }
 
 @font-face {
   font-family: Carlito;
   font-weight: bold;
-  src: local('Carlito Bold'), url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: local('Carlito Bold'), url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   font-display: block;
 }
 
 @font-face {
   font-family: Carlito;
   font-style: italic;
-  src: local('Carlito Italic'), url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: local('Carlito Italic'), url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   font-display: block;
 }
 
@@ -258,14 +258,14 @@
   font-family: Carlito;
   font-weight: bold;
   font-style: italic;
-  src: local('Carlito Bold Italic'), url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: local('Carlito Bold Italic'), url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   font-display: block;
 }
 
 @font-face {
   font-family: Calibri;
   src:
-    local('Calibri'), local('Carlito'), url('@genoffice/ui/fonts/Carlito-Regular.ttf'),
+    local('Calibri'), local('Carlito'), url('@plotdocs/ui/fonts/Carlito-Regular.ttf'),
     local('Helvetica Neue'), local('Arial');
   font-display: block;
 }
@@ -274,7 +274,7 @@
   font-family: Calibri;
   font-weight: bold;
   src:
-    local('Calibri Bold'), local('Carlito Bold'), url('@genoffice/ui/fonts/Carlito-Bold.ttf'),
+    local('Calibri Bold'), local('Carlito Bold'), url('@plotdocs/ui/fonts/Carlito-Bold.ttf'),
     local('Helvetica Neue Bold'), local('Arial Bold');
   font-display: block;
 }
@@ -283,7 +283,7 @@
   font-family: Calibri;
   font-style: italic;
   src:
-    local('Calibri Italic'), local('Carlito Italic'), url('@genoffice/ui/fonts/Carlito-Italic.ttf'),
+    local('Calibri Italic'), local('Carlito Italic'), url('@plotdocs/ui/fonts/Carlito-Italic.ttf'),
     local('Helvetica Neue Italic'), local('Arial Italic');
   font-display: block;
 }
@@ -294,7 +294,7 @@
   font-style: italic;
   src:
     local('Calibri Bold Italic'), local('Carlito Bold Italic'),
-    url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf'), local('Helvetica Neue Bold Italic'),
+    url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf'), local('Helvetica Neue Bold Italic'),
     local('Arial Bold Italic');
   font-display: block;
 }
@@ -417,7 +417,7 @@ textarea:disabled {
 /* The ribbon's dropdown popovers render inside this header, so their z-index
  * is trapped in the header's stacking context (z-index: 10) and they paint
  * under the grid's float layers — the slicer stack and the watch window, both
- * z-index: 1000 in the root stacking order (genoffice#1767; docs/slides don't
+ * z-index: 1000 in the root stacking order (plotdocs#1767; docs/slides don't
  * hit this because their .ribbon creates no stacking context). Raising the
  * popovers instead cannot work: .menu-select-drop and .sheets-color-pop are
  * both already 1000, a tie the float layers win on DOM order, and the shared
@@ -429,7 +429,7 @@ textarea:disabled {
  * ShapeGallerySelect / EditableMenuSelect -> .menu-select-drop; the ribbon
  * color tools -> .sheets-color-pop inline — the .sheets-color-pop-portal
  * variant is a child of body and is never trapped). Keying on the host also
- * keeps the header under a dialog's dim backdrop: html.genoffice-popover-open
+ * keeps the header under a dialog's dim backdrop: html.plotdocs-popover-open
  * also fires for the Dropdown/ColorDropdown inside Format Cells, Name
  * Manager, Pivot, Consolidate, Subtotal, Advanced Filter and Insert Function,
  * all under .dialog-backdrop (z-index: 40) — and "dialogs always dismiss the
@@ -456,7 +456,7 @@ textarea:disabled {
 
 /* While a popover is open the row must deliver presses (drag regions swallow
    them), so outside-press dismissal can see presses on the blank band */
-html.genoffice-popover-open .ribbon-tabs {
+html.plotdocs-popover-open .ribbon-tabs {
   -webkit-app-region: no-drag;
 }
 
@@ -648,7 +648,7 @@ html.genoffice-popover-open .ribbon-tabs {
   overflow-x: scroll;
   overflow-y: hidden;
   /* Slim visible scrollbar so mouse users can reach overflowed groups
-     (genspark-ai/genoffice#55). Its 5px lane is carved out of the bottom
+     (plotxyz-ai/plot-docs#55). Its 5px lane is carved out of the bottom
      padding, keeping the 80px band and the content area unchanged; Chromium
      paints a thumb only while the row actually overflows. */
   padding: 6px 12px 1px;
@@ -692,7 +692,7 @@ html.genoffice-popover-open .ribbon-tabs {
 }
 
 /* The AI group leads the band in every app: 4px side padding like the
-   docs/slides .ribbon-group, so the Genspark mark sits at the same x. */
+   docs/slides .ribbon-group, so the Soopus mark sits at the same x. */
 .ribbon-group:has(.ai-entry) {
   padding: 2px 4px;
 }
@@ -845,7 +845,7 @@ html.genoffice-popover-open .ribbon-tabs {
 }
 
 .ribbon-tool.large.as-button.ai-entry.active {
-  /* neutral gray, shared with the docs/slides Genspark entries */
+  /* neutral gray, shared with the docs/slides Soopus entries */
   background: var(--ribbon-active);
 }
 
@@ -1034,7 +1034,7 @@ html.genoffice-popover-open .ribbon-tabs {
   .ribbon {
     gap: 1px;
     /* keep the 6px 12px band padding: docs/slides never compact it, and a
-       narrower inset shifts the shared Genspark entry 2px when switching apps */
+       narrower inset shifts the shared Soopus entry 2px when switching apps */
   }
 
   .ribbon-group {
@@ -1358,7 +1358,7 @@ html.genoffice-popover-open .ribbon-tabs {
   anchor-scope: --menu-select;
 }
 
-/* Anchor positioning for the shared Word-style color panel (@genoffice/ui
+/* Anchor positioning for the shared Word-style color panel (@plotdocs/ui
    .gcp-palette draws the chrome; this only places it under its trigger). */
 .sheets-color-pop {
   position: fixed;
@@ -2191,15 +2191,15 @@ button.check-item:hover {
   box-shadow: var(--sheets-shadow-badge);
 }
 
-/* Genspark brand logo (shared by the collapse button and the AI panel title) */
-.genspark-badge {
+/* Soopus brand logo (shared by the collapse button and the AI panel title) */
+.soopus-badge {
   display: block;
   width: 22px;
   height: 22px;
   border-radius: 50%;
 }
 
-.ai-panel-title .genspark-badge {
+.ai-panel-title .soopus-badge {
   width: 18px;
   height: 18px;
 }
@@ -3734,7 +3734,7 @@ textarea:focus {
   gap: 8px;
 }
 
-/* Genspark DS modal footer buttons: secondary = bg-subtle, primary = black (#232425) */
+/* Soopus DS modal footer buttons: secondary = bg-subtle, primary = black (#232425) */
 .dialog-actions button,
 .select-data-actions button {
   display: inline-flex;
@@ -5092,7 +5092,7 @@ textarea:focus {
 }
 
 /* textarea: 16px / 24px fixed line-height (chat body size), auto-grow band
- * (resting height 25% taller than default, matching the Genspark for PowerPoint prompt box) */
+ * (resting height 25% taller than default, matching the Soopus for PowerPoint prompt box) */
 .ai-input-box textarea {
   display: block;
   width: 100%;
@@ -5265,7 +5265,7 @@ textarea:focus {
 .ai-attachments {
   display: flex;
   gap: 8px;
-  /* single row inside the prompt box, above the textarea (Genspark composer style):
+  /* single row inside the prompt box, above the textarea (Soopus composer style):
      extra images run past the box edge and scroll horizontally.
      scroll (not auto) + zero bottom padding: the always-present 4px scrollbar lane
      doubles as the bottom padding, so overflowing never grows the strip and
@@ -5373,7 +5373,7 @@ textarea:focus {
   background: var(--bg-content);
 }
 
-/* the type icon sits in its own bordered white tile, like the Genspark card */
+/* the type icon sits in its own bordered white tile, like the Soopus card */
 .ai-attachment-card-icon {
   display: flex;
   flex-shrink: 0;
@@ -5681,7 +5681,7 @@ textarea:focus {
  * the two differ — a dark app with the document theme pinned light — the UA
  * system colors inside the popups resolve to their dark variants: the menu
  * item buttons only carry Univer's dark-mode text class, so their labels turn
- * white on the light menu surface and vanish (genoffice#2041). Track Univer's
+ * white on the light menu surface and vanish (plotdocs#2041). Track Univer's
  * own dark flag so its popups get the UA scheme matching what they render. */
 .univer-popup {
   color-scheme: light;
@@ -5931,7 +5931,7 @@ textarea:focus {
   display: none;
 }
 
-/* ── Shared dropdown (@genoffice/ui gs-dd) app sizing ──────────────────────
+/* ── Shared dropdown (@plotdocs/ui gs-dd) app sizing ──────────────────────
    Ports the old native-select metrics per container so replacing <select>
    with the themed Dropdown doesn't shift layout (reference: the matching
    block in apps/slides styles.css). */

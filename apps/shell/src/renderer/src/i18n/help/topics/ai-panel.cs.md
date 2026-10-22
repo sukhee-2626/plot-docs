@@ -36,5 +36,5 @@ Každý editor může vyvolat panel AI: vyberte něco, zadejte pokyn a sledujte 
 
 ## Soukromí
 
-- Pokyny a příslušný obsah dokumentu putují do **služby modelu, kterou jste nastavili** (Genspark v cloudu nebo vlastní koncový bod, viz další kapitola); bez nastavení se nic neodesílá.
+- Pokyny a příslušný obsah dokumentu putují do **služby modelu, kterou jste nastavili** (Soopus AI v cloudu nebo vlastní koncový bod, viz další kapitola); bez nastavení se nic neodesílá.
 - Místní soubory se nikam jinam neodesílají; klíče BYOK se ukládají do souboru nastavení aplikace na tomto počítači a odesílají pouze v hlavičkách požadavků.

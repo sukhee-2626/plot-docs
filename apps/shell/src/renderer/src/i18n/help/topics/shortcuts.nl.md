@@ -26,7 +26,7 @@ Elke editor heeft een eigen toetsenindeling en slechts een paar werken overal. D
 
 - De macOS-kolom gebruikt de vertrouwde symbolen: `⌘` Command, `⌥` Option, `⇧` Shift, `⌃` Control.
 - De Windows / Linux-kolom schrijft ze uit: `Ctrl`, `Alt`, `Shift`.
-- Waar GenOffice op de twee platformen echt verschillende toetsen nodig heeft, toont de tabel dat. De gangbare gevallen zijn `⌃H` voor Zoeken en vervangen (macOS heeft `⌘H` voor Verbergen), `⌥⌘G` voor Ga naar en de sluittoets van Slides.
+- Waar Plot Docs op de twee platformen echt verschillende toetsen nodig heeft, toont de tabel dat. De gangbare gevallen zijn `⌃H` voor Zoeken en vervangen (macOS heeft `⌘H` voor Verbergen), `⌥⌘G` voor Ga naar en de sluittoets van Slides.
 - Een combinatie die alleen met een selectie werkt, staat in de kolom Actie in plaats van een eigen kolom, zodat een tabel drie kolommen breed blijft.
 
 ## Word
@@ -159,7 +159,7 @@ F1 opent de **gebruikershandleiding**, niet deze lijst. Het sneltoetsenblad is �
 
 ## Sheets
 
-GenOffice Sheets is een Excel-compatibel raster. De meeste hieronder zijn de Excel-sneltoetsen die je al kent.
+Plot Docs Sheets is een Excel-compatibel raster. De meeste hieronder zijn de Excel-sneltoetsen die je al kent.
 
 > **Bewerken wint.** Vrijwel elke sneltoets in Sheets wordt genegeerd terwijl je een cel bewerkt of in de **formulebalk** typt, zodat typen, de caret verplaatsen en Backspace hun gewone tekstbewerkingsbetekenis houden. Doet een toets niets, kijk dan of je midden in het bewerken bent: druk eerst op Esc of Enter en probeer het opnieuw. Commando's die op de selectie werken doen eveneens niets zolang er een dialoogvenster openstaat. Waar een combinatie een uitzondering op deze regel is, staat dat in de tabel.
 
@@ -287,7 +287,7 @@ De sneltoets voor filteren van Excel, Ctrl+Shift+L, doet niets op Windows of Lin
 
 ## Slides
 
-GenOffice Slides is een presentatie-editor in de stijl van PowerPoint. De meeste toetsen doen hetzelfde waar je je ook bevindt, maar een paar wisselen van betekenis met de focus — in een tekstvak, of wanneer het **miniatuurpaneel**, **overzichtspaneel** of **dia-sorteerder** toetsenbordfocus heeft. Die gevallen staan in de kolom Actie gemarkeerd.
+Plot Docs Slides is een presentatie-editor in de stijl van PowerPoint. De meeste toetsen doen hetzelfde waar je je ook bevindt, maar een paar wisselen van betekenis met de focus — in een tekstvak, of wanneer het **miniatuurpaneel**, **overzichtspaneel** of **dia-sorteerder** toetsenbordfocus heeft. Die gevallen staan in de kolom Actie gemarkeerd.
 
 ### Bestand en app
 
@@ -482,7 +482,7 @@ Escape haalt één laag tegelijk weg — eerst een open dialoogvenster, dan de A
 
 ## Markdown
 
-GenOffice Markdown bewerkt Markdown met een live preview ernaast.
+Plot Docs Markdown bewerkt Markdown met een live preview ernaast.
 
 ### Bestand en weergave
 
@@ -523,7 +523,7 @@ Een lege formule toepassen verwijdert het blok in plaats daarvan. De editor slui
 
 ## HTML
 
-GenOffice HTML toont een code-editor naast een live preview. De toetsen die op een pagina-element werken gelden alleen wanneer de preview zelf toetsenbordfocus heeft.
+Plot Docs HTML toont een code-editor naast een live preview. De toetsen die op een pagina-element werken gelden alleen wanneer de preview zelf toetsenbordfocus heeft.
 
 ### Bestand en bronweergave
 

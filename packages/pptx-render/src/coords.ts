@@ -8,7 +8,7 @@
  *
  * Angles: OOXML rot unit = 1/60000 degree; clockwise positive (matching Canvas/CSS).
  */
-import type { EmuRect, Transform, SlideSize } from '@genoffice/pptx-engine'
+import type { EmuRect, Transform, SlideSize } from '@plotdocs/pptx-engine'
 
 export const EMU_PER_INCH = 914400
 export const EMU_PER_PX_96 = 9525 // 914400 / 96

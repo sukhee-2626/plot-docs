@@ -2,10 +2,10 @@ import { app, dialog } from 'electron'
 import type { BrowserWindow } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import type { UpdateInfo } from 'electron-updater'
-import { createI18n, getUiLang } from '@genoffice/i18n'
+import { createI18n, getUiLang } from '@plotdocs/i18n'
 
 /**
- * Full-package auto-update for the standalone GenOffice Docs app over the generic
+ * Full-package auto-update for the standalone Plot Docs Docs app over the generic
  * provider (Azure CDN).
  *
  * electron-builder bakes the publish URL into resources/app-update.yml at

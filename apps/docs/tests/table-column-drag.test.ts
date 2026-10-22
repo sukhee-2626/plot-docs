@@ -1,6 +1,6 @@
 import { Editor } from '@tiptap/core'
 import { columnResizingPluginKey } from '@tiptap/pm/tables'
-import { parseDocx } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { blocksToPmDoc, pmTableToModel, type PmNode } from '../src/renderer/editor/convert'

@@ -1,6 +1,6 @@
 import type { IRange } from '@univerjs/core'
 
-import { rangeCellCount } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { rangeCellCount } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import { REORDER_JOURNAL_MAX_CELLS } from './app-constants'
 import { fitsFullLoad, type WorkbookCellCounts } from './load-budget'

@@ -11,7 +11,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Stage, Layer, Rect, Group } from 'react-konva'
 import type { Context } from 'konva/lib/Context'
-import type { RenderNode, RenderSlide, ShapeRenderNode } from '@genoffice/pptx-render'
+import type { RenderNode, RenderSlide, ShapeRenderNode } from '@plotdocs/pptx-render'
 import type { AnimationItem } from '../../shared/ipc'
 import {
   buildSteps,

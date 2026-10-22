@@ -36,5 +36,5 @@ Todos los editores pueden invocar el panel de IA: seleccione algo, dé una instr
 
 ## Privacidad
 
-- Las instrucciones y el contenido pertinente del documento van al **servicio de modelo que haya configurado** (Genspark alojado o un endpoint personalizado, capítulo siguiente); sin configuración, no se envía nada.
+- Las instrucciones y el contenido pertinente del documento van al **servicio de modelo que haya configurado** (Soopus AI alojado o un endpoint personalizado, capítulo siguiente); sin configuración, no se envía nada.
 - Los archivos locales no se suben a ningún otro sitio; las claves BYOK se guardan en el archivo de ajustes de la aplicación en este equipo y se envían solo en las cabeceras de la petición.

@@ -7,8 +7,8 @@
  * same floating-object posOffset attrs the move handle uses.
  */
 import type { Editor } from '@tiptap/core'
-import { shapeClipCss } from '@genoffice/ui'
-import { LINE_KINDS } from '@genoffice/docx-engine'
+import { shapeClipCss } from '@plotdocs/ui'
+import { LINE_KINDS } from '@plotdocs/docx-engine'
 import { isStraightLineKind, shapeBackgroundImage } from './shape-svg'
 
 const EMU_PER_PX = 9525

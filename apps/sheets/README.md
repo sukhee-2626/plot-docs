@@ -1,4 +1,4 @@
-# GenOffice Sheets
+# Plot Docs Sheets
 
 An AI-native spreadsheet app for macOS and Windows.
 

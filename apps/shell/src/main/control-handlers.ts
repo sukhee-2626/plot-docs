@@ -6,7 +6,7 @@ import type {
   ControlTarget,
   RendererControlReply,
   RendererControlRequest,
-} from '@genoffice/cli/control-protocol'
+} from '@plotdocs/cli/control-protocol'
 import type { TabKind } from '../shared/tabs-api'
 
 export interface ControlHost {
@@ -27,7 +27,7 @@ const TARGET_KIND_BY_TAB: Partial<Record<TabKind, ControlTarget['kind']>> = {
 
 /**
  * Runs one CLI control request against the open tabs. Renderers register
- * `window.__genofficeControl`; the shell evaluates it through the debugger
+ * `window.__plotdocsControl`; the shell evaluates it through the debugger
  * channel, so no preload surface grows and an unloaded document simply
  * answers `not_ready` until its file is in.
  */
@@ -42,7 +42,7 @@ export function controlHandler(host: ControlHost): (req: ControlRequest) => Prom
       const existing = host.findTab(req.path)
       if (existing) host.activateTab(existing.id)
       else if (!host.openDocument(req.path)) {
-        return fail('unsupported', `GenOffice cannot open ${req.path}`)
+        return fail('unsupported', `Plot Docs cannot open ${req.path}`)
       }
       if (!req.target) return { ok: true, result: { opened: req.path } }
       const tab = existing ?? host.findTab(req.path)
@@ -57,8 +57,8 @@ export function controlHandler(host: ControlHost): (req: ControlRequest) => Prom
     }
     const tab = host.findTab(req.path)
     if (!tab) {
-      return fail('file_not_open_in_gui', `GenOffice does not have ${req.path} open`, {
-        suggestion: `genoffice open ${req.path}`,
+      return fail('file_not_open_in_gui', `Plot Docs does not have ${req.path} open`, {
+        suggestion: `plotdocs open ${req.path}`,
       })
     }
     return ask(tab.webContents, { cmd: 'selection' }, host.readyTimeoutMs)
@@ -111,7 +111,7 @@ async function evaluateControl(
 ): Promise<RendererControlReply> {
   if (wc.isDestroyed() || wc.isLoading()) return { status: 'not_ready' }
   const script = `(async () => {
-    const handler = window.__genofficeControl
+    const handler = window.__plotdocsControl
     if (typeof handler !== 'function') return { status: 'not_ready' }
     try {
       return await handler(${JSON.stringify(request)})

@@ -8,9 +8,9 @@ import {
 } from '../src/search-settings'
 
 describe('search settings', () => {
-  it('defaults to genspark with empty keys and rides along in defaultAiSettings', () => {
+  it('defaults to soopus with empty keys and rides along in defaultAiSettings', () => {
     expect(defaultAiSearchSettings()).toEqual({
-      provider: 'genspark',
+      provider: 'soopus',
       providers: {
         serper: { apiKey: '' },
         serply: { apiKey: '' },
@@ -20,9 +20,9 @@ describe('search settings', () => {
         firecrawl: { apiKey: '' },
       },
     })
-    expect(defaultAiSettings().search?.provider).toBe('genspark')
+    expect(defaultAiSettings().search?.provider).toBe('soopus')
     const resolved = resolveAiSettings(
-      { provider: 'genspark', providers: {} as never },
+      { provider: 'soopus', providers: {} as never },
       defaultAiSettings(),
     )
     expect(resolved.search).toEqual(defaultAiSearchSettings())
@@ -39,7 +39,7 @@ describe('search settings', () => {
   })
 
   it('activates a BYOK search provider only with a key', () => {
-    expect(activeSearchProvider({ search: undefined })).toBe('genspark')
+    expect(activeSearchProvider({ search: undefined })).toBe('soopus')
     expect(
       activeSearchProvider({
         search: {
@@ -54,7 +54,7 @@ describe('search settings', () => {
           },
         },
       }),
-    ).toBe('genspark')
+    ).toBe('soopus')
     expect(
       activeSearchProvider({
         search: {
@@ -84,9 +84,9 @@ describe('search settings', () => {
           },
         },
       }),
-    ).toBe('genspark')
+    ).toBe('soopus')
     expect(activeSearchProvider({ search: { provider: 'bing', providers: {} } as never })).toBe(
-      'genspark',
+      'soopus',
     )
   })
 })
@@ -104,7 +104,7 @@ describe('Serply search settings', () => {
       activeSearchProvider({
         search: { ...settings, providers: { ...settings.providers, serply: { apiKey: '  ' } } },
       }),
-    ).toBe('genspark')
+    ).toBe('soopus')
   })
 })
 
@@ -160,7 +160,7 @@ describe('exa and firecrawl providers', () => {
     expect(s.providers.firecrawl.apiKey).toBe('')
   })
 
-  it('activate with a key and fall back to genspark without one', () => {
+  it('activate with a key and fall back to soopus without one', () => {
     const mk = (id: 'exa' | 'firecrawl', apiKey: string) => ({
       search: {
         provider: id,
@@ -174,9 +174,9 @@ describe('exa and firecrawl providers', () => {
         },
       },
     })
-    expect(activeSearchProvider(mk('exa', ''))).toBe('genspark')
+    expect(activeSearchProvider(mk('exa', ''))).toBe('soopus')
     expect(activeSearchProvider(mk('exa', 'exa-1'))).toBe('exa')
-    expect(activeSearchProvider(mk('firecrawl', ' '))).toBe('genspark')
+    expect(activeSearchProvider(mk('firecrawl', ' '))).toBe('soopus')
     expect(activeSearchProvider(mk('firecrawl', 'fc-1'))).toBe('firecrawl')
   })
 

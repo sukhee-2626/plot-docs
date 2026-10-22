@@ -4,7 +4,7 @@ import {
   describeOperationErrors,
   workbookOperationSchema,
   type WorkbookOperation,
-} from '@genoffice/xlsx-gateway/domain/workbook-dsl'
+} from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
 import { normalizeSheetRefs, primaryCellOf, primarySheetId, type SheetRef } from './mcp-sheet-refs'
 
 /**

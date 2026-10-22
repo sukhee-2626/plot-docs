@@ -4,7 +4,7 @@
  * pageMargins / printOptions / headerFooter plus the workbook-level
  * _xlnm.Print_Area / _xlnm.Print_Titles defined names).
  */
-import { columnIndex, columnLabel, parseRange } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { columnIndex, columnLabel, parseRange } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import type { WorkbookPagePrintSettings } from '../shared/desktop-api'
 import type { HeaderFooterParts, PageSetupJournalState, StructuralJournalOp } from './edit-journal'
 import { fileRangeToScreenRange, fileToScreen } from './view-transform'

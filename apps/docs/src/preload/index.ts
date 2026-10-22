@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer, webUtils } from 'electron'
 import type { IpcRendererEvent } from 'electron'
 import { VIEW_IMAGE_CHANNEL, type MarkdownImage, type PdfInternalLink } from '../shared/ipc'
-import type { AiPanelPrefs } from '@genoffice/ui'
+import type { AiPanelPrefs } from '@plotdocs/ui'
 import type {
   AiChatRequest,
   AiSettings,
@@ -16,8 +16,8 @@ import type {
   UiTheme,
   ZoteroRendererRequest,
 } from '../shared/ipc'
-import type { ProjectApi } from '@genoffice/project-store'
-import { installDropOpenBridge } from '@genoffice/electron-utils/drop-open'
+import type { ProjectApi } from '@plotdocs/project-store'
+import { installDropOpenBridge } from '@plotdocs/electron-utils/drop-open'
 
 const api: DesktopApi = {
   getLanguage: () => ipcRenderer.invoke('app:get-language'),
@@ -214,8 +214,8 @@ const api: DesktopApi = {
   skillText: (name: string) => ipcRenderer.invoke('ai:skill-text', name),
   runCli: (args: string[]) => ipcRenderer.invoke('ai:run-cli', args),
   aiStreamCancel: (requestId: string) => ipcRenderer.invoke('ai:stream-cancel', requestId),
-  aiGskStatus: (withEmail?: boolean) => ipcRenderer.invoke('ai:gsk-status', withEmail),
-  aiGskLogin: () => ipcRenderer.invoke('ai:gsk-login'),
+  aiSoopusStatus: (withEmail?: boolean) => ipcRenderer.invoke('ai:soopus-status', withEmail),
+  aiSoopusLogin: () => ipcRenderer.invoke('ai:soopus-login'),
   webSearch: (query: string, maxResults?: number) =>
     ipcRenderer.invoke('ai:web-search', query, maxResults),
   imageSearch: (query: string, maxResults?: number) =>

@@ -8,22 +8,22 @@ import { launchShell, closeAndSaveVideo, waitForPageWithUrl, screenshotPath } fr
 
 /**
  * Regression for "new spreadsheet cannot be saved" (feedback 2368785), updated
- * for genoffice#1036: quick-create no longer drops a file in the default folder. The
+ * for plotdocs#1036: quick-create no longer drops a file in the default folder. The
  * backing workbook lives in a temp directory, the default folder stays empty,
  * and the first save goes through Save As. The save pipeline must still work
  * from the first edit.
  */
 test.describe('sheets: new blank workbook', () => {
   test('quick-create saves the first edit through Save As and leaves the default folder empty', async () => {
-    const scratch = await mkdtemp(join(tmpdir(), 'genoffice-sheets-blank-'))
+    const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-sheets-blank-'))
     const launched = await launchShell({ onboardingSeen: true, videoDir: 'sheets-new-blank' })
     try {
       const { app, page } = launched
-      // keep the auto-created workbook out of the real ~/Documents/GenOffice
+      // keep the auto-created workbook out of the real ~/Documents/Plot Docs
       await app.evaluate(({ app: electronApp }, dir) => {
         electronApp.setPath('documents', dir)
       }, scratch)
-      const saveDir = join(scratch, 'GenOffice')
+      const saveDir = join(scratch, 'Plot Docs')
       const workbook = join(saveDir, 'quick-create.xlsx')
       // the workbook has no file yet, so Save answers the Save As picker
       await app.evaluate(({ dialog }, target) => {
@@ -39,7 +39,7 @@ test.describe('sheets: new blank workbook', () => {
       })
       await sheets.waitForTimeout(1_500)
 
-      // nothing lands in the default folder before the user saves (genoffice#1036)
+      // nothing lands in the default folder before the user saves (plotdocs#1036)
       const before = existsSync(saveDir)
         ? (await readdir(saveDir)).filter((f) => f.endsWith('.xlsx'))
         : []

@@ -7,7 +7,7 @@
 import JSZip from 'jszip'
 import { describe, expect, it } from 'vitest'
 
-import { applyCellEditsToXlsx, type CellEdit } from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
+import { applyCellEditsToXlsx, type CellEdit } from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
 
 /// Master at A1 spans A1:C3; Excel writes the followers as cached values only.
 const CSE_MASTER = '<c r="A1" s="5"><f t="array" ref="A1:C3">SUM(A2:A3*B2:B3)</f><v>1</v></c>'

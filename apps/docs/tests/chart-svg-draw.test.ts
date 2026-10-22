@@ -1,4 +1,4 @@
-import { parseChartPartXml, type ChartDisplay } from '@genoffice/docx-engine'
+import { parseChartPartXml, type ChartDisplay } from '@plotdocs/docx-engine'
 import { describe, expect, it } from 'vitest'
 import {
   CHART_TITLE_ROW_PX,

@@ -1,4 +1,4 @@
-import type { Lang } from '@genoffice/i18n'
+import type { Lang } from '@plotdocs/i18n'
 
 /** Tooltips for the token-usage chips under assistant replies and on the composer
  * (all editors and the kb-ask panel share them; the chips themselves are numeric). */

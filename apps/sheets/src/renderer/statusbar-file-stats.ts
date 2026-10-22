@@ -22,7 +22,7 @@ import type { IRange } from '@univerjs/core'
 import { FUNCTION_NAMES_MATH, FUNCTION_NAMES_STATISTICAL } from '@univerjs/engine-formula'
 import { SheetsSelectionsService } from '@univerjs/sheets'
 import { IStatusBarService } from '@univerjs/sheets-ui'
-import type { RangeBounds } from '@genoffice/xlsx-gateway/domain/cell-address'
+import type { RangeBounds } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import type { RangeAggregate } from './ai/aggregate'
 import type { LazyWorkbookState, UniverRuntime } from './univer-state'

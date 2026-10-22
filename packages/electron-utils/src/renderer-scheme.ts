@@ -1,8 +1,8 @@
 import type { CustomScheme } from 'electron'
 import { resolve, sep } from 'node:path'
 
-/** Origin the built renderers are served from (`genoffice-app://<module>/index.html`). */
-export const RENDERER_SCHEME = 'genoffice-app'
+/** Origin the built renderers are served from (`plotdocs-app://<module>/index.html`). */
+export const RENDERER_SCHEME = 'plotdocs-app'
 
 /** Chromium persists V8 code caches only for http(s) and for privileged custom
  * schemes; a file:// renderer recompiled its whole bundle on every open. */
@@ -21,7 +21,7 @@ export const RENDERER_SCHEME_PRIVILEGE: CustomScheme = {
 /** docs' lazily served pictures (packages/docx-engine/src/lazy-media.ts); a
  * secure page may only load pictures from another secure scheme */
 export const DOCX_MEDIA_SCHEME_PRIVILEGE: CustomScheme = {
-  scheme: 'genoffice-docx-media',
+  scheme: 'plotdocs-docx-media',
   privileges: {
     standard: true,
     secure: true,

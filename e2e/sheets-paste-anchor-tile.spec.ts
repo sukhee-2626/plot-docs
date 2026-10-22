@@ -5,8 +5,8 @@ import { join } from 'node:path'
 import type { Page } from '@playwright/test'
 import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
 
-// the preload exposes window.__genofficeDebug only under this env var
-process.env.GENOFFICE_DEBUG_HOOKS = '1'
+// the preload exposes window.__plotdocsDebug only under this env var
+process.env.PLOTDOCS_DEBUG_HOOKS = '1'
 
 /**
  * Regression for "copied C2:E2, selected C2:C14, paste didn't repeat" (user
@@ -38,7 +38,7 @@ function facade(sheets: Page): Promise<void> {
 
 test.describe('sheets: paste repeats into an anchor-shaped target', () => {
   test('a copied 1×3 row tiles down a 4×1 selection', async () => {
-    const scratch = await mkdtemp(join(tmpdir(), 'genoffice-anchor-tile-'))
+    const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-anchor-tile-'))
     const launched = await launchShell({
       onboardingSeen: true,
       videoDir: 'sheets-paste-anchor-tile',
@@ -71,8 +71,8 @@ test.describe('sheets: paste repeats into an anchor-shaped target', () => {
 
       // source row A1:C1, copy it
       await sheets.evaluate(async () => {
-        const debug = (window as unknown as { __genofficeDebug: { univerAPI: SheetFacade } })
-          .__genofficeDebug
+        const debug = (window as unknown as { __plotdocsDebug: { univerAPI: SheetFacade } })
+          .__plotdocsDebug
         const sheet = debug.univerAPI.getActiveWorkbook().getActiveSheet()
         await sheet.getRange(0, 0, 1, 3).setValues([['a', 'b', 'c']])
         sheet.getRange(0, 0, 1, 3).activate()
@@ -82,16 +82,16 @@ test.describe('sheets: paste repeats into an anchor-shaped target', () => {
 
       // paste into the 4×1 anchor selection A2:A5
       await sheets.evaluate(() => {
-        const debug = (window as unknown as { __genofficeDebug: { univerAPI: SheetFacade } })
-          .__genofficeDebug
+        const debug = (window as unknown as { __plotdocsDebug: { univerAPI: SheetFacade } })
+          .__plotdocsDebug
         debug.univerAPI.getActiveWorkbook().getActiveSheet().getRange(1, 0, 4, 1).activate()
       })
       await sheets.keyboard.press('Control+v')
 
       await expect(async () => {
         const values = await sheets.evaluate(() => {
-          const debug = (window as unknown as { __genofficeDebug: { univerAPI: SheetFacade } })
-            .__genofficeDebug
+          const debug = (window as unknown as { __plotdocsDebug: { univerAPI: SheetFacade } })
+            .__plotdocsDebug
           return debug.univerAPI
             .getActiveWorkbook()
             .getActiveSheet()

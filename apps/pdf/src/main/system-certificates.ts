@@ -118,7 +118,7 @@ const defaultEnv = (): SystemStoreEnv => ({
 
 /** Scratch directory readable by this user only, removed when `work` settles */
 async function withPrivateDir<T>(work: (dir: string) => Promise<T>): Promise<T> {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-cert-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-cert-'))
   try {
     return await work(dir)
   } finally {
@@ -266,7 +266,7 @@ export const WINDOWS_LIST_SCRIPT =
 export const WINDOWS_CHAIN_SCRIPT =
   POWERSHELL_UTF8 +
   "$ErrorActionPreference = 'Stop'; " +
-  "$c = Get-Item ('Cert:\\CurrentUser\\My\\' + $env:GENOFFICE_THUMBPRINT); " +
+  "$c = Get-Item ('Cert:\\CurrentUser\\My\\' + $env:PLOTDOCS_THUMBPRINT); " +
   '$chain = New-Object System.Security.Cryptography.X509Certificates.X509Chain; ' +
   "$chain.ChainPolicy.RevocationMode = 'NoCheck'; [void]$chain.Build($c); " +
   '$certs = @($c) + @($chain.ChainElements | ForEach-Object { $_.Certificate } | Select-Object -Skip 1); ' +
@@ -275,10 +275,10 @@ export const WINDOWS_CHAIN_SCRIPT =
 /** The private key stays in the store: Windows signs the digest and returns only the signature */
 export const WINDOWS_SIGN_SCRIPT =
   "$ErrorActionPreference = 'Stop'; " +
-  "$c = Get-Item ('Cert:\\CurrentUser\\My\\' + $env:GENOFFICE_THUMBPRINT); " +
+  "$c = Get-Item ('Cert:\\CurrentUser\\My\\' + $env:PLOTDOCS_THUMBPRINT); " +
   '$rsa = [System.Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPrivateKey($c); ' +
   "if (-not $rsa) { throw 'no RSA private key' } " +
-  '$hex = $env:GENOFFICE_DIGEST; ' +
+  '$hex = $env:PLOTDOCS_DIGEST; ' +
   '$hash = [byte[]]::new($hex.Length / 2); ' +
   'for ($i = 0; $i -lt $hash.Length; $i++) { $hash[$i] = [Convert]::ToByte($hex.Substring(2 * $i, 2), 16) } ' +
   '[Convert]::ToBase64String($rsa.SignHash($hash, ' +
@@ -349,7 +349,7 @@ async function openWindowsSigner(
   ref: Extract<SystemCertificateRef, { source: 'windows' }>,
 ): Promise<SystemIdentity> {
   if (!THUMBPRINT.test(ref.thumbprint)) throw new SystemStoreError('cert-invalid')
-  const thumbprintEnv = { GENOFFICE_THUMBPRINT: ref.thumbprint }
+  const thumbprintEnv = { PLOTDOCS_THUMBPRINT: ref.thumbprint }
   const result = await env.run(
     'powershell.exe',
     ['-NoProfile', '-NonInteractive', '-Command', WINDOWS_CHAIN_SCRIPT],
@@ -372,7 +372,7 @@ async function openWindowsSigner(
         const signed = await env.run(
           'powershell.exe',
           ['-NoProfile', '-NonInteractive', '-Command', WINDOWS_SIGN_SCRIPT],
-          { env: { ...thumbprintEnv, GENOFFICE_DIGEST: Buffer.from(digest).toString('hex') } },
+          { env: { ...thumbprintEnv, PLOTDOCS_DIGEST: Buffer.from(digest).toString('hex') } },
         )
         if (signed.missing) throw new SystemStoreError('cert-store-tool-missing')
         const signature = Buffer.from(signed.stdout.trim(), 'base64')

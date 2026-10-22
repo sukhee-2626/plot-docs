@@ -1,6 +1,6 @@
 # Démarrage rapide : l’interface et les bases
 
-GenOffice est une suite bureautique qui fonctionne entièrement sur votre machine : une fenêtre, une rangée d’onglets, six éditeurs — Docs (traitement de texte), Sheets (tableurs), Slides (présentations), PDF, Markdown et HTML. Les fichiers sont de vrais .docx / .xlsx / .pptx / .pdf, totalement interchangeables avec Word, Excel et PowerPoint. Aucun réseau requis.
+Plot Docs est une suite bureautique qui fonctionne entièrement sur votre machine : une fenêtre, une rangée d’onglets, six éditeurs — Docs (traitement de texte), Sheets (tableurs), Slides (présentations), PDF, Markdown et HTML. Les fichiers sont de vrais .docx / .xlsx / .pptx / .pdf, totalement interchangeables avec Word, Excel et PowerPoint. Aucun réseau requis.
 
 ## Aperçu de l’interface
 
@@ -18,7 +18,7 @@ Chacun de ces moyens convient :
 
 - Cliquez sur une carte de création rapide de la section [Démarrage rapide](help://getting-started) de **Accueil** (AI Docs, AI Sheets, AI Slides, …).
 - Menu **Fichier ▸ Nouveau** : Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML ou PDF.
-- Faites glisser un fichier sur la fenêtre, ou double-cliquez dessus dans votre gestionnaire de fichiers (si GenOffice est l’application par défaut).
+- Faites glisser un fichier sur la fenêtre, ou double-cliquez dessus dans votre gestionnaire de fichiers (si Plot Docs est l’application par défaut).
 
 Un nouveau document s’ouvre sans titre ; le fichier sur le disque n’est créé qu’à la première sauvegarde.
 
@@ -26,7 +26,7 @@ Un nouveau document s’ouvre sans titre ; le fichier sur le disque n’est cré
 
 - Le menu **Fichier ▸ Ouvrir** (⌘O/ctrl+O) ouvre le sélecteur du système : .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Cliquez sur n’importe quel élément de la liste **Récents** de l’accueil.
-- `genoffice <file>` depuis un terminal ouvre aussi les fichiers.
+- `plotdocs <file>` depuis un terminal ouvre aussi les fichiers.
 
 ## Le modèle d’enregistrement
 
@@ -52,7 +52,7 @@ Les raccourcis propres à chaque éditeur (copier la mise en forme, rechercher e
 
 ## Les raccourcis Option+Commande
 
-Option+Commande est la couche que Word réserve aux sauts structurés, et GenOffice la remplit de la même façon. Docs en prend l'essentiel, Sheets en prend deux à lui pour la parité avec Excel ; un raccourci fonctionne partout.
+Option+Commande est la couche que Word réserve aux sauts structurés, et Plot Docs la remplit de la même façon. Docs en prend l'essentiel, Sheets en prend deux à lui pour la parité avec Excel ; un raccourci fonctionne partout.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Remarquez que **⌥⌘0 signifie Normal dans Docs et Bordures extérieures dans 
 
 **Tous les éditeurs** : **⌥⌘R / Ctrl+F1** réduit le ruban, comme décrit plus haut.
 
-Cela laisse ⌥⌘D libre pour que GenOffice l'utilise sur macOS si une future commande en a besoin.
+Cela laisse ⌥⌘D libre pour que Plot Docs l'utilise sur macOS si une future commande en a besoin.
 
 ## Pour aller plus loin
 

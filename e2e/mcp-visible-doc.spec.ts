@@ -104,12 +104,12 @@ async function waitForHealth(port: number, timeoutMs = 20_000): Promise<void> {
 test.describe('MCP visible document session', () => {
   test('creates, formats and saves a docx through a visible tab', async () => {
     const port = await freePort()
-    const outDir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-e2e-'))
+    const outDir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-e2e-'))
     const outFile = join(outDir, 'mcp-visible.docx')
     // seed an app-settings.json that both skips onboarding and turns MCP on;
     // launchShell only writes its own file when onboardingSeen is requested,
     // so seed it here and leave that option off.
-    const userDataDir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-userdata-'))
+    const userDataDir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-userdata-'))
     await writeFile(
       join(userDataDir, 'app-settings.json'),
       JSON.stringify({ onboardingSeen: true, mcpEnabled: true, mcpPort: port }),
@@ -159,7 +159,7 @@ test.describe('MCP visible document session', () => {
       // the shell UI shows a real docs tab (the visible half of the feature)
       const editorTab = page.locator('.tab-bar .tab-item:not(.tab-home)')
       await expect(editorTab).toHaveCount(1)
-      const editorPage = await waitForPageWithUrl(app, 'genoffice-app://docs')
+      const editorPage = await waitForPageWithUrl(app, 'plotdocs-app://docs')
 
       // 2. write content (visible edit), 3. format it
       const inserted = await call('insert_content', {

@@ -48,7 +48,7 @@ export const OFFICE_TYPES: readonly OfficeType[] = [
   },
 ]
 
-const LINUX_DESKTOP_ID = 'genoffice.desktop'
+const LINUX_DESKTOP_ID = 'plotdocs.desktop'
 const WINDOWS_DEFAULT_APPS_URL = 'ms-settings:defaultapps'
 
 export type RunCommand = (cmd: string, args: string[]) => Promise<string>
@@ -80,7 +80,7 @@ export function execFileRunner(cmd: string, args: string[]): Promise<string> {
   })
 }
 
-/** /Applications/GenOffice.app/Contents/MacOS/GenOffice → /Applications/GenOffice.app */
+/** /Applications/Plot Docs.app/Contents/MacOS/Plot Docs → /Applications/Plot Docs.app */
 export function macAppBundlePath(exePath: string): string | null {
   let dir = exePath
   for (let i = 0; i < 6; i++) {

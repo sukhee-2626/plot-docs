@@ -1,16 +1,16 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { htmlDir, htmlLang } from '@genoffice/i18n'
+import { htmlDir, htmlLang } from '@plotdocs/i18n'
 import { AppFrame } from './AppFrame'
 import { LocaleProvider } from './locale'
-import '@genoffice/ui/tokens.css'
-import '@genoffice/ui/screentip.css'
-import '@genoffice/ui/dropdown.css'
-import '@genoffice/ui/ai-model-picker.css'
-import '@genoffice/ui/ai-usage.css'
+import '@plotdocs/ui/tokens.css'
+import '@plotdocs/ui/screentip.css'
+import '@plotdocs/ui/dropdown.css'
+import '@plotdocs/ui/ai-model-picker.css'
+import '@plotdocs/ui/ai-usage.css'
 import './home.css'
 import './tabbar.css'
-import { installScreenTips } from '@genoffice/ui'
+import { installScreenTips } from '@plotdocs/ui'
 
 installScreenTips()
 
@@ -31,13 +31,23 @@ void Promise.all([
 ]).then(([lang, onboardingSeen, theme]) => {
   document.documentElement.lang = htmlLang(lang)
   document.documentElement.dir = htmlDir(lang)
-  // apply theme attribute before first paint to avoid flash
-  if (theme !== 'system') {
-    document.documentElement.setAttribute('data-theme', theme)
-  }
-  window.aiOffice.onThemeChanged((next) => {
+  // Apply the theme before first paint to avoid a flash. `data-theme` keeps
+  // the user's explicit choice (system removes it); `data-color-mode` is the
+  // resolved light/dark value every stylesheet can rely on, including Home's
+  // premium surface and system-mode follow.
+  const media = window.matchMedia('(prefers-color-scheme: dark)')
+  let currentTheme = theme
+  const applyTheme = (next: typeof theme): void => {
+    currentTheme = next
     if (next === 'system') document.documentElement.removeAttribute('data-theme')
     else document.documentElement.setAttribute('data-theme', next)
+    const dark = next === 'dark' || (next === 'system' && media.matches)
+    document.documentElement.setAttribute('data-color-mode', dark ? 'dark' : 'light')
+  }
+  applyTheme(theme)
+  window.aiOffice.onThemeChanged(applyTheme)
+  media.addEventListener('change', () => {
+    if (currentTheme === 'system') applyTheme('system')
   })
   // The manual tab is the same bundle branched on ?mode=help: no onboarding,
   // no home state, just the searchable topic browser (issue #1520).

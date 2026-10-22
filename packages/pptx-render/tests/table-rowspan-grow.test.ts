@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
-import { openPptx } from '@genoffice/pptx-engine'
+import { openPptx } from '@plotdocs/pptx-engine'
 import { buildRenderSlide } from '../src/index'
 
 const here = dirname(fileURLToPath(import.meta.url))

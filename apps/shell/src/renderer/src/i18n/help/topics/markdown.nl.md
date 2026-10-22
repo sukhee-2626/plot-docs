@@ -7,7 +7,7 @@ De Markdown-editor opent .md / .markdown — en .txt / .json, rechtstreeks in de
 - **Voorbeeld**: live; relatieve bronnen zoals afbeeldingen worden naast het document opgezocht.
 - **Opslaan**: bytegetrouw — BOM, CRLF en de aanwezigheid van een afsluitende lege regel blijven behouden; opslaan zonder wijzigingen schrijft het bestand niet opnieuw.
 - **Zoeken en vervangen**: ctrl+F zoekt in de bron; Alles vervangen schrijft het resultaat terug.
-- **AI**: voorinstellingsknoppen laten de assistent het document herschrijven, uitbreiden of vertalen. Een selectie kan voor de AI verborgen worden (zie het hoofdstuk over het AI-paneel).
+- **AI**: voorinstellinsoopusnoppen laten de assistent het document herschrijven, uitbreiden of vertalen. Een selectie kan voor de AI verborgen worden (zie het hoofdstuk over het AI-paneel).
 
 ## De werkbalk
 

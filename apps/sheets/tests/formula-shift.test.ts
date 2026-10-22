@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { shiftFormulaRefs } from '@genoffice/xlsx-gateway/domain/formula-shift'
-import type { StructuralOperation } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
+import { shiftFormulaRefs } from '@plotdocs/xlsx-gateway/domain/formula-shift'
+import type { StructuralOperation } from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
 
 const insertRows = (row: number, count = 1): StructuralOperation => ({
   op: 'insert_rows',

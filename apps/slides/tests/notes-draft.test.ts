@@ -9,7 +9,7 @@ import {
 const deck = (...parts: string[]) => parts.map((partPath) => ({ partPath }))
 const draft = { index: 1, text: 'typing', base: 'old', partPath: 'ppt/slides/slide2.xml' }
 
-describe('retargetNotesDraft (genoffice#900)', () => {
+describe('retargetNotesDraft (plotdocs#900)', () => {
   it('keeps a draft when the edited deck left that slide and its notes alone', () => {
     const slides = deck('ppt/slides/slide1.xml', 'ppt/slides/slide2.xml')
     expect(retargetNotesDraft(draft, slides, 'old')).toBe(draft)

@@ -1,5 +1,5 @@
 import type { Editor } from '@tiptap/core'
-import type { Lang } from '@genoffice/i18n'
+import type { Lang } from '@plotdocs/i18n'
 import { Extension } from '@tiptap/core'
 import { Plugin, PluginKey } from '@tiptap/pm/state'
 import { Mapping } from '@tiptap/pm/transform'

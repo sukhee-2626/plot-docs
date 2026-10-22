@@ -3,11 +3,11 @@ import {
   AiPanelSideButton,
   AiModelPicker,
   type AiModelPickerBridge,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent, ReactElement, ReactNode } from 'react'
-import { AgentLoop, composeSkills, streamText, type MindMapTreeNode } from '@genoffice/agent-core'
-import { imageGenerationAvailable, type AiSettings } from '@genoffice/ai-provider/browser'
+import { AgentLoop, composeSkills, streamText, type MindMapTreeNode } from '@plotdocs/agent-core'
+import { imageGenerationAvailable, type AiSettings } from '@plotdocs/ai-provider/browser'
 import {
   AiComposer,
   AiQueueStrip,
@@ -21,7 +21,7 @@ import {
   useChatRunQueue,
   type AiScopeQuoteData,
   type AiTokenUsageView,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import type { Editor } from '@tiptap/core'
 import { aiLangDirective, t as tGlobal, useI18n } from '../i18n/locale'
 import sendEnterOn from '../assets/send-enter-on.png'
@@ -152,7 +152,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.markdownApi.getAiSettings(),
   setSettings: (settings) => window.markdownApi.setAiSettings(settings),
   onSettingsChanged: (handler) => window.markdownApi.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.markdownApi.aiGskStatus().then((s) => !!s?.loggedIn),
+  soopusLoggedIn: () => window.markdownApi.aiSoopusStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.markdownApi.openAiModelSettings().catch(() => {}),
 }
 
@@ -223,15 +223,15 @@ export function AiPanel({
   }, [panelWidth])
 
   const settingsRef = useRef<AiSettings | null>(null)
-  /** gsk login state for the generate_image gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  /** soopus login state for the generate_image gate (refreshed on mount and window focus) */
+  const soopusLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
       void window.markdownApi
-        .aiGskStatus?.()
+        .aiSoopusStatus?.()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) soopusLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -406,7 +406,7 @@ export function AiPanel({
             read: () => depsRef.current.getFrontmatter(),
             write: (inner) => depsRef.current.setFrontmatter(inner),
           },
-          () => imageGenerationAvailable(settingsRef.current, gskLoggedInRef.current),
+          () => imageGenerationAvailable(settingsRef.current, soopusLoggedInRef.current),
           () => ({
             write: (spec, onProgress, signal) => runDocWriterRef.current(spec, onProgress, signal),
           }),
@@ -830,8 +830,8 @@ export function AiPanel({
       />
       <header className="ai-panel-header">
         <span className="ai-panel-title">
-          <GensparkMark size={22} />
-          Genspark
+          <SoopusMark size={22} />
+          Soopus
         </span>
         <div className="ai-panel-header-actions">
           <AiPanelSideButton
@@ -1360,8 +1360,8 @@ function IconClock(): ReactElement {
   )
 }
 
-/** Genspark brand mark, inline for crisp device-resolution rendering */
-export function GensparkMark({ size = 18 }: { size?: number }): React.JSX.Element {
+/** Soopus brand mark, inline for crisp device-resolution rendering */
+export function SoopusMark({ size = 18 }: { size?: number }): React.JSX.Element {
   return (
     <svg
       width={size}

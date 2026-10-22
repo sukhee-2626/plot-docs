@@ -36,5 +36,5 @@ Setiap editor bisa memunculkan panel AI: pilih sesuatu, beri instruksi, dan liha
 
 ## Privasi
 
-- Instruksi dan isi dokumen yang relevan dikirim ke **layanan model yang Anda konfigurasikan** (Genspark atau endpoint kustom, lihat bab berikutnya); tanpa konfigurasi, tidak ada yang dikirim.
+- Instruksi dan isi dokumen yang relevan dikirim ke **layanan model yang Anda konfigurasikan** (Soopus AI atau endpoint kustom, lihat bab berikutnya); tanpa konfigurasi, tidak ada yang dikirim.
 - File lokal tidak diunggah ke mana pun; kunci BYOK tersimpan di berkas pengaturan aplikasi pada mesin ini dan hanya dikirim di header permintaan.

@@ -17,7 +17,7 @@ export interface ParsedFile {
   error?: string
 }
 
-/** No text extraction for images: callers read raw bytes and go multimodal (see @genoffice/ai-provider images support) */
+/** No text extraction for images: callers read raw bytes and go multimodal (see @plotdocs/ai-provider images support) */
 const IMAGE_MIMES: Record<string, string> = {
   png: 'image/png',
   jpg: 'image/jpeg',

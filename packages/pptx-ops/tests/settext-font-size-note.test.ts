@@ -4,7 +4,7 @@
  * which differs from the box's returns a note so the AI can undo the drift.
  */
 import { describe, it, expect, beforeEach } from 'vitest'
-import { addElement, createBlankPptx, openPptx, type OpenedPptx } from '@genoffice/pptx-engine'
+import { addElement, createBlankPptx, openPptx, type OpenedPptx } from '@plotdocs/pptx-engine'
 import { runTxn } from '../src/ops/executor'
 import '../src/ops/index'
 

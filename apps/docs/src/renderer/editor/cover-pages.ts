@@ -4,8 +4,8 @@ import { DATE_LOCALES, getLang, t, type StringKey } from '../i18n/locale'
 import type { PmNode } from './convert'
 
 /** hidden bookmarks that let "Remove Current Cover Page" find a gallery cover after a save/reopen */
-export const COVER_START_MARK = '_GenOfficeCoverPage'
-export const COVER_END_MARK = '_GenOfficeCoverPageEnd'
+export const COVER_START_MARK = '_SSOfficeCoverPage'
+export const COVER_END_MARK = '_SSOfficeCoverPageEnd'
 
 /**
  * Built-in cover page library (the preset gallery behind Insert → Cover

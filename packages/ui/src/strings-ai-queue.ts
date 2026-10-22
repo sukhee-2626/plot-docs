@@ -1,4 +1,4 @@
-import type { Lang } from '@genoffice/i18n'
+import type { Lang } from '@plotdocs/i18n'
 
 /** Labels for the queued-messages strip above the AI composer (all editors share them). */
 export interface AiQueueStripLabels {

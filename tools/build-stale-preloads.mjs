@@ -88,7 +88,7 @@ const stale = APPS.filter((app) => {
 if (stale.length) {
   console.log(`Rebuilding stale preloads: ${stale.join(', ')}`)
   for (const app of stale) {
-    const r = spawnSync('npm', ['run', 'build', '-w', `@genoffice/${app}`], {
+    const r = spawnSync('npm', ['run', 'build', '-w', `@plotdocs/${app}`], {
       stdio: 'inherit',
       // Windows has npm.cmd / npm.ps1, not npm.exe; spawn without a shell
       // looks up npm.exe only and fails with ENOENT.

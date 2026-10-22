@@ -1,5 +1,5 @@
 // Header/footer variant resolution and page-number sequences / formats.
-import type { HeaderFooter, HfImage, HfPartInfo, SectionInfo } from '@genoffice/docx-engine'
+import type { HeaderFooter, HfImage, HfPartInfo, SectionInfo } from '@plotdocs/docx-engine'
 
 import type { PageSlice } from './pagination-types'
 

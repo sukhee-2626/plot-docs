@@ -20,7 +20,7 @@
  * for it. A failure reports the op layer's own guided message.
  */
 import type { ActionCtx } from './action-context'
-import type { PictureRenderNode } from '@genoffice/pptx-render'
+import type { PictureRenderNode } from '@plotdocs/pptx-render'
 import { mediaLabelOf, sanitizeLabel } from './ai/redact'
 import { applySelectionRedaction, saveEditSelection, selectionRedaction } from './TextEditOverlay'
 

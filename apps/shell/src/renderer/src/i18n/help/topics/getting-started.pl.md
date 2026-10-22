@@ -1,6 +1,6 @@
 # Szybki start: interfejs i podstawy
 
-GenOffice to pakiet biurowy działający w całości na Twoim komputerze: jedno okno, jeden rząd kart, w którym mieści się sześć edytorów — Docs (edytor tekstu), Sheets (arkusze), Slides (prezentacje), PDF, Markdown i HTML. Pliki to prawdziwe pliki .docx / .xlsx / .pptx / .pdf, w pełni zgodne z Wordem, Excelem i PowerPointem. Nie jest potrzebne połączenie z siecią.
+Plot Docs to pakiet biurowy działający w całości na Twoim komputerze: jedno okno, jeden rząd kart, w którym mieści się sześć edytorów — Docs (edytor tekstu), Sheets (arkusze), Slides (prezentacje), PDF, Markdown i HTML. Pliki to prawdziwe pliki .docx / .xlsx / .pptx / .pdf, w pełni zgodne z Wordem, Excelem i PowerPointem. Nie jest potrzebne połączenie z siecią.
 
 ## Przegląd interfejsu
 
@@ -18,7 +18,7 @@ Dowolny z tych sposobów:
 
 - Kliknij kartę szybkiego tworzenia w sekcji [Szybki start](help://getting-started) na **stronie głównej** (AI Docs, AI Sheets, AI Slides, ...).
 - Menu **Plik ▸ Nowy**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML lub PDF.
-- Przeciągnij plik na okno albo kliknij go dwukrotnie w menedżerze plików (jeśli GenOffice jest aplikacją domyślną).
+- Przeciągnij plik na okno albo kliknij go dwukrotnie w menedżerze plików (jeśli Plot Docs jest aplikacją domyślną).
 
 Nowy dokument otwiera się bez tytułu; plik na dysku powstaje dopiero przy pierwszym zapisaniu.
 
@@ -26,7 +26,7 @@ Nowy dokument otwiera się bez tytułu; plik na dysku powstaje dopiero przy pier
 
 - Menu **Plik ▸ Otwórz…** (⌘O/ctrl+O) otwiera systemowy selektor: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Kliknij dowolny element na liście **Ostatnie** na stronie głównej.
-- Także `genoffice <plik>` wpisane w terminalu otwiera pliki.
+- Także `plotdocs <plik>` wpisane w terminalu otwiera pliki.
 
 ## Model zapisywania
 
@@ -52,7 +52,7 @@ Skróty używane wewnątrz każdego edytora (malarz formatów, znajdź i zamień
 
 ## Skróty Option+Command
 
-Option+Command to warstwa, którą Word rezerwuje na strukturyzowane skoki, a GenOffice wypełnia ją w ten sam sposób. Docs zajmuje większość z nich, Sheets dwa własne na potrzeby zgodności z Excelem, a jeden skrót działa wszędzie.
+Option+Command to warstwa, którą Word rezerwuje na strukturyzowane skoki, a Plot Docs wypełnia ją w ten sam sposób. Docs zajmuje większość z nich, Sheets dwa własne na potrzeby zgodności z Excelem, a jeden skrót działa wszędzie.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Zwróć uwagę, że **⌥⌘0 oznacza Normalny w Docs, a Krawędzie zewnętrzne 
 
 **Każdy edytor**: **⌥⌘R / Ctrl+F1** zwija wstążkę, jak opisano powyżej.
 
-To zostawia ⌥⌘D wolny dla GenOffice na macOS, gdyby jakieś przyszłe polecenie go potrzebowało.
+To zostawia ⌥⌘D wolny dla Plot Docs na macOS, gdyby jakieś przyszłe polecenie go potrzebowało.
 
 ## Co dalej
 

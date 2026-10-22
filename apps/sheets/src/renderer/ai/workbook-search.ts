@@ -6,8 +6,8 @@
  * translated, session cell edits overlaid from the journal — so the search
  * never has to stream the whole workbook into Univer.
  */
-import { formatAddress, type RangeBounds } from '@genoffice/xlsx-gateway/domain/cell-address'
-import type { CellScalar } from '@genoffice/xlsx-gateway/domain/workbook.types'
+import { formatAddress, type RangeBounds } from '@plotdocs/xlsx-gateway/domain/cell-address'
+import type { CellScalar } from '@plotdocs/xlsx-gateway/domain/workbook.types'
 import { findSheetCellsInFile, sidecarFindAvailable } from '../sidecar-find'
 import { ensureLazyRangeLoaded, readSheetRangeMapped } from '../univer-sync'
 import type { LazyWorkbookState } from '../univer-state'

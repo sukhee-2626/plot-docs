@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * GenOffice MCP stdio bridge.
+ * Plot Docs MCP stdio bridge.
  *
  * MCP clients that only speak stdio (Claude Desktop, Cursor) can't reach the
- * GenOffice localhost server directly. This script bridges stdin/stdout
+ * Plot Docs localhost server directly. This script bridges stdin/stdout
  * JSON-RPC to the running app's legacy SSE transport (/sse + /messages).
  *
- * The GenOffice app must be running with the MCP server enabled
+ * The Plot Docs app must be running with the MCP server enabled
  * (Settings > MCP Settings).
  *
  * Usage:
@@ -16,9 +16,9 @@
  * Example mcp.json entry:
  *   {
  *     "mcpServers": {
- *       "genoffice": {
+ *       "plotdocs": {
  *         "command": "node",
- *         "args": ["/path/to/genoffice/scripts/mcp-stdio-bridge.js"]
+ *         "args": ["/path/to/plotdocs/scripts/mcp-stdio-bridge.js"]
  *       }
  *     }
  *   }
@@ -31,8 +31,8 @@ const DEFAULT_PORT = 3093
 const DEFAULT_HOST = '127.0.0.1'
 
 function parseArgs(argv) {
-  let port = Number(process.env.GENOFFICE_MCP_PORT) || DEFAULT_PORT
-  let host = process.env.GENOFFICE_MCP_HOST || DEFAULT_HOST
+  let port = Number(process.env.PLOTDOCS_MCP_PORT) || DEFAULT_PORT
+  let host = process.env.PLOTDOCS_MCP_HOST || DEFAULT_HOST
   for (let i = 2; i < argv.length; i++) {
     if (argv[i] === '--port' && argv[i + 1]) port = parseInt(argv[++i], 10)
     else if (argv[i] === '--host' && argv[i + 1]) host = argv[++i]
@@ -61,7 +61,7 @@ const suppressedResponseIds = new Set()
 
 /** stderr only: stdout is the JSON-RPC channel */
 function log(message) {
-  process.stderr.write(`[genoffice-mcp-bridge] ${message}\n`)
+  process.stderr.write(`[plotdocs-mcp-bridge] ${message}\n`)
 }
 
 function sendResponse(response) {
@@ -283,10 +283,10 @@ async function main() {
   log(`bridging stdio to ${baseUrl}`)
   try {
     const health = await httpRequest('GET', '/health')
-    if (health.status === 200) log('GenOffice MCP server is reachable')
-    else log('warning: unexpected /health response; is GenOffice running?')
+    if (health.status === 200) log('Plot Docs MCP server is reachable')
+    else log('warning: unexpected /health response; is Plot Docs running?')
   } catch {
-    log('warning: cannot reach GenOffice. Start the app and enable Settings > MCP Settings.')
+    log('warning: cannot reach Plot Docs. Start the app and enable Settings > MCP Settings.')
   }
 
   try {

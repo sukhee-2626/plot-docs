@@ -7,7 +7,7 @@ import type { TabsApi } from '../apps/shell/src/shared/tabs-api'
 import type { HtmlApi } from '../apps/html/src/shared/ipc'
 
 test('tab context menu saves current edits from a background tab and tooltip shows path', async () => {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-tab-context-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-tab-context-'))
   const source = join(dir, 'notes.md')
   const target = join(dir, 'notes-copy.md')
   await writeFile(source, '# Context menu\n\nOriginal paragraph.\n')
@@ -94,7 +94,7 @@ test('tab context menu saves current edits from a background tab and tooltip sho
 })
 
 test('Present tab has no enabled Save, Save As or Print commands', async () => {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-tab-present-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-tab-present-'))
   const source = join(dir, 'preview.html')
   await writeFile(source, '<!doctype html><html><body><h1>Present preview</h1></body></html>')
   const launched = await launchShell({

@@ -10,7 +10,7 @@
  */
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Stage, Layer, Rect, Group } from 'react-konva'
-import type { RenderNode, RenderSlide } from '@genoffice/pptx-render'
+import type { RenderNode, RenderSlide } from '@plotdocs/pptx-render'
 import type { ShapeKey } from '../../shared/ipc'
 import { fillToKonva } from '../konva-adapter'
 import { StaticNode } from '../NodeBody'

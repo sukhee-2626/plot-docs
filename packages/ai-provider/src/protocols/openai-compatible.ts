@@ -1,7 +1,7 @@
-import type { AgentMessage, AgentToolCall, AgentToolDef } from '@genoffice/agent-core'
+import type { AgentMessage, AgentToolCall, AgentToolDef } from '@plotdocs/agent-core'
 import { aiFetch } from '../fetch'
 import { httpBodyDetail } from '../http-error'
-import { gensparkAttributionHeaders, opencodeSessionHeaders } from '../providers'
+import { soopusAttributionHeaders, opencodeSessionHeaders } from '../providers'
 import { modelEchoesReasoning } from '../registry'
 import type { AiChatResponse, AiProviderConfig } from '../types'
 import { createStreamWatchdog, type StreamWatchdog } from '../watchdog'
@@ -217,7 +217,7 @@ async function openAiCompatibleTurn(
     headers: {
       'Content-Type': 'application/json',
       ...(config.apiKey ? { Authorization: `Bearer ${config.apiKey}` } : {}),
-      ...gensparkAttributionHeaders(baseUrl),
+      ...soopusAttributionHeaders(baseUrl),
       ...opencodeSessionHeaders(baseUrl, cb.sessionId),
       // user-hosted endpoints may route on static headers; merged last so a
       // deliberate profile header beats an inferred one
@@ -421,7 +421,7 @@ export async function chatOpenAiCompatible(
     headers: {
       'Content-Type': 'application/json',
       ...(config.apiKey ? { Authorization: `Bearer ${config.apiKey}` } : {}),
-      ...gensparkAttributionHeaders(baseUrl),
+      ...soopusAttributionHeaders(baseUrl),
       ...opencodeSessionHeaders(baseUrl),
       ...options.headers,
     },

@@ -1,5 +1,5 @@
 import { placeholderSource } from './redact'
-import type { RenderNode, RenderSlide } from '@genoffice/pptx-render'
+import type { RenderNode, RenderSlide } from '@plotdocs/pptx-render'
 
 /**
  * Stop a model edit from damaging a span the reader withheld.

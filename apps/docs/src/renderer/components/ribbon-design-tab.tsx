@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { type SectionSettings, type ThemeColors, type ThemeFonts } from '@genoffice/docx-engine'
+import { type SectionSettings, type ThemeColors, type ThemeFonts } from '@plotdocs/docx-engine'
 import { PromptModal } from './PromptModal'
 import { useI18n, type StringKey } from '../i18n/locale'
 import {

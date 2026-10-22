@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import type { FormulaDisplay } from '@genoffice/docx-engine'
+import type { FormulaDisplay } from '@plotdocs/docx-engine'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { buildProtectedDom } from '../src/renderer/editor/extensions'
 import { renderFormulaSpec } from '../src/renderer/editor/protected-render'

@@ -2759,7 +2759,7 @@
   </xsd:simpleType>
   <xsd:complexType name="CT_TextBulletSizeFollowText"/>
   <xsd:complexType name="CT_TextBulletSizePercent">
-    <!-- GenOffice amendment: the published schema binds val to the percent-string form only, while
+    <!-- PlotDocs amendment: the published schema binds val to the percent-string form only, while
          ST_TextBulletSize (the union with the 25000..400000 decimal form Office writes) goes unused. -->
     <xsd:attribute name="val" type="ST_TextBulletSize" use="required"/>
   </xsd:complexType>

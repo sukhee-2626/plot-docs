@@ -63,7 +63,7 @@ test.describe('docs header/footer rich editing', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-hf-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-hf-')))
     docPath = join(dir, 'sections.docx')
     writeFileSync(docPath, await twoSectionDocx())
   })

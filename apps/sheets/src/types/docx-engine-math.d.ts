@@ -1,5 +1,5 @@
 /**
- * Type shim: @genoffice/docx-engine ships as TS source and fails under
+ * Type shim: @plotdocs/docx-engine ships as TS source and fails under
  * sheets' stricter compiler options (same recipe as file-parse.d.ts).
  * tsconfig paths point type resolution here; runtime bundling still uses the
  * real source. Keep in sync with packages/docx-engine/src/math.ts.

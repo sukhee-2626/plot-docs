@@ -191,7 +191,7 @@ export const pl = {
   ribbonReplaceTip: 'Znajdź i zamień tekst',
   ribbonSelectAll: 'Zaznacz wszystko',
   ribbonSelectAllTip: 'Zaznacz cały dokument',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Otwórz asystenta AI',
   ribbonRemoveTableStyleTip: 'Usuń styl tabeli',
   ribbonNoStyle: 'Brak stylu',

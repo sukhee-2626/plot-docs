@@ -7,7 +7,7 @@
  */
 // Deep import: preset-geometry is dependency-free, keeping the heavy render/engine
 // sources out of every consumer app's type graph
-import { isPillPreset, presetPath, presetPolygon } from '@genoffice/pptx-render/preset-geometry'
+import { isPillPreset, presetPath, presetPolygon } from '@plotdocs/pptx-render/preset-geometry'
 
 export interface ShapeGalleryShape {
   prst: string

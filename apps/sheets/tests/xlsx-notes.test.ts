@@ -4,8 +4,8 @@ import { describe, expect, it } from 'vitest'
 import {
   createBufferEntrySource,
   planCellEditsToXlsx,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
-import type { SheetNoteState } from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
+import type { SheetNoteState } from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
 import { buildEditFixture, buildKitchenSinkFixture } from './fixture-builder'
 
 async function planNotes(noteStates: SheetNoteState[], fixture?: Buffer) {

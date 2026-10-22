@@ -1,4 +1,4 @@
-import { decompressionStream, streamBytes } from '@genoffice/zip-gate'
+import { decompressionStream, streamBytes } from '@plotdocs/zip-gate'
 import { convertEmfToDataUrl, convertWmfToDataUrl } from './vendor/emf-converter/index.mjs'
 
 const EMF_MIMES = new Set(['image/emf', 'image/x-emf'])

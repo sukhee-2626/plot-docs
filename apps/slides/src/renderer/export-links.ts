@@ -9,9 +9,9 @@
  * boxes, group children clipped to the group box, run rects from the laid-out
  * glyph geometry. What the show would follow on click is what the PDF links.
  */
-import type { RenderNode, RenderSlide, ShapeRenderNode } from '@genoffice/pptx-render'
+import type { RenderNode, RenderSlide, ShapeRenderNode } from '@plotdocs/pptx-render'
 import type { ExportPdfLink, LinkTargetOp } from '../shared/ipc'
-import { safeExternalUrl } from '@genoffice/electron-utils/safe-external-url'
+import { safeExternalUrl } from '@plotdocs/electron-utils/safe-external-url'
 import { DECK_LINK_PROTOCOLS } from '../shared/run-link'
 
 interface TargetRect {

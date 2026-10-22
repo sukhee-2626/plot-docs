@@ -35,11 +35,11 @@ vi.mock('electron', () => ({
   },
 }))
 
-vi.mock('@genoffice/cli/agent-skills', () => {
+vi.mock('@plotdocs/cli/agent-skills', () => {
   const skillsDir = '/home/me/.claude/skills'
   return {
     LEDGER_KEY: 'agentSkillInstalls',
-    bundledSkillFrom: () => ({ name: 'genoffice', version: '1.0.0', text: 'x' }),
+    bundledSkillFrom: () => ({ name: 'plotdocs', version: '1.0.0', text: 'x' }),
     buildSkillZip: async () => Buffer.alloc(0),
     detectAgents: () => [{ id: 'claude-code', label: 'Claude Code', skillsDir }],
     agentTarget: (id: string) =>
@@ -49,11 +49,11 @@ vi.mock('@genoffice/cli/agent-skills', () => {
     },
     uninstallSkill: () => false,
     ledgerFromSettings: () => ({ version: '1.0.0', installs: {} }),
-    readInstallState: (dir: string) => ({ status: 'missing', path: `${dir}/genoffice/SKILL.md` }),
+    readInstallState: (dir: string) => ({ status: 'missing', path: `${dir}/plotdocs/SKILL.md` }),
   }
 })
 
-vi.mock('@genoffice/cli/install', () => ({ inspectCliLink: () => ({ linked: false }) }))
+vi.mock('@plotdocs/cli/install', () => ({ inspectCliLink: () => ({ linked: false }) }))
 
 import { registerIntegrationsIpc } from '../src/main/integrations-ipc'
 import { INTEGRATIONS_CHANNELS } from '../src/shared/integrations-api'
@@ -78,12 +78,12 @@ beforeEach(() => {
   h.handlers.clear()
   h.installed.length = 0
   h.dialogResult = { canceled: true, filePaths: [] }
-  dir = mkdtempSync(join(tmpdir(), 'genoffice-integrations-'))
-  userData = mkdtempSync(join(tmpdir(), 'genoffice-userdata-'))
-  fakeHome = mkdtempSync(join(tmpdir(), 'genoffice-fakehome-'))
+  dir = mkdtempSync(join(tmpdir(), 'plotdocs-integrations-'))
+  userData = mkdtempSync(join(tmpdir(), 'plotdocs-userdata-'))
+  fakeHome = mkdtempSync(join(tmpdir(), 'plotdocs-fakehome-'))
   realHome = process.env.HOME
   process.env.HOME = fakeHome
-  writeFileSync(join(dir, 'SKILL.md'), '---\nname: genoffice\n---\n')
+  writeFileSync(join(dir, 'SKILL.md'), '---\nname: plotdocs\n---\n')
   writeFileSync(join(dir, 'package.json'), JSON.stringify({ version: '0.0.0' }))
   registerIntegrationsIpc({
     settingsPath: () => join(dir, 'app-settings.json'),
@@ -148,7 +148,7 @@ describe('integrations:list-skills', () => {
     const before = readdirSync(join(userData, 'skills')).sort()
     const found = (await invoke(INTEGRATIONS_CHANNELS.listSkills)) as { path: string }[]
     const skill = found.find((s) => s.path === path)
-    expect(skill).toMatchObject({ name: 'pdf-to-html', source: 'genoffice' })
+    expect(skill).toMatchObject({ name: 'pdf-to-html', source: 'plotdocs' })
     expect(skill.relevance.relevant).toBe(true)
     // listing is a menu: the folder is exactly as it was afterwards
     expect(readdirSync(join(userData, 'skills')).sort()).toEqual(before)
@@ -207,7 +207,7 @@ describe('integrations:import-skill', () => {
     writeFileSync(join(src, 'grid.md'), 'layout rules')
 
     const imported = invoke(INTEGRATIONS_CHANNELS.importSkill, join(src, 'SKILL.md'))
-    expect(imported).toMatchObject({ name: 'pptx-builder', source: 'genoffice' })
+    expect(imported).toMatchObject({ name: 'pptx-builder', source: 'plotdocs' })
     expect(existsSync(join(userData, 'skills', 'pptx-builder', 'grid.md'))).toBe(true)
 
     // and on the next listing it is ours, not a candidate
@@ -215,7 +215,7 @@ describe('integrations:import-skill', () => {
       name: string
       source: string
     }[]
-    expect(found.find((s) => s.name === 'pptx-builder')?.source).toBe('genoffice')
+    expect(found.find((s) => s.name === 'pptx-builder')?.source).toBe('plotdocs')
   })
 
   it('refuses to import from a path that is not a skill', () => {

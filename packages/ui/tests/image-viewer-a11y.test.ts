@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ImageViewer, type ImageViewerLabels } from '../src/image-viewer'
 import { IMAGE_VIEWER_TITLES } from '../src/strings-image-viewer'
-import { LANGS } from '@genoffice/i18n'
+import { LANGS } from '@plotdocs/i18n'
 
 const LABELS: ImageViewerLabels = {
   zoomIn: 'Zoom in',

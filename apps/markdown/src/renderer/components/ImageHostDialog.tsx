@@ -5,7 +5,7 @@ import { setImageHostConfigCache } from '../imageHostCache'
 
 /**
  * Configure the bring-your-own image host for pasted/dropped pictures
- * (genoffice#388): pick a kind, fill its credentials, and pastes upload there
+ * (plotdocs#388): pick a kind, fill its credentials, and pastes upload there
  * first with the local assets/ copy as the fallback. Keys stay in the user's
  * own settings file, like every other credential in the app.
  */

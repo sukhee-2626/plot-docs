@@ -6,7 +6,7 @@
  */
 import { Editor } from '@tiptap/core'
 import { describe, expect, it } from 'vitest'
-import type { NumberingDef } from '@genoffice/docx-engine'
+import type { NumberingDef } from '@plotdocs/docx-engine'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 
 interface JsonNode {

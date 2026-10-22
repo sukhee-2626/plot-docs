@@ -1288,7 +1288,7 @@ fn opens_backslash_and_case_drifted_package() {
     assert_eq!(metadata.sheets[0].column_count, 2);
 }
 
-/// genoffice#196: a producer wrote every entry as `/xl/...`. The names never
+/// plotdocs#196: a producer wrote every entry as `/xl/...`. The names never
 /// leave the archive, so they only need to stay inside the package root.
 #[test]
 fn opens_leading_slash_package() {
@@ -1737,7 +1737,7 @@ fn tint_matches_excel_shades() {
 }
 
 /// Built-in family rules, per the Excel calibration workbook
-/// (genoffice-sample/sheets/calib): totals bands, dk1-gray Medium 15-21
+/// (plotdocs-sample/sheets/calib): totals bands, dk1-gray Medium 15-21
 /// stripes, tinted Medium 22-28, solid Dark bodies, paired Dark 8-11.
 #[test]
 fn builtin_palette_matches_calibration() {
@@ -2555,7 +2555,7 @@ fn pivot_light_low_stripes_off_stays_styled() {
     assert!(json.contains("\"styled\":true"));
 }
 
-/// Excel-calibrated pivot palettes (genoffice-sample/sheets/calib/
+/// Excel-calibrated pivot palettes (plotdocs-sample/sheets/calib/
 /// pivot-style-truths.json, Office 2007 theme): one representative per
 /// block of seven, exact RGB.
 #[test]
@@ -4834,7 +4834,7 @@ fn cancelled_open_registers_no_session() {
 #[test]
 fn cancel_after_the_cache_directory_is_created_reclaims_it() {
     let session_id = Uuid::new_v4().to_string();
-    let path = std::env::temp_dir().join(format!("genspark-ai-excel-{session_id}"));
+    let path = std::env::temp_dir().join(format!("soopus-ai-excel-{session_id}"));
 
     let error = create_cache_directory(&session_id, &AtomicBool::new(true)).unwrap_err();
     assert!(matches!(error, SidecarError::Cancelled), "{error:?}");
@@ -4850,7 +4850,7 @@ fn cancel_after_the_cache_directory_is_created_reclaims_it() {
 #[test]
 fn cache_directory_outlives_the_open_only_once_committed() {
     let committed_id = Uuid::new_v4().to_string();
-    let committed = std::env::temp_dir().join(format!("genspark-ai-excel-{committed_id}"));
+    let committed = std::env::temp_dir().join(format!("soopus-ai-excel-{committed_id}"));
     let mut directory = create_cache_directory(&committed_id, &AtomicBool::new(false)).unwrap();
     assert!(committed.exists());
     directory.commit();
@@ -4863,7 +4863,7 @@ fn cache_directory_outlives_the_open_only_once_committed() {
 
     // Uncommitted, the guard reclaims it on drop.
     let abandoned_id = Uuid::new_v4().to_string();
-    let abandoned = std::env::temp_dir().join(format!("genspark-ai-excel-{abandoned_id}"));
+    let abandoned = std::env::temp_dir().join(format!("soopus-ai-excel-{abandoned_id}"));
     drop(create_cache_directory(&abandoned_id, &AtomicBool::new(false)).unwrap());
     assert!(!abandoned.exists());
 }
@@ -4890,7 +4890,7 @@ fn an_uncancelled_open_completes_and_keeps_its_cache_directory() {
     let metadata = sessions
         .open_with_locale(&path, "zh", None, &AtomicBool::new(false))
         .unwrap();
-    let cache = std::env::temp_dir().join(format!("genspark-ai-excel-{}", metadata.session_id));
+    let cache = std::env::temp_dir().join(format!("soopus-ai-excel-{}", metadata.session_id));
     assert!(cache.exists(), "a completed open lost its cache directory");
     assert_eq!(sessions.session_count(), 1);
     // Close still reclaims it.
@@ -4901,12 +4901,12 @@ fn an_uncancelled_open_completes_and_keeps_its_cache_directory() {
 /// A workbook part that lies about its size inflates fully on the XML read path.
 ///
 /// `read_media` is capped by `copy_entry_bounded`, and the docx/pptx hosts run
-/// `@genoffice/zip-gate` before opening at all — but `read_zip_string` is a
+/// `@plotdocs/zip-gate` before opening at all — but `read_zip_string` is a
 /// plain `read_to_string`, and it is how nearly every workbook part is loaded.
 /// `validate_entries` checks the entry *count* and the paths, never the bytes.
 /// A workbook therefore gets a full unbounded allocation out of one crafted
 /// entry, where every other ingest path in the product refuses it
-/// (genoffice#781, genoffice#1386).
+/// (plotdocs#781, plotdocs#1386).
 #[test]
 fn rejects_xml_entry_that_inflates_past_its_declared_size() {
     let dir = tempfile::tempdir().unwrap();
@@ -4933,7 +4933,7 @@ fn rejects_xml_entry_that_inflates_past_its_declared_size() {
 
 /// An honestly declared metadata part still has a ceiling: a highly
 /// compressible `xl/workbook.xml` far past `MAX_METADATA_PART_BYTES` is refused
-/// before it is materialised (genoffice#1002).
+/// before it is materialised (plotdocs#1002).
 #[test]
 fn rejects_oversized_metadata_part_that_declares_its_size() {
     let dir = tempfile::tempdir().unwrap();

@@ -1,6 +1,6 @@
 import { memo, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import type { Lang } from '@genoffice/i18n'
+import type { Lang } from '@plotdocs/i18n'
 
 export type ConvertFormat = 'pdf' | 'html' | 'md' | 'images'
 import type {
@@ -40,13 +40,13 @@ import type {
   TextboxParaDisplay,
   ThemeColors,
   ThemeFonts,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import {
   Dropdown,
   isSymbolFontFamily,
   useDismissablePopover,
   useRibbonCollapse,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { HIGHLIGHT_CSS } from '../editor/extensions'
 import { applyCase, type CaseMode } from '../editor/case-transform'
 import { isRtlUiLang, setParagraphDirection, setSelectionAlign } from '../editor/direction'
@@ -132,6 +132,8 @@ import {
 } from '../style-gallery'
 import { RibbonColorPalette } from './ribbon-color-palette'
 import { HeaderFooterTab, type HfAction, type HfEditingInfo } from './ribbon-hf-tab'
+import { PageDesignDialog, type PageDesignerTab } from './PageDesignDialog'
+import type { HfView } from '../doc-state'
 import { PasteSpecialDialog } from './PasteSpecialDialog'
 import { fontFamiliesFor, isEastAsianFontName, systemFamiliesBesidesCandidates } from '../font-list'
 import {
@@ -161,7 +163,7 @@ import {
 import { WRAP_OPTIONS } from './ContextMenu'
 import { CropDialog, CutoutDialog } from './PictureDialogs'
 import {
-  GensparkMark,
+  PlotMark,
   IconAlignCenter,
   IconAlignJustify,
   IconAlignLeft,
@@ -282,6 +284,8 @@ interface RibbonProps {
   onToggleAi: () => void
   section: SectionSettings | null
   onSection: (next: SectionSettings) => void
+  /** page setup for every section (the studio's "whole document" scope) */
+  onSectionAll?: (next: SectionSettings) => void
   /** Multi-section documents: index of the cursor's section (0-based); null for single-section */
   activeSection: number | null
   onInsertSectionBreak: (type: 'nextPage' | 'continuous' | 'evenPage' | 'oddPage') => void
@@ -332,6 +336,15 @@ interface RibbonProps {
   header: HeaderFooter | null
   onHeader: (next: HeaderFooter) => void
   onPageNumFormat: () => void
+  /** studio number-format control writes w:pgNumType across sections */
+  onSetPageNumeral?: (fmt: string, scope?: 'document' | 'section') => void
+  onSetPageStart?: (start: number, scope?: 'document' | 'section') => void
+  onApplyHfVariant?: (
+    kind: 'header' | 'footer',
+    variant: HfView,
+    value: HeaderFooter,
+    scope: 'document' | 'section',
+  ) => void
   onInsertField: (instr: string) => void
   footer: HeaderFooter | null
   onFooter: (next: HeaderFooter) => void
@@ -733,6 +746,7 @@ function RibbonInner({
   onToggleAi,
   section,
   onSection,
+  onSectionAll,
   activeSection,
   onInsertSectionBreak,
   onPaperSizeAll,
@@ -769,6 +783,9 @@ function RibbonInner({
   header,
   onHeader,
   onPageNumFormat,
+  onSetPageNumeral,
+  onSetPageStart,
+  onApplyHfVariant,
   onInsertField,
   footer,
   onFooter,
@@ -824,7 +841,7 @@ function RibbonInner({
   const collapse = useRibbonCollapse('aidocs.ribbonCollapsed', {
     collapse: t('ribbonCollapse'),
     expand: t('ribbonExpand'),
-    // ⌥⌘K / Ctrl+Alt+K: the icon-only middle density (see genoffice#362)
+    // ⌥⌘K / Ctrl+Alt+K: the icon-only middle density (see plotdocs#362)
     compact: t('ribbonCompact'),
     expandFull: t('ribbonExpand'),
   })
@@ -832,6 +849,7 @@ function RibbonInner({
   const docEmpty = !hasDoc || fs.docEmpty
   const [tab, setTab] = useState<RibbonTab>('home')
   const [dropdown, setDropdown] = useState<string | null>(null)
+  const [pageDesignerTab, setPageDesignerTab] = useState<PageDesignerTab | null>(null)
   // null = Automatic: the pen button clears the run colour instead of writing one
   const [penColor, setPenColor] = useState<string | null>('FF0000')
   const [penHighlight, setPenHighlight] = useState('yellow')
@@ -2165,6 +2183,7 @@ function RibbonInner({
             dropdown={dropdown}
             setDropdown={setDropdown}
             onAction={onHfAction}
+            onOpenPageDesigner={(next) => setPageDesignerTab(next ?? 'numbers')}
           />
         ) : tab === 'shapeFormat' && inShape ? (
           <div className="table-ribbon-body">
@@ -3064,7 +3083,7 @@ function RibbonInner({
           </div>
         ) : tab === 'home' ? (
           <>
-            {/* ---- Genspark AI (first slot: entry + one-click AI actions) ---- */}
+            {/* ---- Plot AI (first slot: entry + one-click AI actions) ---- */}
             <div className="ribbon-group">
               <div className="ribbon-group-items">
                 <button
@@ -3073,9 +3092,9 @@ function RibbonInner({
                   onClick={onToggleAi}
                 >
                   <span className="rb-big-icon">
-                    <GensparkMark size={26} />
+                    <PlotMark size={26} />
                   </span>
-                  <span>Genspark AI</span>
+                  <span>Plot AI</span>
                 </button>
                 <button
                   className="rb-big ai-entry"
@@ -3200,7 +3219,7 @@ function RibbonInner({
                   <span>{t('aiMindMapBtn')}</span>
                 </button>
               </div>
-              <div className="ribbon-group-label">Genspark AI</div>
+              <div className="ribbon-group-label">Plot AI</div>
             </div>
 
             <div className="ribbon-sep" />
@@ -4175,6 +4194,7 @@ function RibbonInner({
             header={header}
             onHeader={onHeader}
             onPageNumFormat={onPageNumFormat}
+            onOpenPageDesigner={(next) => setPageDesignerTab(next ?? 'numbers')}
             onInsertField={onInsertField}
             footer={footer}
             onFooter={onFooter}
@@ -4307,6 +4327,29 @@ function RibbonInner({
             void applyPictureBytes(cropped)
           }}
           onCancel={() => setPictureDialog(null)}
+        />
+      )}
+      {pageDesignerTab && (
+        <PageDesignDialog
+          open
+          initialTab={pageDesignerTab}
+          hasDoc={hasDoc}
+          onClose={() => setPageDesignerTab(null)}
+          onApplyHeader={onHeader}
+          onApplyFooter={onFooter}
+          onPageNumFormat={() => {
+            setPageDesignerTab(null)
+            onPageNumFormat()
+          }}
+          onSetPageNumeral={onSetPageNumeral}
+          onSetPageStart={onSetPageStart}
+          onApplyHfVariant={onApplyHfVariant}
+          onHfAction={onHfAction}
+          section={section}
+          onSection={onSection}
+          onSectionAll={onSectionAll}
+          onThemeFonts={onThemeFonts}
+          onThemeColors={onThemeColors}
         />
       )}
     </div>

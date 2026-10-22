@@ -1,5 +1,5 @@
 {
-  "name": "@genoffice/docx-engine",
+  "name": "@plotdocs/docx-engine",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
@@ -19,12 +19,12 @@
     "fixtures": "tsx scripts/generate-fixtures.ts"
   },
   "dependencies": {
-    "@genoffice/pptx-engine": "*",
-    "@genoffice/zip-gate": "*",
+    "@plotdocs/pptx-engine": "*",
+    "@plotdocs/zip-gate": "*",
     "fast-xml-parser": "^5.3.4",
     "jszip": "^3.10.1",
     "utif2": "^4.1.0",
-    "@genoffice/agent-core": "*"
+    "@plotdocs/agent-core": "*"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

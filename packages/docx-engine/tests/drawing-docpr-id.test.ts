@@ -43,7 +43,7 @@ async function saveInsertingOneImage(bodyXml: string): Promise<string> {
 
 describe('wp:docPr ids of newly embedded pictures', () => {
   // The docPr counter was seeded from the media count only, so a document with no
-  // GenOffice media always started it at the 9000 base: inserting one picture next
+  // Plot Docs media always started it at the 9000 base: inserting one picture next
   // to an existing <wp:docPr id="9002"> emitted a second id 9002.
   it('never mints an id the document already uses', async () => {
     const xml = await saveInsertingOneImage(

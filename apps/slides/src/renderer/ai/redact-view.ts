@@ -1,5 +1,5 @@
 import { placeholderSource } from './redact'
-import type { GlyphRun, RenderNode, ShapeRenderNode, TextLine } from '@genoffice/pptx-render'
+import type { GlyphRun, RenderNode, ShapeRenderNode, TextLine } from '@plotdocs/pptx-render'
 
 /**
  * The model-facing view of a slide: every withheld span becomes its marker and

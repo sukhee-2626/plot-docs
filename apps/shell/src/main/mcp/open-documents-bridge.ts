@@ -215,7 +215,7 @@ export function createOpenDocumentsControl(deps: OpenDocumentsBridgeDeps): OpenD
         if (unsaved === 'save' && live.dirty) {
           throw new Error(
             `"${live.title}" has unsaved changes, and a PDF cannot be saved through this tool: ` +
-              'close it with unsaved:"discard" to drop them, or save it in GenOffice first',
+              'close it with unsaved:"discard" to drop them, or save it in Plot Docs first',
           )
         }
       } else if (unsaved === 'save' && live.dirty) {

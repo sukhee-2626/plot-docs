@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 /** One catalog row, exactly as the store reports it — see the store's own type. */
-import type { CatalogEntry as FontCatalogEntry } from '@genoffice/electron-utils/font-store'
+import type { CatalogEntry as FontCatalogEntry } from '@plotdocs/electron-utils/font-store'
 
 let cached: FontCatalogEntry[] | null = null
 

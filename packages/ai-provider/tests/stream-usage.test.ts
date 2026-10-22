@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { AgentToolCall } from '@genoffice/agent-core'
+import type { AgentToolCall } from '@plotdocs/agent-core'
 import { streamForProvider } from '../src/stream'
 import { resetUsageRejectedGateways } from '../src/protocols/openai-compatible'
 import type { AiTokenUsage } from '../src/types'

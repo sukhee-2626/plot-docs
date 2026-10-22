@@ -2,7 +2,7 @@
  * Preset data for the Insert tab: shape gallery / icon gallery / WordArt / SmartArt / chart samples / equation templates.
  * Display names go through i18n (lazy getters, follow language switches); prst/id/geometry data stay unchanged.
  */
-import { SHAPE_GALLERY_GROUPS } from '@genoffice/ui'
+import { SHAPE_GALLERY_GROUPS } from '@plotdocs/ui'
 import { t, type StringKey } from './i18n/locale'
 import type { SmartArtLayout } from '../../../../packages/pptx-engine/src/smartart-layout'
 
@@ -160,7 +160,7 @@ export function iconSvg(def: IconDef, color: string, size = 512): string {
 
 export const ICON_COLORS = ['#404040', '#4472C4', '#ED7D31', '#70AD47', '#C00000', '#7030A0']
 
-// WordArt presets are shared across apps — see @genoffice/ui wordart-presets.ts.
+// WordArt presets are shared across apps — see @plotdocs/ui wordart-presets.ts.
 
 // ── SmartArt layouts ──────────────────────────────────────────────────
 

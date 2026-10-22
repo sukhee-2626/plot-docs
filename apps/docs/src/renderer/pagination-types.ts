@@ -1,6 +1,6 @@
 // Records shared by the pagination modules: measured blocks, page slices,
 // section geometry and the patch outputs of a slicing pass.
-import type { SectionInfo, TextFlowDirection, TextOutline } from '@genoffice/docx-engine'
+import type { SectionInfo, TextFlowDirection, TextOutline } from '@plotdocs/docx-engine'
 
 /** one placeable line of a block; `lead` marks ink-less space a float pushed the
  *  sole line past: the page bottom swallows it without a fit check */

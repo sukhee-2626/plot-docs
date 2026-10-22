@@ -62,7 +62,7 @@ function mountApi(list: FoundSkill[], body = 'Do the thing.\n'): void {
     },
     importSkill: async (p: string) => {
       imported.push(p)
-      return skill({ path: '/save/skills/pptx-builder/SKILL.md', source: 'genoffice' })
+      return skill({ path: '/save/skills/pptx-builder/SKILL.md', source: 'plotdocs' })
     },
   } as unknown as IntegrationsApi
 }
@@ -123,7 +123,7 @@ describe('FoundSkills', () => {
     mountApi([skill({})])
     await render()
     expect(host.textContent).toContain('Build a pptx')
-    expect(host.textContent).not.toContain('Does not mention a format GenOffice opens')
+    expect(host.textContent).not.toContain('Does not mention a format Plot Docs opens')
     expect(imported).toEqual([])
 
     await click(buttonWithText('Import'))
@@ -132,9 +132,9 @@ describe('FoundSkills', () => {
   })
 
   it('gives a skill in our own folder no button: there is nothing to import', async () => {
-    mountApi([skill({ source: 'genoffice', agent: undefined })])
+    mountApi([skill({ source: 'plotdocs', agent: undefined })])
     await render()
-    expect(host.textContent).toContain('In GenOffice')
+    expect(host.textContent).toContain('In Plot Docs')
     expect(buttonWithText('Import')).toBeUndefined()
   })
 
@@ -147,7 +147,7 @@ describe('FoundSkills', () => {
     ])
     await render()
     expect(host.textContent).toContain('Roll back a Kubernetes release')
-    expect(host.textContent).toContain('Does not mention a format GenOffice opens')
+    expect(host.textContent).toContain('Does not mention a format Plot Docs opens')
   })
 
   it('says so when there is nothing to show', async () => {

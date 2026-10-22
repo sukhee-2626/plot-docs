@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SS Office">
+  <defs>
+    <linearGradient id="ssGradient" x1="72" y1="40" x2="440" y2="472" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B5CF6"/>
+      <stop offset="0.52" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="ssSheen" x1="256" y1="24" x2="256" y2="488" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.24"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="ssShadow" x="0" y="8" width="512" height="520" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#4C1D95" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <g filter="url(#ssShadow)">
+    <rect x="32" y="24" width="448" height="448" rx="112" fill="url(#ssGradient)"/>
+    <rect x="32" y="24" width="448" height="448" rx="112" fill="url(#ssSheen)"/>
+    <rect x="33.5" y="25.5" width="445" height="445" rx="110.5" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="3"/>
+  </g>
+  <text x="256" y="336" text-anchor="middle" fill="#FFFFFF" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="252" font-weight="800" letter-spacing="-26">SS</text>
+  <circle cx="394" cy="142" r="20" fill="#FFFFFF"/>
+</svg>

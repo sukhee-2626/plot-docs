@@ -6,7 +6,7 @@ import {
   openPptx,
   getSlideAnimations,
   type OpenedPptx,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 import { runTxn } from '../src/ops/executor'
 import '../src/ops/index'
 

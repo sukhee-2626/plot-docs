@@ -1,7 +1,8 @@
 /* Chrome-style tab strip: tinted bar, white active tab with rounded top
  * corners + concave "feet" merging into the content area below.
- * Metrics copied from Chrome (macOS, light): 40px strip, 34px tabs that
- * shrink from 240px but never stretch, "+" hugging the last tab. */
+ * Premium metrics: 46px strip, 40px active tabs, 34px icon buttons and
+ * 14px macOS-style window lights. Keep in sync with TAB_STRIP_HEIGHT in
+ * src/shared/tab-drag-geometry.ts. */
 /* Interface scale (issue #1913).
  *
  * The shell window is its own webContents and the six editors are
@@ -21,7 +22,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 46px;
   display: flex;
   align-items: stretch;
   background: var(--tabstrip-bg);
@@ -31,13 +32,13 @@
 
 /* While a Home popover is open the strip must deliver presses (drag regions
    swallow them), so outside-press dismissal can see presses on the blank band */
-html.genoffice-popover-open .tab-bar {
+html.plotdocs-popover-open .tab-bar {
   -webkit-app-region: no-drag;
 }
 
 /* room for the macOS traffic lights (titleBarStyle: hiddenInset) */
 .tab-bar-drag-spacer {
-  width: 78px;
+  width: 88px;
   flex-shrink: 0;
 }
 
@@ -87,20 +88,21 @@ body.overlay-title-bar .tab-bar-drag-spacer {
    * 3px above the tab's geometric center */
   margin-top: 6px;
   /* 12px left = 3px plate inset + 9px icon-to-plate, per Chrome @2x */
-  padding: 0 8px 6px 12px;
-  /* Chrome tabs shrink under pressure but never grow past 240px */
-  flex: 0 1 240px;
-  min-width: 104px;
+  padding: 0 9px 6px 12px;
+  /* Chrome tabs shrink under pressure but never grow past 260px */
+  flex: 0 1 260px;
+  min-width: 112px;
   border-radius: 10px 10px 0 0;
   cursor: pointer;
   color: var(--tabstrip-text);
-  font-size: 12.5px;
+  font-size: 13px;
   user-select: none;
+  transition: color 160ms ease;
 }
 
 /* Home carries the product name and is never closable, so it hugs its own
  * content instead of sharing the document tabs' 240px flex basis — and it
- * never shrinks, so "GenOffice" stays whole however many tabs are open.
+ * never shrinks, so "Plot Docs" stays whole however many tabs are open.
  * ("tab-home", not "home" — home.css owns `.home` for the home page
  * container living in this same document.) */
 .tab-item.tab-home {
@@ -108,11 +110,12 @@ body.overlay-title-bar .tab-bar-drag-spacer {
   min-width: 0;
   /* 2px tighter icon-to-label gap than document tabs: the home glyph is an
    * outline (no solid plate), so the default 8px reads too loose */
-  gap: 6px;
-  /* 27px = 3px plate inset + 24px from "GenOffice" to the plate's edge, so the
-   * label gets a real 24px of breathing room (the 9px the other tabs' icons
-   * get reads too tight after a word) */
-  padding-right: 27px;
+  gap: 7px;
+  /* 27px = 3px plate inset + 24px from "Plot Docs" to the plate's edge */
+  padding-right: 30px;
+  font-size: 13.5px;
+  font-weight: 560;
+  letter-spacing: -0.01em;
 }
 
 /* thin separator between adjacent inactive tabs */
@@ -268,20 +271,22 @@ body.overlay-title-bar .tab-bar-drag-spacer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border: none;
   border-radius: 50%;
   background: transparent;
   color: inherit;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1;
   padding: 0;
   cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
 }
 
 .tab-close:hover {
   background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.08);
 }
 
 /* "+" new tab button: lives inside the strip so it hugs the last tab, Chrome-style */
@@ -290,17 +295,135 @@ body.overlay-title-bar .tab-bar-drag-spacer {
 }
 
 .tab-overflow-btn {
-  margin: 0 8px 0 2px;
+  margin: 0 4px 0 2px;
+}
+
+/* ---- custom caption controls (Windows/Linux) ---- */
+
+.window-controls {
+  -webkit-app-region: no-drag;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  padding: 0 14px 0 6px;
+}
+
+.window-control {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 0.5px solid rgb(0 0 0 / 14%);
+  border-radius: 50%;
+  color: rgb(0 0 0 / 58%);
+  cursor: pointer;
+  transition: filter 140ms ease, transform 140ms ease, box-shadow 160ms ease;
+}
+
+.window-control svg {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.window-controls:hover .window-control svg,
+.window-control:focus-visible svg {
+  opacity: 1;
+  transform: none;
+}
+
+.window-control:hover {
+  filter: brightness(1.08) saturate(1.08);
+  transform: scale(1.14);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 18%), 0 2px 8px rgb(0 0 0 / 16%);
+}
+
+.window-control:active {
+  filter: brightness(0.9);
+  transform: scale(0.92);
+}
+
+.window-control:focus-visible {
+  outline: 2px solid rgb(139 92 246 / 65%);
+  outline-offset: 2px;
+}
+
+.window-control-close {
+  background: linear-gradient(180deg, #ff6b63, #ff5f57);
+}
+
+.window-control-min {
+  background: linear-gradient(180deg, #ffd166, #febc2e);
+}
+
+.window-control-max {
+  background: linear-gradient(180deg, #54d968, #28c840);
+}
+
+.window-control svg path,
+.window-control svg rect {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* theme switch sits beside the tab-overview button */
+.tab-theme-btn {
+  -webkit-app-region: no-drag;
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0 7px 0 3px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--tabstrip-text);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, transform 180ms ease;
+}
+
+.tab-theme-btn:hover {
+  background: rgb(0 0 0 / 8%);
+  transform: rotate(-14deg) scale(1.06);
+}
+
+.tab-theme-btn.is-light {
+  color: #64748b;
+}
+
+[data-theme='dark'] .tab-theme-btn:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) .tab-theme-btn:hover {
+    background: rgb(255 255 255 / 10%);
+  }
+}
+
+.app-frame.home-active .tab-theme-btn {
+  margin-right: 2px;
 }
 
 /* divider between the tab strip and the tab-overview button */
 .tab-overflow-btn::before {
   content: '';
   position: absolute;
-  left: -6px;
+  left: -7px;
   top: 50%;
   width: 1px;
-  height: 16px;
+  height: 18px;
   transform: translateY(-50%);
   background: var(--tab-separator);
 }
@@ -315,23 +438,59 @@ body.overlay-title-bar .tab-bar-drag-spacer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   border: none;
   border-radius: 50%;
   background: transparent;
   color: var(--tabstrip-text);
   cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
 }
 
 .tab-new-btn:hover,
 .tab-overflow-btn:hover,
 .tab-app-menu-btn:hover {
   background: rgba(0, 0, 0, 0.08);
+  transform: scale(1.06);
+}
+
+.tab-new-btn:active,
+.tab-overflow-btn:active,
+.tab-app-menu-btn:active {
+  transform: scale(0.94);
 }
 
 .app-frame-content {
-  padding-top: 40px;
+  padding-top: 46px;
+}
+
+/* Launch handoff: the splash fades, then the chrome and Home settle in. */
+.app-frame.is-launched .tab-bar {
+  animation: tabBarReveal 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.app-frame.is-launched .app-frame-content > * {
+  animation: appContentReveal 700ms 80ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes tabBarReveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes appContentReveal {
+  from { opacity: 0; transform: translateY(10px) scale(0.995); }
+  to { opacity: 1; transform: none; }
+}
+
+.tab-item.active .tab-plate {
+  animation: tabPlateIn 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes tabPlateIn {
+  from { opacity: 0.3; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ── Dark mode tab bar overrides ─────────────────────────── */

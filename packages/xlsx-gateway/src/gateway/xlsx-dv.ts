@@ -257,7 +257,7 @@ function formulaText(type: string | undefined, raw: unknown): string | undefined
 /// keeps the original text instead of writing a silently wrong serial; a
 /// pre-1900 year throws DvEditError, because it has no serial to write.
 /// Serials 1-59 sit one day before the linear rule (Excel's phantom 1900-02-29);
-/// formatSerial in @genoffice/file-parse reverses the same shift.
+/// formatSerial in @plotdocs/file-parse reverses the same shift.
 function dateToSerial(text: string): number | undefined {
   const match =
     /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})(?:[T ](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/.exec(

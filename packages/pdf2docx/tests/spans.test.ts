@@ -274,7 +274,7 @@ describe('span building', () => {
     expect(span!.charSpacingPt).toBeCloseTo(1.2, 5)
   })
 
-  it('drops negative tracking on a space-less EA run whose pairs still advance fullwidth (genoffice#1890)', () => {
+  it('drops negative tracking on a space-less EA run whose pairs still advance fullwidth (plotdocs#1890)', () => {
     // Word-export DFKai-SB pattern: the declared /Widths are wider than
     // anything the layout used — glyphs advance at the normal 1 em while the
     // declared advance reads 1.34 em, so pairwise "tracking" reads a large

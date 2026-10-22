@@ -1,5 +1,5 @@
 /**
- * The shell window's geometry across sessions (issue genoffice#2049) — the
+ * The shell window's geometry across sessions (issue plotdocs#2049) — the
  * position and size the app reopens with.
  *
  * The state lives in userData/app-settings.json, the file the issue names,

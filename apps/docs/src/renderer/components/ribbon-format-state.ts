@@ -1,7 +1,7 @@
 import type { Editor } from '@tiptap/core'
 import type { Node as PmNode } from '@tiptap/pm/model'
 import { isInTable, mergeCells, selectedRect, splitCell } from '@tiptap/pm/tables'
-import type { DocDefaults, Run, StyleInfo, TextboxDisplay } from '@genoffice/docx-engine'
+import type { DocDefaults, Run, StyleInfo, TextboxDisplay } from '@plotdocs/docx-engine'
 import { getActiveSubEditor } from '../editor/active-editor'
 import { shapeWrapOf } from '../editor/floating-z-order'
 import { tableCellsSelection } from '../editor/table-ops'

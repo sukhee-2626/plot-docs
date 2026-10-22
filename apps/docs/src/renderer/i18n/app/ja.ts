@@ -334,13 +334,13 @@ export const ja = {
   appTabClear: 'クリア',
   // AI settings
   appAiSettings: 'AI 設定',
-  appGensparkAccount: 'Genspark アカウント',
+  appSoopusAccount: 'Soopus AI アカウント',
   appChecking: '確認中…',
   appLoggedIn: 'サインイン済み',
   appLoggedInEmail: 'サインイン済み:{email}',
-  appNotLoggedIn: '未サインイン(AI 機能には Genspark アカウントが必要です)',
+  appNotLoggedIn: '未サインイン(AI 機能には Soopus AI アカウントが必要です)',
   appWaitingBrowserLogin: 'ブラウザーでのサインインを待っています…',
-  appLoginGenspark: 'Genspark にサインイン',
+  appLoginSoopus: 'Soopus AI にサインイン',
   appModel: 'モデル',
   // Context menu
   appCut: '切り取り',

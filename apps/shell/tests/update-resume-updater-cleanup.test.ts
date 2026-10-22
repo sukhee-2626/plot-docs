@@ -60,13 +60,13 @@ function dyingBody(prefix: Buffer): ReadableStream<Uint8Array> {
 }
 
 /** the artifact url; its trailing extension must match `fileExtension` (see getCacheUpdateFileName) */
-const artifactUrl = new URL('https://cdn.example.test/genoffice-mac-1.2.3.zip')
+const artifactUrl = new URL('https://cdn.example.test/plotdocs-mac-1.2.3.zip')
 /** what electron-updater names the file it downloads, and renames the temp file to */
-const artifactName = 'genoffice-mac-1.2.3.zip'
+const artifactName = 'plotdocs-mac-1.2.3.zip'
 const tempName = `temp-${artifactName}`
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'genoffice-resume-e2e-'))
+  dir = await mkdtemp(join(tmpdir(), 'plotdocs-resume-e2e-'))
   const cacheDir = join(dir, 'updater-cache')
   pendingDir = join(cacheDir, 'pending')
   resumeDir = join(cacheDir, 'resume')
@@ -95,7 +95,7 @@ function makeRealUpdater(): { updater: AppUpdater; stockDownloads: string[] } {
   const bag = updater as unknown as Record<string, unknown>
   bag._logger = new NoOpLogger()
   bag._events = {}
-  bag.app = { baseCachePath: dir, name: 'genoffice' }
+  bag.app = { baseCachePath: dir, name: 'plotdocs' }
   bag.configOnDisk = { value: Promise.resolve({ updaterCacheDirName: 'updater-cache' }) }
   bag.httpExecutor = stockExecutor
   // 50 ms stall window so a wedged stream fails fast; the response window is
@@ -225,7 +225,7 @@ describe('resume state vs. the updater emptying its own cache dir', () => {
     const { updater } = makeRealUpdater()
     // a part left behind by an earlier update that never completed
     await mkdir(resumeDir, { recursive: true })
-    const stale = 'temp-genoffice-mac-1.2.2.zip'
+    const stale = 'temp-plotdocs-mac-1.2.2.zip'
     await writeFile(join(resumeDir, `${stale}.part`), PREFIX)
     await writeFile(
       join(resumeDir, `${stale}.part.json`),

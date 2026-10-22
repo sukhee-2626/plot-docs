@@ -17,7 +17,7 @@ Règles : l’extension est conservée automatiquement ; les caractères interdi
 
 ## Supprimer
 
-- **⋯ ▸ Supprimer** sur l’accueil : demande quels fichiers, puis les déplace vers la **corbeille du système**, où l’OS peut les restaurer. GenOffice ne conserve aucune annulation propre pour cela — la récupération relève de la corbeille, pas d’une notification.
+- **⋯ ▸ Supprimer** sur l’accueil : demande quels fichiers, puis les déplace vers la **corbeille du système**, où l’OS peut les restaurer. Plot Docs ne conserve aucune annulation propre pour cela — la récupération relève de la corbeille, pas d’une notification.
 
 ## Dupliquer
 

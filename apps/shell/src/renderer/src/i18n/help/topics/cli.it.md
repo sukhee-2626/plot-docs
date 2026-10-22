@@ -1,19 +1,19 @@
 # Riga di comando e agenti
 
-Ogni installazione include il comando `genoffice` che usa gli stessi motori della finestra — gli stessi parser, lo stesso writer, lo stesso renderer. Un file che l'app salva e un file che il comando scrive sono lo stesso file, e un controllo che il pannello IA dell'app supera è un controllo che il comando supera.
+Ogni installazione include il comando `plotdocs` che usa gli stessi motori della finestra — gli stessi parser, lo stesso writer, lo stesso renderer. Un file che l'app salva e un file che il comando scrive sono lo stesso file, e un controllo che il pannello IA dell'app supera è un controllo che il comando supera.
 
 ```sh
-genoffice --help          # every command
-genoffice guide slides    # the op reference, for writing your own
+plotdocs --help          # every command
+plotdocs guide slides    # the op reference, for writing your own
 ```
 
 Ecco tutta la superficie in una sola schermata: ogni comando con una riga che dice cosa fa, poi le opzioni globali e i codici di uscita:
 
-![L'output reale di genoffice --help: il banner della versione, ogni comando con una descrizione su una riga e le opzioni globali con i codici di uscita](img/cli.png)
+![L'output reale di plotdocs --help: il banner della versione, ogni comando con una descrizione su una riga e le opzioni globali con i codici di uscita](img/cli.png)
 
 ## Ottenere il comando
 
-macOS e Windows lo includono nel pacchetto dell'app. Per richiamarlo per nome, esegui una volta `genoffice install-cli`: collega il binario del pacchetto in una directory del tuo PATH — su macOS `/usr/local/bin` quando non è un prefisso Homebrew (le directory di Homebrew non vengono mai toccate), altrimenti il tuo bin utente — o nel tuo `PATH` utente su Windows.
+macOS e Windows lo includono nel pacchetto dell'app. Per richiamarlo per nome, esegui una volta `plotdocs install-cli`: collega il binario del pacchetto in una directory del tuo PATH — su macOS `/usr/local/bin` quando non è un prefisso Homebrew (le directory di Homebrew non vengono mai toccate), altrimenti il tuo bin utente — o nel tuo `PATH` utente su Windows.
 
 ## I comandi da conoscere
 
@@ -31,26 +31,26 @@ macOS e Windows lo includono nel pacchetto dell'app. Per richiamarlo per nome, e
 | `merge`           | Compila i segnaposto `{{key}}` in un modello `.docx`, `.pptx` o `.xlsx`.                                                                                                                                                                                                                             |
 | `capabilities`    | Riporta quali funzioni cloud sono configurate su questa macchina.                                                                                                                                                                                                                                    |
 | `guide`           | Il riferimento delle op e le guide di progettazione, generati dalle stesse definizioni contro cui l'executor valida — così non può divergere da ciò che `apply` accetta. `--json` lo restituisce con lo schema di ogni op.                                                                           |
-| `install-cli`     | Mette `genoffice` sul `PATH`.                                                                                                                                                                                                                                                                        |
-| `skill`           | Elenca gli agenti di programmazione trovati su questa macchina e installa o aggiorna in essi la skill GenOffice.                                                                                                                                                                                     |
+| `install-cli`     | Mette `plotdocs` sul `PATH`.                                                                                                                                                                                                                                                                        |
+| `skill`           | Elenca gli agenti di programmazione trovati su questa macchina e installa o aggiorna in essi la skill Plot Docs.                                                                                                                                                                                     |
 | `mcp`             | Espone ogni comando come strumento Model Context Protocol. Vedi **Collegare un agente di programmazione**.                                                                                                                                                                                           |
 
 ## Modifica: Docs, Sheets, Slides
 
-`genoffice docs`, `genoffice sheet` e `genoffice slides` leggono e modificano attraverso lo stesso percorso di scrittura che usa l'app, e condividono un vocabolario: un'**op** è una singola modifica e una **spec** è un elenco di op applicate in ordine.
+`plotdocs docs`, `plotdocs sheet` e `plotdocs slides` leggono e modificano attraverso lo stesso percorso di scrittura che usa l'app, e condividono un vocabolario: un'**op** è una singola modifica e una **spec** è un elenco di op applicate in ordine.
 
 ```sh
-genoffice sheet read report.xlsx
-genoffice slides apply deck.pptx --ops ops.json --dry-run
-genoffice docs apply brief.docx --ops ops.json
+plotdocs sheet read report.xlsx
+plotdocs slides apply deck.pptx --ops ops.json --dry-run
+plotdocs docs apply brief.docx --ops ops.json
 ```
 
 `--dry-run` riporta cosa farebbe un batch e non scrive nulla, il modo più rapido per controllare una spec prima di applicarla. Il pannello IA dell'app funziona esattamente su queste op, quindi tutto ciò che puoi chiedergi puoi anche scriptarlo.
 
 ## Model Context Protocol
 
-`genoffice mcp` espone ogni comando come strumento MCP e `genoffice mcp install <agent|all>` lo registra nella configurazione di un agente di programmazione. Per quel lato, vedi **Collegare un agente di programmazione**.
+`plotdocs mcp` espone ogni comando come strumento MCP e `plotdocs mcp install <agent|all>` lo registra nella configurazione di un agente di programmazione. Per quel lato, vedi **Collegare un agente di programmazione**.
 
 ## Che cosa non fa il comando
 
-Legge e scrive il file. Non è l'app: non c'è finestra e la finestra di aggiornamento dell'app non si applica. Tutto ciò che richiede la finestra — il pannello IA, il controllo di qualità su una slide renderizzata — deve aspettare che tu apra il file. `genoffice render` ti dà i pixel senza di essa e `genoffice slides` verifica il layout di un deck da solo.
+Legge e scrive il file. Non è l'app: non c'è finestra e la finestra di aggiornamento dell'app non si applica. Tutto ciò che richiede la finestra — il pannello IA, il controllo di qualità su una slide renderizzata — deve aspettare che tu apra il file. `plotdocs render` ti dà i pixel senza di essa e `plotdocs slides` verifica il layout di un deck da solo.

@@ -8,7 +8,7 @@ import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
  * Unequal-column sections (w:equalWidth="0" with explicit w:col children — the
  * shape CNKI/PDF-to-Word converters emit) collapsing to one-or-two-character
  * columns beside a blank page, with the page count changing between zoom
- * levels: the report in genoffice#1952 (screenshots at 100% vs 110%). The
+ * levels: the report in plotdocs#1952 (screenshots at 100% vs 110%). The
  * fixture mirrors that document's structural skeleton — continuous sections
  * with custom column lists interleaved with single-column nextPage sections —
  * and the sweep pins, at several zoom levels across the whole document, that

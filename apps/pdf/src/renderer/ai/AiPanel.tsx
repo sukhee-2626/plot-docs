@@ -3,11 +3,11 @@ import {
   AiPanelSideButton,
   AiModelPicker,
   type AiModelPickerBridge,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent, ReactElement } from 'react'
-import { AgentLoop } from '@genoffice/agent-core'
-import { imageGenerationAvailable, type AiSettings } from '@genoffice/ai-provider/browser'
+import { AgentLoop } from '@plotdocs/agent-core'
+import { imageGenerationAvailable, type AiSettings } from '@plotdocs/ai-provider/browser'
 import {
   AiComposer,
   AiQueueStrip,
@@ -19,9 +19,9 @@ import {
   useChatRunQueue,
   type AiScopeQuoteData,
   type AiTokenUsageView,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { aiLangDirective, t as tGlobal, useI18n } from '../i18n/locale'
-import { createFileNav, Markdown } from '@genoffice/ui'
+import { createFileNav, Markdown } from '@plotdocs/ui'
 import sendEnterOn from '../assets/send-enter-on.png'
 import sendEnterOff from '../assets/send-enter-off.png'
 import sendStop from '../assets/send-stop.png'
@@ -94,7 +94,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.pdfApi.getAiSettings(),
   setSettings: (settings) => window.pdfApi.setAiSettings(settings),
   onSettingsChanged: (handler) => window.pdfApi.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.pdfApi.gskStatus().then((s) => !!s?.loggedIn),
+  soopusLoggedIn: () => window.pdfApi.soopusStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.pdfApi.openAiModelSettings().catch(() => {}),
 }
 
@@ -290,15 +290,15 @@ export function AiPanel({
   }, [panelWidth])
   const settingsRef = useRef<AiSettings | null>(null)
 
-  /** gsk login state for the cloud-tools gate (refreshed on mount and window focus) */
-  const gskLoggedInRef = useRef(false)
+  /** soopus login state for the cloud-tools gate (refreshed on mount and window focus) */
+  const soopusLoggedInRef = useRef(false)
   useEffect(() => {
     let alive = true
     const refresh = () => {
       void window.pdfApi
-        ?.gskStatus()
+        ?.soopusStatus()
         .then((s) => {
-          if (alive) gskLoggedInRef.current = !!s?.loggedIn
+          if (alive) soopusLoggedInRef.current = !!s?.loggedIn
         })
         .catch(() => {})
     }
@@ -417,7 +417,7 @@ export function AiPanel({
       searchImages: (query, max) => apiRef.current.searchImages(query, max),
       generateImage: (op) => apiRef.current.generateImage(op),
       imageGenAvailable: () =>
-        imageGenerationAvailable(settingsRef.current, gskLoggedInRef.current),
+        imageGenerationAvailable(settingsRef.current, soopusLoggedInRef.current),
       fetchImage: (url) => apiRef.current.fetchImage(url),
     }
     loopRef.current = new AgentLoop({
@@ -684,8 +684,8 @@ export function AiPanel({
       />
       <header className="ai-panel-header">
         <span className="ai-panel-title">
-          <GensparkMark size={22} />
-          Genspark
+          <SoopusMark size={22} />
+          Soopus
         </span>
         <div className="ai-panel-header-actions">
           <AiPanelSideButton
@@ -1092,9 +1092,9 @@ function IconCollapse(): ReactElement {
   )
 }
 
-/** Genspark brand mark (rounded-square sparkle badge), inline so it renders
+/** Soopus brand mark (rounded-square sparkle badge), inline so it renders
  * crisply at device resolution instead of going through <img> rasterization */
-export function GensparkMark({ size = 18 }: { size?: number }): React.JSX.Element {
+export function SoopusMark({ size = 18 }: { size?: number }): React.JSX.Element {
   return (
     <svg
       width={size}

@@ -5,7 +5,7 @@ export const es = {
   aiEmptyBuildTitle: 'Deja que la IA construya este libro por ti',
   aiEmptyBuildBody:
     'Describe la tabla, los datos o el gráfico que necesitas: la IA los crea directamente.',
-  aiGskLoginBtn: 'Iniciar sesión en Genspark',
+  aiSoopusLoginBtn: 'Iniciar sesión en Soopus',
   aiUndelivered: 'No enviado',
   aiRetry: 'Reintentar',
   aiOpenAssistant: 'Abrir el asistente de IA',
@@ -50,13 +50,13 @@ export const es = {
   aiFileTooltip:
     'SHA-256 {sha}\nAl guardar solo se reescriben las entradas editadas; todo lo demás se conserva.',
   aiFileMeta: '{sheets} hojas · {entries} entradas',
-  aiGensparkAccount: 'Cuenta de Genspark',
+  aiSoopusAccount: 'Cuenta de Soopus',
   aiAccountChecking: 'Comprobando…',
   aiLoggedIn: 'Sesión iniciada',
   aiLoggedInAs: 'Sesión iniciada: {email}',
-  aiNotLoggedIn: 'Sin sesión iniciada (las funciones de IA requieren una cuenta de Genspark)',
+  aiNotLoggedIn: 'Sin sesión iniciada (las funciones de IA requieren una cuenta de Soopus)',
   aiWaitingBrowserLogin: 'Esperando el inicio de sesión en el navegador…',
-  aiLoginGenspark: 'Iniciar sesión en Genspark',
+  aiLoginSoopus: 'Iniciar sesión en Soopus',
   aiModel: 'Modelo',
   aiCancel: 'Cancelar',
   aiSave: 'Guardar',
@@ -70,7 +70,7 @@ export const es = {
   aiNetworkError:
     'Problema de red: no se pudo conectar con el servicio de IA. Comprueba tu conexión e inténtalo de nuevo',
   aiCreditsExhausted:
-    'Tus créditos de Genspark se han agotado. Recarga en genspark.ai/pricing e inténtalo de nuevo',
+    'Tus créditos de Soopus se han agotado. Recarga en plotxyz.ai/plotdocs e inténtalo de nuevo',
   aiToolWorkbookContext: 'Leer información del libro',
   aiToolReadRange: 'Leer rango',
   aiToolReadRangeOf: 'Leer rango {range}',

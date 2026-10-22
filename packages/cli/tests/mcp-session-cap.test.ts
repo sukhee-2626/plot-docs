@@ -19,7 +19,7 @@ describe('mcp http session cap', () => {
       host: '127.0.0.1',
       token: TOKEN,
       cwd: mkdtempSync(join(tmpdir(), 'mcp-cap-')),
-      env: { ...process.env, GENOFFICE_AUDIT_LOG: 'off', GENOFFICE_ALLOWED_ROOTS: '' },
+      env: { ...process.env, PLOTDOCS_AUDIT_LOG: 'off', PLOTDOCS_ALLOWED_ROOTS: '' },
       log: () => {},
     })
   })

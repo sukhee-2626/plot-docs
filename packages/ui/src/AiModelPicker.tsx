@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { Lang } from '@genoffice/i18n'
-import type { AiSettings } from '@genoffice/ai-provider/browser'
+import type { Lang } from '@plotdocs/i18n'
+import type { AiSettings } from '@plotdocs/ai-provider/browser'
 import {
   aiModelPickerGroups,
   aiModelPickerSelection,
@@ -17,7 +17,7 @@ export interface AiModelPickerBridge {
   readonly setSettings: (settings: AiSettings) => Promise<void>
   /** fires after any renderer (this one, another tab, the shell settings page) saved ai-settings.json */
   readonly onSettingsChanged?: ((handler: () => void) => () => void) | undefined
-  readonly gskLoggedIn?: (() => Promise<boolean>) | undefined
+  readonly soopusLoggedIn?: (() => Promise<boolean>) | undefined
   /** shell: switch to Home and open Settings › AI Model */
   readonly openModelSettings?: (() => Promise<void> | void) | undefined
 }
@@ -49,7 +49,7 @@ export function AiModelPicker({
       .then(() => bridge.getSettings())
       .then(setSettings, () => {})
     Promise.resolve()
-      .then(() => bridge.gskLoggedIn?.() ?? false)
+      .then(() => bridge.soopusLoggedIn?.() ?? false)
       .then(setLoggedIn, () => {})
   }, [bridge])
 

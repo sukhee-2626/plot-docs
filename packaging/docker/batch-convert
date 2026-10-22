@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
-# GenOffice headless batch conversion (packaging/docker, genoffice#1808's
+# PlotDocs headless batch conversion (packaging/docker, plotdocs#1808's
 # batch slice). Walks /data for convertible documents and drives the app's
 # own --headless-export entry point once per file, so every conversion is
 # exactly what the File menu's export produces (same pipeline, no drift).
 #
 # Environment knobs (all optional):
-#   GENOFFICE_INPUT_DIR   input volume, default /data
-#   GENOFFICE_OUTPUT_DIR  output volume, default /output
-#   GENOFFICE_TO          export target, default pdf (pdf is the only target
+#   PLOTDOCS_INPUT_DIR   input volume, default /data
+#   PLOTDOCS_OUTPUT_DIR  output volume, default /output
+#   PLOTDOCS_TO          export target, default pdf (pdf is the only target
 #                         the upstream --headless-export entry ships today)
-#   GENOFFICE_PARALLEL    concurrent conversions, default 1 (each is its own
+#   PLOTDOCS_PARALLEL    concurrent conversions, default 1 (each is its own
 #                         Electron process; 2-4 helps on big hosts)
-#   GENOFFICE_INCLUDE     optional grep -E filter on /data-relative paths
-#   GENOFFICE_EXCLUDE     optional grep -E filter (applied after INCLUDE)
-#   GENOFFICE_FLAGS       extra flags passed through to --headless-export
-#   GENOFFICE_XVFB        set to 0 when the display is already provided
+#   PLOTDOCS_INCLUDE     optional grep -E filter on /data-relative paths
+#   PLOTDOCS_EXCLUDE     optional grep -E filter (applied after INCLUDE)
+#   PLOTDOCS_FLAGS       extra flags passed through to --headless-export
+#   PLOTDOCS_XVFB        set to 0 when the display is already provided
 #                         (e.g. you wrap with xvfb-run yourself)
 #
 # Output: one "==> <file>" block per file whose JSON line is the upstream
@@ -24,14 +24,14 @@
 # 3 one or more files failed (their JSON lines carry the reasons).
 set -u -o pipefail
 
-INPUT_DIR="${GENOFFICE_INPUT_DIR:-/data}"
-OUTPUT_DIR="${GENOFFICE_OUTPUT_DIR:-/output}"
-TARGET="${GENOFFICE_TO:-pdf}"
-PARALLEL="${GENOFFICE_PARALLEL:-1}"
-INCLUDE="${GENOFFICE_INCLUDE:-}"
-EXCLUDE="${GENOFFICE_EXCLUDE:-}"
-XVFB="${GENOFFICE_XVFB:-1}"
-APP="${GENOFFICE_BIN:-/opt/GenOffice/genoffice}"
+INPUT_DIR="${PLOTDOCS_INPUT_DIR:-/data}"
+OUTPUT_DIR="${PLOTDOCS_OUTPUT_DIR:-/output}"
+TARGET="${PLOTDOCS_TO:-pdf}"
+PARALLEL="${PLOTDOCS_PARALLEL:-1}"
+INCLUDE="${PLOTDOCS_INCLUDE:-}"
+EXCLUDE="${PLOTDOCS_EXCLUDE:-}"
+XVFB="${PLOTDOCS_XVFB:-1}"
+APP="${PLOTDOCS_BIN:-/opt/PlotDocs/plotdocs}"
 
 if [ ! -x "$APP" ]; then
   echo "batch-convert: $APP is not executable — is the deb installed?" >&2
@@ -47,7 +47,7 @@ case "$TARGET" in
 esac
 case "$PARALLEL" in
   ''|*[!0-9]*|0)
-    echo "batch-convert: GENOFFICE_PARALLEL must be a positive integer" >&2
+    echo "batch-convert: PLOTDOCS_PARALLEL must be a positive integer" >&2
     exit 1
     ;;
 esac
@@ -119,7 +119,7 @@ for f in "${FILES[@]}"; do
   OUT_OF[$f]=$out
 done
 
-# One file per Electron process. GENOFFICE_FLAGS is intentionally unquoted:
+# One file per Electron process. PLOTDOCS_FLAGS is intentionally unquoted:
 # it is a word-split list of extra headless-export flags. --no-sandbox is
 # required (the setuid chrome-sandbox helper cannot work in image layers),
 # --disable-gpu/--disable-dev-shm-usage are the standard container flags.
@@ -133,7 +133,7 @@ convert_one() {
   local block code
   mkdir -p "$(dirname "$out")"
   "$APP" --headless-export "$INPUT_DIR/$rel" --to "$TARGET" --out "$out" --json \
-    --no-sandbox --disable-gpu --disable-dev-shm-usage ${GENOFFICE_FLAGS:-} \
+    --no-sandbox --disable-gpu --disable-dev-shm-usage ${PLOTDOCS_FLAGS:-} \
     >"$res" 2>"$res.err"
   code=$?
   if [ $code -eq 0 ] && grep -q '"status":"ok"' "$res"; then

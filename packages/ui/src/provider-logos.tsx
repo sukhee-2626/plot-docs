@@ -1,16 +1,16 @@
 import { useId } from 'react'
 import type { ReactNode } from 'react'
-import type { AiProviderId } from '@genoffice/ai-provider/browser'
+import type { AiProviderId } from '@plotdocs/ai-provider/browser'
 
 // ── AI provider brand logos (settings provider picker, composer model chip) ──
 // Vector marks adapted from the MIT-licensed @lobehub/icons set, plus a
-// hand-traced Genspark mark, OpenCode's pixel-block favicon glyph and a
+// hand-traced Soopus mark, OpenCode's pixel-block favicon glyph and a
 // generic icon for the "custom" endpoint.
 // Brand-colored logos keep their official colors in both themes (brand
 // assets, not chrome — see CLAUDE.md theming rules); monochrome marks
 // (OpenAI, Kimi, Grok, OpenRouter, Requesty, Opper, Cheaper Inference, Atlas
 // Cloud, OpenCode,
-// Genspark, Custom) use currentColor so they stay legible in dark mode.
+// Soopus, Custom) use currentColor so they stay legible in dark mode.
 //
 // Gradient-filled marks (Gemini, Qwen, MiniMax) are components so useId can
 // namespace their <linearGradient> ids per mount: the dropdown renders the
@@ -114,7 +114,7 @@ const opencodeLogo = (
 )
 
 const LOGOS: Record<AiProviderId, ReactNode> = {
-  genspark: (
+  soopus: (
     <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" aria-hidden="true">
       <path d="M12 0a12 12 0 100 24 12 12 0 000-24zM7.8 4.4Q8.6 8.5 12.7 9.3 8.6 10.1 7.8 14.2 7 10.1 2.9 9.3 7 8.5 7.8 4.4zM16.1 3.8Q16.6 6.4 19.2 6.9 16.6 7.4 16.1 10 15.6 7.4 13 6.9 15.6 6.4 16.1 3.8zm.5 6.8q.3 1.7 2 2-1.7.3-2 2-.3-1.7-2-2 1.7-.3 2-2zM6.1 16.8h11.8a1.1 1.1 0 010 2.2H6.1a1.1 1.1 0 010-2.2z" />
     </svg>

@@ -36,5 +36,5 @@ Jeder Editor kann den KI-Bereich aufrufen: Etwas auswählen, eine Anweisung gebe
 
 ## Datenschutz
 
-- Anweisungen und der betreffende Dokumentinhalt gehen an den **von Ihnen konfigurierten Modelldienst** (Genspark gehostet oder ein eigener Endpunkt, siehe nächstes Kapitel); ohne Konfiguration wird nichts gesendet.
+- Anweisungen und der betreffende Dokumentinhalt gehen an den **von Ihnen konfigurierten Modelldienst** (Soopus AI gehostet oder ein eigener Endpunkt, siehe nächstes Kapitel); ohne Konfiguration wird nichts gesendet.
 - Lokale Dateien werden nirgendwohin sonst hochgeladen; BYOK-Schlüssel werden in der Einstellungsdatei der App auf diesem Rechner gespeichert und nur in den Anfrage-Headern gesendet.

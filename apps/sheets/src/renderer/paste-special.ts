@@ -37,7 +37,7 @@ import {
 } from '@univerjs/sheets'
 import { COPY_TYPE, ISheetClipboardService } from '@univerjs/sheets-ui'
 
-import { formatAddress } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { formatAddress } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import { sharedFormulaResolverFor } from './shared-formula-journal'
 import type { UniverRuntime } from './univer-state'
 

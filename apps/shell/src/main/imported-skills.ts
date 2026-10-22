@@ -2,11 +2,11 @@ import { cpSync, existsSync, readFileSync, readdirSync, statSync, type Dirent } 
 import { readFile, readdir } from 'node:fs/promises'
 import { basename, dirname, isAbsolute, join, resolve } from 'node:path'
 import { homedir } from 'node:os'
-import { classifySkill, parseSkillFrontmatter } from '@genoffice/agent-core'
+import { classifySkill, parseSkillFrontmatter } from '@plotdocs/agent-core'
 import type { FoundSkill } from '../shared/found-skill'
 
 /**
- * Finding the skills a user already has, so GenOffice can offer the ones worth
+ * Finding the skills a user already has, so Plot Docs can offer the ones worth
  * having without asking them to go and copy files.
  *
  * Two places, and the difference matters:
@@ -42,7 +42,7 @@ export function skillsRoot(userDataDir: string): string {
  *
  * `~/.agents` is the cross-agent convention and is listed first so a skill
  * living there wins over the same name in one vendor's directory. The rest
- * mirror the table `genoffice skill` already installs into
+ * mirror the table `plotdocs skill` already installs into
  * (`packages/cli/src/agent-skills.ts`) — the same machines, the same homes,
  * one list rather than two that can drift.
  */
@@ -130,7 +130,7 @@ export async function findSkills(
   env?: NodeJS.ProcessEnv,
   home?: string,
 ): Promise<FoundSkill[]> {
-  const ours = await readDir(skillsRoot(userDataDir), 'genoffice')
+  const ours = await readDir(skillsRoot(userDataDir), 'plotdocs')
   const seen = new Set(ours.map((s) => s.name))
   const fromAgents: FoundSkill[] = []
   const scanned = await Promise.all(
@@ -151,7 +151,7 @@ export async function findSkills(
 
 /** the skills a user may actually run: the ones they chose to put in our folder */
 export async function usableSkills(userDataDir: string): Promise<FoundSkill[]> {
-  return readDir(skillsRoot(userDataDir), 'genoffice')
+  return readDir(skillsRoot(userDataDir), 'plotdocs')
 }
 
 /** the body of a skill, for the turn that runs it */
@@ -236,7 +236,7 @@ export function importSkill(skillPath: string, userDataDir: string): FoundSkill 
     name,
     description: fm.description,
     path: join(dest, 'SKILL.md'),
-    source: 'genoffice',
+    source: 'plotdocs',
     relevance: classifySkill(fm.name, fm.description),
   }
 }

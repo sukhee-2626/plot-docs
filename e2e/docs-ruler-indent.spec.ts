@@ -60,7 +60,7 @@ test.describe('docs ruler indent and margin handles', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-ruler-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-ruler-')))
     docPath = join(dir, 'ruler.docx')
     writeFileSync(docPath, await minimalDocx())
   })

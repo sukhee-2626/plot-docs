@@ -17,7 +17,7 @@ Rules: the extension is preserved automatically; illegal characters, trailing do
 
 ## Delete
 
-- Home **⋯ ▸ Delete**: asks which files, then moves them to the **system trash**, where the OS can restore them. GenOffice keeps no undo of its own for this — recovery is the trash's job, not a toast's.
+- Home **⋯ ▸ Delete**: asks which files, then moves them to the **system trash**, where the OS can restore them. Plot Docs keeps no undo of its own for this — recovery is the trash's job, not a toast's.
 
 ## Duplicate
 

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { generateParagraphXml, parseDocx, saveDocx, type GenerateContext } from '../src/index'
 import { buildDocx } from './helpers/build-docx'
 
-/** genoffice#524: w16du:dateUtc round trip and document-wide unique revision ids. */
+/** plotdocs#524: w16du:dateUtc round trip and document-wide unique revision ids. */
 
 const W16DU_NS = 'http://schemas.microsoft.com/office/word/2023/wordml/word16du'
 const UTC = 'w16du:dateUtc="2026-01-01T10:00:00Z"'

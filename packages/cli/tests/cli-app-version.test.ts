@@ -42,7 +42,7 @@ describe('packaged CLI version', () => {
   })
 
   it('builds into the bundle packaging ships', () => {
-    expect(CLI_BUNDLE.endsWith('genoffice.cjs')).toBe(true)
+    expect(CLI_BUNDLE.endsWith('plotdocs.cjs')).toBe(true)
   })
 })
 

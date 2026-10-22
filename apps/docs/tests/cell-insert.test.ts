@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
 import JSZip from 'jszip'
-import { BLANK_BULLET_NUM_ID, buildBlankDocx, parseDocx, saveDocx } from '@genoffice/docx-engine'
+import { BLANK_BULLET_NUM_ID, buildBlankDocx, parseDocx, saveDocx } from '@plotdocs/docx-engine'
 import { insertTableAt } from '../src/renderer/components/ribbon-tabs'
 import { blocksToPmDoc, pmDocToSavePlan, type PmNode } from '../src/renderer/editor/convert'
 import { editorExtensions } from '../src/renderer/editor/extensions'

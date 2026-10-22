@@ -1,7 +1,7 @@
 import type {
   ChartRecommendations,
   RecommendedKind,
-} from '@genoffice/xlsx-gateway/domain/chart-recommend'
+} from '@plotdocs/xlsx-gateway/domain/chart-recommend'
 import { useI18n, type StringKey } from './i18n/locale'
 import { useModalDialog } from './modal-dialog'
 

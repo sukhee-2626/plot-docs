@@ -1,4 +1,4 @@
-import type { ExecutedToolCall } from '@genoffice/agent-core'
+import type { ExecutedToolCall } from '@plotdocs/agent-core'
 
 /**
  * Claimed-selection guard for the sheets skill (AgentSkill.verifyResponse):

@@ -1,4 +1,4 @@
-import type { AgentSkill } from '@genoffice/agent-core'
+import type { AgentSkill } from '@plotdocs/agent-core'
 import { t } from '../i18n/locale'
 
 /**

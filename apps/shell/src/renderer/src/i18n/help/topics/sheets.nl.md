@@ -21,7 +21,7 @@ Sheets is de Excel-achtige editor; de berekeningen draaien in een apart proces m
 - **Gegevens**: sorteren en filteren (inclusief geavanceerd filter en filter wissen), tekst naar kolommen, werkmap samenvoegen, alles vernieuwen.
 - **Controleren**: opmerkingen doorbladeren (tonen, vorige/volgende), vertalen en de groep **Beveiligen** — **Blad beveiligen**, **Werkmap beveiligen** en **Bewerken van bereiken toestaan**.
   - De beveiliging wordt in de .xlsx geschreven en op wat deze app toepast zit geen wachtwoord, dus dezelfde knop wordt **Beveiliging opheffen…** en maakt het ongedaan. Beveiliging uit een ander programma dat _wél_ een wachtwoord heeft, kan hier niet worden verwijderd.
-  - De twee beveiligingsknoppen werken meteen — er is geen dialoog om te annuleren, alleen een aantekening in de statusbalk dat het bij het opslaan wordt weggeschreven.
+  - De twee beveiliginsoopusnoppen werken meteen — er is geen dialoog om te annuleren, alleen een aantekening in de statusbalk dat het bij het opslaan wordt weggeschreven.
   - **Bewerken van bereiken toestaan** markeert de cellen die bewerkbaar blijven terwijl de rest van het blad vergrendeld is.
 - **Beeld**: schakelaars voor rasterlijnen, **Formulebalk**, koppen en het markeren van de actieve rij en kolom; zoom; **Normaal** en **Pagina-eindevoorbeeld**. Rasterlijnen en koppen worden met het werkblad opgeslagen; het markeren is een eigen voorkeur.
 - **Grafiekontwerp**: verschijnt als er een grafiek geselecteerd is — grafiektype, stijlen en kleuren, gegevensbereik bewerken.

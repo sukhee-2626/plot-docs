@@ -9,7 +9,7 @@
  *
  * The printer job's scale is a whole percent, so its zoom is that percent's
  * exact inverse (1.5 against 67% spills a 0.5% strip onto a blank page), and
- * Windows ignores `scaleFactor` outright (genoffice#1970), so it prints unzoomed.
+ * Windows ignores `scaleFactor` outright (plotdocs#1970), so it prints unzoomed.
  */
 
 export type PrintJob = 'pdf' | 'printer'

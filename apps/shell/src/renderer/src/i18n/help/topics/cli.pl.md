@@ -1,19 +1,19 @@
 # Wiersz poleceń i agenci
 
-Każda instalacja zawiera polecenie `genoffice`, które napędza te same silniki co okno — te same parsery, ten sam moduł zapisu, ten sam renderujący. Plik zapisany przez aplikację i plik zapisany przez polecenie to ten sam plik, a kontrola, którą przechodzi panel AI aplikacji, przechodzi też polecenie.
+Każda instalacja zawiera polecenie `plotdocs`, które napędza te same silniki co okno — te same parsery, ten sam moduł zapisu, ten sam renderujący. Plik zapisany przez aplikację i plik zapisany przez polecenie to ten sam plik, a kontrola, którą przechodzi panel AI aplikacji, przechodzi też polecenie.
 
 ```sh
-genoffice --help          # every command
-genoffice guide slides    # the op reference, for writing your own
+plotdocs --help          # every command
+plotdocs guide slides    # the op reference, for writing your own
 ```
 
 To cała powierzchnia na jednym ekranie — każde polecenie z wierszem, który mówi, co robi, a potem opcje globalne i kody wyjścia:
 
-![Rzeczywiste wyjście polecenia genoffice --help: banner wersji, każde polecenie z opisem w jednym wierszu oraz opcje globalne i kody wyjścia](img/cli.png)
+![Rzeczywiste wyjście polecenia plotdocs --help: banner wersji, każde polecenie z opisem w jednym wierszu oraz opcje globalne i kody wyjścia](img/cli.png)
 
 ## Zdobycie polecenia
 
-W macOS i Windows polecenie siedzi w pakiecie aplikacji. Aby wołać je po imieniu, uruchom raz `genoffice install-cli`: podlinkuje binarium z pakietu do katalogu na Twoim PATH — w macOS `/usr/local/bin`, o ile to nie prefiks Homebrew (katalogi samego Homebrew nigdy nie są ruszane), inaczej do Twojego bin użytkownika — albo do użytkowniczego `PATH` w Windows.
+W macOS i Windows polecenie siedzi w pakiecie aplikacji. Aby wołać je po imieniu, uruchom raz `plotdocs install-cli`: podlinkuje binarium z pakietu do katalogu na Twoim PATH — w macOS `/usr/local/bin`, o ile to nie prefiks Homebrew (katalogi samego Homebrew nigdy nie są ruszane), inaczej do Twojego bin użytkownika — albo do użytkowniczego `PATH` w Windows.
 
 ## Polecenia warte znajomości
 
@@ -31,26 +31,26 @@ W macOS i Windows polecenie siedzi w pakiecie aplikacji. Aby wołać je po imien
 | `merge`           | Wypełnia symbole zastępcze `{{key}}` w szablonie `.docx`, `.pptx` lub `.xlsx`.                                                                                                                                                           |
 | `capabilities`    | Zgłasza, które funkcje chmurowe są skonfigurowane na tym komputerze.                                                                                                                                                                     |
 | `guide`           | Referencja op i przewodniki projektowe, wygenerowane z tych samych definicji, względem których waliduje executor — więc nie może się rozjechać z tym, co przyjmuje `apply`. `--json` zwraca je ze schematem każdej op.                   |
-| `install-cli`     | Umieszcza `genoffice` w `PATH`.                                                                                                                                                                                                          |
-| `skill`           | Wypisuje agentów programistycznych znalezionych na tym komputerze i instaluje w nich lub aktualizuje skill GenOffice.                                                                                                                    |
+| `install-cli`     | Umieszcza `plotdocs` w `PATH`.                                                                                                                                                                                                          |
+| `skill`           | Wypisuje agentów programistycznych znalezionych na tym komputerze i instaluje w nich lub aktualizuje skill Plot Docs.                                                                                                                    |
 | `mcp`             | Udostępnia każde polecenie jako narzędzie Model Context Protocol. Zobacz **Podłączenie z agentem programistycznym**.                                                                                                                     |
 
 ## Edycja: Docs, Sheets, Slides
 
-`genoffice docs`, `genoffice sheet` i `genoffice slides` czytają i edytują przez tę samą ścieżkę zapisu co aplikacja i dzielą jedno słownictwo: **op** to pojedyncza zmiana, a **spec** to lista op zastosowanych po kolei.
+`plotdocs docs`, `plotdocs sheet` i `plotdocs slides` czytają i edytują przez tę samą ścieżkę zapisu co aplikacja i dzielą jedno słownictwo: **op** to pojedyncza zmiana, a **spec** to lista op zastosowanych po kolei.
 
 ```sh
-genoffice sheet read report.xlsx
-genoffice slides apply deck.pptx --ops ops.json --dry-run
-genoffice docs apply brief.docx --ops ops.json
+plotdocs sheet read report.xlsx
+plotdocs slides apply deck.pptx --ops ops.json --dry-run
+plotdocs docs apply brief.docx --ops ops.json
 ```
 
 `--dry-run` zgłasza, co zrobiłaby partia, i nic nie zapisuje — to najtańszy sposób na sprawdzenie spec przed zastosowaniem. Panel AI w aplikacji działa dokładnie na tych op, więc wszystko, o co możesz go zapytać, możesz też zapisać w skrypcie.
 
 ## Model Context Protocol
 
-`genoffice mcp` udostępnia każde polecenie jako narzędzie MCP, a `genoffice mcp install <agent|all>` rejestruje je we własnej konfiguracji agenta programistycznego. Tej strony dotyczy rozdział **Podłączenie z agentem programistycznym**.
+`plotdocs mcp` udostępnia każde polecenie jako narzędzie MCP, a `plotdocs mcp install <agent|all>` rejestruje je we własnej konfiguracji agenta programistycznego. Tej strony dotyczy rozdział **Podłączenie z agentem programistycznym**.
 
 ## Czego polecenie nie robi
 
-Czyta i zapisuje plik. To nie jest aplikacja: nie ma okna, a okno aktualizacji w aplikacji nie ma tu zastosowania. Wszystko, co wymaga okna — panel AI, kontrola jakości wyrenderowanej slajdy — musi poczekać, aż otworzysz plik. `genoffice render` daje ci piksele bez okna, a `genoffice slides` sam sprawdza układ prezentacji.
+Czyta i zapisuje plik. To nie jest aplikacja: nie ma okna, a okno aktualizacji w aplikacji nie ma tu zastosowania. Wszystko, co wymaga okna — panel AI, kontrola jakości wyrenderowanej slajdy — musi poczekać, aż otworzysz plik. `plotdocs render` daje ci piksele bez okna, a `plotdocs slides` sam sprawdza układ prezentacji.

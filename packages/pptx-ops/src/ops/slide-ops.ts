@@ -55,7 +55,7 @@ import {
   type SlideAnimation,
   type SlideTransitionKind,
   type TextElement,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 import {
   coerceBytes,
   dataUrlExt,

@@ -1,9 +1,9 @@
 import type { PDFDocumentProxy } from 'pdfjs-dist'
-import type { AgentToolCall, AgentToolDef, ToolExecution } from '@genoffice/agent-core'
+import type { AgentToolCall, AgentToolDef, ToolExecution } from '@plotdocs/agent-core'
 import type { OutlineNode } from '../OutlinePanel'
 import type { PageEntry, SearchIndex } from '../search'
 import { searchInIndex } from '../search'
-import { foldCase } from '@genoffice/ui'
+import { foldCase } from '@plotdocs/ui'
 import { geomDispSize, pdfRectToCss, pdfToView, quadToRect, viewToPdf } from '../annotations'
 import type { PageGeom } from '../annotations'
 import { EDIT_FONTS } from '../../shared/ipc'
@@ -172,7 +172,7 @@ export interface PdfAiDeps {
   /** Queue a pending delete of an existing image */
   deleteImage(ref: PageImageRef): void
   searchImages(query: string, maxResults: number): Promise<ImageSearchResponse>
-  /** live predicate (gsk login && cloud-tools toggle, or a BYOK media key); false hides generate_image */
+  /** live predicate (soopus login && cloud-tools toggle, or a BYOK media key); false hides generate_image */
   imageGenAvailable?(): boolean
   generateImage(op: { prompt: string; aspectRatio?: string }): Promise<{
     url?: string

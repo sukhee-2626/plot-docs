@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { HeaderFooter, HfPartInfo, SectionInfo } from '@genoffice/docx-engine'
+import type { HeaderFooter, HfPartInfo, SectionInfo } from '@plotdocs/docx-engine'
 import { EMPTY_HF_VARIANTS } from '../src/renderer/doc-state'
 import {
   editKey,

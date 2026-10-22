@@ -4,8 +4,8 @@
  * the rotation and the model drawn at it, one undo step.
  */
 import { useEffect, useRef, useState } from 'react'
-import type { PictureRenderNode } from '@genoffice/pptx-render'
-import type { Model3dRotation } from '@genoffice/pptx-engine/model3d'
+import type { PictureRenderNode } from '@plotdocs/pptx-render'
+import type { Model3dRotation } from '@plotdocs/pptx-engine/model3d'
 import { t } from '../i18n/locale'
 import { Icon3d } from '../components/icons'
 import { loadModel, type ModelView } from './scene'

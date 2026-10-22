@@ -11,12 +11,12 @@ import type {
   AiStreamChunk,
   AiStreamRequest,
   CodexModelCatalog,
-} from '@genoffice/ai-provider'
+} from '@plotdocs/ai-provider'
 import type { UpdateChannel, UpdateUiState } from './update-api'
-import type { KbFileInfo, KbReadPage, KbSearchHit } from '@genoffice/agent-core'
-import type { AiPanelPrefs } from '@genoffice/ui/ai-panel-prefs'
+import type { KbFileInfo, KbReadPage, KbSearchHit } from '@plotdocs/agent-core'
+import type { AiPanelPrefs } from '@plotdocs/ui/ai-panel-prefs'
 
-/** UI language; kept self-contained here (mirrors Lang in @genoffice/i18n) */
+/** UI language; kept self-contained here (mirrors Lang in @plotdocs/i18n) */
 
 export type UiLanguage =
   | 'zh'
@@ -45,14 +45,14 @@ export type UiLanguage =
 export type UiTheme = 'light' | 'dark' | 'system'
 
 /**
- * Document page theme preference (genoffice#1811): what the editors' canvas/paper does
+ * Document page theme preference (plotdocs#1811): what the editors' canvas/paper does
  * relative to the UI theme. 'follow' reproduces the previous single-theme
  * behavior; 'light'/'dark' pin the paper regardless of the UI theme.
  */
 export type DocTheme = 'follow' | 'light' | 'dark'
 
 /** shell-wide AutoSave default for every editor; updatedAt is 0 until first set */
-/** mirrors AUTHOR_NAME_MAX in @genoffice/electron-utils (the renderer cannot import it) */
+/** mirrors AUTHOR_NAME_MAX in @plotdocs/electron-utils (the renderer cannot import it) */
 export const AUTHOR_NAME_MAX = 120
 
 export interface AuthorNameSetting {
@@ -256,8 +256,8 @@ export interface HomeApi {
   aiStreamCancel(requestId: string): Promise<void>
   /** subscribe to stream chunks; returns unsubscribe */
   onAiStream(handler: (chunk: AiStreamChunk) => void): () => void
-  /** Genspark login state (the default provider's auth source) */
-  aiGskStatus(): Promise<{ loggedIn: boolean; email?: string }>
+  /** Soopus login state (the default provider's auth source) */
+  aiSoopusStatus(): Promise<{ loggedIn: boolean; email?: string }>
   /** open an existing file, routing to the right module by extension */
   openHelp(): Promise<void>
   openPath(path: string): Promise<void>
@@ -275,6 +275,8 @@ export interface HomeApi {
   newHtml(opts?: NewFileOpts): Promise<void>
   /** create a blank single-page PDF in the default save folder and open it */
   newPdf(opts?: NewFileOpts): Promise<void>
+  /** copy a built-in template into the save folder (or `opts.dir`) and open it */
+  newFromTemplate(templateId: string, opts?: NewFileOpts): Promise<{ path: string }>
   /** drop entries from the recent list (does not touch the files) */
   removeRecent(paths: string[]): Promise<void>
   /** unstar files in bulk (Starred view selection bar); the recents list and the files are untouched */
@@ -319,9 +321,13 @@ export interface HomeApi {
   getUpdateChannel(): Promise<UpdateChannel>
   /** switch + persist the update channel; triggers an immediate update check */
   setUpdateChannel(channel: UpdateChannel): Promise<void>
-  /** Genspark account status (gsk login state; to be upgraded to a signup/account system later) */
+  /** local Plot Docs account status (no browser or third-party identity page) */
   accountStatus(): Promise<AccountStatus>
-  /** start Genspark login (opens the browser; accountStatus flips to logged-in on completion); returns whether the launch succeeded */
+  /** create the local account for this device; the new account is signed in */
+  accountCreate(input: AccountCreateInput): Promise<AccountAuthResult>
+  /** sign in to the local account on this device */
+  accountSignIn(input: AccountSignInInput): Promise<AccountAuthResult>
+  /** optional provider login used by Soopus AI cloud features (not the Plot Docs account) */
   accountLogin(): Promise<boolean>
   /** progress events for the login started via accountLogin; returns an unsubscribe */
   onAccountLogin(handler: (ev: AccountLoginEvent) => void): () => void
@@ -329,7 +335,7 @@ export interface HomeApi {
   onOpenSettings(handler: (target: { section: string }) => void): () => void
   /** re-open the pending login auth URL in the default browser (rescue when auto-open failed) */
   openLoginUrl(): Promise<void>
-  /** log out (clears the saved API key; the login state is shared globally with the gsk CLI) */
+  /** log out (clears the saved API key; the login state is shared globally with the soopus CLI) */
   accountLogout(): Promise<void>
   /** app version (from package.json / electron app.getVersion) */
   getAppVersion(): Promise<string>
@@ -346,7 +352,17 @@ export interface HomeApi {
   getTheme(): Promise<UiTheme>
   /** switch + persist the UI theme; broadcasts 'app:theme-changed' to all web contents */
   setTheme(theme: UiTheme): Promise<void>
-  /** current document page theme preference (genoffice#1811, persisted in userData/app-settings.json) */
+  /** custom caption controls: minimize the window that owns this renderer */
+  minimizeWindow(): Promise<void>
+  /** custom caption controls: maximize / restore; resolves to the new maximized state */
+  toggleMaximizeWindow(): Promise<boolean>
+  /** custom caption controls: close (runs the same close guard as the native button) */
+  closeWindow(): Promise<void>
+  /** current maximized state of the window that owns this renderer */
+  isWindowMaximized(): Promise<boolean>
+  /** maximize state changed from any source (caption button, OS snap, double-click) */
+  onWindowMaximizedChanged(handler: (maximized: boolean) => void): () => void
+  /** current document page theme preference (plotdocs#1811, persisted in userData/app-settings.json) */
   getDocumentTheme(): Promise<DocTheme>
   /** switch + persist the document page theme; broadcasts 'app:document-theme-changed' to all web contents */
   setDocumentTheme(theme: DocTheme): Promise<void>
@@ -381,7 +397,7 @@ export interface HomeApi {
   getAiPanelPrefs(): Promise<AiPanelPrefs>
   /** merge + persist; broadcasts 'app:ai-panel-prefs-changed' to all web contents */
   setAiPanelPrefs(patch: Partial<AiPanelPrefs>): Promise<AiPanelPrefs>
-  /** effective default save folder for new/untitled files (configured in userData/app-settings.json, falls back to <Documents>/GenOffice) */
+  /** effective default save folder for new/untitled files (configured in userData/app-settings.json, falls back to <Documents>/Plot Docs) */
   getDefaultSaveDir(): Promise<string>
   /** directory picker to change the default save folder; resolves to the new folder, or null when canceled or the pick was unusable */
   pickDefaultSaveDir(): Promise<string | null>
@@ -393,12 +409,14 @@ export interface HomeApi {
   onThemeChanged(handler: (theme: UiTheme) => void): () => void
   /** document page theme switched anywhere (broadcast from the main process) */
   onDocumentThemeChanged(handler: (theme: DocTheme) => void): () => void
-  /** open the GenTeam community page in the default browser */
-  openGenTeam(): Promise<void>
-  /** open the Genspark credit-usage page in the default browser */
+  /** open the PlotCommunity community page in the default browser */
+  openPlotCommunity(): Promise<void>
+  /** open the Soopus credit-usage page in the default browser */
   openCreditUsage(): Promise<void>
   /** open the public GitHub repository in the default browser */
   openGitHubRepo(): Promise<void>
+  /** open the Plot Docs website in the default browser */
+  openWebsite(): Promise<void>
   /** current stargazer count of the public repo (null while offline / rate-limited) */
   githubStars(): Promise<number | null>
   /** whether the one-time "star us" prompt should show now (show:true also counts as shown);
@@ -408,17 +426,17 @@ export interface HomeApi {
   starPromptAction(action: StarPromptAction): Promise<void>
   /** locally stored full cloud project list (instant; null when no store or logged out) */
   cloudProjectsCached(): Promise<CloudProjectsSnapshot | null>
-  /** sync the full list from Genspark and return it (1 request when nothing changed); null when the sync failed */
+  /** sync the full list from Soopus and return it (1 request when nothing changed); null when the sync failed */
   cloudProjectsSync(): Promise<CloudProjectsSnapshot | null>
   /** open a cloud project (relative '/agents?id=...' URL) in the default browser */
   openCloudProject(projectUrl: string): Promise<void>
-  /** AI settings (userData/ai-settings.json, shared by every editor); the genspark key never appears here */
+  /** AI settings (userData/ai-settings.json, shared by every editor); the Soopus key never appears here */
   getAiSettings(): Promise<AiSettings>
   /** persist AI settings; every renderer gets ai:settings-changed and re-reads */
   setAiSettings(settings: AiSettings): Promise<void>
   /** ai-settings.json was rewritten by any renderer (composer model chip, another window) */
   onAiSettingsChanged(handler: () => void): () => void
-  /** provider catalog with each fixed endpoint's default base URL (empty for genspark/custom) */
+  /** provider catalog with each fixed endpoint's default base URL (empty for Soopus/custom) */
   getAiProviders(): AiCatalogEntry[]
   /** live Codex model catalog discovered through the current or overridden app-server */
   getCodexModels(cliPath?: string): Promise<CodexModelCatalog>
@@ -432,14 +450,14 @@ export interface HomeApi {
   testAiSettings(settings: AiSettings): Promise<AiChatResponse>
   /** image generation / media analysis provider catalog */
   getAiMediaProviders(): AiMediaProviderMeta[]
-  /** credential check for a (possibly unsaved) media provider; genspark reports the gsk login state */
+  /** credential check for a (possibly unsaved) media provider; Soopus reports the soopus login state */
   testAiMediaSettings(input: {
     provider: AiMediaProviderId
     config: AiMediaProviderConfig
   }): Promise<{ ok: boolean; error?: string }>
   /** web search provider catalog */
   getAiSearchProviders(): AiSearchProviderMeta[]
-  /** one minimal query against the given key (genspark reports the gsk login state) */
+  /** one minimal query against the given key (Soopus reports the soopus login state) */
   testAiSearchSettings(input: {
     provider: AiSearchProviderId
     apiKey: string
@@ -464,7 +482,7 @@ export interface StarPromptShow {
 
 export type CloudProjectKind = 'docs' | 'sheets' | 'slides'
 
-/** a Genspark web project shown in the home cloud section */
+/** a Soopus web project shown in the home cloud section */
 export interface CloudProjectEntry {
   projectId: string
   title: string
@@ -472,13 +490,13 @@ export interface CloudProjectEntry {
   kind: CloudProjectKind | 'other'
   /** creation time, ms since epoch (0 when unparsable) */
   ctimeMs: number
-  /** relative genspark.ai URL ('/agents?id=...') */
+  /** relative Soopus.ai URL ('/agents?id=...') */
   projectUrl: string
 }
 
 /** full local copy of the cloud project list; filtering/paging are client-side */
 export interface CloudProjectsSnapshot {
-  /** false when gsk is unavailable (CLI missing or not logged in) */
+  /** false when soopus is unavailable (CLI missing or not logged in) */
   available: boolean
   /** all projects, newest first */
   projects: CloudProjectEntry[]
@@ -487,14 +505,44 @@ export interface CloudProjectsSnapshot {
 }
 
 export interface AccountStatus {
-  /** gsk is installed and logged in */
+  /** the local Plot Docs account is signed in */
   loggedIn: boolean
   email?: string
-  /** remaining Genspark credits (absent when the balance query failed) */
+  /** display name from the local account */
+  name?: string
+  /** remaining Soopus credits for an optional provider connection */
   creditBalance?: number
+  /** true for the local Plot Docs account */
+  local?: boolean
+  /** whether this device already has an account (sign in vs create account) */
+  hasAccount?: boolean
 }
 
-/** login flow progress pushed from main (gsk login CLI output) */
+export interface AccountCreateInput {
+  name: string
+  email: string
+  password: string
+}
+
+export interface AccountSignInInput {
+  email: string
+  password: string
+}
+
+export type AccountAuthError =
+  | 'invalid-name'
+  | 'invalid-email'
+  | 'weak-password'
+  | 'exists'
+  | 'no-account'
+  | 'bad-credentials'
+  | 'storage'
+
+export type AccountAuthResult =
+  | { ok: true; status: AccountStatus }
+  | { ok: false; error: AccountAuthError }
+
+/** login flow progress pushed from main (soopus login CLI output) */
 export interface AccountLoginEvent {
   phase: 'launched' | 'url' | 'success' | 'error'
   url?: string
@@ -593,6 +641,7 @@ export const HOME_CHANNELS = {
   newMarkdown: 'home:new-markdown',
   newHtml: 'home:new-html',
   newPdf: 'home:new-pdf',
+  newFromTemplate: 'home:new-from-template',
   removeRecent: 'home:remove-recent',
   revealPath: 'home:reveal-path',
   renameFile: 'home:rename-file',
@@ -614,6 +663,8 @@ export const HOME_CHANNELS = {
   getUpdateChannel: 'home:get-update-channel',
   setUpdateChannel: 'home:set-update-channel',
   accountStatus: 'home:account-status',
+  accountCreate: 'home:account-create',
+  accountSignIn: 'home:account-sign-in',
   accountLogin: 'home:account-login',
   accountLoginEvent: 'home:account-login-event',
   openSettings: 'home:open-settings',
@@ -624,6 +675,11 @@ export const HOME_CHANNELS = {
   setOnboardingSeen: 'home:set-onboarding-seen',
   getTheme: 'home:get-theme',
   setTheme: 'home:set-theme',
+  windowMinimize: 'home:window-minimize',
+  windowToggleMaximize: 'home:window-toggle-maximize',
+  windowClose: 'home:window-close',
+  windowIsMaximized: 'home:window-is-maximized',
+  windowMaximizedChanged: 'home:window-maximized-changed',
   getDocumentTheme: 'home:get-document-theme',
   setDocumentTheme: 'home:set-document-theme',
   getAutoSaveDefault: 'home:get-auto-save-default',
@@ -643,9 +699,10 @@ export const HOME_CHANNELS = {
   getDefaultAppStatus: 'home:get-default-app-status',
   setDefaultApp: 'home:set-default-app',
   pickDefaultSaveDir: 'home:pick-default-save-dir',
-  openGenTeam: 'home:open-genteam',
+  openPlotCommunity: 'home:open-community',
   openCreditUsage: 'home:open-credit-usage',
   openGitHubRepo: 'home:open-github-repo',
+  openWebsite: 'home:open-website',
   githubStars: 'home:github-stars',
   starPromptShouldShow: 'home:star-prompt-should-show',
   starPromptAction: 'home:star-prompt-action',

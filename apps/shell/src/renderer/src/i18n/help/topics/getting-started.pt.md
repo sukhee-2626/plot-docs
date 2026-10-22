@@ -1,6 +1,6 @@
 # Início rápido: a interface e o básico
 
-O GenOffice é um pacote de escritório que funciona inteiramente na sua máquina: uma janela, uma faixa de guias, com seis editores — Docs (processamento de texto), Sheets (folhas de cálculo), Slides (apresentações), PDF, Markdown e HTML. Os ficheiros são .docx / .xlsx / .pptx / .pdf a sério, totalmente compatíveis com o Word, o Excel e o PowerPoint. Não é necessária rede.
+O Plot Docs é um pacote de escritório que funciona inteiramente na sua máquina: uma janela, uma faixa de guias, com seis editores — Docs (processamento de texto), Sheets (folhas de cálculo), Slides (apresentações), PDF, Markdown e HTML. Os ficheiros são .docx / .xlsx / .pptx / .pdf a sério, totalmente compatíveis com o Word, o Excel e o PowerPoint. Não é necessária rede.
 
 ## A interface em resumo
 
@@ -18,7 +18,7 @@ De qualquer uma destas formas:
 
 - Clique num cartão de criação rápida na secção [Início rápido](help://getting-started) do **Início** (AI Docs, AI Sheets, AI Slides, ...).
 - Menu **Arquivo ▸ Novo**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML ou PDF.
-- Arraste um ficheiro para a janela, ou clique duas vezes nele no gestor de ficheiros (se o GenOffice for a aplicação predefinida).
+- Arraste um ficheiro para a janela, ou clique duas vezes nele no gestor de ficheiros (se o Plot Docs for a aplicação predefinida).
 
 O documento novo abre sem título; o ficheiro no disco só é criado no primeiro salvamento.
 
@@ -26,7 +26,7 @@ O documento novo abre sem título; o ficheiro no disco só é criado no primeiro
 
 - O menu **Arquivo ▸ Abrir…** (⌘O/ctrl+O) abre o seletor de ficheiros do sistema: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Clique em qualquer item da lista **Recentes** no ecrã Início.
-- `genoffice <ficheiro>` a partir de um terminal também abre ficheiros.
+- `plotdocs <ficheiro>` a partir de um terminal também abre ficheiros.
 
 ## Como funciona o salvamento
 
@@ -52,7 +52,7 @@ Os atalhos dentro de cada editor (pincel de formatação, pesquisar e substituir
 
 ## Os atalhos Option+Command
 
-Option+Command é a camada que o Word reserva para saltos estruturados, e o GenOffice preenche-a da mesma forma. O Docs fica com a maioria deles, o Sheets fica com dois seus para ficar em paridade com o Excel; um atalho funciona em todo o lado.
+Option+Command é a camada que o Word reserva para saltos estruturados, e o Plot Docs preenche-a da mesma forma. O Docs fica com a maioria deles, o Sheets fica com dois seus para ficar em paridade com o Excel; um atalho funciona em todo o lado.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Repare que **⌥⌘0 significa Normal no Docs e Bordas externas no Sheets**. Nun
 
 **Todos os editores**: **⌥⌘R / Ctrl+F1** recolhe a faixa de opções, tal como descrito acima.
 
-Isso deixa o ⌥⌘D livre para o GenOffice usar no macOS, se um comando futuro precisar dele.
+Isso deixa o ⌥⌘D livre para o Plot Docs usar no macOS, se um comando futuro precisar dele.
 
 ## Para onde ir a seguir
 

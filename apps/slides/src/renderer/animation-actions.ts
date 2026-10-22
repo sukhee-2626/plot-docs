@@ -2,7 +2,7 @@
  * Transition and animation actions extracted from App.tsx.
  * Functions take the ActionCtx built fresh per call.
  */
-import type { ShapeRenderNode } from '@genoffice/pptx-render'
+import type { ShapeRenderNode } from '@plotdocs/pptx-render'
 import type { AnimEffectKind, AnimTrigger, AnimationItem, TransitionKind } from '../shared/ipc'
 import type { ActionCtx } from './action-context'
 import { animClassOf, animGalleryItem } from './animation-play'

@@ -110,7 +110,7 @@ test.describe('docs mirrored margins', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-mirror-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-mirror-')))
     docPath = join(dir, 'mirror.docx')
     writeFileSync(docPath, await twoPageDocx())
   })

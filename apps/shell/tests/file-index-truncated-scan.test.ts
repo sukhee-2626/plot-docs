@@ -15,7 +15,7 @@ afterEach(() => {
 
 describe('FileIndexer with a budget-capped scan', () => {
   it('keeps indexed entries the capped walk never reached', async () => {
-    const storeDir = mkdtempSync(join(tmpdir(), 'genoffice-indexer-db-'))
+    const storeDir = mkdtempSync(join(tmpdir(), 'plotdocs-indexer-db-'))
     const store = new FileIndexStore(join(storeDir, 'index.db'))
     try {
       const unreached = join(storeDir, 'deep', 'notes.md')

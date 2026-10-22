@@ -16,7 +16,7 @@ import { createCliRunner, type CliRunner } from './mcp/cli-runner'
  *   not chosen, and until they click Import the model does not see them.
  *   `ai:skill-text` takes a name, never a path: the model cannot name a file,
  *   it can only pick an entry from the list this process vouched for.
- * - `ai:run-cli` spawns the bundled `genoffice` CLI and nothing else — the
+ * - `ai:run-cli` spawns the bundled `plotdocs` CLI and nothing else — the
  *   executable is resolved here, so an argv is a command line for our own
  *   document tool, not a general shell. `--json` is appended by the runner,
  *   which is also what keeps the result a single parseable object instead of
@@ -116,8 +116,8 @@ export function registerUserSkillsIpc(deps: UserSkillsDeps): void {
 /** the CLI entry the app ships, dev or packaged — the same one MCP delegates to */
 export function bundledCliEntry(): string {
   return app.isPackaged
-    ? join(process.resourcesPath, 'cli', 'genoffice.cjs')
-    : join(app.getAppPath(), '..', 'packages', 'cli', 'dist', 'genoffice.cjs')
+    ? join(process.resourcesPath, 'cli', 'plotdocs.cjs')
+    : join(app.getAppPath(), '..', 'packages', 'cli', 'dist', 'plotdocs.cjs')
 }
 
 export function makeUserCliRunner(): CliRunner {

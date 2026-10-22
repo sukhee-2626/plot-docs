@@ -7,7 +7,7 @@ import { wordSegmentAt } from './word-range'
 
 /**
  * Ctrl/⌘+click adds a non-contiguous selection range, the way OnlyOffice and
- * browsers do. Asked for in genoffice#2013 ("requested in OnlyOffice for many
+ * browsers do. Asked for in plotdocs#2013 ("requested in OnlyOffice for many
  * years").
  *
  * ProseMirror's Selection is a single `{from, to}` pair, so the added ranges

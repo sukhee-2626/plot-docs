@@ -1,4 +1,4 @@
-import type { AgentSkill } from '@genoffice/agent-core'
+import type { AgentSkill } from '@plotdocs/agent-core'
 import type { UserCliRun, UserSkillEntry } from '../../shared/ipc'
 import { t } from '../i18n/locale'
 
@@ -8,7 +8,7 @@ import { t } from '../i18n/locale'
  * #1895 put the skills on disk (userData/skills); this is the half that reaches
  * the model. The main process owns every boundary — only installed skills are
  * listed, `read_skill` takes a name and the main process resolves the path, and
- * `run_cli` spawns the bundled genoffice CLI and nothing else (user-cli.ts) —
+ * `run_cli` spawns the bundled plotdocs CLI and nothing else (user-cli.ts) —
  * so this file is a caller, not a guard.
  *
  * buildContext is synchronous by contract, and the list lives across an IPC
@@ -24,7 +24,7 @@ none.
 - read_skill returns one skill's full text, by its exact name. Follow its steps
   with the document tools you already have; quote its constraints rather than
   paraphrasing them, and prefer its steps over guessing.
-- run_cli executes the bundled genoffice command line (the same "genoffice …
+- run_cli executes the bundled plotdocs command line (the same "plotdocs …
   --json" contract the skills describe). Use it when a skill directs you to, or
   for batch work no single document call covers. It runs only this app's CLI —
   it is not a general shell — and long output is truncated.`
@@ -60,7 +60,7 @@ export function createSkillsSkill(): AgentSkill {
       {
         name: 'run_cli',
         description:
-          "Run the bundled genoffice command line (it always answers --json). Only this app's own CLI, not a general shell; the first argument must be a command such as convert, create, info.",
+          "Run the bundled plotdocs command line (it always answers --json). Only this app's own CLI, not a general shell; the first argument must be a command such as convert, create, info.",
         inputSchema: {
           type: 'object',
           properties: {

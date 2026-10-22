@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 
-import { latexToOmml, ommlToMathML } from '@genoffice/docx-engine/math'
+import { latexToOmml, ommlToMathML } from '@plotdocs/docx-engine/math'
 import { useI18n } from './i18n/locale'
 import { useModalDialog } from './modal-dialog'
 

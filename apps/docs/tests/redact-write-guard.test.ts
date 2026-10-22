@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
 import { TextSelection } from '@tiptap/pm/state'
-import { parseDocx } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { blocksToPmDoc } from '../src/renderer/editor/convert'
 import { editorExtensions } from '../src/renderer/editor/extensions'
@@ -186,7 +186,7 @@ describe('the write guard on model output', () => {
     // a `{{token}}` the document already contained is content, not one of our
     // markers. A model asked to fill a template in is doing what it was asked,
     // and reading the filled token as a damaged marker refused the whole batch
-    // — which is what stopped `genoffice merge` from filling a docx at all.
+    // — which is what stopped `plotdocs merge` from filling a docx at all.
     const editor = await open('Invoice for {{name}}, due {{due.date}}')
     const out = executeOps(editor, replaceOps('{{name}}', 'Ada'))
     expect(out.ok, out.error).toBe(true)

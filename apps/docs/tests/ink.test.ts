@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Block, InkInfo } from '@genoffice/docx-engine'
+import type { Block, InkInfo } from '@plotdocs/docx-engine'
 import { pmDocToSavePlan, type PmNode } from '../src/renderer/editor/convert'
 import {
   annotationsFromParsed,

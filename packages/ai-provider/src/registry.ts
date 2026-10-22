@@ -19,7 +19,7 @@ export type AiProtocol = 'anthropic' | 'gemini' | 'openai-compatible' | 'codex-a
 
 export interface ProviderCapabilities {
   /** How the provider authenticates: app login, user key, or the Codex CLI's existing login. */
-  auth: 'gsk-login' | 'api-key' | 'codex-chatgpt'
+  auth: 'soopus-login' | 'api-key' | 'codex-chatgpt'
   /** chat models accept image input (declarative; for custom endpoints it is assumed, not known) */
   vision: boolean
 }
@@ -122,9 +122,9 @@ function fixedEndpoint(
 }
 
 export const AI_PROVIDER_ADAPTERS: Record<AiProviderId, ProviderAdapter> = {
-  genspark: {
-    meta: metaOf('genspark'),
-    capabilities: { auth: 'gsk-login', vision: true },
+  soopus: {
+    meta: metaOf('soopus'),
+    capabilities: { auth: 'soopus-login', vision: true },
     // Route by model id prefix: claude uses the Anthropic protocol (preserves image
     // input fidelity), the rest OpenAI-compatible. The proxy's gemini endpoint was
     // removed server-side (405 as of 2026-08-31) along with its gemini models.
@@ -172,7 +172,7 @@ export const AI_PROVIDER_ADAPTERS: Record<AiProviderId, ProviderAdapter> = {
     meta: metaOf('openai'),
     capabilities: { auth: 'api-key', vision: true },
     // every current OpenAI model accepts the renamed field, so it is safe endpoint-wide;
-    // other openai-compatible vendors (and the LiteLLM-backed Genspark proxy) still expect `max_tokens`
+    // other openai-compatible vendors (and the LiteLLM-backed Soopus proxy) still expect `max_tokens`
     resolveEndpoint: fixedEndpoint('openai-compatible', 'https://api.openai.com/v1', {
       useMaxCompletionTokens: true,
     }),

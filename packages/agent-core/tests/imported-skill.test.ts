@@ -2,24 +2,24 @@ import { describe, expect, it } from 'vitest'
 import { classifySkill, parseSkillFrontmatter, SKILL_FORMAT_TOKENS } from '../src'
 
 const SKILL = `---
-name: genoffice
-description: Create, convert, read and edit Office documents locally with GenOffice's command line.
+name: plotdocs
+description: Create, convert, read and edit Office documents locally with Plot Docs's command line.
 metadata:
   version: 2.67.1
   cli: '>=0.9.0'
 ---
 
-# genoffice
+# plotdocs
 
-Run \`genoffice --version\` first.
+Run \`plotdocs --version\` first.
 `
 
 describe('parseSkillFrontmatter', () => {
   it('reads name, description and body, and keeps unknown keys', () => {
     const out = parseSkillFrontmatter(SKILL)!
-    expect(out.name).toBe('genoffice')
+    expect(out.name).toBe('plotdocs')
     expect(out.description).toContain('Office documents')
-    expect(out.body.startsWith('# genoffice')).toBe(true)
+    expect(out.body.startsWith('# plotdocs')).toBe(true)
     expect(out.body).not.toContain('---')
     // nested YAML is not modelled: `metadata:`'s children are kept as its text
     expect(out.extra.metadata).toContain('version: 2.67.1')
@@ -66,13 +66,13 @@ describe('parseSkillFrontmatter', () => {
   })
 
   it('survives a byte-order mark, which a hand-edited file can carry', () => {
-    expect(parseSkillFrontmatter('﻿' + SKILL)!.name).toBe('genoffice')
+    expect(parseSkillFrontmatter('﻿' + SKILL)!.name).toBe('plotdocs')
   })
 })
 
 describe('classifySkill', () => {
-  it('keeps a skill that names a format GenOffice opens', () => {
-    const out = classifySkill('genoffice', 'Create and convert docx, xlsx, pptx and pdf files')
+  it('keeps a skill that names a format Plot Docs opens', () => {
+    const out = classifySkill('plotdocs', 'Create and convert docx, xlsx, pptx and pdf files')
     expect(out.relevant).toBe(true)
     expect(out.matched).toEqual(['docx', 'pdf', 'pptx', 'xlsx'])
   })
@@ -88,7 +88,7 @@ describe('classifySkill', () => {
     expect(classifySkill('word-report', 'Draft a Word report from notes').relevant).toBe(true)
   })
 
-  it('drops a skill about work GenOffice does not do', () => {
+  it('drops a skill about work Plot Docs does not do', () => {
     const out = classifySkill('k8s-deploy', 'Deploy to Kubernetes, roll back releases, read logs')
     expect(out.relevant).toBe(false)
     expect(out.matched).toEqual([])

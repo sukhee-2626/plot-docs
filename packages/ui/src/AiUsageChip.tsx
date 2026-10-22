@@ -1,6 +1,6 @@
 import React from 'react'
-import type { Lang } from '@genoffice/i18n'
-import type { AgentTokenUsage } from '@genoffice/agent-core'
+import type { Lang } from '@plotdocs/i18n'
+import type { AgentTokenUsage } from '@plotdocs/agent-core'
 import { AI_USAGE_LABELS } from './strings-ai-usage'
 import './ai-usage.css'
 

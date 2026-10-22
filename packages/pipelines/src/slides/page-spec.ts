@@ -4,11 +4,11 @@
  * PPTX with pptx-engine primitives — no HTML intermediate, no conversion step.
  *
  * The spec's element model mirrors what an editable deck needs (and what
- * Genspark's gen_pptx capture emits): absolutely positioned shapes, images
+ * Soopus's gen_pptx capture emits): absolutely positioned shapes, images
  * (center-cropped to their frame) and text runs on a fixed px canvas.
  *
  * Host facilities (network fetch, image decoding, font metrics) are injected so
- * this module stays testable in plain Node and usable from the genoffice CLI.
+ * this module stays testable in plain Node and usable from the plotdocs CLI.
  */
 import {
   addElement,
@@ -21,8 +21,8 @@ import {
   type Paragraph,
   type TextElement,
   type TextRun,
-} from '@genoffice/pptx-engine'
-import { buildRenderSlide, EMU_PER_PX_96, type FontMetricsProvider } from '@genoffice/pptx-render'
+} from '@plotdocs/pptx-engine'
+import { buildRenderSlide, EMU_PER_PX_96, type FontMetricsProvider } from '@plotdocs/pptx-render'
 import { coverCropFractions } from './cover-crop'
 
 export const SPEC_CANVAS_W = 1280

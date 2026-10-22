@@ -33,41 +33,41 @@ import {
   type AiSettings,
   type AiStreamChunk,
   type AiStreamRequest,
-  type GenSparkAccountStatus,
+  type SoopusAccountStatus,
   type LegacyAiSettings,
-} from '@genoffice/ai-provider'
-import { shutdownCodexAppServers } from '@genoffice/ai-provider/codex-app-server'
-import { startAiTrace } from '@genoffice/ai-provider/trace'
+} from '@plotdocs/ai-provider'
+import { shutdownCodexAppServers } from '@plotdocs/ai-provider/codex-app-server'
+import { startAiTrace } from '@plotdocs/ai-provider/trace'
 import {
   abortOnDestroyed,
   MAX_REMOTE_IMAGE_BYTES,
   fetchRemoteImage,
   readBodyCapped,
   writeJsonAtomic,
-} from '@genoffice/electron-utils'
+} from '@plotdocs/electron-utils'
 import {
   webSearchTool,
   imageSearchTool,
-  ensureGenofficeLogin,
-  noteGskCallFailure,
-  setGenofficeLoginOpener,
-  gskApiKey,
+  ensurePlotdocsLogin,
+  noteSoopusCallFailure,
+  setPlotdocsLoginOpener,
+  soopusApiKey,
   generateImageTool,
   analyzeMediaTool,
   documentMediaRoots,
-  gskLoginInfo,
-  hasGskAuth,
-} from '@genoffice/ai-search'
-import { addPicture, editPictureSrcRect, replacePictureBytes } from '@genoffice/pptx-engine'
+  soopusLoginInfo,
+  hasSoopusAuth,
+} from '@plotdocs/ai-search'
+import { addPicture, editPictureSrcRect, replacePictureBytes } from '@plotdocs/pptx-engine'
 import { rasterImageExt } from './media-mime'
-import { matchesElementRef } from '@genoffice/pptx-engine/identity'
-import { coverCropFractions } from '@genoffice/pipelines/slides'
+import { matchesElementRef } from '@plotdocs/pptx-engine/identity'
+import { coverCropFractions } from '@plotdocs/pipelines/slides'
 import type { AiRunFailure } from '../shared/ipc'
-import { EMU_PER_PX_96 } from '@genoffice/pptx-render'
+import { EMU_PER_PX_96 } from '@plotdocs/pptx-render'
 import { tm } from './i18n-main'
 import { pushHistory, rebuildSlide, scheduleHistoryNotify, sessions } from './session-state'
 
-// ---- AI settings + streaming proxy (the main process does the networking to avoid renderer CORS; implementation shared via @genoffice/ai-provider) ----
+// ---- AI settings + streaming proxy (the main process does the networking to avoid renderer CORS; implementation shared via @plotdocs/ai-provider) ----
 
 const AI_SETTINGS_PATH = () => join(app.getPath('userData'), 'ai-settings.json')
 
@@ -79,7 +79,7 @@ const AI_SETTINGS_PATH = () => join(app.getPath('userData'), 'ai-settings.json')
  * user put next to the deck they are editing, and nothing else.
  */
 function slidesMediaRoots(wcId: number): string[] {
-  return documentMediaRoots(sessions.get(wcId)?.path, join(app.getPath('temp'), 'genoffice-pasted'))
+  return documentMediaRoots(sessions.get(wcId)?.path, join(app.getPath('temp'), 'plotdocs-pasted'))
 }
 
 function readJson<T>(path: string, fallback: T): T {
@@ -124,37 +124,37 @@ export function registerAiIpc(): void {
   app.once('before-quit', shutdownCodexAppServers)
   // Node fetch (undici) direct connections get reset under VPN/tun setups; retry over Chromium's stack
   setRescueFetch((url, init) => net.fetch(url, init))
-  setAiUserAgent(`GenOffice/${app.getVersion()}`)
+  setAiUserAgent(`Plot Docs/${app.getVersion()}`)
 
   ipcMain.handle('ai:get-settings', (): AiSettings => {
     const stored = readJson<Partial<AiSettings> & LegacyAiSettings>(AI_SETTINGS_PATH(), {})
     const settings = resolveAiSettings(stored, defaultAiSettings())
-    // a stored BYOK provider is honored when usable; half-filled configs fall back to genspark
+    // a stored BYOK provider is honored when usable; half-filled configs fall back to soopus
     settings.provider = activeProvider(settings)
     return settings
   })
 
-  // Genspark account (gsk login state): the auth source for AI features; when logged out the frontend uses this to guide login
+  // Soopus account (soopus login state): the auth source for AI features; when logged out the frontend uses this to guide login
   ipcMain.handle(
-    'ai:gsk-status',
-    async (_event, withEmail?: boolean): Promise<GenSparkAccountStatus> => {
-      if (!hasGskAuth()) return { loggedIn: false }
+    'ai:soopus-status',
+    async (_event, withEmail?: boolean): Promise<SoopusAccountStatus> => {
+      if (!hasSoopusAuth()) return { loggedIn: false }
       if (!withEmail) return { loggedIn: true }
-      const info = await gskLoginInfo()
+      const info = await soopusLoginInfo()
       return info?.email ? { loggedIn: true, email: info.email } : { loggedIn: true }
     },
   )
 
-  // a 401 on the gsk key opens the device-code login once (genoffice-auth recovery)
-  setGenofficeLoginOpener((url) => void shell.openExternal(url))
+  // a 401 on the soopus key opens the device-code login once (plotdocs-auth recovery)
+  setPlotdocsLoginOpener((url) => void shell.openExternal(url))
 
-  ipcMain.handle('ai:gsk-login', () => {
-    ensureGenofficeLogin((url) => void shell.openExternal(url))
+  ipcMain.handle('ai:soopus-login', () => {
+    ensurePlotdocsLogin((url) => void shell.openExternal(url))
   })
 
   ipcMain.handle('ai:set-settings', (_event, settings: AiSettings) => {
     // SECURITY.md: payloads are schema-checked in the main process. The settings
-    // file feeds cliPath into spawn() and baseUrl receives the gsk bearer token,
+    // file feeds cliPath into spawn() and baseUrl receives the soopus bearer token,
     // so the renderer's copy is sanitized before it touches disk.
     const sanitized = sanitizeAiSettings(settings)
     if (!sanitized) {
@@ -188,12 +188,12 @@ export function registerAiIpc(): void {
     const maxTokens = request.maxTokens ?? maxOutputTokensOf(settings)
     const provider = settings.provider
     let config = settings.providers?.[provider]
-    // The genspark key never enters the settings file; it is fetched from the gsk login state per request
-    // set only when the gsk key was injected: a 401 then means that key expired
-    let gskKey = ''
-    if (provider === 'genspark' && config && !config.apiKey) {
-      gskKey = gskApiKey()
-      config = { ...config, apiKey: gskKey }
+    // The soopus key never enters the settings file; it is fetched from the soopus login state per request
+    // set only when the soopus key was injected: a 401 then means that key expired
+    let soopusKey = ''
+    if (provider === 'soopus' && config && !config.apiKey) {
+      soopusKey = soopusApiKey()
+      config = { ...config, apiKey: soopusKey }
     }
     // a custom endpoint may name an environment variable instead of storing a key
     config = config ? resolveProfileCredential(config) : config
@@ -204,7 +204,7 @@ export function registerAiIpc(): void {
       send({
         requestId,
         type: 'error',
-        error: provider === 'genspark' ? tm('errGskNotLoggedIn') : tm('errNoApiKey', { provider }),
+        error: provider === 'soopus' ? tm('errSoopusNotLoggedIn') : tm('errNoApiKey', { provider }),
       })
       return
     }
@@ -275,7 +275,7 @@ export function registerAiIpc(): void {
         send({ requestId, type: 'done' })
       } else {
         // an expired/revoked key drops to signed-out so the inline sign-in button shows
-        noteGskCallFailure(gskKey, err)
+        noteSoopusCallFailure(soopusKey, err)
         const msg = err instanceof Error ? err.message : String(err)
         console.error(`[ai-stream] ${requestId} (${provider}/${config.model}) failed:`, msg)
         send({
@@ -337,7 +337,7 @@ export function registerAiIpc(): void {
 // never called; docs does not have these channels, so putting them in the wrong place raises
 // "No handler registered".
 export function registerSlidesOnlyAiIpc(): void {
-  // gsk (Genspark CLI) capabilities: AI image generation / media analysis. Returns an error prompt when not logged in.
+  // soopus (Soopus CLI) capabilities: AI image generation / media analysis. Returns an error prompt when not logged in.
   ipcMain.handle(
     'ai:generate-image',
     async (
@@ -364,7 +364,7 @@ export function registerSlidesOnlyAiIpc(): void {
           transparentBackground: op.transparentBackground === true,
         },
         {
-          notLoggedInError: tm('errGskCli'),
+          notLoggedInError: tm('errSoopusCli'),
           mediaRoots: slidesMediaRoots(event.sender.id),
         },
       )
@@ -381,7 +381,7 @@ export function registerSlidesOnlyAiIpc(): void {
           requirements: String(op.requirements ?? ''),
         },
         {
-          notLoggedInError: tm('errGskCli'),
+          notLoggedInError: tm('errSoopusCli'),
           mediaRoots: slidesMediaRoots(event.sender.id),
         },
       )

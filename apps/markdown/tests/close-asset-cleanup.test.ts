@@ -72,12 +72,12 @@ vi.mock('electron', () => ({
   },
 }))
 
-vi.mock('@genoffice/electron-utils', () => ({
+vi.mock('@plotdocs/electron-utils', () => ({
   configuredDefaultSaveDir: vi.fn(() => tmpdir()),
   contextMenuLabels: vi.fn(() => ({})),
   installContextMenu: vi.fn(),
   installNavigationGuard: vi.fn(),
-  rendererUrl: vi.fn(() => 'genoffice-app://markdown/index.html'),
+  rendererUrl: vi.fn(() => 'plotdocs-app://markdown/index.html'),
   safeExternalUrl: vi.fn(() => null),
   showOpenDialogWithMemory: vi.fn(),
   showSaveDialogWithMemory: (...args: unknown[]) => showSaveDialogWithMemory(...args),

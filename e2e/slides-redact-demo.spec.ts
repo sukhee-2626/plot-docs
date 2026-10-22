@@ -102,7 +102,7 @@ async function buildPptx(path: string): Promise<void> {
 
 test('a reader can withhold a picture from the model without losing it', async () => {
   test.setTimeout(180_000)
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-redact-slides-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-redact-slides-'))
   const pptx = join(dir, 'deck.pptx')
   await buildPptx(pptx)
 
@@ -115,7 +115,7 @@ test('a reader can withhold a picture from the model without losing it', async (
       resolve('apps/slides'),
       pptx,
     ],
-    env: { ...env, GENOFFICE_USER_DATA: join(dir, 'user-data'), GENOFFICE_LANG: 'en' },
+    env: { ...env, PLOTDOCS_USER_DATA: join(dir, 'user-data'), PLOTDOCS_LANG: 'en' },
   })
   try {
     const page = await app.firstWindow()

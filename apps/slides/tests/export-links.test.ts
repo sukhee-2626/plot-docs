@@ -1,6 +1,6 @@
-import type { RenderNode, RenderSlide } from '@genoffice/pptx-render'
+import type { RenderNode, RenderSlide } from '@plotdocs/pptx-render'
 import { describe, expect, it } from 'vitest'
-import { safeExternalUrl } from '@genoffice/electron-utils/safe-external-url'
+import { safeExternalUrl } from '@plotdocs/electron-utils/safe-external-url'
 import type { LinkTargetOp } from '../src/shared/ipc'
 import { DECK_LINK_PROTOCOLS, decodeLinkTarget } from '../src/shared/run-link'
 import {

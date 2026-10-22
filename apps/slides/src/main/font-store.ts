@@ -2,7 +2,7 @@
 import { join } from 'node:path'
 import { readFileSync } from 'node:fs'
 import { app, net } from 'electron'
-import type { OpenedPptx } from '@genoffice/pptx-engine'
+import type { OpenedPptx } from '@plotdocs/pptx-engine'
 import {
   downloadCatalogEntry as downloadEntry,
   downloadFontFamily as downloadFromStore,
@@ -11,8 +11,8 @@ import {
   normalizeCdnBaseUrl,
   type CatalogEntry,
   type FontStoreEnv,
-} from '@genoffice/electron-utils/font-store'
-import { FONT_CATALOG, type CatalogFamily } from '@genoffice/electron-utils/font-catalog'
+} from '@plotdocs/electron-utils/font-store'
+import { FONT_CATALOG, type CatalogFamily } from '@plotdocs/electron-utils/font-catalog'
 import { familyAvailable, fontFileFamilies, setUserFontDir } from './fonts'
 
 export { FONT_CATALOG, normalizeCdnBaseUrl }
@@ -21,7 +21,7 @@ export type { CatalogFamily }
 /** Read the build-injected font CDN URL from packaged app metadata. */
 export function extractFontCdnBaseUrl(pkg: unknown): string | null {
   if (!pkg || typeof pkg !== 'object') return null
-  const raw = (pkg as Record<string, unknown>).genofficeFontCdn
+  const raw = (pkg as Record<string, unknown>).plotdocsFontCdn
   if (!raw || typeof raw !== 'object') return null
   return normalizeCdnBaseUrl((raw as Record<string, unknown>).baseUrl)
 }
@@ -32,7 +32,7 @@ export function extractFontCdnBaseUrl(pkg: unknown): string | null {
  * all downloadable-font UI stays disabled while local font installation works.
  */
 export function fontCdnBaseUrl(): string | null {
-  if (!app.isPackaged) return normalizeCdnBaseUrl(process.env.GENOFFICE_FONT_CDN_URL)
+  if (!app.isPackaged) return normalizeCdnBaseUrl(process.env.PLOTDOCS_FONT_CDN_URL)
   try {
     const pkg = JSON.parse(readFileSync(join(app.getAppPath(), 'package.json'), 'utf8')) as unknown
     return extractFontCdnBaseUrl(pkg)

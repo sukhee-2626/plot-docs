@@ -12,7 +12,7 @@ import {
   type HfImage,
   type HfParagraph,
   type Run,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 
 export const PAGE_TOKEN = '{PAGE}'
 export const TOTAL_TOKEN = '{NUMPAGES}'

@@ -1,6 +1,6 @@
-# התקנת GenOffice
+# התקנת Plot Docs
 
-כל גרסה מתפרסמת ב[עמוד ההפצות](https://github.com/genspark-ai/genoffice/releases/latest). כולן מגיעות מ-`main`; ומתקיני macOS ו-Windows חתומים.
+כל גרסה מתפרסמת ב[עמוד ההפצות](https://github.com/Soopus AI-ai/plotdocs/releases/latest). כולן מגיעות מ-`main`; ומתקיני macOS ו-Windows חתומים.
 
 ## בחירת הקובץ למחשב שלך
 
@@ -18,32 +18,32 @@
 
 ## ב-macOS
 
-פתחו את ה-`.dmg` וגררו את **GenOffice** אל Applications. בגרסת Intel ההפעלה הראשונה מבקשת אישור לפתיחה: לחצו לחיצה ימנית על האפליקציה ב-Applications ▸ פתיחה. זה Gatekeeper מול דיסק-אימג' שנראה לא חתום, לא הורדה פגומה.
+פתחו את ה-`.dmg` וגררו את **Plot Docs** אל Applications. בגרסת Intel ההפעלה הראשונה מבקשת אישור לפתיחה: לחצו לחיצה ימנית על האפליקציה ב-Applications ▸ פתיחה. זה Gatekeeper מול דיסק-אימג' שנראה לא חתום, לא הורדה פגומה.
 
 ## ב-Windows
 
-הפעילו את מתקין ה-`.exe`. הוא מוסיף את GenOffice לתפריט ההתחלה ורושם `.docx`, `.xlsx`, `.pptx`, `.pdf` ודומים, כך שלחיצה כפולה על קובץ פותחת אותו.
+הפעילו את מתקין ה-`.exe`. הוא מוסיף את Plot Docs לתפריט ההתחלה ורושם `.docx`, `.xlsx`, `.pptx`, `.pdf` ודומים, כך שלחיצה כפולה על קובץ פותחת אותו.
 
 ## ב-Linux
 
 **Debian / Ubuntu**
 
 ```sh
-sudo apt install ./genoffice_<version>_amd64.deb
+sudo apt install ./plotdocs_<version>_amd64.deb
 ```
 
 **Fedora / RHEL / openSUSE**
 
 ```sh
-sudo dnf install ./genoffice-<version>.x86_64.rpm     # Fedora / RHEL family
-sudo zypper install ./genoffice-<version>.x86_64.rpm  # openSUSE
+sudo dnf install ./plotdocs-<version>.x86_64.rpm     # Fedora / RHEL family
+sudo zypper install ./plotdocs-<version>.x86_64.rpm  # openSUSE
 ```
 
 **AppImage** — רץ מהמקום שבו הוא נמצא, בלי שום שלב התקנה:
 
 ```sh
-chmod +x GenOffice-<version>.AppImage
-./GenOffice-<version>.AppImage
+chmod +x Plot Docs-<version>.AppImage
+./Plot Docs-<version>.AppImage
 ```
 
 הוא זקוק לסביבת הריצה FUSE 2. אם אתם מעדיפים לא להתקין אותה, הפעילו אותו עם `--appimage-extract-and-run`, ואז החולקה המבודדת עובדת מהתיקייה שחולצה.
@@ -64,4 +64,4 @@ chmod +x GenOffice-<version>.AppImage
 
 ## שורת הפקודה מגיעה עמה
 
-כל התקנה כוללת פקודת `genoffice` שמדברת עם אותם מנועים שהחלון משתמש בהם, ולכן השניים לעולם אינם חלוקים לגבי קובץ. ב-macOS וב-Windows היא נמצאת בתוך חבילת האפליקציה; ו-`genoffice install-cli` מציבה אותה ב-`PATH` שלכם. ראו **שורת פקודה וסוכנים** למה שהיא יודעת לעשות.
+כל התקנה כוללת פקודת `plotdocs` שמדברת עם אותם מנועים שהחלון משתמש בהם, ולכן השניים לעולם אינם חלוקים לגבי קובץ. ב-macOS וב-Windows היא נמצאת בתוך חבילת האפליקציה; ו-`plotdocs install-cli` מציבה אותה ב-`PATH` שלכם. ראו **שורת פקודה וסוכנים** למה שהיא יודעת לעשות.

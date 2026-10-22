@@ -5,7 +5,7 @@
  * once with an empty dependency list.
  */
 import { deleteSelectedVertex } from './edit-points-actions'
-import type { FontSizeStep } from '@genoffice/pptx-ops/font-size'
+import type { FontSizeStep } from '@plotdocs/pptx-ops/font-size'
 import type { ActionCtx, EditingState } from './action-context'
 import type { EditTransformMultiOp } from '../shared/ipc'
 import { FIT_WIDTH, NUDGE_STEP_PX } from './app-constants'

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { parseDocx, readSections, saveDocx } from '@genoffice/docx-engine'
+import { parseDocx, readSections, saveDocx } from '@plotdocs/docx-engine'
 import { parseDocxOffThread } from '../src/renderer/parse-off-thread'
 import { blocksToPmDoc, pmDocOptions, pmDocToSavePlan } from '../src/renderer/editor/convert'
 

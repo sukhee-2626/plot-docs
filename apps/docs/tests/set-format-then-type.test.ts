@@ -7,7 +7,7 @@
  */
 import { Editor } from '@tiptap/core'
 import { describe, expect, it } from 'vitest'
-import { buildBlankDocx, parseDocx, saveDocx } from '@genoffice/docx-engine'
+import { buildBlankDocx, parseDocx, saveDocx } from '@plotdocs/docx-engine'
 import { blocksToPmDoc, pmDocToSavePlan } from '../src/renderer/editor/convert'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { mkdtemp, mkdir, rm, utimes, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
-import type { AgentToolDef } from '@genoffice/agent-core'
+import type { AgentToolDef } from '@plotdocs/agent-core'
 import { MAX_STREAM_TOOL_CALLS, MAX_TOOL_JSON_CHARS } from '../src/protocols/shared'
 import {
   activePermissionProfileId,
@@ -56,7 +56,7 @@ const tools: AgentToolDef[] = [
 
 describe('Codex app-server bridge', () => {
   it('automatically selects the newest complete desktop-managed Codex install', async () => {
-    const root = await mkdtemp(join(tmpdir(), 'genoffice-codex-discovery-'))
+    const root = await mkdtemp(join(tmpdir(), 'plotdocs-codex-discovery-'))
     try {
       const older = join(root, 'old-release')
       const newer = join(root, 'new-release')
@@ -80,7 +80,7 @@ describe('Codex app-server bridge', () => {
   })
 
   it('migrates a stale saved hash path to the current managed install', async () => {
-    const root = await mkdtemp(join(tmpdir(), 'genoffice-codex-migration-'))
+    const root = await mkdtemp(join(tmpdir(), 'plotdocs-codex-migration-'))
     try {
       const current = join(root, 'current-release')
       await mkdir(current)
@@ -105,22 +105,22 @@ describe('Codex app-server bridge', () => {
 
   it('confines Codex tool reads to the temp dir through a permission profile', () => {
     const config = { apiKey: '', model: 'gpt-5.6-terra' }
-    const params = codexThreadStartParams(config, '/tmp/genoffice-codex-x', 'profile')
+    const params = codexThreadStartParams(config, '/tmp/plotdocs-codex-x', 'profile')
     expect(params).not.toHaveProperty('sandbox')
     expect(params.approvalPolicy).toBe('never')
     expect(params.config).toEqual({
-      default_permissions: 'genoffice',
+      default_permissions: 'plotdocs',
       permissions: {
-        genoffice: {
-          filesystem: { ':minimal': 'read', '/tmp/genoffice-codex-x': 'read' },
+        plotdocs: {
+          filesystem: { ':minimal': 'read', '/tmp/plotdocs-codex-x': 'read' },
         },
       },
     })
-    expect(codexThreadStartParams(config, '/tmp/genoffice-codex-x', 'read-only')).toMatchObject({
+    expect(codexThreadStartParams(config, '/tmp/plotdocs-codex-x', 'read-only')).toMatchObject({
       sandbox: 'read-only',
     })
-    expect(activePermissionProfileId({ activePermissionProfile: { id: 'genoffice' } })).toBe(
-      'genoffice',
+    expect(activePermissionProfileId({ activePermissionProfile: { id: 'plotdocs' } })).toBe(
+      'plotdocs',
     )
     expect(activePermissionProfileId({ activePermissionProfile: null })).toBeUndefined()
   })
@@ -156,7 +156,7 @@ describe('Codex app-server bridge', () => {
     expect(prompt).toContain('8192 output tokens')
   })
 
-  it('parses text and JSON-encoded GenOffice tool arguments', () => {
+  it('parses text and JSON-encoded Plot Docs tool arguments', () => {
     expect(
       parseCodexAppServerTurn(
         JSON.stringify({
@@ -248,7 +248,7 @@ describe('Codex app-server bridge', () => {
     ).resolves.toBe('done')
   })
 
-  it('interrupts the server turn when the abort lands before the turn id is known (genoffice#1110)', async () => {
+  it('interrupts the server turn when the abort lands before the turn id is known (plotdocs#1110)', async () => {
     const calls: { method: string; params: unknown }[] = []
     let releaseStart: (() => void) | undefined
     const transport: CodexTurnTransport = {

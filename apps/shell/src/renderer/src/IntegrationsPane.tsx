@@ -1,4 +1,4 @@
-import { mcpLaunch, type McpLaunch } from '@genoffice/cli/mcp-launch'
+import { mcpLaunch, type McpLaunch } from '@plotdocs/cli/mcp-launch'
 import { useCallback, useEffect, useState } from 'react'
 import type { TFunc } from './locale'
 import { McpServerSection } from './McpServerSection'
@@ -11,7 +11,7 @@ import type {
 } from '../../shared/integrations-api'
 
 // ── Settings → Integrations ─────────────────────────────────
-// Installs the bundled `genoffice` skill into the coding agents found on this
+// Installs the bundled `plotdocs` skill into the coding agents found on this
 // machine. Every write starts with a click and shows the absolute path first,
 // because the app does not see the shell's CODEX_HOME-style overrides and the
 // user has to be able to spot a wrong target.
@@ -29,7 +29,7 @@ interface Pending {
   agentId?: AgentId
 }
 
-export const NPX_INSTALL_COMMAND = 'npx skills add genspark-ai/genoffice'
+export const NPX_INSTALL_COMMAND = 'npx skills add Soopus-ai/plotdocs'
 
 /** some detected assistant holds an older copy of the skill than the bundled one */
 export const skillUpdateDue = (s: IntegrationsStatus): boolean =>
@@ -45,11 +45,11 @@ const shellWord = (w: string) => (/\s/.test(w) ? `"${w}"` : w)
 export function mcpClaudeCommand(launch: McpLaunch): string {
   const env = Object.entries(launch.env ?? {}).map(([k, v]) => `-e ${k}=${v} `)
   const words = [launch.command, ...launch.args].map(shellWord).join(' ')
-  return `claude mcp add ${env.join('')}--transport stdio genoffice -- ${words}`
+  return `claude mcp add ${env.join('')}--transport stdio plotdocs -- ${words}`
 }
 
 export function mcpConfigJson(launch: McpLaunch): string {
-  const json = JSON.stringify({ mcpServers: { genoffice: launch } }, null, 2)
+  const json = JSON.stringify({ mcpServers: { plotdocs: launch } }, null, 2)
   return json.replace(/"args": \[[^\]]*\]/, `"args": ${JSON.stringify(launch.args)}`)
 }
 
@@ -130,7 +130,7 @@ export function IntegrationsPane({
     const sep = dir.includes('\\') && !dir.includes('/') ? '\\' : '/'
     setPending({
       kind: 'install',
-      path: `${dir}${sep}genoffice${sep}SKILL.md`,
+      path: `${dir}${sep}plotdocs${sep}SKILL.md`,
       target: { dir },
     })
   }

@@ -3,8 +3,8 @@
  * vocabularies, Univer mutation/command names the edit journal listens to,
  * and the Home → Cell Styles presets. Extracted from App.tsx verbatim.
  */
-import type { CellFormatPatch } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
-import type { WorkbookSnapshot } from '@genoffice/xlsx-gateway/domain/workbook.types'
+import type { CellFormatPatch } from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
+import type { WorkbookSnapshot } from '@plotdocs/xlsx-gateway/domain/workbook.types'
 import type { ChartEditData } from './WorkbookVisuals'
 
 export const CHART_TYPE_COMMANDS = ['column', 'bar', 'line', 'area', 'pie', 'doughnut'] as const
@@ -68,7 +68,7 @@ export const FULL_LOAD_MAX_CELLS = 1_000_000
 /// Style-only blanks (a fill brushed over empty rows, a border frame around
 /// the data) are installed too but hold no value; they get their own, looser
 /// ceiling on the total stored count so formatting alone cannot deny the
-/// offer for a workbook whose data is modest (genoffice#1927). Measured:
+/// offer for a workbook whose data is modest (plotdocs#1927). Measured:
 /// 868k values + 887k style-only blanks load in 56 s to 575 MB of JS heap.
 export const FULL_LOAD_MAX_STORED_CELLS = 2_000_000
 /// Bounding-box ceiling for the same offer, over the box the value cells

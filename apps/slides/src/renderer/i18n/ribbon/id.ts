@@ -183,7 +183,7 @@ export const id = {
   ribbonFlipH: 'Balik horizontal',
   ribbonFlipV: 'Balik vertikal',
   ribbonDistributeHint: '{title} (pilih minimal 3 elemen)',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Tampilkan/sembunyikan panel Asisten AI',
   ribbonGroupTable: 'Tabel',
   ribbonInsertTableTip: 'Sisipkan tabel (gaya default; baris dan kolom dapat dipilih)',

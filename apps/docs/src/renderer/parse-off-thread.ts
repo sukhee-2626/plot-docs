@@ -1,4 +1,4 @@
-import { parseDocx } from '@genoffice/docx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
 
 type Parsed = Awaited<ReturnType<typeof parseDocx>>
 

@@ -1,6 +1,6 @@
-# GenOffice इंस्टॉल करना
+# Plot Docs इंस्टॉल करना
 
-हर बिल्ड [Releases पेज](https://github.com/genspark-ai/genoffice/releases/latest) पर प्रकाशित होता है। सभी `main` से बनी होती हैं; और macOS तथा Windows के इंस्टॉलर हस्ताक्षरित होते हैं।
+हर बिल्ड [Releases पेज](https://github.com/Soopus AI-ai/plotdocs/releases/latest) पर प्रकाशित होता है। सभी `main` से बनी होती हैं; और macOS तथा Windows के इंस्टॉलर हस्ताक्षरित होते हैं।
 
 ## अपने मशीन के लिए फ़ाइल चुनें
 
@@ -18,32 +18,32 @@
 
 ## macOS पर
 
-`.dmg` खोलें और **GenOffice** को Applications में खींचें। Intel बिल्ड में पहली बार चलाने पर यह खोलने की पुष्टि माँगता है: Applications में ऐप पर राइट-क्लिक करके ▸ खोलें चुनें। यह बिना हस्ताक्षर वाली डिस्क इमेज के सामने Gatekeeper है, क्षतिग्रस्त डाउनलोड नहीं।
+`.dmg` खोलें और **Plot Docs** को Applications में खींचें। Intel बिल्ड में पहली बार चलाने पर यह खोलने की पुष्टि माँगता है: Applications में ऐप पर राइट-क्लिक करके ▸ खोलें चुनें। यह बिना हस्ताक्षर वाली डिस्क इमेज के सामने Gatekeeper है, क्षतिग्रस्त डाउनलोड नहीं।
 
 ## Windows पर
 
-`.exe` इंस्टॉलर चलाएँ। यह GenOffice को Start मेन्यू में रखता है और `.docx`, `.xlsx`, `.pptx`, `.pdf` तथा इन्हीं जैसे प्रकार पंजीकृत कर देता है, ताकि किसी फ़ाइल पर डबल-क्लिक उसे खोल दे।
+`.exe` इंस्टॉलर चलाएँ। यह Plot Docs को Start मेन्यू में रखता है और `.docx`, `.xlsx`, `.pptx`, `.pdf` तथा इन्हीं जैसे प्रकार पंजीकृत कर देता है, ताकि किसी फ़ाइल पर डबल-क्लिक उसे खोल दे।
 
 ## Linux पर
 
 **Debian / Ubuntu**
 
 ```sh
-sudo apt install ./genoffice_<version>_amd64.deb
+sudo apt install ./plotdocs_<version>_amd64.deb
 ```
 
 **Fedora / RHEL / openSUSE**
 
 ```sh
-sudo dnf install ./genoffice-<version>.x86_64.rpm     # Fedora / RHEL family
-sudo zypper install ./genoffice-<version>.x86_64.rpm  # openSUSE
+sudo dnf install ./plotdocs-<version>.x86_64.rpm     # Fedora / RHEL family
+sudo zypper install ./plotdocs-<version>.x86_64.rpm  # openSUSE
 ```
 
 **AppImage** — बिना किसी इंस्टॉल चरण के, जहाँ है वहीं चलता है:
 
 ```sh
-chmod +x GenOffice-<version>.AppImage
-./GenOffice-<version>.AppImage
+chmod +x Plot Docs-<version>.AppImage
+./Plot Docs-<version>.AppImage
 ```
 
 इसे FUSE 2 रनटाइम चाहिए। यदि आप इसे इंस्टॉल नहीं करना चाहते, तो `--appimage-extract-and-run` के साथ चलाएँ, और सैंडबॉक्स निकाली गई निर्देशिका से ही काम करेगी।
@@ -64,4 +64,4 @@ chmod +x GenOffice-<version>.AppImage
 
 ## कमांड लाइन भी साथ आती है
 
-हर इंस्टॉल में `genoffice` कमांड रहती है जो उसी इंजनों से बात करती है जिन्हें विंडो इस्तेमाल करती है, इसलिए दोनों किसी फ़ाइल पर कभी असहमत नहीं होतीं। macOS और Windows पर यह ऐप बंडल के भीतर होती है; और `genoffice install-cli` इसे आपके `PATH` में रख देती है। यह क्या कर सकती है, इसके लिए **कमांड लाइन और एजेंट** देखें।
+हर इंस्टॉल में `plotdocs` कमांड रहती है जो उसी इंजनों से बात करती है जिन्हें विंडो इस्तेमाल करती है, इसलिए दोनों किसी फ़ाइल पर कभी असहमत नहीं होतीं। macOS और Windows पर यह ऐप बंडल के भीतर होती है; और `plotdocs install-cli` इसे आपके `PATH` में रख देती है। यह क्या कर सकती है, इसके लिए **कमांड लाइन और एजेंट** देखें।

@@ -1,43 +1,43 @@
 # Connecter un agent de codage
 
-GenOffice parle le Model Context Protocol : un agent de programmation peut donc lire, écrire et rendre vos documents avec les mêmes moteurs que l’application. L’agent ne devine pas un format de fichier : il reçoit les schémas typés des ops à partir des définitions mêmes contre lesquelles l’executor valide.
+Plot Docs parle le Model Context Protocol : un agent de programmation peut donc lire, écrire et rendre vos documents avec les mêmes moteurs que l’application. L’agent ne devine pas un format de fichier : il reçoit les schémas typés des ops à partir des définitions mêmes contre lesquelles l’executor valide.
 
 ## L’enregistrer depuis l’application
 
 C’est dans **Paramètres ▸ Intégrations** qu’on fait cela. Le panneau a deux moitiés, et vous pouvez utiliser l’une, l’autre, ou les deux.
 
-**La compétence.** Une ligne par agent de programmation trouvé sur cette machine — Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf —, chacune avec **Installer**, **Mettre à jour** et **Désinstaller**, plus **Installer dans un autre dossier…**, **Télécharger le skill (zip)** et **Copier le chemin**. Si votre assistant n’est pas dans la liste, indiquez à GenOffice un dossier depuis lequel il lit `SKILL.md`, ou enregistrez le zip et laissez l’assistant l’installer. La compétence et le MCP peuvent coexister : l’assistant choisit l’un des deux, et ils font exactement les mêmes choses.
+**La compétence.** Une ligne par agent de programmation trouvé sur cette machine — Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf —, chacune avec **Installer**, **Mettre à jour** et **Désinstaller**, plus **Installer dans un autre dossier…**, **Télécharger le skill (zip)** et **Copier le chemin**. Si votre assistant n’est pas dans la liste, indiquez à Plot Docs un dossier depuis lequel il lit `SKILL.md`, ou enregistrez le zip et laissez l’assistant l’installer. La compétence et le MCP peuvent coexister : l’assistant choisit l’un des deux, et ils font exactement les mêmes choses.
 
-**MCP.** Deux voies sont proposées : **Lancé par l’assistant (recommandé)**, où vous ajoutez la configuration affichée à votre client et où l’assistant lance le serveur lui-même, et le **Serveur HTTP local**, que l’application fait tourner pour vous. Dans les deux cas, l’assistant finit par parler à GenOffice et vous ne tapez jamais une commande.
+**MCP.** Deux voies sont proposées : **Lancé par l’assistant (recommandé)**, où vous ajoutez la configuration affichée à votre client et où l’assistant lance le serveur lui-même, et le **Serveur HTTP local**, que l’application fait tourner pour vous. Dans les deux cas, l’assistant finit par parler à Plot Docs et vous ne tapez jamais une commande.
 
 ## L’enregistrer depuis la ligne de commande
 
 La même chose depuis un terminal — c’est la voie avancée, celle qu’il faut prendre quand l’agent se trouve là où le panneau ne peut pas le trouver :
 
 ```sh
-genoffice mcp install all
+plotdocs mcp install all
 ```
 
 Il trouve les agents de programmation présents sur cette machine et écrit l’entrée du serveur stdio dans la configuration de chacun, en laissant le reste du fichier tel qu’il l’a trouvé.
 
 ```sh
-genoffice mcp list             # where each agent stands
-genoffice mcp install cursor    # just one
-genoffice mcp uninstall cursor  # take it back out
+plotdocs mcp list             # where each agent stands
+plotdocs mcp install cursor    # just one
+plotdocs mcp uninstall cursor  # take it back out
 ```
 
 Un agent installé ailleurs demande `--dir <path>` ; `--force` réécrit une entrée déjà présente.
 
 Tout ce que le serveur accepte tient sur un seul écran — les formes d’enregistrement, de retrait et de liste, le service en HTTP, et les deux options de schéma :
 
-![La vraie sortie de genoffice mcp --help : les formes install, uninstall et list, avec les options --http, --host, --token, --compact-schemas, --dir et --force](img/mcp.png)
+![La vraie sortie de plotdocs mcp --help : les formes install, uninstall et list, avec les options --http, --host, --token, --compact-schemas, --dir et --force](img/mcp.png)
 
 ## L’exécuter sans assistant
 
 Pour un client sur une autre machine, servez-le plutôt en HTTP :
 
 ```sh
-genoffice mcp --http 8765 --token <secret>
+plotdocs mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>` change le point d’écoute. Passez le même jeton au client.
@@ -57,22 +57,22 @@ Chaque commande est un outil. Les plus intéressantes :
 
 ## Schémas et budget plus serré
 
-`apply` et `create` annoncent leurs paramètres `ops`, `cells` et `data` avec le schéma typé de chaque op, généré à partir de `genoffice guide <domain> --json`. C’est précis, et ce n’est pas petit. Un client dont la fenêtre de contexte est serrée peut demander de simples tableaux à la place :
+`apply` et `create` annoncent leurs paramètres `ops`, `cells` et `data` avec le schéma typé de chaque op, généré à partir de `plotdocs guide <domain> --json`. C’est précis, et ce n’est pas petit. Un client dont la fenêtre de contexte est serrée peut demander de simples tableaux à la place :
 
 ```sh
-genoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 genoffice mcp
+plotdocs mcp --compact-schemas
+PLOTDOCS_MCP_COMPACT_SCHEMAS=1 plotdocs mcp
 ```
 
 ## Pourquoi la compétence
 
-Un agent qui ne connaît pas le vocabulaire des ops devine. La compétence embarque la référence et les guides de conception — le même contenu que celui qu’imprime `genoffice guide` —, si bien que l’assistant écrit des ops dont il a réellement lu la spécification. Installez-la depuis le panneau ci-dessus, ou avec `genoffice skill` depuis un terminal.
+Un agent qui ne connaît pas le vocabulaire des ops devine. La compétence embarque la référence et les guides de conception — le même contenu que celui qu’imprime `plotdocs guide` —, si bien que l’assistant écrit des ops dont il a réellement lu la spécification. Installez-la depuis le panneau ci-dessus, ou avec `plotdocs skill` depuis un terminal.
 
 ## Ce qu’il atteint dans l’application
 
-Le serveur ne se limite pas aux fichiers sur le disque. Tant que GenOffice tourne, l’agent peut aussi travailler par la fenêtre :
+Le serveur ne se limite pas aux fichiers sur le disque. Tant que Plot Docs tourne, l’agent peut aussi travailler par la fenêtre :
 
-- **`open_in_genoffice`** ouvre un fichier dans un onglet et le met au premier plan.
+- **`open_in_plotdocs`** ouvre un fichier dans un onglet et le met au premier plan.
 - **`open_documents`** liste tous les documents que vous avez ouverts — id, type, chemin, et s’ils ont des modifications non enregistrées —, puis lit le contenu actuel de l’un d’eux, l’enregistre sur place ou le ferme, en enregistrant d’abord, sauf si vous lui demandez de jeter.
 - **Les outils de contenu** prennent cet id (ou le chemin) comme argument `document`, si bien qu’une modification atterrit dans l’onglet que vous avez déjà ouvert et que la fenêtre bascule pour l’afficher.
 

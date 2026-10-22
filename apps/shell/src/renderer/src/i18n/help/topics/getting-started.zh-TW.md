@@ -1,6 +1,6 @@
 # 快速上手：介面與基本操作
 
-GenOffice 是一套完全在你電腦上運作的辦公套件：單一視窗、一排分頁，裡面裝著六個編輯器——Docs（文字處理）、Sheets（試算表）、Slides（簡報）、PDF、Markdown 與 HTML。檔案就是真正的 .docx / .xlsx / .pptx / .pdf，與 Word、Excel、PowerPoint 完全互通，不需要連網。
+Plot Docs 是一套完全在你電腦上運作的辦公套件：單一視窗、一排分頁，裡面裝著六個編輯器——Docs（文字處理）、Sheets（試算表）、Slides（簡報）、PDF、Markdown 與 HTML。檔案就是真正的 .docx / .xlsx / .pptx / .pdf，與 Word、Excel、PowerPoint 完全互通，不需要連網。
 
 ## 介面總覽
 
@@ -18,7 +18,7 @@ GenOffice 是一套完全在你電腦上運作的辦公套件：單一視窗、�
 
 - 按一下**首頁**的[快速開始](help://getting-started)區卡片（AI Docs、AI Sheets、AI Slides⋯）。
 - 選單 **檔案 ▸ 新增**：Docs（⌘N/ctrl+N）、Sheets、Slides、Markdown、HTML 或 PDF。
-- 把檔案拖進視窗，或在檔案總管中按兩下（前提是 GenOffice 已設為預設應用程式）。
+- 把檔案拖進視窗，或在檔案總管中按兩下（前提是 Plot Docs 已設為預設應用程式）。
 
 新文件會以未命名狀態開啟；磁碟上的檔案要到第一次儲存時才會建立。
 
@@ -26,7 +26,7 @@ GenOffice 是一套完全在你電腦上運作的辦公套件：單一視窗、�
 
 - 選單 **檔案 ▸ 開啟**（⌘O/ctrl+O）會開啟系統選擇視窗：.docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html。
 - 直接點首頁「最近」的任一項目。
-- 終端機裡執行 `genoffice <file>` 也能開啟檔案。
+- 終端機裡執行 `plotdocs <file>` 也能開啟檔案。
 
 ## 儲存模式
 
@@ -52,7 +52,7 @@ GenOffice 是一套完全在你電腦上運作的辦公套件：單一視窗、�
 
 ## Option+Command 這一組快速鍵
 
-Option+Command 是 Word 留給結構化跳轉的層級，GenOffice 也用同樣的方式填滿。其中大部分歸 Docs，Sheets 也另外有兩個自己的快速鍵，用來對齊 Excel；另外還有一個組合在所有編輯器裡都能用。
+Option+Command 是 Word 留給結構化跳轉的層級，Plot Docs 也用同樣的方式填滿。其中大部分歸 Docs，Sheets 也另外有兩個自己的快速鍵，用來對齊 Excel；另外還有一個組合在所有編輯器裡都能用。
 
 **Docs**
 
@@ -81,7 +81,7 @@ Windows 並不是把 Mac 上那兩個組合改寫一次。Excel for Mac 給 Shee
 
 **所有編輯器**：**⌥⌘R / Ctrl+F1** 依上文所述摺疊功能區。
 
-這樣一來，macOS 上的 ⌥⌘D 就空著留給 GenOffice，將來哪個指令想用，就可以直接拿去用。
+這樣一來，macOS 上的 ⌥⌘D 就空著留給 Plot Docs，將來哪個指令想用，就可以直接拿去用。
 
 ## 接下來可以看
 

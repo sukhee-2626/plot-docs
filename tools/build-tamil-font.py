@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build GenOffice Tamil from upstream Noto Sans Tamil, hmtx-normalized to Latha.
+"""Build PlotDocs Tamil from upstream Noto Sans Tamil, hmtx-normalized to Latha.
 
 Word substitutes missing Tamil families (Latha/Vijaya/Noto Sans Tamil...) with
 Latha; macOS has no Latha and Chromium's Tamil fallback (Tamil Sangam MN) is
@@ -23,8 +23,8 @@ from pathlib import Path
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.woff2 import WOFF2FlavorData
 
-DEFAULT_OUT = "apps/docs/src/renderer/fonts/GenOfficeTamil-Regular.woff2"
-FAMILY = "GenOffice Tamil"
+DEFAULT_OUT = "apps/docs/src/renderer/fonts/PlotDocsTamil-Regular.woff2"
+FAMILY = "PlotDocs Tamil"
 
 # ord -> advance in 1/1000 em, measured from Word's latha.ttf (2048 upm).
 # Latha has no A-Z/a-z overlap with Noto Sans Tamil (Noto ships no Latin
@@ -96,7 +96,7 @@ def main() -> None:
         elif adv > 0:
             hmtx[gname] = (round(adv * scale), lsb)
 
-    rename(font, FAMILY, "GenOfficeTamil-Regular")
+    rename(font, FAMILY, "PlotDocsTamil-Regular")
     space = cmap.get(0x20)
     assert space and hmtx[space][0] == round(0.578 * upm), "space must match Latha"
     font.flavor = "woff2"

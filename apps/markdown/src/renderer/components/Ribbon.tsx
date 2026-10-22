@@ -8,11 +8,11 @@ import {
   RibbonExpandButton,
   useDismissablePopover,
   useRibbonCollapse,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { useI18n } from '../i18n/locale'
 import { MARKDOWN_THEME_IDS, type MarkdownTheme } from '../../shared/markdown-theme'
 import type { StringKey } from '../i18n/locale'
-import { GensparkMark } from '../ai/AiPanel'
+import { SoopusMark } from '../ai/AiPanel'
 import { uiOp, type BlockType, type ListKind, type StylableMark } from '../editor/ops'
 import {
   IconBullets,
@@ -49,7 +49,7 @@ interface Props {
   onToggleAutoSave: (on: boolean) => void
   imageEnabled: boolean
   onInsertImage: () => void
-  /** open the image host configuration (genoffice#388) */
+  /** open the image host configuration (plotdocs#388) */
   onImageHost: () => void
   frontmatterOpen: boolean
   onToggleFrontmatter: () => void
@@ -460,9 +460,9 @@ export function Ribbon({
               onClick={onToggleAi}
             >
               <span className="rb-big-icon">
-                <GensparkMark size={26} />
+                <SoopusMark size={26} />
               </span>
-              <span>Genspark AI</span>
+              <span>Soopus AI</span>
             </button>
             {aiPresets.map(({ kind, btn, prompt }) => (
               <button

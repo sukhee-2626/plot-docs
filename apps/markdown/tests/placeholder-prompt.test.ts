@@ -4,7 +4,7 @@ import { placeholderInstruction } from '../src/renderer/editor/redact'
 /**
  * The prompt this editor sends, pinned.
  *
- * The rules were consolidated into `@genoffice/agent-core` so five editors
+ * The rules were consolidated into `@plotdocs/agent-core` so five editors
  * would stop carrying five near-identical copies. Consolidation is only free if
  * the wording does not move: this editor had its own two consequences — what a
  * marker can stand for here, and what the model must not infer from its

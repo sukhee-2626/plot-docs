@@ -4,7 +4,7 @@
  */
 import React, { useState } from 'react'
 import { useModalDialog } from './modal-dialog'
-import { Dropdown } from '@genoffice/ui'
+import { Dropdown } from '@plotdocs/ui'
 import type { LinkTargetOp } from '../../shared/ipc'
 import { EQUATION_GALLERY } from '../insert-presets'
 import { useI18n } from '../i18n/locale'

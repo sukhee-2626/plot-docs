@@ -75,7 +75,7 @@ export async function openSource(
         onChromePressed: () => off,
         onViewImage: () => off,
         getAiSettings: async () => ({ providers: [] }),
-        aiGskStatus: async () => ({ loggedIn: false }),
+        aiSoopusStatus: async () => ({ loggedIn: false }),
         aiStream: async () => {},
         aiStreamCancel: async () => {},
         onAiStream: () => off,

@@ -188,7 +188,7 @@ export const vi = {
   ribbonReplaceTip: 'Tìm và thay thế văn bản',
   ribbonSelectAll: 'Chọn tất cả',
   ribbonSelectAllTip: 'Chọn toàn bộ tài liệu',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Mở trợ lý AI',
   ribbonRemoveTableStyleTip: 'Xóa kiểu bảng',
   ribbonNoStyle: 'Không có kiểu',

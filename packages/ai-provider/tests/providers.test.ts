@@ -16,7 +16,7 @@ import type { AiProviderId } from '../src/types'
 describe('defaultAiSettings', () => {
   it('gives every provider its default model and an empty key by default', () => {
     const settings = defaultAiSettings()
-    expect(settings.provider).toBe('genspark')
+    expect(settings.provider).toBe('soopus')
     for (const meta of AI_PROVIDERS) {
       expect(settings.providers[meta.id].apiKey).toBe('')
       expect(settings.providers[meta.id].model).toBe(meta.defaultModel)
@@ -35,22 +35,22 @@ describe('defaultAiSettings', () => {
 })
 
 describe('provider model catalog', () => {
-  it("offers the vendor's own DeepSeek ids, not the Genspark pool spelling", () => {
-    const genspark = AI_PROVIDERS.find((provider) => provider.id === 'genspark')!
+  it("offers the vendor's own DeepSeek ids, not the Soopus pool spelling", () => {
+    const soopus = AI_PROVIDERS.find((provider) => provider.id === 'soopus')!
     const deepseek = AI_PROVIDERS.find((provider) => provider.id === 'deepseek')!
 
     expect(deepseek.models).toContain('deepseek-flash')
     expect(deepseek.models).not.toContain('deep-seek-v4.1-flash')
     expect(deepseek.models).not.toContain('deepseek-v4-flash')
     expect(deepseek.models).not.toContain('deepseek-v4-flash-vision-exp')
-    expect(genspark.models).not.toContain('deep-seek-v4-flash')
-    expect(genspark.models).not.toContain('deep-seek-v4-flash-vision-exp-openrouter')
+    expect(soopus.models).not.toContain('deep-seek-v4-flash')
+    expect(soopus.models).not.toContain('deep-seek-v4-flash-vision-exp-openrouter')
   })
 
-  it('serves DeepSeek V4.1 Flash through the Genspark proxy under its hyphenated pool id', () => {
-    const genspark = AI_PROVIDERS.find((provider) => provider.id === 'genspark')!
-    expect(genspark.models).toContain('deep-seek-v4.1-flash')
-    expect(genspark.models).not.toContain('deep-seek-v4-pro')
+  it('serves DeepSeek V4.1 Flash through the Soopus proxy under its hyphenated pool id', () => {
+    const soopus = AI_PROVIDERS.find((provider) => provider.id === 'soopus')!
+    expect(soopus.models).toContain('deep-seek-v4.1-flash')
+    expect(soopus.models).not.toContain('deep-seek-v4-pro')
   })
 
   it('keeps Responses-only models out of the OpenCode tiers (no such protocol yet)', () => {
@@ -129,7 +129,7 @@ describe('resolveAiSettings', () => {
         defaults,
       )
       expect(resolved.providers.anthropic).toEqual(defaults.providers.anthropic)
-      expect(activeProvider(resolved)).toBe('genspark')
+      expect(activeProvider(resolved)).toBe('soopus')
     }
   })
 
@@ -204,26 +204,26 @@ describe('resolveAiSettings', () => {
     }
   })
 
-  it('rewrites genspark model ids the proxy no longer serves', () => {
+  it('rewrites soopus model ids the proxy no longer serves', () => {
     const resolved = resolveAiSettings(
       {
         providers: {
-          genspark: { apiKey: '', model: 'gemini-3.7-flash' },
+          soopus: { apiKey: '', model: 'gemini-3.7-flash' },
         } as never,
       },
       defaultAiSettings(),
     )
-    expect(resolved.providers.genspark.model).toBe('claude-opus-5-5')
+    expect(resolved.providers.soopus.model).toBe('claude-opus-5-5')
 
     const gpt = resolveAiSettings(
       {
         providers: {
-          genspark: { apiKey: '', model: 'gpt-5.6' },
+          soopus: { apiKey: '', model: 'gpt-5.6' },
         } as never,
       },
       defaultAiSettings(),
     )
-    expect(gpt.providers.genspark.model).toBe('gpt-5.6-terra')
+    expect(gpt.providers.soopus.model).toBe('gpt-5.6-terra')
 
     const glm = resolveAiSettings(
       { providers: { glm: { apiKey: '', model: 'glm-5-turbo' } } as never },
@@ -333,12 +333,12 @@ describe('clampMaxOutputTokens', () => {
 })
 
 describe('activeProvider', () => {
-  it('honors a configured BYOK provider and falls back to genspark otherwise', () => {
+  it('honors a configured BYOK provider and falls back to soopus otherwise', () => {
     const settings = defaultAiSettings()
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('soopus')
 
     settings.provider = 'kimi'
-    expect(activeProvider(settings)).toBe('genspark') // no key yet
+    expect(activeProvider(settings)).toBe('soopus') // no key yet
     settings.providers.kimi.apiKey = 'sk-user'
     expect(activeProvider(settings)).toBe('kimi')
   })
@@ -347,9 +347,9 @@ describe('activeProvider', () => {
     const settings = defaultAiSettings()
     settings.provider = 'custom'
     settings.providers.custom.apiKey = 'k'
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('soopus')
     settings.providers.custom.baseUrl = 'http://localhost:1234/v1'
-    expect(activeProvider(settings)).toBe('genspark') // custom's default model is empty
+    expect(activeProvider(settings)).toBe('soopus') // custom's default model is empty
     settings.providers.custom.model = 'my-model'
     expect(activeProvider(settings)).toBe('custom')
   })
@@ -382,10 +382,10 @@ describe('activeProvider', () => {
     const settings = defaultAiSettings()
     settings.provider = 'kimi'
     settings.providers.kimi.apiKey = '   '
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('soopus')
     settings.providers.kimi.apiKey = 'sk-user'
     settings.providers.kimi.model = '  '
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('soopus')
     settings.providers.kimi.model = 'kimi-k2'
     expect(activeProvider(settings)).toBe('kimi')
 
@@ -393,33 +393,33 @@ describe('activeProvider', () => {
     custom.provider = 'custom'
     custom.providers.custom.baseUrl = '   '
     custom.providers.custom.model = 'my-model'
-    expect(activeProvider(custom)).toBe('genspark')
+    expect(activeProvider(custom)).toBe('soopus')
   })
 
-  it('falls back to genspark for unknown ids from a hand-edited settings file', () => {
+  it('falls back to soopus for unknown ids from a hand-edited settings file', () => {
     const settings = defaultAiSettings()
     settings.provider = 'nonsense' as AiProviderId
-    expect(activeProvider(settings)).toBe('genspark')
+    expect(activeProvider(settings)).toBe('soopus')
   })
 
-  it('genspark never requires a key (injected from the gsk login at request time)', () => {
+  it('soopus never requires a key (injected from the soopus login at request time)', () => {
     const settings = defaultAiSettings()
-    settings.provider = 'genspark'
-    expect(activeProvider(settings)).toBe('genspark')
+    settings.provider = 'soopus'
+    expect(activeProvider(settings)).toBe('soopus')
   })
 })
 
-describe('gskToolsEnabled', () => {
+describe('soopusToolsEnabled', () => {
   it('defaults on, survives resolveAiSettings, and only an explicit false turns it off', () => {
     expect(cloudToolsEnabled(defaultAiSettings())).toBe(true)
     // pre-toggle settings file (field absent) stays on
     const legacy = resolveAiSettings({ providers: {} as never }, defaultAiSettings())
     expect(cloudToolsEnabled(legacy)).toBe(true)
     const off = resolveAiSettings(
-      { providers: {} as never, gskToolsEnabled: false },
+      { providers: {} as never, soopusToolsEnabled: false },
       defaultAiSettings(),
     )
-    expect(off.gskToolsEnabled).toBe(false)
+    expect(off.soopusToolsEnabled).toBe(false)
     expect(cloudToolsEnabled(off)).toBe(false)
   })
 })

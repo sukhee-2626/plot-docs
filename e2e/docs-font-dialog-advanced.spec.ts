@@ -42,7 +42,7 @@ test.describe('docs font dialog advanced tab', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-font-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-font-')))
     docPath = join(dir, 'spacing.docx')
     writeFileSync(docPath, await minimalDocx('Spaced'))
   })

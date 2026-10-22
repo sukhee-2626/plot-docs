@@ -8,7 +8,7 @@ import {
   createKnowledgeBaseSkill,
   type CreateDocumentFormat,
   type KbFileInfo,
-} from '@genoffice/agent-core'
+} from '@plotdocs/agent-core'
 import {
   AiComposer,
   AiModelPicker,
@@ -19,10 +19,10 @@ import {
   createFileNav,
   Markdown,
   type AiTokenUsageView,
-} from '@genoffice/ui'
-import type { AiSettings } from '@genoffice/ai-provider'
-import { activeProvider } from '@genoffice/ai-provider/browser'
-import type { ChatMessage, ChatMeta, ProjectApi } from '@genoffice/project-store'
+} from '@plotdocs/ui'
+import type { AiSettings } from '@plotdocs/ai-provider'
+import { activeProvider } from '@plotdocs/ai-provider/browser'
+import type { ChatMessage, ChatMeta, ProjectApi } from '@plotdocs/project-store'
 import { useI18n } from './locale'
 import sendEnterOn from './assets/send-enter-on.png'
 import sendEnterOff from './assets/send-enter-off.png'
@@ -171,7 +171,7 @@ export function KbAskPanel({
   const [draft, setDraft] = useState('')
   const [busy, setBusy] = useState(false)
   const [corpusCount, setCorpusCount] = useState<number | null>(null)
-  const [gskEmail, setGskEmail] = useState<string | null>(null)
+  const [soopusEmail, setSoopusEmail] = useState<string | null>(null)
   const [provider, setProvider] = useState<string | null>(null)
   const corpusRef = useRef<KbFileInfo[]>([])
   const settingsRef = useRef<AiSettings | null>(null)
@@ -294,7 +294,7 @@ export function KbAskPanel({
       getSettings: () => window.aiOffice.aiGetSettings(),
       setSettings: (settings) => window.aiOffice.setAiSettings(settings),
       onSettingsChanged: (handler) => window.aiOffice.onAiSettingsChanged(handler),
-      gskLoggedIn: () => window.aiOffice.aiGskStatus().then((s) => !!s.loggedIn),
+      soopusLoggedIn: () => window.aiOffice.aiSoopusStatus().then((s) => !!s.loggedIn),
       openModelSettings: onOpenModelSettings,
     }),
     [onOpenModelSettings],
@@ -317,8 +317,8 @@ export function KbAskPanel({
       .catch(() => setCorpusCount(0))
     refreshSettings()
     void window.aiOffice
-      .aiGskStatus()
-      .then((status) => setGskEmail(status.loggedIn ? (status.email ?? '') : null))
+      .aiSoopusStatus()
+      .then((status) => setSoopusEmail(status.loggedIn ? (status.email ?? '') : null))
       .catch(() => undefined)
     const docSkill = createDocumentSkill({
       create: (request) => window.aiOffice.kbCreateDocument(request),
@@ -636,7 +636,7 @@ export function KbAskPanel({
           {t('askNoSave')}
         </p>
       )}
-      {gskEmail === null && provider === 'genspark' && (
+      {soopusEmail === null && provider === 'soopus' && (
         <p className="kb-ask-login">{t('askNeedsLogin')}</p>
       )}
       <AiComposer

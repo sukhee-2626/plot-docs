@@ -5,7 +5,7 @@ import type { FoundSkill } from '../../shared/found-skill'
 /**
  * The skills this machine already has.
  *
- * Two lists, and the difference is the whole point. What sits in GenOffice's own
+ * Two lists, and the difference is the whole point. What sits in Plot Docs's own
  * folder is ours to use. What sits in a coding agent's folder is offered as a
  * candidate — a developer's `.claude` directory is full of git and deploy
  * skills that have nothing to do with word processing, so scanning them shows
@@ -51,7 +51,7 @@ export function FoundSkills({ t }: { t: TFunc }) {
   // moment later reads as "none found", which is the one thing it must not say
   if (!skills) return null
 
-  const installed = skills.filter((s) => s.source === 'genoffice')
+  const installed = skills.filter((s) => s.source === 'plotdocs')
   const candidates = skills.filter((s) => s.source === 'agent')
 
   return (

@@ -232,7 +232,7 @@ pub struct PivotStylePalette {
 }
 
 /// Built-in pivot style bands, vector-calibrated against Excel for Mac
-/// (calibration workbook: genoffice-sample/sheets/calib/gen_pivot_calib.py,
+/// (calibration workbook: plotdocs-sample/sheets/calib/gen_pivot_calib.py,
 /// truth table pivot-style-truths.json). Accent cycle is (n-1) % 7 with
 /// 0 = dk1 neutral, variants come in blocks of 7. Neutral members tint
 /// their bands lighter than the accent members (0.8 → 0.85, 0.6 → 0.75,
@@ -523,7 +523,7 @@ pub(crate) fn table_style_border(
 }
 
 /// Built-in table style bands, pixel-calibrated against Excel for Mac
-/// (calibration workbook: genoffice-sample/sheets/calib). Accent cycle is
+/// (calibration workbook: plotdocs-sample/sheets/calib). Accent cycle is
 /// (n-1) % 7 with 0 = dk1, variants come in blocks of 7; dk1-based members
 /// tint their bands 0.05 lighter than the accent members do.
 pub(crate) fn builtin_table_palette(

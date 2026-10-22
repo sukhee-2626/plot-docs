@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Home } from './Home'
 import { Onboarding } from './Onboarding'
+import { SplashScreen } from './SplashScreen'
 import { StarPromptCard } from './StarPromptCard'
 import { TabBar } from './TabBar'
 
@@ -13,6 +14,7 @@ export function AppFrame({ initialOnboardingSeen }: AppFrameProps) {
   const [homeActive, setHomeActive] = useState(true)
   const [showOnboarding, setShowOnboarding] = useState(!initialOnboardingSeen)
   const [starPromptDocOpens, setStarPromptDocOpens] = useState<number | null>(null)
+  const [launchComplete, setLaunchComplete] = useState(false)
 
   useEffect(() => {
     const applyTabs = (tabs: Awaited<ReturnType<typeof window.aiOfficeTabs.list>>) => {
@@ -49,7 +51,7 @@ export function AppFrame({ initialOnboardingSeen }: AppFrameProps) {
   }
 
   return (
-    <div className="app-frame">
+    <div className={`app-frame${homeActive ? ' home-active' : ''}${launchComplete ? ' is-launched' : ''}`}>
       <TabBar />
       {/* docs/sheets tabs render as WebContentsView children of this window, positioned
        * by the main process to cover this area — only Home paints its own content here. */}
@@ -62,6 +64,7 @@ export function AppFrame({ initialOnboardingSeen }: AppFrameProps) {
       {starPromptDocOpens !== null && !showOnboarding && homeActive && (
         <StarPromptCard docOpens={starPromptDocOpens} onClose={() => setStarPromptDocOpens(null)} />
       )}
+      <SplashScreen onDone={() => setLaunchComplete(true)} />
     </div>
   )
 }

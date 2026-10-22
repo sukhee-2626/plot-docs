@@ -45,7 +45,7 @@ export interface AgentSkill {
  */
 export function composeSkills(id: string, intro: string, skills: AgentSkill[]): AgentSkill {
   // Recomputed per access: a sub-skill may expose `tools` through a getter
-  // keyed on runtime capability (e.g. gsk login/toggle), and the loop reads
+  // keyed on runtime capability (e.g. soopus login/toggle), and the loop reads
   // the composed skill's tools before every model request.
   const ownerOf = (name: string): AgentSkill | undefined =>
     skills.find((skill) => skill.tools.some((tool) => tool.name === name))

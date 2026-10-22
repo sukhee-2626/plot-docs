@@ -26,7 +26,7 @@ function flowOf(specs: Array<{ top: number; height: number; inner: string; tag?:
   return pm
 }
 
-describe('measureBlocks — whole-flow break scan (genoffice#526 bucketing)', () => {
+describe('measureBlocks — whole-flow break scan (plotdocs#526 bucketing)', () => {
   it('a page-type break in a body paragraph forces the next block to a new page', () => {
     const pm = flowOf([
       { top: 0, height: 20, inner: 'one' },

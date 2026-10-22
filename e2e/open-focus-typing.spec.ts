@@ -88,7 +88,7 @@ async function cellA1Value(page: Page): Promise<unknown> {
   return page.evaluate(() => {
     const api = (
       window as unknown as {
-        __genofficeDebug: {
+        __plotdocsDebug: {
           univerAPI: {
             getActiveWorkbook(): {
               getActiveSheet(): { getRange(a: string): { getValue(): unknown } }
@@ -96,7 +96,7 @@ async function cellA1Value(page: Page): Promise<unknown> {
           }
         }
       }
-    ).__genofficeDebug.univerAPI
+    ).__plotdocsDebug.univerAPI
     return api.getActiveWorkbook()?.getActiveSheet()?.getRange('A1')?.getValue() ?? null
   })
 }
@@ -124,7 +124,7 @@ async function activeRangeNotation(page: Page): Promise<string | null> {
   return page.evaluate(() => {
     const api = (
       window as unknown as {
-        __genofficeDebug?: {
+        __plotdocsDebug?: {
           univerAPI?: {
             getActiveWorkbook?: () => {
               getActiveSheet?: () => {
@@ -134,7 +134,7 @@ async function activeRangeNotation(page: Page): Promise<string | null> {
           }
         }
       }
-    ).__genofficeDebug?.univerAPI
+    ).__plotdocsDebug?.univerAPI
     return (
       api?.getActiveWorkbook?.()?.getActiveSheet?.()?.getActiveRange?.()?.getA1Notation?.() ?? null
     )
@@ -174,7 +174,7 @@ async function waitForSpareViewReady(app: ElectronApplication): Promise<number> 
           )
           if (!view || view.getVisible() || view.webContents.isLoading()) return null
           const mounted = await view.webContents.executeJavaScript(`
-              window.__genofficeSpareViewReady?.() === true &&
+              window.__plotdocsSpareViewReady?.() === true &&
               document.querySelector('#univer-container canvas') !== null &&
               document.querySelector('#univer-container [contenteditable="true"]') !== null
             `)
@@ -192,7 +192,7 @@ async function waitForSpareViewReady(app: ElectronApplication): Promise<number> 
 }
 
 test('docs: typing works immediately after opening a file from Home', async () => {
-  const scratch = await mkdtemp(join(tmpdir(), 'genoffice-openfocus-e2e-'))
+  const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-openfocus-e2e-'))
   const docx = join(scratch, 'open-focus.docx')
   await copyFile(DOCX, docx)
 
@@ -214,7 +214,7 @@ test('docs: typing works immediately after opening a file from Home', async () =
 })
 
 test('sheets: typing works when a spare view opens the next workbook', async () => {
-  const scratch = await mkdtemp(join(tmpdir(), 'genoffice-openfocus-e2e-'))
+  const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-openfocus-e2e-'))
   const firstXlsx = join(scratch, 'first.xlsx')
   const secondXlsx = join(scratch, 'second.xlsx')
   await copyFile(XLSX, firstXlsx)
@@ -224,7 +224,7 @@ test('sheets: typing works when a spare view opens the next workbook', async () 
     onboardingSeen: true,
     videoDir: 'open-focus-sheets',
     // Keep prewarming enabled: the focus bug only shows when a spare is reused.
-    env: { GENOFFICE_DEBUG_HOOKS: '1', GENOFFICE_NO_SPARE_VIEW: '' },
+    env: { PLOTDOCS_DEBUG_HOOKS: '1', PLOTDOCS_NO_SPARE_VIEW: '' },
   })
   try {
     await openFromHome(launched.app, launched.page, firstXlsx)
@@ -238,7 +238,7 @@ test('sheets: typing works when a spare view opens the next workbook', async () 
     await openFromHome(launched.app, launched.page, secondXlsx)
     await sheets.waitForFunction(
       () =>
-        (window as unknown as { __genofficeDebug?: { univerAPI?: unknown } }).__genofficeDebug
+        (window as unknown as { __plotdocsDebug?: { univerAPI?: unknown } }).__plotdocsDebug
           ?.univerAPI,
       null,
       { timeout: 60_000 },
@@ -274,7 +274,7 @@ test('sheets: typing works when a spare view opens the next workbook', async () 
     // A burst of text can still be dropped after every gate passes: the
     // editor element is focused and connected, but the adopted view's input
     // pipeline is not wired to Univer yet, so the editor stays empty and the
-    // Enter that follows only moves the cursor down (CI-only, genoffice#1150). A
+    // Enter that follows only moves the cursor down (CI-only, plotdocs#1150). A
     // user would click the cell and type again — retry exactly that, up to
     // three attempts, and keep every attempt's layer snapshot in the failure
     // message.
@@ -302,7 +302,7 @@ test('sheets: typing works when a spare view opens the next workbook', async () 
       // independently in an adopted view: the CI-only signature is keydowns
       // arriving (Enter moves the cursor) while the IME-style text-input
       // channel (insertText) drops everything — and character-key simulation
-      // can omit input events in the same view (genoffice#1151's original reason for
+      // can omit input events in the same view (plotdocs#1151's original reason for
       // insertText). So every attempt alternates the channel instead of
       // repeating the one that just failed: odd attempts open the editor with
       // a real keydown and commit the rest via insertText; even attempts type
@@ -318,9 +318,9 @@ test('sheets: typing works when a spare view opens the next workbook', async () 
       const focusCtx = await sheets.evaluate(() => {
         const api = (
           window as unknown as {
-            __genofficeDebug?: { focusContext?: () => Record<string, unknown> }
+            __plotdocsDebug?: { focusContext?: () => Record<string, unknown> }
           }
-        ).__genofficeDebug
+        ).__plotdocsDebug
         return api?.focusContext?.() ?? null
       })
       await sheets.keyboard.press('Enter')

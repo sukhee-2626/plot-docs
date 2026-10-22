@@ -17,7 +17,7 @@ async function waitForWorkbook(page: Page): Promise<void> {
 
 test.describe('sheets: Insert → Screenshot', () => {
   test('captures a screen source and saves it into the workbook', async () => {
-    const scratch = await mkdtemp(join(tmpdir(), 'genoffice-screenshot-e2e-'))
+    const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-screenshot-e2e-'))
     const workbook = join(scratch, 'screenshot.xlsx')
     await copyFile(FIXTURE, workbook)
 

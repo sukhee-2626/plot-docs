@@ -1,0 +1,32 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plot Docs">
+  <defs>
+    <linearGradient id="markBg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="55%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#090D16"/>
+    </linearGradient>
+    <linearGradient id="markBorder" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="50%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+    <linearGradient id="markCyan" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="55%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="markViolet" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#4338CA"/>
+      <stop offset="60%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#markBg)" height="472" rx="112" stroke="url(#markBorder)" stroke-width="6" width="472" x="20" y="20"/>
+  <path d="M 175 110 C 175 96 186 85 200 85 L 320 85 C 334 85 345 96 345 110 L 345 355 C 345 369 334 380 320 380 L 200 380 C 186 380 175 369 175 355 Z" fill="#1E293B" stroke="#4338CA" stroke-width="4" transform="rotate(7 260 235)"/>
+  <rect fill="#0F172A" height="300" rx="28" stroke="#38BDF8" stroke-opacity="0.55" stroke-width="4" width="222" x="145" y="95"/>
+  <path d="M 175 345 L 255 245 L 305 345 L 260 345 L 230 295 L 202 345 Z" fill="url(#markViolet)"/>
+  <path d="M 175 200 C 175 160 196 142 225 142 L 295 142 C 330 142 355 166 355 202 C 355 236 328 260 290 260 L 238 260 L 210 292 L 175 292 L 210 252 C 190 244 175 222 175 200 Z" fill="url(#markCyan)"/>
+  <path d="M 225 174 L 288 174 C 308 174 320 186 320 202 C 320 218 308 228 288 228 L 225 228 Z" fill="#0F172A"/>
+  <rect fill="#67E8F9" height="9" rx="4.5" width="62" x="236" y="190"/>
+  <path d="M 375 155 Q 375 175 395 175 Q 375 175 375 195 Q 375 175 355 175 Q 375 175 375 155 Z" fill="#67E8F9"/>
+</svg>

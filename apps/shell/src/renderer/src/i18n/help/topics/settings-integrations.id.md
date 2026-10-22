@@ -23,7 +23,7 @@ Terang / Gelap / Ikuti Sistem. Mode Ikuti Sistem mengikuti tampilan sistem opera
 - **Posisi bilah samping AI** (kiri atau kanan), **Ukuran teks panel AI** dan **Pemeriksaan ejaan di obrolan AI**.
 - **Buka panel AI di dokumen baru** — nonaktif, dokumen baru dimulai dengan panel tertutup, sekali klik lagi.
 - **Simpan otomatis semua dokumen** menyalakan AutoSave secara default di setiap editor; Anda tetap bisa mematikannya untuk satu jendela.
-- **Lokasi penyimpanan** dengan tombol **Ubah**, dan **Aplikasi default untuk dokumen Office** untuk mengambil alih .docx / .xlsx / .pptx bagi GenOffice.
+- **Lokasi penyimpanan** dengan tombol **Ubah**, dan **Aplikasi default untuk dokumen Office** untuk mengambil alih .docx / .xlsx / .pptx bagi Plot Docs.
 
 ## Media & Pencarian AI
 
@@ -39,22 +39,22 @@ Bukan sakelar — setiap kemampuan memilih vendor yang melayaninya, dan kunci se
 
 ## Pengikatan aplikasi predefinida
 
-Pengaturan dapat mendaftarkan GenOffice sebagai aplikasi penangan .docx / .xlsx / .pptx / .pdf dan sejenisnya (pendaftaran aplikasi predefinida tingkat sistem; konfirmasi saat diminta).
+Pengaturan dapat mendaftarkan Plot Docs sebagai aplikasi penangan .docx / .xlsx / .pptx / .pdf dan sejenisnya (pendaftaran aplikasi predefinida tingkat sistem; konfirmasi saat diminta).
 
 ## Pemberitahuan pihak ketiga dan pembaruan
 
 - Bantuan ▸ Pemberitahuan Perangkat Lunak Pihak Ketiga: inventaris lengkap lisensi OSS yang disertakan dengan aplikasi.
 - Bantuan ▸ Periksa Pembaruan…: memicu pemeriksaan manual; versi yang lebih baru menawarkan dipasang.
 
-## Masuk dengan Genspark
+## Masuk dengan Soopus AI
 
-- Jalur masuk (di pengaturan atau di daftar proyek cloud) memakai alur **device-code**: GenOffice menampilkan kode dan membuka login di browser; prosesnya dilanjutkan otomatis setelah selesai.
-- Login hanya dipakai untuk: daftar proyek cloud dan model terkelola Genspark. Tanpa login, semua fitur lokal dan model kustom tetap berfungsi.
+- Jalur masuk (di pengaturan atau di daftar proyek cloud) memakai alur **device-code**: Plot Docs menampilkan kode dan membuka login di browser; prosesnya dilanjutkan otomatis setelah selesai.
+- Login hanya dipakai untuk: daftar proyek cloud dan model terkelola Soopus AI. Tanpa login, semua fitur lokal dan model kustom tetap berfungsi.
 - Keluar cukup satu klik di pengaturan.
 
 ## Integrasi MCP (untuk pengguna lanjutan / klien AI)
 
-**Integrasi** adalah panel yang menghubungkan GenOffice dengan agen pemrograman, dan ia punya artikel tersendiri: Menghubungkan agen pemrograman. Versi singkat — pilih jalurnya (baris perintah, atau MCP), ikuti bagian itu, lalu mulai obrolan baru dan bertanya.
+**Integrasi** adalah panel yang menghubungkan Plot Docs dengan agen pemrograman, dan ia punya artikel tersendiri: Menghubungkan agen pemrograman. Versi singkat — pilih jalurnya (baris perintah, atau MCP), ikuti bagian itu, lalu mulai obrolan baru dan bertanya.
 
 ![Pengaturan ▸ Integrasi: tiga langkah, lalu baris skill dan opsi MCP](img/settings-integrations.png)
 
@@ -64,6 +64,6 @@ Di bawah **Server HTTP lokal**, aplikasi juga bisa menjalankan server itu sendir
 
 | Perintah           | Fungsinya                |
 | ------------------ | ------------------------ |
-| `genoffice <file>` | membuka sebuah file      |
-| `genoffice mcp`    | memulai server MCP lokal |
-| `genoffice --help` | semua perintah dan opsi  |
+| `plotdocs <file>` | membuka sebuah file      |
+| `plotdocs mcp`    | memulai server MCP lokal |
+| `plotdocs --help` | semua perintah dan opsi  |

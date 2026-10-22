@@ -12,8 +12,8 @@
  */
 
 import type { WorkbookFile } from '../shared/desktop-api'
-import carlitoBoldUrl from '@genoffice/ui/fonts/Carlito-Bold.ttf?url'
-import carlitoRegularUrl from '@genoffice/ui/fonts/Carlito-Regular.ttf?url'
+import carlitoBoldUrl from '@plotdocs/ui/fonts/Carlito-Bold.ttf?url'
+import carlitoRegularUrl from '@plotdocs/ui/fonts/Carlito-Regular.ttf?url'
 
 const GENERIC_FAMILY =
   /(?:^|[\s,])(?:serif|sans-serif|monospace|cursive|fantasy|system-ui|math|ui-serif|ui-sans-serif|ui-monospace|ui-rounded)$/i
@@ -695,7 +695,7 @@ function faceSrc(items: readonly string[]): string {
 
 function genuineLocalExists(names: readonly string[]): Promise<boolean> {
   const probes = names.map((n) =>
-    new FontFace('__genoffice-font-probe', `local('${n}')`).load().then(
+    new FontFace('__plotdocs-font-probe', `local('${n}')`).load().then(
       () => true,
       () => false,
     ),

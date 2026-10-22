@@ -18,7 +18,7 @@ let corrupt: string
 async function buildFixturePdf(path: string): Promise<void> {
   const doc = await PDFDocument.create()
   doc.setTitle('MCP Fixture')
-  doc.setAuthor('GenOffice Tests')
+  doc.setAuthor('Plot Docs Tests')
   const font = await doc.embedFont(StandardFonts.Helvetica)
   const p1 = doc.addPage([400, 300])
   p1.drawText('Hello MCP PDF\nSecond line here', { x: 40, y: 200, size: 14, font })
@@ -29,7 +29,7 @@ async function buildFixturePdf(path: string): Promise<void> {
 }
 
 beforeAll(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-pdf-'))
+  dir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-pdf-'))
   threePages = join(dir, 'three-pages.pdf')
   await buildFixturePdf(threePages)
   corrupt = join(dir, 'corrupt.pdf')
@@ -42,7 +42,7 @@ describe('readPdfText (pdfium extraction)', () => {
     const doc = await readPdfText(new Uint8Array(readFileSync(threePages)))
     expect(doc.pageCount).toBe(3)
     expect(doc.info.title).toBe('MCP Fixture')
-    expect(doc.info.author).toBe('GenOffice Tests')
+    expect(doc.info.author).toBe('Plot Docs Tests')
     expect(doc.truncated).toBe(false)
     expect(doc.pages[0]).toMatchObject({ page: 1, widthPt: 400, heightPt: 300 })
     expect(doc.pages[0]!.text).toContain('Hello MCP PDF')

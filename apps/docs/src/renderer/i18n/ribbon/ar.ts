@@ -189,7 +189,7 @@ export const ar = {
   ribbonReplaceTip: 'البحث عن نص واستبداله',
   ribbonSelectAll: 'تحديد الكل',
   ribbonSelectAllTip: 'تحديد المستند بالكامل',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'فتح مساعد الذكاء الاصطناعي',
   ribbonRemoveTableStyleTip: 'إزالة نمط الجدول',
   ribbonNoStyle: 'بلا نمط',

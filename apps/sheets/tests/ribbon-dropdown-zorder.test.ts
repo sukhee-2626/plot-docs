@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 /**
- * Regression pin for the ribbon-header z-order lift (genoffice#1767).
+ * Regression pin for the ribbon-header z-order lift (plotdocs#1767).
  *
  * .excel-header is z-index: 10, so it opens a stacking context and a ribbon
  * dropdown popover's own z-index is trapped inside it, painting under the
@@ -8,7 +8,7 @@
  * the root order). The header is therefore lifted while one of ITS OWN
  * popovers is open.
  *
- * The defect pinned here is which popover counts. html.genoffice-popover-open
+ * The defect pinned here is which popover counts. html.plotdocs-popover-open
  * is toggled by every useDismissablePopover, including the Dropdown inside a
  * dialog; keying the lift on that global class lifted the whole header above
  * .dialog-backdrop (z-index: 40), un-dimming it and making it clickable over
@@ -22,7 +22,7 @@
  * styles.css and run it against DOM built by the real components (the ribbon's
  * ColorDropdown, SubtotalDialog's Dropdown) rather than against class names
  * transcribed by hand — the selector is checked against what the components
- * actually emit, and html.genoffice-popover-open is set by the real
+ * actually emit, and html.plotdocs-popover-open is set by the real
  * useDismissablePopover rather than by the test.
  */
 import { existsSync, readFileSync } from 'node:fs'
@@ -75,7 +75,7 @@ beforeAll(() => {
 afterEach(async () => {
   if (root) await act(async () => root?.unmount())
   root = null
-  document.documentElement.classList.remove('genoffice-popover-open')
+  document.documentElement.classList.remove('plotdocs-popover-open')
   document.body.innerHTML = ''
 })
 
@@ -113,7 +113,7 @@ describe('ribbon header z-order lift', () => {
     // The ribbon's color tools render ColorDropdown without `portal`, so the
     // palette lands inline in the header as .sheets-color-pop. Note this
     // component rolls its own dismissal and never joins the
-    // useDismissablePopover refcount, so html.genoffice-popover-open is NOT set
+    // useDismissablePopover refcount, so html.plotdocs-popover-open is NOT set
     // here — keying the lift on that global class left the ribbon's colour
     // popovers trapped, which is the gap .sheets-color-pop in the selector
     // closes. MenuSelect/ShapeGallerySelect/EditableMenuSelect (the other
@@ -136,7 +136,7 @@ describe('ribbon header z-order lift', () => {
   it('does not lift the header for a popover hosted by a dialog', async () => {
     // SubtotalDialog renders .dialog-backdrop (z-index: 40) in the sheet body
     // and hosts the shared Dropdown; opening one of its dropdowns sets the very
-    // same html.genoffice-popover-open class the old lift keyed on.
+    // same html.plotdocs-popover-open class the old lift keyed on.
     await render(
       shell(
         null,
@@ -158,7 +158,7 @@ describe('ribbon header z-order lift', () => {
     expect(header().contains(pop)).toBe(false)
     // Premise: the real useDismissablePopover inside the dialog is what puts
     // the global class on <html> — the condition the old rule matched on.
-    expect(document.documentElement.classList.contains('genoffice-popover-open')).toBe(true)
+    expect(document.documentElement.classList.contains('plotdocs-popover-open')).toBe(true)
 
     expect(isLifted(header())).toBe(false)
   })

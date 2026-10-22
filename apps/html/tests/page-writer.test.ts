@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { AgentStreamCallbacks, AgentTransport } from '@genoffice/agent-core'
+import type { AgentStreamCallbacks, AgentTransport } from '@plotdocs/agent-core'
 import {
   buildPageWriterRequest,
   extractPageHtml,

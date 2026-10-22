@@ -23,7 +23,7 @@ const SUBCOMMANDS = ['install', 'uninstall', 'list']
 export const mcpCommand: CommandDef = {
   name: 'mcp',
   summary:
-    "Serve every command as a Model Context Protocol tool: on stdio for an MCP client on this machine (`claude mcp add --transport stdio genoffice -- genoffice mcp`, Cursor, Claude Desktop), or with --http as a Streamable HTTP server that clients on other machines reach by URL. Over HTTP, files travel too: PUT /files/<name> uploads one and every tool takes http(s) URLs in place of paths; outputs come back as download URLs and, when small, as embedded resources. Ops, specs and Markdown are passed inline either way; a new deck goes through deck_start, deck_page and deck_build. `mcp install <agent|all>` registers the stdio server in a coding agent's MCP config (Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf); `mcp uninstall <agent>` removes it; `mcp list` shows where each agent stands. The ops, cells and data parameters of the apply and create tools are advertised with the typed per-op schema of `guide <domain> --json`; --compact-schemas (or GENOFFICE_MCP_COMPACT_SCHEMAS=1) advertises them as plain arrays for clients with a small context budget.",
+    "Serve every command as a Model Context Protocol tool: on stdio for an MCP client on this machine (`claude mcp add --transport stdio plotdocs -- plotdocs mcp`, Cursor, Claude Desktop), or with --http as a Streamable HTTP server that clients on other machines reach by URL. Over HTTP, files travel too: PUT /files/<name> uploads one and every tool takes http(s) URLs in place of paths; outputs come back as download URLs and, when small, as embedded resources. Ops, specs and Markdown are passed inline either way; a new deck goes through deck_start, deck_page and deck_build. `mcp install <agent|all>` registers the stdio server in a coding agent's MCP config (Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf); `mcp uninstall <agent>` removes it; `mcp list` shows where each agent stands. The ops, cells and data parameters of the apply and create tools are advertised with the typed per-op schema of `guide <domain> --json`; --compact-schemas (or PLOTDOCS_MCP_COMPACT_SCHEMAS=1) advertises them as plain arrays for clients with a small context budget.",
   usage:
     'mcp [--http <port> [--host <addr>] [--token <secret>]] [--compact-schemas] | mcp install <agent|all> [--dir <path>] [--force] | mcp uninstall <agent|all> [--dir <path>] [--force] | mcp list',
   quiet: (args) => args.positionals.length === 0,
@@ -42,12 +42,12 @@ export const mcpCommand: CommandDef = {
       name: 'token',
       value: 'secret',
       description:
-        'with --http, require this bearer token on every request (default: $GENOFFICE_MCP_TOKEN, else none)',
+        'with --http, require this bearer token on every request (default: $PLOTDOCS_MCP_TOKEN, else none)',
     },
     {
       name: 'compact-schemas',
       description:
-        'advertise ops, cells and data as untyped arrays instead of the per-op schema (smaller tools/list; also GENOFFICE_MCP_COMPACT_SCHEMAS=1)',
+        'advertise ops, cells and data as untyped arrays instead of the per-op schema (smaller tools/list; also PLOTDOCS_MCP_COMPACT_SCHEMAS=1)',
     },
     {
       name: 'dir',
@@ -58,7 +58,7 @@ export const mcpCommand: CommandDef = {
     {
       name: 'force',
       description:
-        'install/uninstall: also write when the agent is not detected or the genoffice entry starts another program',
+        'install/uninstall: also write when the agent is not detected or the plotdocs entry starts another program',
     },
   ],
   async run(args, ctx) {
@@ -115,7 +115,7 @@ export const mcpCommand: CommandDef = {
 async function serve(args: Parameters<CommandDef['run']>[0], ctx: CommandContext) {
   const http = flagString(args, 'http')
   const compactSchemas =
-    flagBool(args, 'compact-schemas') || envFlag(ctx.env.GENOFFICE_MCP_COMPACT_SCHEMAS)
+    flagBool(args, 'compact-schemas') || envFlag(ctx.env.PLOTDOCS_MCP_COMPACT_SCHEMAS)
   if (http === undefined) {
     // lazy: the server imports runCli, which registers this command
     const { serveStdio } = await import('../mcp/server')
@@ -135,7 +135,7 @@ async function serve(args: Parameters<CommandDef['run']>[0], ctx: CommandContext
   if (tokenFlag !== undefined && tokenFlag.trim() === '') {
     throw new CliError(
       EXIT.usage,
-      '--token needs a non-empty value (omit the flag, or set GENOFFICE_MCP_TOKEN)',
+      '--token needs a non-empty value (omit the flag, or set PLOTDOCS_MCP_TOKEN)',
       undefined,
       { reason: 'invalid_argument' },
     )
@@ -157,7 +157,7 @@ async function serve(args: Parameters<CommandDef['run']>[0], ctx: CommandContext
     log: ctx.log,
     port,
     host: hostFlag,
-    token: tokenFlag ?? (ctx.env.GENOFFICE_MCP_TOKEN?.trim() || undefined),
+    token: tokenFlag ?? (ctx.env.PLOTDOCS_MCP_TOKEN?.trim() || undefined),
     compactSchemas,
   })
   return { summary: 'mcp server stopped' }
@@ -176,7 +176,7 @@ interface AgentRow {
   detected: boolean
   config: string
   registered: boolean
-  /** what the existing genoffice entry starts, when there is one */
+  /** what the existing plotdocs entry starts, when there is one */
   command: string | null
 }
 
@@ -188,13 +188,13 @@ interface Target {
 }
 
 function home(env: NodeJS.ProcessEnv): string {
-  return env.GENOFFICE_HOME || homedir()
+  return env.PLOTDOCS_HOME || homedir()
 }
 
 /** The entry every config gets: the absolute launcher, or on Windows the app run as Node on the bundle. */
 function launcher(): { launcher: string; launch: McpLaunch } {
   const path = launcherPath()
-  if (!path) throw new CliError(EXIT.app, 'cannot locate the genoffice launcher')
+  if (!path) throw new CliError(EXIT.app, 'cannot locate the plotdocs launcher')
   return {
     launcher: path,
     launch: mcpLaunchFromLauncher(path, { platform: process.platform, exists: existsSync }),
@@ -223,7 +223,7 @@ function list(ctx: CommandContext) {
   const found = agents.filter((a) => a.detected)
   return {
     summary: found.length
-      ? `${found.length} agent(s) detected, ${found.filter((a) => a.registered).length} with genoffice registered: ${found
+      ? `${found.length} agent(s) detected, ${found.filter((a) => a.registered).length} with plotdocs registered: ${found
           .map((a) => `${a.agent} ${a.status}`)
           .join(', ')}`
       : 'no coding agent detected on this machine',
@@ -306,7 +306,7 @@ function edit(
   const manualHint =
     verb === 'install'
       ? 'paste detail.snippet into the file yourself'
-      : 'remove the genoffice entry from the file yourself'
+      : 'remove the plotdocs entry from the file yourself'
 
   const warnings: Warning[] = []
   const rows: Array<AgentRow & { status: InstallStatus | UninstallStatus; snippet?: string }> = []
@@ -333,7 +333,7 @@ function edit(
         code: status === 'occupied' ? 'entry_occupied' : 'manual_edit_needed',
         message:
           status === 'occupied'
-            ? `${t.id}: the genoffice entry in ${t.file} starts ${before.command ?? 'something else'}`
+            ? `${t.id}: the plotdocs entry in ${t.file} starts ${before.command ?? 'something else'}`
             : `${t.id}: ${t.file} could not be edited; ${verb === 'install' ? 'add' : 'remove'} the entry by hand`,
         suggestion:
           status === 'occupied'
@@ -349,7 +349,7 @@ function edit(
     throw new CliError(
       EXIT.file,
       r.status === 'occupied'
-        ? `${single.id}: the genoffice entry in ${single.file} starts ${r.command ?? 'something else'}; not ${verb === 'install' ? 'replacing' : 'removing'} it`
+        ? `${single.id}: the plotdocs entry in ${single.file} starts ${r.command ?? 'something else'}; not ${verb === 'install' ? 'replacing' : 'removing'} it`
         : `${single.id}: ${single.file} could not be edited safely`,
       {
         agent: single.id,
@@ -374,13 +374,13 @@ function edit(
     .join(', ')
   const nothing = verb === 'install' ? 'nothing registered' : 'nothing removed'
   const summary = changed.length
-    ? `${verb === 'install' ? 'registered genoffice mcp for' : 'removed genoffice mcp from'} ${changed
+    ? `${verb === 'install' ? 'registered plotdocs mcp for' : 'removed plotdocs mcp from'} ${changed
         .map((r) => `${r.agent} (${r.status})`)
         .join(', ')}${tail ? `; ${tail}` : ''}`
     : rows.some((r) => r.status === 'unchanged')
-      ? `genoffice mcp already registered${tail ? `; ${tail}` : ''}`
+      ? `plotdocs mcp already registered${tail ? `; ${tail}` : ''}`
       : rows.some((r) => r.status === 'absent')
-        ? `genoffice mcp was not registered${tail ? `; ${tail}` : ''}`
+        ? `plotdocs mcp was not registered${tail ? `; ${tail}` : ''}`
         : blocked
           ? `${nothing}: ${tail}`
           : `${nothing}: no coding agent detected on this machine`

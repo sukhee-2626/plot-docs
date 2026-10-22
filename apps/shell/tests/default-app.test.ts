@@ -8,7 +8,7 @@ import {
 } from '../src/main/default-app'
 import type { RunCommand } from '../src/main/default-app'
 
-const ME = 'com.genoffice.app'
+const ME = 'ai.plotxyz.plotdocs.app'
 const WPS = 'com.kingsoft.wpsoffice.mac'
 
 function macStatusJson(
@@ -19,15 +19,15 @@ function macStatusJson(
     me: ME,
     types: OFFICE_TYPES.map((t) => {
       const id = owner(t.uti)
-      return { uti: t.uti, id, name: id === ME ? 'GenOffice' : id ? name : null }
+      return { uti: t.uti, id, name: id === ME ? 'Plot Docs' : id ? name : null }
     }),
   })
 }
 
 describe('macAppBundlePath', () => {
   it('walks up from the executable to the .app bundle', () => {
-    expect(macAppBundlePath('/Applications/GenOffice.app/Contents/MacOS/GenOffice')).toBe(
-      '/Applications/GenOffice.app',
+    expect(macAppBundlePath('/Applications/Plot Docs.app/Contents/MacOS/Plot Docs')).toBe(
+      '/Applications/Plot Docs.app',
     )
     expect(macAppBundlePath('/usr/local/bin/electron')).toBeNull()
   })
@@ -90,7 +90,7 @@ describe('parseRegValue', () => {
 describe('createDefaultAppService', () => {
   const base = {
     packaged: true,
-    exePath: '/Applications/GenOffice.app/Contents/MacOS/GenOffice',
+    exePath: '/Applications/Plot Docs.app/Contents/MacOS/Plot Docs',
     openExternal: vi.fn(async () => {}),
   }
 
@@ -107,7 +107,7 @@ describe('createDefaultAppService', () => {
     const run = vi.fn<RunCommand>(async (cmd, args) => {
       expect(cmd).toBe('osascript')
       expect(args.slice(0, 3)).toEqual(['-l', 'JavaScript', '-e'])
-      expect(args[4]).toBe('/Applications/GenOffice.app')
+      expect(args[4]).toBe('/Applications/Plot Docs.app')
       expect(args.slice(5)).toEqual(OFFICE_TYPES.map((t) => t.uti))
       if (args[3].includes('LSSetDefaultRoleHandlerForContentType')) {
         owner = ME
@@ -126,7 +126,7 @@ describe('createDefaultAppService', () => {
     const run = vi.fn<RunCommand>(async (cmd, args) => {
       calls.push([cmd, ...args])
       if (args[0] === 'query')
-        return args[2].includes('spreadsheetml') ? 'wps-office-et.desktop\n' : 'genoffice.desktop\n'
+        return args[2].includes('spreadsheetml') ? 'wps-office-et.desktop\n' : 'plotdocs.desktop\n'
       return ''
     })
     const svc = createDefaultAppService({
@@ -148,7 +148,7 @@ describe('createDefaultAppService', () => {
     expect(calls.find((c) => c[1] === 'default')).toEqual([
       'xdg-mime',
       'default',
-      'genoffice.desktop',
+      'plotdocs.desktop',
       ...OFFICE_TYPES.map((t) => t.mime),
     ])
   })

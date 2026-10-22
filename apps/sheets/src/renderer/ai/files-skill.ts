@@ -1,4 +1,4 @@
-import type { AgentSkill } from '@genoffice/agent-core'
+import type { AgentSkill } from '@plotdocs/agent-core'
 import type { AttachmentMeta } from '../../shared/desktop-api'
 import { ATTACHMENT_IMAGE_EXTS } from '../../shared/desktop-api'
 import { t } from '../i18n/locale'

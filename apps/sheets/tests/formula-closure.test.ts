@@ -80,7 +80,7 @@ describe('containsUnresolvedNames', () => {
     expect(containsUnresolvedNames('CONCAT("[1]",A1)')).toBe(false)
   })
 
-  it('does not read error literals as defined names (genoffice#2024 sample)', () => {
+  it('does not read error literals as defined names (plotdocs#2024 sample)', () => {
     expect(containsUnresolvedNames('((D2*#REF!)+(E2))/C2')).toBe(false)
     expect(containsUnresolvedNames('#REF!')).toBe(false)
     expect(containsUnresolvedNames('IF(A1>0,#N/A,#DIV/0!)+#VALUE!+#NAME?+#NUM!+#NULL!')).toBe(false)

@@ -1,4 +1,4 @@
-import type { AiPanelPrefs } from '@genoffice/ui'
+import type { AiPanelPrefs } from '@plotdocs/ui'
 /**
  * slides main-process <-> renderer IPC contract (Phase 3: open/save/edit, AI not included yet).
  *
@@ -8,18 +8,18 @@ import type { AiPanelPrefs } from '@genoffice/ui'
  * renderer sends edit intents (text/geometry changes) back to the main process, which applies
  * them to the model and rebuilds the RenderSlide.
  */
-import type { RenderSlide } from '@genoffice/pptx-render'
-import type { CustGeomPathCmd, SlideComment, SectionInfo } from '@genoffice/pptx-engine'
-import type { FontSizeStep } from '@genoffice/pptx-ops/font-size'
+import type { RenderSlide } from '@plotdocs/pptx-render'
+import type { CustGeomPathCmd, SlideComment, SectionInfo } from '@plotdocs/pptx-engine'
+import type { FontSizeStep } from '@plotdocs/pptx-ops/font-size'
 // the font catalog's shape is the store's to declare, not a copy kept in step by hand
-import type { CatalogEntry as FontCatalogEntry } from '@genoffice/electron-utils/font-store'
+import type { CatalogEntry as FontCatalogEntry } from '@plotdocs/electron-utils/font-store'
 import type { LayoutSkeleton } from '../renderer/ai/layout-skeleton'
 import type {
   AiSettings,
   AiStreamChunk,
   AiStreamRequest,
-  GenSparkAccountStatus,
-} from '@genoffice/ai-provider'
+  SoopusAccountStatus,
+} from '@plotdocs/ai-provider'
 
 import type {
   EditRun,
@@ -29,7 +29,7 @@ import type {
   ScriptEditOp,
   ApplyEditScriptOp,
   LinkTargetOp,
-} from '@genoffice/pptx-ops'
+} from '@plotdocs/pptx-ops'
 
 // edit payload types moved to the op package; re-exported so IPC consumers keep one import site
 export type {
@@ -42,9 +42,9 @@ export type {
   LinkTargetOp,
 }
 
-export type { SlideComment, SectionInfo } from '@genoffice/pptx-engine'
+export type { SlideComment, SectionInfo } from '@plotdocs/pptx-engine'
 
-// Canonical definitions of AI-related types live in @genoffice/ai-provider / @genoffice/agent-core (shared with docs)
+// Canonical definitions of AI-related types live in @plotdocs/ai-provider / @plotdocs/agent-core (shared with docs)
 export type {
   AiProviderConfig,
   AiProviderId,
@@ -52,10 +52,10 @@ export type {
   AiSettings,
   AiStreamChunk,
   AiStreamRequest,
-  GenSparkAccountStatus,
-} from '@genoffice/ai-provider'
-export { AI_PROVIDERS } from '@genoffice/ai-provider/browser'
-export type { AgentToolCall, AgentToolDef } from '@genoffice/agent-core'
+  SoopusAccountStatus,
+} from '@plotdocs/ai-provider'
+export { AI_PROVIDERS } from '@plotdocs/ai-provider/browser'
+export type { AgentToolCall, AgentToolDef } from '@plotdocs/agent-core'
 
 export type UiTheme = 'light' | 'dark' | 'system'
 
@@ -1739,10 +1739,10 @@ export interface SlidesApi {
   openAiModelSettings: () => Promise<void>
   aiStream: (request: AiStreamRequest) => Promise<void>
   aiStreamCancel: (requestId: string) => Promise<void>
-  /** Genspark account status (gsk login state); with withEmail also fetches the email (needs a network request, slower) */
-  aiGskStatus: (withEmail?: boolean) => Promise<GenSparkAccountStatus>
-  /** Open the browser to log into Genspark (fire-and-forget; aiGskStatus turns logged-in once done) */
-  aiGskLogin: () => Promise<void>
+  /** Soopus account status (soopus login state); with withEmail also fetches the email (needs a network request, slower) */
+  aiSoopusStatus: (withEmail?: boolean) => Promise<SoopusAccountStatus>
+  /** Open the browser to log into Soopus (fire-and-forget; aiSoopusStatus turns logged-in once done) */
+  aiSoopusLogin: () => Promise<void>
   /** Record a run that ended without a usable reply, for post-mortem (fire-and-forget, never throws) */
   aiLogRunFailure: (entry: AiRunFailure) => Promise<void>
   webSearch: (
@@ -1793,7 +1793,7 @@ export interface SlidesApi {
     ext?: string
     keepSrcRect?: boolean
   }) => Promise<RenderSlide | null>
-  /** gsk (Genspark) AI image generation/editing, returns the image URL (error prompts login when logged out) */
+  /** soopus (Soopus) AI image generation/editing, returns the image URL (error prompts login when logged out) */
   generateImage: (op: {
     prompt: string
     model?: string
@@ -1802,13 +1802,13 @@ export interface SlidesApi {
     imageSize?: string
     transparentBackground?: boolean
   }) => Promise<{ url?: string; error?: string }>
-  /** gsk (Genspark) media analysis: image/audio/video content understanding, returns analysis text */
+  /** soopus (Soopus) media analysis: image/audio/video content understanding, returns analysis text */
   analyzeMedia: (op: {
     mediaUrls: string[]
     requirements: string
   }) => Promise<{ text?: string; error?: string }>
-  /** gsk availability: installed and logged in (for UI/tools to prompt login) */
-  gskStatus: () => Promise<{ available: boolean; email?: string }>
+  /** soopus availability: installed and logged in (for UI/tools to prompt login) */
+  soopusStatus: () => Promise<{ available: boolean; email?: string }>
   onAiStream: (handler: (chunk: AiStreamChunk) => void) => () => void
   /** Style Skill sidecar: write styleSkill to a same-named .styleskill.json next to the draft */
   saveStyleSidecar: (data: {

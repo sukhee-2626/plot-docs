@@ -26,7 +26,7 @@ Każdy edytor ma własne przypisania klawiszy i tylko kilka z nich działa wszę
 
 - Kolumna macOS używa znanych symboli: `⌘` Command, `⌥` Option, `⇧` Shift, `⌃` Control.
 - Kolumna Windows / Linux wypisuje je w pełni: `Ctrl`, `Alt`, `Shift`.
-- Tam, gdzie GenOffice naprawdę potrzebuje innych klawiszy na dwóch platformach, tabela to pokazuje. Typowe przypadki to `⌃H` dla Znajdź i zamień (na macOS `⌘H` należy do Ukryj), `⌥⌘G` dla Przejdź do oraz klawisz zamykania w Slides.
+- Tam, gdzie Plot Docs naprawdę potrzebuje innych klawiszy na dwóch platformach, tabela to pokazuje. Typowe przypadki to `⌃H` dla Znajdź i zamień (na macOS `⌘H` należy do Ukryj), `⌥⌘G` dla Przejdź do oraz klawisz zamykania w Slides.
 - Skrót działający tylko z zaznaczeniem zapisano w kolumnie Czynność zamiast dawać mu osobną kolumnę, dzięki czemu tabela ma zawsze trzy kolumny.
 
 ## Word
@@ -159,7 +159,7 @@ F1 otwiera **Podręcznik użytkownika**, a nie tę listę. Arkusz skrótów to �
 
 ## Sheets
 
-GenOffice Sheets to siatka zgodna z Excelem. Większość poniższych skrótów to skróty Excela, które już znasz.
+Plot Docs Sheets to siatka zgodna z Excelem. Większość poniższych skrótów to skróty Excela, które już znasz.
 
 > **Edycja ma pierwszeństwo.** Prawie każdy skrót w Sheets jest ignorowany, gdy edytujesz komórkę lub piszesz w **pasku formuły**, aby wpisywanie, przesuwanie kursora i Backspace zachowały swoje zwykłe znaczenie przy edycji tekstu. Jeśli klawisz robi wrażenie, że nic nie robi, sprawdź, czy nie jesteś w trakcie edycji: najpierw naciśnij Esc albo Enter, a potem spróbuj ponownie. Polecenia działające na zaznaczeniu również nic nie robią, gdy otwarte jest okno dialogowe. Tam, gdzie skrót jest wyjątkiem od tej reguły, tabela to zaznacza.
 
@@ -287,7 +287,7 @@ Skrót filtru Excela, Ctrl+Shift+L, nie działa w Windows ani Linux. Naciśnij �
 
 ## Slides
 
-GenOffice Slides to edytor prezentacji w stylu PowerPointa. Większość klawiszy robi to samo niezależnie od miejsca, ale kilka zmienia znaczenie zależnie od fokusu — w polu tekstowym albo gdy **panel miniatur**, **panel konspektu** lub **sortowanie slajdów** ma fokus klawiatury. Takie przypadki są oznaczone w kolumnie Czynność.
+Plot Docs Slides to edytor prezentacji w stylu PowerPointa. Większość klawiszy robi to samo niezależnie od miejsca, ale kilka zmienia znaczenie zależnie od fokusu — w polu tekstowym albo gdy **panel miniatur**, **panel konspektu** lub **sortowanie slajdów** ma fokus klawiatury. Takie przypadki są oznaczone w kolumnie Czynność.
 
 ### Plik i aplikacja
 
@@ -482,7 +482,7 @@ Escape cofa jedną warstwę naraz — najpierw otwarte okno dialogowe, potem wys
 
 ## Markdown
 
-GenOffice Markdown edytuje Markdown z podglądem na żywo obok.
+Plot Docs Markdown edytuje Markdown z podglądem na żywo obok.
 
 ### Plik i widok
 
@@ -523,7 +523,7 @@ Zastosowanie pustego wzoru usuwa zamiast tego blok. Edytor zamyka się także pr
 
 ## HTML
 
-GenOffice HTML pokazuje edytor kodu obok podglądu na żywo. Klawisze działające na elemencie strony działają tylko wtedy, gdy sam podgląd ma fokus klawiatury.
+Plot Docs HTML pokazuje edytor kodu obok podglądu na żywo. Klawisze działające na elemencie strony działają tylko wtedy, gdy sam podgląd ma fokus klawiatury.
 
 ### Plik i widok źródła
 

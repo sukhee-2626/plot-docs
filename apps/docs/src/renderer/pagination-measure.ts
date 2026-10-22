@@ -54,7 +54,7 @@ const ZERO_SLOT_PX = 0.05
  * Per-top-level-block buckets for the whole-flow scans below: one
  * querySelectorAll per selector over the flow instead of a subtree scan per
  * block — the scan returns only matches, so a document of plain paragraphs
- * pays a handful of whole-DOM walks instead of one per block (genoffice#526).
+ * pays a handful of whole-DOM walks instead of one per block (plotdocs#526).
  * Each hit climbs to its top-level owner (a direct child of the flow root);
  * hits outside any block (page-gap widgets) land under the widget element and
  * are never looked up. Bucket lists keep document order, matching what the

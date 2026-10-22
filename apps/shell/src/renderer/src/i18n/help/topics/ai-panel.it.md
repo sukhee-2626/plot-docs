@@ -36,5 +36,5 @@ Ogni editor può richiamare il pannello IA: seleziona qualcosa, dai un'istruzion
 
 ## Privacy
 
-- Le istruzioni e il contenuto del documento pertinente vengono inviati al **servizio modello che hai configurato** (Genspark ospitato o un endpoint personalizzato, capitolo successivo); senza configurazione non viene inviato nulla.
+- Le istruzioni e il contenuto del documento pertinente vengono inviati al **servizio modello che hai configurato** (Soopus AI ospitato o un endpoint personalizzato, capitolo successivo); senza configurazione non viene inviato nulla.
 - I file locali non vengono caricati da nessun'altra parte; le chiavi BYOK sono memorizzate nel file delle impostazioni dell'app su questa macchina e inviate solo nelle intestazioni delle richieste.

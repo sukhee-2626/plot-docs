@@ -5,12 +5,12 @@
  * renderHTML writes it), so the mark's parseHTML has to read it back. Without
  * that, a pasted citation saves as an empty `w:instrText`, the next parse
  * classifies the whole paragraph as a protected passthrough, and the
- * paragraph locks with a blue frame and no caret (genoffice#2099).
+ * paragraph locks with a blue frame and no caret (plotdocs#2099).
  */
 import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
 import JSZip from 'jszip'
-import { buildBlankDocx, parseDocx, saveDocx } from '@genoffice/docx-engine'
+import { buildBlankDocx, parseDocx, saveDocx } from '@plotdocs/docx-engine'
 import { blocksToPmDoc, pmDocToSavePlan, type PmNode } from '../src/renderer/editor/convert'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 

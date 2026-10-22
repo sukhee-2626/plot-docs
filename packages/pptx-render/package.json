@@ -1,5 +1,5 @@
 {
-  "name": "@genoffice/pptx-render",
+  "name": "@plotdocs/pptx-render",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
@@ -16,7 +16,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@genoffice/pptx-engine": "*",
+    "@plotdocs/pptx-engine": "*",
     "opentype.js": "^2.0.0",
     "bidi-js": "^1.0.3"
   },

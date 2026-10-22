@@ -7,7 +7,7 @@ export async function parallelMcpSearch(query: string): Promise<unknown> {
   const controller = new AbortController()
   // Bound the entire handshake + tool call, including streamed response bodies.
   const timer = setTimeout(() => controller.abort(), 15000)
-  const client = new Client({ name: 'genoffice', version: '0.1.0' })
+  const client = new Client({ name: 'plotdocs', version: '0.1.0' })
   const transport = new StreamableHTTPClientTransport(new URL('https://search.parallel.ai/mcp'), {
     fetch: (input, init) =>
       fetch(input, {

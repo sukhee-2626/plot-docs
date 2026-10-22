@@ -10,18 +10,18 @@ const MAC = process.platform === 'darwin'
 const COMPACT_KEY = MAC ? 'Alt+Meta+KeyK' : 'Control+Alt+KeyK'
 
 /**
- * The compact ribbon must fit what it holds (genoffice#1891, docs parity).
+ * The compact ribbon must fit what it holds (plotdocs#1891, docs parity).
  *
  * `.ribbon-body` is a fixed-height band with `overflow-y: hidden`, and that is
  * deliberate: switching tabs must never resize the row. It is also a lid —
  * the docs compact band clipped its font pickers until every tall control got
- * a compact rule (genoffice#1942). This walks every pdf tab with the ribbon
+ * a compact rule (plotdocs#1942). This walks every pdf tab with the ribbon
  * in compact density and asserts nothing overflows. jsdom cannot compute
  * layout, so a unit test would pass while the real band clipped.
  */
 test('pdf: compact ribbon fits every tab without clipping', async () => {
   test.setTimeout(240_000)
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-pdf-ribbon-compact-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-pdf-ribbon-compact-'))
   const pdfPath = join(dir, 'blank.pdf')
   const blank = await PDFDocument.create()
   blank.addPage([612, 792])

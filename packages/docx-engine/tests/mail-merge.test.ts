@@ -13,7 +13,7 @@ import {
 /**
  * Mail merge, engine half: substitute MERGEFIELD runs with a recipient row's
  * values and honour Word's control fields (NEXT / SKIPIF / IF). Requested in
- * genoffice#1984; the field itself survives a round-trip via the parse whitelist, this
+ * plotdocs#1984; the field itself survives a round-trip via the parse whitelist, this
  * is what gives it a value.
  */
 

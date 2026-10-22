@@ -10,7 +10,7 @@ import {
   MAX_APPROX_PAGES,
   type DeckAccess,
 } from '../src/renderer/ai/slides-skill'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import type { AgentToolCall } from '../src/shared/ipc'
 
 function makeAccess(opts?: {
@@ -286,7 +286,7 @@ describe('generate_deck batched planning (topic mode)', () => {
     expect(ctx).toContain('all generated')
   })
 
-  it('clamps an absurd approx_pages to MAX_APPROX_PAGES planner work (genoffice#1100)', async () => {
+  it('clamps an absurd approx_pages to MAX_APPROX_PAGES planner work (plotdocs#1100)', async () => {
     const { access, getPages } = makeAccess()
     let planCalls = 0
     const plan = access.planDeckOutline!

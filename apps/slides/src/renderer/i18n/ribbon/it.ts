@@ -185,7 +185,7 @@ export const it = {
   ribbonFlipH: 'Capovolgi orizzontalmente',
   ribbonFlipV: 'Capovolgi verticalmente',
   ribbonDistributeHint: '{title} (seleziona almeno 3 elementi)',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: "Mostra o nascondi il pannello dell'Assistente IA",
   ribbonGroupTable: 'Tabella',
   ribbonInsertTableTip: 'Inserisci una tabella (stile predefinito; scegli righe e colonne)',

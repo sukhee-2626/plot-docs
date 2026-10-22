@@ -21,18 +21,18 @@ import {
 import { buildArgv, resolveTools, toolShape, type ResolvedTool } from './tools'
 
 const ABOUT =
-  'GenOffice: create, read, convert, edit and render Office documents locally (docx, xlsx, pptx, pdf, md, html, csv). The app need not be running; render, convert-to-pdf and create_pdf start a hidden GenOffice process for a few seconds.'
+  'Plot Docs: create, read, convert, edit and render Office documents locally (docx, xlsx, pptx, pdf, md, html, csv). The app need not be running; render, convert-to-pdf and create_pdf start a hidden Plot Docs process for a few seconds.'
 const WORKFLOW = [
-  'Editing: read the file with the *_read tool, write the ops with the op reference from guide (or the genoffice://guide/* resources), then *_apply. A rejected op names its index and reason; fix that op and resend the whole batch.',
+  'Editing: read the file with the *_read tool, write the ops with the op reference from guide (or the plotdocs://guide/* resources), then *_apply. A rejected op names its index and reason; fix that op and resend the whole batch.',
   'A new presentation: a short deck (up to about 5 slides, or concrete content without a design brief) is one create_pptx call with ops or a spec, then slides_render. Longer or design-sensitive decks a person will present: deck_start (style sheet + outline), deck_page once per page in order, deck_build, then slides_render to look and slides_audit for geometry, deck_replace to fix a page. Edits to an existing deck: slides_read + slides_apply, keeping its design.',
 ]
 
 /** What the client shows the model about this server before any tool is called. */
 export const INSTRUCTIONS = [
   ABOUT,
-  'Paths are absolute, or relative to the working directory the server was started in. Only search, image and media send data off the machine, to the provider configured in GenOffice.',
+  'Paths are absolute, or relative to the working directory the server was started in. Only search, image and media send data off the machine, to the provider configured in Plot Docs.',
   ...WORKFLOW,
-  'A file open in a GenOffice tab is not written unless force is set. Do not call open unless the user asks to see the file.',
+  'A file open in a Plot Docs tab is not written unless force is set. Do not call open unless the user asks to see the file.',
 ].join('\n')
 
 /** The http-mode variant: the client is on another machine, so files travel as URLs and result content. */
@@ -41,38 +41,38 @@ export function remoteInstructions(baseUrl: string): string {
   return [
     ABOUT,
     `This server runs on another machine: paths you know are not visible to it. To work on a file you have, upload it first (curl -T report.docx ${base}/files/ — the reply carries its url) and pass that url wherever a tool takes a file; any other http(s) URL the server can reach works too. Relative paths and deck folders live in a private scratch directory of this session.`,
-    'Omit out: the file a tool writes comes back in the result as output_url (download it with curl -o) and, when small, as an embedded resource with the bytes. Only search, image and media send data to the cloud provider configured in GenOffice.',
+    'Omit out: the file a tool writes comes back in the result as output_url (download it with curl -o) and, when small, as an embedded resource with the bytes. Only search, image and media send data to the cloud provider configured in Plot Docs.',
     ...WORKFLOW,
   ].join('\n')
 }
 
 const GUIDES: { uri: string; name: string; argv: string[]; description: string }[] = [
   {
-    uri: 'genoffice://guide/docs',
+    uri: 'plotdocs://guide/docs',
     name: 'Word ops reference',
     argv: ['guide', 'docs'],
     description: 'every docs_apply op with its fields and the restricted-HTML rules',
   },
   {
-    uri: 'genoffice://guide/sheets',
+    uri: 'plotdocs://guide/sheets',
     name: 'Excel ops reference',
     argv: ['guide', 'sheets'],
     description: 'every sheet_apply DSL op with its fields',
   },
   {
-    uri: 'genoffice://guide/slides',
+    uri: 'plotdocs://guide/slides',
     name: 'PowerPoint ops reference',
     argv: ['guide', 'slides'],
     description: 'the slides_apply op groups and vocabulary',
   },
   {
-    uri: 'genoffice://guide/slides/design',
+    uri: 'plotdocs://guide/slides/design',
     name: 'Deck design guide',
     argv: ['guide', 'slides', 'design'],
     description: 'the staged deck workflow: style sheet, outline, one page at a time, build, QC',
   },
   {
-    uri: 'genoffice://guide/slides/spec',
+    uri: 'plotdocs://guide/slides/spec',
     name: 'Deck spec format',
     argv: ['guide', 'slides', 'spec'],
     description: 'the outline and one-page spec JSON the deck_* tools take',
@@ -81,7 +81,7 @@ const GUIDES: { uri: string; name: string; argv: string[]; description: string }
 
 export interface ServerOptions {
   registry?: CommandRegistry
-  /** advertise ops / cells / data as untyped `array | object` (GENOFFICE_MCP_COMPACT_SCHEMAS=1, --compact-schemas) */
+  /** advertise ops / cells / data as untyped `array | object` (PLOTDOCS_MCP_COMPACT_SCHEMAS=1, --compact-schemas) */
   compactSchemas?: boolean
 }
 
@@ -95,12 +95,12 @@ export async function createMcpServer(
   const remote = ctx.mode === 'http'
   const typed = opts.compactSchemas ? undefined : await (typedSchemas ??= loadTypedSchemas())
   const server = new McpServer(
-    { name: 'genoffice', version: VERSION },
+    { name: 'plotdocs', version: VERSION },
     { instructions: remote ? remoteInstructions(ctx.baseUrl ?? '') : INSTRUCTIONS },
   )
 
   for (const tool of resolveTools(registry)) {
-    // there is no GenOffice window in front of a remote client
+    // there is no Plot Docs window in front of a remote client
     if (remote && tool.localOnly) continue
     server.registerTool(
       tool.name,

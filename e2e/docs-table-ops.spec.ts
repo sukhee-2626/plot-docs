@@ -56,7 +56,7 @@ test.describe('docs table operations', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-table-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-table-')))
     docPath = join(dir, 'grid.docx')
     writeFileSync(docPath, await minimalDocx())
   })

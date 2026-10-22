@@ -1,0 +1,15 @@
+<svg width="1240" height="260" viewBox="0 0 1240 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SS Office by plotxyz.ai">
+  <defs>
+    <linearGradient id="markGradient" x1="20" y1="10" x2="240" y2="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B5CF6"/>
+      <stop offset="0.55" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="12" width="228" height="228" rx="58" fill="url(#markGradient)"/>
+  <rect x="9.5" y="13.5" width="225" height="225" rx="56.5" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="3"/>
+  <path d="M168 68H116C96.67 68 81 83.67 81 103C81 122.33 96.67 138 116 138H148C167.33 138 183 153.67 183 173C183 192.33 167.33 208 148 208H92" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="198" cy="62" r="12" fill="#FFFFFF"/>
+  <text x="292" y="140" fill="#F8FAFC" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="112" font-weight="800" letter-spacing="-5">SS Office</text>
+  <text x="296" y="198" fill="#94A3B8" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="32" font-weight="500" letter-spacing="0.5">by plotxyz.ai</text>
+</svg>

@@ -4,7 +4,7 @@
  * something is picked. Section mode shows each section's first slide.
  */
 import React, { useState } from 'react'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import type { SectionInfo } from '../../shared/ipc'
 import { useModalDialog } from './modal-dialog'
 import { useI18n } from '../i18n/locale'

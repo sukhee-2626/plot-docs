@@ -5,7 +5,7 @@
  */
 import { afterEach, describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import { generateParagraphXml, mergePPrFormat, parseDocx } from '@genoffice/docx-engine'
+import { generateParagraphXml, mergePPrFormat, parseDocx } from '@plotdocs/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import {

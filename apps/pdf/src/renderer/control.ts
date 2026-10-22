@@ -1,4 +1,4 @@
-/** Request/reply the shell relays from `genoffice open --page` and `genoffice selection`. */
+/** Request/reply the shell relays from `plotdocs open --page` and `plotdocs selection`. */
 export type ControlRequest =
   { cmd: 'goto'; target: { kind: string; page?: number } } | { cmd: 'selection' }
 

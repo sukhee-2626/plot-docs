@@ -26,6 +26,11 @@ electron-builder.env
 /*.zip
 /windows/
 
+# Local distribution folder and debugging captures
+/ssexe/
+/settings-debug.png
+/site/downloads/
+
 # Playwright artifacts
 /test-results/
 

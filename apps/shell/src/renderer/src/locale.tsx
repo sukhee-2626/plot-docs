@@ -1,9 +1,18 @@
 import { createContext, useContext, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
-import { createI18n, htmlDir, htmlLang, type Lang, type Params } from '@genoffice/i18n'
+import { createI18n, htmlDir, htmlLang, type Lang, type Params } from '@plotdocs/i18n'
 import { strings } from './strings'
 
 const translate = createI18n(strings)
+
+/** Apply the Plot Docs and Soopus AI wordmarks to visible copy. */
+export function brandText(text: string): string {
+  return text
+    .replace(/\bPLOTDOCS\b/g, 'PLOT DOCS')
+    .replace(/\bPlotDocs\b/g, 'Plot Docs')
+    .replace(/\bSoopus\b(?! AI)/g, 'Soopus AI')
+    .replace(/\bPlotCommunity\b/g, 'Plot Community')
+}
 
 export type StringKey = keyof typeof strings.zh
 export type TFunc = (key: StringKey, params?: Params) => string
@@ -76,7 +85,7 @@ export function useI18n(): I18n {
   return {
     lang,
     setLang,
-    t: (key, params) => translate(lang, key, params),
+    t: (key, params) => brandText(translate(lang, key, params)),
     dateLocale: DATE_LOCALES[lang],
   }
 }

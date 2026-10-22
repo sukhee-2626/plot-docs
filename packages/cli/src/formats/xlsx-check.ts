@@ -1,10 +1,10 @@
-import { parseRange } from '@genoffice/xlsx-gateway/domain/cell-address'
-import { splitSheetRef } from '@genoffice/xlsx-gateway/domain/chart-visual'
-import { parseRelationships, parseSheetElements } from '@genoffice/xlsx-gateway/gateway/xlsx-sheets'
+import { parseRange } from '@plotdocs/xlsx-gateway/domain/cell-address'
+import { splitSheetRef } from '@plotdocs/xlsx-gateway/domain/chart-visual'
+import { parseRelationships, parseSheetElements } from '@plotdocs/xlsx-gateway/gateway/xlsx-sheets'
 import {
   FORMULA_REFERENCE_PATTERN,
   qualifierMatches,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-structure'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-structure'
 import JSZip from 'jszip'
 import { excerpt, PLACEHOLDER, textWidthPx, type IssueDraft } from '../check'
 import { displayText } from './xlsx'

@@ -164,7 +164,7 @@ describe('the tab context menu', () => {
     expect(isProgramFile('report.pdf.exe')).toBe(true)
     expect(isProgramFile('summary.docx.command')).toBe(true)
 
-    // Valid documents supported by GenOffice and external tools must NOT be blocked
+    // Valid documents supported by Plot Docs and external tools must NOT be blocked
     expect(isProgramFile('document.docx')).toBe(false)
     expect(isProgramFile('spreadsheet.xlsx')).toBe(false)
     expect(isProgramFile('presentation.pptx')).toBe(false)

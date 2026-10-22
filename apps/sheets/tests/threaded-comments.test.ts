@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { personIdFor } from '@genoffice/xlsx-gateway/gateway/xlsx-threaded-comments'
+import { personIdFor } from '@plotdocs/xlsx-gateway/gateway/xlsx-threaded-comments'
 
 import {
   FALLBACK_AUTHOR,

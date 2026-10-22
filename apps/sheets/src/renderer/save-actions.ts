@@ -28,7 +28,7 @@ import {
   toSaveCellImageAdds,
 } from './edit-journal'
 import { activeCsvSheet, handleExportCsv, serializeActiveSheetCsv } from './csv-export'
-import type { CellState } from '@genoffice/xlsx-gateway/domain/workbook.types'
+import type { CellState } from '@plotdocs/xlsx-gateway/domain/workbook.types'
 import { verifiedFormulaValues } from './formula-values'
 import { t } from './i18n/locale'
 import { abortStagedEditsTransfer, stageEditsForSave, type StagedEdits } from './save-edits-staging'

@@ -17,7 +17,7 @@ Pravidla: přípona se zachovává automaticky; nepovolené znaky, tečky na kon
 
 ## Odstranění
 
-- **⋯ ▸ Odstranit** na domovské stránce: zeptá se, které soubory, a přesune je do **systémového koše**, odkud je může obnovit operační systém. GenOffice si pro tuto věc nepřidržuje vlastní zpět — obnova je v kompetenci koše, ne oznámení.
+- **⋯ ▸ Odstranit** na domovské stránce: zeptá se, které soubory, a přesune je do **systémového koše**, odkud je může obnovit operační systém. Plot Docs si pro tuto věc nepřidržuje vlastní zpět — obnova je v kompetenci koše, ne oznámení.
 
 ## Duplikování
 

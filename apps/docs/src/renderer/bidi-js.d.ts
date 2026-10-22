@@ -1,4 +1,4 @@
-/** bidi-js has no types (pptx-render sources compile into this project via the @genoffice/ui source export; its local shim does not come along) */
+/** bidi-js has no types (pptx-render sources compile into this project via the @plotdocs/ui source export; its local shim does not come along) */
 declare module 'bidi-js' {
   interface BidiApi {
     getEmbeddingLevels(

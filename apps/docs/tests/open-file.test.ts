@@ -11,21 +11,21 @@ import {
 describe('findOpenableDocPath', () => {
   it('finds Finder and Explorer document arguments case-insensitively', () => {
     expect(
-      findOpenableDocPath(['/Applications/GenOffice Docs.app', '/tmp/Quarterly Plan.docx']),
+      findOpenableDocPath(['/Applications/Plot Docs Docs.app', '/tmp/Quarterly Plan.docx']),
     ).toBe('/tmp/Quarterly Plan.docx')
-    expect(findOpenableDocPath(['GenOffice Docs.exe', 'C:\\Users\\Me\\REPORT.DOCX'])).toBe(
+    expect(findOpenableDocPath(['Plot Docs Docs.exe', 'C:\\Users\\Me\\REPORT.DOCX'])).toBe(
       'C:\\Users\\Me\\REPORT.DOCX',
     )
     // an .odt argument routes through the import filter like the shell open
-    expect(findOpenableDocPath(['GenOffice Docs', '/tmp/notes.odt'])).toBe('/tmp/notes.odt')
+    expect(findOpenableDocPath(['Plot Docs Docs', '/tmp/notes.odt'])).toBe('/tmp/notes.odt')
     // and so does the .ott template, in either case
-    expect(findOpenableDocPath(['GenOffice Docs', '/tmp/letter.ott'])).toBe('/tmp/letter.ott')
-    expect(findOpenableDocPath(['GenOffice Docs', '/tmp/LETTER.OTT'])).toBe('/tmp/LETTER.OTT')
+    expect(findOpenableDocPath(['Plot Docs Docs', '/tmp/letter.ott'])).toBe('/tmp/letter.ott')
+    expect(findOpenableDocPath(['Plot Docs Docs', '/tmp/LETTER.OTT'])).toBe('/tmp/LETTER.OTT')
   })
 
   it('ignores Electron switches and unrelated files', () => {
     expect(
-      findOpenableDocPath(['GenOffice Docs', '--inspect=document.docx', '/tmp/notes.txt']),
+      findOpenableDocPath(['Plot Docs Docs', '--inspect=document.docx', '/tmp/notes.txt']),
     ).toBeNull()
   })
 })

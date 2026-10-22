@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ColorPicker } from '@genoffice/ui'
+import { ColorPicker } from '@plotdocs/ui'
 
 import { useI18n } from './i18n/locale'
 import { useModalDialog } from './modal-dialog'

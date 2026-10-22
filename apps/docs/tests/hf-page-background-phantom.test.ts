@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { HeaderFooter, HfPartInfo, SectionInfo, StyleInfo } from '@genoffice/docx-engine'
+import type { HeaderFooter, HfPartInfo, SectionInfo, StyleInfo } from '@plotdocs/docx-engine'
 import { hfLayoutResolved, hfPhantomSpec, hfWithPhantom } from '../src/renderer/hf-phantom'
 import { resolveHf, type HfKind, type HfSectionState } from '../src/renderer/hf-sections'
 import { estimateHfHeight, lineHeightFactor } from '../src/renderer/line-metrics'

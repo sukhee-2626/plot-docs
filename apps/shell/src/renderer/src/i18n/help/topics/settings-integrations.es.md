@@ -23,7 +23,7 @@ Claro / Oscuro / Seguir el sistema. «Seguir el sistema» sigue la apariencia de
 - **Posición de la barra lateral de IA** (izquierda o derecha), **Tamaño del texto del panel de IA** y **Corrección ortográfica en el chat de IA**.
 - **Abrir el panel de IA en documentos nuevos** — desactivado, un documento nuevo empieza con el panel plegado, a un clic de distancia.
 - **Guardar automáticamente todos los documentos** activa el guardado automático de forma predeterminada en todos los editores; todavía puedes desactivarlo para una ventana.
-- **Ubicación de guardado** con un botón **Cambiar** y **App predeterminada para documentos de Office** para reclamar .docx / .xlsx / .pptx para GenOffice.
+- **Ubicación de guardado** con un botón **Cambiar** y **App predeterminada para documentos de Office** para reclamar .docx / .xlsx / .pptx para Plot Docs.
 
 ## Medios de IA y búsqueda
 
@@ -39,22 +39,22 @@ No son conmutadores: cada capacidad elige el proveedor que la sirve, y la clave 
 
 ## Aplicaciones predeterminadas
 
-La configuración puede registrar GenOffice como programa predeterminado para .docx / .xlsx / .pptx / .pdf y formatos similares (registro de aplicación predeterminada a nivel de plataforma; confirme cuando se le pida).
+La configuración puede registrar Plot Docs como programa predeterminado para .docx / .xlsx / .pptx / .pdf y formatos similares (registro de aplicación predeterminada a nivel de plataforma; confirme cuando se le pida).
 
 ## Avisos de software de terceros y actualizaciones
 
 - Ayuda ▸ Avisos de software de terceros: el inventario completo de licencias de código abierto que se distribuye con la aplicación.
 - Ayuda ▸ Buscar actualizaciones: lanza una comprobación manual; si hay una versión más reciente, ofrece instalarla.
 
-## Iniciar sesión en Genspark
+## Iniciar sesión en Soopus AI
 
-- El acceso a la sesión (en la configuración o en la lista de proyectos de la nube) usa un flujo de **código de dispositivo**: GenOffice muestra un código y abre el inicio de sesión en el navegador; continúa solo cuando ha terminado.
-- El inicio de sesión solo se usa para: la lista de proyectos de la nube y los modelos alojados de Genspark. Sin él, todas las funciones locales y los modelos personalizados siguen funcionando.
+- El acceso a la sesión (en la configuración o en la lista de proyectos de la nube) usa un flujo de **código de dispositivo**: Plot Docs muestra un código y abre el inicio de sesión en el navegador; continúa solo cuando ha terminado.
+- El inicio de sesión solo se usa para: la lista de proyectos de la nube y los modelos alojados de Soopus AI. Sin él, todas las funciones locales y los modelos personalizados siguen funcionando.
 - Cerrar la sesión es un clic en la configuración.
 
 ## Integración MCP (para usuarios avanzados / clientes de IA)
 
-**Integraciones** es el panel que conecta GenOffice con un agente de programación, y tiene su propio artículo: Conectar un agente de programación. La versión corta: elija una vía (la línea de comandos o MCP), siga esa sección y después abra una conversación nueva y pregunte.
+**Integraciones** es el panel que conecta Plot Docs con un agente de programación, y tiene su propio artículo: Conectar un agente de programación. La versión corta: elija una vía (la línea de comandos o MCP), siga esa sección y después abra una conversación nueva y pregunte.
 
 ![Configuración ▸ Integraciones: los tres pasos, luego las filas de habilidades y las opciones de MCP](img/settings-integrations.png)
 
@@ -64,6 +64,6 @@ En **Servidor HTTP local**, la aplicación también puede ejecutar el servidor p
 
 | Comando            | Qué hace                      |
 | ------------------ | ----------------------------- |
-| `genoffice <file>` | abrir un archivo              |
-| `genoffice mcp`    | iniciar el servidor MCP local |
-| `genoffice --help` | todos los comandos y opciones |
+| `plotdocs <file>` | abrir un archivo              |
+| `plotdocs mcp`    | iniciar el servidor MCP local |
+| `plotdocs --help` | todos los comandos y opciones |

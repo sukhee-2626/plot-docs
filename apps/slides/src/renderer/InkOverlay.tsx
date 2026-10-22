@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import {
   HIGHLIGHTER_ALPHA,
   inkNodeHitTest,

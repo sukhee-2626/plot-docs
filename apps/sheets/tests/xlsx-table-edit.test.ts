@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest'
 import {
   createBufferEntrySource,
   planCellEditsToXlsx,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
-import type { SheetTableEdit } from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
+import type { SheetTableEdit } from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
 import { buildKitchenSinkFixture } from './fixture-builder'
 
 // The kitchen-sink fixture carries Table1 (A1:B2, columns A / hdr) on sheet Data.

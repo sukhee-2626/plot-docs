@@ -8,7 +8,7 @@
 import type { NarrationTake } from './narration/use-recording'
 import type { PathCmd } from './edit-points'
 import type React from 'react'
-import type { GroupRenderNode, RenderNode, RenderSlide } from '@genoffice/pptx-render'
+import type { GroupRenderNode, RenderNode, RenderSlide } from '@plotdocs/pptx-render'
 import type {
   AnimationItem,
   GetLayoutsResult,

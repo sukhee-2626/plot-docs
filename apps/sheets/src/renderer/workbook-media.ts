@@ -5,7 +5,7 @@
  */
 import { useEffect, useState } from 'react'
 
-import { isMetafileMime, metafileToDataUrl } from '@genoffice/docx-engine/metafile'
+import { isMetafileMime, metafileToDataUrl } from '@plotdocs/docx-engine/metafile'
 
 function base64ToBytes(base64: string): Uint8Array {
   const binary = atob(base64)

@@ -31,7 +31,7 @@ pub struct ConvertResult {
 /// and opens plenty of those happily, so the reader's `Invalid OLE (signature
 /// ...)` tells the person holding the file nothing they can act on.
 ///
-/// An XML spreadsheet is not one of these: genoffice#2044 reads it directly,
+/// An XML spreadsheet is not one of these: plotdocs#2044 reads it directly,
 /// and this only has to speak about files no reader should open at all.
 fn unreadable_container_hint(source: &Path) -> Option<String> {
     let mut head = [0u8; 1024];
@@ -464,7 +464,7 @@ mod tests {
 
     #[test]
     fn an_xml_spreadsheet_is_the_converter_s_business_not_a_dead_end() {
-        // genoffice#2044 opens this shape instead of refusing it: the XML
+        // plotdocs#2044 opens this shape instead of refusing it: the XML
         // spreadsheet converts, and the container hint keeps speaking only
         // for text a reader cannot open at all.
         let dir = tempfile::tempdir().unwrap();
@@ -483,7 +483,7 @@ mod tests {
         )
         .unwrap();
         let result = convert_to_xlsx(&source, &dir.path().join("out.xlsx"))
-            .expect("an XML spreadsheet under a legacy name converts (genoffice#2044)");
+            .expect("an XML spreadsheet under a legacy name converts (plotdocs#2044)");
         assert_eq!(result.sheets, 1, "sheets: {}", result.sheets);
         assert_eq!(result.cells, 1, "cells: {}", result.cells);
     }

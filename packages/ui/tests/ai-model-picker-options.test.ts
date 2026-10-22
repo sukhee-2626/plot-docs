@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { AI_PROVIDERS, defaultAiSettings } from '@genoffice/ai-provider'
+import { AI_PROVIDERS, defaultAiSettings } from '@plotdocs/ai-provider'
 import {
   aiModelPickerGroups,
   aiModelPickerSelection,
@@ -13,9 +13,9 @@ describe('aiModelPickerGroups', () => {
     expect(aiModelPickerGroups(defaultAiSettings(), false)).toEqual([])
   })
 
-  it('lists Genspark only when signed in', () => {
+  it('lists Soopus only when signed in', () => {
     const ids = aiModelPickerGroups(defaultAiSettings(), true).map((g) => g.id)
-    expect(ids).toEqual(['genspark'])
+    expect(ids).toEqual(['soopus'])
   })
 
   it('adds a vendor once its key is set and puts an off-catalog model first', () => {
@@ -52,10 +52,10 @@ describe('selection round trip', () => {
     expect(settings.providers.anthropic.model).toBe(anthropicModels[0])
   })
 
-  it('falls back to Genspark when the stored provider is unusable', () => {
+  it('falls back to Soopus when the stored provider is unusable', () => {
     const settings = defaultAiSettings()
     settings.provider = 'anthropic'
-    expect(aiModelPickerSelection(settings).provider).toBe('genspark')
+    expect(aiModelPickerSelection(settings).provider).toBe('soopus')
   })
 })
 

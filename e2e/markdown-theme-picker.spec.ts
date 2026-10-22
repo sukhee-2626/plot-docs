@@ -87,7 +87,7 @@ test('markdown theme picker applies, persists and restarts', async () => {
 /** The theme menu must be fully visible: the ribbon row clips its overflow, so
  *  a menu anchored with position: absolute loses its right edge (and its
  *  bottom) to the window. It has to escape the clip and stay inside the
- *  viewport (genoffice#2104). */
+ *  viewport (plotdocs#2104). */
 test('the theme menu stays whole: inside the viewport, not clipped by the ribbon', async () => {
   test.setTimeout(300_000)
   const dir = join(__dirname, 'artifacts')

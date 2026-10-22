@@ -1,4 +1,4 @@
-import { createZoomWheelClassifier, notchStep } from '@genoffice/ui'
+import { createZoomWheelClassifier, notchStep } from '@plotdocs/ui'
 
 import { SHEET_ZOOM_MAX as MAX_PERCENT, SHEET_ZOOM_MIN as MIN_PERCENT } from './zoom-range'
 

@@ -20,7 +20,7 @@
  *   fetch the picture.
  *
  * The rules about markers, and the prompt they produce, are shared with the
- * other four editors and live in `@genoffice/agent-core/redact-core`. What
+ * other four editors and live in `@plotdocs/agent-core/redact-core`. What
  * stays here is what is specific to a document: the mark's name, and the two
  * consequences above, which is what `middle` in the spec below is for.
  */
@@ -28,7 +28,7 @@
 import {
   placeholderInstruction as buildInstruction,
   type PlaceholderSpec,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'
 
 export const REDACT_MARK = 'redaction'
 
@@ -58,4 +58,4 @@ export {
   readPlaceholderLabel,
   sanitizeLabel,
   type PlaceholderIssue,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'

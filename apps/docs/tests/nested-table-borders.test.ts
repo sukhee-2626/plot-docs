@@ -1,5 +1,5 @@
 import { DOMSerializer } from '@tiptap/pm/model'
-import type { TableModel } from '@genoffice/docx-engine'
+import type { TableModel } from '@plotdocs/docx-engine'
 import { describe, expect, it } from 'vitest'
 import { renderTableSpec } from '../src/renderer/editor/protected-render'
 

@@ -23,7 +23,7 @@ Clair / Sombre / Suivre le système. Suivre le système suit l’apparence de l�
 - **Position de la barre latérale IA** (à gauche ou à droite), **Taille du texte du panneau IA** et **Correction orthographique dans le chat IA**.
 - **Ouvrir le panneau IA dans les nouveaux documents** — désactivé, un nouveau document démarre avec le panneau replié, à un clic de là.
 - **Enregistrer automatiquement tous les documents** active l'enregistrement automatique par défaut dans tous les éditeurs ; vous pouvez toujours le désactiver pour une fenêtre.
-- **Emplacement d'enregistrement** avec un bouton **Modifier** et **Application par défaut pour les documents Office** pour attribuer .docx / .xlsx / .pptx à GenOffice.
+- **Emplacement d'enregistrement** avec un bouton **Modifier** et **Application par défaut pour les documents Office** pour attribuer .docx / .xlsx / .pptx à Plot Docs.
 
 ## Médias IA et recherche
 
@@ -39,22 +39,22 @@ Ce ne sont pas des interrupteurs : chaque capacité choisit le fournisseur qui l
 
 ## Associations d’applications par défaut
 
-Les paramètres peuvent enregistrer GenOffice comme gestionnaire de .docx / .xlsx / .pptx / .pdf et formats similaires (enregistrement d’application par défaut au niveau de la plateforme ; confirmez lorsque l’on vous le demande).
+Les paramètres peuvent enregistrer Plot Docs comme gestionnaire de .docx / .xlsx / .pptx / .pdf et formats similaires (enregistrement d’application par défaut au niveau de la plateforme ; confirmez lorsque l’on vous le demande).
 
 ## Mentions relatives aux logiciels tiers et mises à jour
 
 - Aide ▸ Mentions relatives aux logiciels tiers : l’inventaire complet des licences open source livré avec l’application.
 - Aide ▸ Vérifier les mises à jour : déclenche une vérification manuelle ; une version plus récente propose l’installation.
 
-## Connexion à Genspark
+## Connexion à Soopus AI
 
-- Le point de connexion (paramètres ou liste des projets cloud) utilise un flux par **code d’appareil** : GenOffice affiche un code et ouvre la connexion dans le navigateur ; la suite est automatique une fois terminée.
-- La connexion sert uniquement à : la liste des projets cloud et aux modèles hébergés de Genspark. Sans elle, toutes les fonctions locales et les modèles personnalisés continuent de fonctionner.
+- Le point de connexion (paramètres ou liste des projets cloud) utilise un flux par **code d’appareil** : Plot Docs affiche un code et ouvre la connexion dans le navigateur ; la suite est automatique une fois terminée.
+- La connexion sert uniquement à : la liste des projets cloud et aux modèles hébergés de Soopus AI. Sans elle, toutes les fonctions locales et les modèles personnalisés continuent de fonctionner.
 - La déconnexion se fait en un clic dans les paramètres.
 
 ## Intégration MCP (pour les utilisateurs avancés / clients IA)
 
-**Intégrations** est le panneau qui relie GenOffice à un agent de codage, et il a son propre article : Connecter un agent de codage. La version courte — choisissez une voie (la ligne de commande, ou MCP), suivez la section correspondante, puis ouvrez une nouvelle conversation et posez votre question.
+**Intégrations** est le panneau qui relie Plot Docs à un agent de codage, et il a son propre article : Connecter un agent de codage. La version courte — choisissez une voie (la ligne de commande, ou MCP), suivez la section correspondante, puis ouvrez une nouvelle conversation et posez votre question.
 
 ![Paramètres ▸ Intégrations : les trois étapes, puis les lignes de compétences et les options MCP](img/settings-integrations.png)
 
@@ -64,6 +64,6 @@ Sous **Serveur HTTP local**, l’application peut aussi lancer le serveur elle-m
 
 | Commande           | Ce qu’elle fait                 |
 | ------------------ | ------------------------------- |
-| `genoffice <file>` | ouvrir un fichier               |
-| `genoffice mcp`    | démarrer le serveur MCP local   |
-| `genoffice --help` | toutes les commandes et options |
+| `plotdocs <file>` | ouvrir un fichier               |
+| `plotdocs mcp`    | démarrer le serveur MCP local   |
+| `plotdocs --help` | toutes les commandes et options |

@@ -11,7 +11,7 @@ function makeSkill(create?: (r: CreateDocumentRequest) => Promise<{ path: string
   const skill = createDocumentSkill({
     create: async (r) => {
       requests.push(r)
-      return create ? create(r) : { path: `/Users/me/GenOffice/${r.title}.${r.format}` }
+      return create ? create(r) : { path: `/Users/me/Plot Docs/${r.title}.${r.format}` }
     },
   })
   return { skill, requests }
@@ -27,9 +27,9 @@ describe('createDocumentSkill', () => {
     )
     expect(result.isError).toBeUndefined()
     expect(requests).toEqual([{ title: 'Q3 summary', format: 'docx', content: '# Q3\n\ntext' }])
-    expect(result.output).toContain('/Users/me/GenOffice/Q3 summary.docx')
-    expect(result.output).toContain(kbCiteHref('/Users/me/GenOffice/Q3 summary.docx'))
-    expect(skill.createdPaths()).toEqual(['/Users/me/GenOffice/Q3 summary.docx'])
+    expect(result.output).toContain('/Users/me/Plot Docs/Q3 summary.docx')
+    expect(result.output).toContain(kbCiteHref('/Users/me/Plot Docs/Q3 summary.docx'))
+    expect(skill.createdPaths()).toEqual(['/Users/me/Plot Docs/Q3 summary.docx'])
   })
 
   it('rejects a bad format, empty content and oversized content before writing', async () => {
@@ -82,7 +82,7 @@ describe('createDocumentSkill', () => {
     ]) {
       expect(skill.verifyResponse!(fact, [])).toBeNull()
     }
-    expect(skill.verifyResponse!('I saved it to the GenOffice folder.', [])).toContain(
+    expect(skill.verifyResponse!('I saved it to the Plot Docs folder.', [])).toContain(
       'create_document',
     )
     expect(skill.verifyResponse!('Saved as q3-summary.docx in your folder.', [])).toContain(
@@ -98,7 +98,7 @@ describe('createDocumentSkill', () => {
       read: async () => ({ text: '', totalChars: 0, offset: 0 }),
       alsoCitable: () => skill.createdPaths(),
     })
-    const href = kbCiteHref('/Users/me/GenOffice/notes.md')
+    const href = kbCiteHref('/Users/me/Plot Docs/notes.md')
     expect(kb.verifyResponse!(`Saved: [notes.md](${href})`, [])).not.toBeNull()
     await skill.executeTool(call({ title: 'notes', format: 'md', content: '- a' }))
     expect(kb.verifyResponse!(`Saved: [notes.md](${href})`, [])).toBeNull()

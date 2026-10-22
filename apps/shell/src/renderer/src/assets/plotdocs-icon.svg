@@ -1,0 +1,48 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plot Docs">
+  <defs>
+    <linearGradient id="iconBg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="50%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#090D16"/>
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="50%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+    <linearGradient id="cyanBlue" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#0284C7"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="purpleViolet" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#4338CA"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <linearGradient id="sparkleGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
+    <filter height="140%" id="glowFilter" width="140%" x="-20%" y="-20%">
+      <feGaussianBlur result="blur" stdDeviation="10"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect fill="url(#iconBg)" height="472" rx="112" stroke="url(#borderGrad)" stroke-width="3" width="472" x="20" y="20"/>
+  <circle cx="256" cy="245" fill="#4F46E5" filter="url(#glowFilter)" opacity="0.25" r="140"/>
+  <circle cx="310" cy="210" fill="#00F2FE" filter="url(#glowFilter)" opacity="0.2" r="90"/>
+  <path d="M 175 110 C 175 96 186 85 200 85 L 320 85 C 334 85 345 96 345 110 L 345 355 C 345 369 334 380 320 380 L 200 380 C 186 380 175 369 175 355 Z" fill="#1E293B" opacity="0.85" stroke="#334155" stroke-width="2.5" transform="rotate(7 260 235)"/>
+  <rect fill="#0F172A" filter="url(#glowFilter)" height="300" rx="28" stroke="#38BDF8" stroke-opacity="0.4" stroke-width="2" width="222" x="145" y="95"/>
+  <path d="M 146 115 C 146 102 156 96 170 96 L 342 96 C 356 96 366 102 366 115 L 366 210 L 146 250 Z" fill="#FFFFFF" opacity="0.04"/>
+  <line stroke="#38BDF8" stroke-linecap="round" stroke-width="5" x1="180" x2="245" y1="135" y2="135"/>
+  <line stroke="#818CF8" stroke-linecap="round" stroke-width="4.5" x1="180" x2="225" y1="152" y2="152"/>
+  <path d="M 175 345 L 255 245 L 305 345 L 260 345 L 230 295 L 202 345 Z" fill="url(#purpleViolet)"/>
+  <path d="M 175 200 C 175 160 196 142 225 142 L 295 142 C 330 142 355 166 355 202 C 355 236 328 260 290 260 L 238 260 L 210 292 L 175 292 L 210 252 C 190 244 175 222 175 200 Z" fill="url(#cyanBlue)"/>
+  <path d="M 225 174 L 288 174 C 308 174 320 186 320 202 C 320 218 308 228 288 228 L 225 228 Z" fill="#0F172A"/>
+  <rect fill="#38BDF8" height="5" opacity="0.8" rx="2.5" width="46" x="236" y="192"/>
+  <rect fill="#A855F7" height="5" opacity="0.8" rx="2.5" width="30" x="236" y="206"/>
+  <path d="M 375 155 Q 375 175 395 175 Q 375 175 375 195 Q 375 175 355 175 Q 375 175 375 155 Z" fill="url(#sparkleGrad)"/>
+  <path d="M 155 335 Q 155 345 165 345 Q 155 345 155 355 Q 155 345 145 345 Q 155 345 155 335 Z" fill="#38BDF8" opacity="0.8"/>
+  <path d="M 50 65 Q 256 30 462 65" fill="none" stroke="rgba(255,255,255,0.22)" stroke-linecap="round" stroke-width="2"/>
+</svg>

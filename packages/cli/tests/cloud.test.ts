@@ -7,11 +7,11 @@ import { run } from './helpers'
 
 describe('cloud command plumbing', () => {
   it('locates the shell ai-settings.json without Electron and honours the override', () => {
-    expect(aiSettingsPath({ GENOFFICE_AI_SETTINGS: '/x/ai.json' })).toBe('/x/ai.json')
+    expect(aiSettingsPath({ PLOTDOCS_AI_SETTINGS: '/x/ai.json' })).toBe('/x/ai.json')
     const p = aiSettingsPath({})
-    expect(p.endsWith(join('GenOffice', 'ai-settings.json'))).toBe(true)
+    expect(p.endsWith(join('Plot Docs', 'ai-settings.json'))).toBe(true)
     if (process.platform === 'darwin') expect(p).toContain('Library/Application Support')
-    expect(aiSettingsPath({ GENOFFICE_USER_DATA: '/ud' })).toBe(join('/ud', 'ai-settings.json'))
+    expect(aiSettingsPath({ PLOTDOCS_USER_DATA: '/ud' })).toBe(join('/ud', 'ai-settings.json'))
   })
 
   it('picks the first http(s) proxy variable and ignores socks', () => {
@@ -43,12 +43,12 @@ describe('cloud command plumbing', () => {
     expect(r.json().message).toContain('output exists')
   })
 
-  it('applies GENOFFICE_ALLOWED_ROOTS to --out and local --ref before any network call', async () => {
+  it('applies PLOTDOCS_ALLOWED_ROOTS to --out and local --ref before any network call', async () => {
     const { writeFileSync } = await import('node:fs')
     const { tempDir } = await import('./helpers')
     const inside = tempDir()
     const outside = tempDir()
-    const env = { ...process.env, GENOFFICE_AUDIT_LOG: 'off', GENOFFICE_ALLOWED_ROOTS: inside }
+    const env = { ...process.env, PLOTDOCS_AUDIT_LOG: 'off', PLOTDOCS_ALLOWED_ROOTS: inside }
     const out = await run(['image', 'a cat', '--out', join(outside, 'x.png'), '--json'], { env })
     expect(out.code).toBe(2)
     expect(out.json().message).toContain('refusing to write')
@@ -98,7 +98,7 @@ describe('cloud command plumbing', () => {
     expect(missingUrl.json().message).toContain('/nonexistent/photo.jpg')
   })
 
-  it('unwraps the Genspark per-file analysis map and leaves prose alone', () => {
+  it('unwraps the Soopus per-file analysis map and leaves prose alone', () => {
     expect(analysisText('A red square.')).toBe('A red square.')
     expect(
       analysisText(

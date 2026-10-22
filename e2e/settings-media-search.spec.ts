@@ -30,9 +30,9 @@ test('Jev reranking lives in the AI Media & Search pane, saves with it, and repo
     await page.getByRole('button', { name: 'Test connection', exact: true }).click()
     await expect(block.locator('.set-ai-status.err')).toHaveText('Enter an API key')
     // the footer names the first failing block and its provider; which one comes
-    // first depends on whether this machine is signed in to Genspark
+    // first depends on whether this machine is signed in to Soopus
     await expect(page.locator('.set-pane-actions .set-ai-status.err')).toHaveText(
-      /^(Web search · Genspark|Local file search · Jev \(TypeSafe API\)): .+/,
+      /^(Web search · Soopus|Local file search · Jev \(TypeSafe API\)): .+/,
     )
     await page.screenshot({ path: screenshotPath('settings-media-search-test') })
 

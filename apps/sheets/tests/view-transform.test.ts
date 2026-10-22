@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { StructuralOp } from '@genoffice/xlsx-gateway/gateway/xlsx-structure'
+import type { StructuralOp } from '@plotdocs/xlsx-gateway/gateway/xlsx-structure'
 import {
   fileRangeToScreenRange,
   fileRangeToScreenRanges,
@@ -268,7 +268,7 @@ describe('move-rows mapping', () => {
   })
 
   it('returns null when moves shuffled unrelated rows through a deleted span', () => {
-    // genspark-ai/genoffice#135: box-edge tracking reported screen row 8 as a
+    // plotxyz-ai/plot-docs#135: box-edge tracking reported screen row 8 as a
     // survivor of file span [6..7] even though both file rows were removed —
     // step 3's move pulls unrelated file row 11 into the tracked box.
     const ops = [move(11, 1, 7), removeRows(8, 1), move(10, 2, 2), removeRows(8, 1)]

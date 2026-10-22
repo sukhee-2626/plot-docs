@@ -1,20 +1,20 @@
 import JSZip from 'jszip'
 import { describe, expect, it } from 'vitest'
 
-import { recomputePivotData } from '@genoffice/xlsx-gateway/domain/pivot-engine'
+import { recomputePivotData } from '@plotdocs/xlsx-gateway/domain/pivot-engine'
 import {
   buildPivotLayout,
   PivotLayoutError,
   type PivotLayoutSpec,
-} from '@genoffice/xlsx-gateway/domain/pivot-layout'
+} from '@plotdocs/xlsx-gateway/domain/pivot-layout'
 import {
   createBufferEntrySource,
   planCellEditsToXlsx,
   type MutationPlan,
   type PivotRefreshUpdate,
   type SheetPivotAddition,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-gateway'
-import { parsePivotDefinition } from '@genoffice/xlsx-gateway/gateway/xlsx-pivot'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-gateway'
+import { parsePivotDefinition } from '@plotdocs/xlsx-gateway/gateway/xlsx-pivot'
 
 const MAIN_NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'
 const REL_NS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'

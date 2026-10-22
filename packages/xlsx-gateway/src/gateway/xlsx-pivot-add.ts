@@ -704,7 +704,7 @@ export function buildCacheDefinitionXml(
   return (
     '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
     `<pivotCacheDefinition xmlns="${MAIN_NS}" xmlns:r="${REL_NS}" r:id="${recordsRelId}" ` +
-    `refreshedBy="genoffice" createdVersion="8" refreshedVersion="8" ` +
+    `refreshedBy="plotdocs" createdVersion="8" refreshedVersion="8" ` +
     `minRefreshableVersion="3" recordCount="${recordCount}">` +
     '<cacheSource type="worksheet">' +
     `<worksheetSource ref="${areaToRef(addition.sourceArea)}" ` +

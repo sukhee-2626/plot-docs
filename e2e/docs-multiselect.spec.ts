@@ -1,5 +1,5 @@
 /**
- * Ctrl/⌘+click adds a non-contiguous selection range (genoffice#2013) through
+ * Ctrl/⌘+click adds a non-contiguous selection range (plotdocs#2013) through
  * the real click path: the modifier is held via the keyboard, the clicks are
  * trusted Chromium input, and the added ranges are read off the live editor.
  *
@@ -114,7 +114,7 @@ test.describe('docs non-contiguous selection', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-multiselect-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-multiselect-')))
     docPath = join(dir, 'words.docx')
     writeFileSync(docPath, await minimalDocx(['echo foxtrot golf hotel india juliet kilo lima']))
   })

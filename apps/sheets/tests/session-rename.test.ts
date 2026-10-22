@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { sessionAfterRename, xlsxSiblingOf } from '../src/main/session-rename'
 
-const base = { path: '/tmp/genoffice/import/report.xlsx', snapshotPath: '/tmp/snap', sha256: 'abc' }
+const base = { path: '/tmp/plotdocs/import/report.xlsx', snapshotPath: '/tmp/snap', sha256: 'abc' }
 
 describe('sessionAfterRename', () => {
   it('moves a plain workbook session with its file', () => {

@@ -3,7 +3,7 @@
  * absolute M/L/C/Q/Z command lists in box-local px (the render node's space);
  * the commit converts them to a CustGeomPath in EMU.
  */
-import type { ShapeRenderNode } from '@genoffice/pptx-render'
+import type { ShapeRenderNode } from '@plotdocs/pptx-render'
 
 export type PathOp = 'M' | 'L' | 'C' | 'Q' | 'Z'
 export interface PathCmd {

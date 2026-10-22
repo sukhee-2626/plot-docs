@@ -3,7 +3,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { act, createElement, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { isRibbonToggleShortcut, readRibbonCollapsed, useRibbonCollapse } from '@genoffice/ui'
+import { isRibbonToggleShortcut, readRibbonCollapsed, useRibbonCollapse } from '@plotdocs/ui'
 
 const TABS = ['home', 'insert'] as const
 const LABELS = { collapse: 'Collapse', expand: 'Expand' }

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { HeuristicMetrics, type RunStyle } from '../src/metrics'
 import { layoutText } from '../src/text-layout'
 import { makeViewport } from '../src/coords'
-import type { TextBody } from '@genoffice/pptx-engine'
+import type { TextBody } from '@plotdocs/pptx-engine'
 
 const vp = makeViewport({ cx: 9525 * 1000, cy: 9525 * 1000 }, 1000)
 

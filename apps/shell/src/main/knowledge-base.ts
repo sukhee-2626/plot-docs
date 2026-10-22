@@ -14,7 +14,7 @@
 
 import { statSync } from 'node:fs'
 import { basename, dirname } from 'node:path'
-import { parseFileToText } from '@genoffice/file-parse'
+import { parseFileToText } from '@plotdocs/file-parse'
 
 /** characters of parsed text one read_knowledge_file page returns (aligned
  *  with the chat-attachment reader, files-skill.ts, so models meet one paging

@@ -12,7 +12,7 @@ import {
   type Paragraph,
   type ParagraphFormatPatch,
   type TextRun,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 import type { EditParagraph } from './types'
 
 /** Normalize a color to 6-digit uppercase hex (strip #/alpha), for comparison. */

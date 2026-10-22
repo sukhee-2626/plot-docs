@@ -10,8 +10,8 @@ import {
   DEFAULT_SHEET_PROTECTION_ALLOW,
   type SheetProtectionAllow,
   type SheetProtectionPermission,
-} from '@genoffice/xlsx-gateway/gateway/xlsx-protection'
-import type { SheetPasswordHash } from '@genoffice/xlsx-gateway/gateway/xlsx-protection-hash'
+} from '@plotdocs/xlsx-gateway/gateway/xlsx-protection'
+import type { SheetPasswordHash } from '@plotdocs/xlsx-gateway/gateway/xlsx-protection-hash'
 
 import { t } from './i18n/locale'
 import { journalSuppression, type LazyWorkbookState, type UniverRuntime } from './univer-state'

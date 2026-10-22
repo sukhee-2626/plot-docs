@@ -22,9 +22,9 @@ import {
   replaceSlideFromSpec,
   stageContext,
 } from '../formats/slide-spec'
-import { parseOutline } from '@genoffice/pipelines/slides'
+import { parseOutline } from '@plotdocs/pipelines/slides'
 import { readOpsInput } from '../ops-input'
-import type { TxnResult } from '@genoffice/pptx-ops'
+import type { TxnResult } from '@plotdocs/pptx-ops'
 import type { CommandContext, CommandDef } from '../registry'
 import { CliError, EXIT, type CommandResult } from '../result'
 import { txnDetail, txnFailure } from './txn'
@@ -83,7 +83,7 @@ export const slidesCommand: CommandDef = {
     {
       name: 'force',
       description:
-        'apply: overwrite an existing --out file, or write while GenOffice has the file open',
+        'apply: overwrite an existing --out file, or write while Plot Docs has the file open',
     },
     {
       name: 'page',
@@ -119,7 +119,7 @@ export const slidesCommand: CommandDef = {
           undefined,
           {
             reason: verb === undefined ? 'missing_argument' : 'invalid_argument',
-            suggestion: 'run `genoffice help slides`',
+            suggestion: 'run `plotdocs help slides`',
           },
         )
     }
@@ -323,7 +323,7 @@ async function check(
       notes: style
         ? []
         : ['no style.md beside the outline: write the style sheet before the pages'],
-      next: 'write pages/01.json … one file per outline page, running `genoffice slides check <page.json>` on each',
+      next: 'write pages/01.json … one file per outline page, running `plotdocs slides check <page.json>` on each',
     }
     if (errors.length) {
       throw new CliError(
@@ -456,12 +456,12 @@ async function replace(
         : null,
       offPalette: r.stage?.offPalette ?? [],
       notes: stage.notes,
-      next: 'element ids on the rebuilt slide are new: run `genoffice slides read` before targeting them',
+      next: 'element ids on the rebuilt slide are new: run `plotdocs slides read` before targeting them',
     },
   }
 }
 
-/** One PNG per slide, through the app's PDF export (hidden GenOffice process) and pdfium. */
+/** One PNG per slide, through the app's PDF export (hidden Plot Docs process) and pdfium. */
 async function render(
   file: string | undefined,
   args: Parameters<CommandDef['run']>[0],

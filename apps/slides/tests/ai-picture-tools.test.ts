@@ -1,7 +1,7 @@
 /** AI picture tool replace_image: dispatch and guards (crop/opacity moved to apply_ops setPictureSrcRect/setPictureOpacity). */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createSlidesSkill, type DeckAccess } from '../src/renderer/ai/slides-skill'
-import type { RenderSlide, PlacedBox } from '@genoffice/pptx-render'
+import type { RenderSlide, PlacedBox } from '@plotdocs/pptx-render'
 import type { AgentToolCall } from '../src/shared/ipc'
 
 const box = (x: number, y: number, w: number, h: number): PlacedBox => ({
@@ -90,10 +90,10 @@ describe('replace_image', () => {
 
   it('forwards file:// urls — the main process resolves only the generated-image store', async () => {
     await createSlidesSkill(mkAccess()).executeTool!(
-      call('replace_image', { url: 'file:///tmp/genoffice-ai-images/1234.png' }),
+      call('replace_image', { url: 'file:///tmp/plotdocs-ai-images/1234.png' }),
     )
     expect(api().replacePictureUrl).toHaveBeenCalledWith(
-      expect.objectContaining({ url: 'file:///tmp/genoffice-ai-images/1234.png' }),
+      expect.objectContaining({ url: 'file:///tmp/plotdocs-ai-images/1234.png' }),
     )
   })
 })

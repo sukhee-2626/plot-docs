@@ -1,6 +1,6 @@
 {
-  "name": "@genoffice/slides",
-  "productName": "GenOffice Slides",
+  "name": "@plotdocs/slides",
+  "productName": "Plot Docs Slides",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
@@ -18,16 +18,16 @@
     "dist:dir": "electron-vite build && electron-builder --dir"
   },
   "devDependencies": {
-    "@genoffice/agent-core": "*",
-    "@genoffice/ai-provider": "*",
-    "@genoffice/ai-search": "*",
-    "@genoffice/file-parse": "*",
-    "@genoffice/i18n": "*",
-    "@genoffice/pptx-engine": "*",
-    "@genoffice/pptx-ops": "*",
-    "@genoffice/pptx-render": "*",
-    "@genoffice/project-store": "*",
-    "@genoffice/ui": "*",
+    "@plotdocs/agent-core": "*",
+    "@plotdocs/ai-provider": "*",
+    "@plotdocs/ai-search": "*",
+    "@plotdocs/file-parse": "*",
+    "@plotdocs/i18n": "*",
+    "@plotdocs/pptx-engine": "*",
+    "@plotdocs/pptx-ops": "*",
+    "@plotdocs/pptx-render": "*",
+    "@plotdocs/project-store": "*",
+    "@plotdocs/ui": "*",
     "@types/opentype.js": "^1.3.8",
     "@types/pngjs": "^6.0.5",
     "@types/react": "^19.2.14",
@@ -48,10 +48,10 @@
     "vite": "^7.3.1",
     "vitest": "^4.1.11"
   },
-  "author": "GenOffice",
+  "author": "Plot Docs",
   "build": {
-    "appId": "com.genoffice.slides",
-    "productName": "GenOffice Slides",
+    "appId": "ai.plotxyz.plotdocs.slides",
+    "productName": "Plot Docs Slides",
     "electronVersion": "43.3.0",
     "directories": {
       "output": "release"
@@ -90,11 +90,11 @@
     }
   },
   "dependencies": {
-    "@genoffice/electron-utils": "*",
+    "@plotdocs/electron-utils": "*",
     "acorn": "^8.18.0",
     "harfbuzzjs": "^1.4.0",
     "pngjs": "^7.0.0",
     "utif2": "^4.1.0",
-    "@genoffice/agent-core": "*"
+    "@plotdocs/agent-core": "*"
   }
 }

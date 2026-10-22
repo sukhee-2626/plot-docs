@@ -1,15 +1,15 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import * as aiSearch from '@genoffice/ai-search'
+import * as aiSearch from '@plotdocs/ai-search'
 import { run, tempDir } from './helpers'
 
-// hasGskAuth reads process.env, not the command context: isolate the login state per test
+// hasSoopusAuth reads process.env, not the command context: isolate the login state per test
 const saved: Record<string, string | undefined> = {}
 beforeEach(() => {
-  for (const k of ['GENOFFICE_AUTH_DIR', 'AI_SEARCH_DISABLE_GSK']) saved[k] = process.env[k]
-  process.env.GENOFFICE_AUTH_DIR = join(tempDir(), 'no-auth')
-  process.env.AI_SEARCH_DISABLE_GSK = '1'
+  for (const k of ['PLOTDOCS_AUTH_DIR', 'AI_SEARCH_DISABLE_SOOPUS']) saved[k] = process.env[k]
+  process.env.PLOTDOCS_AUTH_DIR = join(tempDir(), 'no-auth')
+  process.env.AI_SEARCH_DISABLE_SOOPUS = '1'
 })
 afterEach(() => {
   vi.restoreAllMocks()
@@ -26,14 +26,14 @@ function settingsFile(dir: string, settings: Record<string, unknown>): string {
   return path
 }
 
-describe('genoffice capabilities', () => {
+describe('plotdocs capabilities', () => {
   it('reports nothing configured when signed out with default settings', async () => {
     const dir = tempDir()
     const r = await run(['capabilities', '--json'], {
       env: {
         ...process.env,
-        GENOFFICE_AI_SETTINGS: join(dir, 'missing.json'),
-        GENOFFICE_APP_BIN: '',
+        PLOTDOCS_AI_SETTINGS: join(dir, 'missing.json'),
+        PLOTDOCS_APP_BIN: '',
       },
     })
     expect(r.code).toBe(0)
@@ -60,8 +60,8 @@ describe('genoffice capabilities', () => {
     const r = await run(['capabilities', '--json'], {
       env: {
         ...process.env,
-        GENOFFICE_AI_SETTINGS: settings,
-        GENOFFICE_APP_BIN: join(dir, 'bin', 'app'),
+        PLOTDOCS_AI_SETTINGS: settings,
+        PLOTDOCS_APP_BIN: join(dir, 'bin', 'app'),
       },
     })
     expect(r.code).toBe(0)
@@ -79,7 +79,7 @@ describe('genoffice capabilities', () => {
       search: { provider: 'serply', providers: { serply: { apiKey: 'k' } } },
     })
     const r = await run(['capabilities', '--json'], {
-      env: { ...process.env, GENOFFICE_AI_SETTINGS: settings },
+      env: { ...process.env, PLOTDOCS_AI_SETTINGS: settings },
     })
     const d = r.json().detail
     expect(d.search).toEqual({ available: true, via: 'serply' })
@@ -95,7 +95,7 @@ describe('genoffice capabilities', () => {
       },
     })
     const r = await run(['capabilities', '--json'], {
-      env: { ...process.env, GENOFFICE_AI_SETTINGS: settings },
+      env: { ...process.env, PLOTDOCS_AI_SETTINGS: settings },
     })
     const d = r.json().detail
     expect(d.search).toEqual({ available: true, via: provider })
@@ -103,20 +103,20 @@ describe('genoffice capabilities', () => {
   })
 
   it.each(['tavily', 'parallel'])(
-    '%s does not advertise Genspark image search when signed in',
+    '%s does not advertise Soopus image search when signed in',
     async (provider) => {
-      vi.spyOn(aiSearch, 'hasGskAuth').mockReturnValue(true)
+      vi.spyOn(aiSearch, 'hasSoopusAuth').mockReturnValue(true)
       const settings = settingsFile(tempDir(), {
         search: { provider, providers: { [provider]: { apiKey: 'test-key' } } },
       })
       const r = await run(['capabilities', '--json'], {
-        env: { ...process.env, GENOFFICE_AI_SETTINGS: settings },
+        env: { ...process.env, PLOTDOCS_AI_SETTINGS: settings },
       })
       const d = r.json().detail
       expect(d.search).toEqual({ available: true, via: provider })
       expect(d.image_search).toEqual({ available: false, via: null })
-      expect(d.image_generation).toEqual({ available: true, via: 'genspark' })
-      expect(d.media_analysis).toEqual({ available: true, via: 'genspark' })
+      expect(d.image_generation).toEqual({ available: true, via: 'soopus' })
+      expect(d.media_analysis).toEqual({ available: true, via: 'soopus' })
     },
   )
 
@@ -125,7 +125,7 @@ describe('genoffice capabilities', () => {
       search: { provider: 'parallel', providers: { parallel: { apiKey: '' } } },
     })
     const r = await run(['capabilities', '--json'], {
-      env: { ...process.env, GENOFFICE_AI_SETTINGS: settings },
+      env: { ...process.env, PLOTDOCS_AI_SETTINGS: settings },
     })
     expect(r.json().detail.search).toEqual({ available: true, via: 'parallel' })
     expect(r.json().detail.image_search).toEqual({ available: false, via: null })

@@ -1,10 +1,10 @@
 {
-  "name": "@genoffice/cli",
+  "name": "@plotdocs/cli",
   "version": "0.10.0",
   "license": "Apache-2.0",
   "private": true,
   "type": "module",
-  "description": "genoffice: the GenOffice command line (create, convert, read, edit and render documents) built on the same engines as the app; runs headless on the app's bundled Node runtime",
+  "description": "plotdocs: the Plot Docs command line (create, convert, read, edit and render documents) built on the same engines as the app; runs headless on the app's bundled Node runtime",
   "exports": {
     ".": "./src/index.ts",
     "./install": "./src/install.ts",
@@ -13,7 +13,7 @@
     "./control-protocol": "./src/control-protocol.ts"
   },
   "bin": {
-    "genoffice": "./bin/genoffice"
+    "plotdocs": "./bin/plotdocs"
   },
   "scripts": {
     "build": "node build.mjs && node collect-deps.mjs",
@@ -22,16 +22,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@genoffice/ai-provider": "*",
-    "@genoffice/ai-search": "*",
-    "@genoffice/docx-engine": "*",
-    "@genoffice/odf2ooxml": "*",
-    "@genoffice/pdf2docx": "*",
-    "@genoffice/pipelines": "*",
-    "@genoffice/pptx-engine": "*",
-    "@genoffice/pptx-ops": "*",
-    "@genoffice/pptx-render": "*",
-    "@genoffice/xlsx-gateway": "*",
+    "@plotdocs/ai-provider": "*",
+    "@plotdocs/ai-search": "*",
+    "@plotdocs/docx-engine": "*",
+    "@plotdocs/odf2ooxml": "*",
+    "@plotdocs/pdf2docx": "*",
+    "@plotdocs/pipelines": "*",
+    "@plotdocs/pptx-engine": "*",
+    "@plotdocs/pptx-ops": "*",
+    "@plotdocs/pptx-render": "*",
+    "@plotdocs/xlsx-gateway": "*",
     "@modelcontextprotocol/sdk": "^1.32.1",
     "@tiptap/core": "3.31.0",
     "jsdom": "^28.0.0",

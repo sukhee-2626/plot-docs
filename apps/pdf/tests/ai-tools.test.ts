@@ -129,7 +129,7 @@ function makeDeps(over: Partial<PdfAiDeps> = {}): PdfAiDeps {
           height: 600,
         },
       ],
-      method: 'gsk',
+      method: 'soopus',
     })),
     generateImage: vi.fn(async () => ({ url: 'https://img.example/generated.png' })),
     fetchImage: vi.fn(async () => ({ png: 'PNGB64', width: 400, height: 300 })),
@@ -1504,10 +1504,10 @@ describe('insert_image', () => {
     const deps = makeDeps()
     const ok = await executePdfTool(
       deps,
-      call('insert_image', { page: 1, url: 'file:///tmp/genoffice-ai-images/1234.png' }),
+      call('insert_image', { page: 1, url: 'file:///tmp/plotdocs-ai-images/1234.png' }),
     )
     expect(ok.mutated).toBe(true)
-    expect(deps.fetchImage).toHaveBeenCalledWith('file:///tmp/genoffice-ai-images/1234.png')
+    expect(deps.fetchImage).toHaveBeenCalledWith('file:///tmp/plotdocs-ai-images/1234.png')
   })
 
   it('rejects anchor text that is not on the page', async () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { applyCfRules } from '@genoffice/xlsx-gateway/gateway/xlsx-cf'
+import { applyCfRules } from '@plotdocs/xlsx-gateway/gateway/xlsx-cf'
 
 class FakeDxfs {
   internDxf(): number {

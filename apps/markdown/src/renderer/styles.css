@@ -1,6 +1,6 @@
 /* Per-app accent (word-blue family) + markdown-only tokens.
  * Chrome tokens (surface/text/border/…, AI panel --color-*) come from
- * @genoffice/ui/tokens.css; nothing here may shadow those names. */
+ * @plotdocs/ui/tokens.css; nothing here may shadow those names. */
 :root {
   --accent: #185abd;
   --accent-dark: #124a9e;
@@ -39,7 +39,7 @@
   --md-toast-ok: #34c759;
   /* diagrams are document content: white paper behind them in both themes */
   --md-diagram-bg: #ffffff;
-  /* preview paper under an explicit light document page (genoffice#1811) */
+  /* preview paper under an explicit light document page (plotdocs#1811) */
   --md-paper-light: #ffffff;
 }
 
@@ -201,7 +201,7 @@ button {
   box-shadow: var(--md-page-shadow);
 }
 
-/* Document page theme (genoffice#1811): an explicit Light under the dark UI
+/* Document page theme (plotdocs#1811): an explicit Light under the dark UI
    theme re-scopes the paper's ink to the light values, so body copy, code,
    tables and links read as on the light theme. Dark behaves as Follow. */
 html[data-doc-theme='light'] .doc-page {
@@ -517,7 +517,7 @@ html[data-doc-theme='light'] .doc-page {
 
 /* While a popover is open the row must deliver presses (drag regions swallow
    them), so outside-press dismissal can see presses on the blank band */
-html.genoffice-popover-open .ribbon-tabs {
+html.plotdocs-popover-open .ribbon-tabs {
   -webkit-app-region: no-drag;
 }
 
@@ -764,7 +764,7 @@ html.genoffice-popover-open .ribbon-tabs {
   font-size: 11.5px;
 }
 
-/* block-style picker (shared @genoffice/ui gs-dd dropdown): same box as the
+/* block-style picker (shared @plotdocs/ui gs-dd dropdown): same box as the
  * docs/slides font pickers (28px tall, 3px radius, 13px label, 7px inline
  * padding, strong border) */
 .rb-style.gs-dd {
@@ -1165,15 +1165,15 @@ html.genoffice-popover-open .ribbon-tabs {
   white-space: nowrap;
 }
 
-/* Genspark brand logo (shared by the collapsed entry and the AI panel title) */
-.genspark-badge {
+/* Soopus brand logo (shared by the collapsed entry and the AI panel title) */
+.soopus-badge {
   display: block;
   width: 22px;
   height: 22px;
   border-radius: 50%;
 }
 
-.ai-panel-title .genspark-badge {
+.ai-panel-title .soopus-badge {
   width: 18px;
   height: 18px;
 }
@@ -2474,7 +2474,7 @@ html.genoffice-popover-open .ribbon-tabs {
   opacity: 1;
 }
 
-/* language picker (shared @genoffice/ui gs-dd dropdown), sized like the copy
+/* language picker (shared @plotdocs/ui gs-dd dropdown), sized like the copy
    button beside it */
 .md-codeblock-lang .gs-dd-btn {
   height: 22px;
@@ -3286,7 +3286,7 @@ div.tiptap-mathematics-render {
  * the flex item of this row is that div. A `>` selector aimed at .cm-editor
  * selects nothing here, leaving the host on the flex default of shrink-to-fit:
  * a .txt/.json pane then showed a narrow strip of editor beside empty canvas
- * (genoffice#1969). */
+ * (plotdocs#1969). */
 .source-editor > * {
   flex: 1;
   min-width: 0;
@@ -3300,7 +3300,7 @@ div.tiptap-mathematics-render {
   min-width: 0;
 }
 
-/* Image host configuration dialog (genoffice#388). Colors come from the shared
+/* Image host configuration dialog (plotdocs#388). Colors come from the shared
  * tokens (theming rules in CLAUDE.md); the two raw values live on
  * custom-property definitions, the only place raw colors are allowed. */
 .image-host-backdrop {

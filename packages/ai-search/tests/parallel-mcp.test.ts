@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { defaultAiSettings } from '@genoffice/ai-provider'
+import { defaultAiSettings } from '@plotdocs/ai-provider'
 import { webSearch } from '../src/index'
 import { searchOptionsFromSettings, testSearchProvider } from '../src/search-tools'
 
 const endpoint = 'https://search.parallel.ai/mcp'
-const source = { title: 'GenOffice', url: 'https://example.com', excerpts: ['First.', 'Second.'] }
+const source = { title: 'Plot Docs', url: 'https://example.com', excerpts: ['First.', 'Second.'] }
 const payload = { results: [source, { ...source, title: 'Extra' }] }
 const fallback = () =>
   new Response('<a class="result__a" href="https://fallback.example.com">Fallback</a>')
 
 beforeEach(() => {
-  vi.stubEnv('AI_SEARCH_DISABLE_GSK', '1')
+  vi.stubEnv('AI_SEARCH_DISABLE_SOOPUS', '1')
   for (const key of ['SERPER_API_KEY', 'SERPLY_API_KEY', 'TAVILY_API_KEY', 'PARALLEL_API_KEY'])
     vi.stubEnv(key, '')
 })
@@ -63,13 +63,13 @@ describe('Parallel free Search MCP', () => {
   it.each([false, true])('searches anonymously and maps results (SSE: %s)', async (sse) => {
     const { requests } = mockServer({ content: [], structuredContent: payload }, sse)
     const r = await webSearch('office tools', 1, {
-      useGsk: false,
+      useSoopus: false,
       prefer: 'parallel',
       parallelKey: '',
     })
     expect(r).toEqual({
       method: 'parallel',
-      results: [{ title: 'GenOffice', url: 'https://example.com', snippet: 'First.\nSecond.' }],
+      results: [{ title: 'Plot Docs', url: 'https://example.com', snippet: 'First.\nSecond.' }],
     })
     expect(requests.find((r) => r.body.method === 'tools/call')?.body.params).toEqual({
       name: 'web_search',
@@ -97,7 +97,7 @@ describe('Parallel free Search MCP', () => {
     settings.search!.provider = 'parallel'
     const { requests } = mockServer({ content: [], structuredContent: payload })
     expect(searchOptionsFromSettings(settings)).toMatchObject({
-      useGsk: false,
+      useSoopus: false,
       prefer: 'parallel',
       parallelKey: '',
     })

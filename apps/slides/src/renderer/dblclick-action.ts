@@ -1,4 +1,4 @@
-import type { RenderNode } from '@genoffice/pptx-render'
+import type { RenderNode } from '@plotdocs/pptx-render'
 import { contextualTabFor, type ContextTab } from './components/context-tabs'
 
 export type DblClickAction =

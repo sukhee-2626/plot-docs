@@ -1,5 +1,5 @@
 /**
- * @genoffice/odf2ooxml — local ODF import filters: .odt → .docx and
+ * @plotdocs/odf2ooxml — local ODF import filters: .odt → .docx and
  * .odp → .pptx. Pure-function package: bytes in, bytes out; nothing here
  * touches Electron or the filesystem. Both filters follow the .ods import
  * rule — a construct that cannot be converted provably-correct is counted in

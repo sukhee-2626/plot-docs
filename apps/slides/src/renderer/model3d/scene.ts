@@ -11,7 +11,7 @@ import {
   MODEL3D_RATIO_ONE,
   model3dFraming,
   type Model3dRotation,
-} from '@genoffice/pptx-engine/model3d'
+} from '@plotdocs/pptx-engine/model3d'
 
 /**
  * am3d light levels are photometric (lux, candela) for Office's renderer; these scales map them

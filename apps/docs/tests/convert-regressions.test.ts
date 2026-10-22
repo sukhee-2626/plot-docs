@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Block, GeneratedBlock, SectionInfo, TableModel } from '@genoffice/docx-engine'
+import type { Block, GeneratedBlock, SectionInfo, TableModel } from '@plotdocs/docx-engine'
 import {
   blocksToPmDoc,
   capTableRowHeights,

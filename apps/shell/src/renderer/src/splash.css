@@ -1,0 +1,438 @@
+/* Brand launch card — first paint only, skippable, 30 seconds by default.
+ * The progress bar is driven by real elapsed time (SplashScreen.tsx), not a
+ * decorative CSS animation, so the percentage and phase always agree. */
+
+.plot-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 43%, rgb(41 28 94 / 78%), transparent 72%),
+    radial-gradient(ellipse 40% 35% at 18% 82%, rgb(8 117 150 / 20%), transparent 70%),
+    linear-gradient(160deg, #0a0e1c 0%, #070912 54%, #04060c 100%);
+  color: #f8fafc;
+  user-select: none;
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1), visibility 700ms;
+}
+
+.plot-splash.is-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.plot-splash::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgb(148 163 184 / 3.8%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(148 163 184 / 3.8%) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse at 50% 42%, #000 0%, transparent 66%);
+  animation: plotSplashGrid 12s ease-in-out infinite alternate;
+}
+
+.plot-splash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 42%, rgb(3 5 12 / 56%) 100%),
+    linear-gradient(180deg, rgb(255 255 255 / 3%), transparent 18%);
+}
+
+.plot-splash-noise {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+  background-image: radial-gradient(rgb(255 255 255 / 14%) 0.55px, transparent 0.75px);
+  background-size: 4px 4px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000, transparent 75%);
+}
+
+.plot-splash-stage {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(92vw, 480px);
+  padding-bottom: 8px;
+  animation: plotSplashStageIn 780ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.plot-splash-aura {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  width: min(520px, 80vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgb(124 58 237 / 34%) 0%, rgb(79 70 229 / 17%) 38%, transparent 68%);
+  filter: blur(14px);
+  animation: plotSplashAura 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.plot-splash-orbit {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  width: min(360px, 58vw);
+  aspect-ratio: 1;
+  translate: -50% 0;
+  border: 1px solid rgb(167 139 250 / 15%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.plot-splash-orbit-a {
+  animation: plotSplashOrbit 17s linear infinite;
+}
+
+.plot-splash-orbit-b {
+  width: min(410px, 66vw);
+  border-color: rgb(34 211 238 / 12%);
+  border-style: dashed;
+  animation: plotSplashOrbit 25s linear infinite reverse;
+}
+
+.plot-splash-orbit i {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c4b5fd;
+  box-shadow: 0 0 12px 3px rgb(139 92 246 / 80%);
+}
+
+.plot-splash-orbit-b i {
+  top: auto;
+  right: 12%;
+  bottom: 18%;
+  left: auto;
+  width: 4px;
+  height: 4px;
+  background: #67e8f9;
+  box-shadow: 0 0 12px 3px rgb(34 211 238 / 65%);
+}
+
+.plot-splash-mark {
+  position: relative;
+  width: min(292px, 37vh);
+  height: auto;
+  filter:
+    drop-shadow(0 34px 60px rgb(76 29 149 / 38%))
+    drop-shadow(0 0 44px rgb(124 58 237 / 26%));
+  animation: plotSplashMarkIn 950ms cubic-bezier(0.16, 0.84, 0.24, 1) both;
+}
+
+.plot-splash-float {
+  animation: plotSplashFloat 4.6s ease-in-out infinite;
+  transform-origin: 256px 256px;
+}
+
+.plot-splash-ambient {
+  transform-origin: 256px 256px;
+  animation: plotSplashAmbient 3.6s ease-in-out infinite;
+}
+
+.plot-splash-ambient-b {
+  animation-delay: -1.35s;
+}
+
+.plot-splash-sparkle {
+  transform-origin: 375px 175px;
+  animation: plotSplashSparkle 2.3s ease-in-out infinite;
+}
+
+.plot-splash-sparkle-b {
+  transform-origin: 155px 345px;
+  animation-delay: 0.7s;
+}
+
+.plot-splash-ribbon {
+  animation: plotSplashRibbon 3s ease-in-out infinite;
+}
+
+.plot-splash-line {
+  stroke-dasharray: 40;
+  animation: plotSplashShimmer 3s linear infinite;
+}
+
+.plot-splash-line-b {
+  stroke-dasharray: 30;
+  animation-delay: 0.5s;
+}
+
+.plot-splash-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2px;
+  animation: plotSplashCopyIn 720ms 160ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.plot-splash-name {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: -apple-system, 'Segoe UI Variable Display', 'Segoe UI', sans-serif;
+  font-size: clamp(27px, 4.2vw, 34px);
+  font-weight: 720;
+  letter-spacing: -0.045em;
+  color: #f8fafc;
+  text-shadow: 0 8px 34px rgb(2 6 23 / 75%);
+}
+
+.plot-splash-name span {
+  background: linear-gradient(105deg, #c4b5fd 5%, #67e8f9 56%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.plot-splash-by {
+  margin-top: 8px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  color: #8d9ab4;
+}
+
+.plot-splash-tagline {
+  margin-top: 17px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: #7f8fa9;
+  animation: plotSplashCopyIn 720ms 300ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.plot-splash-progress {
+  position: relative;
+  width: 224px;
+  height: 3px;
+  margin-top: 26px;
+  border-radius: 999px;
+  background: rgb(148 163 184 / 14%);
+  overflow: hidden;
+  animation: plotSplashCopyIn 720ms 420ms ease both;
+}
+
+.plot-splash-progress::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 38%), transparent);
+  transform: translateX(-100%);
+  animation: plotSplashBarShine 2.1s 600ms ease-in-out infinite;
+}
+
+.plot-splash-progress span {
+  display: block;
+  width: 1.5%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22d3ee, #818cf8 48%, #c084fc);
+  box-shadow: 0 0 14px rgb(139 92 246 / 80%);
+  transition: width 140ms linear;
+}
+
+.plot-splash-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 224px;
+  margin-top: 10px;
+  color: #7f8fa9;
+  font-size: 9.5px;
+  letter-spacing: 0.02em;
+  animation: plotSplashCopyIn 720ms 500ms ease both;
+}
+
+.plot-splash-status > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.plot-splash-percent {
+  flex: none;
+  color: #a5b4d0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.plot-splash-skip {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 6;
+  padding: 7px 11px;
+  border: 1px solid rgb(148 163 184 / 16%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 3%);
+  color: #8d9ab2;
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.plot-splash-skip:hover {
+  border-color: rgb(167 139 250 / 38%);
+  background: rgb(139 92 246 / 12%);
+  color: #ede9fe;
+}
+
+.plot-splash-skip:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 3px;
+}
+
+.plot-splash-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.plot-splash-particle {
+  position: absolute;
+  width: var(--particle-size);
+  height: var(--particle-size);
+  border-radius: 50%;
+  background: #c4b5fd;
+  box-shadow: 0 0 9px 2px rgb(139 92 246 / 55%);
+  animation: plotSplashParticle var(--particle-duration) var(--particle-delay) linear infinite;
+}
+
+.plot-splash-particle:nth-child(3n) {
+  background: #67e8f9;
+  box-shadow: 0 0 9px 2px rgb(34 211 238 / 50%);
+}
+
+.plot-splash-corner {
+  position: absolute;
+  z-index: 2;
+  width: 38vw;
+  height: 38vw;
+  max-width: 540px;
+  max-height: 540px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(22px);
+}
+
+.plot-splash-corner-tl {
+  top: -20%;
+  left: -14%;
+  background: radial-gradient(circle, rgb(99 102 241 / 13%), transparent 66%);
+}
+
+.plot-splash-corner-br {
+  right: -16%;
+  bottom: -24%;
+  background: radial-gradient(circle, rgb(8 145 178 / 11%), transparent 66%);
+}
+
+@keyframes plotSplashStageIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes plotSplashMarkIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.9) rotate(-2deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes plotSplashCopyIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes plotSplashFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(-1deg); }
+}
+
+@keyframes plotSplashAmbient {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.76; transform: scale(1.08); }
+}
+
+@keyframes plotSplashSparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.86; }
+  50% { transform: scale(1.28) rotate(16deg); opacity: 1; }
+}
+
+@keyframes plotSplashRibbon {
+  0%, 100% { filter: drop-shadow(0 0 12px rgb(56 189 248 / 38%)); }
+  50% { filter: drop-shadow(0 0 26px rgb(168 85 247 / 72%)); }
+}
+
+@keyframes plotSplashShimmer {
+  0% { stroke-dashoffset: 60; opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { stroke-dashoffset: -60; opacity: 0.4; }
+}
+
+@keyframes plotSplashAura {
+  0%, 100% { opacity: 0.62; transform: translateX(-50%) scale(0.94); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.06); }
+}
+
+@keyframes plotSplashOrbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes plotSplashGrid {
+  from { transform: translate3d(-10px, -6px, 0) scale(1.01); }
+  to { transform: translate3d(12px, 8px, 0) scale(1.03); }
+}
+
+@keyframes plotSplashBarShine {
+  0% { transform: translateX(-110%); opacity: 0; }
+  18% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { transform: translateX(110%); opacity: 0; }
+}
+
+@keyframes plotSplashParticle {
+  0% { opacity: 0; transform: translate3d(0, 18px, 0) scale(0.55); }
+  14% { opacity: 0.85; }
+  70% { opacity: 0.5; }
+  100% { opacity: 0; transform: translate3d(var(--particle-drift), -118px, 0) scale(1.05); }
+}
+
+@media (max-width: 620px) {
+  .plot-splash-mark { width: min(238px, 32vh); }
+  .plot-splash-orbit { display: none; }
+  .plot-splash-skip { top: 16px; right: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plot-splash *,
+  .plot-splash *::before,
+  .plot-splash *::after {
+    animation: none !important;
+  }
+  .plot-splash-progress span { transform: none; }
+}

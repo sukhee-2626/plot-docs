@@ -22,8 +22,8 @@ describe('provider registry', () => {
     expect(Object.keys(AI_PROVIDER_ADAPTERS).sort()).toEqual(AI_PROVIDERS.map((m) => m.id).sort())
   })
 
-  it('routes genspark by model id prefix onto the two proxy endpoints', () => {
-    const resolve = (model: string) => AI_PROVIDER_ADAPTERS.genspark.resolveEndpoint(config(model))
+  it('routes soopus by model id prefix onto the two proxy endpoints', () => {
+    const resolve = (model: string) => AI_PROVIDER_ADAPTERS.soopus.resolveEndpoint(config(model))
     expect(resolve('claude-opus-4-7')).toEqual({
       protocol: 'anthropic',
       baseUrl: GENSPARK_LLM_BASE_URLS.anthropic,
@@ -59,7 +59,7 @@ describe('provider registry', () => {
       protocol: 'openai-compatible',
       baseUrl: 'https://api.deepseek.com/v1',
     })
-    // a config still carrying the Genspark pool spelling goes out as the vendor id
+    // a config still carrying the Soopus pool spelling goes out as the vendor id
     expect(AI_PROVIDER_ADAPTERS.deepseek.resolveEndpoint(config('deep-seek-v4.1-flash'))).toEqual({
       protocol: 'openai-compatible',
       baseUrl: 'https://api.deepseek.com/v1',
@@ -319,10 +319,10 @@ describe('provider registry', () => {
     ).toBe('https://mirror/v1')
   })
 
-  it('only genspark authenticates through the gsk login', () => {
+  it('only soopus authenticates through the soopus login', () => {
     for (const [id, adapter] of Object.entries(AI_PROVIDER_ADAPTERS)) {
       expect(adapter.capabilities.auth).toBe(
-        id === 'genspark' ? 'gsk-login' : id === 'codex' ? 'codex-chatgpt' : 'api-key',
+        id === 'soopus' ? 'soopus-login' : id === 'codex' ? 'codex-chatgpt' : 'api-key',
       )
     }
   })

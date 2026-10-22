@@ -1,7 +1,7 @@
 /** Hard guard against "building from scratch by hand": apply_ops insert ops (addElement/addSmartArt) on an empty deck are refused and redirected to generate_deck. */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createSlidesSkill, type DeckAccess } from '../src/renderer/ai/slides-skill'
-import type { RenderSlide, PlacedBox, ShapeRenderNode } from '@genoffice/pptx-render'
+import type { RenderSlide, PlacedBox, ShapeRenderNode } from '@plotdocs/pptx-render'
 import type { AgentToolCall } from '../src/shared/ipc'
 
 const box = (x: number, y: number, w: number, h: number): PlacedBox => ({

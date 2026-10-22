@@ -17,8 +17,8 @@ export const vi = {
   aiQcPageSkipped: 'Trang {n}: đã bỏ qua kiểm tra bố cục tự động',
   aiQcStopped: 'Đã dừng kiểm tra bố cục',
   aiQcCapped: 'Còn {count} trang chưa được kiểm tra (đạt giới hạn mỗi lần chạy)',
-  aiGskLoginBtn: 'Đăng nhập Genspark',
-  aiPanelTitle: 'Genspark',
+  aiSoopusLoginBtn: 'Đăng nhập Soopus',
+  aiPanelTitle: 'Soopus AI',
   aiOpenAssistant: 'Mở trợ lý AI',
   aiFactCheckBtn: 'Kiểm chứng thông tin AI',
   aiFactCheckPrompt:
@@ -116,7 +116,7 @@ export const vi = {
   aiErrNetwork:
     'Sự cố mạng: không thể kết nối tới dịch vụ AI. Vui lòng kiểm tra kết nối và thử lại',
   aiCreditsExhausted:
-    'Tín dụng Genspark của bạn đã hết. Truy cập genspark.ai/pricing để nạp thêm, sau đó thử lại',
+    'Tín dụng Soopus của bạn đã hết. Truy cập plotxyz.ai/plotdocs để nạp thêm, sau đó thử lại',
   aiErrRequestFailed: 'Gửi yêu cầu thất bại: {msg}',
   aiErrGenerateFailed: 'Tạo thất bại',
   aiErrRegenFailed: 'Tạo lại trang chiếu thất bại',

@@ -1,43 +1,43 @@
 # 코딩 에이전트 연결
 
-GenOffice는 Model Context Protocol을 말하므로, 코딩 에이전트가 앱이 쓰는 바로 그 엔진으로 문서를 읽고, 쓰고, 렌더링할 수 있습니다. 에이전트가 파일 형식을 추측하는 일은 없습니다. executor가 검증하는 바로 그 정의에서 타입이 붙은 op 스키마를 받습니다.
+Plot Docs는 Model Context Protocol을 말하므로, 코딩 에이전트가 앱이 쓰는 바로 그 엔진으로 문서를 읽고, 쓰고, 렌더링할 수 있습니다. 에이전트가 파일 형식을 추측하는 일은 없습니다. executor가 검증하는 바로 그 정의에서 타입이 붙은 op 스키마를 받습니다.
 
 ## 앱에서 등록하기
 
 **설정 ▸ 연동**이 할 일입니다. 이 패널은 두 부분으로 나뉘어 있어서, 한쪽만 써도 되고 둘 다 써도 됩니다.
 
-**스킬.**이 컴퓨터에서 찾은 코딩 에이전트마다 한 줄씩 나옵니다(Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf). 각 줄에는 **설치**, **업데이트**, **제거**가 있고, 여기에 **다른 폴더에 설치…**, **스킬 다운로드 (zip)**, **경로 복사**가 더해집니다. 어시스턴트가 목록에 없다면, `SKILL.md`를 읽는 폴더를 GenOffice에 지정하거나, zip을 저장해 두었다가 어시스턴트가 직접 설치하게 하면 됩니다. 스킬과 MCP는 나란히 둘 수 있습니다. 어시스턴트가 둘 중 하나를 고르고, 하는 일은 똑같습니다.
+**스킬.**이 컴퓨터에서 찾은 코딩 에이전트마다 한 줄씩 나옵니다(Claude Code, Codex, Cursor, Gemini CLI, Copilot CLI, OpenCode, Windsurf). 각 줄에는 **설치**, **업데이트**, **제거**가 있고, 여기에 **다른 폴더에 설치…**, **스킬 다운로드 (zip)**, **경로 복사**가 더해집니다. 어시스턴트가 목록에 없다면, `SKILL.md`를 읽는 폴더를 Plot Docs에 지정하거나, zip을 저장해 두었다가 어시스턴트가 직접 설치하게 하면 됩니다. 스킬과 MCP는 나란히 둘 수 있습니다. 어시스턴트가 둘 중 하나를 고르고, 하는 일은 똑같습니다.
 
-**MCP.**두 가지 경로를 고를 수 있습니다. **어시스턴트가 실행(권장)**에서는 표시된 설정을 클라이언트에 넣으면 어시스턴트가 서버를 직접 띄웁니다. **로컬 HTTP 서버**는 앱이 대신 실행해 줍니다. 어느 쪽이든 어시스턴트는 결국 GenOffice를 통해 일하고, 당신은 명령을 직접 입력하지 않습니다.
+**MCP.**두 가지 경로를 고를 수 있습니다. **어시스턴트가 실행(권장)**에서는 표시된 설정을 클라이언트에 넣으면 어시스턴트가 서버를 직접 띄웁니다. **로컬 HTTP 서버**는 앱이 대신 실행해 줍니다. 어느 쪽이든 어시스턴트는 결국 Plot Docs를 통해 일하고, 당신은 명령을 직접 입력하지 않습니다.
 
 ## 명령줄에서 등록하기
 
 같은 일을 터미널에서도 할 수 있습니다. 이것이 고급 경로이고, 패널이 찾지 못하는 곳에 에이전트가 있을 때 쓰는 방법입니다.
 
 ```sh
-genoffice mcp install all
+plotdocs mcp install all
 ```
 
 이 컴퓨터에 있는 코딩 에이전트를 찾아, 각자의 설정에 stdio 서버 항목을 씁니다. 그 파일의 나머지는 있는 그대로 둡니다.
 
 ```sh
-genoffice mcp list             # where each agent stands
-genoffice mcp install cursor    # just one
-genoffice mcp uninstall cursor  # take it back out
+plotdocs mcp list             # where each agent stands
+plotdocs mcp install cursor    # just one
+plotdocs mcp uninstall cursor  # take it back out
 ```
 
 평소와 다른 곳에 설치한 에이전트에는 `--dir <path>`를 줍니다. `--force`는 이미 있는 항목을 다시 씁니다.
 
 서버가 받는 것은 한 화면에 다 들어 있습니다. 등록, 제거, 목록 형태, HTTP로 서비스하기, 그리고 두 스키마 플래그까지.
 
-![genoffice mcp --help의 실제 출력: install·uninstall·list 형태와 --http, --host, --token, --compact-schemas, --dir, --force 옵션](img/mcp.png)
+![plotdocs mcp --help의 실제 출력: install·uninstall·list 형태와 --http, --host, --token, --compact-schemas, --dir, --force 옵션](img/mcp.png)
 
 ## 어시스턴트 없이 실행하기
 
 다른 컴퓨터에 있는 클라이언트라면 HTTP로 내보내세요.
 
 ```sh
-genoffice mcp --http 8765 --token <secret>
+plotdocs mcp --http 8765 --token <secret>
 ```
 
 `--host <addr>`는 어디에서 받을지를 바꿉니다. 클라이언트에는 같은 토큰을 넘기세요.
@@ -57,22 +57,22 @@ HTTP로도 파일이 오갑니다. `PUT /files/<name>`으로 하나를 올리고
 
 ## 스키마와 더 작은 예산
 
-`apply`와 `create`는 `ops`, `cells`, `data` 매개변수를 op마다 타입이 붙은 스키마로 알립니다. 그 스키마는 `genoffice guide <domain> --json`에서 만들어집니다. 정확하지만 크지는 않습니다. 컨텍스트 창이 좁은 클라이언트는 대신 단순 배열을 요청할 수 있습니다:
+`apply`와 `create`는 `ops`, `cells`, `data` 매개변수를 op마다 타입이 붙은 스키마로 알립니다. 그 스키마는 `plotdocs guide <domain> --json`에서 만들어집니다. 정확하지만 크지는 않습니다. 컨텍스트 창이 좁은 클라이언트는 대신 단순 배열을 요청할 수 있습니다:
 
 ```sh
-genoffice mcp --compact-schemas
-GENOFFICE_MCP_COMPACT_SCHEMAS=1 genoffice mcp
+plotdocs mcp --compact-schemas
+PLOTDOCS_MCP_COMPACT_SCHEMAS=1 plotdocs mcp
 ```
 
 ## 스킬이 필요한 이유
 
-op 어휘를 모르는 에이전트는 추측합니다. 스킬에는 레퍼런스와 디자인 가이드가 들어 있습니다. `genoffice guide`가 출력하는 것과 같은 내용이라, 어시스턴트가 실제로 읽어 본 스펙에 맞춰 op를 쓰게 됩니다. 위 패널에서 설치하거나, 터미널의 `genoffice skill`로 넣으세요.
+op 어휘를 모르는 에이전트는 추측합니다. 스킬에는 레퍼런스와 디자인 가이드가 들어 있습니다. `plotdocs guide`가 출력하는 것과 같은 내용이라, 어시스턴트가 실제로 읽어 본 스펙에 맞춰 op를 쓰게 됩니다. 위 패널에서 설치하거나, 터미널의 `plotdocs skill`로 넣으세요.
 
 ## 앱 안에서 무엇에 닿을 수 있나
 
-서버는 디스크의 파일로만 제한되지 않습니다. GenOffice가 실행되는 동안, 에이전트는 창을 통해서도 일할 수 있습니다.
+서버는 디스크의 파일로만 제한되지 않습니다. Plot Docs가 실행되는 동안, 에이전트는 창을 통해서도 일할 수 있습니다.
 
-- **`open_in_genoffice`**는 파일을 탭으로 열고 그 탭을 활성화합니다.
+- **`open_in_plotdocs`**는 파일을 탭으로 열고 그 탭을 활성화합니다.
 - **`open_documents`**는 열어 둔 모든 문서를 id, 형식, 경로, 저장 안 된 변경이 있는지까지 나열하고, 문서 하나를 읽거나 제자리에 저장하거나 닫습니다. 닫을 때는 먼저 저장하지만, 버리라고 하면 저장하지 않습니다.
 - **콘텐츠 도구들**은 그 id(또는 경로)를 `document` 인자로 받으므로, 편집은 이미 열어 둔 탭에 반영되고 창도 그 탭으로 넘어갑니다.
 

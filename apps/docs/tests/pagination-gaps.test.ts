@@ -463,7 +463,7 @@ describe('alignTableGapFills', () => {
   })
 })
 
-describe('page frames and sheets (differing-width documents, genoffice#246)', () => {
+describe('page frames and sheets (differing-width documents, plotdocs#246)', () => {
   const rect = (top: number, height: number, left = 0, width = 1056) =>
     ({ top, height, left, width, bottom: top + height, right: left + width }) as DOMRect
   /** wrap holding a paper and two gaps: page 0 (portrait) → page 1 (landscape) → page 2 (portrait) */

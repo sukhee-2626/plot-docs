@@ -53,7 +53,7 @@ describe('slide print window', () => {
     const win = new TestPrintWindow()
     const html = '<html>' + 'x'.repeat(3 * 1024 * 1024) + '</html>'
     expect(await printSlidesHtml(html, win, 'win32')).toEqual({ ok: true })
-    expect(win.loadedPath).toMatch(/genoffice-slides-print-.*slides\.html$/)
+    expect(win.loadedPath).toMatch(/plotdocs-slides-print-.*slides\.html$/)
     expect(win.loadedHtml).toBe(html)
     expect(win.shown).toBe(true)
     expect(win.focused).toBe(true)

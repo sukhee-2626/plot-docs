@@ -44,7 +44,7 @@ async function docx(): Promise<Buffer> {
 
 test('corner handle drag shrinks the whole table and the width sticks', async () => {
   test.setTimeout(150_000)
-  const dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-corner-resize-')))
+  const dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-corner-resize-')))
   const docPath = join(dir, 'table.docx')
   writeFileSync(docPath, await docx())
   const launched = await launchShell({

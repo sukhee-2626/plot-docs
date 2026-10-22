@@ -14,7 +14,7 @@ import {
   type UniverRenderingContext,
 } from '@univerjs/engine-render'
 import { SheetSkeletonManagerService } from '@univerjs/preset-sheets-core'
-import { columnLabel } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { columnLabel } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import { t } from './i18n/locale'
 import {
@@ -85,7 +85,7 @@ interface HeaderStyleSource {
 /// Univer centers the column letters in the whole header; with the gutter
 /// band on top they would sit under it, so repaint the band below it.
 class OutlineColumnHeaderExtension extends SheetExtension {
-  override uKey = 'GenOfficeOutlineColumnHeaderExtension'
+  override uKey = 'SSOfficeOutlineColumnHeaderExtension'
   protected override Z_INDEX = 11
 
   override draw(

@@ -6,12 +6,12 @@ const MAC = process.platform === 'darwin'
 const COMPACT_KEY = MAC ? 'Alt+Meta+KeyK' : 'Control+Alt+KeyK'
 
 /**
- * The compact ribbon must fit what it holds (genoffice#1891, docs parity).
+ * The compact ribbon must fit what it holds (plotdocs#1891, docs parity).
  *
  * `.ribbon-body` is a fixed-height band with `overflow-y: hidden`, and that is
  * deliberate: switching tabs must never resize the row. It is also a lid —
  * the docs compact band clipped its font pickers until every tall control got
- * a compact rule (genoffice#1942). This walks every slides tab with the
+ * a compact rule (plotdocs#1942). This walks every slides tab with the
  * ribbon in compact density and asserts nothing overflows: the stacked rb-col
  * rows go side by side and the Design tab theme cards shrink. jsdom cannot
  * compute layout, so a unit test would pass while the real band clipped.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { HeaderFooter, HfTableCell, HfTableRow } from '@genoffice/docx-engine'
+import type { HeaderFooter, HfTableCell, HfTableRow } from '@plotdocs/docx-engine'
 import {
   hfCellGeometry,
   hfCellParaStyle,

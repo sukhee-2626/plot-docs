@@ -1,4 +1,4 @@
-import type { Lang, Params } from '@genoffice/i18n'
+import type { Lang, Params } from '@plotdocs/i18n'
 import type { RecentPage } from '../../shared/home-api'
 import type { StringKey } from './locale'
 

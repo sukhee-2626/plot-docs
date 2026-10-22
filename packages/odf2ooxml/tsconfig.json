@@ -5,8 +5,8 @@
     // resolve the sibling source packages by path (worktree-safe: a linked
     // node_modules would otherwise typecheck against another checkout)
     "paths": {
-      "@genoffice/docx-engine": ["../docx-engine/src/index.ts"],
-      "@genoffice/pptx-engine": ["../pptx-engine/src/index.ts"]
+      "@plotdocs/docx-engine": ["../docx-engine/src/index.ts"],
+      "@plotdocs/pptx-engine": ["../pptx-engine/src/index.ts"]
     }
   },
   "include": ["src", "tests"]

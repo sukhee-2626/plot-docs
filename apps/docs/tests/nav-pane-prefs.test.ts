@@ -1,6 +1,6 @@
 // The navigation pane remembers which sub-view was last used and how deep the
 // outline was opened, so reopening the app lands where you left off
-// (genoffice#1348). The collapsed set is deliberately NOT persisted — it is
+// (plotdocs#1348). The collapsed set is deliberately NOT persisted — it is
 // keyed by heading text and means nothing in another document. Neither is the
 // search query: it would seed every new session, so opening any other document
 // would land on Results already running the previous document's search.

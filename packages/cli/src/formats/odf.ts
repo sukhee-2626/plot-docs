@@ -1,4 +1,4 @@
-import { convertOdpToPptx, convertOdtToDocx } from '@genoffice/odf2ooxml'
+import { convertOdpToPptx, convertOdtToDocx } from '@plotdocs/odf2ooxml'
 
 /** .odt → .docx through the local import filter (same engine as the app's open route). */
 export async function convertOdt(input: Uint8Array): Promise<{

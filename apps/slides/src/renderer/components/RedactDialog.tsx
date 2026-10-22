@@ -7,7 +7,7 @@
  * the model ever sees in place of the words, so the reader should know exactly
  * what is about to be exposed before committing.
  */
-import { useRedactLabelField } from '@genoffice/ui'
+import { useRedactLabelField } from '@plotdocs/ui'
 import { useModalDialog } from './modal-dialog'
 import { useI18n } from '../i18n/locale'
 

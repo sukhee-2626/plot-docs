@@ -5,7 +5,7 @@
  */
 import { useSyncExternalStore } from 'react'
 
-import { formatAddress } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { formatAddress } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import type { WorkbookFile } from '../shared/desktop-api'
 import { useI18n } from './i18n/locale'

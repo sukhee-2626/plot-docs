@@ -153,7 +153,7 @@ export async function exportSlidesPdf({
   let tempDir: string | null = null
   let timer: ReturnType<typeof setTimeout> | undefined
   try {
-    tempDir = await mkdtemp(join(tmpdir(), 'genoffice-slides-pdf-'))
+    tempDir = await mkdtemp(join(tmpdir(), 'plotdocs-slides-pdf-'))
     const htmlPath = join(tempDir, 'slides.html')
     await writeFile(htmlPath, buildPdfExportHtml(pages, widthIn, heightIn, links, fontCss), 'utf8')
     const result = await Promise.race([

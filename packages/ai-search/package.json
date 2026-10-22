@@ -1,10 +1,10 @@
 {
-  "name": "@genoffice/ai-search",
+  "name": "@plotdocs/ai-search",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
   "type": "module",
-  "description": "Shared web/image search (Genspark, Serper, Serply, Tavily, Parallel, DuckDuckGo fallback) for docs/sheets/slides AI. No Electron deps; runs in main process (Node fetch).",
+  "description": "Shared web/image search (Soopus, Serper, Serply, Tavily, Parallel, DuckDuckGo fallback) for docs/sheets/slides AI. No Electron deps; runs in main process (Node fetch).",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -14,8 +14,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@genoffice/ai-provider": "*",
-    "@genoffice/electron-utils": "*",
+    "@plotdocs/ai-provider": "*",
+    "@plotdocs/electron-utils": "*",
     "@genspark/cli": "^1.4.2",
     "@modelcontextprotocol/sdk": "^1.32.1"
   },

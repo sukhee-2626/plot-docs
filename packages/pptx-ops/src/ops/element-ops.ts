@@ -37,7 +37,7 @@ import {
   type ReorderDirection,
   type Slide,
   type SlideElement,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 import {
   coerceBytes,
   dataUrlExt,

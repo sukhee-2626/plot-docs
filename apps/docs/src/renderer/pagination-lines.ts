@@ -63,7 +63,7 @@ const PATCH_KEYS = [
 
 /**
  * Carry the previous pass's line/row samples onto the freshly measured blocks
- * of a streaming open's pass (genoffice#526): only the appended tail can
+ * of a streaming open's pass (plotdocs#526): only the appended tail can
  * change layout, and fillLineBoxes skips blocks that already carry samples, so
  * the unchanged prefix pays no DOM sampling at all — the sampler's own
  * per-element cache still charges a full subtree signature per block per pass.

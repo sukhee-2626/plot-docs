@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { HfImage, HfTextBox } from '@genoffice/docx-engine'
+import type { HfImage, HfTextBox } from '@plotdocs/docx-engine'
 import { hfFloatPagePos, hfTextBoxStyle, type HfStripGeom } from '../src/renderer/editor/hf-dom'
 
 /** Letter page, 1in margins, header/footer strips 0.5in from the edges (px) */

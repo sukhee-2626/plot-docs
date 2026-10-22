@@ -11,19 +11,19 @@ export default defineConfig({
   resolve: {
     alias: {
       // Subpath before the bare name: string aliases are prefix replacements
-      '@genoffice/electron-utils/remote-image': resolve(
+      '@plotdocs/electron-utils/remote-image': resolve(
         here,
         '../electron-utils/src/remote-image.ts',
       ),
-      '@genoffice/electron-utils/safe-remote-url': resolve(
+      '@plotdocs/electron-utils/safe-remote-url': resolve(
         here,
         '../electron-utils/src/safe-remote-url.ts',
       ),
-      '@genoffice/electron-utils/generated-images': resolve(
+      '@plotdocs/electron-utils/generated-images': resolve(
         here,
         '../electron-utils/src/generated-images.ts',
       ),
-      '@genoffice/ai-provider': resolve(here, '../ai-provider/src/index.ts'),
+      '@plotdocs/ai-provider': resolve(here, '../ai-provider/src/index.ts'),
     },
   },
   test: { include: ['tests/**/*.test.ts'] },

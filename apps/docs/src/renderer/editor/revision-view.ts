@@ -1,4 +1,4 @@
-import type { Block, TableModel } from '@genoffice/docx-engine'
+import type { Block, TableModel } from '@plotdocs/docx-engine'
 import type { RevisionRange } from './revisions'
 
 /**

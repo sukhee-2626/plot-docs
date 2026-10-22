@@ -1,6 +1,6 @@
 import { readFile, stat } from 'node:fs/promises'
 import { extname } from 'node:path'
-import { parseFileToText } from '@genoffice/file-parse'
+import { parseFileToText } from '@plotdocs/file-parse'
 
 /** larger files are indexed by name and folder only */
 export const MAX_EXTRACT_BYTES = 64 * 1024 * 1024

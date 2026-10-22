@@ -25,7 +25,7 @@ interface TabsApiOnWindow {
 
 test.describe('tab tear-off and dock', () => {
   test('a torn-off markdown tab docks back without a reload; Open in New Window covers it too', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'genoffice-tear-'))
+    const dir = await mkdtemp(join(tmpdir(), 'plotdocs-tear-'))
     const mdPath = join(dir, 'notes.md')
     await writeFile(mdPath, '# Tear me off\n\nA paragraph.\n')
     const launched = await launchShell({

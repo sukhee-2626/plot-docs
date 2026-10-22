@@ -26,7 +26,7 @@ Setiap editor mempunyai pengikatan kekunci sendiri, dan hanya sebahagian kecil d
 
 - Lajur macOS menggunakan simbol yang biasa: `⌘` Command, `⌥` Option, `⇧` Shift, `⌃` Control.
 - Lajur Windows / Linux mengeja nama penuhnya: `Ctrl`, `Alt`, `Shift`.
-- Apabila GenOffice benar-benar memerlukan kekunci berbeza pada dua platform, jadual akan menunjukkannya. Kes yang lazim ialah `⌃H` untuk Cari & Ganti (macOS memiliki `⌘H` untuk Sorok), `⌥⌘G` untuk Ke, dan kekunci tutup milik Slides.
+- Apabila Plot Docs benar-benar memerlukan kekunci berbeza pada dua platform, jadual akan menunjukkannya. Kes yang lazim ialah `⌃H` untuk Cari & Ganti (macOS memiliki `⌘H` untuk Sorok), `⌥⌘G` untuk Ke, dan kekunci tutup milik Slides.
 - Pintasan yang hanya berfungsi dengan sesuatu yang dipilih ditulis di lajur Tindakan dan bukannya diberi lajur sendiri, supaya jadual itu kekal tiga lajur lebarnya.
 
 ## Word
@@ -159,7 +159,7 @@ F1 membuka **Panduan Pengguna**, bukan senarai ini. Helaian pintasannya ialah `�
 
 ## Sheets
 
-GenOffice Sheets ialah grid serasi Excel. Kebanyakan pintasan di bawah ialah pintasan Excel yang anda sudah kenal.
+Plot Docs Sheets ialah grid serasi Excel. Kebanyakan pintasan di bawah ialah pintasan Excel yang anda sudah kenal.
 
 > **Penyuntingan menang.** Hampir setiap pintasan dalam Sheets diabaikan semasa anda menyunting sel atau menaip dalam **bar formula**, supaya menaip, memindahkan caret dan kekunci Backspace mengekalkan maksud penyuntingan teks biasa. Jika sesuatu kekunci nampaknya tidak melakukan apa-apa, semaklah sama ada anda berada di tengah menyunting: tekan Esc atau Enter dahulu, kemudian cuba lagi. Arahan yang bertindak ke atas pilihan juga tidak melakukan apa-apa semasa dialog terbuka. Di mana satu pintasan menjadi pengecualian kepada peraturan ini, jadual akan menyatakannya.
 
@@ -287,7 +287,7 @@ Pintasan penapis Excel, Ctrl+Shift+L, tidak melakukan apa-apa pada Windows atau 
 
 ## Slides
 
-GenOffice Slides ialah editor persembahan bergaya PowerPoint. Kebanyakan kekunci melakukan perkara yang sama di mana-mana sahaja anda berada, tetapi beberapa berubah makna mengikut fokus — di dalam kotak teks, atau semasa **baris lakaran kenit**, **kerangka** atau **penyusun slaid** mempunyai fokus papan kekunci. Kes tersebut ditandakan dalam lajur Tindakan.
+Plot Docs Slides ialah editor persembahan bergaya PowerPoint. Kebanyakan kekunci melakukan perkara yang sama di mana-mana sahaja anda berada, tetapi beberapa berubah makna mengikut fokus — di dalam kotak teks, atau semasa **baris lakaran kenit**, **kerangka** atau **penyusun slaid** mempunyai fokus papan kekunci. Kes tersebut ditandakan dalam lajur Tindakan.
 
 ### Fail dan aplikasi
 
@@ -482,7 +482,7 @@ Escape membongkar satu lapisan pada satu masa — dialog yang terbuka dahulu, ke
 
 ## Markdown
 
-GenOffice Markdown menyunting Markdown dengan pratonton langsung di sebelahnya.
+Plot Docs Markdown menyunting Markdown dengan pratonton langsung di sebelahnya.
 
 ### Fail dan paparan
 
@@ -523,7 +523,7 @@ Menerapkan formula yang kosong akan memadamkan blok itu sebaliknya. Editor itu j
 
 ## HTML
 
-GenOffice HTML memaparkan editor kod di sebelah pratonton langsung. Kekunci yang bertindak ke atas elemen halaman hanya terpakai apabila pratonton itu sendiri mempunyai fokus papan kekunci.
+Plot Docs HTML memaparkan editor kod di sebelah pratonton langsung. Kekunci yang bertindak ke atas elemen halaman hanya terpakai apabila pratonton itu sendiri mempunyai fokus papan kekunci.
 
 ### Fail dan paparan sumber
 

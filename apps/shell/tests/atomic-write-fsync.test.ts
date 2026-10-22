@@ -33,7 +33,7 @@ afterEach(() => {
 
 describe('atomicWriteFile durability', () => {
   it('fsyncs the temporary file before the rename and the directory after it', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'genoffice-fsync-'))
+    const dir = mkdtempSync(join(tmpdir(), 'plotdocs-fsync-'))
     const target = join(dir, 'report.docx')
     try {
       await atomicWriteFile(target, new TextEncoder().encode('new'))
@@ -47,7 +47,7 @@ describe('atomicWriteFile durability', () => {
   })
 
   it('still publishes the file when the filesystem refuses the fsync', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'genoffice-fsync-'))
+    const dir = mkdtempSync(join(tmpdir(), 'plotdocs-fsync-'))
     const target = join(dir, 'report.docx')
     syncError.code = 'EINVAL'
     try {
@@ -60,7 +60,7 @@ describe('atomicWriteFile durability', () => {
   })
 
   it('fails the write on an unexpected fsync error and leaves no temp file behind', async () => {
-    const dir = mkdtempSync(join(tmpdir(), 'genoffice-fsync-'))
+    const dir = mkdtempSync(join(tmpdir(), 'plotdocs-fsync-'))
     const target = join(dir, 'report.docx')
     syncError.code = 'EIO'
     try {

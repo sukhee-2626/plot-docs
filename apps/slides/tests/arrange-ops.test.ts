@@ -11,8 +11,8 @@ import {
   savePptx,
   type OpenedPptx,
   type SlideElement,
-} from '@genoffice/pptx-engine'
-import { runTxn } from '@genoffice/pptx-ops'
+} from '@plotdocs/pptx-engine'
+import { runTxn } from '@plotdocs/pptx-ops'
 
 let opened: OpenedPptx
 let a: string

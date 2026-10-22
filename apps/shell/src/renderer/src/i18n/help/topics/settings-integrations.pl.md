@@ -23,7 +23,7 @@ Jasny / Ciemny / Zgodnie z systemem. Opcja Zgodnie z systemem podąża za wyglą
 - **Położenie panelu bocznego AI** (po lewej lub po prawej), **Rozmiar tekstu panelu AI** i **Sprawdzanie pisowni w czacie AI**.
 - **Otwieraj panel AI w nowych dokumentach** — wyłączone, nowy dokument zaczyna się ze zwiniętym panelem, jedno kliknięcie stąd.
 - **Automatycznie zapisuj wszystkie dokumenty** włącza AutoSave domyślnie w każdym edytorze; nadal można je wyłączyć dla jednego okna.
-- **Lokalizacja zapisu** z przyciskiem **Zmień** oraz **Domyślna aplikacja dla dokumentów Office**, aby przejąć .docx / .xlsx / .pptx dla GenOffice.
+- **Lokalizacja zapisu** z przyciskiem **Zmień** oraz **Domyślna aplikacja dla dokumentów Office**, aby przejąć .docx / .xlsx / .pptx dla Plot Docs.
 
 ## Media i wyszukiwanie AI
 
@@ -39,22 +39,22 @@ To nie są przełączniki — każda możliwość wybiera dostawcę, który ją 
 
 ## Powiązanie z aplikacją domyślną
 
-Ustawienia mogą zarejestrować GenOffice jako obsługę plików .docx / .xlsx / .pptx / .pdf i podobnych (rejestracja aplikacji domyślnej na poziomie systemu; potwierdzenie, gdy aplikacja o to poprosi).
+Ustawienia mogą zarejestrować Plot Docs jako obsługę plików .docx / .xlsx / .pptx / .pdf i podobnych (rejestracja aplikacji domyślnej na poziomie systemu; potwierdzenie, gdy aplikacja o to poprosi).
 
 ## Informacje o oprogramowaniu innych firm i aktualizacje
 
 - Pomoc ▸ Informacje o oprogramowaniu innych firm: pełny wykaz licencji open source dołączony do aplikacji.
 - Pomoc ▸ Sprawdź aktualizacje…: uruchamia ręczne sprawdzenie; nowsza wersja wyświetla monit o instalacji.
 
-## Logowanie do Genspark
+## Logowanie do Soopus AI
 
-- Punkt logowania (w ustawieniach lub na liście projektów w chmurze) korzysta z przepływu z **kodem urządzenia**: GenOffice pokazuje kod i otwiera stronę logowania w przeglądarce; po zakończeniu proces przebiega dalej automatycznie.
-- Logowanie służy wyłącznie do: listy projektów w chmurze i modeli hostowanych przez Genspark. Bez niego wszystkie funkcje lokalne i modele niestandardowe działają dalej.
+- Punkt logowania (w ustawieniach lub na liście projektów w chmurze) korzysta z przepływu z **kodem urządzenia**: Plot Docs pokazuje kod i otwiera stronę logowania w przeglądarce; po zakończeniu proces przebiega dalej automatycznie.
+- Logowanie służy wyłącznie do: listy projektów w chmurze i modeli hostowanych przez Soopus AI. Bez niego wszystkie funkcje lokalne i modele niestandardowe działają dalej.
 - Wylogowanie to jedno kliknięcie w ustawieniach.
 
 ## Integracja MCP (dla zaawansowanych użytkowników i klientów AI)
 
-Do **Integracji** łączy GenOffice z agentem programistycznym i ma własny artykuł: Podłączenie z agentem programistycznym. Wersja skrócona — wybierz drogę (wiersz poleceń albo MCP), przejdź tę część, a potem rozpocznij nową rozmowę i zapytaj.
+Do **Integracji** łączy Plot Docs z agentem programistycznym i ma własny artykuł: Podłączenie z agentem programistycznym. Wersja skrócona — wybierz drogę (wiersz poleceń albo MCP), przejdź tę część, a potem rozpocznij nową rozmowę i zapytaj.
 
 ![Ustawienia ▸ Integracje: trzy kroki, potem wiersze umiejętności i opcje MCP](img/settings-integrations.png)
 
@@ -64,6 +64,6 @@ W sekcji **Lokalny serwer HTTP** aplikacja może też sama uruchomić ten serwer
 
 | Polecenie          | Co robi                      |
 | ------------------ | ---------------------------- |
-| `genoffice <plik>` | otwiera plik                 |
-| `genoffice mcp`    | uruchamia lokalny serwer MCP |
-| `genoffice --help` | wszystkie polecenia i opcje  |
+| `plotdocs <plik>` | otwiera plik                 |
+| `plotdocs mcp`    | uruchamia lokalny serwer MCP |
+| `plotdocs --help` | wszystkie polecenia i opcje  |

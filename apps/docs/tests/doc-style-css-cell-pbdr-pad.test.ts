@@ -4,7 +4,7 @@ import type {
   ParsedDocFull,
   StyleDisplay,
   StyleInfo,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import { docStyleCss } from '../src/renderer/doc-style-css'
 
 ;(globalThis as { CSS?: unknown }).CSS ??= { escape: (s: string) => s }

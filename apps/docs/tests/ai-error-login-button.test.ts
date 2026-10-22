@@ -1,6 +1,6 @@
-// A failed run marks the error bubble with a "Sign in to Genspark" button only
-// when Genspark is the active provider — a BYOK user's failure (their own
-// provider's rate limit, say) must not advertise a Genspark sign-in (genoffice#1948).
+// A failed run marks the error bubble with a "Sign in to Soopus" button only
+// when Soopus is the active provider — a BYOK user's failure (their own
+// provider's rate limit, say) must not advertise a Soopus sign-in (plotdocs#1948).
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { act, createElement } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
@@ -99,7 +99,7 @@ describe('AI error bubble sign-in button', () => {
       // rebuild inline so the harness stays alive until the assertions ran
       let listener: ChunkListener | null = null
       ;(window as unknown as Record<string, unknown>).desktop = {
-        aiGskStatus: vi.fn(async () => ({ loggedIn: false })),
+        aiSoopusStatus: vi.fn(async () => ({ loggedIn: false })),
         onAiStream: (l: ChunkListener) => {
           listener = l
           return () => {
@@ -141,12 +141,12 @@ describe('AI error bubble sign-in button', () => {
     }
   })
 
-  it('offers the sign-in button when Genspark is the provider', async () => {
+  it('offers the sign-in button when Soopus is the provider', async () => {
     const editor = createEditor()
     try {
       let listener: ChunkListener | null = null
       ;(window as unknown as Record<string, unknown>).desktop = {
-        aiGskStatus: vi.fn(async () => ({ loggedIn: false })),
+        aiSoopusStatus: vi.fn(async () => ({ loggedIn: false })),
         onAiStream: (l: ChunkListener) => {
           listener = l
           return () => {
@@ -162,7 +162,7 @@ describe('AI error bubble sign-in button', () => {
         createElement(AiPanel, {
           editor,
           blocks: [],
-          settings: settingsWith('genspark'),
+          settings: settingsWith('soopus'),
           open: true,
           onExpand: () => {},
           onCollapse: () => {},

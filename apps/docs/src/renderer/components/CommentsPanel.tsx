@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import type { Node as PmNode } from '@tiptap/pm/model'
-import type { CommentInfo } from '@genoffice/docx-engine'
+import type { CommentInfo } from '@plotdocs/docx-engine'
 import { useI18n } from '../i18n/locale'
 import { IconComment, IconPencil, IconTrash } from './icons'
 

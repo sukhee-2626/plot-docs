@@ -44,7 +44,7 @@ test.describe('docs list completion', () => {
   let docPath: string
 
   test.beforeEach(async () => {
-    dir = realpathSync(mkdtempSync(join(tmpdir(), 'genoffice-e2e-lists-')))
+    dir = realpathSync(mkdtempSync(join(tmpdir(), 'plotdocs-e2e-lists-')))
     docPath = join(dir, 'lists.docx')
     writeFileSync(docPath, await minimalDocx('start'))
   })

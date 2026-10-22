@@ -1,5 +1,5 @@
 import { Editor } from '@tiptap/core'
-import { parseDocx, saveDocx } from '@genoffice/docx-engine'
+import { parseDocx, saveDocx } from '@plotdocs/docx-engine'
 import { describe, expect, it } from 'vitest'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { docStyleCss } from '../src/renderer/doc-style-css'

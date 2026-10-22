@@ -1,5 +1,5 @@
 import JSZip from 'jszip'
-import { assertZipInflatesWithinLimits, assertZipWithinLimits } from '@genoffice/docx-engine'
+import { assertZipInflatesWithinLimits, assertZipWithinLimits } from '@plotdocs/docx-engine'
 import { resolveTarget } from './opc'
 import { XMLParser } from 'fast-xml-parser'
 import {
@@ -271,7 +271,7 @@ function joinRowCells(cells: readonly string[]): string {
 
 export interface XlsxTextOptions {
   /// Sheet XML past this many extracted characters is not even parsed: the DOM
-  /// of a 100k-row sheet costs ~1 GB of heap for text nobody keeps (genoffice#2011).
+  /// of a 100k-row sheet costs ~1 GB of heap for text nobody keeps (plotdocs#2011).
   maxChars?: number
 }
 

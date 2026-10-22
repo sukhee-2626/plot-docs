@@ -5,7 +5,7 @@
  * which marks the sheet note-dirty for the save.
  */
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { formatAddress } from '@genoffice/xlsx-gateway/domain/cell-address'
+import { formatAddress } from '@plotdocs/xlsx-gateway/domain/cell-address'
 
 import { useI18n } from './i18n/locale'
 import type { ThreadHover } from './threaded-comment-marker'

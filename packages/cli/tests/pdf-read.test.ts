@@ -6,12 +6,12 @@ import { run, tempDir, writeMinimalPdf } from './helpers'
 const REPO = resolve(__dirname, '../../..')
 const ENCRYPTED = join(REPO, 'apps/shell/tests/fixtures/testPassword4Spaces.pdf')
 
-describe('genoffice pdf read', () => {
+describe('plotdocs pdf read', () => {
   it('returns page count, metadata and per-page text with page sizes', async () => {
     const pdf = writeMinimalPdf(
       join(tempDir(), 'three.pdf'),
       ['Alpha page', 'Beta page', 'Gamma page'],
-      { title: 'Quarterly notes', author: 'GenOffice' },
+      { title: 'Quarterly notes', author: 'Plot Docs' },
     )
     const r = await run(['pdf', 'read', pdf, '--json'])
     expect(r.code).toBe(0)
@@ -21,7 +21,7 @@ describe('genoffice pdf read', () => {
       pages: 3,
       encrypted: false,
       title: 'Quarterly notes',
-      author: 'GenOffice',
+      author: 'Plot Docs',
       range: '1-3',
     })
     expect(detail.truncated).toBeUndefined()
@@ -84,14 +84,14 @@ describe('genoffice pdf read', () => {
   })
 
   it('clips page text to --max-chars and marks the page truncated', async () => {
-    const pdf = writeMinimalPdf(join(tempDir(), 'one.pdf'), 'Hello genoffice readers')
+    const pdf = writeMinimalPdf(join(tempDir(), 'one.pdf'), 'Hello plotdocs readers')
     const r = await run(['pdf', 'read', pdf, '--max-chars', '5', '--json'])
     expect(r.json().detail.pages_read[0]).toMatchObject({
       text: 'Hello…(+18 chars)',
       truncated: true,
     })
     const full = await run(['pdf', 'read', pdf, '--full', '--json'])
-    expect(full.json().detail.pages_read[0].text).toBe('Hello genoffice readers')
+    expect(full.json().detail.pages_read[0].text).toBe('Hello plotdocs readers')
   })
 
   it('needs the right password for an encrypted PDF and reports it as encrypted', async () => {

@@ -6,7 +6,7 @@ import { scanFiles } from '../src/main/file-index/scan'
 
 let dir: string
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), 'genoffice-scan-'))
+  dir = mkdtempSync(join(tmpdir(), 'plotdocs-scan-'))
 })
 afterEach(() => rmSync(dir, { recursive: true, force: true }))
 

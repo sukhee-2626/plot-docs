@@ -1,6 +1,6 @@
-# Installer GenOffice
+# Installer Plot Docs
 
-Chaque build est publié sur la [page Releases](https://github.com/genspark-ai/genoffice/releases/latest). Tous proviennent de `main` ; les installeurs macOS et Windows sont signés.
+Chaque build est publié sur la [page Releases](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Tous proviennent de `main` ; les installeurs macOS et Windows sont signés.
 
 ## Choisir le fichier pour votre machine
 
@@ -18,32 +18,32 @@ Les versions antérieures restent sur la page Releases.
 
 ## Sous macOS
 
-Ouvrez le `.dmg` et faites glisser **GenOffice** dans Applications. Sur une version Intel, le premier lancement demande de confirmer l’ouverture : clic droit sur l’application dans Applications ▸ Ouvrir. C’est Gatekeeper qui rencontre une image disque sans signature, pas un téléchargement endommagé.
+Ouvrez le `.dmg` et faites glisser **Plot Docs** dans Applications. Sur une version Intel, le premier lancement demande de confirmer l’ouverture : clic droit sur l’application dans Applications ▸ Ouvrir. C’est Gatekeeper qui rencontre une image disque sans signature, pas un téléchargement endommagé.
 
 ## Sous Windows
 
-Lancez l’installeur `.exe`. Il place GenOffice dans le menu Démarrer et enregistre `.docx`, `.xlsx`, `.pptx`, `.pdf` et formats voisins, si bien qu’un double-clic sur un fichier l’ouvre.
+Lancez l’installeur `.exe`. Il place Plot Docs dans le menu Démarrer et enregistre `.docx`, `.xlsx`, `.pptx`, `.pdf` et formats voisins, si bien qu’un double-clic sur un fichier l’ouvre.
 
 ## Sous Linux
 
 **Debian / Ubuntu**
 
 ```sh
-sudo apt install ./genoffice_<version>_amd64.deb
+sudo apt install ./plotdocs_<version>_amd64.deb
 ```
 
 **Fedora / RHEL / openSUSE**
 
 ```sh
-sudo dnf install ./genoffice-<version>.x86_64.rpm     # Fedora / RHEL family
-sudo zypper install ./genoffice-<version>.x86_64.rpm  # openSUSE
+sudo dnf install ./plotdocs-<version>.x86_64.rpm     # Fedora / RHEL family
+sudo zypper install ./plotdocs-<version>.x86_64.rpm  # openSUSE
 ```
 
 **AppImage** — s’exécute sur place, sans étape d’installation :
 
 ```sh
-chmod +x GenOffice-<version>.AppImage
-./GenOffice-<version>.AppImage
+chmod +x Plot Docs-<version>.AppImage
+./Plot Docs-<version>.AppImage
 ```
 
 Il lui faut l’environnement d’exécution FUSE 2. Si vous préférez ne pas l’installer, lancez-le avec `--appimage-extract-and-run` : le bac à sable fonctionne alors depuis le répertoire extrait.
@@ -64,4 +64,4 @@ Les trois encapsulent les artefacts publiés au lieu de reconstruire l’applica
 
 ## La ligne de commande est incluse
 
-Chaque installation livre une commande `genoffice` qui parle aux mêmes moteurs que la fenêtre : les deux ne peuvent donc pas se contredire sur un fichier. Sous macOS et Windows, elle se trouve dans le bundle de l’application ; `genoffice install-cli` la met sur votre `PATH`. Pour ce qu’elle sait faire, voir **Ligne de commande et agents**.
+Chaque installation livre une commande `plotdocs` qui parle aux mêmes moteurs que la fenêtre : les deux ne peuvent donc pas se contredire sur un fichier. Sous macOS et Windows, elle se trouve dans le bundle de l’application ; `plotdocs install-cli` la met sur votre `PATH`. Pour ce qu’elle sait faire, voir **Ligne de commande et agents**.

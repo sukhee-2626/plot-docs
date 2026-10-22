@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Dropdown } from '@genoffice/ui'
+import { Dropdown } from '@plotdocs/ui'
 
 import {
   isValidConsolidateReference,

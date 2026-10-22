@@ -3,7 +3,7 @@
  * the whole-page PNG raster as the safety net for a page the SVG backend
  * cannot build, plus the @font-face CSS the print window needs for them.
  */
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 import type { ExportPdfPage } from '../shared/ipc'
 import { collectExportFontCss } from './export-fonts'
 import { rasterizeSlideNode, renderSlidesToPngBase64 } from './export-render'

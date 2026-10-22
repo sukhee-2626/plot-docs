@@ -19,7 +19,7 @@ import {
 import { tmpdir } from 'node:os'
 import { basename, join } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { promoteFileAtomically } from '@genoffice/xlsx-gateway/gateway/xlsx-package-io'
+import { promoteFileAtomically } from '@plotdocs/xlsx-gateway/gateway/xlsx-package-io'
 
 vi.mock('node:fs/promises', async (importOriginal) => {
   const actual = await importOriginal<typeof import('node:fs/promises')>()
@@ -31,7 +31,7 @@ const scratches: string[] = []
 const actualCopyFile = copyFileMock.getMockImplementation()!
 
 async function scratchDir(): Promise<string> {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-promote-test-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-promote-test-'))
   scratches.push(dir)
   return dir
 }

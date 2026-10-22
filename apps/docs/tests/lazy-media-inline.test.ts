@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { inlineLazyMediaInHtml } from '../src/main/lazy-media-inline'
 
 const HASH = 'a'.repeat(64)
-const url = (part: string) => `genoffice-docx-media://${HASH}/word/media/${part}`
+const url = (part: string) => `plotdocs-docx-media://${HASH}/word/media/${part}`
 
 describe('inlineLazyMediaInHtml', () => {
   it('replaces every lazily served picture with its bytes, reading each URL once', async () => {

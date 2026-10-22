@@ -29,7 +29,7 @@ import {
   placeholderInstruction as buildInstruction,
   placeholderSource,
   type PlaceholderSpec,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'
 
 /** What this editor's markers need that another's do not. */
 const SLIDES_SPEC: PlaceholderSpec = {
@@ -152,4 +152,4 @@ export {
   readPlaceholderLabel,
   sanitizeLabel,
   type PlaceholderIssue,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'

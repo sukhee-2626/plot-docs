@@ -102,10 +102,10 @@ async function main(): Promise<void> {
       env: {
         ...hostEnv,
         HOME: home,
-        GENOFFICE_USER_DATA: userData,
-        GENOFFICE_AUTH_DIR: join(home, '.genoffice'),
-        GENOFFICE_NO_SPARE_VIEW: '1',
-        GENOFFICE_LANG: lang,
+        PLOTDOCS_USER_DATA: userData,
+        PLOTDOCS_AUTH_DIR: join(home, '.plotdocs'),
+        PLOTDOCS_NO_SPARE_VIEW: '1',
+        PLOTDOCS_LANG: lang,
       },
     })
 

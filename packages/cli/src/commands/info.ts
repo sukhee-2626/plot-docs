@@ -1,6 +1,6 @@
 import { statSync } from 'node:fs'
-import { parseDocx } from '@genoffice/docx-engine'
-import { openPptx } from '@genoffice/pptx-engine'
+import { parseDocx } from '@plotdocs/docx-engine'
+import { openPptx } from '@plotdocs/pptx-engine'
 import { flagString } from '../args'
 import { csvInfo } from '../formats/csv'
 import { pdfInfo } from '../formats/pdf'

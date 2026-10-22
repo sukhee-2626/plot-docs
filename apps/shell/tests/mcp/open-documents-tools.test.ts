@@ -37,7 +37,7 @@ async function freePort(): Promise<number> {
 }
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-open-docs-'))
+  dir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-open-docs-'))
 })
 
 afterEach(async () => {
@@ -327,6 +327,6 @@ describe('open_documents tool', () => {
     await startService(undefined)
     const result = await client!.callTool({ name: 'open_documents', arguments: { action: 'list' } })
     expect(result.isError).toBe(true)
-    expect(textOf(result.content)).toContain('GenOffice is not running')
+    expect(textOf(result.content)).toContain('Plot Docs is not running')
   })
 })

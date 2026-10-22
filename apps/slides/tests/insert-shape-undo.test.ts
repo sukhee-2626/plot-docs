@@ -38,12 +38,12 @@ vi.mock('../src/main/shaped-metrics', () => ({
   shapedMeasure: () => ({ width: 0 }),
 }))
 
-import { createBlankPptx, openPptx } from '@genoffice/pptx-engine'
+import { createBlankPptx, openPptx } from '@plotdocs/pptx-engine'
 import { registerSlidesIpc } from '../src/main/slides-main'
 import { sessions, type Session } from '../src/main/session-state'
 import { insertShapeAt } from '../src/renderer/insert-actions'
 import type { ActionCtx } from '../src/renderer/action-context'
-import type { RenderSlide } from '@genoffice/pptx-render'
+import type { RenderSlide } from '@plotdocs/pptx-render'
 
 const WC = 1
 const event = { sender: { id: WC } } as never

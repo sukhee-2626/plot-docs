@@ -343,7 +343,7 @@ describe('rebuild: list items become real docx numbering', () => {
     }
     const result = pagesToSaveBlocks([page])
     const generated = result.blocks.filter(
-      (b): b is { kind: 'generated'; block: import('@genoffice/docx-engine').GeneratedBlock } =>
+      (b): b is { kind: 'generated'; block: import('@plotdocs/docx-engine').GeneratedBlock } =>
         b.kind === 'generated',
     )
     const listItems = generated.filter((g) => g.block.type === 'listItem')

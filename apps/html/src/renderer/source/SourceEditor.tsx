@@ -13,7 +13,7 @@ import { External, buildExtensions } from './cm-setup'
 import { addAiRanges, clearAiRanges } from './cm-highlight'
 import { cmFindTarget } from './find-target'
 import { useI18n } from '../i18n/locale'
-import type { FindTarget } from '@genoffice/ui'
+import type { FindTarget } from '@plotdocs/ui'
 import type { Patch } from '../document/patch'
 
 /** a source range and the text it covers, as the reader sees it */

@@ -16,7 +16,7 @@
  * - `items` must be one schema, not a tuple list.
  * - every array needs `items`: an array without one is legal JSON Schema, but
  *   the proto field is not optional and the API rejects the whole request with
- *   "...properties[children].items: missing field" (genoffice#2059). A missing
+ *   "...properties[children].items: missing field" (plotdocs#2059). A missing
  *   `items` is filled with the property-less `{ type: 'object' }` accepted per
  *   the next line.
  * - Empty `properties: {}` and property-less `{ type: 'object' }` are accepted,

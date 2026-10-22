@@ -12,7 +12,7 @@
  * Sections referencing the same parsed part show one another's pending edit,
  * since the save rewrites that shared part. No section is special-cased.
  */
-import type { HeaderFooter, HfImage, HfPartInfo, SectionInfo } from '@genoffice/docx-engine'
+import type { HeaderFooter, HfImage, HfPartInfo, SectionInfo } from '@plotdocs/docx-engine'
 import { hfFromPart, type HfVariantKey, type HfVariantsState, type HfView } from './doc-state'
 
 export type HfKind = 'header' | 'footer'

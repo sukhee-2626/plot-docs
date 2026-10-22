@@ -1,7 +1,7 @@
 import { SearchQuery } from '@codemirror/search'
 import { StateEffect, StateField, type Text } from '@codemirror/state'
 import { Decoration, EditorView, type DecorationSet } from '@codemirror/view'
-import type { FindOptions, FindTarget } from '@genoffice/ui'
+import type { FindOptions, FindTarget } from '@plotdocs/ui'
 
 export interface FindRange {
   from: number

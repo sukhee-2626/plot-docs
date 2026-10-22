@@ -9,10 +9,10 @@ import { describe, expect, it } from 'vitest'
 import { advanceEm, readWoff2 } from './helpers/woff2-metrics'
 
 const FONTS = join(__dirname, '../src/renderer/fonts')
-const regular = readWoff2(join(FONTS, 'GenOfficeDMSans-Regular-subset.woff2'))
-const bold = readWoff2(join(FONTS, 'GenOfficeDMSans-Bold-subset.woff2'))
+const regular = readWoff2(join(FONTS, 'PlotDocsDMSans-Regular-subset.woff2'))
+const bold = readWoff2(join(FONTS, 'PlotDocsDMSans-Bold-subset.woff2'))
 
-describe('GenOffice DM Sans (real-metric face)', () => {
+describe('Plot Docs DM Sans (real-metric face)', () => {
   it('keeps the upstream 1.302em hhea line box', () => {
     for (const font of [regular, bold]) {
       const hhea = font.tables.get('hhea')!

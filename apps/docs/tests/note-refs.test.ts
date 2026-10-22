@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
 import type { Node as ProseNode } from '@tiptap/pm/model'
 import JSZip from 'jszip'
-import type { Run } from '@genoffice/docx-engine'
-import { parseDocx, saveDocx } from '@genoffice/docx-engine'
+import type { Run } from '@plotdocs/docx-engine'
+import { parseDocx, saveDocx } from '@plotdocs/docx-engine'
 import { buildDocx } from '../../../packages/docx-engine/tests/helpers/build-docx'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import {
@@ -30,7 +30,7 @@ function createEditor(content: PmNode[]): Editor {
 
 describe('footnote / endnote reference conversion', () => {
   it('a styled reference keeps its rPr through an edit to its own paragraph', async () => {
-    // genoffice#2005: a rebuilt paragraph used to emit the marker as a bare superscript
+    // plotdocs#2005: a rebuilt paragraph used to emit the marker as a bare superscript
     const XML_DECL = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
     const W = 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"'
     const body =

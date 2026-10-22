@@ -16,8 +16,8 @@ import type { ZodShape } from './tools'
 
 /**
  * The staged deck flow as tools. The deck directory is the state: style.md,
- * outline.json and pages/NN.json are exactly what `genoffice slides check` and
- * `genoffice create --spec <dir>` read, so a deck started here can be finished
+ * outline.json and pages/NN.json are exactly what `plotdocs slides check` and
+ * `plotdocs create --spec <dir>` read, so a deck started here can be finished
  * from the command line and vice versa. Each tool refuses to run before the
  * stage it depends on exists, pages are written in outline order, and a page
  * that fails its check never replaces the file on disk.
@@ -279,7 +279,7 @@ function resolvePath(path: string, ctx: McpContext): string {
   return isAbsolute(path) ? path : resolve(ctx.cwd, path)
 }
 
-/** The deck folder, inside GENOFFICE_ALLOWED_ROOTS when that is set: everything the tools write lives under it. */
+/** The deck folder, inside PLOTDOCS_ALLOWED_ROOTS when that is set: everything the tools write lives under it. */
 function deckDir(raw: unknown, ctx: McpContext): string {
   return assertAllowed(resolvePath(String(raw), ctx), ctx.env, 'write')
 }

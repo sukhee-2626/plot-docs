@@ -7,10 +7,10 @@
     // node_modules is a symlink into the main checkout, so bare specifiers
     // would typecheck against the other checkout's (possibly stale) types
     "paths": {
-      "@genoffice/ai-provider": ["../ai-provider/src/index.ts"],
-      "@genoffice/electron-utils/remote-image": ["../electron-utils/src/remote-image.ts"],
-      "@genoffice/electron-utils/safe-remote-url": ["../electron-utils/src/safe-remote-url.ts"],
-      "@genoffice/electron-utils/generated-images": ["../electron-utils/src/generated-images.ts"]
+      "@plotdocs/ai-provider": ["../ai-provider/src/index.ts"],
+      "@plotdocs/electron-utils/remote-image": ["../electron-utils/src/remote-image.ts"],
+      "@plotdocs/electron-utils/safe-remote-url": ["../electron-utils/src/safe-remote-url.ts"],
+      "@plotdocs/electron-utils/generated-images": ["../electron-utils/src/generated-images.ts"]
     }
   },
   "include": ["src", "tests"]

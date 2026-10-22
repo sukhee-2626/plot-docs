@@ -1,6 +1,6 @@
 # O ecrã Início: onde ficam os seus arquivos
 
-O ecrã Início é a página inicial do GenOffice: uma barra de navegação à esquerda e, à direita, as listas de arquivos e os cartões de criação rápida.
+O ecrã Início é a página inicial do Plot Docs: uma barra de navegação à esquerda e, à direita, as listas de arquivos e os cartões de criação rápida.
 
 ![O ecrã Início](img/home-screen.png)
 
@@ -9,7 +9,7 @@ O ecrã Início é a página inicial do GenOffice: uma barra de navegação à e
 - **Recentes**: os arquivos que você abriu recentemente. Cada linha traz o momento — hoje, ontem ou a data.
 - **Favoritos**: os arquivos que você marcou com uma estrela. Passe o cursor sobre a linha do arquivo e clique na estrela para adicioná-lo ou removê-lo. **Mover para grupo** no menu ⋯ organiza os favoritos em grupos nomeados; a visualização Favoritos filtra por eles.
 - **Ask AI**: o painel de base de conhecimento — pergunte e receba respostas citadas dos seus arquivos favoritados (veja abaixo).
-- **Genspark Projects**: depois de entrar na sua conta Genspark, mostra os projetos que você criou com o Genspark AI na web; clique em um deles para continuar editando no navegador. Há pesquisa, ordenação por data, atualização e carregar mais.
+- **Soopus AI Projects**: depois de entrar na sua conta Soopus AI, mostra os projetos que você criou com o Soopus AI AI na web; clique em um deles para continuar editando no navegador. Há pesquisa, ordenação por data, atualização e carregar mais.
 - **Pastas**: os diretórios que adiciona à barra lateral com **Adicionar pasta…**, ou que arrasta até lá a partir do gestor de ficheiros. Cada um torna-se uma raiz que pode abrir, onde criar subpastas, renomear e remover; a que ficar indisponível aparece como indisponível e pode ser retirada da lista. **Nova pasta** cria outra.
 
 Não há aqui nenhuma entrada Lixeira. Os arquivos excluídos vão para a lixeira do sistema, e restaurá-los é assunto do sistema operacional.
@@ -36,7 +36,7 @@ Marque a caixa de uma linha, ou faça ⌘/ctrl-clique, para construir uma seleç
 A caixa de pesquisa no topo corresponde a duas coisas ao mesmo tempo:
 
 - **Nomes de arquivos**: filtragem rápida por nome.
-- **Conteúdo dos arquivos**: o GenOffice indexa seus arquivos em segundo plano (texto dentro de docx/xlsx/pptx/pdf/md/html), pelo que pesquisar no corpo do texto também encontra arquivos. O âmbito e as opções ficam nas configurações de pesquisa.
+- **Conteúdo dos arquivos**: o Plot Docs indexa seus arquivos em segundo plano (texto dentro de docx/xlsx/pptx/pdf/md/html), pelo que pesquisar no corpo do texto também encontra arquivos. O âmbito e as opções ficam nas configurações de pesquisa.
 
 ## Cartões de início rápido
 
@@ -60,12 +60,12 @@ O que faz cada cartão:
 
 - Favorite arquivos primeiro (qualquer tipo que o app leia); o cabeçalho do painel conta o conjunto, e uma base vazia pede que você favorite algo.
 - As respostas citam os arquivos de origem; clique numa citação para abrir o arquivo no editor dele.
-- Existe entrar com a conta Genspark. A conversa vive só na memória — fechar o app a encerra.
+- Existe entrar com a conta Soopus AI. A conversa vive só na memória — fechar o app a encerra.
 - A busca roda no índice local de arquivos, como a do Início; arquivos desaparecidos saem do conjunto em silêncio.
 - Grupos organizam só a lista de Favoritos — a base de conhecimento sempre abrange todos os arquivos favoritados.
 
-## Projetos na nuvem (Genspark Projects)
+## Projetos na nuvem (Soopus AI Projects)
 
-- O primeiro uso exige entrar na sua conta Genspark (fluxo de código de dispositivo: o GenOffice mostra um código e você conclui o início de sessão no navegador).
+- O primeiro uso exige entrar na sua conta Soopus AI (fluxo de código de dispositivo: o Plot Docs mostra um código e você conclui o início de sessão no navegador).
 - A lista de projetos fica sincronizada com a web; Abrir no navegador leva lá para continuar.
 - Não entrar não afeta nenhuma das funcionalidades locais.

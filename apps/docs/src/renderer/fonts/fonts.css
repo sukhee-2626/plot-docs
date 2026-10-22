@@ -13,28 +13,28 @@
    (tools/patch-carlito-vi.py); renamed per OFL Reserved Font Name clause */
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   font-weight: bold;
   font-style: normal;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   font-weight: normal;
   font-style: italic;
   font-display: block;
 }
 @font-face {
   font-family: 'Carlito GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   font-weight: bold;
   font-style: italic;
   font-display: block;
@@ -198,8 +198,8 @@
  * generated font (tools/build-pua-blank-font.py) maps all of U+E000-F8FF to a
  * blank 1em glyph so PUA stays invisible in the chains that carry it. */
 @font-face {
-  font-family: 'GenOffice PUA Blank';
-  src: url('./GenOfficePUABlank.woff2') format('woff2');
+  font-family: 'Plot Docs PUA Blank';
+  src: url('./PlotDocsPUABlank.woff2') format('woff2');
   unicode-range: U+E000-F8FF;
   font-weight: normal;
   font-style: normal;
@@ -211,7 +211,7 @@
  * at a 1em advance and would swallow Latin punctuation ahead of the generic
  * face, shifting every wrap. CJK-named unknown fonts keep the full subsets
  * (fullwidth quotes are correct inside CJK body text). Same ranges as the
- * 'GenOffice Hiragino/Batang…' local() aliases below. */
+ * 'Plot Docs Hiragino/Batang…' local() aliases below. */
 @font-face {
   font-family: 'Noto Sans CJK GO';
   src: url('./NotoSansCJKsc-Regular-subset.woff2') format('woff2');
@@ -240,15 +240,15 @@
  * sans Basic Latin matches Malgun (tools/normalize-kr-sans-hmtx.py).
  */
 @font-face {
-  font-family: 'GenOffice Sans KR';
-  src: url('./GenOfficeSansKR-Regular-subset.woff2') format('woff2');
+  font-family: 'Plot Docs Sans KR';
+  src: url('./PlotDocsSansKR-Regular-subset.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
-  font-family: 'GenOffice Serif KR';
-  src: url('./GenOfficeSerifKR-Regular-subset.woff2') format('woff2');
+  font-family: 'Plot Docs Serif KR';
+  src: url('./PlotDocsSerifKR-Regular-subset.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -276,8 +276,8 @@
  * (tools/build-gothic-kr-font.py), advances unmodified; renamed per OFL
  * ("Nanum" is a Reserved Font Name and subsetting is a modification). */
 @font-face {
-  font-family: 'GenOffice Gothic KR';
-  src: url('./GenOfficeGothicKR-Regular-subset.woff2') format('woff2');
+  font-family: 'Plot Docs Gothic KR';
+  src: url('./PlotDocsGothicKR-Regular-subset.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -289,8 +289,8 @@
  * Sans KR outlines reshaped to DotumChe ink boxes); hangul falls through to
  * the KR chains. */
 @font-face {
-  font-family: 'GenOffice Che Latin KR';
-  src: url('./GenOfficeCheLatinKR.woff2') format('woff2');
+  font-family: 'Plot Docs Che Latin KR';
+  src: url('./PlotDocsCheLatinKR.woff2') format('woff2');
   unicode-range: U+0020-007E;
   font-weight: normal;
   font-style: normal;
@@ -300,8 +300,8 @@
 /* SimSun ASCII is half-width fixed pitch (Word PDF: 0.5em per character at
  * 12pt); the -Che face carries the same 0.5em advances. */
 @font-face {
-  font-family: 'GenOffice SimSun Latin';
-  src: url('./GenOfficeCheLatinKR.woff2') format('woff2');
+  font-family: 'Plot Docs SimSun Latin';
+  src: url('./PlotDocsCheLatinKR.woff2') format('woff2');
   unicode-range: U+0020-007E;
   font-weight: normal;
   font-style: normal;
@@ -313,8 +313,8 @@
  * inside Korean runs 0.51-0.52em); .doc-hangul-space (styles.css) draws such
  * spaces from the -Che face's half-width space. */
 @font-face {
-  font-family: 'GenOffice Hangul Space';
-  src: url('./GenOfficeCheLatinKR.woff2') format('woff2');
+  font-family: 'Plot Docs Hangul Space';
+  src: url('./PlotDocsCheLatinKR.woff2') format('woff2');
   unicode-range: U+0020;
   font-weight: normal;
   font-style: normal;
@@ -326,7 +326,7 @@
  * alias keeps digit-heavy cells wrapping like Word. A locally installed YaHei
  * precedes it in the chain. */
 @font-face {
-  font-family: 'GenOffice YaHei Latin';
+  font-family: 'Plot Docs YaHei Latin';
   src: local('Helvetica'), local('ArialMT'), url('./LiberationSans-Regular.ttf');
   size-adjust: 106%;
   unicode-range: U+0020-007E;
@@ -335,7 +335,7 @@
   font-display: block;
 }
 @font-face {
-  font-family: 'GenOffice YaHei Latin';
+  font-family: 'Plot Docs YaHei Latin';
   src: local('Helvetica-Bold'), local('Arial-BoldMT'), url('./LiberationSans-Bold.ttf');
   size-adjust: 108%;
   unicode-range: U+0020-007E;
@@ -1199,7 +1199,7 @@
  * ~Carlito, bold +3%, digits +3.2%/+6.5%, space -14.7%. */
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 106.5%;
   font-weight: normal;
   font-style: normal;
@@ -1207,7 +1207,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 110%;
   font-weight: bold;
   font-style: normal;
@@ -1215,7 +1215,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 106.9%;
   font-weight: normal;
   font-style: italic;
@@ -1223,7 +1223,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 110.2%;
   font-weight: bold;
   font-style: italic;
@@ -1231,7 +1231,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 105.4%;
   unicode-range: U+0030-0039;
   font-weight: normal;
@@ -1240,7 +1240,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 105.4%;
   unicode-range: U+0030-0039;
   font-weight: bold;
@@ -1249,7 +1249,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 105.4%;
   unicode-range: U+0030-0039;
   font-weight: normal;
@@ -1258,7 +1258,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 105.4%;
   unicode-range: U+0030-0039;
   font-weight: bold;
@@ -1267,7 +1267,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 89.8%;
   unicode-range: U+0020, U+00A0;
   font-weight: normal;
@@ -1276,7 +1276,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 89.8%;
   unicode-range: U+0020, U+00A0;
   font-weight: bold;
@@ -1285,7 +1285,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 89.8%;
   unicode-range: U+0020, U+00A0;
   font-weight: normal;
@@ -1294,7 +1294,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 89.8%;
   unicode-range: U+0020, U+00A0;
   font-weight: bold;
@@ -1306,7 +1306,7 @@
  * 0.29-0.39em, | 0.27em; the same advance in every weight. */
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 92.4%;
   unicode-range: U+005F, U+2013;
   font-weight: normal;
@@ -1315,7 +1315,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 92.4%;
   unicode-range: U+005F, U+2013;
   font-weight: bold;
@@ -1324,7 +1324,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 92.4%;
   unicode-range: U+005F, U+2013;
   font-weight: normal;
@@ -1333,7 +1333,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 92.4%;
   unicode-range: U+005F, U+2013;
   font-weight: bold;
@@ -1342,7 +1342,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 89%;
   unicode-range: U+0021, U+002F, U+005C;
   font-weight: normal;
@@ -1351,7 +1351,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 89%;
   unicode-range: U+0021, U+002F, U+005C;
   font-weight: bold;
@@ -1360,7 +1360,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 89%;
   unicode-range: U+0021, U+002F, U+005C;
   font-weight: normal;
@@ -1369,7 +1369,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 89%;
   unicode-range: U+0021, U+002F, U+005C;
   font-weight: bold;
@@ -1378,7 +1378,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 57.5%;
   unicode-range: U+007C;
   font-weight: normal;
@@ -1387,7 +1387,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 57.5%;
   unicode-range: U+007C;
   font-weight: bold;
@@ -1396,7 +1396,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 57.5%;
   unicode-range: U+007C;
   font-weight: normal;
@@ -1405,7 +1405,7 @@
 }
 @font-face {
   font-family: 'Aptos GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 57.5%;
   unicode-range: U+007C;
   font-weight: bold;
@@ -1415,7 +1415,7 @@
 
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 99.9%;
   font-weight: normal;
   font-style: normal;
@@ -1423,7 +1423,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 103%;
   font-weight: bold;
   font-style: normal;
@@ -1431,7 +1431,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 100.5%;
   font-weight: normal;
   font-style: italic;
@@ -1439,7 +1439,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 103.5%;
   font-weight: bold;
   font-style: italic;
@@ -1447,7 +1447,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 103.2%;
   unicode-range: U+0030-0039;
   font-weight: normal;
@@ -1456,7 +1456,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 106.5%;
   unicode-range: U+0030-0039;
   font-weight: bold;
@@ -1465,7 +1465,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 103.2%;
   unicode-range: U+0030-0039;
   font-weight: normal;
@@ -1474,7 +1474,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 106.5%;
   unicode-range: U+0030-0039;
   font-weight: bold;
@@ -1483,7 +1483,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf');
   size-adjust: 85.3%;
   unicode-range: U+0020, U+00A0;
   font-weight: normal;
@@ -1492,7 +1492,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Bold.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Bold.ttf');
   size-adjust: 85.3%;
   unicode-range: U+0020, U+00A0;
   font-weight: bold;
@@ -1501,7 +1501,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-Italic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-Italic.ttf');
   size-adjust: 85.3%;
   unicode-range: U+0020, U+00A0;
   font-weight: normal;
@@ -1510,7 +1510,7 @@
 }
 @font-face {
   font-family: 'Aptos Display GO';
-  src: url('@genoffice/ui/fonts/Carlito-BoldItalic.ttf');
+  src: url('@plotdocs/ui/fonts/Carlito-BoldItalic.ttf');
   size-adjust: 85.3%;
   unicode-range: U+0020, U+00A0;
   font-weight: bold;
@@ -1534,15 +1534,15 @@
  * bundled (tools/build-poppins-font.py). A locally installed Poppins still
  * precedes this face in the chain. */
 @font-face {
-  font-family: 'GenOffice Poppins';
-  src: url('./GenOfficePoppins-Regular-subset.woff2') format('woff2');
+  font-family: 'Plot Docs Poppins';
+  src: url('./PlotDocsPoppins-Regular-subset.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
-  font-family: 'GenOffice Poppins';
-  src: url('./GenOfficePoppins-Bold-subset.woff2') format('woff2');
+  font-family: 'Plot Docs Poppins';
+  src: url('./PlotDocsPoppins-Bold-subset.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -1554,15 +1554,15 @@
  * Latin subset is bundled (tools/build-dm-sans-font.py). A locally installed
  * DM Sans still precedes this face in the chain. */
 @font-face {
-  font-family: 'GenOffice DM Sans';
-  src: url('./GenOfficeDMSans-Regular-subset.woff2') format('woff2');
+  font-family: 'Plot Docs DM Sans';
+  src: url('./PlotDocsDMSans-Regular-subset.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
-  font-family: 'GenOffice DM Sans';
-  src: url('./GenOfficeDMSans-Bold-subset.woff2') format('woff2');
+  font-family: 'Plot Docs DM Sans';
+  src: url('./PlotDocsDMSans-Bold-subset.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
   font-display: block;
@@ -1653,7 +1653,7 @@
  * half-width slash. Serve them from the bundled Noto subset (ink matches
  * PMingLiU); real PMingLiU still precedes this face in the TC serif chain. */
 @font-face {
-  font-family: 'GenOffice Fullwidth TC';
+  font-family: 'Plot Docs Fullwidth TC';
   src: url('./NotoSerifCJKsc-Regular-subset.woff2') format('woff2');
   unicode-range: U+FF0D, U+FF0F, U+FF3C, U+FF3F, U+FF5E;
   font-weight: normal;
@@ -1666,7 +1666,7 @@
  * at weight normal only, forces Blink to synthesize bold at >=600. On Windows the
  * local() sources don't resolve and the chain falls through to SimSun. */
 @font-face {
-  font-family: 'GenOffice Songti SC';
+  font-family: 'Plot Docs Songti SC';
   src: local('STSongti-SC-Regular'), local('Songti SC Regular');
   font-weight: normal;
   font-style: normal;
@@ -1677,7 +1677,7 @@
  * (0.075). Registering weight-normal only makes Blink synthesize (0.082) instead of
  * selecting the anemic face, so bold TC headings read as bold like in Word. */
 @font-face {
-  font-family: 'GenOffice Songti TC';
+  font-family: 'Plot Docs Songti TC';
   src: local('STSongti-TC-Regular'), local('Songti TC Regular');
   font-weight: normal;
   font-style: normal;
@@ -1738,13 +1738,13 @@
  * expose only the CJK ranges; other scripts continue down the chain to
  * proportional faces. Roman numerals (U+2160-217F) are included: East Asian
  * faces draw them fullwidth like Word (prod_020 JP reference list). Registered weight-normal (bold synthesized, like
- * 'GenOffice Songti SC') except Hiragino Sans, which has a real W6 face.
+ * 'Plot Docs Songti SC') except Hiragino Sans, which has a real W6 face.
  * Hiragino Mincho stays weight-normal on purpose: Word's JP serif faces
  * (Yu Mincho, MS Mincho) ship no bold and Word synthesizes uniform thick
  * strokes, while real Mincho W6 keeps hairline horizontals — a bold U+4E00
  * reads as an arrow at body sizes (prod_070 table caption). */
 @font-face {
-  font-family: 'GenOffice Hiragino Sans';
+  font-family: 'Plot Docs Hiragino Sans';
   src: local('Hiragino Sans'), local('HiraginoSans-W3'), local('MS Gothic');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -1753,7 +1753,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice Hiragino Sans';
+  font-family: 'Plot Docs Hiragino Sans';
   src: local('HiraginoSans-W6'), local('Hiragino Sans W6');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -1766,7 +1766,7 @@
  * (text-weighted mean 0.769em, bold 0.820em), U+30FC 0.816/0.882em,
  * ideographic space and 、。 0.664em, corner/angle brackets and ・ 0.5em, at
  * full glyph height; kanji and （）：；！？ stay 1em and fall through to the
- * chain. The bundled GenOffice UI Kana JP faces (tools/build-meiryo-ui-kana-
+ * chain. The bundled Plot Docs UI Kana JP faces (tools/build-meiryo-ui-kana-
  * font.py: Noto Sans JP outlines condensed horizontally to Meiryo UI's exact
  * per-glyph advances) carry those ranges — a size-adjust alias would shrink
  * the height too and leave kana at ~77% next to full-size kanji. Latin in
@@ -1775,7 +1775,7 @@
  * these aliases in the chain. */
 @font-face {
   font-family: 'Meiryo UI GO';
-  src: url('./GenOfficeUIKanaJP-Regular.woff2') format('woff2');
+  src: url('./PlotDocsUIKanaJP-Regular.woff2') format('woff2');
   unicode-range: U+3000-3002, U+3008-3011, U+3014-3015, U+3041-3096, U+3099-30FF;
   font-weight: normal;
   font-style: normal;
@@ -1783,7 +1783,7 @@
 }
 @font-face {
   font-family: 'Meiryo UI GO';
-  src: url('./GenOfficeUIKanaJP-Bold.woff2') format('woff2');
+  src: url('./PlotDocsUIKanaJP-Bold.woff2') format('woff2');
   unicode-range: U+3000-3002, U+3008-3011, U+3014-3015, U+3041-3096, U+3099-30FF;
   font-weight: bold;
   font-style: normal;
@@ -2512,7 +2512,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice Hiragino Mincho';
+  font-family: 'Plot Docs Hiragino Mincho';
   src: local('Hiragino Mincho ProN'), local('HiraMinProN-W3');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -2521,7 +2521,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice MS Mincho';
+  font-family: 'Plot Docs MS Mincho';
   src: local('MS Mincho'), local('MS PMincho');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -2530,7 +2530,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice Batang';
+  font-family: 'Plot Docs Batang';
   src: local('Batang'), local('BatangChe');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -2539,7 +2539,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice Myungjo';
+  font-family: 'Plot Docs Myungjo';
   src: local('AppleMyungjo');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -2548,7 +2548,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice Heiti TC';
+  font-family: 'Plot Docs Heiti TC';
   src: local('Heiti TC'), local('Heiti TC Light'), local('STHeitiTC-Light');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -2557,7 +2557,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'GenOffice MingLiU';
+  font-family: 'Plot Docs MingLiU';
   src: local('PMingLiU'), local('MingLiU');
   unicode-range:
     U+2160-217F, U+2E80-303F, U+3041-33FF, U+3400-4DBF, U+4E00-9FFF, U+AC00-D7A3, U+F900-FAFF,
@@ -2571,7 +2571,7 @@
  * face is declared, so no unicode-range needed; on Windows the declared name
  * itself resolves ahead of this alias. */
 @font-face {
-  font-family: 'GenOffice Ethiopic';
+  font-family: 'Plot Docs Ethiopic';
   /* Chromium local() matches PostScript/full names, not family names */
   src: local('Kefa-Regular'), local('Kefa Regular'), local('Kefa');
   /* verified on regression sample 39: line breaks match Word at 72%; the
@@ -2587,8 +2587,8 @@
  * Sans Tamil with advances rewritten to Latha's (tools/build-tamil-font.py;
  * shaped sentence R 0.994, all probe sentences within ±2.3%). */
 @font-face {
-  font-family: 'GenOffice Tamil';
-  src: url('./GenOfficeTamil-Regular.woff2') format('woff2');
+  font-family: 'Plot Docs Tamil';
+  src: url('./PlotDocsTamil-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -2598,7 +2598,7 @@
  * subset at 1em fullwidth and an 80-char rule overflows the column (Word draws
  * it ~0.65em on a single line). Menlo/Consolas keep them ~0.6em. */
 @font-face {
-  font-family: 'GenOffice Box Drawing';
+  font-family: 'Plot Docs Box Drawing';
   /* Chromium local() matches PostScript/full names, not family names */
   src: local('Menlo-Regular'), local('Menlo Regular'), local('Menlo'), local('Consolas');
   unicode-range: U+2500-257F;
@@ -2610,17 +2610,17 @@
  * through to AppleMyungjo, whose U+2082 is a full-width (1.0em) glyph —
  * "Cu₂O" rendered as "Cu₂ O". Serve them from bundled latin faces instead. */
 @font-face {
-  font-family: 'GenOffice Sans KR';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf') format('truetype');
+  font-family: 'Plot Docs Sans KR';
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf') format('truetype');
   unicode-range: U+2070-209F, U+00B2-00B3, U+00B9;
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 @font-face {
-  font-family: 'GenOffice Serif KR';
+  font-family: 'Plot Docs Serif KR';
   /* Carlito, not Caladea/LiberationSerif: only Carlito covers the whole block */
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf') format('truetype');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf') format('truetype');
   unicode-range: U+2070-209F, U+00B2-00B3, U+00B9;
   font-weight: normal;
   font-style: normal;
@@ -2651,7 +2651,7 @@
 }
 @font-face {
   font-family: 'Noto Sans CJK SC';
-  src: url('@genoffice/ui/fonts/Carlito-Regular.ttf') format('truetype');
+  src: url('@plotdocs/ui/fonts/Carlito-Regular.ttf') format('truetype');
   unicode-range: U+2070-2071, U+2074-2094;
   font-weight: normal;
   font-style: normal;

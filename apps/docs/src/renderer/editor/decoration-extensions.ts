@@ -4,7 +4,7 @@ import { Decoration, DecorationSet, type EditorView } from '@tiptap/pm/view'
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model'
 import { isInTable } from '@tiptap/pm/tables'
 import { t } from '../i18n/locale'
-import { type TabStop } from '@genoffice/docx-engine'
+import { type TabStop } from '@plotdocs/docx-engine'
 
 /**
  * Custom schema mirroring the docx-engine Block model 1:1.
@@ -806,7 +806,7 @@ export const TabStopExtension = Extension.create({
     // stops, or the paragraph's custom w:tabs). Lists indent and tables move
     // to the next cell — those handlers live on DocListItem / NativeTableSupport
     // and run after this one returns false. An unhandled Tab would leave the
-    // editor and cycle the ribbon buttons (github.com/genspark-ai/genoffice/issues/101).
+    // editor and cycle the ribbon buttons (github.com/Soopus-ai/plotdocs/issues/101).
     const insertTab = () => {
       if (!this.editor.isEditable) return false
       if (this.editor.isActive('docListItem')) return false

@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { gskListPastProjects, type GskPastProjectsPage } from '@genoffice/ai-search'
+import { soopusListPastProjects, type SoopusPastProjectsPage } from '@plotdocs/ai-search'
 import {
   cloudStoreOwner,
   clearCloudProjectsStore,
@@ -10,12 +10,12 @@ import {
   syncCloudProjects,
 } from '../src/main/cloud-projects'
 
-vi.mock('@genoffice/ai-search', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@genoffice/ai-search')>()
-  return { ...actual, gskListPastProjects: vi.fn() }
+vi.mock('@plotdocs/ai-search', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@plotdocs/ai-search')>()
+  return { ...actual, soopusListPastProjects: vi.fn() }
 })
 
-const listMock = vi.mocked(gskListPastProjects)
+const listMock = vi.mocked(soopusListPastProjects)
 
 const PROJECTS = [
   {
@@ -30,21 +30,21 @@ const PROJECTS = [
 describe('cloud projects store account binding', () => {
   let dir: string
   let storePath: string
-  const envBefore = { key: process.env.GSK_API_KEY, disable: process.env.AI_SEARCH_DISABLE_GSK }
+  const envBefore = { key: process.env.SOOPUS_API_KEY, disable: process.env.AI_SEARCH_DISABLE_SOOPUS }
 
   beforeEach(() => {
     dir = mkdtempSync(join(tmpdir(), 'cloud-store-'))
     storePath = join(dir, 'cloud-projects.json')
-    delete process.env.AI_SEARCH_DISABLE_GSK
-    process.env.GSK_API_KEY = 'test-key-account-a'
+    delete process.env.AI_SEARCH_DISABLE_SOOPUS
+    process.env.SOOPUS_API_KEY = 'test-key-account-a'
   })
 
   afterEach(() => {
     rmSync(dir, { recursive: true, force: true })
-    if (envBefore.key === undefined) delete process.env.GSK_API_KEY
-    else process.env.GSK_API_KEY = envBefore.key
-    if (envBefore.disable === undefined) delete process.env.AI_SEARCH_DISABLE_GSK
-    else process.env.AI_SEARCH_DISABLE_GSK = envBefore.disable
+    if (envBefore.key === undefined) delete process.env.SOOPUS_API_KEY
+    else process.env.SOOPUS_API_KEY = envBefore.key
+    if (envBefore.disable === undefined) delete process.env.AI_SEARCH_DISABLE_SOOPUS
+    else process.env.AI_SEARCH_DISABLE_SOOPUS = envBefore.disable
   })
 
   const writeStore = (owner: string) => {
@@ -58,7 +58,7 @@ describe('cloud projects store account binding', () => {
     const tag = cloudStoreOwner()
     expect(tag).toMatch(/^[0-9a-f]{16}$/)
     expect(tag).not.toContain('test-key')
-    process.env.GSK_API_KEY = 'test-key-account-b'
+    process.env.SOOPUS_API_KEY = 'test-key-account-b'
     expect(cloudStoreOwner()).not.toBe(tag)
   })
 
@@ -71,7 +71,7 @@ describe('cloud projects store account binding', () => {
 
   it("rejects and deletes another account's store", () => {
     writeStore(cloudStoreOwner())
-    process.env.GSK_API_KEY = 'test-key-account-b'
+    process.env.SOOPUS_API_KEY = 'test-key-account-b'
     expect(readCloudProjectsStore(storePath)).toBeNull()
     expect(existsSync(storePath)).toBe(false)
   })
@@ -92,9 +92,9 @@ describe('cloud projects store account binding', () => {
 describe('cloud projects sync account isolation', () => {
   let dir: string
   let storePath: string
-  const envBefore = { key: process.env.GSK_API_KEY, disable: process.env.AI_SEARCH_DISABLE_GSK }
+  const envBefore = { key: process.env.SOOPUS_API_KEY, disable: process.env.AI_SEARCH_DISABLE_SOOPUS }
 
-  const pageFor = (title: string): GskPastProjectsPage => ({
+  const pageFor = (title: string): SoopusPastProjectsPage => ({
     projects: [
       {
         projectId: `id-${title}`,
@@ -111,17 +111,17 @@ describe('cloud projects sync account isolation', () => {
   beforeEach(() => {
     dir = mkdtempSync(join(tmpdir(), 'cloud-sync-'))
     storePath = join(dir, 'cloud-projects.json')
-    delete process.env.AI_SEARCH_DISABLE_GSK
-    process.env.GSK_API_KEY = 'test-key-account-a'
+    delete process.env.AI_SEARCH_DISABLE_SOOPUS
+    process.env.SOOPUS_API_KEY = 'test-key-account-a'
     listMock.mockReset()
   })
 
   afterEach(() => {
     rmSync(dir, { recursive: true, force: true })
-    if (envBefore.key === undefined) delete process.env.GSK_API_KEY
-    else process.env.GSK_API_KEY = envBefore.key
-    if (envBefore.disable === undefined) delete process.env.AI_SEARCH_DISABLE_GSK
-    else process.env.AI_SEARCH_DISABLE_GSK = envBefore.disable
+    if (envBefore.key === undefined) delete process.env.SOOPUS_API_KEY
+    else process.env.SOOPUS_API_KEY = envBefore.key
+    if (envBefore.disable === undefined) delete process.env.AI_SEARCH_DISABLE_SOOPUS
+    else process.env.AI_SEARCH_DISABLE_SOOPUS = envBefore.disable
   })
 
   it('writes the store bound to the account that synced', async () => {
@@ -181,7 +181,7 @@ describe('cloud projects sync account isolation', () => {
   it('aborts without touching the store when the account switches mid-sync', async () => {
     listMock.mockImplementation(async () => {
       // the page comes back after the user has switched accounts
-      process.env.GSK_API_KEY = 'test-key-account-b'
+      process.env.SOOPUS_API_KEY = 'test-key-account-b'
       return pageFor('Deck B')
     })
     await expect(syncCloudProjects(storePath)).rejects.toThrow(/account changed/)
@@ -189,15 +189,15 @@ describe('cloud projects sync account isolation', () => {
   })
 
   it('does not share an in-flight sync across accounts', async () => {
-    const gates: Array<(page: GskPastProjectsPage) => void> = []
+    const gates: Array<(page: SoopusPastProjectsPage) => void> = []
     listMock.mockImplementation(
-      () => new Promise<GskPastProjectsPage>((resolve) => gates.push(resolve)),
+      () => new Promise<SoopusPastProjectsPage>((resolve) => gates.push(resolve)),
     )
 
     const first = syncCloudProjects(storePath)
     expect(syncCloudProjects(storePath)).toBe(first) // same account shares the run
 
-    process.env.GSK_API_KEY = 'test-key-account-b'
+    process.env.SOOPUS_API_KEY = 'test-key-account-b'
     const second = syncCloudProjects(storePath)
     expect(second).not.toBe(first)
     expect(listMock).toHaveBeenCalledTimes(2)

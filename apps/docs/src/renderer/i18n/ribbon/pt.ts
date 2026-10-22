@@ -191,7 +191,7 @@ export const pt = {
   ribbonReplaceTip: 'Localizar e substituir texto',
   ribbonSelectAll: 'Selecionar tudo',
   ribbonSelectAllTip: 'Selecionar o documento inteiro',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'Abrir o assistente de IA',
   ribbonRemoveTableStyleTip: 'Remover estilo da tabela',
   ribbonNoStyle: 'Sem Estilo',

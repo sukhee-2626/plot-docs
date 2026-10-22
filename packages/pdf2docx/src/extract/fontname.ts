@@ -31,7 +31,7 @@ const COMPOUND_FIXUPS: Array<[RegExp, string]> = [[/\bPing Fang\b/g, 'PingFang']
  * CJK system families whose PostScript name IS the installed family name —
  * splitting it unresolves the name and Word substitutes a different face
  * ('DFKai-SB' → 'DFKai SB', 'PMingLiU' → 'PMing Li U', 'SimSun' → 'Sim Sun';
- * genoffice#1890). The hyphen/comma style-suffix convention does not apply to
+ * plotdocs#1890). The hyphen/comma style-suffix convention does not apply to
  * these either: there the suffix is part of the family ('DFKai-SB',
  * 'MingLiU-ExtB'), not a style declaration.
  */
@@ -121,7 +121,7 @@ export function stripTrailingStyleWords(family: string): string {
 export function familyFromPsName(psName: string): string {
   const name = psName.replace(SUBSET_PREFIX, '').trim()
   if (!name || name.includes(' ')) return name
-  // kaiu.ttf uses this PostScript name for the DFKai-SB family (genoffice#1890).
+  // kaiu.ttf uses this PostScript name for the DFKai-SB family (plotdocs#1890).
   // FreeType records the pair in src/truetype/ttobjs.c.
   if (name === 'DFKaiShu-SB-Estd-BF') return 'DFKai-SB'
   // these names are the family verbatim — no splitting, no suffix surgery

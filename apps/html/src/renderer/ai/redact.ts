@@ -46,7 +46,7 @@ import {
   sanitizeLabel as coreSanitizeLabel,
   placeholderInstruction as buildInstruction,
   type PlaceholderSpec,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'
 
 /** Attribute marking an element's own content. */
 export const MARK_ATTR = 'data-gx-redact'
@@ -358,4 +358,4 @@ export {
   isWholePlaceholder,
   readPlaceholderLabel,
   type PlaceholderIssue,
-} from '@genoffice/agent-core/redact-core'
+} from '@plotdocs/agent-core/redact-core'

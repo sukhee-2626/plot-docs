@@ -18,7 +18,7 @@ describe('isInstallableSkillDir', () => {
     expect(isInstallableSkillDir('/etc/cron.d', vouched)).toBe(false)
     expect(isInstallableSkillDir('/Users/me/.ssh', vouched)).toBe(false)
     expect(isInstallableSkillDir('/home/me/.claude/skills-extra', vouched)).toBe(false)
-    expect(isInstallableSkillDir('/home/me/.claude/skills/genoffice', vouched)).toBe(false)
+    expect(isInstallableSkillDir('/home/me/.claude/skills/plotdocs', vouched)).toBe(false)
   })
 
   it('tolerates malformed input defensively', () => {

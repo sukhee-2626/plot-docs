@@ -1,10 +1,9 @@
 import { execSync, spawn } from 'node:child_process'
 import {
-  cpSync,
+  copyFileSync,
   existsSync,
   mkdirSync,
   readFileSync,
-  readdirSync,
   renameSync,
   rmSync,
   statSync,
@@ -28,9 +27,13 @@ import {
   shell,
   webContents,
 } from 'electron'
-import type { MenuItemConstructorOptions, NativeImage, WebContents } from 'electron'
+import type {
+  IpcMainInvokeEvent,
+  MenuItemConstructorOptions,
+  NativeImage,
+  WebContents,
+} from 'electron'
 import { atomicCopyFile, atomicWriteFile } from './atomic-write'
-import { tabStripOverlay } from './title-bar-overlay'
 import {
   applyUiScaleTo,
   applyUiScaleToAll,
@@ -52,7 +55,7 @@ import menuHtmlIcon1x from './assets/menu-html.png?asset'
 import menuHtmlIcon2x from './assets/menu-html@2x.png?asset'
 import menuHomeIcon1x from './assets/menu-home.png?asset'
 import menuHomeIcon2x from './assets/menu-home@2x.png?asset'
-import { createI18n, isLang, normalizeLang, setUiLang, type Lang } from '@genoffice/i18n'
+import { createI18n, isLang, normalizeLang, setUiLang, type Lang } from '@plotdocs/i18n'
 import {
   DEFAULT_SAVE_DIR_KEY,
   DROP_OPEN_CHANNEL,
@@ -83,8 +86,8 @@ import {
   readAuthorNameSetting,
   sanitizeAuthorName,
   systemAuthorName,
-} from '@genoffice/electron-utils'
-import { createMainProcessProxyDispatcher } from '@genoffice/electron-utils/main-proxy'
+} from '@plotdocs/electron-utils'
+import { createMainProcessProxyDispatcher } from '@plotdocs/electron-utils/main-proxy'
 import {
   readAppSettings,
   writeAppSetting,
@@ -128,13 +131,17 @@ import {
 import { handleDroppedFiles } from './dropped-files'
 import { collectLaunchPaths } from './launch-paths'
 import {
-  genofficeLogout,
-  gskLoginInfo,
-  loadGenofficeAuth,
-  setGskProxyUrl,
-  startGenofficeLogin,
-  watchGskApiKey,
-} from '@genoffice/ai-search'
+  createLocalAccount,
+  localAccountStatus,
+  signInLocalAccount,
+  signOutLocalAccount,
+} from './local-account'
+import {
+  loadPlotdocsAuth,
+  setSoopusProxyUrl,
+  startPlotdocsLogin,
+  watchSoopusApiKey,
+} from '@plotdocs/ai-search'
 
 import {
   buildDocsMenu,
@@ -169,7 +176,7 @@ import {
   uniquePathIn,
   authorizeMcpDocWrite,
 } from '../../../docs/src/main/docs-main'
-import { blankXlsxBuffer } from '@genoffice/xlsx-gateway/gateway/csv-import'
+import { blankXlsxBuffer } from '@plotdocs/xlsx-gateway/gateway/csv-import'
 import { blankPdfBuffer } from '../../../pdf/src/main/blank-pdf'
 import {
   applyMcpSettings,
@@ -295,11 +302,12 @@ import type {
   FileSearchSettings,
 } from '../shared/home-api'
 import { HOME_CHANNELS } from '../shared/home-api'
+import { templateById } from '../shared/templates'
 import {
   normalizeAiPanelPrefs,
   sameAiPanelPrefs,
   type AiPanelPrefs,
-} from '@genoffice/ui/ai-panel-prefs'
+} from '@plotdocs/ui/ai-panel-prefs'
 import type { TabKind } from '../shared/tabs-api'
 import { TABS_CHANNELS } from '../shared/tabs-api'
 import { showErrorDialog } from './error-dialog'
@@ -399,7 +407,7 @@ import { applyUpdateChannel, checkForUpdatesNow, initAutoUpdater } from './updat
 import { isUpdateChannel, type UpdateChannel } from '../shared/update-api'
 
 /**
- * GenOffice unified shell: ONE Electron app, ONE BrowserWindow, hosting the
+ * Plot Docs unified shell: ONE Electron app, ONE BrowserWindow, hosting the
  * docs and sheets modules as WebContentsView tabs behind a WPS-style tab
  * strip. The shell owns the lifecycle — single-instance lock, file-
  * association routing by extension, and per-active-tab menu switching.
@@ -420,30 +428,39 @@ for (const stream of [process.stdout, process.stderr]) {
 
 // ANY unpacked run (`npm run shell`, `npm run dev`, `npx electron .`) must not
 // share the installed app's userData or single-instance lock — otherwise a dev
-// run silently quits and forwards its argv to the running installed GenOffice.
-// GENOFFICE_USER_DATA: test drivers point this at a scratch dir so an
+// run silently quits and forwards its argv to the running installed Plot Docs.
+// PLOTDOCS_USER_DATA: test drivers point this at a scratch dir so an
 // automated instance can run alongside the dev instance (separate lock).
 if (!app.isPackaged) {
-  if (process.env.GENOFFICE_USER_DATA) {
-    app.setPath('userData', process.env.GENOFFICE_USER_DATA)
+  if (process.env.PLOTDOCS_USER_DATA) {
+    app.setPath('userData', process.env.PLOTDOCS_USER_DATA)
   } else {
-    // The dev profile used to live in "GenOffice Dev"; the space breaks
+    // The dev profile used to live in "Plot Docs Dev"; the space breaks
     // unquoted shell expansions, rsync targets and .desktop Exec= lines, and
-    // XDG config entries are single tokens (genoffice#1817). "GenOffice-Dev" keeps the
-    // family naming of the packaged profile ("GenOffice"). The old directory
+    // XDG config entries are single tokens (plotdocs#1817). "Plot Docs-Dev" keeps the
+    // family naming of the packaged profile ("Plot Docs"). The old directory
     // moves once — it sits on the same volume as appData, so the rename is
     // atomic, and a concurrent dev instance keeps its open file handles.
     const appData = app.getPath('appData')
-    const devDir = join(appData, 'GenOffice-Dev')
-    const oldDevDir = join(appData, 'GenOffice Dev')
+    const devDir = join(appData, 'PlotDocsSuite-Dev')
+    const oldDevDirs = [
+      'Plot Docs-Dev',
+      'Plot Docs Dev',
+      'Plot Docs-Dev',
+      'Plot Docs Dev',
+    ]
     let userData = devDir
-    if (existsSync(oldDevDir) && !existsSync(devDir)) {
+    for (const oldName of oldDevDirs) {
+      const oldDevDir = join(appData, oldName)
+      if (!existsSync(oldDevDir) || existsSync(devDir)) continue
       try {
         renameSync(oldDevDir, devDir)
+        break
       } catch {
         // another dev instance holds the directory: keep using the old one so
         // the profile is not lost and the move is retried on the next launch
         userData = oldDevDir
+        break
       }
     }
     app.setPath('userData', userData)
@@ -460,14 +477,6 @@ const headlessArgv = parseHeadlessExportArgv(process.argv)
 if (headlessArgv.kind !== 'none') {
   setHeadlessMode(true)
   app.dock?.hide()
-}
-
-// The product rename from "AI Office" to GenOffice changed the userData path; migrate old user data once
-if (app.isPackaged) {
-  const oldDir = join(app.getPath('appData'), 'AI Office')
-  const newDir = app.getPath('userData')
-  const newEmpty = !existsSync(newDir) || readdirSync(newDir).length === 0
-  if (newEmpty && existsSync(oldDir)) cpSync(oldDir, newDir, { recursive: true })
 }
 
 // module build outputs: packaged builds carry them as extraResources
@@ -488,13 +497,13 @@ const PDF_OUT = app.isPackaged
   ? join(process.resourcesPath, 'modules', 'pdf')
   : join(APPS_ROOT, 'pdf', 'out')
 let cliRunner: ReturnType<typeof createCliRunner> | null = null
-/** the bundled genoffice CLI on the app's own Node runtime (MCP headless tools, Ask AI create_document) */
+/** the bundled plotdocs CLI on the app's own Node runtime (MCP headless tools, Ask AI create_document) */
 function bundledCliRunner(): ReturnType<typeof createCliRunner> {
   cliRunner ??= createCliRunner({
     executable: process.execPath,
     entry: app.isPackaged
-      ? join(process.resourcesPath, 'cli', 'genoffice.cjs')
-      : join(APPS_ROOT, '..', 'packages', 'cli', 'dist', 'genoffice.cjs'),
+      ? join(process.resourcesPath, 'cli', 'plotdocs.cjs')
+      : join(APPS_ROOT, '..', 'packages', 'cli', 'dist', 'plotdocs.cjs'),
   })
   return cliRunner
 }
@@ -554,7 +563,7 @@ registerPrivilegedSchemes()
 
 // ---- UI language ----
 // Persisted in userData/app-settings.json so the editor modules can read the
-// same file when they pick up i18n later. GENOFFICE_LANG overrides for tests.
+// same file when they pick up i18n later. PLOTDOCS_LANG overrides for tests.
 
 const APP_SETTINGS_PATH = () => join(app.getPath('userData'), 'app-settings.json')
 const OPEN_DOCUMENTS_PATH = () => join(app.getPath('userData'), OPEN_DOCUMENTS_FILE)
@@ -575,8 +584,8 @@ let uiLang: Lang | null = null
 
 function currentLang(): Lang {
   if (uiLang) return uiLang
-  if (process.env.GENOFFICE_LANG) {
-    uiLang = normalizeLang(process.env.GENOFFICE_LANG)
+  if (process.env.PLOTDOCS_LANG) {
+    uiLang = normalizeLang(process.env.PLOTDOCS_LANG)
     setUiLang(uiLang)
     return uiLang
   }
@@ -734,14 +743,17 @@ function initAnalytics(): void {
 }
 
 // ---- first-run onboarding ----
-// The GenTeam community page opened from the onboarding's second slide.
-// Stable short link served by the genoffice.ai site; it 302s to the tokened
+// The PlotCommunity community page opened from the onboarding's second slide.
+// Stable short link served by the plotxyz.ai site; it 302s to the tokened
 // invite link, which stays out of this repo and rotates server-side.
-const GENTEAM_URL = 'https://genoffice.ai/join'
+const COMMUNITY_URL = 'https://plotxyz.ai'
 
-// Genspark credit-usage page opened from the account menu's credits row.
+// Soopus credit-usage page opened from the account menu's credits row.
 // Kept main-side so the renderer never supplies the URL.
-const CREDIT_USAGE_URL = 'https://www.genspark.ai/credit-usage'
+const CREDIT_USAGE_URL = 'https://plotxyz.ai/plot-docs/pricing'
+
+// Plot Docs marketing site opened from Settings → About.
+const PLOT_DOCS_WEBSITE = 'https://plotxyz.ai'
 
 // ---- "star us on GitHub" prompt (see star-prompt.ts for the rules) ----
 
@@ -778,7 +790,7 @@ let cachedGithubStars: number | null = null
 async function fetchGithubStars(): Promise<number | null> {
   if (cachedGithubStars !== null) return cachedGithubStars
   try {
-    const response = await fetch('https://api.github.com/repos/genspark-ai/genoffice', {
+    const response = await fetch('https://api.github.com/repos/Soopus-ai/plotdocs', {
       headers: { Accept: 'application/vnd.github+json' },
       signal: AbortSignal.timeout(5000),
     })
@@ -3822,7 +3834,7 @@ function withViewMenu(): void {
   else menu.insert(helpIdx, viewItem)
 }
 
-/// Interface scale (genoffice#1913). Read once at boot, then replaced by the View menu.
+/// Interface scale (plotdocs#1913). Read once at boot, then replaced by the View menu.
 let currentUiScale = 1
 
 /**
@@ -3845,13 +3857,7 @@ function installUiScale(): void {
   onUiScaleChanged((scale) => {
     currentUiScale = scale
     tabManager?.layout()
-    refreshTitleBarOverlay()
   })
-}
-
-function refreshTitleBarOverlay(): void {
-  if (process.platform === 'darwin' || !shellWindow || shellWindow.isDestroyed()) return
-  shellWindow.setTitleBarOverlay(tabStripOverlay(nativeTheme.shouldUseDarkColors, currentUiScale))
 }
 
 function createShellWindow(): void {
@@ -3870,17 +3876,16 @@ function createShellWindow(): void {
     ...(restored ? { x: restored.x, y: restored.y } : {}),
     minWidth: SHELL_WINDOW_MIN_WIDTH,
     minHeight: SHELL_WINDOW_MIN_HEIGHT,
-    title: 'GenOffice',
+    title: 'Plot Docs',
     // vibrancy: editor modules punch translucent regions (e.g. the slides
     // thumbnail pane) through to the desktop
     ...(process.platform === 'darwin'
       ? { titleBarStyle: 'hiddenInset' as const, vibrancy: 'sidebar' as const }
       : {
-          // the tab strip is the title bar, as on macOS; the application menu
-          // stays registered for its accelerators and opens from the strip's
-          // menu button (Alt still reveals the native bar where one exists)
+          // the tab strip is the title bar, as on macOS; Plot draws its own
+          // traffic-light caption controls so the chrome stays consistent
+          // across themes and is not constrained by a native overlay
           titleBarStyle: 'hidden' as const,
-          titleBarOverlay: tabStripOverlay(nativeTheme.shouldUseDarkColors, currentUiScale),
           autoHideMenuBar: true,
         }),
     webPreferences: {
@@ -3894,8 +3899,13 @@ function createShellWindow(): void {
   // reopens maximized instead of as a screen-sized ordinary window
   if (restored?.maximized) win.maximize()
   shellWindow = win
-  nativeTheme.on('updated', refreshTitleBarOverlay)
-  win.once('closed', () => nativeTheme.off('updated', refreshTitleBarOverlay))
+  // keep the custom traffic lights in sync when the OS maximizes / restores
+  // the window (snap, double-click on a drag region, keyboard)
+  const sendMaximized = (): void => {
+    if (!win.isDestroyed()) win.webContents.send(HOME_CHANNELS.windowMaximizedChanged, win.isMaximized())
+  }
+  win.on('maximize', sendMaximized)
+  win.on('unmaximize', sendMaximized)
   // dragging the window by the tab strip's blank (draggable) area produces no
   // DOM event anywhere — will-move is the only signal to dismiss popovers
   win.on('will-move', () => broadcastChromePressed())
@@ -4289,7 +4299,7 @@ async function newSheetTab(recoverAs?: string): Promise<void> {
     suggestedPath = uniquePathIn(dir, `${tm('untitledSheet')} ${i}.xlsx`)
   try {
     // under the import root so the session-close cleanup removes it like an import copy
-    const tempDir = join(app.getPath('temp'), 'genoffice-imports', randomUUID())
+    const tempDir = join(app.getPath('temp'), 'plotdocs-imports', randomUUID())
     mkdirSync(tempDir, { recursive: true })
     const backingPath = join(tempDir, basename(suggestedPath))
     // reserve the name before the first await so a second new tab picks another;
@@ -4355,7 +4365,7 @@ function newDocTab(): void {
 
 /** MCP: open a blank docs tab and return its webContents id, for the visible-editor bridge */
 function openBlankDocsTabForMcp(): number {
-  if (!tabManager) throw new Error('GenOffice is not ready')
+  if (!tabManager) throw new Error('Plot Docs is not ready')
   const tabId = tabManager.openDocsTab(undefined, { newBlank: true })
   const view = tabManager.docsTabs().find((t) => t.id === tabId)
   if (!view) throw new Error('the new document tab could not be opened')
@@ -4372,7 +4382,7 @@ function openBlankDocsTabForMcp(): number {
  * marking is skipped, the file name is the agent's business.
  */
 async function openBlankSheetsTabForMcp(): Promise<number> {
-  if (!tabManager) throw new Error('GenOffice is not ready')
+  if (!tabManager) throw new Error('Plot Docs is not ready')
   const filePath = uniquePathIn(defaultSaveDir(), `${tm('untitledSheet')}.xlsx`)
   await atomicWriteFile(filePath, await blankXlsxBuffer())
   const tabId = tabManager.openSheetsTab(filePath)
@@ -4443,7 +4453,7 @@ function abandonBlankTabForMcp(
 
 /** MCP: open a blank slides tab and return its webContents id, for the visible-deck bridge */
 function openBlankSlidesTabForMcp(): number {
-  if (!tabManager) throw new Error('GenOffice is not ready')
+  if (!tabManager) throw new Error('Plot Docs is not ready')
   const tabId = tabManager.openSlidesTab()
   const view = tabManager.slidesTabs().find((t) => t.id === tabId)
   if (!view) throw new Error('the new presentation tab could not be opened')
@@ -4537,16 +4547,181 @@ function statEntries(paths: string[]): RecentEntry[] {
   return statPathEntries(paths, new Set(readStarredFiles()))
 }
 
+let accountAuthWindow: BrowserWindow | null = null
+
+/** Registrable-domain label of the identity provider, e.g. the "example" in login.example.com. */
+function accountProviderLabel(rawUrl: string): string {
+  try {
+    const host = new URL(rawUrl).hostname.replace(/^www\./i, '')
+    const parts = host.split('.')
+    return parts.length >= 2 ? parts[parts.length - 2]! : ''
+  } catch {
+    return ''
+  }
+}
+
+/**
+ * The identity provider hosts the secure page. Replace its wordmark in the
+ * embedded surface so the account window stays inside the Plot Docs brand.
+ * Only visible text and provider imagery are touched; form posts and links
+ * keep their original URLs.
+ */
+function applyAccountWindowBranding(win: BrowserWindow): void {
+  const label = accountProviderLabel(win.webContents.getURL())
+  if (!label) return
+  const script = `(() => {
+    const label = ${JSON.stringify(label)}
+    const pattern = new RegExp(label, 'gi')
+    const phrase = new RegExp(label + ' AI', 'gi')
+    const swap = (value) => value.replace(phrase, 'Soopus AI').replace(pattern, 'Soopus AI')
+    const clean = (root) => {
+      if (!root) return
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+      const nodes = []
+      while (walker.nextNode()) nodes.push(walker.currentNode)
+      for (const node of nodes) {
+        const next = swap(node.nodeValue || '')
+        if (next !== node.nodeValue) node.nodeValue = next
+      }
+      for (const el of root.querySelectorAll?.('img') || []) {
+        const mark = (el.getAttribute('src') || '') + ' ' + (el.getAttribute('alt') || '')
+        pattern.lastIndex = 0
+        if (pattern.test(mark)) el.style.display = 'none'
+      }
+    }
+    clean(document.body)
+    if (document.body && getComputedStyle(document.body).backgroundColor === 'rgba(0, 0, 0, 0)') {
+      document.body.style.backgroundColor = '#ffffff'
+    }
+    const title = 'Soopus AI — Sign in or create account'
+    const setTitle = () => {
+      if (document.title !== title) document.title = title
+    }
+    setTitle()
+    if (document.head && !window.__plotdocsTitleObserver) {
+      const titleObserver = new MutationObserver(setTitle)
+      window.__plotdocsTitleObserver = titleObserver
+      titleObserver.observe(document.head, { childList: true, subtree: true, characterData: true })
+    }
+    if (document.body && !window.__plotdocsBrandObserver) {
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          for (const node of mutation.addedNodes) {
+            if (node.nodeType === Node.TEXT_NODE) {
+              const next = swap(node.nodeValue || '')
+              if (next !== node.nodeValue) node.nodeValue = next
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+              clean(node)
+            }
+          }
+          if (mutation.type === 'characterData') {
+            const node = mutation.target
+            const next = swap(node.nodeValue || '')
+            if (next !== node.nodeValue) node.nodeValue = next
+          }
+        }
+      })
+      window.__plotdocsBrandObserver = observer
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true })
+    }
+  })()`
+  void win.webContents.executeJavaScript(script, true).catch(() => {})
+}
+
+function brandAccountWindow(win: BrowserWindow): void {
+  win.on('page-title-updated', (event) => {
+    event.preventDefault()
+    win.setTitle('Soopus AI — Sign in or create account')
+  })
+  win.webContents.on('did-finish-load', () => applyAccountWindowBranding(win))
+  win.webContents.on('did-navigate-in-page', () => applyAccountWindowBranding(win))
+}
+
+/**
+ * Open the account provider's device-code approval page in a real app window.
+ * The page is the identity provider's secure sign-in / sign-up surface; keeping
+ * it inside Plot Docs avoids the old external-browser hand-off.
+ */
+function openInAppAuthWindow(url: string, parent?: BrowserWindow | null): void {
+  if (accountAuthWindow && !accountAuthWindow.isDestroyed()) {
+    void accountAuthWindow.loadURL(url)
+    accountAuthWindow.show()
+    accountAuthWindow.focus()
+    return
+  }
+  const win = new BrowserWindow({
+    width: 1040,
+    height: 780,
+    minWidth: 760,
+    minHeight: 560,
+    title: 'Soopus AI — Sign in or create account',
+    parent: parent ?? undefined,
+    modal: false,
+    show: false,
+    autoHideMenuBar: true,
+    backgroundColor: '#ffffff',
+    webPreferences: {
+      contextIsolation: true,
+      nodeIntegration: false,
+      sandbox: true,
+      partition: 'persist:plotdocs-account',
+    },
+  })
+  accountAuthWindow = win
+  brandAccountWindow(win)
+  win.once('ready-to-show', () => win.show())
+  win.webContents.on('did-create-window', (child) => brandAccountWindow(child))
+  win.webContents.setWindowOpenHandler(({ url: target }) => {
+    if (!/^https:\/\//i.test(target)) return { action: 'deny' }
+    return {
+      action: 'allow',
+      overrideBrowserWindowOptions: {
+        parent: win,
+        width: 1040,
+        height: 780,
+        autoHideMenuBar: true,
+        webPreferences: {
+          contextIsolation: true,
+          nodeIntegration: false,
+          sandbox: true,
+          partition: 'persist:plotdocs-account',
+        },
+      },
+    }
+  })
+  win.on('closed', () => {
+    if (accountAuthWindow === win) accountAuthWindow = null
+  })
+  void win.loadURL(url)
+}
+
+function closeInAppAuthWindow(): void {
+  if (accountAuthWindow && !accountAuthWindow.isDestroyed()) accountAuthWindow.close()
+  accountAuthWindow = null
+}
+
 function registerHomeIpc(): void {
-  // signed-in means GenOffice's own device-code login; the shared gsk CLI key
+  // signed-in means Plot Docs's own device-code login; the shared soopus CLI key
   // is only a silent fallback, deliberately not shown here to nudge users onto our key
-  ipcMain.handle(HOME_CHANNELS.accountStatus, async () => {
-    if (!loadGenofficeAuth()) return { loggedIn: false }
-    await proxyBootstrap
-    const info = await gskLoginInfo()
-    if (info) return { loggedIn: true, email: info.email, creditBalance: info.creditBalance }
-    // login-info answering 401 drops an expired key: report signed-out right away
-    return { loggedIn: !!loadGenofficeAuth() }
+  ipcMain.handle(HOME_CHANNELS.accountStatus, () =>
+    localAccountStatus(app.getPath('userData')),
+  )
+
+  ipcMain.handle(HOME_CHANNELS.accountCreate, async (_event, raw: unknown) => {
+    const input = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>
+    return createLocalAccount(app.getPath('userData'), {
+      name: typeof input.name === 'string' ? input.name : '',
+      email: typeof input.email === 'string' ? input.email : '',
+      password: typeof input.password === 'string' ? input.password : '',
+    })
+  })
+
+  ipcMain.handle(HOME_CHANNELS.accountSignIn, async (_event, raw: unknown) => {
+    const input = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>
+    return signInLocalAccount(app.getPath('userData'), {
+      email: typeof input.email === 'string' ? input.email : '',
+      password: typeof input.password === 'string' ? input.password : '',
+    })
   })
 
   // login progress is streamed to the requesting renderer; the auth URL is
@@ -4560,17 +4735,21 @@ function registerHomeIpc(): void {
     const send = (payload: AccountLoginEvent) => {
       if (!sender.isDestroyed()) sender.send(HOME_CHANNELS.accountLoginEvent, payload)
     }
-    // open the browser on the first url event only; later events refresh the rescue URL
+    // open the in-app account window on the first url event only; later events
+    // refresh the rescue URL
     let opened = false
-    const launched = startGenofficeLogin((progress) => {
+    const launched = startPlotdocsLogin((progress) => {
       if (progress.url) {
         pendingLoginUrl = progress.url
         if (!opened) {
           opened = true
-          void shell.openExternal(progress.url)
+          openInAppAuthWindow(progress.url, BrowserWindow.fromWebContents(sender))
         }
       }
-      if (progress.phase === 'success') analytics.track('login_success')
+      if (progress.phase === 'success') {
+        analytics.track('login_success')
+        closeInAppAuthWindow()
+      }
       send(progress)
     })
     if (launched) send({ phase: 'launched' })
@@ -4578,11 +4757,13 @@ function registerHomeIpc(): void {
   })
 
   ipcMain.handle(HOME_CHANNELS.accountLoginOpenUrl, () => {
-    if (pendingLoginUrl) void shell.openExternal(pendingLoginUrl)
+    if (pendingLoginUrl) {
+      openInAppAuthWindow(pendingLoginUrl, BrowserWindow.getFocusedWindow() ?? shellWindow)
+    }
   })
 
   ipcMain.handle(HOME_CHANNELS.accountLogout, async () => {
-    await genofficeLogout()
+    await signOutLocalAccount(app.getPath('userData'))
     // the cloud projects cache belongs to the account that just signed out
     clearCloudProjectsStore(cloudProjectsStorePath())
   })
@@ -4814,6 +4995,41 @@ function registerHomeIpc(): void {
     void newPdfTab()
   })
 
+  ipcMain.handle(
+    HOME_CHANNELS.newFromTemplate,
+    (_event, templateId: unknown, opts?: NewFileOpts): { path: string } => {
+      if (typeof templateId !== 'string') throw new Error('invalid template id')
+      const template = templateById(templateId)
+      if (!template) throw new Error(`unknown template: ${templateId}`)
+      const source = join(
+        app.isPackaged ? process.resourcesPath : app.getAppPath(),
+        app.isPackaged ? 'templates' : 'resources/templates',
+        template.file,
+      )
+      if (!existsSync(source)) throw new Error(`template asset missing: ${template.file}`)
+      const dir =
+        opts?.dir && existsSync(opts.dir) && insideAnyRoot(opts.dir)
+          ? opts.dir
+          : defaultSaveDir()
+      mkdirSync(dir, { recursive: true })
+      const target = uniquePathIn(dir, template.file)
+      copyFileSync(source, target)
+      if (!openDocumentPath(target)) {
+        // a supported template always routes, but keep the copy out of the
+        // save folder if a module refuses it rather than orphaning the file
+        try {
+          rmSync(target)
+        } catch {
+          /* best effort */
+        }
+        throw new Error(`could not open template: ${template.file}`)
+      }
+      recordStarPromptDocOpen()
+      analytics.track('file_new', { kind: template.format, template: template.id })
+      return { path: target }
+    },
+  )
+
   ipcMain.handle(HOME_CHANNELS.removeRecent, (_event, paths: unknown) => {
     const list = stringPaths(paths)
     removeRecentFiles(list)
@@ -4940,6 +5156,28 @@ function registerHomeIpc(): void {
     }
   })
 
+  const senderWindow = (event: IpcMainInvokeEvent): BrowserWindow | null => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    return win && !win.isDestroyed() ? win : null
+  }
+
+  ipcMain.handle(HOME_CHANNELS.windowMinimize, (event) => {
+    senderWindow(event)?.minimize()
+  })
+  ipcMain.handle(HOME_CHANNELS.windowToggleMaximize, (event): boolean => {
+    const win = senderWindow(event)
+    if (!win) return false
+    if (win.isMaximized()) win.unmaximize()
+    else win.maximize()
+    return win.isMaximized()
+  })
+  ipcMain.handle(HOME_CHANNELS.windowClose, (event) => {
+    senderWindow(event)?.close()
+  })
+  ipcMain.handle(HOME_CHANNELS.windowIsMaximized, (event): boolean => {
+    return senderWindow(event)?.isMaximized() ?? false
+  })
+
   ipcMain.handle(HOME_CHANNELS.getTheme, (): UiTheme => currentTheme())
   // editor tabs ask via the app-wide channel (symmetric with app:get-language)
   ipcMain.handle('app:get-theme', (): UiTheme => currentTheme())
@@ -4950,7 +5188,6 @@ function registerHomeIpc(): void {
     cachedTheme = theme
     writeAppSetting(APP_SETTINGS_PATH(), 'theme', theme)
     nativeTheme.themeSource = theme
-    refreshTitleBarOverlay()
     for (const wc of webContents.getAllWebContents()) wc.send('app:theme-changed', theme)
   })
 
@@ -5214,7 +5451,7 @@ function registerHomeIpc(): void {
       const displaced: string[] = []
       const result = movePathsInto(sources, targetDir, conflictPolicy, folderErrors(), {
         replaceExisting: (path) => {
-          const parked = join(dirname(path), `.genoffice-replaced-${Date.now()}-${basename(path)}`)
+          const parked = join(dirname(path), `.plotdocs-replaced-${Date.now()}-${basename(path)}`)
           const files = isDir(path) ? trackedFilesUnder(path) : [path]
           renameSync(path, parked)
           return {
@@ -5285,8 +5522,8 @@ function registerHomeIpc(): void {
     return picked
   })
 
-  ipcMain.handle(HOME_CHANNELS.openGenTeam, () => {
-    shell.openExternal(GENTEAM_URL).catch(() => {
+  ipcMain.handle(HOME_CHANNELS.openPlotCommunity, () => {
+    shell.openExternal(COMMUNITY_URL).catch(() => {
       // no browser handler available; nothing actionable for the user here
     })
   })
@@ -5303,6 +5540,12 @@ function registerHomeIpc(): void {
     })
   })
 
+  ipcMain.handle(HOME_CHANNELS.openWebsite, () => {
+    shell.openExternal(PLOT_DOCS_WEBSITE).catch(() => {
+      // no browser handler available; nothing actionable for the user here
+    })
+  })
+
   ipcMain.handle(HOME_CHANNELS.githubStars, () => fetchGithubStars())
 
   // returning true also counts as "shown": the renderer displays it
@@ -5313,8 +5556,8 @@ function registerHomeIpc(): void {
     const state = readStarPrompt()
     const docOpens = state.docOpens ?? 0
     // dev preview of the card without waiting out the value thresholds
-    // (same pattern as GENOFFICE_FAKE_UPDATE); nothing is recorded
-    if (!app.isPackaged && process.env.GENOFFICE_FORCE_STAR_PROMPT) return { show: true, docOpens }
+    // (same pattern as PLOTDOCS_FAKE_UPDATE); nothing is recorded
+    if (!app.isPackaged && process.env.PLOTDOCS_FORCE_STAR_PROMPT) return { show: true, docOpens }
     const grant = (): StarPromptShow => {
       writeStarPrompt(withShown(state, now))
       starPromptSessionGrant = { show: true, docOpens }
@@ -6294,7 +6537,7 @@ async function exportDocxBytesHeadless(
   format: 'md' | 'html',
   sourceName: string,
 ): Promise<void> {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-pdf-convert-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-pdf-convert-'))
   try {
     const docxPath = join(dir, sourceName.replace(/\.pdf$/i, '') + '.docx')
     await atomicWriteFile(docxPath, docx)
@@ -6609,7 +6852,7 @@ async function installMainProcessProxy(): Promise<void> {
   if (!proxyUrl) {
     try {
       // PAC/rule proxies answer per-host: probe the host the login flow, the
-      // Genspark LLM proxy and the gsk CLI actually target
+      // Soopus LLM proxy and the soopus CLI actually target
       const resolved = await session.defaultSession.resolveProxy('https://www.genspark.ai/')
       const m = /PROXY\s+([^;\s]+)/.exec(resolved)
       if (m) proxyUrl = `http://${m[1]}`
@@ -6618,9 +6861,9 @@ async function installMainProcessProxy(): Promise<void> {
     }
   }
   if (!proxyUrl) return
-  // spawned gsk CLI children (login/search/…) do their own fetch and never see
+  // spawned soopus CLI children (login/search/…) do their own fetch and never see
   // the dispatcher below — forward the proxy to them via env
-  setGskProxyUrl(proxyUrl)
+  setSoopusProxyUrl(proxyUrl)
   try {
     const { setGlobalDispatcher } = await import('undici')
     // loopback stays direct: a Custom provider on 127.0.0.1 must not ride
@@ -6696,8 +6939,8 @@ registerIntegrationsIpc({
     ? join(process.resourcesPath, 'cli')
     : join(APPS_ROOT, '..', 'packages', 'cli', 'bin'),
   skillPath: app.isPackaged
-    ? join(process.resourcesPath, 'cli', 'skills', 'genoffice', 'SKILL.md')
-    : join(APPS_ROOT, '..', 'skills', 'genoffice', 'SKILL.md'),
+    ? join(process.resourcesPath, 'cli', 'skills', 'plotdocs', 'SKILL.md')
+    : join(APPS_ROOT, '..', 'skills', 'plotdocs', 'SKILL.md'),
   cliPackageJson: app.isPackaged
     ? join(process.resourcesPath, 'cli', 'package.json')
     : join(APPS_ROOT, '..', 'packages', 'cli', 'package.json'),
@@ -6724,7 +6967,7 @@ const headlessExporters: HeadlessExporters = {
 /**
  * The whole `--headless-export` run: no shell window, no menus, no updater,
  * no single-instance lock (a GUI instance may well be running). Prints
- * exactly one line and exits with the genoffice convention (0/1/2/3).
+ * exactly one line and exits with the plotdocs convention (0/1/2/3).
  */
 async function runHeadlessExportEntry(
   parsed: Exclude<HeadlessArgvParse, { kind: 'none' }>,
@@ -6746,7 +6989,7 @@ async function runHeadlessExportEntry(
       resolve()
     })
   })
-  // app.quit() always exits 0; the genoffice envelope needs the real code, and
+  // app.quit() always exits 0; the plotdocs envelope needs the real code, and
   // every teardown this run owns has already happened.
   app.exit(headlessExitCode(outcome))
 }
@@ -6800,15 +7043,15 @@ app.whenReady().then(async () => {
     app.quit()
     return
   }
-  // another GenOffice-family app re-logging in rotates the shared key; the
+  // another Plot Docs-family app re-logging in rotates the shared key; the
   // home page re-reads its account status. A logout that leaves only the
-  // gsk CLI fallback key is not a login
-  stopAuthWatch = watchGskApiKey(() => {
-    if (!loadGenofficeAuth()) return
+  // soopus CLI fallback key is not a login
+  stopAuthWatch = watchSoopusApiKey(() => {
+    if (!loadPlotdocsAuth()) return
     for (const w of BrowserWindow.getAllWindows())
       w.webContents.send(HOME_CHANNELS.accountLoginEvent, { phase: 'success' })
   })
-  // a registry left by a crashed instance must not block genoffice writes
+  // a registry left by a crashed instance must not block plotdocs writes
   ownsOpenDocumentsRegistry = true
   publishOpenDocuments(OPEN_DOCUMENTS_PATH(), [])
   if (!app.isPackaged) {
@@ -6916,7 +7159,7 @@ app.whenReady().then(async () => {
         discard: htmlDiscardPendingAssets,
       },
     }),
-    // the headless create_*/read_* tools delegate to the bundled genoffice CLI
+    // the headless create_*/read_* tools delegate to the bundled plotdocs CLI
     // (the same engines, no second implementation); it runs on the app's own
     // Node runtime via ELECTRON_RUN_AS_NODE
     cliRunner: bundledCliRunner(),

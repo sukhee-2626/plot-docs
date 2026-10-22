@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { DragEvent as ReactDragEvent, ReactElement } from 'react'
-import logoLockup from './assets/genoffice-logo.svg'
+import type { CSSProperties, DragEvent as ReactDragEvent, ReactElement } from 'react'
+import logoMark from './assets/plotdocs-mark.svg'
 import { KbAskPanel } from './KbAskPanel'
+import { HomeTour } from './HomeTour'
+import { ParticleField } from './ParticleField'
+import { TEMPLATE_CATALOG, TEMPLATE_FILTERS } from '../../shared/templates'
+import type { TemplateCategory } from '../../shared/templates'
 import iconDocx from './assets/file-docx.svg'
 import iconXlsx from './assets/file-xlsx.svg'
 import iconPptx from './assets/file-pptx.svg'
@@ -24,7 +28,7 @@ import type {
 } from '../../shared/home-api'
 import type { IntegrationsApi } from '../../shared/integrations-api'
 import { markText } from '../../shared/text-marks'
-import { useDismissablePopover } from '@genoffice/ui'
+import { useDismissablePopover } from '@plotdocs/ui'
 import { fileCountLabel, visiblePageCount } from './counts'
 import { useI18n } from './locale'
 import type { I18n, StringKey } from './locale'
@@ -33,7 +37,7 @@ import type { SettingsTarget } from './SettingsModal'
 import { skillUpdateDue } from './IntegrationsPane'
 import { onFilesChanged } from './file-events'
 
-import type { ProjectApi } from '@genoffice/project-store'
+import type { ProjectApi } from '@plotdocs/project-store'
 
 declare global {
   interface Window {
@@ -82,7 +86,7 @@ const OPEN_LOCAL_EXTENSIONS =
   '.docx / .odt / .ott / .xlsx / .xlsm / .xls / .csv / .tsv / .ods / .ots / .pptx / .odp / .otp / .pdf / .md / .html'
 
 /** drag payload of home file/folder rows (JSON array of absolute paths) */
-const DRAG_PATHS_MIME = 'application/x-genoffice-paths'
+const DRAG_PATHS_MIME = 'application/x-plotdocs-paths'
 /** hovering a collapsed folder this long while dragging expands it */
 const DRAG_EXPAND_DELAY_MS = 600
 /** expanded folders survive a home reload; the selection is per session */
@@ -92,7 +96,7 @@ const TREE_STATE_KEY = 'home.folderTree'
  * Width of the viewport that `position: fixed` elements anchor to. The layout
  * engine owns this coordinate system, so documentElement's client rect is the
  * value to compute menu offsets from; window.innerWidth can disagree on scaled
- * Linux desktops, which pushed row menus past the window's left edge (genoffice#1946).
+ * Linux desktops, which pushed row menus past the window's left edge (plotdocs#1946).
  */
 function fixedViewportWidth(): number {
   return document.documentElement.clientWidth
@@ -800,7 +804,7 @@ function GroupPicker({ groups, count, onCancel, onPick, onCreate, onRemove }: Gr
 }
 
 // ── Account entry (bottom-left) ──────────────────────────
-// Currently the Genspark (gsk) login entry; to be upgraded to a signup/account system later.
+// Currently the Soopus (soopus) login entry; to be upgraded to a signup/account system later.
 // Clicking it opens the settings modal directly (SettingsModal.tsx), which hosts
 // login/logout plus preferences (language, theme, save location, update channel).
 
@@ -865,7 +869,7 @@ function AccountEntry({
     }
   }, [settingsOpen])
 
-  // login progress pushed from main (gsk login CLI output)
+  // login progress pushed from main (soopus login CLI output)
   useEffect(() => {
     const off = window.aiOffice.onAccountLogin?.((ev) => {
       if (ev.phase === 'url') {
@@ -974,7 +978,7 @@ function AccountEntry({
   }, [openRequest, openSettings])
 
   return (
-    <div className="account-entry">
+    <div className="account-entry" data-tour="account">
       {settingsOpen && (
         <SettingsModal
           status={status}
@@ -990,7 +994,12 @@ function AccountEntry({
             setSettingsOpen(false)
             startLogin()
           }}
+          onSignUp={() => {
+            setSettingsOpen(false)
+            startLogin()
+          }}
           onLogout={doLogout}
+          onAccountChanged={setStatus}
           skillUpdateDue={skillUpdate}
           onSkillUpdateDue={setSkillUpdate}
           target={target}
@@ -1049,10 +1058,10 @@ function AccountEntry({
         aria-expanded={settingsOpen}
         data-tip={
           loggedIn
-            ? email || t('loggedInGenspark')
+            ? email || t('loggedInSoopus')
             : waiting
               ? t('waitingLogin')
-              : (errorText ?? t('loginGenspark'))
+              : (errorText ?? t('loginSoopus'))
         }
         aria-label={t('settings')}
       >
@@ -1121,7 +1130,7 @@ function AccountEntry({
   )
 }
 
-// ── Cloud (Genspark web) projects view ──────────────────
+// ── Cloud (Soopus web) projects view ──────────────────
 
 /** kind filter segments; labels shared with the recents type filter */
 const CLOUD_FILTERS = [
@@ -1267,9 +1276,6 @@ function CloudProjectsView() {
       return (
         <p className="empty proj-empty">
           <span className="empty-hint">{t('cloudLoginHint')}</span>
-          <button className="btn btn-secondary" disabled={loginWaiting} onClick={startLogin}>
-            {loginWaiting ? t('waitingShort') : t('loginGenspark')}
-          </button>
         </p>
       )
     }
@@ -1521,7 +1527,7 @@ export function Home() {
   const [navCounts, setNavCounts] = useState({ recent: 0, starred: 0 })
   const [loadingMore, setLoadingMore] = useState(false)
   const [view, setView] = useState<'recent' | 'starred'>('recent')
-  // Genspark web projects take over the content area (like a selected folder)
+  // Soopus web projects take over the content area (like a selected folder)
   const [cloudMode, setCloudMode] = useState(false)
   // the knowledge-base ask panel takes over the content area the same way
   const [askMode, setAskMode] = useState(false)
@@ -1566,7 +1572,7 @@ export function Home() {
   const [confirmMissing, setConfirmMissing] = useState<RecentEntry | null>(null)
   // name in the greeting; omitted when logged out
   const [accountName, setAccountName] = useState('')
-  // Genspark Projects is web-account data, so its nav entry only shows when logged in
+  // Soopus Projects is web-account data, so its nav entry only shows when logged in
   const [loggedIn, setLoggedIn] = useState(false)
   // single source of account state: AccountEntry reports every change (initial
   // load, login, logout), keeping the greeting name and the nav entry in sync
@@ -1574,12 +1580,62 @@ export function Home() {
     const on = s?.loggedIn ?? false
     setLoggedIn(on)
     if (!on) setCloudMode(false)
-    const name = on ? (s?.email ?? '').split('@')[0] : ''
-    setAccountName(name ? name[0].toUpperCase() + name.slice(1) : '')
+    const raw = on ? (s?.name || (s?.email ?? '').split('@')[0]) : ''
+    setAccountName(raw ? raw[0].toUpperCase() + raw.slice(1) : '')
   }, [])
   const [greetAskKey] = useState(
     () => GREET_ASK_KEYS[Math.floor(Math.random() * GREET_ASK_KEYS.length)]!,
   )
+
+  // Home template gallery + first-run guided tour.
+  const [templateFilter, setTemplateFilter] = useState<'all' | TemplateCategory>('all')
+  const [showAllTemplates, setShowAllTemplates] = useState(false)
+  const [templateBusy, setTemplateBusy] = useState<string | null>(null)
+  const [templateError, setTemplateError] = useState<string | null>(null)
+  const [tourOpen, setTourOpen] = useState(false)
+
+  const closeTour = useCallback(() => {
+    setTourOpen(false)
+    try {
+      localStorage.setItem('plotdocs.homeTour.v1', '1')
+    } catch {
+      /* private mode / storage disabled: show it again next launch */
+    }
+  }, [])
+
+  useEffect(() => {
+    let seen = false
+    try {
+      seen = localStorage.getItem('plotdocs.homeTour.v1') === '1'
+    } catch {
+      seen = false
+    }
+    if (seen) return
+    let attempts = 0
+    let timer = 0
+    const waitForOnboarding = () => {
+      attempts += 1
+      void window.aiOffice
+        .onboardingSeen()
+        .then((done) => {
+          if (done) setTourOpen(true)
+          else if (attempts < 24) timer = window.setTimeout(waitForOnboarding, 1500)
+        })
+        .catch(() => {
+          /* an older build without the bridge: leave the tour manual */
+        })
+    }
+    timer = window.setTimeout(waitForOnboarding, 1600)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  const openTemplate = (templateId: string) => {
+    setTemplateBusy(templateId)
+    setTemplateError(null)
+    void window.aiOffice.newFromTemplate(templateId, newFileOpts).catch((err: unknown) => {
+      setTemplateError(err instanceof Error ? err.message : String(err))
+    }).finally(() => setTemplateBusy(null))
+  }
 
   // ── Folder tree state ──
   // the default save folder first, then the folders the user added; `root` is the default one
@@ -2288,7 +2344,7 @@ export function Home() {
 
   function renderQuickCards() {
     return (
-      <div className="quick-cards">
+      <div className="quick-cards" data-tour="quick-cards">
         {NEW_ITEMS.map((item) => (
           <button key={item.ext} className="quick-card" onClick={() => void item.action()}>
             <FileBadge ext={item.ext} size={30} />
@@ -2317,6 +2373,96 @@ export function Home() {
           </span>
         </button>
       </div>
+    )
+  }
+
+  function renderTemplateGallery() {
+    const filtered =
+      templateFilter === 'all'
+        ? TEMPLATE_CATALOG
+        : TEMPLATE_CATALOG.filter((template) => template.category === templateFilter)
+    const visible =
+      showAllTemplates || templateFilter !== 'all' ? filtered : filtered.slice(0, 6)
+    return (
+      <section className="template-gallery" data-tour="templates" aria-label="Template gallery">
+        <div className="template-gallery-head">
+          <div>
+            <span className="template-gallery-eyebrow">TEMPLATE GALLERY</span>
+            <h2>
+              Don’t start from blank. <span>Make it yours.</span>
+            </h2>
+            <p>
+              Proposals, reports, forecasts, decks and pages - designed, branded and ready for
+              Plot AI.
+            </p>
+          </div>
+          <button
+            className="template-browse"
+            onClick={() => setShowAllTemplates((value) => !value)}
+          >
+            {showAllTemplates ? 'Show fewer' : `Browse all ${TEMPLATE_CATALOG.length}`}
+            <span aria-hidden="true">{showAllTemplates ? '↑' : '→'}</span>
+          </button>
+        </div>
+
+        <div className="template-filters" role="tablist" aria-label="Template categories">
+          {TEMPLATE_FILTERS.map((item) => (
+            <button
+              key={item.key}
+              className={`template-filter${templateFilter === item.key ? ' active' : ''}`}
+              role="tab"
+              aria-selected={templateFilter === item.key}
+              onClick={() => {
+                setTemplateFilter(item.key)
+                setTemplateError(null)
+              }}
+            >
+              {item.label}
+              <span>
+                {item.key === 'all'
+                  ? TEMPLATE_CATALOG.length
+                  : TEMPLATE_CATALOG.filter((template) => template.category === item.key).length}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {templateError && (
+          <p className="template-error" role="alert">
+            Could not open that template: {templateError}
+          </p>
+        )}
+
+        <div className="template-grid">
+          {visible.map((template, index) => (
+            <button
+              key={template.id}
+              className={`template-card${templateBusy === template.id ? ' is-busy' : ''}`}
+              style={{ '--template-delay': `${Math.min(index, 5) * 45}ms` } as CSSProperties}
+              disabled={templateBusy !== null}
+              onClick={() => openTemplate(template.id)}
+            >
+              <span
+                className={`template-cover accent-${template.accent}`}
+                data-format={template.format}
+                aria-hidden="true"
+              >
+                <span className="template-cover-tag">{template.tag}</span>
+                <span className="template-cover-art" />
+                <span className="template-cover-format">{template.format.toUpperCase()}</span>
+              </span>
+              <span className="template-card-copy">
+                <span className="template-card-title">{template.title}</span>
+                <span className="template-card-desc">{template.description}</span>
+                <span className="template-card-action">
+                  {templateBusy === template.id ? 'Opening…' : 'Use template'}
+                  <span aria-hidden="true">→</span>
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
     )
   }
 
@@ -3042,7 +3188,7 @@ export function Home() {
   )
 
   const renderSearchBox = () => (
-    <div className={`file-search${searchActive ? ' active' : ''}`}>
+    <div className={`file-search${searchActive ? ' active' : ''}`} data-tour="search">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
         <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -3291,19 +3437,42 @@ export function Home() {
       <main className="content">
         <section className="quick-start" aria-label={t('secQuickStart')}>
           <div className="home-hero">
+            <div className="home-brandline">
+              <span className="home-brand-word">PLOT DOCS</span>
+              <span className="home-brand-by">by Plot XYZ.Ai</span>
+              <span className="home-brand-status">
+                <i />
+                AI ready
+              </span>
+              <button className="home-tour-open" onClick={() => setTourOpen(true)}>
+                <span aria-hidden="true">✦</span>
+                Take a tour
+              </button>
+            </div>
             <h1 className="hero-title">
               {greeting}
               <span className="hero-ask">{t(greetAskKey)}</span>
             </h1>
+            <button
+              className="home-ai-prompt"
+              data-tour="ai"
+              onClick={() => setAskMode(true)}
+            >
+              <span className="home-ai-spark">✦</span>
+              <span className="home-ai-placeholder">{t('askPlaceholder')}</span>
+              <span className="home-ai-go">Ask AI →</span>
+            </button>
           </div>
           {renderQuickCards()}
         </section>
+
+        {renderTemplateGallery()}
 
         <section
           className="recents"
           aria-label={view === 'recent' ? t('secRecent') : t('secStarred')}
         >
-          <div className="recents-toolbar">
+          <div className="recents-toolbar" data-tour="recents">
             {selectedPaths.length > 0 ? (
               <div className="selection-bar">
                 <span className="selection-count">
@@ -3446,9 +3615,14 @@ export function Home() {
 
   return (
     <div className="home">
-      <aside className="sidebar">
-        <div className="sidebar-logo">
-          <img className="logo-lockup" src={logoLockup} alt="GenOffice" />
+      <ParticleField />
+      <aside className="sidebar" data-tour="sidebar" aria-label="Workspace navigation">
+        <div className="sidebar-logo" data-tour="brand">
+          <img className="sidebar-mark" src={logoMark} alt="" width={36} height={36} />
+          <div className="sidebar-brand-copy">
+            <span className="sidebar-brand-name">Plot Docs</span>
+            <span className="sidebar-brand-suite">by Plot XYZ.Ai</span>
+          </div>
         </div>
         <nav className="sidebar-nav">
           <button
@@ -3703,6 +3877,7 @@ export function Home() {
       )}
 
       <DropToOpenOverlay />
+      <HomeTour open={tourOpen} onClose={closeTour} />
     </div>
   )
 }

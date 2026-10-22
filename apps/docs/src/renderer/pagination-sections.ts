@@ -1,6 +1,6 @@
 // Section geometry: page box, margins, columns, doc-grid pitch and the
 // per-block column / width / vertical-alignment specs derived from sections.
-import type { SectionInfo, SectionSettings, TextFlowDirection } from '@genoffice/docx-engine'
+import type { SectionInfo, SectionSettings, TextFlowDirection } from '@plotdocs/docx-engine'
 
 import { mirrorShiftPx } from './page-margins'
 import { columnLineSplits } from './pagination-slices'
@@ -128,21 +128,21 @@ export function docCharSpacePt(sections: SectionInfo[]): number | null {
 }
 
 /** Nothing Word produces is narrower than this; smaller "columns" are the
- *  degenerate state of corrupt cols metadata, not a layout (genoffice#1952). */
+ *  degenerate state of corrupt cols metadata, not a layout (plotdocs#1952). */
 const MIN_USABLE_COL_PX = 36
 
 /** Narrowest wrap width a block takes from its landing column. PDF-converter
  *  output keeps formula numbers in a gutter-sized column; a paragraph the
  *  engine lands there (its measured top fell into that slot) would wrap one
  *  glyph per line and grow tall enough to stay there, so it wraps at the
- *  region's widest column instead (genoffice#1970). */
+ *  region's widest column instead (plotdocs#1970). */
 const MIN_BLOCK_WRAP_PX = 72
 
 /** Column count of a section (w:cols w:num; covers equal and explicit-width columns).
  *  A count that would divide the content width below `MIN_USABLE_COL_PX` per
  *  column (or past Word's 45-column ceiling) is corrupt metadata: rendering it
  *  collapses every column to one-or-two characters beside a blank page (the
- *  catastrophic shape reported in genoffice#1952) — one-column flow is the fallback. */
+ *  catastrophic shape reported in plotdocs#1952) — one-column flow is the fallback. */
 export function sectionColumns(s: SectionInfo): number {
   const num = Math.max(1, s.settings.columns ?? 1)
   if (num === 1) return 1

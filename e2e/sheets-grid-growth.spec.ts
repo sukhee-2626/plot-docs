@@ -34,7 +34,7 @@ function sheetXml(workbookPath: string): string {
 test.describe('sheets: the grid grows ahead of the viewport', () => {
   test('the cursor can travel past column Z, and a cell written there survives save', async () => {
     test.setTimeout(180_000)
-    const scratch = await mkdtemp(join(tmpdir(), 'genoffice-e2e-grid-'))
+    const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-e2e-grid-'))
     const workbook = join(scratch, 'grid-growth.xlsx')
     await copyFile(FIXTURE, workbook)
 

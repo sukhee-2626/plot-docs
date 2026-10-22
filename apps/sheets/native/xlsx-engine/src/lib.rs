@@ -195,7 +195,7 @@ fn create_cache_directory(
     session_id: &str,
     cancelled: &AtomicBool,
 ) -> Result<CacheDirectory, SidecarError> {
-    let path = temp_dir().join(format!("genspark-ai-excel-{session_id}"));
+    let path = temp_dir().join(format!("soopus-ai-excel-{session_id}"));
     let directory = CacheDirectory::create(path)?;
     if cancelled.load(Ordering::Acquire) {
         return Err(SidecarError::cancelled());
@@ -258,7 +258,7 @@ impl WorkbookSessions {
         let mut file = File::open(&canonical_path)?;
         if is_ole2_container(&mut file)? {
             return Err(SidecarError::Workbook(
-                "This workbook is password-protected. GenOffice Sheets cannot open \
+                "This workbook is password-protected. PlotDocs Sheets cannot open \
                  encrypted workbooks yet."
                     .into(),
             ));

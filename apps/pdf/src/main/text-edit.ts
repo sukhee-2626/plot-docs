@@ -168,7 +168,7 @@ export function loadPdfium(): Promise<Pdfium> {
     // aborts the runtime at first use. Every other synthetic entry is a
     // hardcoded ASCII constant; a fixed ASCII program name defuses the
     // only variable one.
-    const wrapped = await init({ wasmBinary, thisProgram: 'genoffice-pdf' })
+    const wrapped = await init({ wasmBinary, thisProgram: 'plotdocs-pdf' })
     const m = ('pdfium' in wrapped ? wrapped.pdfium : wrapped) as Pdfium
     m._PDFiumExt_Init()
     return m

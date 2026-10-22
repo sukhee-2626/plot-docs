@@ -18,7 +18,7 @@ const TSV =
 
 async function cell(sheets: Page, reference: string): Promise<unknown> {
   return sheets.evaluate((a1) => {
-    const debug = (window as unknown as Record<string, unknown>).__genofficeDebug as {
+    const debug = (window as unknown as Record<string, unknown>).__plotdocsDebug as {
       univerAPI: {
         getActiveWorkbook(): {
           getActiveSheet(): { getRange(a: string): { getValue(): unknown } } | null
@@ -39,7 +39,7 @@ async function waitForWorkbook(page: Page): Promise<void> {
 
 test.describe('sheets: opening a .tsv', () => {
   test('splits on tabs, keeps comma-heavy annotations in one cell, and saves as .xlsx', async () => {
-    const scratch = await mkdtemp(join(tmpdir(), 'genoffice-tsv-open-e2e-'))
+    const scratch = await mkdtemp(join(tmpdir(), 'plotdocs-tsv-open-e2e-'))
     const source = join(scratch, 'uniprot.tsv')
     await writeFile(source, TSV)
 
@@ -47,7 +47,7 @@ test.describe('sheets: opening a .tsv', () => {
       onboardingSeen: true,
       videoDir: 'sheets-open-tsv',
       openFile: source,
-      env: { GENOFFICE_DEBUG_HOOKS: '1' },
+      env: { PLOTDOCS_DEBUG_HOOKS: '1' },
     })
     try {
       const sheets = await waitForPageWithUrl(launched.app, '://sheets/')

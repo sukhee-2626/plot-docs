@@ -18,7 +18,7 @@ import { fakeCli } from './fake-cli'
 /**
  * The docx tool surface over a real MCP session. Files are written to a temp dir
  * that stands in for the app default save folder. The headless tools delegate to
- * the bundled genoffice CLI (a fake here), so these assert the argv/stdin the
+ * the bundled plotdocs CLI (a fake here), so these assert the argv/stdin the
  * tools build — document fidelity is the CLI's own test surface.
  */
 
@@ -42,7 +42,7 @@ async function freePort(): Promise<number> {
 }
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-'))
+  dir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-'))
   opened = []
   cli = fakeCli()
   const port = await freePort()
@@ -84,7 +84,7 @@ describe('M3 docx tools', () => {
     expect(tools.map((t) => t.name).sort()).toEqual([
       'create_docx',
       'get_app_info',
-      'open_in_genoffice',
+      'open_in_plotdocs',
       'read_docx',
     ])
   })
@@ -195,10 +195,10 @@ describe('M3 docx tools', () => {
     expect(wrongExt.isError).toBe(true)
   })
 
-  it('open_in_genoffice calls the injected opener', async () => {
+  it('open_in_plotdocs calls the injected opener', async () => {
     await writeFile(join(dir, 'open.docx'), 'placeholder')
     const result = await client!.callTool({
-      name: 'open_in_genoffice',
+      name: 'open_in_plotdocs',
       arguments: { path: join(dir, 'open.docx') },
     })
     expect(result.isError).toBeFalsy()
@@ -230,7 +230,7 @@ describe('background generation gating', () => {
     ).map((t) => t.name)
     expect(names).not.toContain('create_docx')
     expect(names).toContain('read_docx')
-    expect(names).toContain('open_in_genoffice')
+    expect(names).toContain('open_in_plotdocs')
     expect(names).toContain('get_app_info')
   })
 
@@ -281,7 +281,7 @@ describe('M6 visible-editing tools (docs control wired)', () => {
   let fake: ReturnType<typeof fakeDocsControl>
 
   beforeEach(async () => {
-    dir2 = await mkdtemp(join(tmpdir(), 'genoffice-mcp-visible-'))
+    dir2 = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-visible-'))
     fake = fakeDocsControl()
     const port = await (async () => {
       const { createServer } = await import('node:http')
@@ -340,7 +340,7 @@ describe('M6 visible-editing tools (docs control wired)', () => {
       'create_session',
       'get_app_info',
       'insert_content',
-      'open_in_genoffice',
+      'open_in_plotdocs',
       'read_document',
       'read_docx',
       'replace_blocks',

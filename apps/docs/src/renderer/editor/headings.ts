@@ -1,5 +1,5 @@
 import type { Node as PmNode } from '@tiptap/pm/model'
-import type { StyleInfo } from '@genoffice/docx-engine'
+import type { StyleInfo } from '@plotdocs/docx-engine'
 
 export interface HeadingRef {
   text: string

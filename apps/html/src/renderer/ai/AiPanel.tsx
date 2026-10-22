@@ -3,12 +3,12 @@ import {
   AiPanelSideButton,
   AiModelPicker,
   type AiModelPickerBridge,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent, ReactElement, ReactNode } from 'react'
-import { AgentLoop, composeSkills } from '@genoffice/agent-core'
-import type { AgentImage } from '@genoffice/agent-core'
-import type { AiSettings } from '@genoffice/ai-provider'
+import { AgentLoop, composeSkills } from '@plotdocs/agent-core'
+import type { AgentImage } from '@plotdocs/agent-core'
+import type { AiSettings } from '@plotdocs/ai-provider'
 import { ATTACHMENT_IMAGE_EXTS } from '../../shared/ipc'
 import type { AttachmentAddResult, AttachmentMeta } from '../../shared/ipc'
 import {
@@ -24,7 +24,7 @@ import {
   useChatRunQueue,
   type AiScopeQuoteData,
   type AiTokenUsageView,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import { aiLangDirective, t as tGlobal, useI18n } from '../i18n/locale'
 import sendEnterOn from '../assets/send-enter-on.png'
 import sendEnterOff from '../assets/send-enter-off.png'
@@ -281,7 +281,7 @@ const MODEL_BRIDGE: AiModelPickerBridge = {
   getSettings: () => window.htmlApi.getAiSettings(),
   setSettings: (settings) => window.htmlApi.setAiSettings(settings),
   onSettingsChanged: (handler) => window.htmlApi.onAiSettingsChanged(handler),
-  gskLoggedIn: () => window.htmlApi.aiGskStatus().then((s) => !!s?.loggedIn),
+  soopusLoggedIn: () => window.htmlApi.aiSoopusStatus().then((s) => !!s?.loggedIn),
   openModelSettings: () => window.htmlApi.openAiModelSettings().catch(() => {}),
 }
 
@@ -1184,8 +1184,8 @@ export function AiPanel({
       />
       <header className="ai-panel-header">
         <span className="ai-panel-title">
-          <GensparkMark size={22} />
-          Genspark
+          <SoopusMark size={22} />
+          Soopus
         </span>
         <div className="ai-panel-header-actions">
           <AiPanelSideButton
@@ -1814,8 +1814,8 @@ function IconClock(): ReactElement {
   )
 }
 
-/** Genspark brand mark, inline for crisp device-resolution rendering */
-export function GensparkMark({ size = 18 }: { size?: number }): React.JSX.Element {
+/** Soopus brand mark, inline for crisp device-resolution rendering */
+export function SoopusMark({ size = 18 }: { size?: number }): React.JSX.Element {
   return (
     <svg
       width={size}

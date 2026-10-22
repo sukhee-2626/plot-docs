@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Block } from '@genoffice/docx-engine'
+import type { Block } from '@plotdocs/docx-engine'
 import {
   CHARS_PER_BLOCK,
   HUGE_DOC_REFUSE_WEIGHT,

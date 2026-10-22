@@ -6,7 +6,7 @@
  * malformed shape must now come back as a guided validation error.
  */
 import { describe, it, expect, beforeAll } from 'vitest'
-import { createBlankPptx, openPptx, type OpenedPptx } from '@genoffice/pptx-engine'
+import { createBlankPptx, openPptx, type OpenedPptx } from '@plotdocs/pptx-engine'
 import { runTxn } from '../src/ops/executor'
 import '../src/ops/index'
 

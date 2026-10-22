@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { Editor } from '@tiptap/core'
-import { AgentLoop, type AgentStreamCallbacks, type AgentTransport } from '@genoffice/agent-core'
+import { AgentLoop, type AgentStreamCallbacks, type AgentTransport } from '@plotdocs/agent-core'
 import { editorExtensions } from '../src/renderer/editor/extensions'
 import { createDocsSkill } from '../src/renderer/ai/docs-skill'
 import { buildDocContext, countWords, documentTextForWordCount } from '../src/renderer/ai/protocol'
@@ -55,7 +55,7 @@ afterEach(() => {
 /** 0 h1 | 1 p | 2 h2 | 3 p */
 const fixture = () => [
   heading('Chapter 1 Overview', 1),
-  para('GenSpark is an AI office suite.'),
+  para('Soopus is an AI office suite.'),
   heading('Risk Notes', 2),
   para('This document is for reference only.'),
 ]
@@ -217,7 +217,7 @@ describe('content read/write tools', () => {
       NUM_IDS,
     )
     expect(exec.output).toContain('<h1>Chapter 1 Overview</h1>')
-    expect(exec.output).toContain('<p>GenSpark is an AI office suite.</p>')
+    expect(exec.output).toContain('<p>Soopus is an AI office suite.</p>')
   })
 
   it('read_blocks pages oversized content: offset continuation reassembles the full HTML', async () => {
@@ -427,7 +427,7 @@ describe('web_search backend failures', () => {
     try {
       const exec = await executeTool(
         editor,
-        { id: 't', name: 'web_search', input: { query: 'genspark' } },
+        { id: 't', name: 'web_search', input: { query: 'soopus' } },
         NUM_IDS,
       )
       expect(exec.isError).toBe(true)
@@ -619,20 +619,20 @@ describe('selection scope freezing', () => {
     })
     expect(exec.isError).toBeFalsy()
     // the originally selected paragraph now sits at index 2 and must be the one styled
-    expect(editor.state.doc.child(2).textContent).toBe('GenSpark is an AI office suite.')
+    expect(editor.state.doc.child(2).textContent).toBe('Soopus is an AI office suite.')
     expect(editor.state.doc.child(2).attrs.align).toBe('right')
   })
 })
 
 describe('partial selection: context markers and replace_selection', () => {
-  // block 1 'GenSpark is an AI office suite.' starts at pos 20, content at 21; 'AI office' = offsets 15..24
+  // block 1 'Soopus is an AI office suite.' starts at pos 20, content at 21; 'AI office' = offsets 15..24
   const SEL = { from: 36, to: 45 }
 
   it('the context marks the selected span with <sel> and repeats it as "Selected text"', () => {
     const editor = createEditor(fixture())
     editor.commands.setTextSelection(SEL)
     const context = buildDocContext(editor)
-    expect(context).toContain('<p>GenSpark is an <sel>AI office</sel> suite.</p>')
+    expect(context).toContain('<p>Soopus is an <sel>AI office</sel> suite.</p>')
     expect(context).toContain('Selected text (9 characters): "AI office"')
     expect(context).toContain('Current selection: block 1 (part of the text only')
   })
@@ -641,10 +641,10 @@ describe('partial selection: context markers and replace_selection', () => {
     const editor = createEditor(fixture())
     editor.commands.setTextSelection({
       from: 21,
-      to: 21 + 'GenSpark is an AI office suite.'.length,
+      to: 21 + 'Soopus is an AI office suite.'.length,
     })
     const context = buildDocContext(editor)
-    expect(context).toContain('<p>GenSpark is an AI office suite.</p>')
+    expect(context).toContain('<p>Soopus is an AI office suite.</p>')
     expect(context).not.toContain('<sel>')
     expect(context).not.toContain('Selected text (')
   })
@@ -687,7 +687,7 @@ describe('partial selection: context markers and replace_selection', () => {
     expect(exec.isError).toBeFalsy()
     expect(exec.mutated).toBe(true)
     expect(editor.state.doc.child(1).textContent).toBe(
-      'GenSpark is an AI-native productivity suite.',
+      'Soopus is an AI-native productivity suite.',
     )
     expect(editor.state.doc.child(1).attrs.aiChanged).toBe(true)
     expect(editor.state.doc.child(3).textContent).toBe('This document is for reference only.')
@@ -760,7 +760,7 @@ describe('partial selection: context markers and replace_selection', () => {
       runs.push([child.text ?? '', child.marks.map((m) => m.type.name).sort()])
     })
     expect(runs).toEqual([
-      ['GenSpark is an ', []],
+      ['Soopus is an ', []],
       ['AI office', ['del']],
       ['AI-native', ['ins']],
       [' suite.', []],
@@ -811,7 +811,7 @@ describe('partial selection: context markers and replace_selection', () => {
       NUM_IDS,
     )
     expect(echoed.isError).toBe(true)
-    expect(editor.state.doc.child(1).textContent).toBe('GenSpark is an AI office suite.')
+    expect(editor.state.doc.child(1).textContent).toBe('Soopus is an AI office suite.')
   })
 
   it('a single <p> wrapper and plain text are both accepted as inline replacements', async () => {
@@ -828,7 +828,7 @@ describe('partial selection: context markers and replace_selection', () => {
     )
     expect(exec.isError).toBeFalsy()
     const block = editor.state.doc.child(1)
-    expect(block.textContent).toBe('GenSpark is an an AI office suite.')
+    expect(block.textContent).toBe('Soopus is an an AI office suite.')
     // the unstyled lead-in merges with the preceding run; the bold slice stays its own node
     expect(block.child(1).text).toBe('AI')
     expect(block.child(1).marks.some((m) => m.type.name === 'bold')).toBe(true)

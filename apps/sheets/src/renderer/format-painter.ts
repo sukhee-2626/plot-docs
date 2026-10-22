@@ -16,7 +16,7 @@ import type { UniverRuntime } from './univer-state'
 
 export type FormatPainterClick = 'once' | 'lock' | 'cancel' | 'ignore'
 
-const CANCEL_FORMAT_PAINTER_ID = 'genoffice.command.cancel-format-painter'
+const CANCEL_FORMAT_PAINTER_ID = 'plotdocs.command.cancel-format-painter'
 
 /**
  * Maps a ribbon click to the painter transition. A double-click reaches

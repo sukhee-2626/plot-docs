@@ -1,6 +1,6 @@
 # Obrazovka domovské stránky: kde žijí vaše soubory
 
-Domů je startovní stránka GenOffice: navigační panel vlevo, seznamy souborů a karty pro rychlé vytvoření vpravo.
+Domů je startovní stránka Plot Docs: navigační panel vlevo, seznamy souborů a karty pro rychlé vytvoření vpravo.
 
 ![Obrazovka domovské stránky](img/home-screen.png)
 
@@ -9,7 +9,7 @@ Domů je startovní stránka GenOffice: navigační panel vlevo, seznamy soubor�
 - **Nedávné**: soubory, které jste nedávno otevřeli. Každý řádek nese svůj čas — dnes, včera nebo datum.
 - **Oblíbené**: soubory, které jste si označili hvězdičkou. Přejděte na řádek souboru a klikněte na hvězdičku, abyste jej přidali nebo odebrali. **Přesunout do skupiny** v nabídce ⋯ třídí soubory s hvězdičkou do pojmenovaných skupin; zobrazení S hvězdičkou se podle nich filtruje.
 - **Ask AI**: panel znalostní báze — ptejte se a dostávejte odpovědi s citacemi z vašich souborů s hvězdičkou (viz níže).
-- **Genspark Projects**: po přihlášení k účtu Genspark zobrazí projekty, které jste vytvořili na webu pomocí Genspark AI; kliknutím na projekt pokračujete v úpravách v prohlížeči. K dispozici je vyhledávání, řazení podle času, obnovení a načtení dalších.
+- **Soopus AI Projects**: po přihlášení k účtu Soopus AI zobrazí projekty, které jste vytvořili na webu pomocí Soopus AI AI; kliknutím na projekt pokračujete v úpravách v prohlížeči. K dispozici je vyhledávání, řazení podle času, obnovení a načtení dalších.
 - **Složky**: adresáře, které do postranního panelu přidáte tlačítkem **Přidat složku…** nebo do něj přetáhnete ze správce souborů. Každý se stane kořenem, který můžete otevřít, vytvořit v něm podsložky, přejmenovat a odebrat; ten, který se stane nedostupným, se zobrazí jako nedostupný a lze ho ze seznamu sundat. **Nová složka** vytvoří další.
 
 Zde není žádná položka Koš. Odstraněné soubory putují do systémového koše a jejich obnova je věcí operačního systému.
@@ -36,7 +36,7 @@ Zaškrtněte pole u řádku nebo klepněte s ⌘/ctrl, abyste vytvořili výběr
 Vyhledávací pole nahoře filtruje najednou dvě věci:
 
 - **Názvy souborů**: rychlé filtrování podle názvu.
-- **Obsah souborů**: GenOffice na pozadí indexuje vaše soubory (text uvnitř docx/xlsx/pptx/pdf/md/html), takže hledáním v textu najdete i soubory. Rozsah a přepínače se nastavují v nastavení vyhledávání.
+- **Obsah souborů**: Plot Docs na pozadí indexuje vaše soubory (text uvnitř docx/xlsx/pptx/pdf/md/html), takže hledáním v textu najdete i soubory. Rozsah a přepínače se nastavují v nastavení vyhledávání.
 
 ## Karty rychlého startu
 
@@ -60,12 +60,12 @@ Co která karta dělá:
 
 - Nejdřív dejte souborům hvězdičku (jakýkoli typ, který aplikace čte); hlavička panelu počítá korpus a prázdná báze vás vyzve, něco si označit.
 - Odpovědi citují zdrojové soubory; kliknutí na citaci otevře soubor v jeho editoru.
-- Vyžaduje přihlášení ke Genspark. Konverzace žije jen v paměti — zavření aplikace ji ukončí.
+- Vyžaduje přihlášení ke Soopus AI. Konverzace žije jen v paměti — zavření aplikace ji ukončí.
 - Hledání běží na lokálním indexu souborů jako na Domově; zmizelé soubory z korpusu tiše vypadnou.
 - Skupiny organizují jen seznam S hvězdičkou — znalostní báze vždy zahrnuje všechny soubory s hvězdičkou.
 
-## Projekty v cloudu (Genspark Projects)
+## Projekty v cloudu (Soopus AI Projects)
 
-- Při prvním použití je nutné přihlásit se k účtu Genspark (postup s kódem zařízení: GenOffice zobrazí kód a vy dokončíte přihlášení v prohlížeči).
+- Při prvním použití je nutné přihlásit se k účtu Soopus AI (postup s kódem zařízení: Plot Docs zobrazí kód a vy dokončíte přihlášení v prohlížeči).
 - Seznam projektů se synchronizuje s webem; Otevřít v prohlížeči vás přesune tam, kde lze pokračovat.
 - Nepřihlášení nijak neomezuje žádnou místní funkci.

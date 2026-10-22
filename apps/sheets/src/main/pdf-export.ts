@@ -8,7 +8,7 @@ import { join } from 'node:path'
 
 import { BrowserWindow, dialog } from 'electron'
 
-import { isHeadlessMode, showSaveDialogWithMemory } from '@genoffice/electron-utils'
+import { isHeadlessMode, showSaveDialogWithMemory } from '@plotdocs/electron-utils'
 
 import { atomicWriteFile } from './atomic-write'
 import { evenPageRanges, stitchPlan, type PageVariant } from './pdf-page-variants'

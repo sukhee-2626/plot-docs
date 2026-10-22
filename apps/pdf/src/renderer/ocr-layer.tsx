@@ -16,7 +16,7 @@ import type { PageGeom } from './annotations'
 import type { PageEntry } from './search'
 import type { SearchIndexCache } from './search'
 import { measurePt } from './text-wrap'
-import { foldCase } from '@genoffice/ui'
+import { foldCase } from '@plotdocs/ui'
 import { isNoSpaceScript, scriptOf } from '../../../../packages/pdf2docx/src/script'
 
 export interface OcrWord {

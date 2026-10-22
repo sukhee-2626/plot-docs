@@ -1112,7 +1112,7 @@ export class AgentLoop<TSnapshot = unknown> {
       // prompt: Anthropic rejects empty content arrays, Gemini rejects empty
       // parts, and OpenAI-compatible routes send content:null with no tool_calls —
       // all of which make follow-up turns fail or return empty again (see
-      // genoffice#12 / #22: first prompt works, second shows "no summary").
+      // plotdocs#12 / #22: first prompt works, second shows "no summary").
       // Same normalization as restore(), applied unconditionally: cancelled and
       // read-only empty turns poison follow-ups just the same. onDone still
       // reports the raw turn text so app UIs keep their localized fallbacks

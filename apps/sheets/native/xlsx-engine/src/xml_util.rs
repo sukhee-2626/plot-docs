@@ -84,7 +84,7 @@ pub(crate) fn zip_entry<'a>(
 /// and a part that inflates past that is refused rather than materialised.
 ///
 /// This is the path nearly every workbook part arrives through, so an uncapped
-/// read here undoes the work genoffice#781 did for media and `@genoffice/zip-gate` does
+/// read here undoes the work plotdocs#781 did for media and `@plotdocs/zip-gate` does
 /// for the docx and pptx hosts.
 pub(crate) fn read_zip_string(
     archive: &mut ZipArchive<File>,
@@ -105,8 +105,8 @@ pub(crate) fn read_zip_string(
 
 /// `ZipFile::size()` is only the declared length and zip bounds just the
 /// compressed input, so an entry may inflate past its claim; reading one byte
-/// past `min(declared, cap)` catches that (same rule as `@genoffice/zip-gate`,
-/// genoffice#781 / genoffice#1386).
+/// past `min(declared, cap)` catches that (same rule as `@plotdocs/zip-gate`,
+/// plotdocs#781 / plotdocs#1386).
 pub(crate) fn copy_entry_bounded<R: Read, W: Write>(
     entry: &mut R,
     declared: u64,

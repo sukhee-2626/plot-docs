@@ -113,7 +113,7 @@ describe('create --audit / --render', () => {
         shots,
         '--json',
       ],
-      { env: { ...process.env, GENOFFICE_APP_BIN: app } },
+      { env: { ...process.env, PLOTDOCS_APP_BIN: app } },
     )
     expect(r.code).toBe(0)
     const previews = r.json().detail.previews as {
@@ -134,7 +134,7 @@ describe('create --audit / --render', () => {
     const out = join(dir, 'deck.pptx')
     const r = await run(
       ['create', '--type', 'pptx', '--spec', deckSpec(dir), '--out', out, '--render', '--json'],
-      { env: { ...process.env, GENOFFICE_APP_BIN: join(dir, 'no-such-app') } },
+      { env: { ...process.env, PLOTDOCS_APP_BIN: join(dir, 'no-such-app') } },
     )
     expect(r.code).toBe(0)
     const body = r.json()
@@ -151,7 +151,7 @@ describe('create --audit / --render', () => {
     const app = fakeApp(dir, writeMinimalPdf(join(dir, 'page.pdf')))
     const r = await run(
       ['create', '--type', 'pptx', '--spec', deckSpec(dir), '--out', out, '--render', '--json'],
-      { env: { ...process.env, GENOFFICE_APP_BIN: app } },
+      { env: { ...process.env, PLOTDOCS_APP_BIN: app } },
     )
     expect(r.code).toBe(0)
     const previews = r.json().detail.previews as { path: string }[]

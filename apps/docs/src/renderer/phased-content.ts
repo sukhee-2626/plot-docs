@@ -34,7 +34,7 @@ export interface PhasedContentHost {
 
 /** dispatched on document once a streamed tail has fully landed (layout
  *  measurers skip the tail's chunks and measure the whole document once) */
-export const PHASED_CONTENT_SETTLED_EVENT = 'genoffice:phased-content-settled'
+export const PHASED_CONTENT_SETTLED_EVENT = 'plotdocs:phased-content-settled'
 
 /** blocks in the first synchronous mount: overfills the first screens at any zoom */
 export const PHASE1_BLOCKS = 64

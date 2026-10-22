@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactElement } from 'react'
+import type { UiTheme } from '../../shared/home-api'
 import type { TabsApi, TabSummary } from '../../shared/tabs-api'
 import { TEAR_OFF_SLACK, insertionIndexForX, isBeyondBand } from '../../shared/tab-drag-geometry'
 import { notifyFilesChanged } from './file-events'
@@ -69,6 +70,128 @@ function HelpIcon() {
 }
 
 const IS_MAC = navigator.platform.toLowerCase().includes('mac')
+
+/** macOS-style caption controls for Windows/Linux, where the native overlay is off. */
+function WindowControls() {
+  const [maximized, setMaximized] = useState(false)
+
+  useEffect(() => {
+    let alive = true
+    void window.aiOffice.isWindowMaximized?.().then((value) => {
+      if (alive) setMaximized(value)
+    })
+    const off = window.aiOffice.onWindowMaximizedChanged?.((value) => setMaximized(value))
+    return () => {
+      alive = false
+      off?.()
+    }
+  }, [])
+
+  if (IS_MAC) return null
+
+  return (
+    <div className="window-controls" aria-label="Window controls">
+      <button
+        className="window-control window-control-close"
+        title="Close"
+        aria-label="Close"
+        onClick={() => void window.aiOffice.closeWindow()}
+      >
+        <svg width="6" height="6" viewBox="0 0 6 6" aria-hidden="true">
+          <path d="M1 1l4 4M5 1L1 5" />
+        </svg>
+      </button>
+      <button
+        className="window-control window-control-min"
+        title="Minimize"
+        aria-label="Minimize"
+        onClick={() => void window.aiOffice.minimizeWindow()}
+      >
+        <svg width="7" height="2" viewBox="0 0 7 2" aria-hidden="true">
+          <path d="M0.5 1h6" />
+        </svg>
+      </button>
+      <button
+        className="window-control window-control-max"
+        title={maximized ? 'Restore' : 'Maximize'}
+        aria-label={maximized ? 'Restore' : 'Maximize'}
+        onClick={() => {
+          void window.aiOffice.toggleMaximizeWindow().then(setMaximized)
+        }}
+      >
+        {maximized ? (
+          <svg width="7" height="7" viewBox="0 0 7 7" aria-hidden="true">
+            <path d="M1.8 1.8h3.4v3.4H1.8zM.8 4.8h3.4v1.4H.8z" />
+          </svg>
+        ) : (
+          <svg width="7" height="7" viewBox="0 0 7 7" aria-hidden="true">
+            <path d="M1.5 1.5h4v4h-4z" />
+          </svg>
+        )}
+      </button>
+    </div>
+  )
+}
+
+/** One-click light/dark switch; follows the persisted app preference. */
+function ThemeToggle() {
+  const { t } = useI18n()
+  const [theme, setTheme] = useState<UiTheme>('system')
+  const [systemDark, setSystemDark] = useState(
+    () => window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? true,
+  )
+
+  useEffect(() => {
+    void window.aiOffice.getTheme().then(setTheme)
+    const off = window.aiOffice.onThemeChanged(setTheme)
+    const media = window.matchMedia('(prefers-color-scheme: dark)')
+    const sync = (): void => setSystemDark(media.matches)
+    media.addEventListener('change', sync)
+    return () => {
+      off()
+      media.removeEventListener('change', sync)
+    }
+  }, [])
+
+  const dark = theme === 'dark' || (theme === 'system' && systemDark)
+  const toggle = (): void => {
+    const next: UiTheme = dark ? 'light' : 'dark'
+    setTheme(next)
+    void window.aiOffice.setTheme(next)
+  }
+
+  return (
+    <button
+      className={`tab-theme-btn${dark ? '' : ' is-light'}`}
+      title={t('theme')}
+      aria-label={t('theme')}
+      aria-pressed={dark}
+      onClick={toggle}
+    >
+      {dark ? (
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.6" />
+          <path
+            d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+        </svg>
+      ) : (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M20.2 15.1A8.4 8.4 0 0 1 8.9 3.8a8.4 8.4 0 1 0 11.3 11.3Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+    </button>
+  )
+}
 
 function HomeIcon() {
   return (
@@ -452,7 +575,11 @@ export function TabBar() {
 
   return (
     <div className="tab-bar">
-      <div className="tab-bar-drag-spacer" />
+      <div
+        className="tab-bar-drag-spacer"
+        onDoubleClick={() => void window.aiOffice.toggleMaximizeWindow()}
+      />
+      {!IS_MAC && <WindowControls />}
       {!IS_MAC && (
         <button
           className="tab-app-menu-btn"
@@ -661,6 +788,7 @@ export function TabBar() {
           />
         </svg>
       </button>
+      <ThemeToggle />
       <div className="tab-bar-caption-spacer" />
     </div>
   )

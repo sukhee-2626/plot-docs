@@ -2,8 +2,8 @@ import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { getMarkRange } from '@tiptap/core'
 import type { Editor } from '@tiptap/core'
-import { ShapePreview, WORDART_PRESETS, wordArtStrokePx } from '@genoffice/ui'
-import type { ChartDisplay, HeaderFooter, NewChart } from '@genoffice/docx-engine'
+import { ShapePreview, WORDART_PRESETS, wordArtStrokePx } from '@plotdocs/ui'
+import type { ChartDisplay, HeaderFooter, NewChart } from '@plotdocs/docx-engine'
 import { hfHasPageField, hfWithoutPageMarks } from '../editor/hf-dom'
 import { EquationGallery, EquationModal } from './EquationModal'
 import {
@@ -685,6 +685,7 @@ export function InsertTab({
   footer,
   onFooter,
   onPageNumFormat,
+  onOpenPageDesigner,
   onInsertField,
   onHfEdit,
   canComment,
@@ -1233,6 +1234,27 @@ export function InsertTab({
             </button>
             {dropdown === 'pagenum' && (
               <div data-rb-panel="" className="layout-menu">
+                {onOpenPageDesigner && (
+                  <>
+                    <button
+                      onClick={() => {
+                        onOpenPageDesigner('numbers')
+                        setDropdown(() => null)
+                      }}
+                    >
+                      ✦ Page number designs…
+                    </button>
+                    <button
+                      onClick={() => {
+                        onOpenPageDesigner('layouts')
+                        setDropdown(() => null)
+                      }}
+                    >
+                      ✦ Header &amp; footer layouts…
+                    </button>
+                    <div className="layout-menu-sep" />
+                  </>
+                )}
                 {(
                   [
                     [t('ribbonPnTopLeft'), 'header', 'left'],

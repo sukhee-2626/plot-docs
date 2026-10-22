@@ -47,9 +47,9 @@ import { asXmlNode, escapeXmlAttr, xmlArray, type XmlNode } from './xml-utils'
  * GUID identifying the extension's schema, so it must be stable: a deck that
  * round-trips through this engine has to land on the same value.
  */
-export { REDACT_EL, REDACT_NS, REDACT_PREFIX } from '@genoffice/agent-core/redact-range'
+export { REDACT_EL, REDACT_NS, REDACT_PREFIX } from '@plotdocs/agent-core/redact-range'
 
-import { REDACT_EL, REDACT_NS, REDACT_PREFIX } from '@genoffice/agent-core/redact-range'
+import { REDACT_EL, REDACT_NS, REDACT_PREFIX } from '@plotdocs/agent-core/redact-range'
 
 export const REDACT_EXT_URI = '{9F1B2C3D-4E5F-4A6B-8C7D-9E0F1A2B3C4D}'
 

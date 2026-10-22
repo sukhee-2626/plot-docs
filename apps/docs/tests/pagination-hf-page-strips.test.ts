@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { HeaderFooter, SectionInfo } from '@genoffice/docx-engine'
+import type { HeaderFooter, SectionInfo } from '@plotdocs/docx-engine'
 import { EMPTY_HF_VARIANTS } from '../src/renderer/doc-state'
 import { resolveHf, withHfEdit, type HfSectionState } from '../src/renderer/hf-sections'
 import { hfVariantOf, pageHfStrips, type HfSet } from '../src/renderer/pagination-hf'

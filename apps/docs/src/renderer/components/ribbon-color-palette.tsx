@@ -1,4 +1,4 @@
-import { ColorPicker } from '@genoffice/ui'
+import { ColorPicker } from '@plotdocs/ui'
 import { useI18n, type StringKey } from '../i18n/locale'
 
 const THEME_COLORS: Array<{ nameKey: StringKey; hex: string }> = [

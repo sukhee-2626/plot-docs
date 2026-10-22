@@ -6,7 +6,7 @@ import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
 
 /**
  * One Settings entry, one accelerator (⌘, on macOS, Ctrl+, elsewhere), in
- * every app's menu — and it lands on the Settings view (genoffice#2037).
+ * every app's menu — and it lands on the Settings view (plotdocs#2037).
  *
  * The macOS application menu is spelled out rather than left as Electron's
  * fixed role:'appMenu' template, so the entry exists on macOS too; the other
@@ -52,7 +52,7 @@ const clickSettings = (app: ElectronApplication): Promise<boolean> =>
 
 test('every app menu carries a Settings entry that opens the Settings view', async () => {
   test.setTimeout(300_000)
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-settings-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-settings-'))
   const mdPath = join(dir, 'sample.md')
   await writeFile(mdPath, '# Sample\n\nA markdown note.\n')
 

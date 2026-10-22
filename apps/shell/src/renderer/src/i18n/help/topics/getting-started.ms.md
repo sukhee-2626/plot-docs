@@ -1,6 +1,6 @@
 # Mula pantas: antara muka dan asas
 
-GenOffice ialah satu pek pejabat yang berjalan sepenuhnya pada mesin anda: satu tingkap, satu baris tab, dengan enam editor — Docs (penyuntingan teks), Sheets (hamparan), Slides (persembahan), PDF, Markdown dan HTML. Fail yang digunakan ialah fail .docx / .xlsx / .pptx / .pdf yang sebenar, serasi sepenuhnya dengan Word, Excel dan PowerPoint. Tiada rangkaian diperlukan.
+Plot Docs ialah satu pek pejabat yang berjalan sepenuhnya pada mesin anda: satu tingkap, satu baris tab, dengan enam editor — Docs (penyuntingan teks), Sheets (hamparan), Slides (persembahan), PDF, Markdown dan HTML. Fail yang digunakan ialah fail .docx / .xlsx / .pptx / .pdf yang sebenar, serasi sepenuhnya dengan Word, Excel dan PowerPoint. Tiada rangkaian diperlukan.
 
 ## Gambaran keseluruhan antara muka
 
@@ -18,7 +18,7 @@ Mana-mana satu daripada berikut:
 
 - Klik pada kad penciptaan pantas dalam bahagian [Mula pantas](help://getting-started) pada **Laman Utama** (AI Docs, AI Sheets, AI Slides, ...).
 - Menu **Fail ▸ Baharu**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML atau PDF.
-- Seret fail ke dalam tingkap, atau klik dua kali pada fail dalam pengurus fail anda (jika GenOffice ialah aplikasi lalai).
+- Seret fail ke dalam tingkap, atau klik dua kali pada fail dalam pengurus fail anda (jika Plot Docs ialah aplikasi lalai).
 
 Dokumen baharu dibuka tanpa tajuk; fail pada cakera hanya dicipta semasa simpanan pertama.
 
@@ -26,7 +26,7 @@ Dokumen baharu dibuka tanpa tajuk; fail pada cakera hanya dicipta semasa simpana
 
 - Menu **Fail ▸ Buka…** (⌘O/ctrl+O) membuka pemilih sistem: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Klik mana-mana item dalam senarai **Terkini** pada Laman Utama.
-- `genoffice <fail>` daripada terminal turut membuka fail.
+- `plotdocs <fail>` daripada terminal turut membuka fail.
 
 ## Model simpanan
 
@@ -52,7 +52,7 @@ Pintasan dalam setiap editor (berus format, cari & ganti, operasi jadual, ...) d
 
 ## Pintasan Option+Command
 
-Option+Command ialah lapisan yang dikhaskan Word untuk lompatan berstruktur, dan GenOffice mengisinya dengan cara yang sama. Docs mengambil majoritinya, Sheets mengambil dua miliknya sendiri demi kesetaraan dengan Excel, dan satu pintasan berfungsi di mana-mana sahaja.
+Option+Command ialah lapisan yang dikhaskan Word untuk lompatan berstruktur, dan Plot Docs mengisinya dengan cara yang sama. Docs mengambil majoritinya, Sheets mengambil dua miliknya sendiri demi kesetaraan dengan Excel, dan satu pintasan berfungsi di mana-mana sahaja.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Perhatikan bahawa **⌥⌘0 bermaksud Normal dalam Docs dan Sempadan luar dalam 
 
 **Setiap editor**: **⌥⌘R / Ctrl+F1** menutupkan reben, seperti yang diterangkan di atas.
 
-Maka ⌥⌘D kekal bebas untuk GenOffice gunakan pada macOS, jika ada perintah pada masa depan yang memerlukannya.
+Maka ⌥⌘D kekal bebas untuk Plot Docs gunakan pada macOS, jika ada perintah pada masa depan yang memerlukannya.
 
 ## Ke mana seterusnya
 

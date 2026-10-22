@@ -7,7 +7,7 @@ import {
   useDismissablePopover,
   wordArtSolidColor,
   type WordArtPreset,
-} from '@genoffice/ui'
+} from '@plotdocs/ui'
 import {
   buildLineParagraphXml,
   buildShapeParagraphXml,
@@ -17,7 +17,7 @@ import {
   type HeaderFooter,
   type StyleInfo,
   type TextboxDisplay,
-} from '@genoffice/docx-engine'
+} from '@plotdocs/docx-engine'
 import type { DocsTabInfo } from '../../shared/ipc'
 import { runUiOps } from '../ai/ops'
 import { stepDocsZoom } from '../wheel-zoom'
@@ -732,6 +732,8 @@ export interface InsertTabProps extends TabProps {
   onFooter: (next: HeaderFooter) => void
   /** Open the "Page Number Format" dialog (number format / start-at, writes sectPr w:pgNumType) */
   onPageNumFormat: () => void
+  /** Open the full Page & Section Design Studio */
+  onOpenPageDesigner?: (tab?: 'numbers' | 'layouts') => void
   /** Insert an inline field (DATE/TIME/PAGE/NUMPAGES/FILENAME) */
   onInsertField: (instr: string) => void
   /** Header/Footer ▾ Edit: open the strip editor (the Different-page toggles live on the contextual tab) */
@@ -1579,7 +1581,7 @@ export function ViewTab({
                     }}
                   >
                     {w.focused ? '✓ ' : ''}
-                    {w.title || 'GenOffice Docs'}
+                    {w.title || 'Plot Docs'}
                   </button>
                 ))}
               </div>

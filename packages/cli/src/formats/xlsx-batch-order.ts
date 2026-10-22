@@ -1,12 +1,12 @@
-import type { RangeBounds } from '@genoffice/xlsx-gateway/domain/cell-address'
+import type { RangeBounds } from '@plotdocs/xlsx-gateway/domain/cell-address'
 import {
   shiftIndex,
   shiftSpecForOp,
   type ShiftSpec,
-} from '@genoffice/xlsx-gateway/domain/formula-shift'
-import { InMemoryWorkbookAdapter } from '@genoffice/xlsx-gateway/domain/in-memory-workbook'
-import type { StructuralOperation } from '@genoffice/xlsx-gateway/domain/workbook-dsl'
-import type { WorkbookSnapshot } from '@genoffice/xlsx-gateway/domain/workbook.types'
+} from '@plotdocs/xlsx-gateway/domain/formula-shift'
+import { InMemoryWorkbookAdapter } from '@plotdocs/xlsx-gateway/domain/in-memory-workbook'
+import type { StructuralOperation } from '@plotdocs/xlsx-gateway/domain/workbook-dsl'
+import type { WorkbookSnapshot } from '@plotdocs/xlsx-gateway/domain/workbook.types'
 import { CliError, EXIT, type ErrorHints } from '../result'
 
 export type BatchOp = Record<string, unknown> & { op: string; __index?: number }
@@ -43,7 +43,7 @@ export function replayStructure(
     if (!REPLAYED_OPS.has(op.op) && op.op !== 'rename_sheet') continue
     const plan = adapter.plan({
       dslVersion: 1,
-      transactionId: `genoffice-structure-${index}`,
+      transactionId: `plotdocs-structure-${index}`,
       baseRevision: adapter.getSnapshot().revision,
       summary: 'structural replay',
       operations: [op as unknown as StructuralOperation],

@@ -1,6 +1,6 @@
 /**
  * Plain-text reading of an OMML fragment for the equation run's fallback text
- * (what older readers, the GenOffice preview and `slides read` show):
+ * (what older readers, the Plot Docs preview and `slides read` show):
  * fractions as a/b, scripts as x^2 / x_i, radicals as √(x), n-ary operators
  * with their limits. Structure-only: anything unknown flattens to its text.
  */

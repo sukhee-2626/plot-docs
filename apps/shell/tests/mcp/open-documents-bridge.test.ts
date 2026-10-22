@@ -36,7 +36,7 @@ async function controlWith(
   call: (args: Record<string, unknown>) => Promise<Record<string, unknown>>
   deps: OpenDocumentsBridgeDeps
 }> {
-  const dir = await mkdtemp(join(tmpdir(), 'genoffice-mcp-bridge-'))
+  const dir = await mkdtemp(join(tmpdir(), 'plotdocs-mcp-bridge-'))
   const deps: OpenDocumentsBridgeDeps = {
     list: async () => documents,
     webContentsFor: () => contentsFor(),

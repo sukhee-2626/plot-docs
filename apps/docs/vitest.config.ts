@@ -9,27 +9,27 @@ const local = (rel: string) => fileURLToPath(new URL(rel, import.meta.url))
 export default defineConfig({
   resolve: {
     alias: {
-      '@genoffice/docx-engine/lazy-media': local('../../packages/docx-engine/src/lazy-media.ts'),
-      '@genoffice/docx-engine': local('../../packages/docx-engine/src/index.ts'),
-      '@genoffice/font-metrics': local('../../packages/font-metrics/src/index.ts'),
+      '@plotdocs/docx-engine/lazy-media': local('../../packages/docx-engine/src/lazy-media.ts'),
+      '@plotdocs/docx-engine': local('../../packages/docx-engine/src/index.ts'),
+      '@plotdocs/font-metrics': local('../../packages/font-metrics/src/index.ts'),
       // subpath before the bare name: string aliases are prefix replacements
-      '@genoffice/electron-utils/headless-export': local(
+      '@plotdocs/electron-utils/headless-export': local(
         '../../packages/electron-utils/src/headless-export.ts',
       ),
-      '@genoffice/electron-utils/atomic-write': local(
+      '@plotdocs/electron-utils/atomic-write': local(
         '../../packages/electron-utils/src/atomic-write.ts',
       ),
-      '@genoffice/electron-utils/safe-external-url': local(
+      '@plotdocs/electron-utils/safe-external-url': local(
         '../../packages/electron-utils/src/safe-external-url.ts',
       ),
-      '@genoffice/electron-utils/print-job': local(
+      '@plotdocs/electron-utils/print-job': local(
         '../../packages/electron-utils/src/print-job.ts',
       ),
-      '@genoffice/electron-utils': local('../../packages/electron-utils/src/index.ts'),
-      '@genoffice/ai-provider/browser': local('../../packages/ai-provider/src/browser.ts'),
-      '@genoffice/ai-provider': local('../../packages/ai-provider/src/index.ts'),
-      '@genoffice/i18n': local('../../packages/i18n/src/index.ts'),
-      '@genoffice/ui': local('../../packages/ui/src/index.ts'),
+      '@plotdocs/electron-utils': local('../../packages/electron-utils/src/index.ts'),
+      '@plotdocs/ai-provider/browser': local('../../packages/ai-provider/src/browser.ts'),
+      '@plotdocs/ai-provider': local('../../packages/ai-provider/src/index.ts'),
+      '@plotdocs/i18n': local('../../packages/i18n/src/index.ts'),
+      '@plotdocs/ui': local('../../packages/ui/src/index.ts'),
     },
   },
   test: {

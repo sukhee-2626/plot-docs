@@ -113,7 +113,7 @@ export function createSheetTabActions(deps: {
         .__getInjector()
         .get(IConfirmService)
         .confirm({
-          id: 'genoffice.sheet-tab.delete',
+          id: 'plotdocs.sheet-tab.delete',
           title: { title: t('dlgSheetDeleteTitle') },
           children: { title: t('dlgSheetDeleteBody', { count: ids.length }) },
           cancelText: t('dlgCancel'),

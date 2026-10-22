@@ -26,7 +26,7 @@ Jeder Editor hat eigene Tastenbelegungen, und nur wenige davon funktionieren üb
 
 - Die macOS-Spalte verwendet die gewohnten Symbole: `⌘` Command, `⌥` Option, `⇧` Shift, `⌃` Control.
 - Die Spalte Windows / Linux schreibt sie aus: `Ctrl`, `Alt`, `Shift`.
-- Wo GenOffice auf den beiden Plattformen tatsächlich andere Tasten braucht, zeigt die Tabelle das. Die häufigsten Fälle sind `⌃H` für Suchen und Ersetzen (auf macOS gehört `⌘H` zu Ausblenden), `⌥⌘G` für Gehe zu und die Schließen-Taste von Slides.
+- Wo Plot Docs auf den beiden Plattformen tatsächlich andere Tasten braucht, zeigt die Tabelle das. Die häufigsten Fälle sind `⌃H` für Suchen und Ersetzen (auf macOS gehört `⌘H` zu Ausblenden), `⌥⌘G` für Gehe zu und die Schließen-Taste von Slides.
 - Eine Tastenkombination, die nur mit einer Auswahl funktioniert, steht in der Spalte Aktion, statt eine eigene Spalte zu bekommen, damit jede Tabelle drei Spalten breit bleibt.
 
 ## Word
@@ -159,7 +159,7 @@ F1 öffnet das **Benutzerhandbuch**, nicht diese Liste. Die Kürzel-Tabelle ist 
 
 ## Sheets
 
-GenOffice Sheets ist ein Excel-kompatibles Raster. Die meisten Kürzel unten sind die Excel-Kürzel, die Sie bereits kennen.
+Plot Docs Sheets ist ein Excel-kompatibles Raster. Die meisten Kürzel unten sind die Excel-Kürzel, die Sie bereits kennen.
 
 > **Bearbeiten hat Vorrang.** Fast jedes Kürzel in Sheets wird ignoriert, während Sie eine Zelle bearbeiten oder in der **Formelleiste** tippen, damit Tippen, Cursorbewegen und Rücktaste ihre gewohnte Bedeutung für die Textbearbeitung behalten. Wenn eine Taste scheinbar nichts bewirkt, prüfen Sie, ob Sie mitten in einer Bearbeitung sind: drücken Sie zuerst Esc oder Enter und versuchen Sie es erneut. Befehle, die auf die Auswahl wirken, bewirken ebenfalls nichts, solange ein Dialog offen ist. Wo eine Tastenkombination eine Ausnahme von dieser Regel ist, steht das in der Tabelle.
 
@@ -287,7 +287,7 @@ Excels Kürzel für den Filter, Ctrl+Shift+L, bewirkt unter Windows und Linux ni
 
 ## Slides
 
-GenOffice Slides ist ein Präsentationseditor im Stil von PowerPoint. Die meisten Tasten tun überall dasselbe, aber einige ändern ihre Bedeutung mit dem Fokus — in einem Textfeld, oder wenn das **Miniaturenbereichsfenster**, der **Gliederungsbereich** oder die **Foliensortierung** den Tastaturfokus hat. Solche Fälle sind in der Spalte Aktion gekennzeichnet.
+Plot Docs Slides ist ein Präsentationseditor im Stil von PowerPoint. Die meisten Tasten tun überall dasselbe, aber einige ändern ihre Bedeutung mit dem Fokus — in einem Textfeld, oder wenn das **Miniaturenbereichsfenster**, der **Gliederungsbereich** oder die **Foliensortierung** den Tastaturfokus hat. Solche Fälle sind in der Spalte Aktion gekennzeichnet.
 
 ### Datei und App
 
@@ -482,7 +482,7 @@ Escape windet eine Ebene nach der anderen ab — zuerst ein offener Dialog, dann
 
 ## Markdown
 
-GenOffice Markdown bearbeitet Markdown mit einer Live-Vorschau daneben.
+Plot Docs Markdown bearbeitet Markdown mit einer Live-Vorschau daneben.
 
 ### Datei und Ansicht
 
@@ -523,7 +523,7 @@ Eine leere Formel zu löschen ist eine leere Formel anzuwenden, und das löscht 
 
 ## HTML
 
-GenOffice HTML zeigt einen Code-Editor neben einer Live-Vorschau. Die Tasten, die auf ein Seitenelement wirken, gelten nur, wenn die Vorschau selbst den Tastaturfokus hat.
+Plot Docs HTML zeigt einen Code-Editor neben einer Live-Vorschau. Die Tasten, die auf ein Seitenelement wirken, gelten nur, wenn die Vorschau selbst den Tastaturfokus hat.
 
 ### Datei und Quellansicht
 

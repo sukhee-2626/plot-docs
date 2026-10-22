@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { SectionSettings } from '@genoffice/docx-engine'
+import type { SectionSettings } from '@plotdocs/docx-engine'
 import { useI18n } from '../i18n/locale'
 import { useMeasurement } from '../use-measurement'
 import { marginsFitPage } from './MarginDialog'

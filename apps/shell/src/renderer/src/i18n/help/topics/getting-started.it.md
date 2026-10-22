@@ -1,6 +1,6 @@
 # Avvio rapido: l'interfaccia e le basi
 
-GenOffice è una suite per ufficio che funziona interamente sulla tua macchina: una sola finestra, una fila di schede, con sei editor — Docs (elaborazione testi), Sheets (fogli di calcolo), Slides (presentazioni), PDF, Markdown e HTML. I file sono veri file .docx / .xlsx / .pptx / .pdf, completamente intercambiabili con Word, Excel e PowerPoint. Nessuna connessione di rete richiesta.
+Plot Docs è una suite per ufficio che funziona interamente sulla tua macchina: una sola finestra, una fila di schede, con sei editor — Docs (elaborazione testi), Sheets (fogli di calcolo), Slides (presentazioni), PDF, Markdown e HTML. I file sono veri file .docx / .xlsx / .pptx / .pdf, completamente intercambiabili con Word, Excel e PowerPoint. Nessuna connessione di rete richiesta.
 
 ## Panoramica dell'interfaccia
 
@@ -18,7 +18,7 @@ Uno qualsiasi di questi:
 
 - Fai clic su una scheda di creazione rapida nella sezione [Avvio rapido](help://getting-started) di **Home** (AI Docs, AI Sheets, AI Slides, ...).
 - Menu **File ▸ Nuovo**: Docs (⌘N/ctrl+N), Sheets, Slides, Markdown, HTML o PDF.
-- Trascina un file sulla finestra, oppure fai doppio clic su di esso nel gestore di file (se GenOffice è l'app predefinita).
+- Trascina un file sulla finestra, oppure fai doppio clic su di esso nel gestore di file (se Plot Docs è l'app predefinita).
 
 Un nuovo documento si apre senza titolo; il file su disco viene creato solo al primo salvataggio.
 
@@ -26,7 +26,7 @@ Un nuovo documento si apre senza titolo; il file su disco viene creato solo al p
 
 - Il menu **File ▸ Apri…** (⌘O/ctrl+O) apre il selettore di sistema: .docx / .doc / .xlsx / .xls / .csv / .tsv / .pptx / .ppt / .pdf / .md / .html.
 - Fai clic su qualsiasi voce dell'elenco **Recenti** di Home.
-- Anche `genoffice <file>` eseguito da un terminale apre i file.
+- Anche `plotdocs <file>` eseguito da un terminale apre i file.
 
 ## Il modello di salvataggio
 
@@ -52,7 +52,7 @@ Le scorciatoie interne a ogni editor (pennello di formattazione, trova e sostitu
 
 ## Le scorciatoie Option+Comando
 
-Option+Comando è il livello che Word riserva ai salti strutturati, e GenOffice lo riempie allo stesso modo. Docs ne prende la maggior parte, Sheets ne prende due di sue per la parità con Excel; una scorciatoia vale ovunque.
+Option+Comando è il livello che Word riserva ai salti strutturati, e Plot Docs lo riempie allo stesso modo. Docs ne prende la maggior parte, Sheets ne prende due di sue per la parità con Excel; una scorciatoia vale ovunque.
 
 **Docs**
 
@@ -81,7 +81,7 @@ Attenzione: **⌥⌘0 significa Normale in Docs e Bordi esterni in Sheets**. Non
 
 **Ogni editor**: **⌥⌘R / Ctrl+F1** riduce la barra multifunzione, come descritto sopra.
 
-Così ⌥⌘D resta libero perché GenOffice lo usi su macOS, se un futuro comando lo vorrà.
+Così ⌥⌘D resta libero perché Plot Docs lo usi su macOS, se un futuro comando lo vorrà.
 
 ## Dove andare poi
 

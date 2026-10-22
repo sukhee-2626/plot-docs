@@ -1,4 +1,4 @@
-import type { PictureRenderNode, RenderNode, RenderSlide } from '@genoffice/pptx-render'
+import type { PictureRenderNode, RenderNode, RenderSlide } from '@plotdocs/pptx-render'
 
 /**
  * Freehand ink (Draw tab) — editor-side model. Same mechanism as apps/docs ink, but a

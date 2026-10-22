@@ -13,12 +13,12 @@ import type {
   ChartElement,
   PassthroughElement,
   ArrowEnd,
-} from '@genoffice/pptx-engine'
+} from '@plotdocs/pptx-engine'
 // Subpath import: the renderer bundles this package, so pulling the engine's index
 // (Node-only imports like node:crypto) would break the browser build
-import { tableRowGridCols } from '@genoffice/pptx-engine/table-grid'
-import { elementDurableId, groupChildDurableId } from '@genoffice/pptx-engine/identity'
-import { isBackgroundLikeElement } from '@genoffice/pptx-engine/background-promote'
+import { tableRowGridCols } from '@plotdocs/pptx-engine/table-grid'
+import { elementDurableId, groupChildDurableId } from '@plotdocs/pptx-engine/identity'
+import { isBackgroundLikeElement } from '@plotdocs/pptx-engine/background-promote'
 import { buildChartNode } from './build-chart'
 import type {
   RenderSlide,

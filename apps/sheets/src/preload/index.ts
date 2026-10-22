@@ -1,13 +1,13 @@
-import type { AiPanelPrefs } from '@genoffice/ui'
+import type { AiPanelPrefs } from '@plotdocs/ui'
 import { contextBridge, ipcRenderer, webUtils } from 'electron'
 
 import type {
   AiChatResponse,
   AiSettings,
   AiStreamChunk,
-  GenSparkAccountStatus,
-} from '@genoffice/ai-provider'
-import type { ProjectApi } from '@genoffice/project-store'
+  SoopusAccountStatus,
+} from '@plotdocs/ai-provider'
+import type { ProjectApi } from '@plotdocs/project-store'
 import type {
   AttachmentAddResult,
   AttachmentImageResult,
@@ -58,7 +58,7 @@ import {
   MAX_SAVE_EDITS_TOTAL,
   SAVE_EDITS_CHUNK_JSON_MAX,
 } from '../shared/ipc-channels'
-import { installDropOpenBridge } from '@genoffice/electron-utils/drop-open'
+import { installDropOpenBridge } from '@plotdocs/electron-utils/drop-open'
 
 const desktopApi: DesktopApi = {
   getLanguage: () => ipcRenderer.invoke('app:get-language'),
@@ -533,15 +533,15 @@ const desktopApi: DesktopApi = {
     if (!requestId) throw new Error('Invalid AI stream request id.')
     await ipcRenderer.invoke(IPC_CHANNELS.aiStreamCancel, requestId)
   },
-  async aiGskStatus(withEmail) {
-    const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.aiGskStatus, withEmail)
+  async aiSoopusStatus(withEmail) {
+    const result: unknown = await ipcRenderer.invoke(IPC_CHANNELS.aiSoopusStatus, withEmail)
     if (!isRecord(result) || typeof result.loggedIn !== 'boolean') {
-      throw new Error('Invalid Genspark account status response.')
+      throw new Error('Invalid Soopus account status response.')
     }
-    return result as unknown as GenSparkAccountStatus
+    return result as unknown as SoopusAccountStatus
   },
-  async aiGskLogin() {
-    await ipcRenderer.invoke(IPC_CHANNELS.aiGskLogin)
+  async aiSoopusLogin() {
+    await ipcRenderer.invoke(IPC_CHANNELS.aiSoopusLogin)
   },
   async webSearch(query, maxResults) {
     if (typeof query !== 'string' || !query.trim() || query.length > 512) {
@@ -752,11 +752,11 @@ const projectApi: ProjectApi = {
 }
 contextBridge.exposeInMainWorld('projectApi', projectApi)
 
-// Off by default. e2e drivers launch the BUILT app with GENOFFICE_DEBUG_HOOKS=1
-// so the renderer exposes window.__genofficeDebug (see App.tsx) — the dev-only
+// Off by default. e2e drivers launch the BUILT app with PLOTDOCS_DEBUG_HOOKS=1
+// so the renderer exposes window.__plotdocsDebug (see App.tsx) — the dev-only
 // __univerAPI hook does not exist in production bundles.
-if (process.env.GENOFFICE_DEBUG_HOOKS === '1') {
-  contextBridge.exposeInMainWorld('__genofficeDebugHooks', true)
+if (process.env.PLOTDOCS_DEBUG_HOOKS === '1') {
+  contextBridge.exposeInMainWorld('__plotdocsDebugHooks', true)
 }
 
 // open documents dragged from the OS onto this tab as a new shell tab

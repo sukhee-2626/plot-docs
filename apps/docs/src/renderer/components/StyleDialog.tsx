@@ -1,5 +1,5 @@
 import { useMemo, useState, type CSSProperties } from 'react'
-import type { StyleInfo, StyleParaProps, StyleRunProps, StyleUpsert } from '@genoffice/docx-engine'
+import type { StyleInfo, StyleParaProps, StyleRunProps, StyleUpsert } from '@plotdocs/docx-engine'
 import { useI18n } from '../i18n/locale'
 import { fontFamiliesFor } from '../font-list'
 import { cssFontFamily } from '../line-metrics'

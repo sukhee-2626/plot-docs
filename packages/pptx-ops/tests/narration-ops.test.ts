@@ -1,6 +1,6 @@
 /** addNarration / clearNarration: one transaction each, never offered to the AI. */
 import { describe, it, expect } from 'vitest'
-import { createBlankPptx, narrationSpids, openPptx } from '@genoffice/pptx-engine'
+import { createBlankPptx, narrationSpids, openPptx } from '@plotdocs/pptx-engine'
 import { OP_DOCS, opVocabulary } from '../src/op-docs'
 import { runTxn } from '../src/ops/executor'
 import '../src/ops/index'

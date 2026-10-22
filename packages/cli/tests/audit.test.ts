@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { solidPng } from '@genoffice/pptx-engine'
+import { solidPng } from '@plotdocs/pptx-engine'
 import { run, tempDir } from './helpers'
 
 const INCH = 914400

@@ -188,7 +188,7 @@ export const th = {
   ribbonReplaceTip: 'ค้นหาและแทนที่ข้อความ',
   ribbonSelectAll: 'เลือกทั้งหมด',
   ribbonSelectAllTip: 'เลือกทั้งเอกสาร',
-  ribbonAiAssistant: 'Genspark',
+  ribbonAiAssistant: 'Soopus AI',
   ribbonAiAssistantTip: 'เปิดผู้ช่วย AI',
   ribbonRemoveTableStyleTip: 'เอาสไตล์ตารางออก',
   ribbonNoStyle: 'ไม่มีสไตล์',

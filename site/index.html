@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plot Docs — The AI-native office suite by Plot XYZ.Ai</title>
+    <meta
+      name="description"
+      content="Plot Docs is the open-source, AI-native office suite for Docs, Sheets, Slides, PDF, Markdown and HTML. Real Microsoft files, local-first editing, and your choice of AI model."
+    />
+    <meta property="og:title" content="Plot Docs — Your office, rebuilt around AI" />
+    <meta
+      property="og:description"
+      content="Docs, Sheets, Slides, PDF, Markdown and HTML with an AI that edits the actual file. Open source. Local-first. Bring your own model."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://plotxyz.ai/plotdocs" />
+    <meta property="og:image" content="./assets/plotdocs-logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="aurora aurora-one" aria-hidden="true"></div>
+    <div class="aurora aurora-two" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="announce">
+      <span class="announce-dot"></span>
+      <span>Plot Docs 1.0 is here — multi-model AI, real Office files, zero lock-in.</span>
+      <a href="#whats-new">See what’s new <span aria-hidden="true">→</span></a>
+    </div>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#" aria-label="Plot Docs home">
+          <img class="brand-mark" src="./assets/plotdocs-mark.svg" alt="" width="34" height="34" />
+          <span class="brand-text">Plot Docs</span>
+          <span class="brand-by">by Plot XYZ.Ai</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#editors">Editors</a>
+          <a href="#tour">Tour</a>
+          <a href="#ai">AI</a>
+          <a href="#models">Models</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="ghost-btn" href="#download">Download</a>
+          <a class="primary-btn small" href="#download">
+            Get Plot Docs
+            <span aria-hidden="true">↗</span>
+          </a>
+          <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobileMenu" hidden>
+        <a href="#editors">Editors</a>
+        <a href="#tour">Tour</a>
+        <a href="#ai">AI</a>
+        <a href="#models">Models</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#download">Download</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow reveal">
+            <span class="eyebrow-mark"></span>
+            Built by <strong>Plot XYZ.Ai</strong>
+          </div>
+          <h1 class="reveal">
+            Your office,<br />
+            <span class="serif">rebuilt around AI.</span>
+          </h1>
+          <p class="lede reveal">
+            Plot Docs is the open-source workspace where documents, spreadsheets, decks, PDFs
+            and pages share one AI that actually edits the file — not a chat box bolted on the side.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="primary-btn" href="#download">
+              Download free
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a class="outline-btn" href="#tour">
+              <span class="play-dot" aria-hidden="true"></span>
+              Tour the workspace
+            </a>
+          </div>
+          <div class="hero-meta reveal">
+            <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.2l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.5z" fill="currentColor"/></svg> Open source</span>
+            <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Local-first</span>
+            <span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8l6 2.3v4.4c0 3.4-2.6 5.4-6 6.2-3.4-.8-6-2.8-6-6.2V4.1l6-2.3z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg> Bring your own key</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Plot Docs app preview">
+          <div class="hero-mark-float" aria-hidden="true">
+            <img src="./assets/plotdocs-icon.svg" alt="" width="92" height="92" />
+          </div>
+          <div class="glow glow-one"></div>
+          <div class="glow glow-two"></div>
+          <div class="app-window">
+            <div class="app-titlebar">
+              <div class="traffic"><i></i><i></i><i></i></div>
+              <div class="app-tab active">
+                <span class="tab-icon doc">W</span> Q4 Strategy.docx
+              </div>
+              <div class="app-tab">
+                <span class="tab-icon sheet">X</span> Forecast.xlsx
+              </div>
+              <div class="app-tab-add">+</div>
+              <div class="app-titlebar-actions">
+                <span class="pill-live"><i></i> AI ready</span>
+                <span class="avatar">A</span>
+              </div>
+            </div>
+            <div class="app-body">
+              <aside class="app-rail">
+                <div class="rail-item active" title="Docs">
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.5h4M8 10.5h4M8 13.5h2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                </div>
+                <div class="rail-item" title="Sheets"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3.5" width="14" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 8h14M3 12h14M7.5 3.5v13M12 3.5v13" stroke="currentColor" stroke-width="1.1"/></svg></div>
+                <div class="rail-item" title="Slides"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10 14v3M7 17h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+                <div class="rail-item" title="PDF"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7.5 9.5h5M7.5 12.5h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+                <div class="rail-spacer"></div>
+                <div class="rail-item" title="Search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+              </aside>
+
+              <div class="app-canvas">
+                <div class="doc-toolbar">
+                  <span class="toolbar-select">Inter <span>⌄</span></span>
+                  <span class="toolbar-select">14 <span>⌄</span></span>
+                  <span class="toolbar-divider"></span>
+                  <span class="toolbar-icon bold">B</span>
+                  <span class="toolbar-icon italic">I</span>
+                  <span class="toolbar-icon underline">U</span>
+                  <span class="toolbar-divider"></span>
+                  <span class="toolbar-icon">≡</span>
+                  <span class="toolbar-icon">☰</span>
+                  <span class="toolbar-spacer"></span>
+                  <span class="toolbar-chip">Track changes</span>
+                </div>
+                <div class="doc-page">
+                  <div class="doc-kicker">PLOT XYZ.AI · STRATEGY 2026</div>
+                  <h2>Build the office<br />people actually want.</h2>
+                  <p class="doc-sub">Annual plan · Draft 4 · Prepared by the Plot Docs team</p>
+                  <div class="doc-rule"></div>
+                  <p class="doc-text">
+                    Work is not a destination. It is a flow of drafts, numbers, decks and
+                    decisions. The tools should follow the thinking — not the other way around.
+                  </p>
+                  <div class="doc-highlight">
+                    <span class="highlight-bar"></span>
+                    <p>
+                      With Plot Docs, every document becomes a conversation: ask for the change,
+                      review the diff, keep the file. Real .docx. Real .xlsx. Real .pptx.
+                    </p>
+                  </div>
+                  <div class="doc-stats">
+                    <div><strong>6</strong><span>editors, one workspace</span></div>
+                    <div><strong>20+</strong><span>model providers</span></div>
+                    <div><strong>100%</strong><span>local file editing</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="app-ai">
+                <div class="ai-head">
+                  <span class="ai-spark">✦</span>
+                  <span>Plot AI</span>
+                  <span class="ai-model">Auto · Claude</span>
+                  <button class="ai-close" aria-label="Close AI panel">×</button>
+                </div>
+                <div class="ai-thread">
+                  <div class="ai-msg user">Tighten this page and add a section on why local-first matters.</div>
+                  <div class="ai-msg assistant">
+                    <div class="ai-msg-head"><span class="ai-spark small">✦</span> Plot AI</div>
+                    <p>
+                      Done. I tightened the opening, inserted a “Local by design” section, and
+                      left the rest of the document byte-for-byte untouched.
+                    </p>
+                    <div class="ai-actions">
+                      <span>3 edits applied</span>
+                      <button>Undo</button>
+                      <button>Review</button>
+                    </div>
+                  </div>
+                  <div class="ai-typing"><i></i><i></i><i></i></div>
+                </div>
+                <div class="ai-compose">
+                  <div class="ai-suggestions">
+                    <span>Summarize</span><span>Translate</span><span>Make a deck</span>
+                  </div>
+                  <div class="ai-input">
+                    <span>Ask Plot AI to edit this document…</span>
+                    <button aria-label="Send">↑</button>
+                  </div>
+                  <div class="ai-foot">Your key · OpenRouter · never trains on your files</div>
+                </div>
+              </aside>
+            </div>
+          </div>
+          <div class="float-card float-models">
+            <span class="float-icon">✦</span>
+            <div><strong>Auto-routed</strong><small>Claude · GPT · Gemini · DeepSeek</small></div>
+            <span class="float-check">✓</span>
+          </div>
+          <div class="float-card float-diff">
+            <span class="float-icon green">✓</span>
+            <div><strong>3 edits applied</strong><small>Tracked · one-click rollback</small></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODEL MARQUEE -->
+      <section class="marquee-section" aria-label="Supported AI models">
+        <p class="marquee-label">One workspace. Every model you trust.</p>
+        <div class="marquee">
+          <div class="marquee-track">
+            <span>Anthropic</span><span>OpenAI</span><span>Google Gemini</span><span>DeepSeek</span><span>Qwen</span><span>Kimi</span><span>GLM</span><span>Mistral</span><span>MiniMax</span><span>Grok</span><span>OpenRouter</span><span>Ollama</span>
+            <span>Anthropic</span><span>OpenAI</span><span>Google Gemini</span><span>DeepSeek</span><span>Qwen</span><span>Kimi</span><span>GLM</span><span>Mistral</span><span>MiniMax</span><span>Grok</span><span>OpenRouter</span><span>Ollama</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- NUMBER STRIP -->
+      <section class="stats-strip reveal">
+        <div><strong>6</strong><span>editors in one app</span></div>
+        <div><strong>20+</strong><span>AI providers</span></div>
+        <div><strong>0</strong><span>files uploaded to edit</span></div>
+        <div><strong>1</strong><span>key to bring</span></div>
+      </section>
+
+      <!-- EDITORS -->
+      <section class="section" id="editors">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> The workspace</div>
+          <h2>Every file. <span class="serif">One place.</span></h2>
+          <p>
+            Start with a blank page or open the real thing. Plot Docs reads and writes native
+            Microsoft formats, and keeps everything you didn’t touch exactly as it was.
+          </p>
+        </div>
+
+        <div class="editor-grid">
+          <article class="editor-card docs reveal">
+            <div class="editor-icon doc">W</div>
+            <div class="editor-card-head">
+              <h3>Docs</h3>
+              <span class="format">.docx</span>
+            </div>
+            <p>Word documents that open exactly as Word lays them out — tracked changes, comments, equations and ink included.</p>
+            <ul>
+              <li>AI edits as tracked changes</li>
+              <li>Real styles, sections and tables</li>
+              <li>PDF → Word on-device</li>
+            </ul>
+            <div class="editor-preview">
+              <div class="mini-page">
+                <span class="mini-kicker"></span>
+                <span class="mini-h"></span>
+                <span class="mini-h short"></span>
+                <span class="mini-line"></span><span class="mini-line"></span><span class="mini-line short"></span>
+                <span class="mini-quote"></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="editor-card sheets reveal">
+            <div class="editor-icon sheet">X</div>
+            <div class="editor-card-head">
+              <h3>Sheets</h3>
+              <span class="format">.xlsx</span>
+            </div>
+            <p>Live formulas, charts and pivot tables — not pasted numbers. Ask a question and get the cells behind the answer.</p>
+            <ul>
+              <li>Natural language → SUMIF / XLOOKUP</li>
+              <li>Answer citations link to cells</li>
+              <li>Conditional formatting & slicers</li>
+            </ul>
+            <div class="editor-preview">
+              <div class="mini-sheet">
+                <div class="sheet-row head"><span></span><span>A</span><span>B</span><span>C</span></div>
+                <div class="sheet-row"><span>1</span><span>Region</span><span>Q1</span><span>Q2</span></div>
+                <div class="sheet-row"><span>2</span><span>Europe</span><span>1.2M</span><span>1.8M</span></div>
+                <div class="sheet-row active"><span>3</span><span>APAC</span><span>2.4M</span><span>3.1M</span></div>
+                <div class="sheet-row"><span>4</span><span>Total</span><span>3.6M</span><span>4.9M</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="editor-card slides reveal">
+            <div class="editor-icon slides">S</div>
+            <div class="editor-card-head">
+              <h3>Slides</h3>
+              <span class="format">.pptx</span>
+            </div>
+            <p>From one sentence to a designed deck. Every slide lands on the canvas as a real, editable PowerPoint file.</p>
+            <ul>
+              <li>Storyline, layouts and speaker notes</li>
+              <li>Render and audit every slide</li>
+              <li>Restyle without rewriting copy</li>
+            </ul>
+            <div class="editor-preview">
+              <div class="mini-deck">
+                <div class="mini-slide cover"><span></span><span></span><span></span></div>
+                <div class="mini-slide"><span></span><span></span></div>
+                <div class="mini-slide"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="editor-card pdf reveal">
+            <div class="editor-icon pdf">P</div>
+            <div class="editor-card-head">
+              <h3>PDF</h3>
+              <span class="format">.pdf</span>
+            </div>
+            <p>Edit text inside the page, redact safely, and convert PDFs to Word, Excel or PowerPoint without sending them anywhere.</p>
+            <ul>
+              <li>In-place text editing</li>
+              <li>On-device conversion + OCR</li>
+              <li>Ask questions with page citations</li>
+            </ul>
+            <div class="editor-preview">
+              <div class="mini-pdf">
+                <div class="pdf-page"><span class="pdf-line w80"></span><span class="pdf-line w60"></span><span class="pdf-line w90"></span><span class="pdf-line w40"></span><span class="pdf-mark"></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="editor-card markdown reveal">
+            <div class="editor-icon md">M</div>
+            <div class="editor-card-head">
+              <h3>Markdown</h3>
+              <span class="format">.md</span>
+            </div>
+            <p>A block editor over plain Markdown with tables, Mermaid diagrams and AI edits anchored to your selection.</p>
+            <ul>
+              <li>Plain .md in, plain .md out</li>
+              <li>Select text → Ask AI</li>
+              <li>Export to Word locally</li>
+            </ul>
+            <div class="editor-preview">
+              <div class="mini-code">
+                <span><i>#</i> Launch notes</span>
+                <span><i>##</i> What shipped</span>
+                <span><i>-</i> Multi-model AI</span>
+                <span><i>-</i> New templates</span>
+                <span class="code-muted">```mermaid</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="editor-card html reveal">
+            <div class="editor-icon html">H</div>
+            <div class="editor-card-head">
+              <h3>HTML</h3>
+              <span class="format">.html</span>
+            </div>
+            <p>An AI page and UI builder with a design brief first. Generate, click to restyle, then export as PDF or Word.</p>
+            <ul>
+              <li>Design-brief-first generation</li>
+              <li>Visual editing + source view</li>
+              <li>One self-contained .html file</li>
+            </ul>
+            <div class="editor-preview">
+              <div class="mini-web">
+                <span class="web-bar"></span>
+                <div class="web-hero"><span></span><span></span><span></span></div>
+                <div class="web-cards"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- AI -->
+      <section class="section ai-section" id="ai">
+        <div class="ai-grid">
+          <div class="ai-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-mark"></span> Plot AI</div>
+            <h2>An AI that <span class="serif">touches the file.</span></h2>
+            <p>
+              Not a sidebar that writes text you have to copy somewhere. Plot AI reads the document,
+              makes the change, and shows you exactly what it touched. Every turn is a snapshot you
+              can roll back.
+            </p>
+            <div class="ai-feature-list">
+              <div class="ai-feature">
+                <span class="feature-num">01</span>
+                <div><strong>Command Bar</strong><p>Press ⌘K anywhere. Summarize, rewrite, translate, proofread or build a table without leaving the page.</p></div>
+              </div>
+              <div class="ai-feature">
+                <span class="feature-num">02</span>
+                <div><strong>Ask across files</strong><p>Star the documents that matter and ask in plain language. Every answer cites the file and the exact cells or pages.</p></div>
+              </div>
+              <div class="ai-feature">
+                <span class="feature-num">03</span>
+                <div><strong>Reviewable by default</strong><p>Edits arrive as tracked changes or diffs. Undo a single turn or roll the whole document back.</p></div>
+              </div>
+              <div class="ai-feature">
+                <span class="feature-num">04</span>
+                <div><strong>Templates that do the work</strong><p>Start from designed briefs, reports, models and decks — then ask the AI to make them yours.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-demo reveal" id="demo">
+            <div class="command-bar">
+              <div class="cmd-head">
+                <span class="ai-spark">✦</span>
+                <span>Plot AI Command</span>
+                <kbd>⌘ K</kbd>
+              </div>
+              <div class="cmd-input">
+                <span class="typed" id="typed">Turn this report into a 10-slide investor deck</span><span class="caret"></span>
+              </div>
+              <div class="cmd-results">
+                <div class="cmd-result active">
+                  <span class="cmd-icon">◧</span>
+                  <div><strong>Create a presentation</strong><small>Plan a storyline, design every slide, keep it editable</small></div>
+                  <span class="cmd-enter">↵</span>
+                </div>
+                <div class="cmd-result">
+                  <span class="cmd-icon">✦</span>
+                  <div><strong>Summarize this document</strong><small>3 bullets, with source references</small></div>
+                </div>
+                <div class="cmd-result">
+                  <span class="cmd-icon">文</span>
+                  <div><strong>Translate to Spanish</strong><small>Keep formatting and tracked changes</small></div>
+                </div>
+              </div>
+              <div class="cmd-foot">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> run</span>
+                <span class="cmd-model"><i></i> Auto · best model for the task</span>
+              </div>
+            </div>
+            <div class="demo-note">
+              <span class="demo-check">✓</span>
+              <span><strong>Done in 42 seconds.</strong> 10 slides, 4 charts, 2 photos, speaker notes.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GUIDED TOUR -->
+      <section class="section tour-section" id="tour">
+        <div class="section-head center reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> The guided tour</div>
+          <h2>Every corner. <span class="serif">One loop.</span></h2>
+          <p>
+            Walk through Home, each editor, Plot AI and the template gallery. No sign-up,
+            no setup - just click through the workspace.
+          </p>
+        </div>
+
+        <div class="tour-shell reveal" id="productTour">
+          <div class="tour-rail" role="tablist" aria-label="Plot Docs product tour">
+            <button class="tour-step is-active" id="tour-tab-home" role="tab" aria-selected="true" aria-controls="tour-home" data-tour="home">
+              <span class="tour-num">01</span><span class="tour-step-copy"><strong>Home</strong><small>Your command center</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="tour-step" id="tour-tab-docs" role="tab" aria-selected="false" aria-controls="tour-docs" data-tour="docs">
+              <span class="tour-num">02</span><span class="tour-step-copy"><strong>Docs</strong><small>Native .docx</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="tour-step" id="tour-tab-sheets" role="tab" aria-selected="false" aria-controls="tour-sheets" data-tour="sheets">
+              <span class="tour-num">03</span><span class="tour-step-copy"><strong>Sheets</strong><small>Models that calculate</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="tour-step" id="tour-tab-slides" role="tab" aria-selected="false" aria-controls="tour-slides" data-tour="slides">
+              <span class="tour-num">04</span><span class="tour-step-copy"><strong>Slides</strong><small>Decks that present</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="tour-step" id="tour-tab-pdf" role="tab" aria-selected="false" aria-controls="tour-pdf" data-tour="pdf">
+              <span class="tour-num">05</span><span class="tour-step-copy"><strong>PDF</strong><small>Read, mark, edit</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="tour-step" id="tour-tab-ai" role="tab" aria-selected="false" aria-controls="tour-ai" data-tour="ai">
+              <span class="tour-num">06</span><span class="tour-step-copy"><strong>Plot AI</strong><small>Edits the actual file</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+            <button class="tour-step" id="tour-tab-templates" role="tab" aria-selected="false" aria-controls="tour-templates" data-tour="templates">
+              <span class="tour-num">07</span><span class="tour-step-copy"><strong>Templates</strong><small>A running start</small></span><span class="tour-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="tour-stage">
+            <div class="tour-window">
+              <div class="tour-bar">
+                <span class="tour-dots"><i></i><i></i><i></i></span>
+                <span class="tour-window-title" id="tourWindowTitle">Home - Plot Docs</span>
+                <span class="tour-live"><i></i> Interactive preview</span>
+              </div>
+              <div class="tour-screen">
+                <div class="tour-panel is-active" id="tour-home" role="tabpanel" aria-labelledby="tour-tab-home">
+                  <div class="tm-home">
+                    <aside class="tm-side">
+                      <div class="tm-brand"><img src="./assets/plotdocs-mark.svg" alt="" width="22" height="22" /><span>Plot Docs</span></div>
+                      <span class="tm-nav-item is-active">Home</span>
+                      <span class="tm-nav-item">Docs</span>
+                      <span class="tm-nav-item">Sheets</span>
+                      <span class="tm-nav-item">Slides</span>
+                      <span class="tm-nav-item">PDF</span>
+                      <div class="tm-side-label">RECENT</div>
+                      <span class="tm-nav-item small">Q4 board report</span>
+                      <span class="tm-nav-item small">Hiring plan</span>
+                    </aside>
+                    <div class="tm-main">
+                      <div class="tm-greeting">Good morning, Alex <span class="tm-pill">AI ready</span><span class="tm-avatar">A</span></div>
+                      <div class="tm-ask"><span class="tm-spark">✦</span><span>Ask Plot AI to write, analyze or build…</span><kbd>Ctrl K</kbd></div>
+                      <div class="tm-tiles">
+                        <div class="tm-tile"><span class="tm-tile-icon doc">W</span><strong>New document</strong><small>Blank .docx</small></div>
+                        <div class="tm-tile"><span class="tm-tile-icon sheet">X</span><strong>New spreadsheet</strong><small>Blank .xlsx</small></div>
+                        <div class="tm-tile"><span class="tm-tile-icon slide">P</span><strong>New deck</strong><small>Blank .pptx</small></div>
+                        <div class="tm-tile"><span class="tm-tile-icon ai">✦</span><strong>Ask Plot AI</strong><small>Start with a prompt</small></div>
+                      </div>
+                      <div class="tm-section-label">Start with a template <span>Browse all</span></div>
+                      <div class="tm-template-row">
+                        <div class="tm-mini-cover navy"><span>Q4</span><strong>Board report</strong></div>
+                        <div class="tm-mini-cover cyan"><span>GTM</span><strong>Launch plan</strong></div>
+                        <div class="tm-mini-cover violet"><span>$$</span><strong>Forecast</strong></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tour-panel" id="tour-docs" role="tabpanel" aria-labelledby="tour-tab-docs" hidden>
+                  <div class="tm-editor">
+                    <div class="tm-ribbon"><span>File</span><span>Edit</span><span>Insert</span><span>Format</span><span>Review</span><span class="tm-ai-pill">✦ Ask Plot AI</span></div>
+                    <div class="tm-doc-canvas">
+                      <div class="tm-page">
+                        <span class="tm-kicker">PLOT XYZ.AI · STRATEGY 2026</span>
+                        <h4>2026 Operating Plan</h4>
+                        <p class="tm-sub">Prepared for the board · Draft 4</p>
+                        <span class="tm-rule"></span>
+                        <p class="tm-line w92"></p><p class="tm-line w86"></p><p class="tm-line w72"></p>
+                        <div class="tm-change"><span>✦</span> Plot AI tightened this paragraph - <b>Accept</b> / Reject</div>
+                        <p class="tm-line w90"></p><p class="tm-line w84"></p><p class="tm-line w55"></p>
+                        <div class="tm-page-foot">Confidential · Page 1 of 8</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tour-panel" id="tour-sheets" role="tabpanel" aria-labelledby="tour-tab-sheets" hidden>
+                  <div class="tm-editor">
+                    <div class="tm-ribbon"><span class="tm-cell-ref">B7</span><span>fx</span><span class="tm-formula">=SUM(B2:B6)</span><span class="tm-ai-pill">✦ Build forecast</span></div>
+                    <div class="tm-sheet-wrap">
+                      <div class="tm-grid">
+                        <div class="tm-cell head"></div><div class="tm-cell head">A</div><div class="tm-cell head">B</div><div class="tm-cell head">C</div><div class="tm-cell head">D</div>
+                        <div class="tm-cell rh">1</div><div class="tm-cell strong">Quarter</div><div class="tm-cell strong">Revenue</div><div class="tm-cell strong">Costs</div><div class="tm-cell strong">Margin</div>
+                        <div class="tm-cell rh">2</div><div class="tm-cell">Q1</div><div class="tm-cell num">$1.24M</div><div class="tm-cell num">$0.72M</div><div class="tm-cell pos">42%</div>
+                        <div class="tm-cell rh">3</div><div class="tm-cell">Q2</div><div class="tm-cell num">$1.48M</div><div class="tm-cell num">$0.81M</div><div class="tm-cell pos">45%</div>
+                        <div class="tm-cell rh">4</div><div class="tm-cell">Q3</div><div class="tm-cell num">$1.76M</div><div class="tm-cell num">$0.94M</div><div class="tm-cell pos">47%</div>
+                        <div class="tm-cell rh">5</div><div class="tm-cell">Q4</div><div class="tm-cell num sel">$2.10M</div><div class="tm-cell num">$1.08M</div><div class="tm-cell pos">49%</div>
+                        <div class="tm-cell rh">6</div><div class="tm-cell strong">Total</div><div class="tm-cell num strong">$6.58M</div><div class="tm-cell num strong">$3.55M</div><div class="tm-cell pos strong">46%</div>
+                      </div>
+                      <div class="tm-float-card"><span>✦ Plot AI</span><strong>Forecast updated</strong><small>3 scenarios · formulas kept live</small></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tour-panel" id="tour-slides" role="tabpanel" aria-labelledby="tour-tab-slides" hidden>
+                  <div class="tm-editor">
+                    <div class="tm-ribbon"><span>Home</span><span>Insert</span><span>Design</span><span>Presenter</span><span class="tm-ai-pill">✦ Polish this slide</span></div>
+                    <div class="tm-slides-wrap">
+                      <div class="tm-slide-stage"><div class="tm-slide">
+                        <span class="tm-kicker">Q4 · BOARD REVIEW</span>
+                        <h4>Momentum,<br /><em>with discipline.</em></h4>
+                        <p>Revenue up 38% · margin up 4pts · churn down</p>
+                        <span class="tm-slide-num">04</span>
+                      </div></div>
+                      <div class="tm-thumbs"><i class="is-active"></i><i></i><i></i><i></i></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tour-panel" id="tour-pdf" role="tabpanel" aria-labelledby="tour-tab-pdf" hidden>
+                  <div class="tm-editor">
+                    <div class="tm-ribbon"><span>Page</span><span>Annotate</span><span>Comment</span><span>Export</span><span class="tm-ai-pill">✦ Summarize page</span></div>
+                    <div class="tm-pdf-wrap">
+                      <div class="tm-pdf-page">
+                        <span class="tm-kicker">INVESTOR UPDATE · Q4</span>
+                        <h4>The next chapter</h4>
+                        <p class="tm-line w88"></p><p class="tm-line w94"></p><p class="tm-line w70"></p>
+                        <div class="tm-pdf-chart"><i style="--h:36%"></i><i style="--h:52%"></i><i style="--h:68%"></i><i style="--h:86%"></i></div>
+                        <p class="tm-line w84"></p><p class="tm-line w61"></p>
+                      </div>
+                      <div class="tm-annotate"><span class="tm-annotate-head">✦ Plot AI</span><p>This page argues the expansion is funded by Q4 margin. Want a one-paragraph summary?</p><span class="tm-mini-btn">Summarize</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tour-panel" id="tour-ai" role="tabpanel" aria-labelledby="tour-tab-ai" hidden>
+                  <div class="tm-ai-wrap">
+                    <div class="tm-ai-thread">
+                      <div class="tm-ai-user">Turn this report into a 10-slide investor deck, keep the Q4 numbers.</div>
+                      <div class="tm-ai-reply">
+                        <span class="tm-ai-name">✦ Plot AI</span>
+                        <p>Done. I planned a 10-slide story, designed each slide with your brand, and kept every number linked to the spreadsheet.</p>
+                        <div class="tm-ai-steps"><span>Outline</span><span>Design</span><span>Charts</span><span class="done">Review</span></div>
+                        <div class="tm-ai-result"><span>Investor deck · Q4.pptx</span><b>Open</b></div>
+                      </div>
+                    </div>
+                    <div class="tm-ai-input"><span>Ask a follow-up…</span><kbd>Enter</kbd></div>
+                  </div>
+                </div>
+
+                <div class="tour-panel" id="tour-templates" role="tabpanel" aria-labelledby="tour-tab-templates" hidden>
+                  <div class="tm-gallery">
+                    <div class="tm-gallery-head"><div><span class="tm-kicker">TEMPLATES</span><h4>Start with something good.</h4></div><span class="tm-filter">All · Docs · Sheets · Slides · PDF</span></div>
+                    <div class="tm-gallery-grid">
+                      <div class="tm-cover navy"><span>01</span><strong>Board report</strong><small>DOCX · Branded</small></div>
+                      <div class="tm-cover cyan"><span>GTM</span><strong>Launch plan</strong><small>DOCX · Timeline</small></div>
+                      <div class="tm-cover violet"><span>$$</span><strong>Financial model</strong><small>XLSX · Live formulas</small></div>
+                      <div class="tm-cover plum"><span>04</span><strong>Investor deck</strong><small>PPTX · 12 slides</small></div>
+                      <div class="tm-cover teal"><span>5Y</span><strong>Strategy brief</strong><small>PDF · Designed</small></div>
+                      <div class="tm-cover slate"><span>{ }</span><strong>Landing page</strong><small>HTML · Responsive</small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tour-foot">
+              <div class="tour-foot-copy">
+                <span class="tour-progress" id="tourProgress">01 / 07</span>
+                <h3 id="tourTitle">Your workspace, at a glance</h3>
+                <p id="tourBody">Recents, templates, folders and Plot AI in one calm dashboard. Start a blank file or pick up exactly where you left off.</p>
+              </div>
+              <div class="tour-controls">
+                <button class="tour-prev" id="tourPrev" aria-label="Previous step">←</button>
+                <button class="tour-next" id="tourNext">Next <span aria-hidden="true">→</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="section how" id="how">
+        <div class="section-head center reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> The workflow</div>
+          <h2>From file to finished. <span class="serif">Without the busywork.</span></h2>
+        </div>
+        <div class="how-grid">
+          <div class="how-step reveal">
+            <div class="how-visual drop">
+              <div class="drop-file"><span class="doc">W</span><strong>Q4-board-report.docx</strong><small>2.4 MB · Word document</small></div>
+              <div class="drop-ring"></div>
+            </div>
+            <span class="how-num">01</span>
+            <h3>Drop it in</h3>
+            <p>Open .docx, .xlsx, .pptx, PDF, Markdown or HTML. Files stay on your machine.</p>
+          </div>
+          <div class="how-step reveal">
+            <div class="how-visual ask">
+              <div class="ask-bubble"><span class="ai-spark small">✦</span> Make this board-ready. Tighten the narrative and add a risks page.</div>
+              <div class="ask-chip">Track changes on</div>
+            </div>
+            <span class="how-num">02</span>
+            <h3>Ask for the change</h3>
+            <p>One prompt. Plot AI reads the blocks it needs and edits the real document.</p>
+          </div>
+          <div class="how-step reveal">
+            <div class="how-visual review">
+              <div class="review-row"><span class="diff-add">+ Added risks section</span><span class="diff-ok">✓</span></div>
+              <div class="review-row"><span class="diff-edit">~ Tightened introduction</span><span class="diff-ok">✓</span></div>
+              <div class="review-row"><span class="diff-edit">~ Updated Q4 figures</span><span class="diff-ok">✓</span></div>
+              <div class="review-footer"><span>7 changes</span><button>Undo all</button><button class="solid">Keep</button></div>
+            </div>
+            <span class="how-num">03</span>
+            <h3>Review and save</h3>
+            <p>See every change, keep the good ones, export the same file your team already uses.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODELS -->
+      <section class="section models-section" id="models">
+        <div class="section-head center reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> Model router</div>
+          <h2>One key. <span class="serif">Every model.</span></h2>
+          <p>
+            Bring an OpenRouter key and Plot Docs routes each task to the model that does it best —
+            with automatic fallback when a provider is slow, rate-limited or down.
+          </p>
+        </div>
+
+        <div class="router reveal">
+          <div class="router-input">
+            <div class="router-prompt"><span class="ai-spark">✦</span> Analyze this workbook and explain the Q3 variance</div>
+            <div class="router-tags"><span>Reasoning</span><span>Vision</span><span>Long context</span></div>
+          </div>
+          <div class="router-flow">
+            <div class="router-node auto"><span>✦</span><strong>SS Router</strong><small>Task-aware</small></div>
+            <div class="router-lines"><i></i><i></i><i></i></div>
+            <div class="router-models">
+              <div class="router-model active"><span class="m-dot claude"></span>Claude Opus <small>analysis</small><span class="router-check">✓</span></div>
+              <div class="router-model"><span class="m-dot gpt"></span>GPT-6 <small>fallback</small></div>
+              <div class="router-model"><span class="m-dot gemini"></span>Gemini Flash <small>vision</small></div>
+              <div class="router-model"><span class="m-dot deepseek"></span>DeepSeek <small>cost</small></div>
+              <div class="router-model"><span class="m-dot local"></span>Ollama <small>local</small></div>
+            </div>
+          </div>
+          <div class="router-foot">
+            <span><i class="status-dot"></i> Answered by Claude Opus 5.5</span>
+            <span>1.8s · $0.04 · fallback ready</span>
+          </div>
+        </div>
+
+        <div class="model-points">
+          <div class="model-point reveal"><strong>Bring your own key</strong><p>OpenRouter, OpenAI, Anthropic, Gemini, DeepSeek, Qwen, Kimi, GLM, Mistral, Grok, local endpoints.</p></div>
+          <div class="model-point reveal"><strong>No model lock-in</strong><p>Switch models per task or per document. Your instructions and files stay portable.</p></div>
+          <div class="model-point reveal"><strong>Compare answers</strong><p>Send one prompt to two or three models and pick the best result, side by side.</p></div>
+        </div>
+      </section>
+
+      <!-- PRIVACY -->
+      <section class="section privacy-section" id="privacy">
+        <div class="privacy-card reveal">
+          <div class="privacy-copy">
+            <div class="eyebrow"><span class="eyebrow-mark"></span> Local by design</div>
+            <h2>Your files stay <span class="serif">yours.</span></h2>
+            <p>
+              Opening, editing, saving and converting happen on your machine. Plot Docs doesn’t
+              upload documents to a server. Only the AI request leaves the device — to the provider
+              you chose, with the key you control.
+            </p>
+            <div class="privacy-list">
+              <div><span>✓</span> No account required</div>
+              <div><span>✓</span> No training on your files</div>
+              <div><span>✓</span> No default telemetry</div>
+              <div><span>✓</span> Keys stored on-device</div>
+            </div>
+          </div>
+          <div class="privacy-diagram" aria-hidden="true">
+            <div class="laptop">
+              <div class="laptop-screen">
+                <span class="lock">🔒</span>
+                <strong>Your device</strong>
+                <small>Files · index · keys</small>
+                <div class="laptop-files"><i></i><i></i><i></i></div>
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+            <div class="privacy-path"><span class="path-dot"></span><small>only the prompt</small></div>
+            <div class="cloud-model"><span class="ai-spark">✦</span><strong>Your model</strong><small>OpenRouter · your key</small></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPARE -->
+      <section class="section compare-section">
+        <div class="section-head center reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> Why Plot Docs</div>
+          <h2>Office power. <span class="serif">AI-native speed.</span></h2>
+        </div>
+        <div class="table-wrap reveal">
+          <table class="compare-table">
+            <thead>
+              <tr><th></th><th class="highlight">Plot Docs</th><th>Microsoft 365 + Copilot</th><th>Google Workspace + Gemini</th><th>LibreOffice</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Native .docx / .xlsx / .pptx</td><td class="highlight yes">✓</td><td class="yes">✓</td><td class="no">Import / export</td><td class="yes">✓</td></tr>
+              <tr><td>AI edits the actual file</td><td class="highlight yes">✓</td><td class="partial">In-app only</td><td class="partial">In-app only</td><td class="no">—</td></tr>
+              <tr><td>Bring your own model</td><td class="highlight yes">✓</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Local-first file editing</td><td class="highlight yes">✓</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+              <tr><td>Open source</td><td class="highlight yes">✓</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+              <tr><td>Free tier</td><td class="highlight yes">✓</td><td class="no">Paid add-on</td><td class="no">Paid add-on</td><td class="yes">✓</td></tr>
+              <tr><td>PDF editing + conversion</td><td class="highlight yes">✓</td><td class="partial">Extra app</td><td class="partial">Limited</td><td class="no">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section pricing-section" id="pricing">
+        <div class="section-head center reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> Pricing</div>
+          <h2>Free to start. <span class="serif">Fair to scale.</span></h2>
+          <p>Bring your own AI key and the app is free forever. Pro adds hosted AI, sync and team controls.</p>
+          <div class="billing-toggle" role="group" aria-label="Billing period">
+            <button class="active" data-billing="monthly">Monthly</button>
+            <button data-billing="yearly">Yearly <span>−20%</span></button>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="price-card reveal">
+            <div class="price-head"><h3>Free</h3><p>For everyone who wants a better office.</p></div>
+            <div class="price"><span class="currency">$</span><span class="amount" data-monthly="0" data-yearly="0">0</span><span class="period">forever</span></div>
+            <a class="outline-btn full" href="#download">Download</a>
+            <ul class="price-features">
+              <li>All six editors</li>
+              <li>Native Office formats</li>
+              <li>PDF editing + conversion</li>
+              <li>Bring your own key</li>
+              <li>Local search + Ask AI</li>
+            </ul>
+          </div>
+          <div class="price-card featured reveal">
+            <div class="price-badge">Most popular</div>
+            <div class="price-head"><h3>Pro</h3><p>For people who live in documents.</p></div>
+            <div class="price"><span class="currency">$</span><span class="amount" data-monthly="12" data-yearly="10">12</span><span class="period">per month</span></div>
+            <a class="primary-btn full" href="#download">Start free trial</a>
+            <ul class="price-features">
+              <li>Everything in Free</li>
+              <li>Hosted AI credits included</li>
+              <li>Multi-model compare</li>
+              <li>Version history + snapshots</li>
+              <li>Priority model routing</li>
+              <li>Early access features</li>
+            </ul>
+          </div>
+          <div class="price-card reveal">
+            <div class="price-head"><h3>Team</h3><p>For teams that ship together.</p></div>
+            <div class="price"><span class="currency">$</span><span class="amount" data-monthly="24" data-yearly="19">24</span><span class="period">per user / month</span></div>
+            <a class="outline-btn full" href="mailto:hello@plotxyz.ai?subject=Plot%20Docs%20Suite%20Team">Talk to us</a>
+            <ul class="price-features">
+              <li>Everything in Pro</li>
+              <li>Shared templates + brand kits</li>
+              <li>Admin model controls</li>
+              <li>SSO + audit log</li>
+              <li>Dedicated support</li>
+            </ul>
+          </div>
+        </div>
+        <p class="pricing-note">Prices in USD. AI usage is billed by your model provider when you bring your own key.</p>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section faq-section" id="faq">
+        <div class="faq-grid">
+          <div class="faq-copy reveal">
+            <div class="eyebrow"><span class="eyebrow-mark"></span> Questions</div>
+            <h2>Everything else, <span class="serif">answered.</span></h2>
+            <p>Still curious? Write to <a href="mailto:hello@plotxyz.ai">hello@plotxyz.ai</a>.</p>
+          </div>
+          <div class="faq-list reveal">
+            <details open>
+              <summary>Is Plot Docs really free?</summary>
+              <p>Yes. The app is free and open source. With your own API key, there is no subscription. Pro and Team add hosted AI, sync and admin features for people who want them.</p>
+            </details>
+            <details>
+              <summary>Does it open Microsoft Word, Excel and PowerPoint files?</summary>
+              <p>Natively. Plot Docs reads and writes .docx, .xlsx and .pptx, and only rewrites the parts you edit. Everything else survives byte-for-byte, so the file keeps working in Microsoft Office.</p>
+            </details>
+            <details>
+              <summary>Where do my files go?</summary>
+              <p>Nowhere. Opening, editing, saving and converting happen on your device. AI requests go to the provider you configure, using your key. We don't run your documents through our servers.</p>
+            </details>
+            <details>
+              <summary>Which AI models can I use?</summary>
+              <p>OpenRouter, Anthropic, OpenAI, Google Gemini, DeepSeek, Qwen, Kimi, GLM, Mistral, Grok, MiniMax and any OpenAI-compatible endpoint, including local servers like Ollama and LM Studio.</p>
+            </details>
+            <details>
+              <summary>Can I use it offline?</summary>
+              <p>Yes, with local models. File editing and conversion always work offline. Cloud AI features need a connection to your chosen provider.</p>
+            </details>
+            <details>
+              <summary>Can my coding agent drive it?</summary>
+              <p>Yes. Plot Docs ships a command line and an MCP server, so Claude Code, Codex, Cursor and other agents can create, read and edit real Office files on your machine.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOWNLOAD -->
+      <section class="section download-section" id="download">
+        <div class="download-card reveal">
+          <div class="download-glow"></div>
+          <img class="download-mark" src="./assets/plotdocs-icon.svg" alt="" width="88" height="88" />
+          <h2>Ready when you are.</h2>
+          <p>Download Plot Docs, connect your key, and open the file you’ve been putting off.</p>
+          <div class="download-actions">
+            <a class="primary-btn os-btn" data-os="windows" href="./downloads/Plot-Docs-1.0.0.exe" download id="winDownload">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5l8-1.1v7.1H3V5.5zm9-1.3l9-1.2v8.5h-9V4.2zM3 12.5h8v7.1l-8-1.1v-6zm9 0h9v8.5l-9-1.2v-7.3z" fill="currentColor"/></svg>
+              Windows <small>portable .exe · x64</small>
+            </a>
+            <a class="outline-btn os-btn" data-os="mac" href="#">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 12.7c0-2.4 2-3.6 2.1-3.6-1.1-1.6-2.9-1.8-3.5-1.8-1.5-.1-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.4 3 2.3 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.6-1-2.6-3.8zM14.3 5.6c.6-.8 1.1-1.9 1-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2-.5 2.7-1.3z" fill="currentColor"/></svg>
+              macOS <small>Apple Silicon</small>
+            </a>
+            <a class="outline-btn os-btn" data-os="linux" href="#">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.2 0 4 1.8 4 4 0 1.2-.5 2.3-1.3 3 .8 1.3 2.1 2.1 3.1 3.5 1.4 2 2.2 4.4 1.4 6.3-.4 1-1.1 1.7-2 2.1-1 .4-2 .4-3.1 0-.7-.2-1.4-.2-2.1 0-1.1.4-2.1.4-3.1 0-.9-.4-1.6-1.1-2-2.1-.8-1.9 0-4.3 1.4-6.3 1-1.4 2.3-2.2 3.1-3.5C8.5 8.3 8 7.2 8 6c0-2.2 1.8-4 4-4zm-1.6 4.5c0 .7.3 1.3.7 1.6.3-.3.6-.9.6-1.6 0-.7-.3-1.3-.6-1.6-.4.3-.7.9-.7 1.6zm3.2 0c0 .7.3 1.3.6 1.6.4-.3.7-.9.7-1.6 0-.7-.3-1.3-.7-1.6-.3.3-.6.9-.6 1.6z" fill="currentColor"/></svg>
+              Linux <small>.deb / .rpm / AppImage</small>
+            </a>
+          </div>
+          <div class="download-meta">
+            <span>Windows 10+ · macOS 11+ · Ubuntu 22.04+</span>
+            <span>·</span>
+            <a href="./README.md">System requirements</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHATS NEW -->
+      <section class="section whats-new" id="whats-new">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span class="eyebrow-mark"></span> What’s new in 1.0</div>
+          <h2>The release that <span class="serif">grew up.</span></h2>
+        </div>
+        <div class="news-grid">
+          <article class="news-card reveal"><span class="news-tag">AI</span><h3>Plot AI Command Bar</h3><p>⌘K in every editor. Summarize, rewrite, translate, proofread, or turn a document into a deck.</p></article>
+          <article class="news-card reveal"><span class="news-tag">Models</span><h3>OpenRouter auto-router</h3><p>Task-aware routing, automatic fallback, and side-by-side model compare with one key.</p></article>
+          <article class="news-card reveal"><span class="news-tag">Templates</span><h3>Designed, AI-ready templates</h3><p>Board reports, financial models, pitch decks, briefs, PDFs and landing pages.</p></article>
+          <article class="news-card reveal"><span class="news-tag">Editors</span><h3>Deeper Office fidelity</h3><p>Tracked changes, comments, equations, pivot tables and byte-preserving saves.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#">
+            <img class="brand-mark" src="./assets/plotdocs-mark.svg" alt="" width="34" height="34" />
+            <span class="brand-text">Plot Docs</span>
+          </a>
+          <p>The AI-native office suite.<br />Built with care by <a href="https://plotxyz.ai">Plot XYZ.Ai</a>.</p>
+          <div class="footer-social">
+            <a href="https://github.com" aria-label="GitHub">GH</a>
+            <a href="https://x.com" aria-label="X">X</a>
+            <a href="mailto:hello@plotxyz.ai" aria-label="Email">@</a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Product</h4><a href="#editors">Editors</a><a href="#ai">Plot AI</a><a href="#models">Models</a><a href="#pricing">Pricing</a><a href="#download">Download</a></div>
+        <div class="footer-col"><h4>Resources</h4><a href="./README.md">Documentation</a><a href="#faq">FAQ</a><a href="#whats-new">Changelog</a><a href="mailto:hello@plotxyz.ai">Support</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="https://plotxyz.ai">Plot XYZ.Ai</a><a href="#privacy">Privacy</a><a href="./LICENSE">License</a><a href="mailto:hello@plotxyz.ai">Contact</a></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> plotxyz.ai. Plot Docs is open source under Apache-2.0.</span>
+        <span class="footer-credit">An independent fork of SS Office. Built with respect for the original authors.</span>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

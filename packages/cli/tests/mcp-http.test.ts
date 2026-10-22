@@ -25,7 +25,7 @@ type Content = {
   resource?: { uri: string; blob?: string }
 }
 
-describe('genoffice mcp --http', () => {
+describe('plotdocs mcp --http', () => {
   let handle: HttpHandle
   let client: Client
   let dir: string
@@ -38,7 +38,7 @@ describe('genoffice mcp --http', () => {
       host: '127.0.0.1',
       token: TOKEN,
       cwd: dir,
-      env: { ...process.env, GENOFFICE_AUDIT_LOG: 'off', GENOFFICE_ALLOWED_ROOTS: '' },
+      env: { ...process.env, PLOTDOCS_AUDIT_LOG: 'off', PLOTDOCS_ALLOWED_ROOTS: '' },
       log: () => {},
       registry,
     })
@@ -121,7 +121,7 @@ describe('genoffice mcp --http', () => {
     const first = (before.json().detail.items[0].text as string).split(' ')[0]!
     const r = await call('docs_apply', {
       file: url,
-      ops: [{ op: 'findReplace', find: first, replace: 'GENOFFICE' }],
+      ops: [{ op: 'findReplace', find: first, replace: 'PLOTDOCS' }],
     })
     expect(r.isError).toBe(false)
     const ok = r.json()
@@ -204,13 +204,13 @@ describe('genoffice mcp --http', () => {
   })
 })
 
-describe('http mode with GENOFFICE_ALLOWED_ROOTS set', () => {
+describe('http mode with PLOTDOCS_ALLOWED_ROOTS set', () => {
   it('still lets the tools read uploads', async () => {
     const roots = tempDir()
     const handle = await startHttp({
       port: 0,
       cwd: roots,
-      env: { ...process.env, GENOFFICE_AUDIT_LOG: 'off', GENOFFICE_ALLOWED_ROOTS: roots },
+      env: { ...process.env, PLOTDOCS_AUDIT_LOG: 'off', PLOTDOCS_ALLOWED_ROOTS: roots },
       log: () => {},
       registry,
     })

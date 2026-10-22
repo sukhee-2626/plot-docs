@@ -16,7 +16,7 @@ import type { App } from 'electron'
 // Symbol.for: the flag survives multiple bundled copies of this module
 // (each app bundle ships its own electron-utils, and the shell hosts all of
 // them in one process).
-const INSTALLED = Symbol.for('genoffice.navigation-guard-installed')
+const INSTALLED = Symbol.for('plotdocs.navigation-guard-installed')
 
 export function installNavigationGuard(app: App): void {
   const holder = app as unknown as Record<symbol, boolean | undefined>

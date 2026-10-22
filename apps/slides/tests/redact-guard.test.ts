@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { parseSlide, setRedactExt } from '@genoffice/pptx-engine'
-import { buildRenderSlide, type RenderSlide, type RenderNode } from '@genoffice/pptx-render'
+import { parseSlide, setRedactExt } from '@plotdocs/pptx-engine'
+import { buildRenderSlide, type RenderSlide, type RenderNode } from '@plotdocs/pptx-render'
 import { redactGuardFor } from '../src/renderer/ai/redact-guard'
 
 /**

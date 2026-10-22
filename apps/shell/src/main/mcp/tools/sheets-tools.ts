@@ -11,7 +11,7 @@ import type { CliRunner } from '../cli-runner'
  * Sheets (xlsx) tool surface for the MCP server.
  *
  * Two paths, mirroring the docx/slides tools:
- * - headless `create_xlsx`: a row matrix handed to the bundled `genoffice` CLI
+ * - headless `create_xlsx`: a row matrix handed to the bundled `plotdocs` CLI
  *   (`create --type xlsx --from`), gated behind the "background generation"
  *   setting. The CLI writes through the app's xlsx gateway and evaluates
  *   formulas with the sidecar, so strings starting with "=" become real formula
@@ -31,7 +31,7 @@ export interface SheetsToolDeps {
   background?: boolean
   /** visible-grid control; absent in headless/unit runs, which drops the session tools */
   sheets?: SheetsControl
-  /** the bundled genoffice CLI, used by the headless tool */
+  /** the bundled plotdocs CLI, used by the headless tool */
   cli?: CliRunner
   /**
    * Resolve a caller-supplied document reference (tab id or path) to the
@@ -69,7 +69,7 @@ function createHeadlessXlsxTool(deps: SheetsToolDeps): McpToolDefinition {
     description:
       'Create an Excel .xlsx file and save it to disk without opening the app UI. `data` is a 2D ' +
       'array of rows; numbers become numeric cells, and a string starting with "=" becomes a ' +
-      'formula (the genoffice CLI evaluates it and stores the cached value). Returns the absolute ' +
+      'formula (the plotdocs CLI evaluates it and stores the cached value). Returns the absolute ' +
       'path of the written file.',
     inputSchema: {
       title: z.string().describe('workbook title, used as the file name'),
