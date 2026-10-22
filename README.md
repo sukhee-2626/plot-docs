@@ -16,14 +16,25 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/sukhee-2626/plot-docs/releases/download/v1.0.0/Plot-Docs-1.0.0.exe">
+    <img src="https://img.shields.io/badge/Download-Windows%20EXE-4f46e5?style=for-the-badge&logo=windows&logoColor=white" alt="Download Plot Docs for Windows">
+  </a>
+</p>
+
+<p align="center">
+  <sub>Windows 10/11 · 64-bit · version 1.0.0 · unsigned build</sub>
+</p>
+
+<p align="center">
   <a href="#what-plot-docs-does"><b>Features</b></a> &nbsp;·&nbsp;
+  <a href="#screenshots"><b>Screenshots</b></a> &nbsp;·&nbsp;
   <a href="#build-and-run"><b>Build</b></a> &nbsp;·&nbsp;
   <a href="#project-layout"><b>Architecture</b></a> &nbsp;·&nbsp;
   <a href="#privacy-and-security"><b>Privacy</b></a> &nbsp;·&nbsp;
   <a href="https://plotxyz.ai"><b>Plot XYZ.Ai</b></a>
 </p>
 
-![Plot Docs running on the home screen](site/preview-app-home.png)
+![Plot Docs home screen](site/screenshots/home.png)
 
 Plot Docs is a desktop office suite built by **Plot XYZ.Ai**. It opens and saves
 real `.docx`, `.xlsx` and `.pptx` files, works with PDFs, Markdown and HTML, and
@@ -33,6 +44,21 @@ The app is built on Electron and runs its document engines on your machine.
 There is no required cloud account and no third-party identity page. A local
 Plot Docs account keeps your profile on the device, while document files remain
 in the folders you choose.
+
+## Download for Windows
+
+The README button and the link below download the ready-to-run Windows
+application directly from the GitHub Release:
+
+**[Download Plot Docs 1.0.0 for Windows (EXE)](https://github.com/sukhee-2626/plot-docs/releases/download/v1.0.0/Plot-Docs-1.0.0.exe)**
+
+The build is unsigned, so Windows SmartScreen may ask you to confirm that you
+want to run an app from an unknown publisher. Choose **More info → Run anyway**
+if you trust this repository. The portable EXE runs without a separate
+installer and keeps your documents in the folders you choose.
+
+**SHA-256:** `84E290A0180D1AB9ADA4FCAADA11828912ABFD2177680E3ACA0E1B87F645F96D`
+(124.5 MB)
 
 ## What Plot Docs does
 
@@ -89,6 +115,61 @@ The `plotdocs` command can create, read, convert, edit and render documents
 without opening a window. The repository also includes agent skills for tools
 such as Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode and
 Windsurf.
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="site/screenshots/home.png" alt="Plot Docs home screen with recent files, search and new document actions"><br>
+      <sub><b>Home</b> — recent files, search and one-click new documents</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="site/screenshots/settings-account.png" alt="Local Plot Docs account in Settings"><br>
+      <sub><b>Local account</b> — name, email and device-only session</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="site/screenshots/account-create.png" alt="Create a local Plot Docs account"><br>
+      <sub><b>Create account</b> — no third-party identity page</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="site/screenshots/docs.png" alt="Plot Docs document editor with page layout, formatting ribbon and AI panel"><br>
+      <sub><b>Docs</b> — pagination, formatting, page design and AI review</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="site/screenshots/sheets.png" alt="Plot Docs spreadsheet editor with formulas and workbook tools"><br>
+      <sub><b>Sheets</b> — formulas, charts, validation and native XLSX files</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="site/screenshots/slides.png" alt="Plot Docs presentation editor with slide canvas and layout tools"><br>
+      <sub><b>Slides</b> — masters, layouts, notes and on-canvas editing</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="site/screenshots/pdf.png" alt="Plot Docs PDF viewer and page tools"><br>
+      <sub><b>PDF</b> — open, review and work with pages</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="site/screenshots/markdown.png" alt="Plot Docs Markdown editor with live preview"><br>
+      <sub><b>Markdown</b> — edit and preview in one place</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img src="site/screenshots/html.png" alt="Plot Docs HTML editor with live preview"><br>
+      <sub><b>HTML</b> — source editing with a rendered preview</sub>
+    </td>
+    <td width="50%" align="center">
+      <img src="site/screenshots/templates.png" alt="Plot Docs template gallery for documents, spreadsheets, presentations, Markdown and HTML"><br>
+      <sub><b>Templates</b> — editable starting points for every editor</sub>
+    </td>
+  </tr>
+</table>
 
 ## Local account
 
@@ -225,15 +306,6 @@ On Windows, the wrapper is `packages\cli\bin\plotdocs.cmd`.
   database.
 
 See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
-
-## Contributing
-
-Issues and pull requests are welcome. Before opening a pull request:
-
-1. Keep changes focused and consistent with the surrounding code.
-2. Run the relevant typecheck, tests and formatter.
-3. Do not commit generated installers, build output or local account files.
-4. Keep the Plot Docs and Soopus AI branding intact in user-facing copy.
 
 ## License
 

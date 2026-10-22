@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the built-in SS Office template gallery.
+"""Generate the built-in Plot Docs template gallery.
 
 The templates are ordinary Office files, not a proprietary format. Keeping the
 generator in the repo makes the gallery reproducible and lets designers review
@@ -266,7 +266,7 @@ def docx_base(title: str, subtitle: str, kicker: str, footer_label: str) -> Docu
     hp = header.paragraphs[0]
     hp.text = ""
     hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r = hp.add_run("SS OFFICE  /  ")
+    r = hp.add_run("PLOT DOCS  /  ")
     _style_run(r, 8, MUTED, True)
     r = hp.add_run(title.upper())
     _style_run(r, 8, VIOLET_DARK, True)
@@ -323,7 +323,7 @@ def docx_base(title: str, subtitle: str, kicker: str, footer_label: str) -> Docu
     spacer.paragraph_format.space_after = Pt(4)
     meta = doc.add_paragraph()
     meta.paragraph_format.space_after = Pt(14)
-    r = meta.add_run("PREPARED WITH SS OFFICE   •   EDIT EVERY SECTION   •   SAVE AS DOCX OR PDF")
+    r = meta.add_run("PREPARED WITH PLOT DOCS   •   EDIT EVERY SECTION   •   SAVE AS DOCX OR PDF")
     _style_run(r, 8, MUTED, True)
     return doc
 
@@ -701,10 +701,10 @@ def _print_setup(ws, title: str, columns: int, orientation: str = "landscape") -
     ws.page_margins.right = 0.45
     ws.page_margins.top = 0.65
     ws.page_margins.bottom = 0.6
-    ws.oddHeader.center.text = f"&BSS OFFICE&\"Calibri,Bold\"  /  {title}"
+    ws.oddHeader.center.text = f"&BPLOT DOCS&\"Calibri,Bold\"  /  {title}"
     ws.oddHeader.center.size = 9
     ws.oddHeader.center.color = "667085"
-    ws.oddFooter.left.text = "Built with SS Office"
+    ws.oddFooter.left.text = "Built with Plot Docs"
     ws.oddFooter.left.size = 8
     ws.oddFooter.left.color = "667085"
     ws.oddFooter.right.text = "Page &P of &N"
@@ -1025,7 +1025,7 @@ def _pptx_bullets(slide, items, x, y, w, h, size=15, color="D7DDF0", bullet_colo
 
 def _pptx_chrome(slide, section: str, page: int) -> None:
     _pptx_rect(slide, 0, 0, SLIDE_W, PptxInches(0.09), VIOLET)
-    _pptx_text(slide, "SS OFFICE", PptxInches(0.72), PptxInches(0.42), PptxInches(2.4), PptxInches(0.3), 10, "8C93A8", True)
+    _pptx_text(slide, "PLOT DOCS", PptxInches(0.72), PptxInches(0.42), PptxInches(2.4), PptxInches(0.3), 10, "8C93A8", True)
     _pptx_text(slide, section.upper(), PptxInches(0.72), PptxInches(0.64), PptxInches(5.0), PptxInches(0.3), 8.5, CYAN, True)
     _pptx_text(slide, f"{page:02d}", PptxInches(12.15), PptxInches(7.0), PptxInches(0.5), PptxInches(0.25), 9, "8C93A8", True, align=PP_ALIGN.RIGHT)
 
@@ -1038,7 +1038,7 @@ def _pptx_title_slide(prs, kicker, title, subtitle):
     _pptx_text(slide, kicker.upper(), PptxInches(0.9), PptxInches(1.42), PptxInches(8.5), PptxInches(0.35), 11, CYAN, True)
     _pptx_text(slide, title, PptxInches(0.9), PptxInches(1.92), PptxInches(10.8), PptxInches(2.5), 48, WHITE, True, font=DISPLAY_FONT)
     _pptx_text(slide, subtitle, PptxInches(0.92), PptxInches(4.55), PptxInches(9.2), PptxInches(0.8), 18, "C7D2FE")
-    _pptx_text(slide, "SS OFFICE  /  TEMPLATE LIBRARY", PptxInches(0.92), PptxInches(6.62), PptxInches(5.2), PptxInches(0.3), 9, "8C93A8", True)
+    _pptx_text(slide, "PLOT DOCS  /  TEMPLATE LIBRARY", PptxInches(0.92), PptxInches(6.62), PptxInches(5.2), PptxInches(0.3), 9, "8C93A8", True)
     _pptx_text(slide, "2026", PptxInches(12.0), PptxInches(6.62), PptxInches(0.6), PptxInches(0.3), 9, "8C93A8", True, align=PP_ALIGN.RIGHT)
     return slide
 
@@ -1071,7 +1071,7 @@ def build_startup_pitch() -> None:
     _pptx_text(s, "The cost is not software. It is momentum.", PptxInches(0.72), PptxInches(5.75), PptxInches(10.5), PptxInches(0.4), 15, CYAN, True, italic=True)
     s = _pptx_content_slide(prs, "The solution", "One workspace. Every format. AI that knows the context.", 3)
     _pptx_rect(s, PptxInches(0.72), PptxInches(2.5), PptxInches(5.6), PptxInches(3.55), NAVY_2, "27304D", MSO_SHAPE.ROUNDED_RECTANGLE, 0.06)
-    _pptx_text(s, "SS Office workspace", PptxInches(1.05), PptxInches(2.82), PptxInches(4.8), PptxInches(0.4), 19, WHITE, True)
+    _pptx_text(s, "Plot Docs workspace", PptxInches(1.05), PptxInches(2.82), PptxInches(4.8), PptxInches(0.4), 19, WHITE, True)
     _pptx_bullets(s, ["Docs, sheets, slides, PDF and the web in one window", "AI drafting and review inside the file, not beside it", "Local-first files with cloud when you want it"], PptxInches(1.05), PptxInches(3.4), PptxInches(4.8), PptxInches(2.2), 13)
     _pptx_rect(s, PptxInches(6.65), PptxInches(2.5), PptxInches(5.97), PptxInches(3.55), "111B36", "27304D", MSO_SHAPE.ROUNDED_RECTANGLE, 0.06)
     _pptx_text(s, "What changes for a team", PptxInches(6.98), PptxInches(2.82), PptxInches(5.2), PptxInches(0.4), 19, WHITE, True)
@@ -1092,7 +1092,7 @@ def build_startup_pitch() -> None:
         _pptx_text(s, value, x + PptxInches(0.28), PptxInches(3.02), PptxInches(2.1), PptxInches(0.8), 31, CYAN, True, font=DISPLAY_FONT)
         _pptx_text(s, label, x + PptxInches(0.28), PptxInches(4.0), PptxInches(2.1), PptxInches(0.5), 11.5, "AEB8D0")
     _pptx_text(s, "Fastest-growing segments: product, design and professional services.", PptxInches(0.72), PptxInches(5.7), PptxInches(11.3), PptxInches(0.5), 14, WHITE)
-    s = _pptx_content_slide(prs, "The ask", "Raising $6M to make SS Office the default workspace for 10,000 teams.", 6)
+    s = _pptx_content_slide(prs, "The ask", "Raising $6M to make Plot Docs the default workspace for 10,000 teams.", 6)
     _pptx_text(s, "$6M", PptxInches(0.72), PptxInches(2.35), PptxInches(4.2), PptxInches(1.1), 52, CYAN, True, font=DISPLAY_FONT)
     _pptx_text(s, "18-month runway", PptxInches(0.75), PptxInches(3.55), PptxInches(3.2), PptxInches(0.4), 13, "AEB8D0")
     _pptx_bullets(s, ["45% product and AI engineering", "30% go-to-market and partnerships", "25% trust, security and operations"], PptxInches(5.1), PptxInches(2.32), PptxInches(5.0), PptxInches(2.1), 15)
@@ -1134,7 +1134,7 @@ def build_product_launch() -> None:
     prs = Presentation()
     prs.slide_width = SLIDE_W
     prs.slide_height = SLIDE_H
-    _pptx_title_slide(prs, "Product launch / 2026", "Meet the workspace that keeps the whole team in flow.", "A coordinated launch plan for the next chapter of SS Office.")
+    _pptx_title_slide(prs, "Product launch / 2026", "Meet the workspace that keeps the whole team in flow.", "A coordinated launch plan for the next chapter of Plot Docs.")
     s = _pptx_content_slide(prs, "Opportunity", "The launch moment is a category shift, not a feature drop.", 2)
     _pptx_text(s, "Teams are ready to replace five disconnected tools with one calm workspace.", PptxInches(0.72), PptxInches(2.35), PptxInches(11.6), PptxInches(1.15), 27, WHITE, True, font=DISPLAY_FONT)
     for i, (label, value) in enumerate([("Awareness", "Reach 250k knowledge workers"), ("Activation", "10k teams start a first file"), ("Expansion", "25% upgrade within 90 days")]):
@@ -1175,7 +1175,7 @@ def build_markdown_templates() -> None:
 **Last updated:** 21 October 2026
 
 > [!NOTE]
-> This template uses the SS Office Markdown conventions. Keep the summary short; the details belong under the sections below.
+> This template uses the Plot Docs Markdown conventions. Keep the summary short; the details belong under the sections below.
 
 ## 1. Summary
 
@@ -1190,7 +1190,7 @@ Teams switch between a documents tool, a spreadsheet, a deck editor and an AI ch
 - Make the first useful action obvious from the home screen.
 - Let AI work on the actual document, not a copy in a chat window.
 - Give every common task a credible starting point.
-- Keep files portable and useful outside SS Office.
+- Keep files portable and useful outside Plot Docs.
 
 ### Non-goals
 
@@ -1444,7 +1444,7 @@ def build_html_template() -> None:
 </main>
 
 <footer class="wrap">
-  <span>© 2026 Lumen Studio. Built with SS Office.</span>
+  <span>© 2026 Lumen Studio. Built with Plot Docs.</span>
   <span>Privacy · Terms · hello@lumen.example</span>
 </footer>
 </body>
@@ -1464,7 +1464,7 @@ def build_pdf_template() -> None:
         topMargin=0.6 * inch,
         bottomMargin=0.6 * inch,
         title="Project One-Pager",
-        author="SS Office",
+        author="Plot Docs",
     )
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="normal", showBoundary=0)
 
@@ -1478,7 +1478,7 @@ def build_pdf_template() -> None:
         canvas.rect(0.72 * inch, LETTER[1] - 1.35 * inch, 0.55 * inch, 0.045 * inch, fill=1, stroke=0)
         canvas.setFillColor(colors.HexColor("#667085"))
         canvas.setFont("Helvetica", 7.5)
-        canvas.drawString(0.72 * inch, 0.38 * inch, "SS OFFICE  /  PROJECT ONE-PAGER")
+        canvas.drawString(0.72 * inch, 0.38 * inch, "PLOT DOCS  /  PROJECT ONE-PAGER")
         canvas.drawRightString(LETTER[0] - 0.72 * inch, 0.38 * inch, "PAGE 1 OF 1")
         canvas.setStrokeColor(colors.HexColor("#DDE3F0"))
         canvas.line(0.72 * inch, 0.52 * inch, LETTER[0] - 0.72 * inch, 0.52 * inch)

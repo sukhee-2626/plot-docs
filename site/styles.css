@@ -700,7 +700,7 @@ kbd {
 }
 
 /* ============================================================
-   PLOT DOCS SUITE - motion layer + interactive product tour
+   PLOT DOCS - motion layer + interactive product tour
    ============================================================ */
 
 .brand-mark { transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.45s ease; filter: drop-shadow(0 4px 14px rgba(79, 70, 229, 0.35)); }

@@ -5,7 +5,7 @@
 **Last updated:** 21 October 2026
 
 > [!NOTE]
-> This template uses Plot Docs Markdown conventions. Keep the summary short; the details belong under the sections below.
+> This template uses the Plot Docs Markdown conventions. Keep the summary short; the details belong under the sections below.
 
 ## 1. Summary
 
