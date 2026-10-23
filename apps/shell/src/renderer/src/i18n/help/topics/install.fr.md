@@ -1,6 +1,6 @@
 # Installer Plot Docs
 
-Chaque build est publié sur la [page Releases](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Tous proviennent de `main` ; les installeurs macOS et Windows sont signés.
+Chaque build est publié sur la [page Releases](https://github.com/sukhee-2626/plot-docs/releases/latest). Tous proviennent de `main` ; les installeurs macOS et Windows sont signés.
 
 ## Choisir le fichier pour votre machine
 

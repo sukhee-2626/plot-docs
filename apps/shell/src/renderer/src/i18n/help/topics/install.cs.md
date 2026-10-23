@@ -1,6 +1,6 @@
 # Instalace Plot Docs
 
-Každá sestavení je zveřejněno na [stránce Releases](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Všechna pocházejí z `main`; instalátory pro macOS a Windows jsou podepsané.
+Každá sestavení je zveřejněno na [stránce Releases](https://github.com/sukhee-2626/plot-docs/releases/latest). Všechna pocházejí z `main`; instalátory pro macOS a Windows jsou podepsané.
 
 ## Vyberte soubor pro svůj počítač
 

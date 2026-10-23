@@ -1,6 +1,6 @@
 # Plot Docs のインストール
 
-すべてのビルドは [Releases ページ](https://github.com/Soopus AI-ai/plotdocs/releases/latest) で公開されています。すべて `main` 由来で、macOS と Windows のインストーラーは署名済みです。
+すべてのビルドは [Releases ページ](https://github.com/sukhee-2626/plot-docs/releases/latest) で公開されています。すべて `main` 由来で、macOS と Windows のインストーラーは署名済みです。
 
 ## 自分のマシンに合わせてファイルを選ぶ
 

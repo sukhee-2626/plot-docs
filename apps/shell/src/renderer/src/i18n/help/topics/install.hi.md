@@ -1,6 +1,6 @@
 # Plot Docs इंस्टॉल करना
 
-हर बिल्ड [Releases पेज](https://github.com/Soopus AI-ai/plotdocs/releases/latest) पर प्रकाशित होता है। सभी `main` से बनी होती हैं; और macOS तथा Windows के इंस्टॉलर हस्ताक्षरित होते हैं।
+हर बिल्ड [Releases पेज](https://github.com/sukhee-2626/plot-docs/releases/latest) पर प्रकाशित होता है। सभी `main` से बनी होती हैं; और macOS तथा Windows के इंस्टॉलर हस्ताक्षरित होते हैं।
 
 ## अपने मशीन के लिए फ़ाइल चुनें
 

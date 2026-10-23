@@ -9,7 +9,7 @@ Start is de beginpagina van Plot Docs: een navigatiebalk links, bestandslijsten 
 - **Recent**: bestanden die je onlangs hebt geopend. Elke rij draagt zijn moment — vandaag, gisteren of de datum.
 - **Favorieten**: bestanden die je hebt gemarkeerd. Beweeg over een bestandsrij en klik op de ster om het toe te voegen of te verwijderen. **Naar groep verplaatsen** in het ⋯-menu sorteert bestanden met ster in genoemde groepen; de Sterren-weergave filtert erop.
 - **Ask AI**: het kennisbank-paneel — stel vragen en krijg antwoorden met citaten uit uw bestanden met ster (zie beneden).
-- **Soopus AI Projects**: na het aanmelden bij je Soopus AI-account zie je de projecten die je op het web met Soopus AI AI hebt gemaakt; klik er een aan om in de browser verder te bewerken. Zoeken, sorteren op tijd, vernieuwen en meer laden worden ondersteund.
+- **Soopus AI Projects**: na het aanmelden bij je Soopus AI-account zie je de projecten die je op het web met Soopus AI hebt gemaakt; klik er een aan om in de browser verder te bewerken. Zoeken, sorteren op tijd, vernieuwen en meer laden worden ondersteund.
 - **Mappen**: de mappen die je met **Map toevoegen…** aan de zijbalk toevoegt, of er vanuit je bestandsverkenner naartoe sleep. Elke map wordt een hoofdmap die je kunt openen, er submappen in kunt aanmaken, hernoemen en verwijderen; een map die offline gaat wordt als niet beschikbaar getoond en kan van de lijst worden gehaald. **Nieuwe map** maakt er nog een.
 
 Er is hier geen Prullenbak-item. Verwijderde bestanden belanden in de prullenbak van het systeem, en ze herstellen is zaak van het besturingssysteem.

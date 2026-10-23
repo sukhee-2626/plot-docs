@@ -9,7 +9,7 @@ Home is Plot Docs's start page: a navigation sidebar on the left, file lists and
 - **Recent**: files you opened recently. Each row is stamped with when — today, yesterday, or the date.
 - **Starred**: files you starred. Hover a file row and click the star to add or remove it. The ⋯ menu's **Move to group** sorts starred files into named groups; the Starred view filters by them.
 - **Ask AI**: the knowledge-base panel — ask questions and get answers cited from your starred files (see below).
-- **Soopus AI Projects**: after signing in to your Soopus AI account, shows the projects you created with Soopus AI AI on the web; click one to continue editing in the browser. Search, sort by time, refresh and load-more are supported.
+- **Soopus AI Projects**: after signing in to your Soopus AI account, shows the projects you created with Soopus AI on the web; click one to continue editing in the browser. Search, sort by time, refresh and load-more are supported.
 - **Folders**: directories you add to the sidebar with **Add folder…**, or drag in from the file manager. Each becomes a root you can open, create subfolders in, rename and remove; one that goes offline shows as unavailable and can be taken off the list. **New folder** makes another one.
 
 There is no Trash entry here. Deleted files go to the system trash, and restoring one is the OS's business.

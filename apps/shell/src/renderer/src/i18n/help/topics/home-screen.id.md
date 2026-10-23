@@ -9,7 +9,7 @@ Beranda adalah halaman awal Plot Docs: bilah navigasi di sebelah kiri, daftar fi
 - **Terbaru**: file yang baru saja Anda buka. Setiap baris diberi cap waktu — hari ini, kemarin, atau tanggalnya.
 - **Berbintang**: file yang Anda beri bintang. Arahkan kursor ke baris file lalu klik bintang untuk menambah atau menghapusnya. **Pindahkan ke grup** di menu ⋯ menyortir berkas berbintang ke grup bernama; tampilan Berbintang menyaring menurutnya.
 - **Ask AI**: panel basis pengetahuan — ajukan pertanyaan dan dapatkan jawaban yang mengutip berkas berbintang Anda (lihat di bawah).
-- **Soopus AI Projects**: setelah masuk ke akun Soopus AI, menampilkan proyek yang Anda buat dengan Soopus AI AI di web; klik salah satunya untuk melanjutkan pengeditan di browser. Pencarian, pengurutan menurut waktu, penyegaran, dan muat lebih banyak tersedia.
+- **Soopus AI Projects**: setelah masuk ke akun Soopus AI, menampilkan proyek yang Anda buat dengan Soopus AI di web; klik salah satunya untuk melanjutkan pengeditan di browser. Pencarian, pengurutan menurut waktu, penyegaran, dan muat lebih banyak tersedia.
 - **Folder**: direktori yang Anda tambahkan ke bilah sisi dengan **Tambah folder…**, atau Anda seret ke sana dari aplikasi file. Masing-masing menjadi akar yang bisa Anda buka, buat subfolder di dalamnya, ganti namanya, dan hapus; akar yang jadi luring ditampilkan sebagai tidak tersedia dan bisa dilepas dari daftar. **Folder baru** membuat folder lagi.
 
 Tidak ada entri Sampah di sini. File yang dihapus masuk ke tempat sampah sistem, dan memulihkannya adalah urusan sistem operasi.

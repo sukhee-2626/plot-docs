@@ -25,3 +25,8 @@ packages/html2docx/src/browser/
 
 # ISO/IEC 29500 schemas: keep byte-identical to the published files (one marked amendment).
 tools/ooxml-validate/schemas/
+
+# Hand-authored README badges and static site: Prettier's HTML/CSS rewrapping
+# makes the marketing markup harder to edit and obscures content changes.
+README.md
+site/

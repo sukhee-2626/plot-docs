@@ -1,6 +1,6 @@
 # התקנת Plot Docs
 
-כל גרסה מתפרסמת ב[עמוד ההפצות](https://github.com/Soopus AI-ai/plotdocs/releases/latest). כולן מגיעות מ-`main`; ומתקיני macOS ו-Windows חתומים.
+כל גרסה מתפרסמת ב[עמוד ההפצות](https://github.com/sukhee-2626/plot-docs/releases/latest). כולן מגיעות מ-`main`; ומתקיני macOS ו-Windows חתומים.
 
 ## בחירת הקובץ למחשב שלך
 

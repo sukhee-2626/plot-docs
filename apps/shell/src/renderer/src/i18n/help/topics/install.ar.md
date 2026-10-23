@@ -1,6 +1,6 @@
 # تثبيت Plot Docs
 
-كل نسخة منشورة على [صفحة الإصدارات](https://github.com/Soopus AI-ai/plotdocs/releases/latest). وجميعها مبنية من `main`؛ وحزّامات التثبيت لنظامي macOS وWindows موقّعة.
+كل نسخة منشورة على [صفحة الإصدارات](https://github.com/sukhee-2626/plot-docs/releases/latest). وجميعها مبنية من `main`؛ وحزّامات التثبيت لنظامي macOS وWindows موقّعة.
 
 ## اختر الملف المناسب لجهازك
 

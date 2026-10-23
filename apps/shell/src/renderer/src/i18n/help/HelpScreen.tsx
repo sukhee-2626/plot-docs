@@ -209,6 +209,15 @@ export function HelpScreen(): React.ReactElement {
             ) : (
               <p className="help-missing">{t('helpTopicMissing')}</p>
             )}
+            <footer className="help-site-footer">
+              <span>Plot Docs</span>
+              <span className="help-site-dot" aria-hidden>
+                ·
+              </span>
+              <a href="https://plotxyz.ai" target="_blank" rel="noreferrer">
+                plotxyz.ai
+              </a>
+            </footer>
           </article>
         ) : null}
       </main>

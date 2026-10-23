@@ -1,6 +1,6 @@
 # Cài đặt Plot Docs
 
-Mọi bản dựng đều được công bố trên [trang phát hành](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Tất cả đều đến từ `main`; và trình cài đặt cho macOS và Windows đã được ký.
+Mọi bản dựng đều được công bố trên [trang phát hành](https://github.com/sukhee-2626/plot-docs/releases/latest). Tất cả đều đến từ `main`; và trình cài đặt cho macOS và Windows đã được ký.
 
 ## Chọn tệp cho máy của bạn
 

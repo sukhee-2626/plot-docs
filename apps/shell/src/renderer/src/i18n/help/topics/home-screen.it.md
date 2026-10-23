@@ -9,7 +9,7 @@ Home è la pagina iniziale di Plot Docs: una barra di navigazione a sinistra, el
 - **Recenti**: i file che hai aperto di recente. Ogni riga è datata — oggi, ieri o la data.
 - **Preferiti**: i file che hai messo tra i preferiti. Passa il puntatore su una riga di file e fai clic sulla stella per aggiungerlo o rimuoverlo. **Sposta nel gruppo** nel menu ⋯ ordina i preferiti in gruppi con nome; la vista Preferiti filtra per gruppo.
 - **Ask AI**: il pannello della base di conoscenza — poni domande e ottieni risposte citate dai tuoi file preferiti (vedi sotto).
-- **Soopus AI Projects**: dopo aver effettuato l'accesso al tuo account Soopus AI, mostra i progetti che hai creato sul web con Soopus AI AI; fai clic su uno per continuare a modificarlo nel browser. Sono disponibili ricerca, ordinamento per data, aggiornamento e caricamento di altri elementi.
+- **Soopus AI Projects**: dopo aver effettuato l'accesso al tuo account Soopus AI, mostra i progetti che hai creato sul web con Soopus AI; fai clic su uno per continuare a modificarlo nel browser. Sono disponibili ricerca, ordinamento per data, aggiornamento e caricamento di altri elementi.
 - **Cartelle**: le directory che aggiungi alla barra laterale con **Aggiungi cartella…**, oppure che ci trascini dal gestore di file. Ognuna diventa una radice che puoi aprire, riempire di sottocartelle, rinominare e rimuovere; una radice che va offline viene mostrata come non disponibile e può essere tolta dall'elenco. **Nuova cartella** ne crea un'altra.
 
 Qui non c’è alcuna voce Cestino. I file eliminati finiscono nel cestino di sistema, e recuperarli è compito del sistema operativo.

@@ -130,6 +130,10 @@ async function makeScratch(): Promise<Scratch> {
         onboardingSeen: true,
         folderRoots: [samples],
         defaultSaveDir: saveDir,
+        // A screenshot must not carry the developer's computer account name in
+        // Settings ▸ General, and it must not carry the star-prompt overlay.
+        authorName: 'Plot Docs User',
+        starPrompt: { resolved: true },
       },
       null,
       2,
@@ -207,9 +211,22 @@ async function shoot(page: Page, cdp: CDPSession, name: string, lang: string): P
 /** Dismiss the star prompt: it is a promo overlay, not part of the screen the
  *  figure is documenting, and it sits over the file list. */
 async function dismissStarPrompt(page: Page): Promise<void> {
-  const close = page.locator('.star-prompt button, .star-prompt [aria-label]').last()
+  const close = page.locator('.star-prompt-close')
   if (await close.count()) await close.click().catch(() => {})
-  await page.keyboard.press('Escape').catch(() => {})
+  await page.waitForTimeout(300)
+}
+
+/** The first-run tour overlays Home and swallows the folder click. */
+async function dismissHomeTour(page: Page): Promise<void> {
+  // The cinematic splash also sits over the window for the first seconds.
+  await page
+    .locator('.plot-splash')
+    .waitFor({ state: 'detached', timeout: 20_000 })
+    .catch(() => {})
+  // The tour schedules itself 1.6s after Home mounts.
+  await page.waitForTimeout(1_800)
+  const skip = page.locator('.home-tour-skip, .home-tour-close').first()
+  if (await skip.count()) await skip.click().catch(() => {})
   await page.waitForTimeout(300)
 }
 
@@ -223,6 +240,7 @@ async function main(): Promise<void> {
       const page = app.windows()[0] ?? (await app.firstWindow())
       const cdp = await frame(page)
 
+      await dismissHomeTour(page)
       await dismissStarPrompt(page)
 
       // The folder view is the figure: it carries everything the landing view
@@ -255,6 +273,7 @@ async function main(): Promise<void> {
       }
 
       // 1. the Home screen, signed out, listing the sample files
+      await dismissStarPrompt(page)
       await shoot(page, cdp, 'home-screen', lang)
 
       // 2. the same list with a file's own menu open — the surface the
@@ -279,6 +298,7 @@ async function main(): Promise<void> {
         })
       })
       await page.waitForTimeout(200)
+      await dismissStarPrompt(page)
       await shoot(page, cdp, 'file-ops', lang)
       await page.keyboard.press('Escape')
       await page.waitForTimeout(300)

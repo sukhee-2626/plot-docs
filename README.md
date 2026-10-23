@@ -16,13 +16,21 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/sukhee-2626/plot-docs/releases/download/v1.0.0/Plot-Docs-1.0.0.exe">
+  <a href="https://github.com/sukhee-2626/plot-docs/releases/download/v1.0.0/Plot-Docs-Setup-1.0.0.exe">
     <img src="https://img.shields.io/badge/Download-Windows%20EXE-4f46e5?style=for-the-badge&logo=windows&logoColor=white" alt="Download Plot Docs for Windows">
   </a>
 </p>
 
 <p align="center">
   <sub>Windows 10/11 · 64-bit · version 1.0.0 · unsigned build</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/sukhee-2626/plot-docs/stargazers">
+    <img src="https://img.shields.io/github/stars/sukhee-2626/plot-docs?style=social" alt="GitHub stars">
+  </a>
+  &nbsp;
+  <sub>If Plot Docs saves you time, <a href="https://github.com/sukhee-2626/plot-docs/stargazers">star the repository</a> — it helps other people find it.</sub>
 </p>
 
 <p align="center">
@@ -47,18 +55,18 @@ in the folders you choose.
 
 ## Download for Windows
 
-The README button and the link below download the ready-to-run Windows
-application directly from the GitHub Release:
+The README button and the link below download the Windows installer directly
+from the GitHub Release:
 
-**[Download Plot Docs 1.0.0 for Windows (EXE)](https://github.com/sukhee-2626/plot-docs/releases/download/v1.0.0/Plot-Docs-1.0.0.exe)**
+**[Download Plot Docs 1.0.0 for Windows (installer)](https://github.com/sukhee-2626/plot-docs/releases/download/v1.0.0/Plot-Docs-Setup-1.0.0.exe)**
 
 The build is unsigned, so Windows SmartScreen may ask you to confirm that you
 want to run an app from an unknown publisher. Choose **More info → Run anyway**
-if you trust this repository. The portable EXE runs without a separate
-installer and keeps your documents in the folders you choose.
+if you trust this repository. The installer creates a per-user install and
+keeps your documents in the folders you choose.
 
-**SHA-256:** `84E290A0180D1AB9ADA4FCAADA11828912ABFD2177680E3ACA0E1B87F645F96D`
-(124.5 MB)
+**SHA-256:** `C174AC3BD3B160DB9A7CA98E3408BB490CB9CFCE3E4176852B97ECC7DD5E8B02`
+(154.9 MB)
 
 ## What Plot Docs does
 

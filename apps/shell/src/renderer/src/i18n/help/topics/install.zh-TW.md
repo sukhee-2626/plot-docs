@@ -1,6 +1,6 @@
 # 安裝 Plot Docs
 
-每個版本都發布在 [Releases 頁面](https://github.com/Soopus AI-ai/plotdocs/releases/latest)。它們全部出自 `main`；macOS 與 Windows 的安裝程式已簽署。
+每個版本都發布在 [Releases 頁面](https://github.com/sukhee-2626/plot-docs/releases/latest)。它們全部出自 `main`；macOS 與 Windows 的安裝程式已簽署。
 
 ## 選擇適合你電腦的檔案
 

@@ -200,6 +200,29 @@
   scroll-margin-top: 24px;
 }
 
+/* Every topic ends with the product site, so the manual always has a way back
+   to the current downloads and release notes. */
+.help-site-footer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 34px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+.help-site-footer a {
+  color: var(--help-accent);
+  text-decoration: none;
+}
+.help-site-footer a:hover {
+  text-decoration: underline;
+}
+.help-site-dot {
+  opacity: 0.45;
+}
+
 /* Operation screenshots inside topics */
 .help-article .ai-md-img {
   display: block;

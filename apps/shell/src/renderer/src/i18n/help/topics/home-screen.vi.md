@@ -9,7 +9,7 @@ Trang chủ là trang khởi đầu của Plot Docs: thanh điều hướng bên
 - **Gần đây**: các tập tin bạn đã mở gần đây. Mỗi hàng đều đóng dấu thời điểm — hôm nay, hôm qua hoặc ngày.
 - **Đã gắn sao**: các tập tin bạn đã gắn sao. Rê chuột lên một hàng tập tin rồi nhấp vào ngôi sao để thêm hoặc bỏ. **Chuyển vào nhóm** trong menu ⋯ xếp các tệp đánh sao vào nhóm có tên; xem Đánh sao lọc theo chúng.
 - **Ask AI**: bảng cơ sở tri thức — hỏi và nhận câu trả lời trích dẫn từ các tệp đánh sao của bạn (xem dưới).
-- **Soopus AI Projects**: sau khi đăng nhập tài khoản Soopus AI, mục này hiển thị các dự án bạn đã tạo bằng Soopus AI AI trên web; nhấp vào một dự án để tiếp tục chỉnh sửa trong trình duyệt. Có hỗ trợ tìm kiếm, sắp xếp theo thời gian, làm mới và tải thêm.
+- **Soopus AI Projects**: sau khi đăng nhập tài khoản Soopus AI, mục này hiển thị các dự án bạn đã tạo bằng Soopus AI trên web; nhấp vào một dự án để tiếp tục chỉnh sửa trong trình duyệt. Có hỗ trợ tìm kiếm, sắp xếp theo thời gian, làm mới và tải thêm.
 - **Thư mục**: các thư mục bạn thêm vào thanh bên bằng **Thêm thư mục…**, hoặc kéo vào đó từ trình quản lý tập tin. Mỗi thư mục trở thành một gốc mà bạn có thể mở, tạo thư mục con bên trong, đổi tên và gỡ bỏ; thư mục nào mất kết nối sẽ hiển thị là không khả dụng và có thể gỡ khỏi danh sách. **Thư mục mới** tạo thêm một thư mục nữa.
 
 Ở đây không có mục Thùng rác. Các tập tin đã xóa đi vào thùng rác của hệ thống, và việc khôi phục là của hệ điều hành.

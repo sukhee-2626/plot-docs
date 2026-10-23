@@ -1,6 +1,6 @@
 # Установка Plot Docs
 
-Каждая сборка опубликована на [странице релизов](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Все они собраны из `main`; установщики для macOS и Windows подписаны.
+Каждая сборка опубликована на [странице релизов](https://github.com/sukhee-2626/plot-docs/releases/latest). Все они собраны из `main`; установщики для macOS и Windows подписаны.
 
 ## Выберите файл для своего компьютера
 

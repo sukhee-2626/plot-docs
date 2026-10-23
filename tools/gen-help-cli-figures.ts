@@ -261,7 +261,7 @@ async function shootInstall(): Promise<void> {
   // flag, and a fresh profile is otherwise in exactly this state.
   writeFileSync(
     join(userData, 'app-settings.json'),
-    JSON.stringify({ onboardingSeen: true }, null, 2),
+    JSON.stringify({ onboardingSeen: true, starPrompt: { resolved: true } }, null, 2),
   )
   let app: ElectronApplication | null = null
   try {
@@ -317,9 +317,7 @@ async function main(): Promise<void> {
   if (take('cli')) {
     ensureCliBundle()
     await shootHtml(
-      figureHtml('plotdocs --help', [
-        { command: 'plotdocs --help', output: capture(['--help']) },
-      ]),
+      figureHtml('plotdocs --help', [{ command: 'plotdocs --help', output: capture(['--help']) }]),
       'cli',
     )
   }

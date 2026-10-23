@@ -9,7 +9,7 @@ Laman Utama ialah halaman permulaan Plot Docs: bar navigasi di kiri, senarai fai
 - **Terkini**: fail yang baru dibuka oleh anda. Setiap baris dicap dengan waktunya — hari ini, semalam atau tarikh.
 - **Berbintang**: fail yang anda tandakan dengan bintang. Halakan kursor ke baris fail dan klik bintang untuk menambah atau membuangnya. **Alih ke kumpulan** dalam menu ⋯ menyusun fail berbintang ke kumpulan bernama; paparan Berbintang menapis mengikutnya.
 - **Ask AI**: panel pangkalan pengetahuan — ajukan soalan dan terima jawapan yang memetik fail anda yang berbintang (lihat bawah).
-- **Soopus AI Projects**: selepas anda log masuk ke akaun Soopus AI, ia memaparkan projek yang anda cipta di web dengan Soopus AI AI. Klik satu untuk menyuntingnya terus dalam pelayar. Carian, isihan mengikut masa, muat semula dan muat lagi disokong.
+- **Soopus AI Projects**: selepas anda log masuk ke akaun Soopus AI, ia memaparkan projek yang anda cipta di web dengan Soopus AI. Klik satu untuk menyuntingnya terus dalam pelayar. Carian, isihan mengikut masa, muat semula dan muat lagi disokong.
 - **Folder**: direktori yang anda tambah ke bar sisi dengan **Tambah folder…**, atau yang anda seret masuk daripada pengurus fail. Setiap satu menjadi lokasi yang boleh dibuka, boleh dicipta subdirektori di dalamnya, boleh dinamakan semula dan boleh dibuang; lokasi yang menjadi luar talian ditandakan sebagai tidak tersedia dan boleh dibuang daripada senarai. **Folder baharu** mencipta satu lagi.
 
 Tiada entri Tong sampah di sini. Fail yang dipadam akan masuk ke tong sampah sistem, dan memulihkannya ialah urusan sistem pengendalian.

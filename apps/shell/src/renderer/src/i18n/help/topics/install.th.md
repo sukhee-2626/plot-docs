@@ -1,6 +1,6 @@
 # การติดตั้ง Plot Docs
 
-ทุกเวอร์ชันถูกเผยแพร่ไว้ที่ [หน้าเผยแพร่](https://github.com/Soopus AI-ai/plotdocs/releases/latest) ทุกเวอร์ชันมาจาก `main` ตัวติดตั้งสำหรับ macOS และ Windows มีลายเซ็นกำกับ
+ทุกเวอร์ชันถูกเผยแพร่ไว้ที่ [หน้าเผยแพร่](https://github.com/sukhee-2626/plot-docs/releases/latest) ทุกเวอร์ชันมาจาก `main` ตัวติดตั้งสำหรับ macOS และ Windows มีลายเซ็นกำกับ
 
 ## เลือกไฟล์ให้ตรงกับเครื่องของคุณ
 

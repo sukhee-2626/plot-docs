@@ -1,6 +1,6 @@
 # Pemasangan Plot Docs
 
-Setiap keluaran diterbitkan pada [halaman Keluaran](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Semuanya datang daripada `main`; pemasang untuk macOS dan Windows adalah bertanda tangan.
+Setiap keluaran diterbitkan pada [halaman Keluaran](https://github.com/sukhee-2626/plot-docs/releases/latest). Semuanya datang daripada `main`; pemasang untuk macOS dan Windows adalah bertanda tangan.
 
 ## Memilih fail untuk mesin anda
 

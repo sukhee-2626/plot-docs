@@ -1,6 +1,6 @@
 # Instalacja Plot Docs
 
-Każda kompilacja jest publikowana na [stronie Releases](https://github.com/Soopus AI-ai/plotdocs/releases/latest). Wszystkie pochodzą z `main`; instalatory dla macOS i Windows są podpisane.
+Każda kompilacja jest publikowana na [stronie Releases](https://github.com/sukhee-2626/plot-docs/releases/latest). Wszystkie pochodzą z `main`; instalatory dla macOS i Windows są podpisane.
 
 ## Wybierz plik dla swojego komputera
 
