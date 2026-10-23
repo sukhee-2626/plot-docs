@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://github.com/sukhee-2626/plot-docs/stargazers">
-    <img src="https://img.shields.io/github/stars/sukhee-2626/plot-docs?style=social" alt="GitHub stars">
+    <img src="https://img.shields.io/badge/Star%20on-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Star Plot Docs on GitHub">
   </a>
   &nbsp;
   <sub>If Plot Docs saves you time, <a href="https://github.com/sukhee-2626/plot-docs/stargazers">star the repository</a> — it helps other people find it.</sub>
