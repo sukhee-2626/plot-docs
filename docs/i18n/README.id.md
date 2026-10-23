@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — suite Office AI open-source: Docs, Sheets, Slides, PDF, Markdown, dan HTML dengan panel AI bawaan" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -66,146 +63,27 @@ detail dan persyaratan ada di bagian [Download](#download).
 
 ## Demo
 
-Enam aplikasi, satu panel AI, dan satu baris perintah untuk coding agent Anda.
-Setiap tangkapan layar adalah aplikasi asli di macOS, dengan AI yang dijalankan
-dari prompt yang bisa Anda baca di panel.
-
-### 1 · Docs — buka dan edit `.docx` dengan AI yang bisa Anda tinjau
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs menampilkan halaman laporan tahunan dua kolom dengan gambar sampul selebar halaman, tabel KPI berlatar warna, header dan footer, pada zoom 80% dengan panel AI yang diciutkan"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: ringkasan perusahaan dengan gambar banner; AI mempersingkat bagian Overview dan menyisipkan bagian berpoin baru, dan panel menawarkan rollback satu klik"></td>
-</tr>
-<tr>
-<td><b>Membuka file sesuai tata letak Word</b> — bagian dua kolom, gambar full-bleed, tabel berlatar warna, header dan footer, penomoran halaman berdasarkan metrik baris Word. Gaya, komentar, tracked changes, rumus, dan tulisan tangan (ink) tetap utuh saat dibuka lagi.</td>
-<td><b>Minta perubahan yang Anda inginkan</b> — AI membaca blok yang diperlukan, menulis ulang bagian Overview, dan menyisipkan bagian berpoin baru. Setiap giliran AI adalah snapshot yang bisa di-rollback; dengan <b>Track changes</b> aktif, perubahan muncul sebagai revisi bergaya Word.</td>
-</tr>
-</table>
-
-### 2 · Sheets — `.xlsx` dengan rumus dan grafik hidup, bukan angka yang ditempel
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: AI menambahkan sheet Summary berisi pendapatan per wilayah dan kategori menggunakan rumus SUMIF, ditambah grafik kolom, dan melaporkan 43 perubahan yang diterapkan dengan tombol Undo"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: ditanya wilayah mana yang memimpin pendapatan Q2, AI menjawab Eropa lengkap dengan rincian kategori dan mengutip sel yang digunakan sebagai tautan, di samping sheet Orders"></td>
-</tr>
-<tr>
-<td><b>Bangun sheet-nya</b> — dari satu kalimat, agen menambahkan sheet Summary dengan rumus <code>SUMIF</code> yang sebenarnya per wilayah dan kategori, menyisipkan grafik kolom, dan menerapkan 43 perubahan sebagai satu batch yang bisa dibatalkan sekaligus.</td>
-<td><b>Tanyakan langsung</b> — pertanyaan tentang workbook dijawab lengkap dengan penalarannya, dan sel yang dipakai muncul sebagai kutipan yang bisa diklik. Di baliknya: mesin `.xlsx` Rust buatan sendiri, pivot table, slicer, pemformatan bersyarat, dan penelusuran rumus.</td>
-</tr>
-</table>
-
-### 3 · Slides — dari sebuah prompt menjadi deck `.pptx`
-
-<img src="../assets/readme/slides-generate.webp" alt="Time-lapse Plot Docs Slides membuat deck investor Aurora Home: AI menyusun alur cerita di panel, slide muncul satu demi satu di kanvas, dan deck yang selesai diakhiri dengan closing ask" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: slide sampul deck investor Aurora Home yang dibuat AI di kanvas, dengan prompt satu baris aslinya dan ringkasan AI tentang apa yang dibuatnya di panel"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: slide penutup yang telah didesain dari deck 11-slide yang sama, dengan strip thumbnail di kiri dan panel AI yang meringkas alur ceritanya"></td>
-</tr>
-<tr>
-<td><b>Satu baris prompt masuk</b> — "Buat deck presentasi investor 10-slide untuk Aurora Home…". Plot Docs merancang alur cerita, meriset angka-angkanya, dan menyusun setiap slide langsung ke kanvas sebagai `.pptx` yang sebenarnya.</td>
-<td><b>Deck jadi keluar</b> — sebelas slide terdesain dengan tipografi, citra visual yang konsisten, dan call to action penutup; lanjutkan mengedit dengan master, layout, smart guide, dan pemotongan gambar non-destruktif, atau minta panel untuk mengubah gaya, menulis ulang, dan menyusun ulang urutan.</td>
-</tr>
-</table>
-
-### 4 · PDF — edit teks PDF langsung di tempat, konversi PDF ke Word secara on-device
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: mode Edit text menandai setiap blok teks di halaman untuk diedit langsung di tempat, sementara panel AI menjawab pertanyaan tentang laporan dengan kutipan halaman"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs menampilkan dokumen Word yang dikonversi secara lokal dari PDF Helios quarterly review, dibuka di tab kedua di samping PDF aslinya"></td>
-</tr>
-<tr>
-<td><b>Edit langsung di dalam halaman</b> — mode Edit text menandai setiap blok teks untuk diketik ulang langsung di tempat; content stream ditulis ulang melalui PDFium dengan font asli, bukan anotasi penutup. Tanyakan sesuatu ke AI tentang laporan panjang dan dapatkan jawaban dengan kutipan halaman.</td>
-<td><b>Konversi on-device</b> — <b>PDF Converter → PDF to Word</b> menghasilkan `.docx` yang bisa diedit dan terbuka di Docs berdampingan dengan sumbernya, heading, baris statistik, dan paragraf tetap utuh. Target Excel dan PowerPoint bekerja dengan cara yang sama; halaman hasil pindai (scan) diproses lewat OCR sistem.</td>
-</tr>
-</table>
-
-### 5 · HTML — pembuat halaman dan UI berbasis AI, dimulai dari design brief
-
-Sampaikan halaman itu untuk apa dan untuk siapa. AI akan mengusulkan **design
-brief** terlebih dahulu — hook, palet warna, tipografi, dan arah gaya visual —
-lalu membangun satu file `.html` mandiri berdasarkan token-token tersebut.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Time-lapse Plot Docs HTML mengubah gaya halaman landing Lumen: satu permintaan Restyle di panel mengubah halaman Midnight Studio yang gelap menjadi versi Solar Daybreak yang hangat, sementara setiap bagian dan semua konten tetap di tempatnya" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: landing page yang dihasilkan untuk lampu meja tenaga surya dalam arah gaya gelap Midnight Studio, ditampilkan di live preview dengan panel AI meringkas halaman yang baru dibuatnya"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Landing page Lumen yang sama, diubah gayanya oleh AI menjadi arah hangat Solar Daybreak: latar seperti kertas, judul serif, dan aksen oranye, dengan setiap bagian dan seluruh teks tetap dipertahankan"></td>
-</tr>
-<tr>
-<td><b>Dihasilkan dari satu prompt</b> — hero yang berani, kartu fitur, harga, dan formulir waitlist untuk Lumen, dibangun dalam arah Midnight Studio. Klik elemen apa pun untuk mengubah gayanya, klik dua kali untuk mengedit teks, atau beralih ke tampilan sumber CodeMirror.</td>
-<td><b>Desain sama, arah baru</b> — satu permintaan <b>Restyle</b> mengganti token-token brief dan halaman ikut menyesuaikan: latar seperti kertas hangat, serif editorial, aksen oranye matahari, tanpa ada yang ditulis ulang. Presentasikan dalam mode layar penuh, atau ekspor sebagai PDF atau dokumen Word asli yang bisa diedit.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: UI dashboard pribadi yang dihasilkan untuk desainer lepas dalam gaya linen hangat, dengan rail kiri, sapaan bergaya serif, dan empat kartu metrik"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: laporan data pasar kendaraan listrik yang dihasilkan dalam gaya broadsheet, dengan masthead serif, angka utama 17,3 juta, dan baris statistik"></td>
-</tr>
-<tr>
-<td><b>Mockup UI</b> — starter "personal dashboard" mengubah sebuah persona menjadi tata letak yang benar-benar berfungsi: rail kiri, sapaan, sparkline jam tertagih, kartu invoice dan utilisasi, semuanya HTML asli yang bisa Anda serahkan ke developer.</td>
-<td><b>Data story</b> — starter "data report" membangun broadsheet editorial: masthead serif, satu angka utama, baris statistik yang dipisah garis, grafik SVG inline, dan catatan metodologi.</td>
-</tr>
-</table>
-
-### 6 · Markdown — block editor di atas `.md` biasa, dengan Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: paragraf yang dipilih menampilkan popover Ask AI dengan instruksi yang diketik dan chip saran seperti Polish, Make more concise, Expand, dan Fix grammar, plus tombol Send now dan Add to queue"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown merender dokumen catatan peluncuran dengan tabel, flowchart Mermaid, dan daftar tugas, dengan prompt starter panel AI di sebelah kiri"></td>
-</tr>
-<tr>
-<td><b>Ask AI pada bagian yang dipilih</b> — pilih teks apa pun dan chip <b>Ask AI</b> akan muncul: ketik instruksi atau pilih saran, kirim sekarang, atau kumpulkan beberapa edit berjangkar dan jalankan sekaligus dalam satu proses. Entri yang sama tersedia di setiap aplikasi.</td>
-<td><b>Dirender, disimpan sebagai Markdown biasa</b> — heading, daftar, tabel, gambar, blok kode, dan diagram Mermaid dalam block editor Tiptap, ditulis kembali sebagai `.md` biasa, dengan ekspor <b>Markdown → Word</b> yang berjalan sepenuhnya lokal.</td>
-</tr>
-</table>
-
-### 7 · CLI — coding agent Anda menjalankan Plot Docs, di mesin Anda
-
-Plot Docs menyertakan baris perintah `plotdocs` dan sebuah skill agen. Pasang
-skill itu, dan Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode,
-atau Windsurf bisa membuat, mengonversi, membaca, dan mengedit file Office asli
-lewat engine yang sama dengan aplikasinya, tanpa membuka satu jendela pun.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides menampilkan deck Tata Surya delapan slide yang dibuat coding agent lewat baris perintah plotdocs: slide sampul di kanvas, delapan thumbnail di kiri, dan panel AI terbuka" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="Delapan slide hasil render dari deck Tata Surya berdampingan: sampul, linimasa eksplorasi, empat angka kunci, grafik batang diameter planet, planet berbatu versus planet raksasa, angka utama 99,8% milik Matahari, grid empat planet raksasa, dan kesimpulan"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs Settings, halaman Integrations: skill plotdocs terpasang di Claude Code, dengan tombol Install di samping Codex dan Cursor"></td>
-</tr>
-<tr>
-<td><b>Satu prompt ke agen Anda</b> — "Buat deck delapan slide tentang Tata Surya." Agen membaca skill, menulis style sheet, outline, dan satu spesifikasi halaman per slide, menghasilkan dua foto dengan <code>plotdocs image</code>, dan membiarkan <code>plotdocs slides check</code> menolak apa pun yang meluap atau tumpang tindih sebelum <code>plotdocs create</code> merakit <code>.pptx</code> dan <code>slides render</code> mengembalikan satu PNG per slide untuk dilihat.</td>
-<td><b>Pasang sekali, dari Pengaturan → Integrasi</b> — Plot Docs menampilkan coding agent yang ditemukannya di komputer ini dan menulis skill ke setiap agen yang Anda pilih. Atau unduh skill sebagai zip, atau jalankan <code>npx skills add plotxyz-ai/plot-docs</code>. Perintah dan alur kerja lengkapnya ada di <a href="#command-line-and-agent-skill">Baris perintah dan skill agen</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP — alat yang sama lewat Model Context Protocol
-
-Setiap perintah `plotdocs` juga merupakan alat MCP. Claude Code, Claude
-Desktop, Cursor, dan MCP client lainnya bisa menjalankan sendiri `plotdocs
-mcp`, tanpa perlu memasang skill dan tanpa membuka jendela, lalu mendapatkan
-29 alat plus referensi op sebagai resource. Server HTTP kedua di dalam
-aplikasi memungkinkan agen membangun dokumen Word di tab editor yang
-terlihat sambil Anda menyaksikannya.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Rekaman time-lapse Claude Code membangun briefing investor delapan slide tentang energi terbarukan lewat MCP server plotdocs: mencari figur dan foto, memeriksa setiap foto kandidat dengan media, deck_start menulis style sheet dan outline, deck_page menambahkan satu halaman yang sudah diperiksa setiap kalinya, deck_build merakit .pptx dan slides_render mengembalikan gambar setiap slide; deck yang sudah jadi kemudian terbuka di Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides menampilkan deck Renewable Energy 2026 delapan slide yang dibangun Claude Code lewat MCP server plotdocs: slide sampul dengan foto ladang angin di kanvas dan delapan thumbnail di kiri"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs Settings, halaman Integrations, bagian MCP: perintah satu baris claude mcp add untuk Claude Code, blok JSON untuk Cursor, Claude Desktop, dan MCP client lain, serta opsi server HTTP lokal di bawahnya"></td>
-</tr>
-<tr>
-<td><b>Satu prompt, 38 panggilan alat, tanpa shell</b> — "Buat briefing investor delapan slide tentang energi terbarukan di 2026, dengan foto asli di sampul dan di mana pun foto membantu." Agen mengambil figur dan foto dengan <code>search</code>, menanyakan ke <code>media</code> apakah setiap foto kandidat adalah foto asli, memanggil <code>deck_start</code> dengan style sheet dan outline, lalu <code>deck_page</code> untuk setiap slide; setiap halaman diperiksa terhadap outline dan palet sebelum disimpan, <code>deck_build</code> merakit <code>.pptx</code>, <code>slides_audit</code> mencari overflow, <code>slides_render</code> mengembalikan PNG per slide sebagai konten gambar yang bisa dilihat model, dan <code>deck_replace</code> memperbaiki tiga halaman yang kurang disukainya.</td>
-<td><b>Hubungkan sekali, dari Pengaturan → Integrasi</b> — salin baris <code>claude mcp add</code> untuk Claude Code, atau blok JSON ke Cursor, Claude Desktop, atau MCP client lain. Opsi B mengaktifkan server HTTP lokal untuk editor Word yang terlihat. Keduanya dijelaskan di <a href="#mcp-server">Server MCP</a>.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Mengapa Plot Docs

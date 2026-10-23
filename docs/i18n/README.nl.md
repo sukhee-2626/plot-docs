@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — het open-source AI-kantoorpakket: Docs, Sheets, Slides, PDF, Markdown en HTML met een ingebouwd AI-paneel" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -65,147 +62,27 @@ details en vereisten in [Download](#download).
 
 ## Demo
 
-Zes apps, één AI-paneel en een opdrachtregel voor je coding agent. Elke
-screenshot toont de echte app op macOS, met de AI aangestuurd vanuit de
-prompt die je in het paneel kunt lezen.
-
-### 1 · Docs — open en bewerk `.docx` met een AI die je kunt controleren
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs toont een pagina van een jaarverslag in twee kolommen met een cover-afbeelding over de volledige breedte, een KPI-tabel met arcering, koptekst en voettekst, op 80% zoom met het AI-paneel ingeklapt"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: een bedrijfsoverzicht met een bannerafbeelding; de AI heeft de Overview compacter gemaakt en een nieuwe sectie met opsommingstekens toegevoegd, en het paneel biedt een terugdraaifunctie met één klik"></td>
-</tr>
-<tr>
-<td><b>Opent het bestand precies zoals Word het opmaakt</b> — secties in twee kolommen, beeldvullende afbeeldingen, tabellen met arcering, koppen en voetteksten, paginering op basis van Words regelmetriek. Stijlen, opmerkingen, tracked changes, vergelijkingen en inkt komen ongewijzigd terug.</td>
-<td><b>Vraag om de wijziging</b> — de AI leest de blokken die het nodig heeft, herschrijft de Overview en voegt een nieuwe sectie met opsommingstekens toe. Elke AI-beurt is een snapshot die je kunt terugdraaien; met <b>Track changes</b> ingeschakeld komen wijzigingen binnen als revisies in Word-stijl.</td>
-</tr>
-</table>
-
-### 2 · Sheets — `.xlsx` met live formules en grafieken, geen geplakte getallen
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: de AI heeft een Summary-blad toegevoegd met omzet per regio en categorie via SUMIF-formules, plus een kolomdiagram, en meldt 43 toegepaste wijzigingen met een knop om ongedaan te maken"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: gevraagd welke regio de omzet in Q2 aanvoerde, antwoordt de AI Europa met de uitsplitsing per categorie en verwijst als links naar de cellen die het heeft gebruikt, naast het Orders-blad"></td>
-</tr>
-<tr>
-<td><b>Bouw het</b> — met één zin voegt de agent een Summary-blad toe met echte <code>SUMIF</code>-formules per regio en categorie, voegt een kolomdiagram in, en past de 43 wijzigingen toe als één batch die je in één keer ongedaan kunt maken.</td>
-<td><b>Stel een vraag</b> — vragen over de werkmap komen terug met de redenering en de exacte cellen als klikbare verwijzingen. Onder de motorkap: een eigen Rust-<code>.xlsx</code>-engine, draaitabellen, slicers, voorwaardelijke opmaak en formule-traceren.</td>
-</tr>
-</table>
-
-### 3 · Slides — van een prompt naar een `.pptx`-deck
-
-<img src="../assets/readme/slides-generate.webp" alt="Timelapse van Plot Docs Slides dat de Aurora Home investeerdersdeck genereert: de AI plant het verhaal in het paneel, dia's verschijnen één voor één op het canvas, en de voltooide deck eindigt met de afsluitende vraag" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: de openingsslide van een door AI gegenereerd investeerdersdeck voor Aurora Home op het canvas, met de oorspronkelijke prompt van één regel en de samenvatting van de AI over wat het heeft gebouwd, in het paneel"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: de vormgegeven slotslide van hetzelfde deck van 11 slides, met de miniaturenstrook links en het AI-paneel dat de verhaallijn samenvat"></td>
-</tr>
-<tr>
-<td><b>Eén regel als input</b> — "Create a 10-slide investor pitch deck for Aurora Home…". Plot Docs bepaalt de verhaallijn, zoekt de cijfers uit en zet elke slide als een echte <code>.pptx</code> op het canvas.</td>
-<td><b>Een afgewerkt deck als resultaat</b> — elf vormgegeven slides met consistente typografie, beeldmateriaal en een afsluitende call-to-action; blijf bewerken met masters, layouts, slimme hulplijnen en niet-destructief bijsnijden, of laat het paneel de stijl, tekst en volgorde aanpassen.</td>
-</tr>
-</table>
-
-### 4 · PDF — bewerk PDF-tekst direct op de pagina, converteer PDF naar Word on-device
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: Edit text mode omkadert elk tekstblok op de pagina voor bewerking op de plek zelf, terwijl het AI-paneel een vraag over het rapport beantwoordt met paginaverwijzingen"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs toont een Word-document dat lokaal is geconverteerd vanuit de kwartaalrapportage-PDF van Helios, geopend in een tweede tab naast de originele PDF"></td>
-</tr>
-<tr>
-<td><b>Bewerk binnen de pagina</b> — Edit text mode omkadert elk tekstblok voor herschrijven op de plek zelf; de content stream wordt via PDFium herschreven met de originele fonts, geen overplaknotitie. Stel de AI een vraag over een lang rapport en krijg antwoorden met paginaverwijzingen.</td>
-<td><b>Converteer on-device</b> — <b>PDF Converter → PDF to Word</b> levert een bewerkbare <code>.docx</code> op die naast de bron in Docs opent, met koppen, cijferrijen en alinea's intact. Excel- en PowerPoint-doelen werken op dezelfde manier; gescande pagina's gaan door de systeem-OCR.</td>
-</tr>
-</table>
-
-### 5 · HTML — een AI-pagina- en UI-builder, eerst een design brief
-
-Vertel waarvoor de pagina dient en voor wie hij bedoeld is. De AI stelt eerst
-een **design brief** voor — hook, kleurenpalet, typografie en stijlrichtingen
-— en bouwt daarna op basis van die tokens één zelfstandig `.html`-bestand.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Timelapse van Plot Docs HTML dat de Lumen landingspagina van stijl verandert: één Restyle-verzoek in het paneel verandert de donkere Midnight Studio-pagina in de warme Solar Daybreak-versie, terwijl elke sectie en alle inhoud op hun plek blijven" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: een gegenereerde landingspagina voor een zonne-energie bureaulamp in de donkere stijlrichting Midnight Studio, getoond in de live preview met het AI-paneel dat de net gebouwde pagina samenvat"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Dezelfde Lumen-landingspagina, door de AI omgezet naar de warme stijlrichting Solar Daybreak: papieren achtergrond, serif-koppen en een oranje accent, met behoud van elke sectie en alle tekst"></td>
-</tr>
-<tr>
-<td><b>Gegenereerd vanuit één prompt</b> — een gedurfde hero, featurekaarten, prijzen en een wachtlijstformulier voor Lumen, gebouwd in de stijlrichting Midnight Studio. Klik op elk element om de stijl aan te passen, dubbelklik om tekst te bewerken, of schakel over naar de CodeMirror-broncodeweergave.</td>
-<td><b>Zelfde ontwerp, nieuwe richting</b> — met één <b>Restyle</b>-verzoek wisselen de tokens van de brief en past de pagina zich aan: warm papier, redactionele serif, zonoranje accent, zonder dat er iets wordt herschreven. Presenteer in volledig scherm, of exporteer als PDF of een native bewerkbaar Word-document.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: een gegenereerde persoonlijke dashboard-UI voor een freelance designer in een warme linnen stijl, met een navigatiebalk links, een begroeting in serif en vier metriekkaarten"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: een gegenereerd datarapport over de EV-markt in broadsheet-stijl, met een kopregel in serif, een hoofdcijfer van 17,3 miljoen en een rij met kerncijfers"></td>
-</tr>
-<tr>
-<td><b>UI-mockups</b> — de starter "personal dashboard" zet een persona om in een werkende layout: navigatiebalk links, begroeting, sparkline voor factureerbare uren, facturen- en bezettinsoopusaarten, allemaal echte HTML die je zo aan een developer kunt overdragen.</td>
-<td><b>Datastories</b> — de starter "data report" bouwt een redactioneel broadsheet: kopregel in serif, één hoofdcijfer, een met lijnen afgescheiden rij kerncijfers, inline SVG-grafieken en een methodologienoot.</td>
-</tr>
-</table>
-
-### 6 · Markdown — een blokeditor over platte `.md`, met Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: bij een geselecteerde alinea verschijnt een Ask AI-popover met een getypte instructie en suggestiechips zoals Polish, Make more concise, Expand en Fix grammar, plus de knoppen Send now en Add to queue"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown toont een document met lanceringsnotities met een tabel, een Mermaid-stroomdiagram en een taaklijst, met de startprompts van het AI-paneel aan de linkerkant"></td>
-</tr>
-<tr>
-<td><b>Ask AI over een selectie</b> — selecteer een willekeurige passage en er verschijnt een <b>Ask AI</b>-chip: typ een instructie of kies een suggestie, verstuur die direct, of verzamel meerdere aan tekst verankerde wijzigingen en voer ze in één keer uit. Dezelfde toegang bestaat in elke app.</td>
-<td><b>Weergegeven, opgeslagen als platte Markdown</b> — koppen, lijsten, tabellen, afbeeldingen, codeblokken en Mermaid-diagrammen in een Tiptap-blokeditor, terugweggeschreven als platte <code>.md</code>, met een volledig lokale <b>Markdown → Word</b>-export.</td>
-</tr>
-</table>
-
-### 7 · CLI — je coding agent stuurt Plot Docs aan, op je eigen machine
-
-Plot Docs levert een `plotdocs`-opdrachtregel en een agent-skill mee.
-Installeer de skill en Claude Code, Codex, Cursor, Gemini CLI, GitHub
-Copilot, OpenCode of Windsurf kunnen echte Office-bestanden maken,
-converteren, lezen en bewerken via dezelfde engines als de apps, zonder een
-venster te openen.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides toont een deck van acht slides over het zonnestelsel dat een coding agent via de plotdocs-opdrachtregel heeft gebouwd: de openingsslide op het canvas, acht miniaturen links en het AI-paneel geopend" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="De acht gerenderde slides van het zonnestelsel-deck naast elkaar: cover, tijdlijn van de ruimteverkenning, vier kerncijfers, staafdiagram van planeetdiameters, rotsplaneten tegenover reuzen, het hoofdcijfer van 99,8% voor de zon, het raster van de vier reuzen en de conclusies"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs-instellingen, pagina Integraties: de plotdocs-skill geïnstalleerd in Claude Code, met Installeren-knoppen naast Codex en Cursor"></td>
-</tr>
-<tr>
-<td><b>Eén prompt aan je agent</b> — "Bouw een deck van acht slides over het zonnestelsel." De agent leest de skill, schrijft een stylesheet, een outline en één paginaspecificatie per slide, genereert de twee foto's met <code>plotdocs image</code> en laat <code>plotdocs slides check</code> alles afwijzen wat overloopt of overlapt, voordat <code>plotdocs create</code> de <code>.pptx</code> samenstelt en <code>slides render</code> per slide een PNG teruggeeft om te bekijken.</td>
-<td><b>Eén keer installeren, via Instellingen → Integraties</b> — Plot Docs toont de coding agents die het op deze computer vindt en schrijft de skill naar elke agent die je kiest. Of download de skill als zip, of voer <code>npx skills add plotxyz-ai/plot-docs</code> uit. Commando's en de volledige workflow staan in <a href="#command-line-and-agent-skill">Opdrachtregel en agent-skill</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP — dezelfde tools via het Model Context Protocol
-
-Elk `plotdocs`-commando is ook een MCP-tool. Claude Code, Claude Desktop,
-Cursor en elke andere MCP-client kunnen zelf `plotdocs mcp` starten,
-zonder skill om te installeren en zonder venster te openen, en krijgen 29
-tools plus de op-referenties als resources. Een tweede, HTTP-server in de
-app laat een agent een Word-document opbouwen in een zichtbaar
-editortabblad terwijl je toekijkt.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Time-lapse van Claude Code dat via de plotdocs MCP-server een investeerderspresentatie van acht slides over hernieuwbare energie bouwt: zoekt naar figuren en foto's, controleert elke kandidaat-afbeelding met media, deck_start schrijft de stylesheet en de outline, deck_page voegt telkens één gecontroleerde pagina toe, deck_build stelt de .pptx samen en slides_render geeft een afbeelding van elke slide terug; het afgeronde deck opent daarna in Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides toont het deck Renewable Energy 2026 van acht slides dat Claude Code via de plotdocs MCP-server heeft gebouwd: de openingsslide met een foto van een windmolenpark op het canvas en acht miniaturen links"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs-instellingen, pagina Integraties, MCP-onderdeel: het eenregelige commando claude mcp add voor Claude Code, het JSON-blok voor Cursor, Claude Desktop en andere MCP-clients, en de optie voor de lokale HTTP-server daaronder"></td>
-</tr>
-<tr>
-<td><b>Eén prompt, 38 tool-aanroepen, geen terminal</b> — "Bouw een investeerderspresentatie van acht slides over hernieuwbare energie in 2026, met een echte foto op de omslag en overal waar een foto helpt." De agent haalt de figuren en de foto's op met <code>search</code>, vraagt <code>media</code> of elke kandidaat-afbeelding een echte foto is, roept <code>deck_start</code> aan met een stylesheet en een outline, daarna <code>deck_page</code> één keer per slide; elke pagina wordt tegen de outline en het kleurenpalet gecontroleerd voordat ze wordt bewaard, <code>deck_build</code> stelt de <code>.pptx</code> samen, <code>slides_audit</code> zoekt naar overloop, <code>slides_render</code> geeft per slide een PNG terug als beeldinhoud die het model kan bekijken, en <code>deck_replace</code> verbetert de drie pagina's die niet bevielen.</td>
-<td><b>Eén keer verbinden, via Instellingen → Integraties</b> — kopieer de <code>claude mcp add</code>-regel voor Claude Code, of het JSON-blok in Cursor, Claude Desktop of een andere MCP-client. Optie B schakelt de lokale HTTP-server in voor de zichtbare Word-editor. Beide worden beschreven in <a href="#mcp-server">MCP-server</a>.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Waarom Plot Docs

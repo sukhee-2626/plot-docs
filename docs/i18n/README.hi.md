@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — ओपन-सोर्स AI ऑफ़िस सूट: बिल्ट-इन AI पैनल के साथ Docs, Sheets, Slides, PDF, Markdown और HTML" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -45,139 +42,27 @@ Plot Docs, macOS, Windows और Linux के लिए Microsoft Office का 
 
 ## डेमो
 
-छह ऐप्स, एक AI पैनल, और आपके कोडिंग एजेंट के लिए एक कमांड लाइन। हर स्क्रीनशॉट macOS पर चल रहे असली ऐप का है, और AI उस प्रॉम्प्ट से चलाया गया है जिसे आप पैनल में पढ़ सकते हैं।
-
-### 1 · Docs — ऐसे AI के साथ `.docx` खोलें और एडिट करें जिसे आप रिव्यू कर सकते हैं
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs में 80% ज़ूम पर एक टू-कॉलम एन्युअल-रिपोर्ट पेज दिखाया गया है, जिसमें फ़ुल-विड्थ कवर इमेज, शेडेड KPI टेबल, हेडर और फ़ुटर हैं, और AI पैनल संकुचित (collapsed) है"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: बैनर इमेज के साथ एक कंपनी ओवरव्यू; AI ने ओवरव्यू को संक्षिप्त किया और एक नया बुलेटेड सेक्शन जोड़ा, और पैनल एक-क्लिक रोलबैक का विकल्प देता है"></td>
-</tr>
-<tr>
-<td><b>फ़ाइल को वैसे ही खोलता है जैसे Word लेआउट करता है</b> — टू-कॉलम सेक्शन, फ़ुल-ब्लीड इमेज, शेडेड टेबल, हेडर और फ़ुटर, और Word की लाइन मेट्रिक्स पर पेजिनेशन। स्टाइल्स, कमेंट्स, ट्रैक्ड चेंजेस, इक्वेशन और इंक बिना किसी छेड़छाड़ के राउंड-ट्रिप होते हैं।</td>
-<td><b>बदलाव के लिए कहें</b> — AI ज़रूरी ब्लॉक्स पढ़ता है, ओवरव्यू को फिर से लिखता है और एक नया बुलेटेड सेक्शन जोड़ता है। AI का हर टर्न एक स्नैपशॉट होता है जिसे आप रोलबैक कर सकते हैं; <b>Track changes</b> ऑन होने पर, एडिट्स Word-स्टाइल रिविज़न के रूप में आते हैं।</td>
-</tr>
-</table>
-
-### 2 · Sheets — पेस्ट किए गए नंबर नहीं, बल्कि लाइव फ़ॉर्मूला और चार्ट के साथ `.xlsx`
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: AI ने SUMIF फ़ॉर्मूला इस्तेमाल करके रीजन और कैटेगरी के हिसाब से रेवेन्यू के साथ एक Summary शीट जोड़ी, साथ ही एक कॉलम चार्ट, और Undo बटन के साथ 43 लागू किए गए बदलावों की रिपोर्ट दी"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: यह पूछने पर कि Q2 रेवेन्यू में कौन सा रीजन आगे रहा, AI Orders शीट के बगल में कैटेगरी ब्रेकडाउन के साथ Europe का जवाब देता है और जिन सेल्स का इस्तेमाल किया, उन्हें लिंक के रूप में साइट करता है"></td>
-</tr>
-<tr>
-<td><b>बनाएँ</b> — एक ही वाक्य से एजेंट रीजन और कैटेगरी के हिसाब से असली <code>SUMIF</code> के साथ एक Summary शीट जोड़ता है, एक कॉलम चार्ट डालता है, और 43 बदलावों को एक ही अंडूएबल बैच के रूप में लागू करता है।</td>
-<td><b>पूछें</b> — वर्कबुक से जुड़े सवालों का जवाब रीज़निंग के साथ आता है, और जिन सेल्स का इस्तेमाल किया गया वे क्लिकेबल साइटेशन के रूप में मिलते हैं। पीछे: एक इन-हाउस Rust <code>.xlsx</code> इंजन, पिवट टेबल, स्लाइसर, कंडीशनल फ़ॉर्मैटिंग और फ़ॉर्मूला ट्रेसिंग।</td>
-</tr>
-</table>
-
-### 3 · Slides — एक प्रॉम्प्ट से `.pptx` डेक तक
-
-<img src="../assets/readme/slides-generate.webp" alt="Plot Docs Slides द्वारा Aurora Home इन्वेस्टर डेक बनाने का टाइम-लैप्स: AI पैनल में कहानी की रूपरेखा तय करता है, स्लाइड्स एक के बाद एक कैनवस पर दिखती हैं, और तैयार डेक closing ask पर खत्म होता है" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: कैनवस पर AI-जनरेटेड Aurora Home इन्वेस्टर डेक की कवर स्लाइड, साथ में मूल एक-लाइन प्रॉम्प्ट और पैनल में AI का यह सारांश कि उसने क्या बनाया"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: उसी 11-स्लाइड डेक की डिज़ाइन की गई क्लोज़िंग स्लाइड, बाईं ओर थंबनेल स्ट्रिप और स्टोरीलाइन का सारांश देता AI पैनल"></td>
-</tr>
-<tr>
-<td><b>एक लाइन डालें</b> — "Aurora Home के लिए 10-स्लाइड का इन्वेस्टर पिच डेक बनाएँ…"। Plot Docs स्टोरीलाइन प्लान करता है, नंबरों पर रिसर्च करता है, और हर स्लाइड को असली <code>.pptx</code> के रूप में कैनवस पर तैयार करता है।</td>
-<td><b>एक तैयार डेक बाहर</b> — एक जैसी टाइपोग्राफ़ी, इमेजरी और एक क्लोज़िंग कॉल-टू-एक्शन के साथ ग्यारह डिज़ाइन की गई स्लाइड्स; मास्टर, लेआउट, स्मार्ट गाइड और नॉन-डिस्ट्रक्टिव क्रॉपिंग के साथ एडिट करते रहें, या पैनल से रीस्टाइल, री-राइट और रीऑर्डर करने के लिए कहें।</td>
-</tr>
-</table>
-
-### 4 · PDF — PDF का टेक्स्ट सीधे उसी जगह एडिट करें, PDF को ऑन-डिवाइस Word में कन्वर्ट करें
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: Edit text मोड इन-प्लेस एडिटिंग के लिए पेज के हर टेक्स्ट ब्लॉक की आउटलाइन दिखाता है, जबकि AI पैनल पेज साइटेशन के साथ रिपोर्ट से जुड़े सवाल का जवाब देता है"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs में Helios क्वार्टरली रिव्यू PDF से लोकल रूप से कन्वर्ट किया गया Word डॉक्यूमेंट दिख रहा है, जो मूल PDF के बगल में दूसरे टैब में खुला है"></td>
-</tr>
-<tr>
-<td><b>पेज के भीतर ही एडिट करें</b> — Edit text मोड इन-प्लेस रीटाइपिंग के लिए हर टेक्स्ट ब्लॉक की आउटलाइन बनाता है; कंटेंट स्ट्रीम को PDFium के ज़रिए मूल फ़ॉन्ट्स के साथ फिर से लिखा जाता है, किसी कवर-अप एनोटेशन से नहीं। किसी लंबी रिपोर्ट के बारे में AI से पूछें और पेज साइटेशन के साथ जवाब पाएँ।</td>
-<td><b>ऑन-डिवाइस कन्वर्ट करें</b> — <b>PDF Converter → PDF to Word</b> एक एडिटेबल <code>.docx</code> बनाता है जो सोर्स के बगल में Docs में खुलता है, हेडिंग, स्टैट रो और पैराग्राफ़ पूरी तरह बरकरार रहते हैं। Excel और PowerPoint टारगेट भी इसी तरह काम करते हैं; स्कैन किए गए पेज सिस्टम OCR से गुज़रते हैं।</td>
-</tr>
-</table>
-
-### 5 · HTML — एक AI पेज और UI बिल्डर, पहले डिज़ाइन ब्रीफ़
-
-बताएँ कि पेज किसके लिए है और किस मकसद से है। AI सबसे पहले एक **डिज़ाइन ब्रीफ़** सुझाता है — हुक, पैलेट, टाइपोग्राफ़ी और स्टाइल डायरेक्शन — और फिर उन्हीं टोकन के आधार पर एक सिंगल, सेल्फ़-कंटेन्ड `.html` फ़ाइल बनाता है।
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Plot Docs HTML द्वारा Lumen लैंडिंग पेज को दोबारा स्टाइल करने का टाइम-लैप्स: पैनल में एक Restyle रिक्वेस्ट डार्क Midnight Studio पेज को गर्म Solar Daybreak वर्शन में बदल देती है, जबकि हर सेक्शन और सारा कॉन्टेंट अपनी जगह पर बना रहता है" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: डार्क Midnight Studio डायरेक्शन में एक सोलर डेस्क लैंप के लिए जनरेट किया गया लैंडिंग पेज, लाइव प्रीव्यू में दिखाया गया, साथ में AI पैनल जो अभी बनाए गए पेज का सारांश दे रहा है"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="AI द्वारा वही Lumen लैंडिंग पेज गर्म Solar Daybreak डायरेक्शन में रीस्टाइल किया गया: पेपर बैकग्राउंड, सेरिफ़ हेडलाइन और ऑरेंज एक्सेंट, जबकि हर सेक्शन और सारा कॉपी वैसा ही रखा गया"></td>
-</tr>
-<tr>
-<td><b>एक प्रॉम्प्ट से जनरेट किया गया</b> — Lumen के लिए एक बोल्ड हीरो, फ़ीचर कार्ड्स, प्राइसिंग और एक वेटलिस्ट फ़ॉर्म, Midnight Studio डायरेक्शन में बनाया गया। किसी भी एलिमेंट को रीस्टाइल करने के लिए क्लिक करें, टेक्स्ट एडिट करने के लिए डबल-क्लिक करें, या CodeMirror सोर्स व्यू पर स्विच करें।</td>
-<td><b>वही डिज़ाइन, नई डायरेक्शन</b> — एक <b>Restyle</b> रिक्वेस्ट ब्रीफ़ के टोकन बदल देती है और पूरा पेज उसी के अनुसार बदल जाता है: गर्म पेपर, एडिटोरियल सेरिफ़, सन-ऑरेंज एक्सेंट — कुछ भी दोबारा नहीं लिखा जाता। फ़ुलस्क्रीन प्रेज़ेंट करें, या PDF या नेटिव एडिटेबल Word डॉक्यूमेंट के रूप में एक्सपोर्ट करें।</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: एक फ़्रीलांस डिज़ाइनर के लिए गर्म लिनन स्टाइल में जनरेट किया गया पर्सनल डैशबोर्ड UI, जिसमें एक लेफ़्ट रेल, सेरिफ़ ग्रीटिंग और चार मेट्रिक कार्ड हैं"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: ब्रॉडशीट स्टाइल में जनरेट की गई EV-मार्केट डेटा रिपोर्ट, जिसमें एक सेरिफ़ मास्टहेड, 17.3 मिलियन की हेडलाइन फ़िगर और एक स्टैट रो है"></td>
-</tr>
-<tr>
-<td><b>UI मॉकअप</b> — "personal dashboard" स्टार्टर किसी पर्सोना को एक वर्किंग लेआउट में बदल देता है: लेफ़्ट रेल, ग्रीटिंग, बिलेबल-आवर्स स्पार्कलाइन, इनवॉइस और यूटिलाइज़ेशन कार्ड — यह सब असली HTML है जो आप किसी डेवलपर को सौंप सकते हैं।</td>
-<td><b>डेटा स्टोरीज़</b> — "data report" स्टार्टर एक एडिटोरियल ब्रॉडशीट बनाता है: सेरिफ़ मास्टहेड, एक हेडलाइन नंबर, रूल से अलग किया गया स्टैट रो, इनलाइन SVG चार्ट और एक मेथडोलॉजी नोट।</td>
-</tr>
-</table>
-
-### 6 · Markdown — प्लेन `.md` पर एक ब्लॉक एडिटर, Ask AI के साथ
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: चुने गए पैराग्राफ़ पर एक Ask AI पॉपओवर दिखता है, जिसमें टाइप किया हुआ इंस्ट्रक्शन और Polish, Make more concise, Expand व Fix grammar जैसे सजेशन चिप्स हैं, साथ ही Send now और Add to queue बटन हैं"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown एक लॉन्च-नोट्स डॉक्यूमेंट रेंडर कर रहा है जिसमें एक टेबल, एक Mermaid फ़्लोचार्ट और एक टास्क लिस्ट है, और बाईं ओर AI पैनल के स्टार्टर प्रॉम्प्ट हैं"></td>
-</tr>
-<tr>
-<td><b>किसी सेलेक्शन के बारे में Ask AI से पूछें</b> — कोई भी हिस्सा चुनें और एक <b>Ask AI</b> चिप दिखाई देती है: कोई इंस्ट्रक्शन टाइप करें या कोई सजेशन चुनें, उसे अभी भेजें, या कई एंकर्ड एडिट्स को क्यू में डालकर एक ही बार में चलाएँ। यही एंट्री-पॉइंट हर ऐप में मौजूद है।</td>
-<td><b>रेंडर होता है, प्लेन Markdown के रूप में सेव होता है</b> — Tiptap ब्लॉक एडिटर में हेडिंग, लिस्ट, टेबल, इमेज, कोड ब्लॉक और Mermaid डायग्राम, जो वापस प्लेन <code>.md</code> के रूप में लिखे जाते हैं, साथ ही पूरी तरह लोकल <b>Markdown → Word</b> एक्सपोर्ट भी।</td>
-</tr>
-</table>
-
-### 7 · CLI — आपका कोडिंग एजेंट Plot Docs चलाता है, आपकी मशीन पर
-
-Plot Docs के साथ एक `plotdocs` कमांड लाइन और एक एजेंट skill आती है। skill इंस्टॉल करें, और Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode या Windsurf उन्हीं इंजनों के ज़रिए, जिन पर ऐप्स चलते हैं, बिना कोई विंडो खोले असली Office फ़ाइलें बना, कन्वर्ट, पढ़ और एडिट कर सकते हैं।
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides में सोलर सिस्टम पर आठ स्लाइड का एक डेक दिखाया गया है, जिसे एक कोडिंग एजेंट ने plotdocs कमांड लाइन के ज़रिए बनाया: कैनवस पर कवर स्लाइड, बाईं ओर आठ थंबनेल और AI पैनल खुला हुआ" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="सोलर सिस्टम डेक की आठ रेंडर की गई स्लाइड्स एक साथ: कवर, एक्सप्लोरेशन टाइमलाइन, चार मुख्य आँकड़े, ग्रहों के व्यास का बार चार्ट, चट्टानी ग्रह बनाम विशाल ग्रह, सूर्य का 99.8% हीरो नंबर, चार विशाल ग्रहों का ग्रिड और मुख्य निष्कर्ष"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs Settings का Integrations पेज: plotdocs skill Claude Code में इंस्टॉल है, और Codex व Cursor के बगल में Install बटन हैं"></td>
-</tr>
-<tr>
-<td><b>अपने एजेंट को एक प्रॉम्प्ट</b> — "सोलर सिस्टम पर आठ स्लाइड का डेक बनाएँ।" एजेंट skill पढ़ता है, एक स्टाइल शीट, एक आउटलाइन और हर स्लाइड के लिए एक पेज स्पेक लिखता है, <code>plotdocs image</code> से दो फ़ोटो जनरेट करता है, और <code>plotdocs slides check</code> को ओवरफ़्लो या ओवरलैप करने वाली हर चीज़ रिजेक्ट करने देता है; इसके बाद <code>plotdocs create</code> <code>.pptx</code> असेंबल करता है और <code>slides render</code> देखने के लिए हर स्लाइड का एक PNG वापस देता है।</td>
-<td><b>एक बार इंस्टॉल करें, सेटिंग्स → इंटीग्रेशन से</b> — Plot Docs इस कंप्यूटर पर मिले कोडिंग एजेंट्स की सूची दिखाता है और आपके चुने हुए हर एजेंट में skill लिख देता है। या skill को zip के रूप में डाउनलोड करें, या <code>npx skills add plotxyz-ai/plot-docs</code> चलाएँ। कमांड और पूरा वर्कफ़्लो <a href="#command-line-and-agent-skill">कमांड लाइन और एजेंट skill</a> में हैं।</td>
-</tr>
-</table>
-
-### 8 · MCP — Model Context Protocol पर वही टूल्स
-
-हर `plotdocs` कमांड एक MCP टूल भी है। Claude Code, Claude Desktop,
-Cursor और कोई भी अन्य MCP क्लाइंट खुद `plotdocs mcp` शुरू कर सकते हैं, न कोई
-skill इंस्टॉल करने की ज़रूरत, न कोई विंडो खोलने की, और इसके बदले 29 टूल्स
-और resources के रूप में मिलने वाले ऑप रेफ़रेंस मिलते हैं। ऐप के भीतर मौजूद
-दूसरा, HTTP सर्वर किसी एजेंट को एक दिखने वाले एडिटर टैब में Word डॉक्यूमेंट
-बनाने देता है, जबकि आप देखते रहते हैं।
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Claude Code का plotdocs MCP सर्वर के ज़रिए आठ स्लाइड के रिन्यूएबल एनर्जी इन्वेस्टर ब्रीफ़िंग डेक बनाने का टाइम-लैप्स: यह search से आँकड़े और तस्वीरें ढूँढ़ता है, media से हर उम्मीदवार तस्वीर को जाँचता है, deck_start स्टाइल शीट और आउटलाइन लिखता है, deck_page एक बार में एक जाँची गई पेज जोड़ता है, deck_build .pptx असेंबल करता है और slides_render हर स्लाइड की तस्वीर वापस देता है; बना हुआ डेक फिर Plot Docs Slides में खुलता है" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides में आठ स्लाइड का रिन्यूएबल एनर्जी 2026 डेक दिखाया गया है जिसे Claude Code ने plotdocs MCP सर्वर के ज़रिए बनाया: कैनवस पर विंड फ़ार्म की तस्वीर वाली कवर स्लाइड और बाईं ओर आठ थंबनेल"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs Settings का Integrations पेज, MCP हिस्सा: Claude Code के लिए एक-लाइन का claude mcp add कमांड, Cursor, Claude Desktop और दूसरे MCP क्लाइंट्स के लिए JSON ब्लॉक, और नीचे लोकल HTTP सर्वर का विकल्प"></td>
-</tr>
-<tr>
-<td><b>एक प्रॉम्प्ट, अड़तीस टूल कॉल्स, कोई टर्मिनल नहीं</b> — "2026 में रिन्यूएबल एनर्जी के बारे में आठ स्लाइड की इन्वेस्टर ब्रीफ़िंग बनाएँ, कवर पर और जहाँ भी तस्वीर काम आए वहाँ एक असली तस्वीर लगाएँ।" एजेंट <code>search</code> से आँकड़े और तस्वीरें खींचता है, <code>media</code> से पूछता है कि हर उम्मीदवार तस्वीर असली फ़ोटोग्राफ़ है या नहीं, फिर एक स्टाइल शीट और आउटलाइन के साथ <code>deck_start</code> कॉल करता है, फिर हर स्लाइड के लिए एक बार <code>deck_page</code> कॉल करता है; हर पेज को रखे जाने से पहले आउटलाइन और पैलेट के हिसाब से जाँचा जाता है, <code>deck_build</code> <code>.pptx</code> असेंबल करता है, <code>slides_audit</code> ओवरफ़्लो ढूँढता है और <code>slides_render</code> मॉडल के देखने लायक इमेज कॉन्टेंट के रूप में हर स्लाइड का एक PNG वापस देता है, और आख़िर में <code>deck_replace</code> उन तीन पेजों को ठीक करता है जो पसंद नहीं आए थे।</td>
-<td><b>सेटिंग्स → इंटीग्रेशन से एक बार कनेक्ट करें</b> — Claude Code के लिए <code>claude mcp add</code> लाइन कॉपी करें, या JSON ब्लॉक को Cursor, Claude Desktop या किसी भी अन्य MCP क्लाइंट में डालें। विकल्प B दिखने वाले Word एडिटर के लिए लोकल HTTP सर्वर चालू करता है। दोनों के बारे में <a href="#mcp-server">MCP सर्वर</a> में बताया गया है।</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Plot Docs क्यों

@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — 開源 AI 辦公套件：Docs、Sheets、Slides、PDF、Markdown 與 HTML，內建 AI 面板" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -60,182 +57,27 @@ Windows 與 Linux。它能開啟並儲存原生的 `.docx`、`.xlsx` 與 `.pptx`
 
 ## Demo
 
-六款應用程式，一個 AI 面板，再加上一套給程式開發代理使用的命令列。
-每張截圖都是在 macOS 上實際操作的真實畫面，AI 的動作皆由面板中可見的
-提示詞驅動。
-
-### 1 · Docs — 開啟並編輯 `.docx`，每一步 AI 編輯都能檢視
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs 呈現一份雙欄年度報告頁面，含滿版封面圖片、灰底 KPI 表格、頁首與頁尾，縮放 80%，AI 面板收合"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs：一份含橫幅圖片的公司概覽；AI 精簡了概覽段落並插入新的條列區塊，面板提供一鍵回復"></td>
-</tr>
-<tr>
-<td><b>依 Word 排版方式開啟檔案</b>——雙欄版面、滿版出血圖片、灰底表格、
-頁首頁尾，分頁依 Word 的行距量測。樣式、註解、追蹤修訂、公式與手寫
-筆跡都能原樣往返不受影響。</td>
-<td><b>直接說出想要的修改</b>——AI 只讀取需要的區塊，重寫概覽段落並插入
-新的條列區塊。每一次 AI 操作都是可回復的快照；開啟<b>追蹤修訂</b>後，
-編輯會以 Word 樣式修訂呈現。</td>
-</tr>
-</table>
-
-### 2 · Sheets — `.xlsx` 有即時公式與圖表，不是貼上的數字
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets：AI 新增了一張摘要工作表，用 SUMIF 公式按地區與類別統計營收，並加上直條圖，回報套用了 43 項變更並提供復原按鈕"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets：詢問哪個地區在第二季營收領先，AI 回答歐洲並附上分類明細，同時將使用到的儲存格以連結形式引用，旁邊是訂單工作表"></td>
-</tr>
-<tr>
-<td><b>直接建好</b>——只憑一句話，代理就能新增一張摘要工作表，用真正的
-<code>SUMIF</code> 公式依地區與類別統計，插入直條圖，並把 43 項變更
-整合成一次可復原的批次操作。</td>
-<td><b>直接詢問</b>——對工作簿的提問會附上推理過程，並把實際使用的
-儲存格做成可點擊的引用連結。背後是自研的 Rust `.xlsx` 引擎、樞紐分析表、
-篩選器、條件格式與公式追蹤。</td>
-</tr>
-</table>
-
-### 3 · Slides — 從一句提示詞到一份 `.pptx` 投影片
-
-<img src="../assets/readme/slides-generate.webp" alt="Plot Docs Slides 產生 Aurora Home 投資人簡報的縮時過程：AI 在面板中規劃故事線，投影片依序出現在畫布上，最終簡報以收尾的訴求結束" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides：畫面上是 AI 生成的 Aurora Home 投資人簡報封面投影片，附原始的一行提示詞與 AI 在面板中對已完成內容的摘要"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides：同一份 11 頁投影片的收尾頁設計完成，左側是縮圖列，AI 面板總結了整份簡報的敘事脈絡"></td>
-</tr>
-<tr>
-<td><b>只需一句話</b>——「為 Aurora Home 製作一份 10 頁的投資人簡報……」。
-Plot Docs 會規劃敘事脈絡、研究相關數據，並把每一頁直接生成在畫面上，
-成為一份真正的 `.pptx`。</td>
-<td><b>拿到的是完整成品</b>——十一頁設計完整的投影片，字體排版、圖像
-風格一致，並以行動呼籲收尾；可繼續用母片、版面配置、智慧輔助線與
-不破壞原圖的裁切功能編輯，或請面板重新設計風格、改寫文字、調整順序。</td>
-</tr>
-</table>
-
-### 4 · PDF — 就地編輯 PDF 文字，在本機把 PDF 轉成 Word
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF：編輯文字模式為頁面上每個文字區塊畫出框線以供就地編輯，同時 AI 面板正在回答一則關於報告的問題並附上頁碼引用"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs 顯示由 Helios 季度報告 PDF 在本機轉換而成的 Word 文件，於第二個分頁開啟，旁邊是原始 PDF"></td>
-</tr>
-<tr>
-<td><b>直接在頁面內編輯</b>——編輯文字模式為每個文字區塊畫出框線以供
-重新輸入；內容串流是透過 PDFium 用原始字體重寫，而不是覆蓋式的注解。
-向 AI 詢問長篇報告的問題，也能得到附頁碼引用的回答。</td>
-<td><b>在本機完成轉換</b>——<b>PDF 轉換器 → PDF 轉 Word</b> 會產生可
-編輯的 `.docx`，在 Docs 中與來源檔並排開啟，標題、統計列與段落皆完整
-保留。Excel 與 PowerPoint 的轉換方式相同；掃描頁面則交由系統 OCR 處理。</td>
-</tr>
-</table>
-
-### 5 · HTML — 先出設計簡報，再由 AI 建立網頁與介面
-
-說明這個網頁是做什麼用的、給誰看。AI 會先提出一份**設計簡報**——
-主打亮點、色盤、字體與風格方向——再依這些設計標記建出一個完整
-獨立的 `.html` 檔案。
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Plot Docs HTML 重新設計 Lumen 到達頁面的縮時過程：面板中一次 Restyle 請求就把深色的 Midnight Studio 頁面變成暖色的 Solar Daybreak 版本，而每個區塊與所有文案都維持不變" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML：以深色 Midnight Studio 風格方向生成的太陽能桌燈登陸頁，畫面顯示即時預覽，AI 面板總結了剛完成的頁面"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="同一份 Lumen 登陸頁由 AI 重新設計成溫暖的 Solar Daybreak 風格方向：紙質背景、襯線標題與橘色重點色，所有版塊與文案皆保留"></td>
-</tr>
-<tr>
-<td><b>一句提示詞就能生成</b>——為 Lumen 打造的醒目主視覺、功能卡片、
-價格方案與候補名單表單，皆以 Midnight Studio 風格方向建成。點選任何
-元素即可重新設計樣式，雙擊即可編輯文字，也能切換到 CodeMirror
-原始碼視圖。</td>
-<td><b>同一份設計，換個方向</b>——一次<b>重新設計</b>請求就會換掉設計簡報
-的標記，頁面隨之調整：溫暖的紙感、雜誌風襯線字體、日落橘重點色，
-文案完全不重寫。可全螢幕展示，或匯出為 PDF 或原生可編輯的 Word 文件。</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML：為自由接案設計師生成的個人儀表板介面，採溫暖亞麻風格，含左側導覽列、襯線問候語與四張指標卡片"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML：以報紙版式生成的電動車市場數據報告，含襯線報頭、一項 1730 萬的頭條數字與一列統計數據"></td>
-</tr>
-<tr>
-<td><b>介面原型</b>——「個人儀表板」範本能把一個人物設定變成可用的
-版面：左側導覽列、問候語、計費工時走勢圖、發票與使用率卡片，全都是
-可以直接交給工程師的真實 HTML。</td>
-<td><b>數據敘事</b>——「數據報告」範本會建出一份雜誌式報紙版面：襯線
-報頭、一個頭條數字、以分隔線隔開的統計列、內嵌 SVG 圖表，以及一段
-方法論說明。</td>
-</tr>
-</table>
-
-### 6 · Markdown — 以區塊編輯器編輯純 `.md`，並內建 Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown：選取一段文字後出現 Ask AI 彈出視窗，內含輸入的指令與建議選項，如「潤飾」「更精簡」「擴寫」「修正語法」，並附「立即送出」與「加入佇列」按鈕"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown 呈現一份上線公告文件，內含表格、Mermaid 流程圖與待辦清單，左側是 AI 面板的起手提示詞"></td>
-</tr>
-<tr>
-<td><b>針對選取內容詢問 AI</b>——選取任意段落即會出現<b>Ask AI</b>選項：
-輸入指令或挑選建議，可立即送出，也能把多個定位好的編輯加入佇列一次
-執行。這個入口在每個應用程式中都相同。</td>
-<td><b>渲染顯示，仍以純 Markdown 儲存</b>——標題、清單、表格、圖片、
-程式碼區塊與 Mermaid 圖表都在 Tiptap 區塊編輯器中呈現，存回時仍是
-純 `.md`，並支援完全在本機執行的 <b>Markdown → Word</b> 匯出。</td>
-</tr>
-</table>
-
-### 7 · CLI — 讓你的程式開發代理在本機驅動 Plot Docs
-
-Plot Docs 內建 `plotdocs` 命令列與一份 agent skill。安裝這份 skill 之後，
-Claude Code、Codex、Cursor、Gemini CLI、GitHub Copilot、OpenCode 或 Windsurf
-就能透過與應用程式相同的引擎，建立、轉換、讀取與編輯真正的 Office 檔案，
-完全不必開啟視窗。
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides 顯示一份由程式開發代理透過 plotdocs 命令列建立的八頁太陽系簡報：畫布上是封面投影片，左側有八張縮圖，AI 面板處於開啟狀態" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="太陽系簡報渲染出的八張投影片並排呈現：封面、探索時間線、四個關鍵數字、行星直徑長條圖、岩質行星與巨行星的對比、太陽佔 99.8% 的主視覺數字、四大巨行星的格狀排列與重點整理"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs 設定的「整合」頁面：plotdocs skill 已安裝到 Claude Code，Codex 與 Cursor 旁邊顯示著「安裝」按鈕"></td>
-</tr>
-<tr>
-<td><b>對代理下一句提示詞</b>——「做一份關於太陽系的八頁簡報。」代理讀取 skill，
-寫出一份樣式表、一份大綱與每張投影片各一份的頁面規格，用
-<code>plotdocs image</code> 生成兩張照片，再讓 <code>plotdocs slides check</code>
-擋下所有溢出或重疊的內容，最後由 <code>plotdocs create</code> 組裝出
-<code>.pptx</code>，並以 <code>slides render</code> 交回每張投影片各一張 PNG
-供你檢視。</td>
-<td><b>在設定 → 整合中一次安裝</b>——Plot Docs 會列出在這台電腦上找到的
-程式開發代理，並把 skill 寫入你勾選的每一個。也可以把 skill 下載成 zip
-壓縮檔，或執行 <code>npx skills add plotxyz-ai/plot-docs</code>。命令與完整
-工作流程請見<a href="#command-line-and-agent-skill">命令列與 agent skill</a>。</td>
-</tr>
-</table>
-
-### 8 · MCP — 透過 Model Context Protocol 提供相同的工具
-
-每一個 `plotdocs` 命令同時也是一個 MCP 工具。Claude Code、Claude Desktop、
-Cursor 及任何其他 MCP 用戶端都能自行啟動 `plotdocs mcp`，不必安裝 skill，
-也不必開啟任何視窗，就能取得 29 個工具以及以資源形式提供的操作參考文件。
-應用程式內建的第二個 HTTP 伺服器，還能讓代理在一個可見的編輯器分頁中
-建立 Word 文件，讓你即時查看。
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Claude Code 透過 plotdocs MCP 伺服器建立一份八頁再生能源投資簡報的縮時畫面：它會搜尋圖表與照片，並用 media 檢查每一張候選圖片，deck_start 寫入樣式表與大綱，deck_page 逐頁新增經過檢查的頁面，deck_build 組裝出 .pptx，slides_render 傳回每一頁的圖片；完成的簡報接著會在 Plot Docs Slides 中開啟" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides 顯示 Claude Code 透過 plotdocs MCP 伺服器建立的八頁再生能源 2026 簡報：畫布上是帶有風力發電場照片的封面投影片，左側有八張縮圖"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs 設定的「整合」頁面，MCP 部分：Claude Code 適用的一行 claude mcp add 指令、Cursor、Claude Desktop 與其他 MCP 用戶端適用的 JSON 程式碼區塊，以及下方的本機 HTTP 伺服器選項"></td>
-</tr>
-<tr>
-<td><b>一句提示詞，三十八次工具呼叫，不用終端機</b>——「做一份關於 2026 年再生能源的八頁投資簡報，封面和其他合適的地方都配上真實照片。」代理先用 <code>search</code> 蒐集圖表與照片，再用 <code>media</code> 確認每一張候選圖片是不是真實照片，然後帶著樣式表與大綱呼叫 <code>deck_start</code>，接著逐頁呼叫 <code>deck_page</code>；每一頁都會先對照大綱與配色方案檢查通過才會保留，接著 <code>deck_build</code> 組裝出 <code>.pptx</code>，<code>slides_audit</code> 檢查是否溢出，<code>slides_render</code> 為每一頁交回一張供模型檢視的 PNG 圖片內容，最後 <code>deck_replace</code> 修復了它不滿意的三頁。</td>
-<td><b>在設定 → 整合中連接一次即可</b>——複製 Claude Code 適用的 <code>claude mcp add</code> 指令，或把 JSON 程式碼區塊貼進 Cursor、Claude Desktop 或任何其他 MCP 用戶端。選項 B 會開啟本機 HTTP 伺服器，供可見的 Word 編輯器使用。兩者都在<a href="#mcp-server">MCP 伺服器</a>中有詳細說明。</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## 為什麼選 Plot Docs

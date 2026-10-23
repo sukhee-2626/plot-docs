@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — สวีท Office ที่ขับเคลื่อนด้วย AI แบบโอเพนซอร์ส: Docs, Sheets, Slides, PDF, Markdown และ HTML พร้อมแผง AI ในตัว" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -63,145 +60,27 @@ Windows และ Linux เปิดและบันทึกไฟล์ `.do
 
 ## เดโม
 
-หกแอป แผง AI เดียว และบรรทัดคำสั่งสำหรับเอเจนต์เขียนโค้ดของคุณ
-ทุกภาพหน้าจอคือแอปจริงที่รันบน macOS โดย AI ถูกสั่งงานจากพรอมป์ที่คุณอ่านได้ในแผง
-
-### 1 · Docs — เปิดและแก้ไข `.docx` ด้วย AI ที่ตรวจสอบได้
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs แสดงหน้ารายงานประจำปีแบบสองคอลัมน์ พร้อมภาพหน้าปกเต็มความกว้าง ตาราง KPI แบบมีเงา หัวกระดาษและท้ายกระดาษ ที่ซูม 80% โดยแผง AI ถูกย่อไว้"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: ภาพรวมบริษัทพร้อมภาพแบนเนอร์ AI ได้ปรับส่วน Overview ให้กระชับขึ้นและแทรกส่วนบุลเลตใหม่ โดยแผงมีปุ่มย้อนกลับคลิกเดียว"></td>
-</tr>
-<tr>
-<td><b>เปิดไฟล์ตามที่ Word จัดวาง</b> — ส่วนสองคอลัมน์ ภาพเต็มหน้า ตารางแบบมีเงา หัวกระดาษและท้ายกระดาษ การแบ่งหน้าตามมาตรวัดบรรทัดของ Word สไตล์ ความคิดเห็น tracked changes สมการ และงานเขียนด้วยลายมือคงเดิมทุกรอบการเปิด-บันทึก</td>
-<td><b>ขอให้แก้ไข</b> — AI อ่านบล็อกที่จำเป็น เขียนส่วน Overview ใหม่ และแทรกส่วนบุลเลตใหม่ ทุกรอบของ AI คือสแนปช็อตที่ย้อนกลับได้ และเมื่อเปิด <b>Track changes</b> การแก้ไขจะมาในรูปแบบการแก้ไขสไตล์ Word</td>
-</tr>
-</table>
-
-### 2 · Sheets — `.xlsx` ที่มีสูตรและกราฟที่คำนวณสด ไม่ใช่ตัวเลขที่วางทับ
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: AI เพิ่มชีต Summary พร้อมรายรับตามภูมิภาคและหมวดหมู่โดยใช้สูตร SUMIF บวกกราฟแท่ง และรายงานว่ามีการเปลี่ยนแปลง 43 รายการพร้อมปุ่ม Undo"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: เมื่อถูกถามว่าภูมิภาคใดมีรายรับ Q2 นำหน้า AI ตอบว่ายุโรป พร้อมรายละเอียดแยกตามหมวดหมู่และอ้างอิงเซลล์ที่ใช้เป็นลิงก์ ข้างชีต Orders"></td>
-</tr>
-<tr>
-<td><b>สร้างมันขึ้นมา</b> — จากประโยคเดียว เอเจนต์เพิ่มชีต Summary พร้อมสูตร <code>SUMIF</code> จริงแยกตามภูมิภาคและหมวดหมู่ แทรกกราฟแท่ง และรวมการเปลี่ยนแปลงทั้ง 43 รายการเป็นชุดเดียวที่ย้อนกลับได้</td>
-<td><b>ถามมัน</b> — คำถามเกี่ยวกับเวิร์กบุ๊กจะได้คำตอบพร้อมเหตุผลและเซลล์ที่ใช้จริงในรูปแบบลิงก์อ้างอิงที่คลิกได้ เบื้องหลังคือเอนจิน `.xlsx` ของ Rust ที่พัฒนาขึ้นเอง ตาราง pivot, slicer, การจัดรูปแบบตามเงื่อนไข และการตรวจสอบที่มาของสูตร</td>
-</tr>
-</table>
-
-### 3 · Slides — จากพรอมป์สู่สไลด์ `.pptx`
-
-<img src="../assets/readme/slides-generate.webp" alt="ภาพไทม์แลปส์ของ Plot Docs Slides ขณะสร้างสไลด์นำเสนอนักลงทุน Aurora Home: AI วางโครงเรื่องในแผงควบคุม สไลด์ปรากฏบนแคนวาสทีละแผ่น และเดคที่เสร็จสมบูรณ์ปิดท้ายด้วย closing ask" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: สไลด์หน้าปกของดาต้าเดคนักลงทุน Aurora Home ที่สร้างโดย AI บนแคนวาส พร้อมพรอมป์บรรทัดเดียวต้นฉบับและสรุปของ AI ว่าสร้างอะไรไปในแผง"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: สไลด์ปิดที่ออกแบบแล้วของเดคเดียวกันที่มี 11 สไลด์ พร้อมแถบภาพย่อทางซ้ายและแผง AI สรุปเนื้อเรื่อง"></td>
-</tr>
-<tr>
-<td><b>ใส่แค่บรรทัดเดียว</b> — "สร้างสไลด์นำเสนอนักลงทุน 10 สไลด์สำหรับ Aurora Home…" Plot Docs วางเนื้อเรื่อง ค้นคว้าตัวเลข และร่างทุกสไลด์ลงบนแคนวาสเป็น `.pptx` จริง</td>
-<td><b>ได้เดคที่เสร็จสมบูรณ์</b> — สไลด์ที่ออกแบบแล้ว 11 สไลด์ด้วยไทโปกราฟีและภาพที่สอดคล้องกัน และคำกระตุ้นการตัดสินใจปิดท้าย แก้ไขต่อได้ด้วย master, layout, smart guide และการครอปแบบไม่ทำลายต้นฉบับ หรือให้แผงช่วยปรับสไตล์ เขียนใหม่ และจัดลำดับใหม่</td>
-</tr>
-</table>
-
-### 4 · PDF — แก้ไขข้อความ PDF ในตำแหน่งเดิม แปลง PDF เป็น Word ในเครื่อง
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: โหมด Edit text ขีดกรอบทุกบล็อกข้อความบนหน้าเพื่อแก้ไขในตำแหน่งเดิม ขณะที่แผง AI ตอบคำถามเกี่ยวกับรายงานพร้อมอ้างอิงหมายเลขหน้า"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs แสดงเอกสาร Word ที่แปลงในเครื่องจาก PDF รายงานรายไตรมาส Helios เปิดในแท็บที่สองข้างไฟล์ PDF ต้นฉบับ"></td>
-</tr>
-<tr>
-<td><b>แก้ไขในหน้าเอกสาร</b> — โหมด Edit text ขีดกรอบทุกบล็อกข้อความเพื่อพิมพ์ทับในตำแหน่งเดิม โดย content stream ถูกเขียนใหม่ผ่าน PDFium ด้วยฟอนต์เดิม ไม่ใช่การแปะข้อความทับ ถาม AI เกี่ยวกับรายงานยาวๆ แล้วได้คำตอบพร้อมอ้างอิงหมายเลขหน้า</td>
-<td><b>แปลงในเครื่อง</b> — <b>PDF Converter → PDF to Word</b> สร้าง `.docx` ที่แก้ไขได้ ซึ่งเปิดใน Docs ข้างไฟล์ต้นฉบับ โดยหัวเรื่อง แถวข้อมูลสถิติ และพารากราฟยังคงอยู่ครบ ปลายทาง Excel และ PowerPoint ก็ทำงานแบบเดียวกัน ส่วนหน้าที่สแกนมาจะผ่านระบบ OCR ของเครื่อง</td>
-</tr>
-</table>
-
-### 5 · HTML — ตัวช่วยสร้างหน้าเว็บและ UI ด้วย AI โดยเริ่มจากบรีฟการออกแบบ
-
-บอกว่าหน้านี้มีไว้เพื่ออะไรและสำหรับใคร AI จะเสนอ **บรีฟการออกแบบ**
-ก่อน — hook, จานสี, ไทโปกราฟี และแนวทางสไตล์ — จากนั้นจึงสร้างไฟล์ `.html`
-แบบครบในตัวไฟล์เดียวตามโทเคนเหล่านั้น
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="ภาพไทม์แลปส์ของ Plot Docs HTML ขณะปรับสไตล์หน้า Landing Page ของ Lumen: คำขอ Restyle เพียงครั้งเดียวในแผงควบคุมเปลี่ยนหน้า Midnight Studio ที่มืดให้เป็นเวอร์ชัน Solar Daybreak ที่อบอุ่น โดยทุกส่วนและเนื้อหาทั้งหมดยังคงอยู่ในตำแหน่งเดิม" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: หน้า landing page ที่สร้างขึ้นสำหรับโคมไฟตั้งโต๊ะพลังงานแสงอาทิตย์ในแนว Midnight Studio โทนมืด แสดงในพรีวิวสดพร้อมแผง AI สรุปหน้าที่สร้างไปแล้ว"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="หน้า landing page Lumen เดิมที่ถูก AI ปรับสไตล์ใหม่เป็นแนว Solar Daybreak โทนอบอุ่น: พื้นหลังสีกระดาษ หัวข้อฟอนต์ serif และสีเน้นส้ม โดยทุกส่วนและเนื้อหาทั้งหมดยังคงอยู่"></td>
-</tr>
-<tr>
-<td><b>สร้างจากพรอมป์เดียว</b> — hero ที่โดดเด่น การ์ดฟีเจอร์ ราคา และฟอร์ม waitlist สำหรับ Lumen สร้างในแนว Midnight Studio คลิกที่อีลิเมนต์ใดก็ได้เพื่อปรับสไตล์ ดับเบิลคลิกเพื่อแก้ไขข้อความ หรือสลับไปดูซอร์สโค้ดผ่าน CodeMirror</td>
-<td><b>ดีไซน์เดิม แนวทางใหม่</b> — คำขอ <b>Restyle</b> เดียวสลับโทเคนของบรีฟ และหน้าเว็บก็ปรับตาม: พื้นกระดาษโทนอุ่น ฟอนต์ serif แบบบทบรรณาธิการ สีเน้นส้มแดด โดยไม่มีอะไรถูกเขียนใหม่ทั้งหมด นำเสนอแบบเต็มจอ หรือส่งออกเป็น PDF หรือเอกสาร Word ที่แก้ไขได้แบบเนทิฟ</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: หน้า dashboard ส่วนตัวที่สร้างขึ้นสำหรับนักออกแบบฟรีแลนซ์ในสไตล์ผ้าลินินโทนอุ่น มีแถบด้านซ้าย คำทักทายฟอนต์ serif และการ์ดเมตริกสี่ใบ"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: รายงานข้อมูลตลาดรถยนต์ไฟฟ้าที่สร้างขึ้นในสไตล์หนังสือพิมพ์ พร้อมหัวเรื่องฟอนต์ serif ตัวเลขเด่น 17.3 ล้าน และแถวข้อมูลสถิติ"></td>
-</tr>
-<tr>
-<td><b>โมเดล UI จำลอง</b> — เทมเพลตเริ่มต้น "personal dashboard" เปลี่ยนเพอร์โซนาให้เป็นเลย์เอาต์ที่ใช้งานได้จริง: แถบด้านซ้าย คำทักทาย สปาร์กไลน์ชั่วโมงที่เรียกเก็บเงินได้ การ์ดใบแจ้งหนี้และการใช้งาน ทั้งหมดเป็น HTML จริงที่ส่งต่อให้นักพัฒนาได้</td>
-<td><b>เรื่องราวจากข้อมูล</b> — เทมเพลตเริ่มต้น "data report" สร้างหนังสือพิมพ์บทบรรณาธิการ: หัวเรื่องฟอนต์ serif ตัวเลขเด่นตัวเดียว แถวข้อมูลสถิติที่มีเส้นแบ่ง กราฟ SVG แบบฝังในตัว และหมายเหตุวิธีการ</td>
-</tr>
-</table>
-
-### 6 · Markdown — บล็อกเอดิเตอร์เหนือไฟล์ `.md` แบบข้อความล้วน พร้อม Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: พารากราฟที่เลือกไว้แสดงป็อปโอเวอร์ Ask AI พร้อมคำสั่งที่พิมพ์และชิปคำแนะนำ เช่น Polish, Make more concise, Expand และ Fix grammar พร้อมปุ่ม Send now และ Add to queue"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown แสดงเอกสารบันทึกการเปิดตัวที่มีตาราง แผนภาพโฟลว์ Mermaid และรายการงาน พร้อมพรอมป์เริ่มต้นของแผง AI ทางซ้าย"></td>
-</tr>
-<tr>
-<td><b>ถาม AI เกี่ยวกับข้อความที่เลือก</b> — เลือกข้อความส่วนใดก็ได้ แล้วชิป <b>Ask AI</b> จะปรากฏขึ้น: พิมพ์คำสั่งหรือเลือกคำแนะนำ ส่งทันที หรือจัดคิวการแก้ไขแบบยึดตำแหน่งไว้หลายรายการแล้วรันทีเดียว จุดเข้าใช้งานเดียวกันนี้มีอยู่ในทุกแอป</td>
-<td><b>เรนเดอร์แล้วบันทึกกลับเป็น Markdown ล้วน</b> — หัวเรื่อง รายการ ตาราง ภาพ บล็อกโค้ด และไดอะแกรม Mermaid ในบล็อกเอดิเตอร์ Tiptap เขียนกลับเป็น <code>.md</code> ล้วน พร้อมการส่งออก <b>Markdown → Word</b> ที่ทำงานในเครื่องทั้งหมด</td>
-</tr>
-</table>
-
-### 7 · CLI — เอเจนต์เขียนโค้ดของคุณสั่งงาน Plot Docs บนเครื่องของคุณ
-
-Plot Docs มาพร้อมบรรทัดคำสั่ง `plotdocs` และสกิลสำหรับเอเจนต์ ติดตั้งสกิลแล้ว
-Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode หรือ Windsurf
-ก็สร้าง แปลง อ่าน และแก้ไขไฟล์ Office จริงผ่านเอนจินเดียวกับตัวแอปได้
-โดยไม่ต้องเปิดหน้าต่างใดๆ
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides แสดงเดคเรื่องระบบสุริยะ 8 สไลด์ที่เอเจนต์เขียนโค้ดสร้างผ่านบรรทัดคำสั่ง plotdocs: สไลด์หน้าปกบนแคนวาส ภาพย่อ 8 ภาพทางซ้าย และแผง AI ที่เปิดอยู่" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="สไลด์ที่เรนเดอร์แล้วทั้ง 8 แผ่นของเดคระบบสุริยะเรียงเคียงกัน: หน้าปก ไทม์ไลน์การสำรวจ ตัวเลขสำคัญ 4 ตัว กราฟแท่งเส้นผ่านศูนย์กลางดาวเคราะห์ ดาวเคราะห์หินเทียบกับดาวยักษ์ ตัวเลขเด่น 99.8% ของดวงอาทิตย์ กริดดาวยักษ์ทั้ง 4 และบทสรุป"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs Settings หน้า Integrations: สกิล plotdocs ติดตั้งใน Claude Code แล้ว พร้อมปุ่ม Install ข้าง Codex และ Cursor"></td>
-</tr>
-<tr>
-<td><b>พรอมป์เดียวถึงเอเจนต์ของคุณ</b> — "สร้างเดค 8 สไลด์เกี่ยวกับระบบสุริยะ" เอเจนต์อ่านสกิล เขียนสไตล์ชีต โครงร่าง และสเปกหน้าหนึ่งชุดต่อสไลด์ สร้างภาพถ่ายสองภาพด้วย <code>plotdocs image</code> และให้ <code>plotdocs slides check</code> ปฏิเสธทุกอย่างที่ล้นหรือซ้อนทับกันก่อนที่ <code>plotdocs create</code> จะประกอบ <code>.pptx</code> และ <code>slides render</code> ส่ง PNG กลับมาให้ดูหนึ่งภาพต่อสไลด์</td>
-<td><b>ติดตั้งครั้งเดียวจาก การตั้งค่า → การเชื่อมต่อ</b> — Plot Docs แสดงรายการเอเจนต์เขียนโค้ดที่พบในคอมพิวเตอร์เครื่องนี้และเขียนสกิลลงในแต่ละตัวที่คุณเลือก หรือดาวน์โหลดสกิลเป็น zip หรือรัน <code>npx skills add plotxyz-ai/plot-docs</code> คำสั่งและเวิร์กโฟลว์ฉบับเต็มอยู่ใน <a href="#command-line-and-agent-skill">บรรทัดคำสั่งและสกิลสำหรับเอเจนต์</a></td>
-</tr>
-</table>
-
-### 8 · MCP — เครื่องมือชุดเดียวกันผ่าน Model Context Protocol
-
-ทุกคำสั่ง `plotdocs` ก็เป็นเครื่องมือ MCP ด้วยเช่นกัน Claude Code, Claude
-Desktop, Cursor และไคลเอนต์ MCP อื่นใดสามารถสั่ง `plotdocs mcp` ได้เอง
-โดยไม่ต้องติดตั้งสกิลและไม่ต้องเปิดหน้าต่างใดๆ แล้วได้เครื่องมือ 29 ตัว
-พร้อมเอกสารอ้างอิงการทำงานในรูปแบบ resource เซิร์ฟเวอร์ HTTP ตัวที่สอง
-ภายในแอปยังช่วยให้เอเจนต์สร้างเอกสาร Word ในแท็บเอดิเตอร์ที่มองเห็นได้
-ขณะที่คุณเฝ้าดูอยู่ได้ด้วย
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="ภาพไทม์แลปส์ของ Claude Code กำลังสร้างเดคบรีฟให้นักลงทุนเรื่องพลังงานหมุนเวียน 8 สไลด์ผ่านเซิร์ฟเวอร์ plotdocs MCP: ค้นหาข้อมูลและภาพถ่ายด้วย search ตรวจสอบภาพถ่ายที่เป็นตัวเลือกแต่ละภาพด้วย media, deck_start เขียนสไตล์ชีตและโครงร่าง, deck_page เพิ่มหน้าที่ผ่านการตรวจสอบทีละหน้า, deck_build ประกอบไฟล์ .pptx และ slides_render ส่งภาพของทุกสไลด์กลับมา; เดคที่เสร็จแล้วจึงเปิดใน Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides แสดงเดคเรื่องพลังงานหมุนเวียน 2026 จำนวน 8 สไลด์ที่ Claude Code สร้างผ่านเซิร์ฟเวอร์ plotdocs MCP: สไลด์หน้าปกที่มีภาพถ่ายฟาร์มกังหันลมบนแคนวาสและภาพย่อ 8 ภาพทางซ้าย"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs Settings หน้า Integrations ส่วน MCP: คำสั่ง claude mcp add บรรทัดเดียวสำหรับ Claude Code, บล็อก JSON สำหรับ Cursor, Claude Desktop และไคลเอนต์ MCP อื่นๆ และตัวเลือกเซิร์ฟเวอร์ HTTP ในเครื่องด้านล่าง"></td>
-</tr>
-<tr>
-<td><b>พรอมป์เดียว เรียกเครื่องมือสามสิบแปดครั้ง ไม่ต้องใช้เทอร์มินัล</b> — "สร้างบรีฟให้นักลงทุน 8 สไลด์เกี่ยวกับพลังงานหมุนเวียนในปี 2026 ใส่ภาพถ่ายจริงที่หน้าปกและทุกจุดที่ภาพช่วยได้" เอเจนต์ดึงข้อมูลและภาพถ่ายด้วย <code>search</code> ถาม <code>media</code> ว่าภาพที่เป็นตัวเลือกแต่ละภาพเป็นภาพถ่ายจริงหรือไม่ จากนั้นเรียก <code>deck_start</code> พร้อมสไตล์ชีตและโครงร่าง แล้วเรียก <code>deck_page</code> ทีละสไลด์ ทุกหน้าจะถูกตรวจสอบกับโครงร่างและจานสีก่อนจะถูกเก็บไว้ <code>deck_build</code> ประกอบ <code>.pptx</code>, <code>slides_audit</code> ตรวจหาความล้น, <code>slides_render</code> ส่ง PNG กลับมาทีละสไลด์เป็นเนื้อหาภาพให้โมเดลดู และสุดท้าย <code>deck_replace</code> แก้ไขสามหน้าที่ไม่ถูกใจ</td>
-<td><b>เชื่อมต่อครั้งเดียวจาก การตั้งค่า → การเชื่อมต่อ</b> — คัดลอกคำสั่ง <code>claude mcp add</code> สำหรับ Claude Code หรือบล็อก JSON ไปวางใน Cursor, Claude Desktop หรือไคลเอนต์ MCP อื่นใด ตัวเลือก B เปิดใช้เซิร์ฟเวอร์ HTTP ในเครื่องสำหรับเอดิเตอร์ Word ที่มองเห็นได้ ทั้งสองแบบอธิบายไว้ใน <a href="#mcp-server">เซิร์ฟเวอร์ MCP</a></td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## ทำไมต้อง Plot Docs

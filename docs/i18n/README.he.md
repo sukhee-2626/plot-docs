@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — חבילת האופיס מבוססת ה-AI בקוד פתוח: Docs,‏ Sheets,‏ Slides,‏ PDF,‏ Markdown ו-HTML עם פאנל AI מובנה" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -62,144 +59,27 @@ Windows ו-Linux. היא פותחת ושומרת קבצי `.docx`,‏ `.xlsx` ו
 
 ## הדגמה
 
-שש אפליקציות, פאנל AI אחד, ושורת פקודה לסוכן הקוד שלכם. כל צילום מסך הוא
-מהאפליקציה האמיתית ב-macOS, עם ה-AI מופעל מהפרומפט שאפשר לקרוא בפאנל.
-
-### 1 · Docs — פתחו וערכו `.docx` עם AI שאפשר לבדוק
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs מציג עמוד דו-טורי מדוח שנתי עם תמונת שער ברוחב מלא, טבלת KPI מוצללת, כותרת עליונה ותחתונה, בתקריב של 80% עם פאנל ה-AI מכווץ"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: סקירת חברה עם תמונת באנר; ה-AI חידד את קטע ה-Overview והוסיף קטע חדש עם תבליטים, והפאנל מציע שחזור בלחיצה אחת"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>פותח את הקובץ בדיוק כפי ש-Word מעצב אותו</b> — קטעים דו-טוריים, תמונות עד לשולי העמוד, טבלאות מוצללות, כותרות עליונות ותחתונות, ומיספור עמודים המבוסס על מדדי השורות של Word. סטיילים, הערות, מעקב שינויים, נוסחאות ורישום בכתב יד עוברים הלוך ושוב ללא כל שינוי.</td>
-<td dir="rtl"><b>בקשו את השינוי</b> — ה-AI קורא את הבלוקים הדרושים לו, כותב מחדש את קטע ה-Overview ומוסיף קטע חדש עם תבליטים. כל פנייה ל-AI היא תמונת מצב שאפשר לשחזר; כאשר <b>מעקב שינויים</b> פעיל, השינויים מגיעים כתיקונים בסגנון Word.</td>
-</tr>
-</table>
-
-### 2 · Sheets — קובצי `.xlsx` עם נוסחאות ותרשימים חיים, לא מספרים מודבקים
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: ה-AI הוסיף גיליון Summary עם הכנסות לפי אזור וקטגוריה באמצעות נוסחאות SUMIF, בתוספת תרשים עמודות, ומדווח על 43 שינויים שהוחלו עם כפתור ביטול"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: בתשובה לשאלה איזה אזור הוביל בהכנסות ברבעון השני, ה-AI עונה אירופה עם פירוט לפי קטגוריה, ומצטט כקישורים את התאים שבהם השתמש, לצד גיליון Orders"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>בנו אותו</b> — ממשפט אחד הסוכן מוסיף גיליון Summary עם נוסחאות <code>SUMIF</code> אמיתיות לפי אזור וקטגוריה, מוסיף תרשים עמודות, ומחיל את 43 השינויים כאצווה אחת שאפשר לבטל.</td>
-<td dir="rtl"><b>שאלו אותו</b> — שאלות על חוברת העבודה מקבלות מענה עם ההיגיון שמאחורי התשובה והתאים המדויקים שבהם נעשה שימוש, כציטוטים שאפשר ללחוץ עליהם. מתחת למכסה המנוע: מנוע `.xlsx` פנימי הכתוב ב-Rust, טבלאות פיבוט, מגזרים (slicers), עיצוב מותנה ומעקב אחר נוסחאות.</td>
-</tr>
-</table>
-
-### 3 · Slides — מפרומפט למצגת `.pptx`
-
-<img src="../assets/readme/slides-generate.webp" alt="טיים-לאפס של Plot Docs Slides יוצר את מצגת המשקיעים Aurora Home: ה-AI מתכנן את קו העלילה בפאנל, השקופיות מופיעות על הקנבס אחת אחרי השנייה, והמצגת המוגמרת מסתיימת בבקשת הסגירה (closing ask)" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: שקופית השער של מצגת משקיעים בשם Aurora Home שנוצרה על ידי AI, על הקנבס, עם הפרומפט המקורי בשורה אחת וסיכום ה-AI של מה שנבנה בפאנל"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: שקופית הסיום המעוצבת של אותה מצגת בת 11 שקופיות, עם רצועת התמונות הממוזערות בצד שמאל ופאנל ה-AI מסכם את קו העלילה"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>שורה אחת בכניסה</b> — ״צרו מצגת משקיעים בת 10 שקופיות בשביל Aurora Home…״. Plot Docs מתכננת את קו העלילה, חוקרת את המספרים, ומכינה כל שקופית ישירות על הקנבס כקובץ <code>.pptx</code> אמיתי.</td>
-<td dir="rtl"><b>מצגת מוגמרת בפלט</b> — אחת עשרה שקופיות מעוצבות עם טיפוגרפיה ותמונות עקביות וקריאה לפעולה בסיום; המשיכו לערוך עם מאסטרים (masters), פריסות, קווי הנחיה חכמים וחיתוך תמונות שאינו הרסני, או בקשו מהפאנל לעצב מחדש, לכתוב מחדש ולסדר מחדש.</td>
-</tr>
-</table>
-
-### 4 · PDF — ערכו טקסט ב-PDF במקום, והמירו PDF ל-Word במכשיר
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: מצב 'ערוך טקסט' מתאר בקו כל בלוק טקסט בעמוד לעריכה במקום, בזמן שפאנל ה-AI עונה על שאלה בנוגע לדוח עם ציטוטים למספרי עמוד"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs מציג מסמך Word שהומר באופן מקומי מקובץ ה-PDF של סיכום הרבעון של Helios, ונפתח בכרטיסייה שנייה לצד קובץ ה-PDF המקורי"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>ערכו בתוך העמוד</b> — מצב 'ערוך טקסט' מתאר בקו כל בלוק טקסט להקלדה חוזרת במקום; זרם התוכן נכתב מחדש באמצעות PDFium עם הגופנים המקוריים, ולא באמצעות הערת כיסוי. שאלו את ה-AI על דוח ארוך וקבלו תשובות עם ציטוטים למספרי עמוד.</td>
-<td dir="rtl"><b>המירו במכשיר</b> — <b>PDF Converter → PDF to Word</b> מייצר קובץ <code>.docx</code> הניתן לעריכה, שנפתח ב-Docs לצד המקור, עם כותרות, שורות נתונים ופסקאות שלמות. יעדי Excel ו-PowerPoint עובדים באותו האופן; עמודים סרוקים עוברים דרך ה-OCR של המערכת.</td>
-</tr>
-</table>
-
-### 5 · HTML — בונה עמודים וממשקים מבוסס AI, שמתחיל מתדריך עיצוב
-
-תארו למה העמוד מיועד ולמי הוא מיועד. ה-AI מציע קודם **תדריך עיצוב** (design
-brief) — משפט פתיחה, פלטת צבעים, טיפוגרפיה וכיווני סטייל — ולאחר מכן בונה
-קובץ `.html` אחד ועצמאי בהתאם לפרמטרים האלה.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="טיים-לאפס של Plot Docs HTML משנה את העיצוב של דף הנחיתה של Lumen: בקשת Restyle אחת בפאנל הופכת את הדף הכהה של Midnight Studio לגרסת Solar Daybreak החמימה, בעוד כל קטע וכל התוכן נשארים במקומם" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: עמוד נחיתה שנוצר עבור מנורת שולחן סולארית בכיוון העיצובי הכהה Midnight Studio, מוצג בתצוגה המקדימה החיה עם פאנל ה-AI מסכם את העמוד שבנה"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="אותו עמוד נחיתה של Lumen, שעוצב מחדש על ידי ה-AI לכיוון החם Solar Daybreak: רקע בצבע נייר, כותרות בגופן serif ומבטא כתום, בשמירה על כל הקטעים וכל התוכן הכתוב"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>נוצר מפרומפט אחד</b> — hero בולט, כרטיסי פיצ'רים, תמחור וטופס הרשמה לרשימת המתנה בשביל Lumen, שנבנו בכיוון Midnight Studio. לחצו על כל אלמנט כדי לעצב אותו מחדש, לחיצה כפולה לעריכת טקסט, או החלפה לתצוגת קוד המקור של CodeMirror.</td>
-<td dir="rtl"><b>אותו עיצוב, כיוון חדש</b> — בקשת <b>Restyle</b> אחת מחליפה את הפרמטרים של התדריך, והעמוד מתאים את עצמו: נייר חם, גופן serif עיתונאי, מבטא כתום-שמש, בלי לכתוב מחדש שום דבר. הציגו במסך מלא, או ייצאו כ-PDF או כמסמך Word אמיתי הניתן לעריכה.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: ממשק דשבורד אישי שנוצר לעצמאי/ת בתחום העיצוב, בסטייל 'לינן' חם, עם עמודת ניווט בצד שמאל, ברכה בגופן serif וארבעה כרטיסי מדדים"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: דוח נתונים על שוק הרכב החשמלי (EV) שנוצר בסטייל 'עיתון רחב' (broadsheet), עם כותרת ראשית בגופן serif, נתון כותרת של 17.3 מיליון ושורת סטטיסטיקות"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>מוקאפים לממשק</b> — נקודת ההתחלה "דשבורד אישי" הופכת פרסונה לפריסה עובדת: עמודת ניווט, ברכה, sparkline של שעות לחיוב, כרטיסי חשבוניות וניצולת — הכול HTML אמיתי שאפשר להעביר למפתח.</td>
-<td dir="rtl"><b>סיפורי נתונים</b> — נקודת ההתחלה "דוח נתונים" בונה עיתון רחב בסגנון עיתונאי: כותרת ראשית בגופן serif, נתון כותרת אחד, שורת סטטיסטיקות מופרדת בקו, תרשימי SVG מוטבעים והערת מתודולוגיה.</td>
-</tr>
-</table>
-
-### 6 · Markdown — עורך בלוקים מעל קובצי `.md` רגילים, עם Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: פסקה מסומנת מציגה חלונית קופצת Ask AI עם הנחיה מוקלדת וצ'יפים של הצעות כמו Polish,‏ Make more concise,‏ Expand ו-Fix grammar, וגם כפתורי Send now ו-Add to queue"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown מציג מסמך הערות השקה עם טבלה, תרשים זרימה של Mermaid ורשימת משימות, עם פרומפטי הפתיחה של פאנל ה-AI בצד שמאל"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>שאלו את ה-AI על קטע מסומן</b> — סמנו כל קטע וצ'יפ <b>Ask AI</b> יופיע: הקלידו הנחיה או בחרו הצעה, שלחו אותה עכשיו, או העמידו בתור כמה שינויים מעוגנים והריצו אותם במעבר אחד. אותה נקודת כניסה קיימת בכל אחת מהאפליקציות.</td>
-<td dir="rtl"><b>מוצג ויזואלית, נשמר כ-Markdown רגיל</b> — כותרות, רשימות, טבלאות, תמונות, בלוקי קוד ותרשימי Mermaid בעורך בלוקים מבוסס Tiptap, שנכתבים בחזרה כקובץ <code>.md</code> רגיל, עם ייצוא Markdown → Word שרץ באופן מקומי מלא.</td>
-</tr>
-</table>
-
-### 7 · CLI — סוכן הקוד שלכם מפעיל את Plot Docs, על המחשב שלכם
-
-Plot Docs מגיעה עם שורת פקודה `plotdocs` ועם skill לסוכנים. התקינו את
-ה-skill, ו-Claude Code,‏ Codex,‏ Cursor,‏ Gemini CLI,‏ GitHub Copilot,‏ OpenCode
-או Windsurf יוכלו ליצור, להמיר, לקרוא ולערוך קבצי Office אמיתיים דרך אותם
-מנועים שמפעילים את האפליקציות, בלי לפתוח חלון.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides מציג מצגת בת שמונה שקופיות על מערכת השמש שסוכן קוד בנה דרך שורת הפקודה plotdocs: שקופית השער על הקנבס, שמונה תמונות ממוזערות בצד שמאל ופאנל ה-AI פתוח" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="שמונה השקופיות המרונדרות של מצגת מערכת השמש זו לצד זו: שער, ציר זמן של החקר, ארבעה מספרים מרכזיים, תרשים עמודות של קוטרי כוכבי הלכת, עולמות סלעיים מול ענקים, המספר הבולט 99.8% של השמש, רשת ארבעת הענקים ומסקנות"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="הגדרות Plot Docs, עמוד Integrations: ה-skill של plotdocs מותקן ב-Claude Code, עם כפתורי Install ליד Codex ו-Cursor"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>פרומפט אחד לסוכן שלכם</b> — ״בנו מצגת בת שמונה שקופיות על מערכת השמש.״ הסוכן קורא את ה-skill, כותב גיליון סטייל, מתווה ומפרט עמוד אחד לכל שקופית, מייצר את שתי התמונות עם <code>plotdocs image</code>, ונותן ל-<code>plotdocs slides check</code> לדחות כל דבר שגולש או חופף לפני ש-<code>plotdocs create</code> מרכיב את ה-<code>.pptx</code> ו-<code>slides render</code> מחזיר PNG לכל שקופית להתרשמות.</td>
-<td dir="rtl"><b>התקינו פעם אחת, מתוך הגדרות → שילובים</b> — Plot Docs מציגה את סוכני הקוד שהיא מוצאת על המחשב הזה וכותבת את ה-skill לכל אחד שתבחרו. או הורידו את ה-skill כ-zip, או הריצו <code>npx skills add plotxyz-ai/plot-docs</code>. הפקודות ותהליך העבודה המלא נמצאים ב<a href="#command-line-and-agent-skill">שורת הפקודה וה-skill לסוכנים</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP — אותם כלים דרך Model Context Protocol
-
-כל פקודת `plotdocs` היא גם כלי MCP. Claude Code,‏ Claude Desktop,‏ Cursor
-וכל לקוח MCP אחר יכולים להפעיל בעצמם את `plotdocs mcp`, בלי צורך להתקין
-skill ובלי לפתוח חלון, ולקבל 29 כלים בתוספת מדריכי הפעולות כמשאבים
-(resources). שרת HTTP שני בתוך האפליקציה מאפשר לסוכן לבנות מסמך Word
-בלשונית עורך גלויה בזמן שאתם צופים.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="צילום מואץ של Claude Code בונה תדריך משקיעים בן שמונה שקופיות על אנרגיה מתחדשת דרך שרת ה-MCP של plotdocs: מחפש איורים ותמונות, בודק כל תמונה מועמדת עם media, deck_start כותב את גיליון הסטייל והתווה, deck_page מוסיף עמוד מאומת אחד בכל פעם, deck_build מרכיב את קובץ ה-.pptx ו-slides_render מחזיר תמונה של כל שקופית; המצגת המוגמרת נפתחת לאחר מכן ב-Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides מציג את מצגת Renewable Energy 2026 בת שמונה השקופיות ש-Claude Code בנה דרך שרת ה-MCP של plotdocs: שקופית השער עם תצלום של חוות רוח על הקנבס ושמונה תמונות ממוזערות בצד שמאל"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="הגדרות Plot Docs, עמוד Integrations, חלק ה-MCP: פקודת claude mcp add בשורה אחת עבור Claude Code, בלוק ה-JSON עבור Cursor,‏ Claude Desktop ולקוחות MCP אחרים, ואפשרות שרת ה-HTTP המקומי מתחת"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>פרומפט אחד, 38 קריאות לכלים, בלי shell</b> — ״בנו תדריך משקיעים בן שמונה שקופיות על אנרגיה מתחדשת ב-2026, עם תמונה אמיתית על השער ובכל מקום שתמונה עוזרת.״ הסוכן מושך את האיורים והתמונות עם <code>search</code>, שואל את <code>media</code> אם כל תמונה מועמדת היא תצלום אמיתי, קורא ל-<code>deck_start</code> עם גיליון סטייל ותווה, ואז <code>deck_page</code> פעם אחת לכל שקופית; כל עמוד נבדק מול התווה והפלטה לפני שהוא נשמר, <code>deck_build</code> מרכיב את ה-<code>.pptx</code>, <code>slides_audit</code> מחפש גלישות, <code>slides_render</code> מחזיר PNG לכל שקופית כתוכן תמונה שהמודל יכול להסתכל עליו, ו-<code>deck_replace</code> מתקן את שלושת העמודים שלא מצאו חן בעיניו.</td>
-<td dir="rtl"><b>התחברו פעם אחת, מתוך הגדרות → שילובים</b> — העתיקו את שורת <code>claude mcp add</code> עבור Claude Code, או את בלוק ה-JSON אל Cursor,‏ Claude Desktop או כל לקוח MCP אחר. אפשרות B מפעילה את שרת ה-HTTP המקומי עבור עורך ה-Word הגלוי. שתיהן מתוארות ב<a href="#mcp-server">שרת MCP</a>.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## למה Plot Docs

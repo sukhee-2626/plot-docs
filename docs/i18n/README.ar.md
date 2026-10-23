@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — حزمة المكتب المفتوحة المصدر المدعومة بالذكاء الاصطناعي: Docs و Sheets و Slides و PDF و Markdown و HTML مع لوحة ذكاء اصطناعي مدمجة" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -63,146 +60,27 @@ Plot Docs بديل مجاني ومفتوح المصدر لـ Microsoft Office ع
 
 ## العرض التوضيحي
 
-ست تطبيقات، ولوحة ذكاء اصطناعي واحدة، وسطر أوامر لوكيل البرمجة الخاص بك. كل
-لقطة شاشة هي من التطبيق الفعلي على macOS، والذكاء الاصطناعي فيها ناتج عن
-التوجيه (prompt) الذي يمكنك قراءته في اللوحة.
-
-### 1 · Docs — افتح وحرّر ملفات `.docx` بمساعدة ذكاء اصطناعي يمكنك مراجعته
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="تطبيق Plot Docs Docs يعرض صفحة تقرير سنوي بعمودين مع صورة غلاف بعرض الصفحة كاملة، وجدول مؤشرات أداء مظلّل، وترويسة وتذييل، بتكبير 80% مع لوحة الذكاء الاصطناعي مطوية"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: نظرة عامة عن الشركة مع صورة بانر؛ أعاد الذكاء الاصطناعي صياغة قسم النظرة العامة بإحكام وأضاف قسمًا جديدًا بنقاط، وتوفّر اللوحة تراجعًا بضغطة واحدة"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>يفتح الملف كما يعرضه Word تمامًا</b> — أقسام بعمودين، صور بعرض الصفحة كاملة، جداول مظلّلة، ترويسات وتذييلات، وتقسيم إلى صفحات بحسب مقاييس أسطر Word. الأنماط والتعليقات وتتبّع التغييرات والمعادلات والكتابة بالحبر تبقى سليمة دون تغيير عند الحفظ.</td>
-<td dir="rtl"><b>اطلب التعديل</b> — يقرأ الذكاء الاصطناعي الكتل النصية التي يحتاجها، ويعيد كتابة قسم النظرة العامة ويضيف قسمًا جديدًا بنقاط. كل خطوة ذكاء اصطناعي هي لقطة يمكنك التراجع عنها؛ ومع تفعيل <b>تتبّع التغييرات</b>، تصل التعديلات كمراجعات على طراز Word.</td>
-</tr>
-</table>
-
-### 2 · Sheets — ملفات `.xlsx` بصِيَغ ورسوم بيانية حيّة، لا أرقام ملصقة
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: أضاف الذكاء الاصطناعي ورقة ملخّص (Summary) تعرض الإيرادات بحسب المنطقة والفئة باستخدام صِيَغ SUMIF، إضافة إلى رسم بياني بالأعمدة، مع تقرير بـ 43 تغييرًا مُطبَّقًا وزر تراجع"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: عند سؤاله عن المنطقة الأعلى إيرادًا في الربع الثاني، يجيب الذكاء الاصطناعي بأوروبا مع تفصيل حسب الفئة، ويستشهد بالخلايا التي استخدمها كروابط، إلى جانب ورقة Orders"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>ابنِه</b> — من جملة واحدة، يضيف الوكيل ورقة ملخّص بصِيَغ <code>SUMIF</code> فعلية حسب المنطقة والفئة، ويُدرج رسمًا بيانيًا بالأعمدة، ويطبّق الـ43 تغييرًا كدفعة واحدة قابلة للتراجع.</td>
-<td dir="rtl"><b>اسأله</b> — تُجاب الأسئلة عن المصنّف مع شرح المنطق والخلايا الدقيقة المستخدمة كاستشهادات قابلة للنقر. ويعمل خلف الكواليس: محرّك <code>.xlsx</code> داخلي مطوَّر بلغة Rust، وجداول محورية، ومرشِّحات تقطيع (slicers)، وتنسيق شرطي، وتتبّع للصِّيَغ.</td>
-</tr>
-</table>
-
-### 3 · Slides — من توجيه (prompt) إلى عرض تقديمي `.pptx` كامل
-
-<img src="../assets/readme/slides-generate.webp" alt="لقطات متسارعة لـ Plot Docs Slides وهو يُنشئ عرض المستثمرين Aurora Home: يخطط الذكاء الاصطناعي القصة في اللوحة، وتظهر الشرائح على القماش واحدة تلو الأخرى، وينتهي العرض المكتمل بطلب الإغلاق (closing ask)" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: شريحة الغلاف لعرض تقديمي لمستثمري Aurora Home من إنشاء الذكاء الاصطناعي على لوحة الرسم، مع التوجيه الأصلي المكوَّن من سطر واحد وملخّص الذكاء الاصطناعي لما بناه في اللوحة"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: الشريحة الختامية المصمَّمة لنفس العرض المكوَّن من 11 شريحة، مع شريط المصغّرات على اليسار ولوحة الذكاء الاصطناعي تلخّص السرد القصصي"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>سطر واحد كمُدخل</b> — "أنشئ عرضًا تقديميًا من 10 شرائح لعرضه على المستثمرين لصالح Aurora Home…". يخطّط Plot Docs للسرد القصصي، ويبحث عن الأرقام، ويُعِدّ مسودة كل شريحة على لوحة الرسم كملف <code>.pptx</code> فعلي.</td>
-<td dir="rtl"><b>عرض تقديمي جاهز كمُخرَج</b> — إحدى عشرة شريحة مصمَّمة بخطوط وصور متّسقة ودعوة ختامية لاتخاذ إجراء؛ استمر في التحرير عبر الشرائح الرئيسية والتخطيطات والأدلة الذكية والقصّ غير المدمِّر، أو اطلب من اللوحة إعادة التصميم أو الصياغة أو إعادة الترتيب.</td>
-</tr>
-</table>
-
-### 4 · PDF — حرّر نص PDF في مكانه، وحوّل PDF إلى Word على الجهاز مباشرة
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: يحدّد وضع تحرير النص كل كتلة نصية في الصفحة للتحرير في مكانها، بينما تجيب لوحة الذكاء الاصطناعي عن سؤال حول التقرير مع استشهادات بأرقام الصفحات"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="تطبيق Plot Docs Docs يعرض مستند Word محوَّلًا محليًا من ملف PDF الخاص بالمراجعة الفصلية لشركة Helios، مفتوحًا في تبويب ثانٍ إلى جانب ملف PDF الأصلي"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>حرّر داخل الصفحة</b> — يحدّد وضع تحرير النص كل كتلة نصية لإعادة الكتابة في مكانها؛ ويُعاد كتابة تدفّق المحتوى عبر PDFium بالخطوط الأصلية نفسها، لا بتعليق تغطية فوق النص. اسأل الذكاء الاصطناعي عن تقرير طويل واحصل على إجابات مع استشهادات بأرقام الصفحات.</td>
-<td dir="rtl"><b>حوّل على الجهاز مباشرة</b> — تُنتج ميزة <b>PDF Converter → PDF to Word</b> ملف <code>.docx</code> قابلًا للتحرير يُفتح في Docs إلى جانب المصدر، مع بقاء العناوين وصفوف الإحصاءات والفقرات سليمة. تعمل صيغتا الوجهة Excel و PowerPoint بالطريقة نفسها؛ وتمرّ الصفحات الممسوحة عبر تقنية OCR الخاصة بنظام التشغيل.</td>
-</tr>
-</table>
-
-### 5 · HTML — أداة بناء صفحات وواجهات بالذكاء الاصطناعي، تبدأ بموجز تصميم
-
-أخبر الذكاء الاصطناعي بالغرض من الصفحة والجهة المستهدفة بها. يقترح الذكاء
-الاصطناعي أولًا **موجز تصميم (design brief)** — يشمل الفكرة الجاذبة، ولوحة
-الألوان، والخطوط، وتوجهات الأسلوب — ثم يبني ملف `.html` واحدًا مستقلًا بالكامل
-استنادًا إلى تلك العناصر (tokens).
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="لقطات متسارعة لـ Plot Docs HTML وهو يعيد تصميم صفحة الوصول الخاصة بـ Lumen: طلب Restyle واحد في اللوحة يحوّل صفحة Midnight Studio الداكنة إلى نسخة Solar Daybreak الدافئة، بينما يبقى كل قسم وكل المحتوى في مكانه" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: صفحة هبوط تم إنشاؤها لمصباح مكتبي يعمل بالطاقة الشمسية باتجاه Midnight Studio الداكن، معروضة في المعاينة المباشرة مع لوحة الذكاء الاصطناعي تلخّص الصفحة التي بنتها للتو"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="نفس صفحة هبوط Lumen بعد إعادة تصميمها بواسطة الذكاء الاصطناعي إلى اتجاه Solar Daybreak الدافئ: خلفية بلون الورق، وعناوين بخط Serif، ولمسة برتقالية، مع الحفاظ على جميع الأقسام والنصوص"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>يُنشأ من توجيه واحد</b> — قسم رئيسي جريء، وبطاقات ميزات، وتسعير، ونموذج قائمة انتظار لصفحة Lumen، مبنيّة باتجاه Midnight Studio. اضغط على أي عنصر لإعادة تصميمه، أو اضغط ضغطًا مزدوجًا لتحرير النص، أو انتقل إلى عرض الكود المصدري في CodeMirror.</td>
-<td dir="rtl"><b>نفس التصميم، اتجاه جديد</b> — طلب <b>إعادة تصميم (Restyle)</b> واحد يستبدل عناصر الموجز فتتبعه الصفحة تلقائيًا: خلفية ورقية دافئة، وخط Serif تحريري، ولمسة برتقالية شمسية، دون إعادة كتابة أي نص. اعرضها بملء الشاشة، أو صدّرها كملف PDF أو مستند Word أصلي قابل للتحرير.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: واجهة لوحة تحكم شخصية تم إنشاؤها لمصمِّم مستقل بأسلوب كتّاني دافئ، مع شريط جانبي أيسر، وترحيب بخط Serif، وأربع بطاقات مقاييس"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: تقرير بيانات عن سوق السيارات الكهربائية تم إنشاؤه بأسلوب الصحيفة الكبيرة (broadsheet)، مع ترويسة بخط Serif، ورقم عنوان رئيسي بقيمة 17.3 مليون، وصفّ إحصاءات"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>نماذج واجهات (UI mockups)</b> — تحوّل قالب البداية "لوحة التحكم الشخصية" شخصية افتراضية إلى تخطيط عملي: شريط جانبي، ترحيب، رسم Sparkline لساعات العمل القابلة للفوترة، وبطاقات فواتير ونسب استغلال، وكل ذلك HTML فعلي يمكنك تسليمه لمطوِّر.</td>
-<td dir="rtl"><b>قصص البيانات</b> — يبني قالب البداية "تقرير البيانات" صحيفة تحريرية: ترويسة بخط Serif، ورقم عنوان رئيسي واحد، وصفّ إحصاءات مفصول بخطوط، ورسوم بيانية SVG مضمّنة، وملاحظة عن المنهجية.</td>
-</tr>
-</table>
-
-### 6 · Markdown — محرِّر كُتل فوق ملفات `.md` النصية الصِّرفة، مع ميزة Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: فقرة محدَّدة تعرض نافذة منبثقة Ask AI مع تعليمات مكتوبة وشرائح اقتراحات مثل Polish وMake more concise وExpand وFix grammar، إضافة إلى زرَّي Send now وAdd to queue"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="تطبيق Plot Docs Markdown يعرض مستند ملاحظات إطلاق يحتوي على جدول، ومخطط تدفّق Mermaid، وقائمة مهام، مع توجيهات البداية الخاصة بلوحة الذكاء الاصطناعي على اليسار"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>اسأل الذكاء الاصطناعي عن نص محدَّد</b> — حدِّد أي فقرة فتظهر شريحة <b>Ask AI</b>: اكتب تعليمًا أو اختر اقتراحًا، وأرسله فورًا، أو أضِف عدة تعديلات مرتبطة بمواضع محدَّدة إلى قائمة انتظار ونفِّذها في مرة واحدة. نفس المدخل موجود في كل التطبيقات.</td>
-<td dir="rtl"><b>يُعرض بصريًا، ويُحفَظ كملف Markdown نصي صِرف</b> — عناوين، وقوائم، وجداول، وصور، وكتل كود، ومخططات Mermaid داخل محرِّر كُتل من Tiptap، تُكتب مرة أخرى كملف <code>.md</code> نصي صِرف، مع تصدير <b>Markdown → Word</b> يعمل محليًا بالكامل.</td>
-</tr>
-</table>
-
-### 7 · CLI — وكيل البرمجة الخاص بك يقود Plot Docs، على جهازك
-
-يأتي Plot Docs مع سطر أوامر `plotdocs` ومهارة وكيل. ثبّت المهارة، وسيتمكّن
-Claude Code أو Codex أو Cursor أو Gemini CLI أو GitHub Copilot أو OpenCode أو
-Windsurf من إنشاء ملفات Office حقيقية وتحويلها وقراءتها وتحريرها عبر المحرّكات
-نفسها التي تستخدمها التطبيقات، دون فتح أي نافذة.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides يعرض عرضًا تقديميًا من ثماني شرائح عن المجموعة الشمسية بناه وكيل برمجة عبر سطر أوامر plotdocs: شريحة الغلاف على لوحة الرسم، وثماني مصغّرات على اليسار، ولوحة الذكاء الاصطناعي مفتوحة" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="الشرائح الثماني المُصيَّرة لعرض المجموعة الشمسية جنبًا إلى جنب: الغلاف، والجدول الزمني للاستكشاف، وأربعة أرقام رئيسية، ورسم بياني بالأعمدة لأقطار الكواكب، والعوالم الصخرية مقابل العمالقة، ورقم الشمس البارز 99.8%، وشبكة العمالقة الأربعة، والخلاصات"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="إعدادات Plot Docs، صفحة Integrations: مهارة plotdocs مثبَّتة في Claude Code، مع أزرار Install بجوار Codex وCursor"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>توجيه واحد إلى وكيلك</b> — "أنشئ عرضًا تقديميًا من ثماني شرائح عن المجموعة الشمسية." يقرأ الوكيل المهارة، ويكتب ورقة أنماط ومخططًا ومواصفة صفحة واحدة لكل شريحة، ويولّد الصورتين بواسطة <code>plotdocs image</code>، ويترك <code>plotdocs slides check</code> يرفض أي عنصر يتجاوز الحدود أو يتداخل قبل أن يجمّع <code>plotdocs create</code> ملف <code>.pptx</code> ويُعيد <code>slides render</code> صورة PNG لكل شريحة لمعاينتها.</td>
-<td dir="rtl"><b>ثبّت مرة واحدة، من الإعدادات → التكاملات</b> — يسرد Plot Docs وكلاء البرمجة الذين يجدهم على هذا الجهاز ويكتب المهارة في كل وكيل تختاره. أو نزّل المهارة كملف zip، أو شغّل <code>npx skills add plotxyz-ai/plot-docs</code>. الأوامر وسير العمل الكامل في <a href="#command-line-and-agent-skill">سطر الأوامر ومهارة الوكيل</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP — نفس الأدوات عبر Model Context Protocol
-
-كل أمر من أوامر `plotdocs` هو أيضًا أداة MCP. يمكن لـ Claude Code وClaude
-Desktop وCursor وأي عميل MCP آخر تشغيل `plotdocs mcp` بأنفسهم، دون الحاجة
-إلى تثبيت مهارة أو فتح نافذة، والحصول على 29 أداة بالإضافة إلى مراجع
-العمليات كموارد (resources). كما يتيح خادم HTTP ثانٍ داخل التطبيق للوكيل
-بناء مستند Word في تبويب محرِّر مرئي بينما تشاهد.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="لقطات متسارعة لـ Claude Code وهو يبني عرضًا استثماريًا من ثماني شرائح عن الطاقة المتجدّدة عبر خادم MCP الخاص بـ plotdocs: يبحث عن الرسوم البيانية والصور، ويتحقق من كل صورة مرشّحة عبر media، وdeck_start يكتب ورقة الأنماط والمخطط، وdeck_page يضيف صفحة واحدة مُتحقَّقة في كل مرة، وdeck_build يجمّع ملف .pptx، وslides_render يعيد صورة كل شريحة؛ ثم يُفتح العرض النهائي في Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides يعرض عرض Renewable Energy 2026 من ثماني شرائح الذي بناه Claude Code عبر خادم MCP الخاص بـ plotdocs: شريحة الغلاف مع صورة فوتوغرافية لمزرعة رياح على لوحة الرسم وثماني مصغّرات على اليسار"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="إعدادات Plot Docs، صفحة Integrations، جزء MCP: أمر claude mcp add من سطر واحد لـ Claude Code، وكتلة JSON لـ Cursor وClaude Desktop وعملاء MCP الآخرين، وخيار خادم HTTP المحلي أسفل ذلك"></td>
-</tr>
-<tr>
-<td dir="rtl"><b>توجيه واحد، 38 استدعاءً للأدوات، بلا طرفية</b> — "ابنِ عرضًا استثماريًا من ثماني شرائح عن الطاقة المتجدّدة في 2026، بصورة حقيقية على الغلاف وحيثما تفيد صورة." يسحب الوكيل الرسوم البيانية والصور عبر <code>search</code>، ويسأل <code>media</code> عمّا إذا كانت كل صورة مرشّحة صورة فوتوغرافية حقيقية، ثم يستدعي <code>deck_start</code> بورقة أنماط ومخطط، ثم <code>deck_page</code> لكل شريحة؛ تُفحص كل صفحة مقابل المخطط والباليت قبل الاحتفاظ بها، ويجمّع <code>deck_build</code> ملف <code>.pptx</code>، ويبحث <code>slides_audit</code> عن التجاوزات، ويعيد <code>slides_render</code> صورة PNG لكل شريحة كمحتوى صوري يمكن للنموذج النظر إليه، ويُصلح <code>deck_replace</code> الصفحات الثلاث التي لم تعجبه.</td>
-<td dir="rtl"><b>اتصل مرة واحدة، من الإعدادات → التكاملات</b> — انسخ سطر <code>claude mcp add</code> لـ Claude Code، أو كتلة JSON إلى Cursor أو Claude Desktop أو أي عميل MCP آخر. يفعِّل الخيار B خادم HTTP المحلي لمحرِّر Word المرئي. كلاهما موضّح في <a href="#mcp-server">خادم MCP</a>.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## لماذا Plot Docs

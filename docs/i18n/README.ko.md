@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — 내장 AI 패널을 갖춘 오픈소스 AI 오피스 제품군: Docs, Sheets, Slides, PDF, Markdown, HTML" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -64,145 +61,27 @@ Plot Docs는 macOS, Windows, Linux에서 사용할 수 있는 무료 오픈소�
 
 ## 데모
 
-여섯 개의 앱, 하나의 AI 패널, 그리고 코딩 에이전트를 위한 명령줄. 모든
-스크린샷은 macOS에서 실제로 구동되는 앱이며, 패널에서 확인할 수 있는
-프롬프트로 AI를 직접 실행한 결과입니다.
-
-### 1 · Docs — 검토 가능한 AI로 `.docx`를 열고 편집합니다
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs가 전체 폭 표지 이미지, 음영 처리된 KPI 표, 머리글과 바닥글이 있는 2단 연차 보고서 페이지를 80% 확대 비율로 렌더링하고 있으며 AI 패널은 접혀 있는 화면"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: 배너 이미지가 있는 회사 개요 문서에서 AI가 개요 섹션을 다듬고 새로운 글머리 기호 섹션을 삽입했으며, 패널에서 원클릭 롤백을 제공하는 화면"></td>
-</tr>
-<tr>
-<td><b>Word가 배치한 그대로 파일을 엽니다</b> — 2단 구성, 여백 없는 전체 이미지, 음영 표, 머리글과 바닥글, Word의 줄 단위 계량 기준을 따르는 페이지 나누기까지 그대로입니다. 스타일, 댓글, 변경 내용 추적, 수식, 잉크 주석도 손상 없이 그대로 유지됩니다.</td>
-<td><b>원하는 편집을 요청하세요</b> — AI가 필요한 블록을 읽어 개요를 다시 작성하고 새로운 글머리 기호 섹션을 삽입합니다. AI가 수행한 모든 작업은 롤백 가능한 스냅샷으로 남으며, <b>변경 내용 추적</b>을 켜면 편집 내용이 Word 스타일의 수정 내용으로 표시됩니다.</td>
-</tr>
-</table>
-
-### 2 · Sheets — 붙여넣은 값이 아니라 실시간 수식과 차트가 있는 `.xlsx`
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: AI가 SUMIF 수식을 사용해 지역 및 카테고리별 매출이 담긴 Summary 시트와 세로 막대형 차트를 추가하고, 실행 취소 버튼과 함께 43건의 변경 사항이 적용되었다고 알려주는 화면"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: 2분기 매출을 어느 지역이 주도했는지 묻자 AI가 카테고리별 세부 내역과 함께 유럽이라고 답하고, 사용한 셀을 링크 형태의 출처로 인용하는 화면(Orders 시트 옆에 표시됨)"></td>
-</tr>
-<tr>
-<td><b>직접 만들어 줍니다</b> — 한 문장의 요청만으로 에이전트가 지역 및 카테고리별 실제 <code>SUMIF</code> 수식이 담긴 Summary 시트를 추가하고, 세로 막대형 차트를 삽입하며, 43건의 변경을 실행 취소 가능한 하나의 배치로 적용합니다.</td>
-<td><b>물어보세요</b> — 워크북에 대한 질문에는 근거와 함께, 사용한 정확한 셀이 클릭 가능한 출처로 돌아옵니다. 내부적으로는 자체 개발한 Rust <code>.xlsx</code> 엔진, 피벗 테이블, 슬라이서, 조건부 서식, 수식 추적 기능이 동작합니다.</td>
-</tr>
-</table>
-
-### 3 · Slides — 프롬프트 한 줄로 완성하는 `.pptx` 덱
-
-<img src="../assets/readme/slides-generate.webp" alt="Plot Docs Slides가 Aurora Home 투자자용 덱을 생성하는 타임랩스: AI가 패널에서 스토리라인을 구상하고, 슬라이드가 캔버스에 차례로 나타나며, 완성된 덱은 마무리 제안으로 끝난다" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: 캔버스에 표시된 AI 생성 Aurora Home 투자자 덱의 표지 슬라이드, 패널에는 원래 입력한 한 줄 프롬프트와 AI가 만든 내용에 대한 요약이 보이는 화면"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: 같은 11장짜리 덱의 디자인이 완료된 마지막 슬라이드, 왼쪽에는 축소판 슬라이드 목록이, AI 패널에는 전체 스토리라인 요약이 표시된 화면"></td>
-</tr>
-<tr>
-<td><b>한 줄만 입력하세요</b> — "Aurora Home을 위한 10장짜리 투자자 피치 덱을 만들어줘…"처럼요. Plot Docs가 스토리라인을 구성하고, 필요한 숫자를 조사하고, 실제 <code>.pptx</code>로 모든 슬라이드를 캔버스에 초안 작성합니다.</td>
-<td><b>완성된 덱이 나옵니다</b> — 일관된 타이포그래피, 이미지, 마무리 행동 유도 문구까지 디자인이 완료된 11장의 슬라이드. 마스터, 레이아웃, 스마트 가이드, 비파괴 자르기로 계속 편집하거나, 패널에 스타일 변경, 재작성, 순서 재배치를 요청할 수 있습니다.</td>
-</tr>
-</table>
-
-### 4 · PDF — PDF 텍스트를 그 자리에서 편집하고, 기기 내에서 Word로 변환합니다
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: 텍스트 편집 모드가 페이지의 모든 텍스트 블록을 표시해 바로 편집할 수 있게 하고, 동시에 AI 패널이 보고서에 대한 질문에 페이지 출처와 함께 답변하는 화면"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs가 Helios 분기 보고서 PDF에서 로컬로 변환된 Word 문서를, 원본 PDF 옆의 두 번째 탭에 열어 보여주는 화면"></td>
-</tr>
-<tr>
-<td><b>페이지 안에서 바로 편집합니다</b> — 텍스트 편집 모드가 모든 텍스트 블록을 표시해 그 자리에서 다시 입력할 수 있게 하며, 위에 덮어씌우는 주석이 아니라 PDFium을 통해 원본 폰트를 유지한 채 콘텐츠 스트림 자체를 다시 작성합니다. 긴 보고서에 대해 AI에게 물으면 페이지 출처와 함께 답변을 받을 수 있습니다.</td>
-<td><b>기기 내에서 변환합니다</b> — <b>PDF 변환기 → PDF를 Word로</b>를 실행하면 편집 가능한 <code>.docx</code>가 만들어지고, 원본 옆에 Docs에서 열리며 제목, 통계 행, 문단이 그대로 유지됩니다. Excel과 PowerPoint 변환도 동일하게 동작하며, 스캔한 페이지는 시스템 OCR을 거칩니다.</td>
-</tr>
-</table>
-
-### 5 · HTML — 디자인 브리프를 먼저 제시하는 AI 페이지 및 UI 빌더
-
-페이지의 목적과 대상을 알려주세요. AI는 먼저 **디자인 브리프**를
-제안합니다 — 후킹 문구, 색상 팔레트, 타이포그래피, 스타일 방향까지 —
-그런 다음 이 토큰들을 기준으로 완전히 독립된 `.html` 파일 하나를 만듭니다.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Plot Docs HTML이 Lumen 랜딩 페이지를 리스타일링하는 타임랩스: 패널에서의 한 번의 Restyle 요청으로 어두운 Midnight Studio 페이지가 따뜻한 Solar Daybreak 버전으로 바뀌지만, 모든 섹션과 문구는 그대로 유지된다" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: 어두운 Midnight Studio 스타일로 생성된 태양광 스탠드 랜딩 페이지가 실시간 미리보기에 표시되고, AI 패널이 방금 만든 페이지를 요약해 보여주는 화면"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="같은 Lumen 랜딩 페이지를 AI가 따뜻한 느낌의 Solar Daybreak 스타일로 다시 디자인한 화면: 종이 질감 배경, 세리프 헤드라인, 오렌지 강조색을 사용했지만 모든 섹션과 문구는 그대로 유지된 모습"></td>
-</tr>
-<tr>
-<td><b>프롬프트 한 번으로 생성됩니다</b> — Midnight Studio 스타일로 만들어진 강렬한 히어로 섹션, 기능 카드, 요금 안내, Lumen의 대기자 명단 폼까지. 요소를 클릭하면 스타일을 바꿀 수 있고, 더블클릭하면 텍스트를 편집할 수 있으며, CodeMirror 소스 보기로도 전환할 수 있습니다.</td>
-<td><b>디자인은 같게, 방향만 다르게</b> — <b>스타일 변경</b> 요청 한 번으로 브리프의 토큰이 바뀌고 페이지도 그에 따라 변합니다: 따뜻한 종이 질감, 에디토리얼 세리프체, 선명한 오렌지 강조색까지, 내용은 그대로입니다. 전체 화면으로 발표하거나 PDF, 편집 가능한 네이티브 Word 문서로 내보낼 수 있습니다.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: 프리랜서 디자이너를 위해 생성된 개인 대시보드 UI가 따뜻한 리넨 스타일로 표시되고, 왼쪽 레일, 세리프체 인사말, 네 개의 지표 카드가 있는 화면"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: 신문 형식으로 생성된 전기차 시장 데이터 보고서, 세리프체 제호, 1,730만이라는 헤드라인 숫자, 통계 행이 표시된 화면"></td>
-</tr>
-<tr>
-<td><b>UI 목업</b> — "개인 대시보드" 스타터는 페르소나를 실제로 동작하는 레이아웃으로 바꿔줍니다: 왼쪽 레일, 인사말, 청구 가능 시간 스파크라인, 인보이스와 사용률 카드까지 모두 개발자에게 그대로 넘길 수 있는 실제 HTML입니다.</td>
-<td><b>데이터 스토리</b> — "데이터 보고서" 스타터는 신문 형식의 에디토리얼을 만듭니다: 세리프체 제호, 하나의 헤드라인 숫자, 구분선으로 나뉜 통계 행, 인라인 SVG 차트, 방법론 설명까지 포함됩니다.</td>
-</tr>
-</table>
-
-### 6 · Markdown — Ask AI를 갖춘, 순수 `.md` 위의 블록 에디터
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: 선택한 문단에 Ask AI 팝오버가 나타나 입력한 지시문과 함께 다듬기, 더 간결하게, 확장하기, 문법 수정 같은 제안 칩, 그리고 지금 보내기와 대기열에 추가 버튼이 표시된 화면"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown이 표, Mermaid 순서도, 할 일 목록이 포함된 출시 공지 문서를 렌더링하고, 왼쪽에는 AI 패널의 시작 프롬프트가 표시된 화면"></td>
-</tr>
-<tr>
-<td><b>선택한 부분에 대해 AI에게 물어보세요</b> — 원하는 부분을 선택하면 <b>Ask AI</b> 칩이 나타납니다: 직접 지시문을 입력하거나 제안 중 하나를 고르고, 바로 실행하거나 여러 개의 위치 지정 편집을 대기열에 쌓아 한 번에 실행할 수 있습니다. 동일한 진입점이 모든 앱에 있습니다.</td>
-<td><b>렌더링되지만 순수 Markdown으로 저장됩니다</b> — Tiptap 블록 에디터에서 제목, 목록, 표, 이미지, 코드 블록, Mermaid 다이어그램을 다루면서도 저장 시에는 순수 <code>.md</code>로 그대로 기록되며, 완전히 로컬에서 동작하는 <b>Markdown → Word</b> 내보내기도 지원합니다.</td>
-</tr>
-</table>
-
-### 7 · CLI — 코딩 에이전트가 내 컴퓨터에서 Plot Docs를 움직입니다
-
-Plot Docs에는 `plotdocs` 명령줄과 에이전트 스킬이 함께 제공됩니다. 스킬을
-설치하면 Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode,
-Windsurf가 앱과 동일한 엔진을 통해 창을 열지 않고도 실제 Office 파일을
-만들고, 변환하고, 읽고, 편집할 수 있습니다.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides가 코딩 에이전트가 plotdocs 명령줄로 만든 8장짜리 태양계 덱을 보여주는 화면: 캔버스에는 표지 슬라이드, 왼쪽에는 여덟 개의 축소판, AI 패널은 열려 있음" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="태양계 덱의 렌더링된 슬라이드 여덟 장을 나란히 놓은 화면: 표지, 탐사 연표, 네 가지 핵심 수치, 행성 지름 막대 차트, 암석 행성 대 거대 행성, 태양이 99.8%를 차지한다는 헤드라인 숫자, 네 거대 행성 격자, 요약"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs 설정의 연동 페이지: plotdocs 스킬이 Claude Code에 설치되어 있고, Codex와 Cursor 옆에는 설치 버튼이 표시된 화면"></td>
-</tr>
-<tr>
-<td><b>에이전트에게 프롬프트 하나</b> — "태양계에 관한 8장짜리 덱을 만들어줘." 에이전트는 스킬을 읽고 스타일 시트, 개요, 슬라이드마다 하나씩의 페이지 스펙을 작성하고, <code>plotdocs image</code>로 사진 두 장을 생성하고, <code>plotdocs slides check</code>가 넘치거나 겹치는 요소를 걸러낸 뒤, <code>plotdocs create</code>로 <code>.pptx</code>를 조립하고 <code>slides render</code>로 슬라이드마다 PNG 한 장을 받아 확인합니다.</td>
-<td><b>설정 → 연동에서 한 번만 설치</b> — Plot Docs가 이 컴퓨터에서 찾은 코딩 에이전트를 나열하고, 선택한 각 에이전트에 스킬을 기록합니다. 스킬을 zip으로 내려받거나 <code>npx skills add plotxyz-ai/plot-docs</code>를 실행해도 됩니다. 명령과 전체 워크플로는 <a href="#command-line-and-agent-skill">명령줄과 에이전트 스킬</a>에 있습니다.</td>
-</tr>
-</table>
-
-### 8 · MCP — Model Context Protocol로 제공되는 동일한 도구
-
-모든 `plotdocs` 명령은 MCP 도구이기도 합니다. Claude Code, Claude Desktop,
-Cursor 및 다른 모든 MCP 클라이언트는 스킬을 설치하거나 창을 열 필요 없이
-직접 `plotdocs mcp`를 실행해 29개의 도구와 리소스로 제공되는 작업 레퍼런스를
-얻을 수 있습니다. 앱 내부의 두 번째 HTTP 서버를 사용하면 에이전트가 눈에
-보이는 편집기 탭에서 Word 문서를 만드는 과정을 지켜볼 수도 있습니다.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Claude Code가 plotdocs MCP 서버로 8장짜리 재생에너지 투자 브리핑 덱을 만드는 과정의 타임랩스: search로 도표와 사진을 찾고 media로 각 후보 사진을 확인한 뒤, deck_start가 스타일 시트와 개요를 작성하고, deck_page가 검사를 마친 페이지를 한 장씩 추가하며, deck_build가 .pptx를 조립하고 slides_render가 슬라이드마다 이미지를 돌려줍니다. 완성된 덱은 이후 Plot Docs Slides에서 열립니다" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides가 Claude Code가 plotdocs MCP 서버로 만든 8장짜리 재생에너지 2026 덱을 보여주는 화면: 캔버스에는 풍력 발전 단지 사진이 있는 표지 슬라이드, 왼쪽에는 여덟 개의 축소판"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs 설정의 연동 페이지, MCP 부분: Claude Code용 한 줄짜리 claude mcp add 명령, Cursor, Claude Desktop 및 다른 MCP 클라이언트용 JSON 블록, 그 아래의 로컬 HTTP 서버 옵션"></td>
-</tr>
-<tr>
-<td><b>프롬프트 하나, 도구 호출 서른여덟 번, 터미널 없이</b> — "2026년 재생에너지에 관한 8장짜리 투자 브리핑을 만들어줘. 표지와 사진이 도움이 될 만한 곳에는 실제 사진을 넣어줘." 에이전트는 <code>search</code>로 도표와 사진을 가져오고, <code>media</code>로 각 후보 사진이 실제 사진인지 확인한 다음, 스타일 시트와 개요를 담아 <code>deck_start</code>를 호출하고, 이어서 슬라이드마다 <code>deck_page</code>를 호출합니다. 모든 페이지는 개요와 팔레트에 맞는지 검사를 통과해야 유지되며, <code>deck_build</code>가 <code>.pptx</code>를 조립하고, <code>slides_audit</code>이 넘치는 부분을 찾고, <code>slides_render</code>가 모델이 볼 수 있는 이미지 콘텐츠로 슬라이드마다 PNG를 돌려주면, 마지막으로 <code>deck_replace</code>가 마음에 들지 않았던 세 페이지를 고칩니다.</td>
-<td><b>설정 → 연동에서 한 번만 연결</b> — Claude Code용 <code>claude mcp add</code> 명령을 복사하거나, JSON 블록을 Cursor, Claude Desktop 또는 다른 MCP 클라이언트에 붙여넣으세요. 옵션 B는 눈에 보이는 Word 편집기를 위한 로컬 HTTP 서버를 켭니다. 두 방법 모두 <a href="#mcp-server">MCP 서버</a>에 설명되어 있습니다.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Plot Docs를 선택하는 이유

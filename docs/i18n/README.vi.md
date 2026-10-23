@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — bộ ứng dụng văn phòng AI mã nguồn mở: Docs, Sheets, Slides, PDF, Markdown và HTML với panel AI tích hợp sẵn" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -77,254 +74,27 @@ chi tiết và yêu cầu hệ thống xem mục [Tải xuống](#download).
 
 ## Demo
 
-Sáu ứng dụng, một panel AI, tìm kiếm tệp được xếp lại thứ hạng bởi TypeSafe
-Jev, một Ask AI trả lời từ các tệp bạn gắn sao kèm nguồn, và một dòng lệnh
-cho agent lập trình của bạn. Mọi ảnh chụp màn hình đều là ứng dụng thật
-trên macOS, với AI được điều khiển bằng chính prompt bạn đọc được trong panel.
-
-### 1 · Docs — mở và chỉnh sửa `.docx` với AI có thể kiểm tra lại
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs hiển thị một trang báo cáo thường niên hai cột với ảnh bìa tràn khổ, bảng KPI có nền tô, header và footer, ở mức zoom 80% với panel AI đang thu gọn"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: một trang tổng quan công ty có ảnh banner; AI đã cô đọng phần Tổng quan và chèn một mục gạch đầu dòng mới, panel đưa nút hoàn tác một cú bấm"></td>
-</tr>
-<tr>
-<td><b>Mở tệp đúng như Word trình bày</b> — các phần nhiều cột, ảnh tràn khổ,
-bảng có nền tô, header và footer, phân trang theo thước dòng của Word.
-Style, comment, theo dõi thay đổi, công thức toán và mực viết tay được giữ
-nguyên hai chiều.</td>
-<td><b>Yêu cầu AI chỉnh</b> — AI đọc những khối nó cần, viết lại phần Tổng
-quan và chèn một mục gạch đầu dòng mới. Mỗi lượt AI là một bản chụp có thể
-hoàn tác; bật <b>Theo dõi thay đổi</b> thì chỉnh sửa đến dưới dạng revision
-theo chuẩn Word.</td>
-</tr>
-</table>
-
-### 2 · Sheets — `.xlsx` với công thức sống và biểu đồ, không phải con số dán vào
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: AI đã thêm một sheet Tổng hợp với doanh thu theo vùng và theo ngành dùng công thức SUMIF, kèm biểu đồ cột, và báo cáo 43 thay đổi đã áp dụng với nút Undo"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: được hỏi vùng nào dẫn đầu doanh thu quý 2, AI trả lời châu Âu kèm phân rã theo ngành và trích dẫn các ô đã dùng dưới dạng liên kết, cạnh sheet Đơn hàng"></td>
-</tr>
-<tr>
-<td><b>Xây dựng</b> — từ một câu, agent thêm một sheet Tổng hợp với công thức
-<code>SUMIF</code> thật theo vùng và theo ngành, chèn biểu đồ cột, và áp 43
-thay đổi thành một lô hoàn tác được cùng lúc.</td>
-<td><b>Hỏi nó</b> — câu hỏi về sổ tính được trả lời kèm cách suy luận và
-đúng những ô đã dùng dưới dạng trích dẫn bấm được. Bên dưới: một engine
-<code>.xlsx</code> Rust tự phát triển, pivot table, slicer, định dạng có
-điều kiện và truy vết công thức.</td>
-</tr>
-</table>
-
-### 3 · Slides — từ một prompt thành bộ slide `.pptx`
-
-<img src="../assets/readme/slides-generate.webp" alt="Quay lệch thời gian Plot Docs Slides tạo bộ slide đầu tư Aurora Home: AI lập mạch truyện trong panel, các slide lần lượt xuất hiện trên khung vẽ, và bộ slide hoàn tất khép lại bằng lời kêu gọi đầu tư" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: slide bìa của bộ slide đầu tư Aurora Home do AI tạo trên khung vẽ, với prompt gốc một dòng và phần AI tóm tắt những gì nó đã làm trong panel"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: slide khép lại đã thiết kế của cùng bộ 11 slide, với dải ảnh thu nhỏ bên trái và panel AI tóm tắt mạch truyện"></td>
-</tr>
-<tr>
-<td><b>Một dòng vào</b> — "Tạo bộ slide pitch đầu tư 10 slide cho Aurora
-Home…". Plot Docs lập mạch truyện, tra số liệu, và phác từng slide lên khung
-vẽ dưới dạng <code>.pptx</code> thật.</td>
-<td><b>Một bộ slide hoàn chỉnh ra</b> — mười một slide được thiết kế với
-typography, hình ảnh nhất quán và lời kêu gọi hành động ở slide cuối; tiếp
-tục chỉnh với master, layout, smart guide và cắt ảnh không phá hủy, hoặc
-bảo panel đổi phong cách, viết lại và sắp lại thứ tự.</td>
-</tr>
-</table>
-
-### 4 · PDF — chỉnh sửa chữ PDF tại chỗ, chuyển PDF sang Word ngay trên máy
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: chế độ Edit text khoanh vùng mọi khối chữ trên trang để sửa tại chỗ trong khi panel AI trả lời câu hỏi về báo cáo kèm trích dẫn trang"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs hiển thị tài liệu Word được chuyển đổi cục bộ từ PDF Helios quarterly review, mở trong tab thứ hai cạnh bản PDF gốc"></td>
-</tr>
-<tr>
-<td><b>Sửa bên trong trang</b> — chế độ Edit text khoanh vùng mọi khối chữ
-để gõ lại tại chỗ; content stream được viết lại qua PDFium với phông gốc
-được giữ, không phải lớp chú thích che đậy. Hỏi AI về một báo cáo dài và
-nhận câu trả lời kèm trích dẫn trang.</td>
-<td><b>Chuyển đổi trên máy</b> — <b>PDF Converter → PDF to Word</b> tạo ra
-<code>.docx</code> chỉnh sửa được, mở trong Docs cạnh bản gốc, giữ nguyên
-tiêu đề, hàng số liệu và đoạn văn. Đích Excel và PowerPoint hoạt động như
-thế; trang scan đi qua OCR của hệ điều hành.</td>
-</tr>
-</table>
-
-### 5 · HTML — trình xây dựng trang web và UI bằng AI, khởi đầu từ design brief
-
-Hãy nói trang đó dành cho việc gì và dành cho ai. AI đề xuất **design
-brief** trước — hook, bảng màu, typography và các hướng phong cách — rồi
-xây một tệp `.html` tự chứa duy nhất theo các token đó.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Quay lệch thời gian Plot Docs HTML đổi phong cách trang landing Lumen: một yêu cầu Restyle trong panel biến trang Midnight Studio tối màu thành phiên bản Solar Daybreak ấm áp trong khi mọi section và toàn bộ chữ giữ nguyên vị trí" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: trang landing được tạo cho một đèn bàn năng lượng mặt theo hướng Midnight Studio tối màu, hiển thị trong bản xem trước sống với panel AI tóm tắt trang vừa xây"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Cùng trang landing Lumen được AI đổi sang hướng Solar Daybreak ấm áp: nền giấy, tiêu đề serif và điểm nhấn màu cam, mọi section và toàn bộ chữ được giữ lại"></td>
-</tr>
-<tr>
-<td><b>Tạo từ một prompt</b> — hero ấn tượng, thẻ tính năng, bảng giá và
-form danh sách chờ cho Lumen, xây theo hướng Midnight Studio. Bấm vào phần
-tử nào cũng đổi được phong cách, nhấp đúp để sửa chữ, hoặc chuyển sang chế
-độ xem mã CodeMirror.</td>
-<td><b>Cùng thiết kế, hướng mới</b> — một yêu cầu <b>Restyle</b> thay các
-token của brief và trang theo ngay: giấy ấm, serif kiểu báo chí, điểm nhấn
-cam nắng, không gì bị viết lại. Trình chiếu toàn màn hình, hoặc xuất ra PDF
-hay tài liệu Word gốc chỉnh sửa được.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: giao diện dashboard cá nhân được tạo cho một designer tự do theo phong cách linen ấm, với rail bên trái, lời chào serif và bốn thẻ số liệu"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: báo cáo dữ liệu thị trường xe điện được tạo theo phong cách broadsheet, với đầu đề serif, con số nổi bật 17,3 triệu và một hàng số liệu"></td>
-</tr>
-<tr>
-<td><b>Mockup UI</b> — mẫu "dashboard cá nhân" biến một chân dung người dùng
-thành layout chạy được: rail trái, lời chào, sparkline giờ tính phí, thẻ
-hoá đơn và mức sử dụng — toàn bộ là HTML thật bạn có thể đưa thẳng cho lập
-trình viên.</td>
-<td><b>Câu chuyện dữ liệu</b> — mẫu "báo cáo dữ liệu" dựng một trang báo
-kiểu editorial: đầu đề serif, một con số tiêu đề, hàng số liệu phân tách
-bằng kẻ ngang, biểu đồ SVG nhúng và chú thích phương pháp.</td>
-</tr>
-</table>
-
-### 6 · Markdown — trình soạn thảo khối trên `.md` thuần, kèm Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: một đoạn đang chọn hiển thị popover Ask AI với hướng dẫn đã gõ và các chip gợi ý như Làm mượt, Ngắn gọn hơn, Mở rộng và Sửa ngữ pháp, cùng nút Gửi ngay và Thêm vào hàng đợi"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown hiển thị tài liệu ghi chú ra mắt với một bảng, một sơ đồ Mermaid và danh sách việc cần làm, với các prompt khởi đầu của panel AI bên trái"></td>
-</tr>
-<tr>
-<td><b>Hỏi AI về một đoạn chọn</b> — chọn bất kỳ đoạn nào và một chip
-<b>Ask AI</b> xuất hiện: gõ hướng dẫn hoặc chọn gợi ý, gửi ngay, hoặc xếp
-hàng đợi nhiều chỉnh sửa có neo và chạy một lượt. Cửa vào giống hệt tồn tại
-trong mọi ứng dụng.</td>
-<td><b>Hiển thị đẹp, lưu dạng Markdown thuần</b> — tiêu đề, danh sách, bảng,
-ảnh, khối mã và sơ đồ Mermaid trong trình soạn thảo khối Tiptap, ghi ngược
-thành <code>.md</code> thuần, với xuất <b>Markdown → Word</b> hoàn toàn cục bộ.</td>
-</tr>
-</table>
-
-### 7 · Search — tìm ra tệp trả lời được câu hỏi, với TypeSafe Jev
-
-Mọi tệp trong thư mục làm việc của bạn được lập chỉ mục ngay trên máy: tên,
-thư mục và văn bản trích xuất của các tệp Word, Excel, PowerPoint, PDF,
-Markdown và HTML, trong một chỉ mục toàn văn SQLite có phân tách từ nhận
-biết CJK. Bật **Jev search reranking** và 20 kết quả cục bộ hàng đầu được
-phán đoán bởi [TypeSafe
-Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev) — mô
-hình System One trả về một điểm liên quan hiệu chuẩn cho mỗi tài liệu trong
-một lần gọi thay vì sinh văn bản. Danh sách được sắp lại theo điểm đó; nếu
-lời gọi thất bại hoặc quá thời gian, thứ tự cục bộ được giữ nguyên.
-
-<img src="../assets/readme/search-jev-motion.webp" alt="Bản ghi màn hình màn hình chính Plot Docs: gõ laptop refresh policy thì chính sách bộ nhớ đệm trình duyệt, kế hoạch làm mới thương hiệu và lịch làm mới dashboard đứng đầu trong khi tài liệu tiêu chuẩn trang thiết bị đứng cuối; trang Cài đặt cho thấy Jev search reranking đang bật dưới AI Media & Search với điểm cuối TypeSafe; cùng câu tìm kiếm đó sau đó hiển thị tài liệu tiêu chuẩn trang thiết bị đứng đầu với huy hiệu Jev cạnh số đếm kết quả" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/search-jev-before-after.webp" alt="Hai danh sách kết quả cho truy vấn laptop refresh policy đặt cạnh nhau: không có Jev thì lịch làm mới dashboard, kế hoạch làm mới thương hiệu và chính sách bộ nhớ đệm dẫn đầu còn tài liệu tiêu chuẩn trang thiết bị đứng thứ năm; có Jev thì tài liệu tiêu chuẩn trang thiết bị — nơi nêu chu kỳ thay thế laptop ba năm — đứng đầu"></td>
-<td width="50%"><img src="../assets/readme/search-jev-settings.webp" alt="Plot Docs Settings, trang AI Media & Search: khối Local file search với công tắc Jev search reranking, lựa chọn điểm cuối giữa OpenRouter và TypeSafe, và ô khoá API"></td>
-</tr>
-<tr>
-<td><b>Cùng chữ, khác câu trả lời</b> — "laptop refresh policy" khớp chữ với
-chữ với một chính sách bộ nhớ đệm, một kế hoạch làm mới thương hiệu và một
-lịch làm mới dashboard, nên thứ hạng toàn văn đẩy chúng lên đầu. Jev đọc
-đoạn trích và đưa tài liệu tiêu chuẩn trang thiết bị — tài liệu nêu chu kỳ
-thay thế ba năm — lên đầu. Huy hiệu <b>Jev</b> cạnh số đếm kết quả cho biết
-khi nào thứ tự đến từ mô hình.</td>
-<td><b>Mặc định tắt, một công tắc để bật</b> — Settings → AI Media &
-Search → Local file search. Chọn OpenRouter hoặc TypeSafe trực tiếp, dán
-khoá, bấm Test connection. Chỉ khi công tắc bật, đoạn trích của các kết quả
-hàng đầu mới rời khỏi máy; bản thân chỉ mục thì không bao giờ.</td>
-</tr>
-</table>
-
-### 8 · Ask AI — các tệp bạn gắn sao, được trả lời kèm nguồn
-
-Gắn sao những tệp bạn đang làm việc và **Ask AI** trên màn hình chính coi
-chúng là một cơ sở tri thức. Đặt câu hỏi bằng ngôn ngữ thường ngày; agent
-tìm trong các tệp đã gắn sao, đọc những tệp nó cần và trả lời với một trích
-dẫn sau mỗi thông điệp. Bấm vào trích dẫn và tệp mở trong đúng ứng dụng.
-
-<img src="../assets/readme/home-ask-ai-motion.webp" alt="Bản ghi màn hình Ask AI của Plot Docs: câu hỏi tóm tắt nhanh, điều gì thúc đẩy tăng trưởng quý 3 của chúng ta và khu vực châu Á – Thái Bình Dương thể hiện ra sao, được gõ trên màn hình chính; agent đọc hai tệp đã gắn sao và trả lời với việc ra mắt Aurora X1 và mở rộng châu Á – Thái Bình Dương, mỗi thông điệp theo sau là một chip trích dẫn nêu tên báo cáo quý hoặc sổ doanh số theo vùng; bấm vào chip sổ tính mở nó trong Sheets với hàng châu Á – Thái Bình Dương được tô sáng" width="100%">
-
-Ask AI tìm kiếm trên cùng chỉ mục toàn văn trên máy với
-[Search](#7--search--find-the-file-that-answers-the-question-with-typesafe-jev)
-và đọc tệp theo từng trang, nên mô hình chỉ thấy các kết quả trùng và đúng
-đoạn nó cần, qua nhà cung cấp bạn đã chọn.
-
-### 9 · CLI — agent lập trình của bạn điều khiển Plot Docs, ngay trên máy của bạn
-
-Plot Docs đi kèm dòng lệnh `plotdocs` và một agent skill. Cài skill và
-Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode hay
-Windsurf có thể tạo, chuyển đổi, đọc và chỉnh sửa tệp Office thật qua cùng
-những engine với các ứng dụng, mà không mở cửa sổ nào.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides hiển thị bộ slide Tệp Mặt Trời tám slide do một agent lập trình dựng qua dòng lệnh plotdocs: slide bìa trên khung vẽ, tám ảnh thu nhỏ bên trái và panel AI đang mở" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="Tám slide đã kết xuất của bộ Tệp Mặt Trời đặt cạnh nhau: bìa, dòng thời gian thăm dò, bốn con số chủ chốt, biểu đồ cột đường kính hành tinh, các hành tinh đá đối với các khổng lồ, con số 99,8% của Mặt Trời, lưới bốn hành tinh khổng lồ và những điểm cần nhớ"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs Settings, trang Integrations: skill plotdocs đã cài vào Claude Code, với nút Install cạnh Codex và Cursor"></td>
-</tr>
-<tr>
-<td><b>Một prompt cho agent của bạn</b> — "Dựng bộ slide tám phần về Hệ Mặt
-Trời." Agent đọc skill, viết một style sheet, một dàn ý và đặc tả từng trang,
-tạo hai bức ảnh bằng <code>plotdocs image</code>, và để
-<code>plotdocs slides check</code> chối mọi thứ tràn hoặc chồng lấn trước
-khi <code>plotdocs create</code> lắp <code>.pptx</code> và
-<code>slides render</code> trả về một PNG mỗi slide để xem.</td>
-<td><b>Cài một lần, từ Settings → Integrations</b> — Plot Docs liệt kê các
-agent lập trình tìm thấy trên máy này và ghi skill vào mỗi agent bạn chọn.
-Hoặc tải skill dưới dạng zip, hoặc chạy <code>npx skills add
-plotxyz-ai/plot-docs</code>. Các lệnh và toàn bộ quy trình nằm ở
-<a href="#command-line-and-agent-skill">Dòng lệnh và agent skill</a>.</td>
-</tr>
-</table>
-
-### 10 · MCP — cùng bộ công cụ qua Model Context Protocol
-
-Mỗi lệnh `plotdocs` cũng là một công cụ MCP. Claude Code, Claude Desktop,
-Cursor và bất kỳ MCP client nào khác có thể tự chạy `plotdocs mcp`, không
-cần cài skill, không cần mở cửa sổ, và nhận 29 công cụ cùng các tài liệu
-tham chiếu op dưới dạng resources. Một máy chủ HTTP thứ hai bên trong ứng
-dụng cho phép agent dựng một tài liệu Word trong một tab trình soạn thảo
-hiện rõ trong khi bạn xem.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Quay lệch thời gian Claude Code dựng một bản báo cáo đầu tư năng lượng tái tạo tám slide qua máy chủ MCP plotdocs: nó tìm số liệu và ảnh, kiểm tra từng ảnh ứng viên bằng media, deck_start ghi style sheet và dàn ý, deck_page thêm từng trang đã kiểm tra, deck_build lắp .pptx và slides_render trả về ảnh của từng slide; bộ slide hoàn tất sau đó mở trong Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides hiển thị bộ slide Renewable Energy 2026 tám slide mà Claude Code dựng qua máy chủ MCP plotdocs: slide bìa với ảnh trang trại gió trên khung vẽ và tám ảnh thu nhỏ bên trái"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs Settings, trang Integrations, phần MCP: lệnh claude mcp add một dòng cho Claude Code, khối JSON cho Cursor, Claude Desktop và các MCP client khác, và tuỳ chọn máy chủ HTTP cục bộ bên dưới"></td>
-</tr>
-<tr>
-<td><b>Một prompt, 38 lần gọi công cụ, không cần shell</b> — "Dựng một bản
-báo cáo đầu tư tám slide về năng lượng tái tạo năm 2026, có ảnh thật ở bìa
-và ở mọi chỗ một bức ảnh giúp được." Agent kéo số liệu và ảnh bằng
-<code>search</code>, hỏi <code>media</code> từng ảnh ứng viên có phải ảnh
-chụp thật không, gọi <code>deck_start</code> với style sheet và dàn ý, rồi
-<code>deck_page</code> mỗi slide một lần; mỗi trang được kiểm tra với dàn ý
-và bảng màu trước khi được giữ, <code>deck_build</code> lắp
-<code>.pptx</code>, <code>slides_audit</code> rà tràn khung,
-<code>slides_render</code> trả về một PNG mỗi slide dưới dạng nội dung ảnh
-mô hình xem được, và <code>deck_replace</code> sửa ba trang nó ưng chưa.</td>
-<td><b>Kết nối một lần, từ Settings → Integrations</b> — sao chép dòng
-<code>claude mcp add</code> cho Claude Code, hoặc khối JSON vào Cursor,
-Claude Desktop hay MCP client khác. Tuỳ chọn B bật máy chủ HTTP cục bộ cho
-trình soạn thảo Word hiện rõ. Cả hai được mô tả ở
-<a href="#mcp-server">Máy chủ MCP</a>.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Vì sao chọn Plot Docs

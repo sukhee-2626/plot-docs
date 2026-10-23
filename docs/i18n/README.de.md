@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs – die Open-Source-KI-Office-Suite: Docs, Sheets, Slides, PDF, Markdown und HTML mit integriertem KI-Panel" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -67,148 +64,27 @@ Details und Voraussetzungen unter [Download](#download).
 
 ## Demo
 
-Sechs Apps, ein KI-Panel und eine Befehlszeile für deinen Coding-Agenten.
-Jeder Screenshot zeigt die echte App auf macOS, wobei die KI durch den
-Prompt gesteuert wird, den du im Panel nachlesen kannst.
-
-### 1 · Docs – `.docx` öffnen und bearbeiten mit einer KI, die du überprüfen kannst
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs stellt eine zweispaltige Geschäftsberichtsseite mit vollbreitem Titelbild, schattierter KPI-Tabelle, Kopf- und Fußzeile bei 80 % Zoom mit eingeklapptem KI-Panel dar"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: eine Unternehmensübersicht mit einem Banner-Bild; die KI hat die Übersicht gestrafft und einen neuen Abschnitt mit Aufzählungspunkten eingefügt, und das Panel bietet ein Rückgängig per Klick"></td>
-</tr>
-<tr>
-<td><b>Öffnet die Datei genau so, wie Word sie layoutet</b> — zweispaltige Abschnitte, randlose Bilder, schattierte Tabellen, Kopf- und Fußzeilen, Seitenumbruch nach Words Zeilenmetrik. Formatvorlagen, Kommentare, nachverfolgte Änderungen, Formeln und Tinteneingaben bleiben beim Roundtrip unverändert.</td>
-<td><b>Frag nach der Änderung</b> — die KI liest die Blöcke, die sie braucht, schreibt die Übersicht neu und fügt einen neuen Abschnitt mit Aufzählungspunkten ein. Jeder KI-Durchgang ist ein Snapshot, den du zurücksetzen kannst; ist <b>Änderungen nachverfolgen</b> aktiviert, kommen die Bearbeitungen als Word-typische Überarbeitungen an.</td>
-</tr>
-</table>
-
-### 2 · Sheets – `.xlsx` mit echten Formeln und Diagrammen statt eingefügter Zahlen
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: die KI hat ein Summary-Tabellenblatt mit Umsatz nach Region und Kategorie über SUMIF-Formeln sowie ein Säulendiagramm hinzugefügt und meldet 43 angewendete Änderungen mit einer Rückgängig-Schaltfläche"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: auf die Frage, welche Region den Q2-Umsatz anführte, antwortet die KI mit Europa samt Aufschlüsselung nach Kategorie und verlinkt die verwendeten Zellen als Belege, neben dem Orders-Tabellenblatt"></td>
-</tr>
-<tr>
-<td><b>Bau es</b> — aus einem einzigen Satz fügt der Agent ein Summary-Tabellenblatt mit echten <code>SUMIF</code>s nach Region und Kategorie hinzu, fügt ein Säulendiagramm ein und wendet die 43 Änderungen als einen einzigen, rückgängig machbaren Vorgang an.</td>
-<td><b>Frag es</b> — Fragen zur Arbeitsmappe werden mit der Begründung und den genau verwendeten Zellen als klickbare Belege beantwortet. Im Hintergrund: eine hausgemachte Rust-<code>.xlsx</code>-Engine, Pivot-Tabellen, Datenschnitte, bedingte Formatierung und Formel-Tracing.</td>
-</tr>
-</table>
-
-### 3 · Slides – vom Prompt zur `.pptx`-Präsentation
-
-<img src="../assets/readme/slides-generate.webp" alt="Zeitraffer von Plot Docs Slides bei der Erstellung des Investoren-Decks für Aurora Home: Die KI plant die Storyline im Panel, die Folien erscheinen nacheinander auf der Leinwand, und das fertige Deck endet mit dem abschließenden Ask" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: die Titelfolie einer von der KI erstellten Investoren-Präsentation für Aurora Home auf der Arbeitsfläche, mit dem ursprünglichen Ein-Zeilen-Prompt und der Zusammenfassung der KI im Panel, was sie erstellt hat"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: die gestaltete Abschlussfolie derselben 11-Folien-Präsentation, mit der Miniaturansicht-Leiste links und dem KI-Panel, das den Handlungsbogen zusammenfasst"></td>
-</tr>
-<tr>
-<td><b>Eine Zeile rein</b> — „Erstelle eine 10-Folien-Investoren-Präsentation für Aurora Home…“. Plot Docs plant den Handlungsbogen, recherchiert die Zahlen und entwirft jede Folie direkt auf der Arbeitsfläche als echte <code>.pptx</code>.</td>
-<td><b>Eine fertige Präsentation raus</b> — elf gestaltete Folien mit einheitlicher Typografie, Bildsprache und einem abschließenden Call-to-Action; weiter bearbeiten mit Master-Folien, Layouts, intelligenten Hilfslinien und zerstörungsfreiem Zuschneiden, oder das Panel bitten, neu zu stylen, umzuschreiben und neu zu ordnen.</td>
-</tr>
-</table>
-
-### 4 · PDF – PDF-Text direkt bearbeiten, PDF lokal in Word konvertieren
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: Der Textbearbeitungsmodus umrahmt jeden Textblock auf der Seite zur direkten Bearbeitung, während das KI-Panel eine Frage zum Bericht mit Seitenangaben beantwortet"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs zeigt ein Word-Dokument, das lokal aus dem PDF des Helios-Quartalsberichts konvertiert wurde, geöffnet in einem zweiten Tab neben dem Original-PDF"></td>
-</tr>
-<tr>
-<td><b>Direkt auf der Seite bearbeiten</b> — der Textbearbeitungsmodus umrahmt jeden Textblock zum direkten Neutippen; der Inhaltsstream wird über PDFium mit den Originalschriften neu geschrieben, nicht mit einer überdeckenden Anmerkung. Frag die KI zu einem langen Bericht und erhalte Antworten mit Seitenangaben.</td>
-<td><b>Lokal konvertieren</b> — <b>PDF-Konverter → PDF zu Word</b> erzeugt eine bearbeitbare <code>.docx</code>, die neben der Quelle in Docs geöffnet wird, mit intakten Überschriften, Kennzahlenzeilen und Absätzen. Die Ziele Excel und PowerPoint funktionieren genauso; gescannte Seiten laufen durch die System-OCR.</td>
-</tr>
-</table>
-
-### 5 · HTML – ein KI-Seiten- und UI-Builder, zuerst das Design-Briefing
-
-Sag, wofür die Seite gedacht ist und für wen. Die KI schlägt zunächst ein
-**Design-Briefing** vor – Aufhänger, Farbpalette, Typografie und
-Stilrichtungen – und baut dann eine einzige, in sich geschlossene `.html`-Datei
-nach diesen Vorgaben.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Zeitraffer von Plot Docs HTML beim Neugestalten der Lumen-Landingpage: Eine einzige Restyle-Anfrage im Panel verwandelt die dunkle Midnight Studio-Seite in die warme Solar Daybreak-Version, während jeder Abschnitt und der gesamte Text unverändert bleiben" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: eine generierte Landingpage für eine Solar-Schreibtischlampe in der dunklen Stilrichtung „Midnight Studio“, gezeigt in der Live-Vorschau mit dem KI-Panel, das die gerade erstellte Seite zusammenfasst"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Dieselbe Lumen-Landingpage, von der KI in die warme Stilrichtung „Solar Daybreak“ umgestylt: Papierhintergrund, Serifen-Überschriften und ein Orange-Akzent, wobei jeder Abschnitt und der gesamte Text erhalten bleiben"></td>
-</tr>
-<tr>
-<td><b>Aus einem Prompt generiert</b> — ein kräftiger Hero-Bereich, Feature-Karten, Preise und ein Warteliste-Formular für Lumen, gebaut in der Stilrichtung „Midnight Studio“. Klick auf ein beliebiges Element, um es umzustylen, doppelklicke, um Text zu bearbeiten, oder wechsle in die CodeMirror-Quellansicht.</td>
-<td><b>Gleiches Design, neue Richtung</b> — eine einzige <b>Restyle</b>-Anfrage tauscht die Vorgaben des Briefings aus, und die Seite folgt: warmes Papier, editorielle Serifenschrift, sonnenoranger Akzent, ohne dass etwas neu geschrieben wird. Im Vollbild präsentieren oder als PDF oder natives, bearbeitbares Word-Dokument exportieren.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: ein generiertes persönliches Dashboard-UI für eine freiberufliche Designerin im warmen Leinen-Stil, mit einer linken Leiste, einer Begrüßung in Serifenschrift und vier Kennzahlen-Karten"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: ein generierter Datenreport zum E-Auto-Markt im Broadsheet-Stil, mit einem Serifen-Kopf, einer Schlagzeile von 17,3 Millionen und einer Kennzahlenzeile"></td>
-</tr>
-<tr>
-<td><b>UI-Mockups</b> — die Vorlage „Personal Dashboard“ macht aus einer Persona ein funktionierendes Layout: linke Leiste, Begrüßung, Sparkline für abrechenbare Stunden, Rechnungs- und Auslastunsoopusarten – alles echtes HTML, das du direkt an eine Entwicklerin oder einen Entwickler weitergeben kannst.</td>
-<td><b>Datengeschichten</b> — die Vorlage „Data Report“ baut ein editorielles Broadsheet: Serifen-Kopf, eine Schlagzeilenzahl, eine durch Linien abgetrennte Kennzahlenzeile, eingebettete SVG-Diagramme und eine Methodik-Notiz.</td>
-</tr>
-</table>
-
-### 6 · Markdown – ein Block-Editor für einfaches `.md`, mit Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: In einem ausgewählten Absatz erscheint ein Ask-AI-Popover mit einer eingegebenen Anweisung und Vorschlags-Chips wie „Polish“, „Make more concise“, „Expand“ und „Fix grammar“, außerdem den Schaltflächen „Send now“ und „Add to queue“"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown stellt ein Launch-Notes-Dokument mit einer Tabelle, einem Mermaid-Flussdiagramm und einer Aufgabenliste dar, mit den Start-Prompts des KI-Panels links"></td>
-</tr>
-<tr>
-<td><b>Ask AI zu einer Auswahl</b> — markiere eine beliebige Textstelle, und ein <b>Ask AI</b>-Chip erscheint: eine Anweisung eingeben oder einen Vorschlag auswählen, sofort senden, oder mehrere verankerte Änderungen in eine Warteschlange legen und in einem Durchgang ausführen. Denselben Einstiegspunkt gibt es in jeder App.</td>
-<td><b>Gerendert, gespeichert als reines Markdown</b> — Überschriften, Listen, Tabellen, Bilder, Codeblöcke und Mermaid-Diagramme in einem Tiptap-Block-Editor, zurückgeschrieben als reines <code>.md</code>, mit einem vollständig lokalen Markdown-→-Word-Export.</td>
-</tr>
-</table>
-
-### 7 · CLI – dein Coding-Agent steuert Plot Docs, auf deinem Rechner
-
-Plot Docs bringt eine `plotdocs`-Befehlszeile und einen Agent-Skill mit.
-Installiere den Skill, und Claude Code, Codex, Cursor, Gemini CLI, GitHub
-Copilot, OpenCode oder Windsurf können echte Office-Dateien über dieselben
-Engines wie die Apps erstellen, konvertieren, lesen und bearbeiten, ohne ein
-Fenster zu öffnen.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides zeigt eine Sonnensystem-Präsentation mit acht Folien, die ein Coding-Agent über die plotdocs-Befehlszeile erstellt hat: die Titelfolie auf der Arbeitsfläche, acht Miniaturansichten links und das geöffnete KI-Panel" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="Die acht gerenderten Folien der Sonnensystem-Präsentation nebeneinander: Titel, Zeitleiste der Erforschung, vier Kennzahlen, Balkendiagramm der Planetendurchmesser, Gesteinsplaneten gegen Riesen, die 99,8 % der Sonne als Hero-Zahl, das Raster der vier Riesen und die Kernaussagen"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Plot Docs-Einstellungen, Seite Integrationen: der plotdocs-Skill ist in Claude Code installiert, mit Installieren-Schaltflächen neben Codex und Cursor"></td>
-</tr>
-<tr>
-<td><b>Ein Prompt an deinen Agenten</b> — „Erstelle eine Präsentation mit acht Folien über das Sonnensystem.“ Der Agent liest den Skill, schreibt ein Stylesheet, eine Gliederung und eine Seitenspezifikation pro Folie, generiert die beiden Fotos mit <code>plotdocs image</code> und lässt <code>plotdocs slides check</code> alles zurückweisen, was überläuft oder sich überlappt, bevor <code>plotdocs create</code> die <code>.pptx</code> zusammensetzt und <code>slides render</code> pro Folie ein PNG zum Anschauen zurückgibt.</td>
-<td><b>Einmal installieren, unter Einstellungen → Integrationen</b> — Plot Docs listet die Coding-Agenten auf, die es auf diesem Rechner findet, und schreibt den Skill in jeden, den du auswählst. Oder lade den Skill als Zip herunter oder führe <code>npx skills add plotxyz-ai/plot-docs</code> aus. Befehle und der vollständige Workflow stehen unter <a href="#command-line-and-agent-skill">Befehlszeile und Agent-Skill</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP – dieselben Tools über das Model Context Protocol
-
-Jeder `plotdocs`-Befehl ist auch ein MCP-Tool. Claude Code, Claude Desktop,
-Cursor und jeder andere MCP-Client können `plotdocs mcp` selbst starten,
-ganz ohne Skill-Installation und ohne geöffnetes Fenster, und erhalten 29
-Tools plus die Op-Referenzen als Ressourcen. Ein zweiter HTTP-Server in der
-App lässt einen Agenten ein Word-Dokument in einem sichtbaren Editor-Tab
-aufbauen, während du zusiehst.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Zeitraffer von Claude Code beim Bau einer achtseitigen Investoren-Präsentation über erneuerbare Energien über den plotdocs-MCP-Server: sucht nach Abbildungen und Fotos, prüft jedes Kandidatenbild mit media, deck_start schreibt das Stylesheet und die Gliederung, deck_page fügt Seite für Seite eine geprüfte Seite hinzu, deck_build stellt die .pptx zusammen und slides_render liefert ein Bild jeder Folie zurück; die fertige Präsentation öffnet sich danach in Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides zeigt die achtseitige Präsentation Renewable Energy 2026, die Claude Code über den plotdocs-MCP-Server erstellt hat: die Titelfolie mit einem Foto eines Windparks auf der Arbeitsfläche und acht Miniaturansichten links"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Plot Docs-Einstellungen, Seite Integrationen, MCP-Teil: der einzeilige claude mcp add-Befehl für Claude Code, der JSON-Block für Cursor, Claude Desktop und andere MCP-Clients, und die Option für den lokalen HTTP-Server darunter"></td>
-</tr>
-<tr>
-<td><b>Ein Prompt, 38 Tool-Aufrufe, kein Terminal</b> — „Erstelle eine achtseitige Investoren-Präsentation über erneuerbare Energien im Jahr 2026, mit einem echten Foto auf dem Titelblatt und überall sonst, wo ein Foto hilft.“ Der Agent holt die Abbildungen und die Fotos mit <code>search</code>, fragt <code>media</code>, ob jedes Kandidatenbild eine echte Fotografie ist, ruft <code>deck_start</code> mit einem Stylesheet und einer Gliederung auf, dann <code>deck_page</code> einmal pro Folie; jede Seite wird gegen die Gliederung und die Palette geprüft, bevor sie behalten wird, <code>deck_build</code> stellt die <code>.pptx</code> zusammen, <code>slides_audit</code> sucht nach Überlauf, <code>slides_render</code> liefert pro Folie ein PNG als Bildinhalt zurück, den das Modell ansehen kann, und <code>deck_replace</code> überarbeitet die drei Seiten, die ihm nicht gefallen haben.</td>
-<td><b>Einmal verbinden, unter Einstellungen → Integrationen</b> — kopiere die <code>claude mcp add</code>-Zeile für Claude Code oder den JSON-Block in Cursor, Claude Desktop oder einen anderen MCP-Client. Option B schaltet den lokalen HTTP-Server für den sichtbaren Word-Editor ein. Beides wird unter <a href="#mcp-server">MCP-Server</a> beschrieben.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Warum Plot Docs

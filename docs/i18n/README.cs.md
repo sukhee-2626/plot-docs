@@ -1,9 +1,6 @@
 <p align="center">
   <a href="https://plotxyz.ai/">
-    <picture>
-      <source srcset="../assets/readme/hero-dark.webp" media="(prefers-color-scheme: dark)">
-      <img src="../assets/readme/hero.webp" alt="Plot Docs — open-source AI kancelářský balík: Docs, Sheets, Slides, PDF, Markdown a HTML s vestavěným AI panelem" width="100%">
-    </picture>
+    <img src="../../site/assets/plotdocs-logo.svg" alt="Plot Docs" width="760">
   </a>
 </p>
 
@@ -64,146 +61,27 @@ podrobnosti a požadavky najdete v sekci [Stažení](#download).
 
 ## Ukázka
 
-Šest aplikací, jeden AI panel a příkazový řádek pro vašeho kódovacího agenta.
-Každý snímek obrazovky je ze skutečné aplikace na macOS, s AI ovládanou
-promptem, který si můžete přečíst v panelu.
-
-### 1 · Docs — otevírejte a upravujte `.docx` s AI, kterou lze zkontrolovat
+<p align="center">
+  <img src="../../site/screenshots/home.png" alt="Plot Docs home screen" width="100%">
+</p>
 
 <table>
-<tr>
-<td width="50%"><img src="../assets/readme/docs-report.webp" alt="Plot Docs Docs vykresluje dvoukolonovou stránku výroční zprávy s celostránkovým titulním obrázkem, podbarvenou tabulkou KPI, záhlavím a zápatím, při 80% přiblížení se sbaleným AI panelem"></td>
-<td width="50%"><img src="../assets/readme/docs-ai.webp" alt="Plot Docs Docs: přehled společnosti s bannerovým obrázkem; AI zestručnila sekci Overview a vložila novou sekci s odrážkami, panel nabízí vrácení jedním kliknutím"></td>
-</tr>
-<tr>
-<td><b>Otevře soubor přesně tak, jak jej rozvrhl Word</b> — dvoukolonové sekce, obrázky přes celou stránku, podbarvené tabulky, záhlaví a zápatí, stránkování podle Wordových metrik řádkování. Styly, komentáře, sledované změny, rovnice i ruční poznámky se zachovají beze změny.</td>
-<td><b>Zadejte úpravu</b> — AI si přečte jen bloky, které potřebuje, přepíše sekci Overview a vloží novou sekci s odrážkami. Každé kolo AI je snímek, který lze vrátit; se zapnutým <b>sledováním změn</b> přicházejí úpravy jako revize ve stylu Wordu.</td>
-</tr>
-</table>
-
-### 2 · Sheets — `.xlsx` s živými vzorci a grafy, ne s vloženými čísly
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/sheets-ai.webp" alt="Plot Docs Sheets: AI přidala list Summary s tržbami podle regionu a kategorie pomocí vzorců SUMIF, plus sloupcový graf, a hlásí 43 provedených změn s tlačítkem Zpět"></td>
-<td width="50%"><img src="../assets/readme/sheets-qa.webp" alt="Plot Docs Sheets: na dotaz, který region vedl v tržbách za Q2, AI odpovídá Evropa s rozpadem podle kategorií a jako odkazy cituje buňky, které použila, vedle listu Orders"></td>
-</tr>
-<tr>
-<td><b>Vytvořte to</b> — z jedné věty agent přidá list Summary se skutečnými vzorci <code>SUMIF</code> podle regionu a kategorie, vloží sloupcový graf a všech 43 změn provede jako jednu dávku, kterou lze vrátit.</td>
-<td><b>Zeptejte se</b> — dotazy k sešitu se vracejí s odůvodněním a konkrétními buňkami použitými jako klikatelné citace. Pod kapotou: vlastní Rust engine `.xlsx`, kontingenční tabulky, filtry, podmíněné formátování a sledování vzorců.</td>
-</tr>
-</table>
-
-### 3 · Slides — od promptu k prezentaci `.pptx`
-
-<img src="../assets/readme/slides-generate.webp" alt="Časosběrný záznam Plot Docs Slides generujícího investorskou prezentaci Aurora Home: AI plánuje osnovu v panelu, snímky se postupně objevují na plátně a hotová prezentace končí závěrečnou výzvou k akci" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/slides-cover.webp" alt="Plot Docs Slides: titulní snímek AI vygenerované investorské prezentace Aurora Home na ploše, s původním jednořádkovým promptem a shrnutím AI o tom, co vytvořila, v panelu"></td>
-<td width="50%"><img src="../assets/readme/slides-ai.webp" alt="Plot Docs Slides: navržený závěrečný snímek téže 11snímkové prezentace, s pruhem miniatur vlevo a AI panelem shrnujícím dějovou linku"></td>
-</tr>
-<tr>
-<td><b>Jeden vstupní řádek</b> — „Vytvoř 10snímkovou investorskou prezentaci pro Aurora Home…“. Plot Docs naplánuje dějovou linku, vyhledá čísla a vytvoří každý snímek na ploše jako skutečný soubor `.pptx`.</td>
-<td><b>Hotová prezentace na výstupu</b> — jedenáct navržených snímků s konzistentní typografií, obrázky a závěrečnou výzvou k akci; dál upravujte pomocí předloh, rozvržení, chytrých vodicích čar a nedestruktivního oříznutí, nebo požádejte panel o změnu stylu, přepsání a přeuspořádání.</td>
-</tr>
-</table>
-
-### 4 · PDF — upravujte text v PDF na místě, převádějte PDF do Wordu na zařízení
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/pdf-edit.webp" alt="Plot Docs PDF: režim Upravit text obtahuje na stránce každý textový blok pro úpravu na místě, zatímco AI panel odpovídá na dotaz ke zprávě s citacemi stránek"></td>
-<td width="50%"><img src="../assets/readme/pdf-convert.webp" alt="Plot Docs Docs zobrazuje dokument Word lokálně převedený z čtvrtletní zprávy Helios v PDF, otevřený na druhé záložce vedle původního PDF"></td>
-</tr>
-<tr>
-<td><b>Upravujte přímo na stránce</b> — režim Upravit text obtahuje každý textový blok pro přepsání na místě; obsahový proud se přepisuje přes PDFium s původními fonty, ne pomocí zakrývací anotace. Zeptejte se AI na dlouhou zprávu a získejte odpovědi s citacemi stránek.</td>
-<td><b>Převod na zařízení</b> — <b>PDF Converter → PDF to Word</b> vytvoří editovatelný soubor `.docx`, který se otevře v Docs vedle zdroje se zachovanými nadpisy, řádky statistik a odstavci. Cíle Excel a PowerPoint fungují stejně; skenované stránky procházejí systémovým OCR.</td>
-</tr>
-</table>
-
-### 5 · HTML — AI tvůrce stránek a rozhraní, nejdřív návrhový brief
-
-Řekněte, k čemu stránka slouží a pro koho je určená. AI nejprve navrhne
-**návrhový brief** — hook, paletu, typografii a stylové směry — a teprve
-podle těchto tokenů vytvoří jeden samostatný soubor `.html`.
-
-<img src="../assets/readme/html-restyle-motion.webp" alt="Časosběrný záznam Plot Docs HTML měnícího styl vstupní stránky Lumen: jeden požadavek Restyle v panelu změní temnou stránku Midnight Studio na teplou verzi Solar Daybreak, zatímco všechny sekce a veškerý obsah zůstávají na místě" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-ai.webp" alt="Plot Docs HTML: vygenerovaná vstupní stránka pro solární stolní lampu ve tmavém stylu Midnight Studio, zobrazená v živém náhledu s AI panelem shrnujícím právě vytvořenou stránku"></td>
-<td width="50%"><img src="../assets/readme/html-restyle.webp" alt="Tatáž vstupní stránka Lumen přestylovaná AI do teplého stylu Solar Daybreak: papírové pozadí, patkové titulky a oranžová akcentní barva, se zachováním všech sekcí a veškerého textu"></td>
-</tr>
-<tr>
-<td><b>Vygenerováno z jednoho promptu</b> — výrazný hero, karty funkcí, ceník a formulář pro waitlist pro Lumen, vytvořené ve stylu Midnight Studio. Kliknutím na jakýkoli prvek jej přestylujete, dvojklikem upravíte text nebo přejdete na zdrojový pohled v CodeMirroru.</td>
-<td><b>Stejný design, nový směr</b> — jeden požadavek na <b>Restyle</b> vymění tokeny briefu a stránka se jim přizpůsobí: teplý papír, editoriální patkové písmo, sluncově oranžová akcentní barva, nic se nepřepisuje. Prezentujte na celou obrazovku nebo exportujte jako PDF či nativní editovatelný dokument Word.</td>
-</tr>
-</table>
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/html-dashboard.webp" alt="Plot Docs HTML: vygenerované rozhraní osobního dashboardu pro nezávislého designéra ve stylu teplého lnu, s levým panelem, patkovým pozdravem a čtyřmi metrickými kartami"></td>
-<td width="50%"><img src="../assets/readme/html-report.webp" alt="Plot Docs HTML: vygenerovaná datová zpráva o trhu elektromobilů ve stylu novinového listu, s patkovou hlavičkou, hlavním údajem 17,3 milionu a řádkem statistik"></td>
-</tr>
-<tr>
-<td><b>Návrhy rozhraní</b> — startovací šablona „osobní dashboard“ promění personu ve funkční rozvržení: levý panel, pozdrav, sparkline fakturovaných hodin, karty faktur a vytížení — vše skutečné HTML, které lze předat vývojáři.</td>
-<td><b>Datové příběhy</b> — startovací šablona „datová zpráva“ vytvoří editoriální noviny: patková hlavička, jedno hlavní číslo, řádek statistik oddělený linkou, vložené SVG grafy a poznámka k metodice.</td>
-</tr>
-</table>
-
-### 6 · Markdown — blokový editor nad čistým `.md`, s funkcí Ask AI
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/markdown-ai.webp" alt="Plot Docs Markdown: vybraný odstavec zobrazuje vyskakovací okno Ask AI se zadanou instrukcí a návrhovými čipy jako Vylepšit, Zestručnit, Rozšířit a Opravit gramatiku, plus tlačítka Odeslat hned a Přidat do fronty"></td>
-<td width="50%"><img src="../assets/readme/markdown-render.webp" alt="Plot Docs Markdown vykresluje dokument s poznámkami k vydání obsahující tabulku, vývojový diagram Mermaid a seznam úkolů, s úvodními prompty AI panelu vlevo"></td>
-</tr>
-<tr>
-<td><b>Zeptejte se AI na výběr</b> — vyberte jakoukoli část textu a objeví se čip <b>Ask AI</b>: zadejte instrukci nebo vyberte návrh, odešlete ji hned, nebo zařaďte více zakotvených úprav do fronty a spusťte je najednou. Stejný vstupní bod existuje v každé aplikaci.</td>
-<td><b>Vykresleno, uloženo jako čistý Markdown</b> — nadpisy, seznamy, tabulky, obrázky, blok kódu a diagramy Mermaid v blokovém editoru Tiptap, zapsané zpět jako čistý soubor `.md`, s plně lokálním exportem <b>Markdown → Word</b>.</td>
-</tr>
-</table>
-
-### 7 · CLI — váš kódovací agent řídí Plot Docs, na vašem počítači
-
-Plot Docs obsahuje příkazový řádek `plotdocs` a agentní skill. Nainstalujte
-skill a Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode nebo
-Windsurf mohou vytvářet, převádět, číst a upravovat skutečné soubory Office
-přes stejné enginy jako aplikace, aniž by otevřely jediné okno.
-
-<img src="../assets/readme/cli-deck-in-app.webp" alt="Plot Docs Slides zobrazuje osmisnímkovou prezentaci o sluneční soustavě, kterou kódovací agent vytvořil přes příkazový řádek plotdocs: titulní snímek na ploše, osm miniatur vlevo a otevřený AI panel" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/cli-slides-grid.webp" alt="Osm vykreslených snímků prezentace o sluneční soustavě vedle sebe: titul, časová osa průzkumu, čtyři klíčová čísla, sloupcový graf průměrů planet, kamenné světy versus obři, 99,8 % Slunce jako hlavní číslo, mřížka čtyř obrů a závěry"></td>
-<td width="50%"><img src="../assets/readme/cli-integrations.webp" alt="Nastavení Plot Docs, stránka Integrace: skill plotdocs nainstalovaný do Claude Code, s tlačítky Instalovat u položek Codex a Cursor"></td>
-</tr>
-<tr>
-<td><b>Jeden prompt vašemu agentovi</b> — „Vytvoř osmisnímkovou prezentaci o sluneční soustavě.“ Agent si přečte skill, napíše stylový list, osnovu a jednu specifikaci stránky na snímek, vygeneruje obě fotografie pomocí <code>plotdocs image</code> a nechá <code>plotdocs slides check</code> odmítnout vše, co přetéká nebo se překrývá, než <code>plotdocs create</code> sestaví soubor <code>.pptx</code> a <code>slides render</code> vrátí ke kontrole jeden PNG na snímek.</td>
-<td><b>Nainstalujte jednou, v Nastavení → Integrace</b> — Plot Docs vypíše kódovací agenty, které na tomto počítači najde, a zapíše skill do každého, který vyberete. Nebo si skill stáhněte jako zip, případně spusťte <code>npx skills add plotxyz-ai/plot-docs</code>. Příkazy a celý pracovní postup najdete v sekci <a href="#command-line-and-agent-skill">Příkazový řádek a agentní skill</a>.</td>
-</tr>
-</table>
-
-### 8 · MCP — stejné nástroje přes Model Context Protocol
-
-Každý příkaz `plotdocs` je zároveň nástrojem MCP. Claude Code, Claude
-Desktop, Cursor a jakýkoli jiný MCP klient si mohou sami spustit `plotdocs
-mcp` — bez instalace skillu a bez otevřeného okna — a získat 29 nástrojů
-plus referenční příručky k operacím jako zdroje (resources). Druhý,
-HTTP server uvnitř aplikace umožňuje agentovi sestavit dokument Word přímo
-ve viditelné záložce editoru, zatímco se díváte.
-
-<img src="../assets/readme/mcp-deck-motion.webp" alt="Zrychlený záznam toho, jak Claude Code staví osmislajdovou investorskou prezentaci o obnovitelné energii přes MCP server plotdocs: hledá obrázky a fotografie, kontroluje každou kandidátní fotografii pomocí media, deck_start zapíše stylový list a osnovu, deck_page přidává vždy jednu zkontrolovanou stránku, deck_build sestaví .pptx a slides_render vrátí obrázek každého slajdu; hotová prezentace se pak otevře v Plot Docs Slides" width="100%">
-
-<table>
-<tr>
-<td width="50%"><img src="../assets/readme/mcp-deck-in-app.webp" alt="Plot Docs Slides zobrazuje osmislajdovou prezentaci Renewable Energy 2026, kterou Claude Code postavil přes MCP server plotdocs: titulní slajd s fotografií větrné farmy na ploše a osm miniatur vlevo"></td>
-<td width="50%"><img src="../assets/readme/mcp-integrations.webp" alt="Nastavení Plot Docs, stránka Integrations, část MCP: jednořádkový příkaz claude mcp add pro Claude Code, blok JSON pro Cursor, Claude Desktop a další MCP klienty, a níže možnost lokálního HTTP serveru"></td>
-</tr>
-<tr>
-<td><b>Jeden prompt, 38 volání nástrojů, žádný shell</b> — „Vytvoř osmislajdovou investorskou prezentaci o obnovitelné energii v roce 2026, se skutečnou fotografií na titulní straně a všude, kde fotografie pomůže.“ Agent stáhne obrázky a fotografie pomocí <code>search</code>, zeptá se <code>media</code>, zda je každá kandidátní fotografie skutečnou fotografií, zavolá <code>deck_start</code> se stylovým listem a osnovou, poté <code>deck_page</code> pro každý slajd; každá stránka je zkontrolována proti osnově a paletě, než je přijata, <code>deck_build</code> sestaví <code>.pptx</code>, <code>slides_audit</code> hledá přetečení, <code>slides_render</code> vrátí PNG pro každý slajd jako obrazový obsah, na který se model může podívat, a <code>deck_replace</code> opraví tři stránky, které se mu nelíbily.</td>
-<td><b>Připojte se jednou, z Nastavení → Integrace</b> — zkopírujte řádek <code>claude mcp add</code> pro Claude Code, nebo blok JSON do Cursoru, Claude Desktop či jiného MCP klienta. Možnost B zapíná lokální HTTP server pro viditelný editor Word. Obojí je popsáno v sekci <a href="#mcp-server">MCP server</a>.</td>
-</tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/docs.png" alt="Plot Docs Docs editor"></td>
+    <td width="50%"><img src="../../site/screenshots/sheets.png" alt="Plot Docs Sheets editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/slides.png" alt="Plot Docs Slides editor"></td>
+    <td width="50%"><img src="../../site/screenshots/pdf.png" alt="Plot Docs PDF editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/markdown.png" alt="Plot Docs Markdown editor"></td>
+    <td width="50%"><img src="../../site/screenshots/html.png" alt="Plot Docs HTML editor"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="../../site/screenshots/templates.png" alt="Plot Docs templates"></td>
+    <td width="50%"><img src="../../site/screenshots/settings-account.png" alt="Plot Docs local account settings"></td>
+  </tr>
 </table>
 
 ## Proč Plot Docs
@@ -524,7 +402,7 @@ OCR, takže se převedou na editovatelný text, ne na obrázek stránky.
 <details>
 <summary><b>Můžu použít vlastní AI model nebo API klíč?</b></summary>
 
-Ano. Kromě bezklíčového přihlášení Soopus Plot Docs podporuje vlastní klíč
+Ano. Kromě bezklíčového přihlášení Soopus AI podporuje vlastní klíč
 pro Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok,
 Mistral, OpenRouter, Requesty a OpenCode Zen/Go, plus jakýkoli OpenAI kompatibilní
 endpoint — včetně lokálních serverů s modely. Vyhledávání, generování obrázků
