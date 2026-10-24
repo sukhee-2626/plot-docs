@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>A local-first office workspace for the files you actually use.</strong><br>
-  Docs, Sheets, Slides, PDF, Markdown and HTML in one desktop app.
+  Docs, Sheets, Slides, PDF, Markdown, HTML and AI data analytics in one desktop app.
 </p>
 
 <p align="center">
@@ -110,6 +110,75 @@ The AI panel is optional. Connect **Soopus AI** or bring your own key for an
 OpenAI-compatible provider, including a model running on your own machine.
 AI edits can land as reviewed changes, with snapshots and rollback, instead of
 silently replacing your content.
+
+### AI Data Analytics
+
+Open **AI Data Analytics** from Home (between AI PDF and Open Local File) for a
+local-first analytics workspace with a persistent Plot AI side panel. Import a
+CSV, TSV, JSON, XLSX or XLSM file, connect SQLite, PostgreSQL or MySQL, or paste
+a public link. Plot AI also reads HTML tables and follows a page that links to a
+CSV, TSV, JSON or XLSX file.
+
+The workspace profiles every dataset and shows rows, columns, nulls, distinct
+values, duplicate rows and a transparent quality score. You can inspect and
+edit the inferred schema, clean data with a reversible backup, run read-only
+SQL, use a fixed safe Python aggregation, build charts, save live dashboard
+cards and export exact query results as CSV.
+
+**Full automation.** Choose **Run full auto** and the deterministic local engine
+will:
+
+1. remove exact duplicate rows with a one-step undo;
+2. profile the dataset and measure missingness;
+3. rank the strongest text dimension by a numeric metric, using a windowed
+   total so the top group's share is calculated across every group;
+4. build a time trend when a date column exists;
+5. create an equal-width distribution histogram;
+6. calculate both Pearson and Spearman correlation, then select the rank
+   correlation when the monotonic signal is materially stronger than the
+   linear fit;
+7. find 1.5×IQR outliers;
+8. fit an ordinary least-squares linear forecast with slope, R², residual
+   standard error, an approximate 95% slope confidence interval and an
+   approximate 95% prediction interval; and
+9. save every eligible chart as a live **Auto ·** dashboard card with its SQL.
+
+Every insight shows its calculation or SQL, the method used, the dataset it
+used, the exact result rows, the time period or dimension involved, a
+confidence label, a plain-language meaning and the uncertainty caveat. If a
+calculation cannot run, it is omitted instead of guessed. No result is
+fabricated, and the local engine does not need an AI model.
+
+**Dataset understanding.** Before a full run, Plot AI can read the schema,
+column profiles and sample rows to identify what one row represents (the grain),
+the likely role of each column, the best metric, dimension and time axis, useful
+questions and reversible preparation. Every model choice is validated against
+the real imported schema; invalid columns, analyses or cleaning steps are
+replaced with a deterministic local reading. The **Data** and **Automate** tabs
+show the plan, its source and its caveats, so you can see what the automation
+understood before trusting the results.
+
+**Plot AI assistant.** The side panel works like the document-creation chat. It
+can import a source, prepare the dataset, run SQL, rank and sort groups, predict
+a date trend, save a dashboard card or run the whole pipeline. Ranking returns
+the exact windowed SQL and a full-group share; prediction returns the slope, R²,
+a slope interval and an approximate prediction interval instead of a single
+unqualified number. When an AI provider is connected, the model plans those
+steps and the app executes them locally. When no model is connected, or the
+model call fails, Plot AI uses the same local automation engine and says so in
+the reply. The assistant cannot delete datasets, export files, run arbitrary
+code or issue write SQL.
+
+**Data limits and safety.** Files are limited to 100 MB and 250,000 rows; scraped
+HTML pages are limited to 20 MB. URL import accepts only public http/https
+addresses, blocks localhost and private IP ranges, follows at most four
+redirects, applies a 30-second timeout and allows ports 80, 443, 8080 and 8443.
+Python is restricted to a fixed app-generated aggregation, runs in isolated mode
+with a 20-second timeout and never accepts arbitrary user code. Forecasting is a
+transparent linear least-squares fit, not a causal model; its prediction
+interval is an approximate uncertainty band that widens outside the observed
+range. Scheduled refreshes, external destinations and team approval queues are
+not enabled yet.
 
 ### Local search
 
