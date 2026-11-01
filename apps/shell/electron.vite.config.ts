@@ -7,8 +7,12 @@ export default defineConfig({
   // imported docs/sheets main modules are TS source with no build artifacts,
   // so externalizing them would break Node ESM resolution at runtime.
   main: {
-    // node:sqlite is a Node 22+ builtin the bundler's builtin list may predate
-    build: { rollupOptions: { external: ['node:sqlite'] } },
+    // node:sqlite is a Node 22+ builtin the bundler's builtin list may predate.
+    // pg/mysql2 stay external so their optional native adapters keep working
+    // and the packaged app ships them as production dependencies.
+    build: {
+      rollupOptions: { external: ['node:sqlite', 'pg', 'pg-native', 'mysql2', 'mysql2/promise'] },
+    },
   },
   preload: {
     build: {

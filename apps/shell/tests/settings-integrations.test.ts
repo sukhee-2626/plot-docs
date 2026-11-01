@@ -14,13 +14,17 @@ import { SettingsModal, type SettingsModalProps } from '../src/renderer/src/Sett
 const actEnvironment = globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean }
 actEnvironment.IS_REACT_ACT_ENVIRONMENT = true
 
-let host: HTMLDivElement
+let mount: HTMLDivElement
+let host: HTMLElement
 let root: Root
 
 beforeEach(() => {
-  host = document.createElement('div')
-  document.body.append(host)
-  root = createRoot(host)
+  mount = document.createElement('div')
+  document.body.append(mount)
+  // SettingsModal renders through createPortal into document.body, so the
+  // mounted React root host does not contain the dialog DOM.
+  host = document.body
+  root = createRoot(mount)
   window.aiOffice = {
     getTheme: async () => 'system',
     getDefaultSaveDir: async () => '',
@@ -35,7 +39,7 @@ beforeEach(() => {
 
 afterEach(() => {
   act(() => root.unmount())
-  host.remove()
+  mount.remove()
 })
 
 async function flush(): Promise<void> {
@@ -160,11 +164,11 @@ describe('Settings → Integrations', () => {
     expect(host.textContent).toContain('Pick any one of these three ways')
     // the same three prompts appear under both the CLI and the MCP part
     expect(host.querySelectorAll('.set-intg-example')).toHaveLength(6)
-    expect(host.textContent).toContain('npx skills add plotxyz-ai/plot-docs')
+    expect(host.textContent).toContain('npx skills add Soopus-ai/plotdocs')
     // MCP block: the launcher itself while plotdocs is not on the PATH, as a command and as JSON
     const mcp = [...host.querySelectorAll('.set-intg-mcp code')].map((c) => c.textContent)
     expect(mcp[0]).toBe(
-      'claude mcp add --transport stdio plotdocs -- /Applications/Plot Docs.app/Contents/Resources/cli/plotdocs mcp',
+      'claude mcp add --transport stdio plotdocs -- "/Applications/Plot Docs.app/Contents/Resources/cli/plotdocs" mcp',
     )
     expect(JSON.parse(mcp[1]!)).toEqual({
       mcpServers: {

@@ -33,6 +33,36 @@ import type {
 } from '../shared/home-api'
 import type { ProjectApi } from '@plotdocs/project-store'
 import { HOME_CHANNELS } from '../shared/home-api'
+import { ANALYTICS_CHANNELS } from '../shared/analytics-api'
+import type {
+  AnalyticsAiPlanResult,
+  AnalyticsApi,
+  AnalyticsAppendRequest,
+  AnalyticsAppendResult,
+  AnalyticsAskResult,
+  AnalyticsAssistantEvent,
+  AnalyticsAssistantReply,
+  AnalyticsAssistantStatus,
+  AnalyticsAuditEvent,
+  AnalyticsAutoAnalysis,
+  AnalyticsCleanResult,
+  AnalyticsDatabaseSource,
+  AnalyticsDatabaseTable,
+  AnalyticsDataset,
+  AnalyticsDatasetDetail,
+  AnalyticsForecastResult,
+  AnalyticsJoinRequest,
+  AnalyticsJoinResult,
+  AnalyticsPythonResult,
+  AnalyticsQueryResult,
+  AnalyticsSavedView,
+  AnalyticsUrlInspection,
+  AnalyticsWorkflow,
+  AnalyticsWorkflowInput,
+  AnalyticsWorkflowRun,
+  AnalyticsWorkflowRunResult,
+  AnalyticsWorkflowVersion,
+} from '../shared/analytics-api'
 import { INTEGRATIONS_CHANNELS } from '../shared/integrations-api'
 import type {
   IntegrationsApi,
@@ -180,6 +210,9 @@ const homeApi: HomeApi = {
   async aiGetSettings() {
     return ipcRenderer.invoke('ai:get-settings')
   },
+  async openAiModelSettings() {
+    await ipcRenderer.invoke('ai:open-model-settings')
+  },
   async aiStream(request) {
     await ipcRenderer.invoke('ai:stream', request)
   },
@@ -191,8 +224,8 @@ const homeApi: HomeApi = {
     ipcRenderer.on('ai:stream-chunk', listener)
     return () => ipcRenderer.removeListener('ai:stream-chunk', listener)
   },
-  async aiSoopusStatus() {
-    return ipcRenderer.invoke('ai:soopus-status')
+  async aiSoopusStatus(withEmail?: boolean) {
+    return ipcRenderer.invoke('ai:soopus-status', withEmail)
   },
   async openPath(path) {
     if (typeof path !== 'string' || !path) throw new Error('Invalid path.')
@@ -349,6 +382,9 @@ const homeApi: HomeApi = {
   async getAppVersion() {
     const result: unknown = await ipcRenderer.invoke(HOME_CHANNELS.getAppVersion)
     return typeof result === 'string' ? result : ''
+  },
+  async reportRendererError(input) {
+    await ipcRenderer.invoke(HOME_CHANNELS.reportRendererError, input)
   },
   async getUpdateState() {
     const result: unknown = await ipcRenderer.invoke('update:get-state')
@@ -666,6 +702,182 @@ function asCloudProjectsSnapshot(result: unknown): CloudProjectsSnapshot | null 
 }
 
 contextBridge.exposeInMainWorld('aiOffice', homeApi)
+
+const analyticsApi: AnalyticsApi = {
+  async importFile() {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.importFile)) as AnalyticsDataset | null
+  },
+  async importPath(path) {
+    if (typeof path !== 'string' || !path) throw new Error('Invalid file path.')
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.importPath, path)) as AnalyticsDataset
+  },
+  async listDatasets() {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.listDatasets)) as AnalyticsDataset[]
+  },
+  async getDataset(id) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.getDataset, id)) as AnalyticsDatasetDetail | null
+  },
+  async deleteDataset(id) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.deleteDataset, id)) === true
+  },
+  async runQuery(id, sql, limit) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.runQuery,
+      id,
+      sql,
+      limit,
+    )) as AnalyticsQueryResult
+  },
+  async joinDatasets(input: AnalyticsJoinRequest) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.joinDatasets,
+      input,
+    )) as AnalyticsJoinResult
+  },
+  async appendDatasets(input: AnalyticsAppendRequest) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.appendDatasets,
+      input,
+    )) as AnalyticsAppendResult
+  },
+  async clean(id, operation) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.clean, id, operation)) as AnalyticsCleanResult
+  },
+  async undoClean(id) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.undoClean, id)) as AnalyticsCleanResult
+  },
+  async saveView(input) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.saveView, input)) as AnalyticsSavedView
+  },
+  async listViews(datasetId) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.listViews,
+      datasetId,
+    )) as AnalyticsSavedView[]
+  },
+  async deleteView(id) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.deleteView, id)) === true
+  },
+  async ask(id, question) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.ask, id, question)) as AnalyticsAskResult
+  },
+  async autoAnalyze(input) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.autoAnalyze,
+      input,
+    )) as AnalyticsAutoAnalysis
+  },
+  async understandDataset(id) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.understandDataset,
+      id,
+    )) as AnalyticsAiPlanResult
+  },
+  async forecast(id, xColumn, yColumn) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.forecast,
+      id,
+      xColumn,
+      yColumn,
+    )) as AnalyticsForecastResult
+  },
+  async python(input) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.python, input)) as AnalyticsPythonResult
+  },
+  async exportCsv(id, sql, suggestedName) {
+    const result: unknown = await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.exportCsv,
+      id,
+      sql,
+      suggestedName,
+    )
+    return typeof result === 'string' ? result : null
+  },
+  async listAudit() {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.listAudit)) as AnalyticsAuditEvent[]
+  },
+  async listWorkflows(datasetId) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.listWorkflows,
+      datasetId,
+    )) as AnalyticsWorkflow[]
+  },
+  async saveWorkflow(input: AnalyticsWorkflowInput) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.saveWorkflow,
+      input,
+    )) as AnalyticsWorkflow
+  },
+  async deleteWorkflow(id) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.deleteWorkflow, id)) === true
+  },
+  async runWorkflow(id) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.runWorkflow,
+      id,
+    )) as AnalyticsWorkflowRunResult
+  },
+  async listWorkflowRuns(workflowId, limit) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.listWorkflowRuns,
+      workflowId,
+      limit,
+    )) as AnalyticsWorkflowRun[]
+  },
+  async listWorkflowVersions(workflowId) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.listWorkflowVersions,
+      workflowId,
+    )) as AnalyticsWorkflowVersion[]
+  },
+  async importUrl(input) {
+    return (await ipcRenderer.invoke(ANALYTICS_CHANNELS.importUrl, input)) as AnalyticsDataset
+  },
+  async inspectUrl(input) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.inspectUrl,
+      input,
+    )) as AnalyticsUrlInspection
+  },
+  async listDatabaseTables(source) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.databaseTables,
+      source,
+    )) as AnalyticsDatabaseTable[]
+  },
+  async pickDatabaseFile() {
+    const result: unknown = await ipcRenderer.invoke(ANALYTICS_CHANNELS.pickDatabaseFile)
+    return typeof result === 'string' ? result : null
+  },
+  async importDatabaseTable(input) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.importDatabaseTable,
+      input,
+    )) as AnalyticsDataset
+  },
+  async assistant(input) {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.assistant,
+      input,
+    )) as AnalyticsAssistantReply
+  },
+  onAssistantEvent(handler) {
+    const listener = (_event: Electron.IpcRendererEvent, next: unknown) => {
+      handler(next as AnalyticsAssistantEvent)
+    }
+    ipcRenderer.on(ANALYTICS_CHANNELS.assistantEvent, listener)
+    return () => {
+      ipcRenderer.removeListener(ANALYTICS_CHANNELS.assistantEvent, listener)
+    }
+  },
+  async assistantStatus() {
+    return (await ipcRenderer.invoke(
+      ANALYTICS_CHANNELS.assistantStatus,
+    )) as AnalyticsAssistantStatus
+  },
+}
+
+contextBridge.exposeInMainWorld('plotdocsAnalytics', analyticsApi)
 
 // The same project:* channels the editor preloads use; the home screen's
 // knowledge-base ask panel keeps its thread through them. The handlers are

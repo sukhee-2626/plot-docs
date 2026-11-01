@@ -20,23 +20,24 @@
     "dist:linux": "npm run notices && electron-vite build && electron-builder --linux"
   },
   "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@plotdocs/agent-core": "*",
     "@plotdocs/ai-provider": "*",
     "@plotdocs/ai-search": "*",
+    "@plotdocs/cli": "*",
     "@plotdocs/docs": "*",
     "@plotdocs/docx-engine": "*",
     "@plotdocs/electron-utils": "*",
-    "@plotdocs/cli": "*",
     "@plotdocs/i18n": "*",
     "@plotdocs/pipelines": "*",
     "@plotdocs/pptx-engine": "*",
     "@plotdocs/pptx-render": "*",
+    "@plotdocs/project-store": "*",
     "@plotdocs/sheets": "*",
     "@plotdocs/slides": "*",
-    "@plotdocs/project-store": "*",
     "@plotdocs/ui": "*",
     "@plotdocs/xlsx-gateway": "*",
-    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.0.4",
@@ -50,6 +51,10 @@
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "mysql2": "^3.24.6",
+    "pg": "^8.23.1"
   },
   "author": "plotxyz.ai"
 }

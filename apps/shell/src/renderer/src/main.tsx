@@ -2,6 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { htmlDir, htmlLang } from '@plotdocs/i18n'
 import { AppFrame } from './AppFrame'
+import { ErrorBoundary } from './ErrorBoundary'
 import { LocaleProvider } from './locale'
 import '@plotdocs/ui/tokens.css'
 import '@plotdocs/ui/screentip.css'
@@ -13,6 +14,28 @@ import './tabbar.css'
 import { installScreenTips } from '@plotdocs/ui'
 
 installScreenTips()
+
+function reportRendererFailure(error: unknown, source: string): void {
+  const normalized = error instanceof Error ? error : new Error(String(error))
+  void window.aiOffice
+    ?.reportRendererError?.({
+      message: `${source}: ${normalized.name}: ${normalized.message}`,
+      stack: normalized.stack ?? '',
+      url: window.location.href,
+    })
+    .catch(() => {
+      /* diagnostics are best effort */
+    })
+}
+
+// React's boundary catches render errors; these catch async/event failures
+// that would otherwise only appear in DevTools.
+window.addEventListener('error', (event) => {
+  reportRendererFailure(event.error ?? event.message, 'window.error')
+})
+window.addEventListener('unhandledrejection', (event) => {
+  reportRendererFailure(event.reason, 'unhandledrejection')
+})
 
 // macOS shell window is created with vibrancy; a transparent body lets the
 // editor views' translucent regions (e.g. slides thumbnail pane) show it
@@ -62,15 +85,17 @@ void Promise.all([
   )
   createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <LocaleProvider initial={lang}>
-        {isHelp ? (
-          <React.Suspense fallback={<div className="boot" />}>
-            <HelpScreen />
-          </React.Suspense>
-        ) : (
-          <AppFrame initialOnboardingSeen={onboardingSeen} />
-        )}
-      </LocaleProvider>
+      <ErrorBoundary>
+        <LocaleProvider initial={lang}>
+          {isHelp ? (
+            <React.Suspense fallback={<div className="boot" />}>
+              <HelpScreen />
+            </React.Suspense>
+          ) : (
+            <AppFrame initialOnboardingSeen={onboardingSeen} />
+          )}
+        </LocaleProvider>
+      </ErrorBoundary>
     </React.StrictMode>,
   )
 })

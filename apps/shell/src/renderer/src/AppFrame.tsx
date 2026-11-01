@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { AnalyticsWorkspace } from './analytics/AnalyticsWorkspace'
 import { Home } from './Home'
 import { Onboarding } from './Onboarding'
 import { SplashScreen } from './SplashScreen'
@@ -12,6 +13,7 @@ interface AppFrameProps {
 
 export function AppFrame({ initialOnboardingSeen }: AppFrameProps) {
   const [homeActive, setHomeActive] = useState(true)
+  const [analyticsOpen, setAnalyticsOpen] = useState(false)
   const [showOnboarding, setShowOnboarding] = useState(!initialOnboardingSeen)
   const [starPromptDocOpens, setStarPromptDocOpens] = useState<number | null>(null)
   const [launchComplete, setLaunchComplete] = useState(false)
@@ -19,7 +21,9 @@ export function AppFrame({ initialOnboardingSeen }: AppFrameProps) {
   useEffect(() => {
     const applyTabs = (tabs: Awaited<ReturnType<typeof window.aiOfficeTabs.list>>) => {
       const active = tabs.find((tab) => tab.active)
-      setHomeActive(!active || active.kind === 'home')
+      const nextHomeActive = !active || active.kind === 'home'
+      setHomeActive(nextHomeActive)
+      if (!nextHomeActive) setAnalyticsOpen(false)
     }
     void window.aiOfficeTabs.list().then(applyTabs)
     return window.aiOfficeTabs.onChanged(applyTabs)
@@ -55,13 +59,22 @@ export function AppFrame({ initialOnboardingSeen }: AppFrameProps) {
       <TabBar />
       {/* docs/sheets tabs render as WebContentsView children of this window, positioned
        * by the main process to cover this area — only Home paints its own content here. */}
-      <div className="app-frame-content" style={{ visibility: homeActive ? 'visible' : 'hidden' }}>
-        <Home />
+      <div className="app-frame-content" style={{ visibility: homeActive && !analyticsOpen ? 'visible' : 'hidden' }}>
+        <Home onOpenAnalytics={() => setAnalyticsOpen(true)} />
       </div>
+      {analyticsOpen && homeActive && (
+        <AnalyticsWorkspace
+          onClose={() => setAnalyticsOpen(false)}
+          onOpenModelSettings={() => {
+            setAnalyticsOpen(false)
+            void window.aiOffice.openAiModelSettings()
+          }}
+        />
+      )}
       {/* editor WebContentsViews paint above ALL shell DOM, so the overlay only
        * renders while the home tab is active — it comes back when home does */}
       {showOnboarding && homeActive && <Onboarding onDone={finishOnboarding} />}
-      {starPromptDocOpens !== null && !showOnboarding && homeActive && (
+      {starPromptDocOpens !== null && !showOnboarding && homeActive && !analyticsOpen && (
         <StarPromptCard docOpens={starPromptDocOpens} onClose={() => setStarPromptDocOpens(null)} />
       )}
       <SplashScreen onDone={() => setLaunchComplete(true)} />

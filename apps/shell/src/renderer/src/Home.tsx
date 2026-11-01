@@ -1516,7 +1516,7 @@ function DropToOpenOverlay(): ReactElement | null {
 
 // ── Main component ──────────────────────────────────────
 
-export function Home() {
+export function Home({ onOpenAnalytics }: { onOpenAnalytics?: () => void } = {}) {
   const i18n = useI18n()
   const { t, lang } = i18n
   // ── Paged list state (rows loaded for the current view + filter) ──
@@ -2357,6 +2357,29 @@ export function Home() {
             </span>
           </button>
         ))}
+        <button
+          className="quick-card quick-card-analytics"
+          onClick={() => onOpenAnalytics?.()}
+          disabled={!onOpenAnalytics}
+        >
+          <span className="quick-analytics-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M4 19.5V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M9.5 19.5V7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M15 19.5V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M20.5 19.5V4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M3 21h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity=".55" />
+              <path d="m4.5 8.5 5-4 5 3 6-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity=".8" />
+            </svg>
+          </span>
+          <span className="quick-text">
+            <span className="quick-title-row">
+              <span className="quick-title">AI Data Analytics</span>
+              <span className="ai-chip">AI</span>
+            </span>
+            <span className="quick-sub">.csv · .tsv · .xlsx · .json</span>
+          </span>
+        </button>
         <button
           className="quick-card"
           onClick={() => void window.aiOffice.browse()}

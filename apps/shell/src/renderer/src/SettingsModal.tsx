@@ -311,7 +311,17 @@ function foldModels(providerId: string, models: string[]) {
 }
 
 /** AI model pane: provider / model / key / base URL, saved to userData/ai-settings.json */
-function AiModelPane({ t }: { t: TFunc }) {
+function AiModelPane({
+  t,
+  account,
+  onLogin,
+  loginWaiting,
+}: {
+  t: TFunc
+  account: AccountStatus | null
+  onLogin: () => void
+  loginWaiting: boolean
+}) {
   const [catalog, setCatalog] = useState<AiCatalogEntry[]>(
     () => window.aiOffice.getAiProviders?.() ?? [],
   )
@@ -322,6 +332,22 @@ function AiModelPane({ t }: { t: TFunc }) {
   const [testResult, setTestResult] = useState<{ ok: boolean; error?: string } | null>(null)
   /** free-typed value of the output-cap field; committed (and clamped) on blur */
   const [maxTokensDraft, setMaxTokensDraft] = useState<string | null>(null)
+  /** the Soopus AI device login, which is what the provider actually uses */
+  const [soopusAuth, setSoopusAuth] = useState<{ loggedIn: boolean; email?: string } | null>(null)
+
+  useEffect(() => {
+    let alive = true
+    void Promise.resolve(window.aiOffice.aiSoopusStatus?.(true))
+      .then((state) => {
+        if (alive) setSoopusAuth(state ?? { loggedIn: false })
+      })
+      .catch(() => {
+        if (alive) setSoopusAuth({ loggedIn: false })
+      })
+    return () => {
+      alive = false
+    }
+  }, [])
 
   const refreshCodexModels = useCallback(async (cliPath = '', selectedModel = '') => {
     if (!window.aiOffice.getCodexModels) return
@@ -462,6 +488,10 @@ function AiModelPane({ t }: { t: TFunc }) {
   }
   const isSoopus = provider === 'soopus'
   const isCodex = provider === 'codex'
+  // Prefer the provider's own device-login state; the local account is a
+  // separate profile and must not claim Soopus is connected when it is not.
+  const soopusSignedIn = soopusAuth?.loggedIn ?? account?.loggedIn === true
+  const soopusEmail = soopusAuth?.email || account?.email || ''
 
   const touch = () => {
     setDirty(true)
@@ -628,6 +658,70 @@ function AiModelPane({ t }: { t: TFunc }) {
           </button>
         </div>
       </div>
+      {isSoopus && (
+        <section className="set-soopus-hero" aria-label="Soopus AI">
+          <div className="set-soopus-hero-glow" aria-hidden="true" />
+          <div className="set-soopus-brand">
+            <span className="set-soopus-mark">
+              <ProviderLogo id="soopus" />
+            </span>
+            <div className="set-soopus-brand-copy">
+              <strong>Soopus AI</strong>
+              <span>{t('setAiSoopusHint')}</span>
+            </div>
+            <span className={`set-soopus-state ${soopusSignedIn ? 'on' : 'off'}`}>
+              <span className="set-soopus-dot" aria-hidden="true" />
+              {soopusSignedIn ? t('loggedInSoopus') : t('loginSoopus')}
+            </span>
+          </div>
+          {soopusSignedIn ? (
+            <div className="set-soopus-account">
+              {soopusEmail && (
+                <div className="set-soopus-account-row">
+                  <span>{t('setEmail')}</span>
+                  <strong>{soopusEmail}</strong>
+                </div>
+              )}
+              {account?.name && (
+                <div className="set-soopus-account-row">
+                  <span>{t('accountName')}</span>
+                  <strong>{account.name}</strong>
+                </div>
+              )}
+              {account?.creditBalance !== undefined && (
+                <div className="set-soopus-account-row">
+                  <span>{`Soopus ${t('credits')}`}</span>
+                  <strong>{Math.floor(account.creditBalance).toLocaleString('en-US')}</strong>
+                </div>
+              )}
+              <div className="set-soopus-account-actions">
+                <button type="button" className="set-btn" disabled={testing} onClick={test}>
+                  {testing ? t('setAiTesting') : t('setAiTest')}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="set-soopus-signin">
+              <div>
+                <strong>{t('accountSignInHelp')}</strong>
+              </div>
+              <button
+                type="button"
+                className="set-btn primary"
+                onClick={onLogin}
+                disabled={loginWaiting}
+              >
+                {loginWaiting ? t('setAiTesting') : t('loginSoopus')}
+              </button>
+            </div>
+          )}
+          <div className="set-soopus-chips" aria-label="Included with Soopus AI">
+            <span>Plot AI</span>
+            <span>{t('setAiSoopusTools')}</span>
+            <span>{t('setAiModelId')}</span>
+          </div>
+        </section>
+      )}
       <div className="set-field">
         <div className="set-field-text">
           <label className="set-field-label">{t('setAiProvider')}</label>
@@ -2122,7 +2216,14 @@ export function SettingsModal({
                 )}
               </>
             )}
-            {section === 'aiModel' && <AiModelPane t={t} />}
+            {section === 'aiModel' && (
+              <AiModelPane
+                t={t}
+                account={status}
+                onLogin={onLogin}
+                loginWaiting={loginWaiting}
+              />
+            )}
             {section === 'aiMedia' && (
               <AiMediaPane
                 t={t}

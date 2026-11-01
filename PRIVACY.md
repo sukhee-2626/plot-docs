@@ -1,6 +1,6 @@
 # Plot Docs Privacy
 
-Last updated: August 26, 2026
+Last updated: October 28, 2026
 
 Plot Docs opens, edits, and saves documents locally. Document editing does not
 upload files to Plot Docs. AI features require a network connection and send
@@ -45,6 +45,32 @@ The Google Analytics 4 payload also uses a random install UUID as `client_id`.
 The country code is sent through GA4's country-only `user_location` field; the
 app does not send a city or region. Neither identifier is a Soopus account or
 email address.
+
+## AI Data Analytics
+
+The AI Data Analytics workspace stores imported datasets in local SQLite under
+the app's private userData folder. Plot Docs does not upload the full dataset.
+When you use Plot AI with analytics, the configured AI provider receives only
+bounded tool observations needed to choose the next step:
+
+- the dataset schema, column types, and profile counts;
+- a bounded number of sample or query rows;
+- the SQL needed for the current step; and
+- page text, table samples, and direct-data links from a public page you asked
+  Plot AI to inspect.
+
+Before these observations are sent, Plot Docs replaces obvious contact, payment
+and identifier columns/values with `[redacted]`, masks database passwords and
+secret connection parameters, and strips query strings and fragments from URLs
+shown to the model. Direct data links use a local mapping so the model can choose
+a redacted link while the original signed URL stays in the local process. The
+model does not receive database credentials, the full dataset, or export files.
+
+This is pattern-based protection, not a complete PII classifier. Free-text names,
+unusual identifier formats, or sensitive information embedded in page prose may
+still be sent when you ask Plot AI to inspect that page. Review a dataset or page
+before using an external AI provider. You can use the deterministic local
+automation and SQL tools without configuring a model.
 
 ## Network information
 

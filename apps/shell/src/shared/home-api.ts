@@ -257,7 +257,7 @@ export interface HomeApi {
   /** subscribe to stream chunks; returns unsubscribe */
   onAiStream(handler: (chunk: AiStreamChunk) => void): () => void
   /** Soopus login state (the default provider's auth source) */
-  aiSoopusStatus(): Promise<{ loggedIn: boolean; email?: string }>
+  aiSoopusStatus(withEmail?: boolean): Promise<{ loggedIn: boolean; email?: string }>
   /** open an existing file, routing to the right module by extension */
   openHelp(): Promise<void>
   openPath(path: string): Promise<void>
@@ -339,6 +339,13 @@ export interface HomeApi {
   accountLogout(): Promise<void>
   /** app version (from package.json / electron app.getVersion) */
   getAppVersion(): Promise<string>
+  /** persist a renderer crash/error in the local diagnostics log (best effort) */
+  reportRendererError(input: {
+    message: string
+    stack?: string
+    componentStack?: string
+    url?: string
+  }): Promise<void>
   /** live updater state (null until an update was first seen); Settings → About */
   getUpdateState(): Promise<UpdateUiState | null>
   /** re-open the (minimized) update dialog; a not-yet-started download also starts */
@@ -434,6 +441,8 @@ export interface HomeApi {
   getAiSettings(): Promise<AiSettings>
   /** persist AI settings; every renderer gets ai:settings-changed and re-reads */
   setAiSettings(settings: AiSettings): Promise<void>
+  /** bring the shell forward and open Settings › AI Model (keys, endpoints, more vendors) */
+  openAiModelSettings(): Promise<void>
   /** ai-settings.json was rewritten by any renderer (composer model chip, another window) */
   onAiSettingsChanged(handler: () => void): () => void
   /** provider catalog with each fixed endpoint's default base URL (empty for Soopus/custom) */
@@ -662,6 +671,7 @@ export const HOME_CHANNELS = {
   setLanguage: 'home:set-language',
   getUpdateChannel: 'home:get-update-channel',
   setUpdateChannel: 'home:set-update-channel',
+  reportRendererError: 'home:report-renderer-error',
   accountStatus: 'home:account-status',
   accountCreate: 'home:account-create',
   accountSignIn: 'home:account-sign-in',

@@ -312,6 +312,7 @@ import type { TabKind } from '../shared/tabs-api'
 import { TABS_CHANNELS } from '../shared/tabs-api'
 import { showErrorDialog } from './error-dialog'
 import { startRendererWatchdog } from './renderer-watchdog'
+import { installCrashDiagnostics, recordDiagnostic } from './crash-log'
 import {
   capStatPaths,
   matchesExtFamily,
@@ -354,6 +355,7 @@ import extractWorkerPath from './file-index/extract-worker?modulePath'
 import { FileIndexer } from './file-index/indexer'
 import { FileIndexStore } from './file-index/store'
 import { normalizeFileSearchSettings, probeDecision, SearchReranker } from './file-index/rerank'
+import { registerAnalyticsIpc } from './analytics/service'
 import {
   createKnowledgeDocument,
   listKnowledgeFiles,
@@ -4769,6 +4771,17 @@ function registerHomeIpc(): void {
   })
 
   ipcMain.handle(HOME_CHANNELS.getAppVersion, (): string => app.getVersion())
+  ipcMain.handle(HOME_CHANNELS.reportRendererError, (_event, raw: unknown) => {
+    const input = raw && typeof raw === 'object' ? (raw as Record<string, unknown>) : {}
+    const clean = (value: unknown): string =>
+      typeof value === 'string' ? value.slice(0, 8_000) : ''
+    recordDiagnostic('renderer-error', {
+      message: clean(input.message),
+      stack: clean(input.stack),
+      componentStack: clean(input.componentStack),
+      url: clean(input.url),
+    })
+  })
 
   ipcMain.handle(HOME_CHANNELS.recents, (_event, query: unknown): RecentPage =>
     pageRecentPaths(readRecentFiles(), query, new Set(readStarredFiles())),
@@ -6931,6 +6944,7 @@ ipcMain.handle('ai:open-model-settings', () => {
 })
 registerProjectIpc()
 registerDocsIpc()
+registerAnalyticsIpc()
 registerHomeIpc()
 registerIntegrationsIpc({
   settingsPath: APP_SETTINGS_PATH,
@@ -6993,6 +7007,11 @@ async function runHeadlessExportEntry(
   // every teardown this run owns has already happened.
   app.exit(headlessExitCode(outcome))
 }
+
+// Attach diagnostics before any window or tab is created. These listeners only
+// observe failures; normal startup, navigation and document handling are
+// unchanged.
+installCrashDiagnostics()
 
 app.whenReady().then(async () => {
   // first scan waits for the windows to come up; later ones follow folder changes

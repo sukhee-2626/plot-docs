@@ -3210,6 +3210,27 @@ html[dir='rtl'] .quick-title-row {
   color: #a5b4fc;
 }
 
+.home .quick-analytics-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(34, 211, 238, 0.08));
+  color: #c4b5fd;
+  transition: transform 220ms cubic-bezier(0.2, 0.75, 0.2, 1), border-color 220ms ease;
+}
+
+.home .quick-card-analytics:hover .quick-analytics-icon {
+  transform: translateY(-1px) scale(1.06);
+  border-color: rgba(167, 139, 250, 0.5);
+}
+
+.home .quick-card-analytics:disabled {
+  cursor: default;
+}
+
 .home .ai-chip {
   padding: 1px 5px;
   border-radius: 4px;
@@ -4345,6 +4366,12 @@ html[data-color-mode='light'] .home .quick-sub { color: #718096; }
 html[data-color-mode='light'] .home .quick-folder {
   border-color: rgba(124, 58, 237, 0.14);
   background: rgba(124, 58, 237, 0.06);
+  color: #6d28d9;
+}
+
+html[data-color-mode='light'] .home .quick-analytics-icon {
+  border-color: rgba(124, 58, 237, 0.18);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(8, 145, 178, 0.06));
   color: #6d28d9;
 }
 
