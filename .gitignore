@@ -32,6 +32,13 @@ electron-builder.env
 /settings-debug.png
 /site/downloads/
 
+# Updates center generated state (packages and manifests are user-managed)
+/updates/state.json
+/updates/logs/
+/updates/backups/
+/updates/*.part
+/notifications/state.json
+
 # Playwright artifacts
 /test-results/
 

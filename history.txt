@@ -1,0 +1,314 @@
+PLOT DOCS — PROJECT HISTORY, SPECS, HANDOFF, AND RESUME NOTES
+================================================================
+Last updated: 2026-11-08
+Repository: https://github.com/sukhee-2626/plot-docs.git
+Branch: main
+Last pushed commit: 4f3c9067 feat(analytics): add local BI workspace, AI analyst, and release hardening
+Working tree: contains the uncommitted updates/notifications work plus earlier uncommitted analytics changes.
+
+LATEST STATUS SNAPSHOT
+----------------------
+- Update/notification backend, preload, bell panel, badge, toast, and docs are implemented.
+- Update popup and panel hero are implemented: a new version shows a clear
+  Update available card with View update / Later, the bell gets an update dot,
+  and the panel keeps a persistent update strip above its tabs.
+- Focused core tests: 16/16 pass.
+- Shell typecheck: pass after the popup/hero hook fix.
+- Shell/renderer build: pass after the popup/hero hook fix.
+- Live update/notification E2E: 1/1 pass in 22.6s (real notification file, badge,
+  panel, mark-read persistence, delete, local package card, update popup,
+  update dot, View update, Updates tab, panel hero).
+- Live GitHub E2E: 2/2 pass in 19.3s (current release v1.0.0, installer marked
+  download-only, friendly no-release state).
+- Portable build passed: apps/shell/release-portable/Plot-Docs-1.0.0.exe and
+  release-portable/win-unpacked/Plot Docs.exe.
+- Packaged install E2E: 1/1 pass in 47.1s (checksum, unsigned acknowledgement,
+  backup, executable replacement, installed state, restart banner).
+- Live GitHub API: only v1.0.0 exists, with Plot-Docs-Setup-1.0.0.exe (installer,
+  download-only); no newer portable update is available yet.
+- Next: commit/push, verify popup/hero on the packaged portable build, then
+  analytics structured-output fix and huge-data tests.
+- Handoff docs: development-docs/00-total-history.md through 09-all-user-inputs.md.
+
+HOW TO RESUME WITH ANY MODEL / ANY SESSION
+------------------------------------------
+1. Read this file first.
+2. Read docs/version-control-workflow.md, docs/updates-and-notifications.md, and docs/analytics-parity-roadmap.md.
+3. Run:
+     git status --short
+     npm run typecheck -w @plotdocs/shell
+     npm test -w @plotdocs/shell -- --run
+4. Continue with the "REMAINING WORK" checklist below.
+5. Do not delete or overwrite uncommitted analytics changes. They belong to the user's earlier requests.
+6. Do not use subagents/agents for this project; the user explicitly asked not to.
+7. Keep Plot Docs local-first. Do not turn it into a cloud-only Zoho clone.
+
+PROJECT IDENTITY
+----------------
+Plot Docs by Plot XYZ.Ai is a local-first AI-native office suite:
+docs, sheets, slides, PDF, Markdown, HTML, plus a local AI Data Analytics workspace.
+It is an Electron + React + TypeScript monorepo.
+Main app workspace: apps/shell.
+Analytics backend: apps/shell/src/main/analytics.
+Analytics renderer: apps/shell/src/renderer/src/analytics.
+Shared IPC contracts: apps/shell/src/shared.
+Tests: apps/shell/tests (Vitest).
+E2E: e2e (Playwright).
+
+CHRONOLOGICAL USER REQUESTS / INPUT HISTORY
+-------------------------------------------
+The full numbered input record, including later messages, is in
+development-docs/09-all-user-inputs.md. The summary below covers the original
+requests in order.
+1. Build a local-first AI Data Analytics workspace inside Plot Docs.
+   - Import CSV, JSON, XLSX, SQLite.
+   - SQL editor, saved views, charts, dashboards, pivot/funnel/cohort.
+   - AI analyst must use real data, never fabricate results.
+   - Show evidence: SQL, dataset, filters, period, method, uncertainty.
+2. Add cross-dataset joins and append/union.
+   - Keep source datasets immutable; create derived datasets.
+   - Add UI, IPC, assistant tools, docs, tests.
+3. Harden privacy.
+   - Redact identifiers, strip signed URL query strings, mask database secrets.
+   - Restrict imports to user-supplied absolute paths.
+4. Add pivot, funnel, cohort modes with validated SQL and CSV export.
+5. Add crash diagnostics and error boundary.
+6. Build a portable Windows artifact and publish to GitHub.
+   - Portable artifact was built and copied to ssexe/.
+   - Smart App Control can block unsigned downloaded executables; do not disable SAC in app code.
+7. Add a GitHub-based automatic update system and a real-time notification system.
+   - Detect new GitHub releases/code updates and compare with installed version.
+   - Show version, release notes, download/install actions.
+   - Watch /updates for new/replaced .exe/packages; identify version and modification date.
+   - Statuses: Available, Downloading, Installed, Failed.
+   - Prevent duplicate downloads; keep logs, backups, history.
+   - Watch /notifications in real time; title, message, date, type, read/unread.
+   - Bell icon, unread badge, panel, mark-read, delete.
+   - Filesystem watchers + GitHub API, no unnecessary continuous polling.
+   - Checksums/signatures, never auto-execute untrusted files, confirmation, preserve user data.
+   - "based on github, no bugs", "notification system also".
+8. Priorities clarified by user:
+   - Main priority: version control/update system.
+   - Then fully enhance the data analytics feature.
+   - Test with huge data; learn from errors and correct.
+9. User pasted the Zoho Analytics product page and said all those features should exist in Plot Docs too, after the above is completed.
+   - Treat Zoho as a feature reference, not a copy.
+   - Plot Docs must remain local-first.
+   - See docs/analytics-parity-roadmap.md.
+10. User asked for this history file so any model/session can resume.
+
+CURRENT IMPLEMENTATION STATUS (UPDATES + NOTIFICATIONS)
+-------------------------------------------------------
+Backend foundation is written but still being integrated/tested.
+
+New files:
+- apps/shell/src/shared/updates-center-api.ts
+- apps/shell/src/main/updates-center-core.ts
+- apps/shell/src/main/updates-center.ts
+- apps/shell/src/renderer/src/updates-center-client.ts
+- apps/shell/src/renderer/src/NotificationsCenter.tsx
+- apps/shell/src/renderer/src/updates-center.css
+- apps/shell/tests/updates-center-core.test.ts
+- e2e/updates-notifications.spec.ts
+- updates/README.md
+- updates/update.example.json
+- notifications/README.md
+- notifications/example.example.json
+- history.txt
+- docs/updates-and-notifications.md
+- docs/version-control-workflow.md
+- docs/analytics-parity-roadmap.md
+- development-docs/README.md
+- development-docs/00-total-history.md
+- development-docs/01-project-history.md
+- development-docs/02-current-status.md
+- development-docs/03-updates-notifications.md
+- development-docs/04-version-control.md
+- development-docs/05-analytics-roadmap.md
+- development-docs/06-test-log.md
+- development-docs/07-release-checklist.md
+- development-docs/08-resume-prompt.md
+- development-docs/09-all-user-inputs.md
+
+Integrated:
+- apps/shell/src/main/index.ts creates and starts the updates center, registers IPC, checks GitHub on throttled window focus, disposes watchers on quit.
+- apps/shell/src/preload/index.ts exposes window.plotdocsUpdates.
+- apps/shell/src/renderer/src/AppFrame.tsx owns the bell state and panel.
+- apps/shell/src/renderer/src/TabBar.tsx has the bell, unread badge, and update dot.
+- apps/shell/src/renderer/src/main.tsx imports updates-center.css.
+- .gitignore ignores generated update/notification state.
+
+Backend behavior:
+- Dev folder default: repo-root updates/ and notifications/.
+- Packaged folder default: %APPDATA%/Plot Docs/updates and notifications; writable exe-adjacent folders are also watched.
+- Env overrides: PLOTDOCS_UPDATES_DIR, PLOTDOCS_NOTIFICATIONS_DIR, PLOTDOCS_GITHUB_REPO, PLOTDOCS_GITHUB_TOKEN/GITHUB_TOKEN/GH_TOKEN.
+- GitHub default repo: sukhee-2626/plot-docs.
+- Checks latest GitHub release on launch, manual request, and focus (15-minute throttle). No polling interval.
+- GitHub asset selection: portable .exe on Windows; setup/installer assets are download-only and never auto-run.
+- Download streams to .part, computes SHA-256, verifies published digest when available, removes interrupted partial files.
+- Duplicate download prevention: reuse matching existing file; reject concurrent download; reject same-name checksum mismatch.
+- Install requires explicit confirmation.
+- Only portable .exe can replace the running executable.
+- Windows Authenticode check is best-effort. Invalid signatures are blocked. Unsigned/unknown requires an extra acknowledgement.
+- Backup is copied to updates/backups before replacement.
+- Replacement renames the running exe aside, copies the new exe into place, and requires a user-triggered restart.
+- No installer is executed automatically.
+- Notification JSON files support one object, an array, or { notifications: [...] }.
+- Read/unread state and deleted tombstones are stored in notifications/state.json.
+- Update history/installed records are stored in updates/state.json; logs in updates/logs/update.log.
+- Real-time fs.watch with 250 ms debounce; watcher retries after errors.
+
+UI behavior:
+- Bell is in the tab strip, always visible.
+- Unread count badge; green update dot.
+- Bell opens the panel on Home (activates Home tab first because editor WebContentsViews paint above shell DOM).
+- Bell opens Updates directly when an update is waiting; otherwise Notifications.
+- Panel tabs: Notifications and Updates.
+- Notifications: type chips, date, source file, mark read, mark all read, delete with confirmation.
+- Updates: GitHub release card, release notes, download progress, local package cards, status chips, checksum/signature indicators, inline install confirmation, unsigned warning, restart banner, update history, folder paths/open buttons.
+- Toast appears for newly detected unread notifications.
+- Update popup: one prominent card per version per session with version, release-note summary, View update, Later, and close. Opening the panel acknowledges it. A fresh launch while the update is still available shows it again.
+- Panel update hero: persistent "Update available - vX.Y.Z" strip above the tabs, even when Notifications is selected. After install it becomes "Restart to finish the update" with Restart now.
+- No forced restart; the user keeps working and restarts when ready.
+
+CURRENT BLOCKERS / RISKS
+------------------------
+- The full TypeScript check passed after the update popup/hero hook fix. Use a 300s timeout for future runs.
+- The focused update/notification core suite passes 16/16 (2026-11-08). The filename-version bug was fixed by stripping known package extensions before parsing.
+- The shell/renderer build passes after the popup/hero work (2026-11-08).
+- Live update/notification E2E passes 1/1 in 22.6s: real notification file, badge, panel, mark-read persistence, delete, local package detection, update popup, update dot, View update, Updates tab, and panel hero.
+- Live GitHub E2E passes 2/2 in 19.3s: current release v1.0.0, installer marked download-only, and friendly no-release state.
+- The live E2E test required dismissing the cinematic splash and first-run Home tour before clicking the bell.
+- Popup/hero appearance on the packaged portable build has not been checked yet; the built-shell E2E covers it.
+- GitHub release with a newer portable asset has not been tested; gh CLI is not installed and GITHUB_TOKEN/GH_TOKEN are unset.
+- Smart App Control can still block unsigned downloaded executables at OS level.
+- Existing full shell suite baseline was not green: 958 passed, 80 failed, 3 skipped.
+- Live Codex analytics sometimes returns prose instead of required JSON; assistant falls back to auto_analyze.
+- Soopus settings reopen flake in e2e/settings-soopus-integration.spec.ts remains.
+- Portable wrapper first extraction can take 95-110 seconds.
+- win-ocr.exe/vision-ocr was unavailable during portable packaging and was omitted.
+- Node 24 node:sqlite DatabaseSync is synchronous; long queries can block the main process.
+
+REMAINING WORK — UPDATES + NOTIFICATIONS (DO FIRST)
+---------------------------------------------------
+[x] Re-run typecheck with 300s and fix all errors.
+[x] Run apps/shell/tests/updates-center-core.test.ts and fix failures (16/16 pass).
+[x] Build renderer: npm run build -w @plotdocs/shell.
+[x] Start built app and verify real notification detection:
+    [x] Bell visible on Home.
+    [x] Add a notification JSON; panel updates immediately; unread badge increments.
+    [x] Mark read persists to notifications/state.json.
+    [x] Delete removes the source file and shows the empty state.
+    [x] Add a local package + update.json; card shows file, version, notes, Available.
+    [x] Update popup, update dot, View update, Updates tab, and panel hero asserted by E2E.
+    [ ] Mark all read across a restart.
+[x] Test install confirmation; unsigned warning; backup created; restart banner (packaged E2E).
+[ ] Click Restart now and verify the replaced executable launches.
+[x] Test installer asset is download-only; no auto-run (live GitHub E2E).
+[ ] Test invalid checksum/signature is blocked.
+[x] GitHub check with no releases shows friendly empty/error state (live E2E).
+[x] GitHub check with a real release shows version/notes/asset (live E2E, current release).
+[ ] Download progress; interrupted download cleanup.
+[x] Checksum verification during install (packaged E2E).
+[ ] Duplicate package detection and status persistence.
+[ ] Add more service-layer tests where practical.
+[x] Document configuration in README and docs.
+[x] Build portable artifact, update hash, test on a clean profile.
+[ ] Commit and push.
+[ ] Publish a newer GitHub release (tag vX.Y.Z, portable .exe asset) when auth is available.
+[ ] Verify newer-update detection, download progress, and checksum against the published release.
+
+REMAINING WORK — DATA ANALYTICS (AFTER UPDATES)
+-----------------------------------------------
+Immediate:
+[ ] Fix live Codex analytics structured output so exact questions return the required JSON plan instead of prose.
+[ ] Re-run analytics unit suite (previously 13 files / 140 tests passed).
+[ ] Re-run accuracy benchmark (previously 48/48 deterministic checks).
+[ ] Re-run analytics E2E and Soopus E2E.
+[ ] Fix Soopus settings reopen flake.
+[ ] Add gated live Codex analytics E2E.
+[ ] Test with huge datasets (100k, 1M, 10M rows) and record timings/memory.
+[ ] Move long SQLite work off the main process or add a worker/queue.
+
+Zoho-parity roadmap (local-first interpretation):
+[ ] Connector framework: files, SQLite, Postgres/MySQL, REST/CSV URL, Google Sheets, S3, webhooks.
+[ ] Data preparation: transforms, dedupe, type casting, null handling, split/merge, scheduled refresh.
+[ ] Semantic model/ontology: reusable metrics, dimensions, business terms, governed definitions.
+[ ] Visualization: 50+ chart types, drag-and-drop builder, recommendations, drill-down, cross-filtering.
+[ ] Predictive: forecasting, anomaly detection, what-if scenarios.
+[ ] Sharing: dashboards, access roles, row-level rules, data stories/portals (local/export first).
+[ ] Extensibility: API/SDK, embedded analytics, MCP server.
+[ ] AI agents: connect, prepare, visualize, analyze, explain, recommend actions.
+[ ] Python code studio / AutoML where practical; do not fake results.
+[ ] Mobile/companion app only if explicitly prioritized.
+[ ] Security/governance: row-level security, audit log, AI observability.
+See docs/analytics-parity-roadmap.md for the full mapping.
+
+SECURITY / PRODUCT RULES
+-----------------------
+- Never fabricate analytics results. Show SQL, dataset, filters, period, method, uncertainty.
+- Keep source datasets immutable; derived datasets for joins/appends.
+- Do not auto-execute downloaded installers or untrusted executables.
+- Do not disable Smart App Control in app code.
+- Verify checksums; check signatures; require explicit confirmation.
+- Preserve user documents/settings during updates.
+- No continuous polling for GitHub. Startup + manual + throttled focus only.
+- Renderer never supplies arbitrary file paths or download URLs to main.
+- All update/notification paths are resolved in main.
+- Privacy: redact identifiers, strip signed URL query strings, mask DB secrets.
+- Imports require user-supplied absolute paths.
+- No agents/subagents.
+
+USEFUL COMMANDS
+---------------
+cd C:\Users\HP\ss-office
+
+git status --short
+git log -1 --oneline
+git diff --stat
+
+npm run typecheck -w @plotdocs/shell
+npm run build -w @plotdocs/shell
+npm test -w @plotdocs/shell -- --run
+npx vitest run apps/shell/tests/updates-center-core.test.ts
+
+# Focused analytics suite (adjust files as needed)
+npx vitest run apps/shell/tests/data-analytics*.test.ts
+
+# E2E
+npx playwright test e2e/analytics-workspace.spec.ts
+npx playwright test e2e/settings-soopus-integration.spec.ts
+
+# Portable build
+npm run dist:portable -w @plotdocs/shell
+# Output: apps/shell/release-portable/Plot-Docs-<version>.exe
+
+# Hash artifact
+Get-FileHash apps/shell/release-portable/Plot-Docs-1.0.0.exe -Algorithm SHA256
+
+# Publish release (requires gh auth)
+gh release create v1.0.1 apps/shell/release-portable/Plot-Docs-1.0.1.exe --title "Plot Docs 1.0.1" --notes "Release notes"
+
+VERSION CONTROL / GITHUB WORKFLOW
+---------------------------------
+See docs/version-control-workflow.md. Short version:
+1. Work on main only if the user accepts it; otherwise create a feature branch.
+2. Commit in small logical chunks with conventional messages.
+3. Push to origin main.
+4. Bump package version before release.
+5. Build portable exe.
+6. Create a GitHub release with tag vX.Y.Z.
+7. Attach the portable .exe and, optionally, a manifest with SHA-256.
+8. The app checks the latest GitHub release and offers the update.
+
+NOTES FOR THE NEXT MODEL
+-----------------------
+- Read history.txt before touching code.
+- Keep the existing analytics work intact.
+- The user wants real working features, not mock UI.
+- The user values visible evidence, security, and no fabricated data.
+- The update system is the current priority; analytics parity comes after.
+- If something fails, record the exact error in this file and fix it before moving on.
+- Update this file after each major milestone.
+
+END OF FILE

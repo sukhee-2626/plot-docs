@@ -11,6 +11,7 @@ import '@plotdocs/ui/ai-model-picker.css'
 import '@plotdocs/ui/ai-usage.css'
 import './home.css'
 import './tabbar.css'
+import './updates-center.css'
 import { installScreenTips } from '@plotdocs/ui'
 
 installScreenTips()

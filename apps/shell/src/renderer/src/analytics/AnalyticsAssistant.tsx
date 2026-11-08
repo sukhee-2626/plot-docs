@@ -32,6 +32,8 @@ interface AnalyticsAssistantProps {
   onOpenDashboard: () => void
   onOpenDataset: (datasetId: string) => void
   onOpenModelSettings: () => void
+  /** A prompt queued by the workspace (for example, "Build with Plot AI"). */
+  promptRequest?: { id: string; text: string } | null
 }
 
 interface ChatEntry {
@@ -840,6 +842,7 @@ export function AnalyticsAssistant({
   onOpenDashboard,
   onOpenDataset,
   onOpenModelSettings,
+  promptRequest,
 }: AnalyticsAssistantProps) {
   const { lang } = useI18n()
   const modelBridge = useMemo<AiModelPickerBridge>(
@@ -863,6 +866,8 @@ export function AnalyticsAssistant({
   const [dialogBusy, setDialogBusy] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const handledPromptRef = useRef<string | null>(null)
+  const sendRef = useRef<(text: string) => void>(() => undefined)
   const activeDataset = datasets.find((dataset) => dataset.id === activeDatasetId) ?? null
 
   useEffect(() => {
@@ -1013,6 +1018,17 @@ export function AnalyticsAssistant({
       setLiveActions([])
     }
   }
+
+  sendRef.current = (text) => {
+    void send(text)
+  }
+
+  useEffect(() => {
+    const request = promptRequest
+    if (!request || handledPromptRef.current === request.id || running) return
+    handledPromptRef.current = request.id
+    sendRef.current(request.text)
+  }, [promptRequest, running])
 
   function resetChat() {
     if (running) return

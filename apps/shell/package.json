@@ -17,7 +17,8 @@
     "start": "electron-vite build && electron .",
     "dist:mac": "npm run notices && electron-vite build && electron-builder --mac",
     "dist:win": "npm run notices && electron-vite build && electron-builder --win",
-    "dist:linux": "npm run notices && electron-vite build && electron-builder --linux"
+    "dist:linux": "npm run notices && electron-vite build && electron-builder --linux",
+    "dist:portable": "npm run notices && npm run build:all --prefix ../.. && cross-env BUILD_DIR=release-portable electron-builder --config electron-builder-portable.cjs --win --x64"
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "^1.32.1",

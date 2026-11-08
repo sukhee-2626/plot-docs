@@ -416,6 +416,91 @@ body.overlay-title-bar .tab-bar-drag-spacer {
   margin-right: 2px;
 }
 
+/* notification bell: always visible in the tab strip, badge for unread items */
+.tab-notification-btn {
+  -webkit-app-region: no-drag;
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0 2px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--tabstrip-text);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.tab-notification-btn:hover {
+  background: rgb(0 0 0 / 8%);
+  color: var(--tabstrip-text-active);
+}
+
+[data-theme='dark'] .tab-notification-btn:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not([data-theme='dark']) .tab-notification-btn:hover {
+    background: rgb(255 255 255 / 10%);
+  }
+}
+
+.app-frame.home-active .tab-notification-btn {
+  color: #98a7bf;
+}
+
+.app-frame.home-active .tab-notification-btn:hover {
+  background: rgba(148, 163, 184, 0.1);
+  color: #f8fafc;
+}
+
+.tab-notification-badge {
+  position: absolute;
+  top: 3px;
+  right: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  border: 1.5px solid var(--tabstrip-bg);
+  border-radius: 8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 8.5px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.app-frame.home-active .tab-notification-badge {
+  border-color: #070b16;
+}
+
+.tab-update-dot {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid var(--tabstrip-bg);
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: none;
+}
+
+.app-frame.home-active .tab-update-dot {
+  border-color: #070b16;
+}
+
 /* divider between the tab strip and the tab-overview button */
 .tab-overflow-btn::before {
   content: '';

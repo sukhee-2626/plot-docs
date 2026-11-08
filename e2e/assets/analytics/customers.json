@@ -1,0 +1,44 @@
+[
+  {
+    "customer_id": 1,
+    "name": "Ada Lovelace",
+    "country": "UK",
+    "active": true,
+    "lifetime_value": 4200.5
+  },
+  {
+    "customer_id": 2,
+    "name": "Grace Hopper",
+    "country": "US",
+    "active": true,
+    "lifetime_value": 3100
+  },
+  {
+    "customer_id": 3,
+    "name": "Katherine Johnson",
+    "country": "US",
+    "active": false,
+    "lifetime_value": 2750.25
+  },
+  {
+    "customer_id": 4,
+    "name": "Alan Turing",
+    "country": "UK",
+    "active": true,
+    "lifetime_value": 5100
+  },
+  {
+    "customer_id": 5,
+    "name": "Radia Perlman",
+    "country": "US",
+    "active": false,
+    "lifetime_value": 1800.75
+  },
+  {
+    "customer_id": 6,
+    "name": "Barbara Liskov",
+    "country": "US",
+    "active": true,
+    "lifetime_value": 2950
+  }
+]

@@ -1,5 +1,5 @@
 import { test, expect, type ElectronApplication, type Page } from '@playwright/test'
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -14,10 +14,13 @@ import { ARTIFACTS_DIR, launchShell, type LaunchedApp } from './helpers'
  * credentials are configured. The document editors are outside this spec.
  */
 
-const SAMPLES = resolve('C:/Users/HP/AppData/Local/Temp/opencode/analytics-smoke')
-const SALES = join(SAMPLES, 'sales.csv')
-const CUSTOMERS = join(SAMPLES, 'customers.json')
-const INVENTORY = join(SAMPLES, 'inventory.xlsx')
+// Committed fixtures keep the suite independent of scratch files left behind by
+// earlier runs. Only the two generated lookup files live in the temp folder.
+const FIXTURES = resolve(__dirname, 'assets/analytics')
+const SAMPLES = join(tmpdir(), 'plotdocs-analytics-e2e-samples')
+const SALES = join(FIXTURES, 'sales.csv')
+const CUSTOMERS = join(FIXTURES, 'customers.json')
+const INVENTORY = join(FIXTURES, 'inventory.xlsx')
 const REGIONS = join(SAMPLES, 'regions.csv')
 const SALES_EXTRA = join(SAMPLES, 'sales-extra.csv')
 
@@ -94,6 +97,7 @@ async function importFromHeader(path: string): Promise<void> {
 }
 
 test.beforeAll(async () => {
+  mkdirSync(SAMPLES, { recursive: true })
   writeFileSync(
     REGIONS,
     ['region,manager', 'North,Ada', 'South,Grace', 'East,Katherine'].join('\r\n'),

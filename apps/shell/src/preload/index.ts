@@ -9,6 +9,14 @@ import {
 import type { AiSettings, CodexModelCatalog } from '@plotdocs/ai-provider/browser'
 import { installDropOpenBridge } from '@plotdocs/electron-utils/drop-open'
 import type { UpdateUiState } from '../shared/update-api'
+import { UPDATES_CENTER_CHANNELS } from '../shared/updates-center-api'
+import type {
+  InstallUpdateInput,
+  UpdateActionResult,
+  UpdatesCenterApi,
+  UpdatesCenterState,
+  UpdatesFolderKind,
+} from '../shared/updates-center-api'
 import { normalizeAiPanelPrefs } from '@plotdocs/ui/ai-panel-prefs'
 import type {
   AccountAuthResult,
@@ -1006,6 +1014,91 @@ const tabsApi: TabsApi = {
 }
 
 contextBridge.exposeInMainWorld('aiOfficeTabs', tabsApi)
+
+function asUpdatesCenterState(raw: unknown): UpdatesCenterState {
+  if (!raw || typeof raw !== 'object') throw new Error('Invalid updates center state.')
+  const state = raw as Partial<UpdatesCenterState>
+  if (
+    !Array.isArray(state.updates) ||
+    !Array.isArray(state.notifications) ||
+    !Array.isArray(state.history)
+  ) {
+    throw new Error('Invalid updates center state.')
+  }
+  return state as UpdatesCenterState
+}
+
+const updatesApi: UpdatesCenterApi = {
+  async getState() {
+    return asUpdatesCenterState(
+      await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.getState),
+    )
+  },
+  async refresh() {
+    return asUpdatesCenterState(await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.refresh))
+  },
+  async checkGithub() {
+    return asUpdatesCenterState(
+      await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.checkGithub),
+    )
+  },
+  async downloadGithub() {
+    return (await ipcRenderer.invoke(
+      UPDATES_CENTER_CHANNELS.downloadGithub,
+    )) as UpdateActionResult
+  },
+  async installUpdate(input: InstallUpdateInput) {
+    if (!input || typeof input.id !== 'string' || !input.id) {
+      throw new Error('Invalid update id.')
+    }
+    return (await ipcRenderer.invoke(
+      UPDATES_CENTER_CHANNELS.installUpdate,
+      input,
+    )) as UpdateActionResult
+  },
+  async restartApp() {
+    return (await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.restartApp)) as UpdateActionResult
+  },
+  async markRead(id: string) {
+    if (typeof id !== 'string' || !id) throw new Error('Invalid notification id.')
+    return asUpdatesCenterState(
+      await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.markRead, id),
+    )
+  },
+  async markAllRead() {
+    return asUpdatesCenterState(
+      await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.markAllRead),
+    )
+  },
+  async deleteNotification(id: string) {
+    if (typeof id !== 'string' || !id) throw new Error('Invalid notification id.')
+    return asUpdatesCenterState(
+      await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.deleteNotification, id),
+    )
+  },
+  async openFolder(kind: UpdatesFolderKind) {
+    if (kind !== 'updates' && kind !== 'notifications') return false
+    return (await ipcRenderer.invoke(UPDATES_CENTER_CHANNELS.openFolder, kind)) === true
+  },
+  onChanged(handler) {
+    const listener = (_event: IpcRendererEvent, raw: unknown) => {
+      try {
+        handler(asUpdatesCenterState(raw))
+      } catch {
+        // Ignore malformed state; the next change event carries a fresh snapshot.
+      }
+    }
+    ipcRenderer.on(UPDATES_CENTER_CHANNELS.changed, listener)
+    return () => ipcRenderer.removeListener(UPDATES_CENTER_CHANNELS.changed, listener)
+  },
+  onOpenRequested(handler) {
+    const listener = () => handler()
+    ipcRenderer.on(UPDATES_CENTER_CHANNELS.openRequested, listener)
+    return () => ipcRenderer.removeListener(UPDATES_CENTER_CHANNELS.openRequested, listener)
+  },
+}
+
+contextBridge.exposeInMainWorld('plotdocsUpdates', updatesApi)
 
 // open documents dragged from the OS anywhere over Home or the tab strip
 installDropOpenBridge()

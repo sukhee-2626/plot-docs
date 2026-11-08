@@ -1123,6 +1123,9 @@ export function AnalyticsWorkspace({
   const [cleanColumn, setCleanColumn] = useState('')
   const [fillValue, setFillValue] = useState('')
   const [assistantOpen, setAssistantOpen] = useState(true)
+  const [assistantPrompt, setAssistantPrompt] = useState<{ id: string; text: string } | null>(
+    null,
+  )
   const [autoAnalysis, setAutoAnalysis] = useState<AnalyticsAutoAnalysis | null>(null)
   const [autoBusy, setAutoBusy] = useState(false)
   const [aiPlan, setAiPlan] = useState<AnalyticsAiPlan | null>(null)
@@ -1217,6 +1220,14 @@ export function AnalyticsWorkspace({
     setToast({ message, tone })
     if (toastTimer.current) clearTimeout(toastTimer.current)
     toastTimer.current = setTimeout(() => setToast(null), 5200)
+  }
+
+  function askAssistant(text: string) {
+    setAssistantOpen(true)
+    setAssistantPrompt({
+      id: `ask_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`,
+      text,
+    })
   }
 
   async function refreshAudit() {
@@ -4048,6 +4059,21 @@ export function AnalyticsWorkspace({
     const filteredCoverage = dashboardFilter
       ? views.filter((view) => applyDashboardFilter(view.sql, dashboardFilter).applied).length
       : views.length
+    const rankingInsight = autoAnalysis?.insights.find(
+      (insight) => insight.kind === 'ranking' && (insight.result?.rows.length ?? 0) > 0,
+    )
+    const rankingRow = rankingInsight?.result?.rows[0]
+    const rankingValue = rankingRow ? Number(rankingRow[1]) : Number.NaN
+    const primaryMeasure = autoAnalysis?.summary?.primaryMetric
+    const topSignal = rankingRow
+      ? `${String(rankingRow[0] ?? '—')} · ${
+          Number.isFinite(rankingValue) ? formatNumber(rankingValue) : String(rankingRow[1] ?? '—')
+        }${primaryMeasure ? ` ${primaryMeasure}` : ''}`
+      : takeaways[0] ?? 'Run an analysis to see the strongest signal'
+    const dashboardAssistantPrompt =
+      views.length === 0
+        ? 'Analyse the active dataset and build a clear first dashboard. Use 3 to 6 cards, one question per card, exact SQL, a short takeaway, and the chart type that makes each answer easiest to read.'
+        : 'Review the current dashboard for the active dataset. Keep the strongest cards, then rebuild the story as a clear 3 to 6 card dashboard with one question per card, exact SQL, a short takeaway, and the chart type that makes each answer easiest to read. Prefer a ranking, a time trend, a distribution, and a relationship or forecast when the columns allow.'
     const briefingHeadline = filterLabel
       ? `Live slice · ${filterLabel}`
       : takeaways.length > 0
@@ -4063,11 +4089,11 @@ export function AnalyticsWorkspace({
         <section className="analytics-card intro-card analytics-dashboard-intro">
           <div>
             <span className="analytics-eyebrow">POWER DASHBOARD</span>
-            <h2>Dashboards built from evidence</h2>
+            <h2>Your data, at a glance</h2>
             <p>
-              Every card re-runs its saved SQL against the local dataset, explains what the result
-              means, and keeps the calculation visible. Queries are read-only and the same row cap
-              applies.
+              Each card answers one question, shows the visual first, and keeps the exact SQL and
+              uncertainty one click away. Queries are read-only and always run against the local
+              copy.
             </p>
             <p className="analytics-dashboard-source">
               {detail.name} · {formatNumber(detail.rowCount)} rows ·{' '}
@@ -4086,6 +4112,22 @@ export function AnalyticsWorkspace({
               Create in Analyze
             </button>
           </div>
+        </section>
+        <section className="analytics-dashboard-assistant" aria-label="Plot AI dashboard assistant">
+          <div>
+            <span className="analytics-eyebrow">PLOT AI ASSISTANT</span>
+            <strong>
+              {views.length === 0 ? 'Build your first dashboard' : 'Make this dashboard easier to read'}
+            </strong>
+            <p>
+              {views.length === 0
+                ? 'Plot AI can choose the first questions worth answering and save the cards with exact SQL.'
+                : 'Plot AI can keep the strongest cards and rebuild the story as a focused 3–6 card view.'}
+            </p>
+          </div>
+          <button className="analytics-btn primary" onClick={() => askAssistant(dashboardAssistantPrompt)}>
+            {views.length === 0 ? 'Build with Plot AI' : 'Build a clearer dashboard'}
+          </button>
         </section>
         {views.length > 0 && (
           <>
@@ -4183,22 +4225,25 @@ export function AnalyticsWorkspace({
               </div>
             </section>
             <div className="analytics-dashboard-kpis">
-              <StatCard label="Cards" value={views.length} note="live saved views" />
+              <StatCard label="Rows" value={formatNumber(detail.rowCount)} note={detail.name} />
               <StatCard
-                label="Evidence-backed"
-                value={`${evidenceBacked}/${views.length}`}
-                note={dashboardFilter ? 'stored on full dataset' : 'with a stored reading'}
+                label="Quality"
+                value={`${Math.round(detail.qualityScore)}%`}
+                note="profile score"
               />
               <StatCard
-                label="High confidence"
-                value={highConfidence}
-                note={dashboardFilter ? 'stored on full dataset' : 'strong evidence'}
+                label="Cards"
+                value={views.length}
+                note={`${evidenceBacked} evidence-backed`}
               />
-              <StatCard
-                label="Last saved"
-                value={lastUpdated ? new Date(lastUpdated).toLocaleDateString() : '—'}
-                note={lastUpdated ? new Date(lastUpdated).toLocaleTimeString() : 'not run'}
-              />
+              <div className="analytics-stat analytics-stat-signal">
+                <span>Top signal</span>
+                <strong title={topSignal}>{topSignal}</strong>
+                <small>
+                  {highConfidence} high-confidence reading{highConfidence === 1 ? '' : 's'}
+                  {lastUpdated ? ` · saved ${new Date(lastUpdated).toLocaleDateString()}` : ''}
+                </small>
+              </div>
             </div>
             <section className="analytics-dashboard-brief">
               <div>
@@ -4240,8 +4285,18 @@ export function AnalyticsWorkspace({
           <div className="analytics-empty-panel">
             <div className="analytics-empty-icon"><TabIcon id="dashboards" /></div>
             <h2>No saved views yet</h2>
-            <p>Run a query in Analyze, choose a chart, and save it. It will appear here as a live card.</p>
-            <button className="analytics-btn primary" onClick={() => setTab('analyze')}>Go to Analyze</button>
+            <p>Run a query in Analyze, choose a chart, and save it. It will appear here as a live card. Or let Plot AI choose the first questions and build the cards for you.</p>
+            <div className="analytics-empty-actions">
+              <button
+                className="analytics-btn primary"
+                onClick={() => askAssistant(dashboardAssistantPrompt)}
+              >
+                Build with Plot AI
+              </button>
+              <button className="analytics-btn ghost" onClick={() => setTab('analyze')}>
+                Go to Analyze
+              </button>
+            </div>
           </div>
         ) : (
           <div className={`analytics-dashboard-grid layout-${dashboardLayout}`}>
@@ -4919,6 +4974,7 @@ export function AnalyticsWorkspace({
           }}
           onOpenDataset={openAssistantDataset}
           onOpenModelSettings={onOpenModelSettings}
+          promptRequest={assistantPrompt}
         />
       )}
       {dragging && (

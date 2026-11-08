@@ -1,0 +1,6 @@
+{
+  "title": "Example notification",
+  "message": "Rename this file to welcome.json and it will appear in the bell panel.",
+  "date": "2026-11-08T12:00:00.000Z",
+  "type": "info"
+}

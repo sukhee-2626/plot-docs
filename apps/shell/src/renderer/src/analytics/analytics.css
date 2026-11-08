@@ -2426,6 +2426,70 @@ html[data-color-mode='light'] .analytics-dashboard-toolbar {
   gap: 10px;
 }
 
+.analytics-dashboard-assistant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(167, 139, 250, 0.32);
+  border-radius: 14px;
+  background:
+    radial-gradient(520px 180px at 100% 0, rgba(34, 211, 238, 0.08), transparent 70%),
+    linear-gradient(110deg, rgba(167, 139, 250, 0.14), rgba(167, 139, 250, 0.02));
+  box-shadow: var(--an-shadow);
+}
+
+.analytics-dashboard-assistant > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.analytics-dashboard-assistant strong {
+  color: var(--an-text);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.analytics-dashboard-assistant p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--an-text-soft);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.analytics-dashboard-assistant .analytics-btn {
+  flex: 0 0 auto;
+}
+
+.analytics-stat-signal strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.analytics-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+html[data-color-mode='light'] .analytics-dashboard-assistant {
+  background:
+    radial-gradient(520px 180px at 100% 0, rgba(8, 145, 178, 0.06), transparent 70%),
+    linear-gradient(110deg, rgba(109, 40, 217, 0.08), rgba(255, 255, 255, 0.6));
+}
+
 .analytics-dashboard-brief {
   display: flex;
   align-items: stretch;

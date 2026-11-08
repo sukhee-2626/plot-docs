@@ -406,6 +406,11 @@ import {
   takeTornTab,
 } from './detached-windows'
 import { applyUpdateChannel, checkForUpdatesNow, initAutoUpdater } from './updater'
+import {
+  createUpdatesCenter,
+  registerUpdatesCenterIpc,
+  type UpdatesCenter,
+} from './updates-center'
 import { isUpdateChannel, type UpdateChannel } from '../shared/update-api'
 
 /**
@@ -3485,6 +3490,7 @@ const tm = (key: Parameters<typeof tMain>[1], params?: Parameters<typeof tMain>[
 
 let shellWindow: BrowserWindow | null = null
 let tabManager: TabManager | null = null
+let updatesCenter: UpdatesCenter | null = null
 
 /**
  * New file from a folder view: the click remembers the folder per kind, the
@@ -6946,6 +6952,7 @@ registerProjectIpc()
 registerDocsIpc()
 registerAnalyticsIpc()
 registerHomeIpc()
+registerUpdatesCenterIpc(() => updatesCenter)
 registerIntegrationsIpc({
   settingsPath: APP_SETTINGS_PATH,
   window: () => shellWindow,
@@ -7206,6 +7213,16 @@ app.whenReady().then(async () => {
     console.error('[mcp] failed to start on boot:', error)
   })
   installUiScale()
+  updatesCenter = createUpdatesCenter({
+    getWindow: () => shellWindow,
+    showWindow: () => {
+      revealShellWindow()
+      tabManager?.openHomeTab()
+    },
+  })
+  void updatesCenter.start().catch((error) => {
+    console.error('[updates] failed to start:', error)
+  })
   createShellWindow()
   // deferred to ready: labels need currentLang(), which reads app.getLocale()
   installBackToHomeItems()
@@ -7214,6 +7231,12 @@ app.whenReady().then(async () => {
   // every app's Settings entry (⌘, / Ctrl+,) lands on the shell's Settings view
   setSettingsInvoker(() => openSettingsView())
   initAutoUpdater(() => shellWindow, currentUpdateChannel())
+  // Event-driven refresh only: a focus check is throttled to 15 minutes, so a
+  // user who leaves the app open still learns about a new release without a
+  // continuous polling loop.
+  app.on('browser-window-focus', () => {
+    void updatesCenter?.maybeCheckGithub().catch(() => undefined)
+  })
   // resource watchdog: a renderer that stays hot for minutes gets diagnostics
   // recorded and the user an offer to close the document (headless exports
   // are short-lived and unattended)
@@ -7274,6 +7297,7 @@ app.on('before-quit', () => {
 
 // after every window has closed, so the shell window's own 'closed' republish cannot revive the file
 app.on('will-quit', () => {
+  updatesCenter?.dispose()
   fileIndexer?.stop()
   fileIndexStore?.close()
   stopAuthWatch?.()

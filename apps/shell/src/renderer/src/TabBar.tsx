@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, PointerEvent as ReactPointerEvent, ReactElement } from 'react'
 import type { UiTheme } from '../../shared/home-api'
+import type { UpdatesCenterTab } from '../../shared/updates-center-api'
 import type { TabsApi, TabSummary } from '../../shared/tabs-api'
 import { TEAR_OFF_SLACK, insertionIndexForX, isBeyondBand } from '../../shared/tab-drag-geometry'
 import { notifyFilesChanged } from './file-events'
@@ -193,6 +194,50 @@ function ThemeToggle() {
   )
 }
 
+function NotificationBell({
+  unread,
+  updateAvailable,
+  onClick,
+}: {
+  unread: number
+  updateAvailable: boolean
+  onClick: () => void
+}) {
+  const label =
+    unread > 0
+      ? `${unread} unread notification${unread === 1 ? '' : 's'}${updateAvailable ? ', update available' : ''}`
+      : updateAvailable
+        ? 'Update available'
+        : 'Notifications and updates'
+  return (
+    <button
+      className={`tab-notification-btn${updateAvailable ? ' has-update' : ''}`}
+      title={label}
+      aria-label={label}
+      onClick={onClick}
+    >
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M6.2 9.5a5.8 5.8 0 0 1 11.6 0v3.2l1.5 3.1H4.7l1.5-3.1V9.5Z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.5 18.2a2.6 2.6 0 0 0 5 0"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+      </svg>
+      {unread > 0 ? (
+        <span className="tab-notification-badge">{unread > 99 ? '99+' : unread}</span>
+      ) : null}
+      {updateAvailable ? <span className="tab-update-dot" aria-hidden="true" /> : null}
+    </button>
+  )
+}
+
 function HomeIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -297,7 +342,15 @@ export function renamedFileName(currentPath: string, typedName: string): string 
   return ext ? `${typedName}.${ext}` : typedName
 }
 
-export function TabBar() {
+interface TabBarProps {
+  notificationBadge?: {
+    unread: number
+    updateAvailable: boolean
+  }
+  onOpenNotifications?: (tab: UpdatesCenterTab) => void
+}
+
+export function TabBar({ notificationBadge, onOpenNotifications }: TabBarProps = {}) {
   const { t } = useI18n()
   const [tabs, setTabs] = useState<TabSummary[]>([])
   const stripRef = useRef<HTMLDivElement>(null)
@@ -788,6 +841,15 @@ export function TabBar() {
           />
         </svg>
       </button>
+      {onOpenNotifications && notificationBadge ? (
+        <NotificationBell
+          unread={notificationBadge.unread}
+          updateAvailable={notificationBadge.updateAvailable}
+          onClick={() =>
+            onOpenNotifications(notificationBadge.updateAvailable ? 'updates' : 'notifications')
+          }
+        />
+      ) : null}
       <ThemeToggle />
       <div className="tab-bar-caption-spacer" />
     </div>

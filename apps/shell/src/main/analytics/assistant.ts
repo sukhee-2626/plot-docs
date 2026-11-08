@@ -192,14 +192,14 @@ const TOOL_SPEC = `Tools (call one per turn):
 10. rank_groups {"datasetId":"optional","dimension":"exact column","metric":"optional numeric column","aggregation":"sum|avg|min|max|count","direction":"desc|asc","limit":10,"save":false,"name":"optional dashboard name"} — group, sort and rank categories with exact SQL. Use this for "sort", "top N", "rank" and "which group is highest/lowest" requests.
 11. pivot_table {"datasetId":"optional","rows":"exact dimension column","columns":"optional second dimension","metric":"optional numeric column","aggregation":"sum|avg|min|max|count","limit":200} — cross-tab two dimensions into a row/column matrix. Use for "by X and Y", "matrix", "cross-tab" and "pivot" requests.
 12. save_dashboard {"datasetId":"optional","name":"short card name","sql":"read-only SELECT","chart":{"type":"bar|line|area|pie|donut|scatter","x":"label or numeric alias","y":"numeric alias","aggregation":"sum|avg|min|max|count"},"takeaway":"optional one-line reading","meaning":"optional interpretation","method":"optional method","detail":"optional period/filter detail"} — execute and save one live dashboard card.
-13. build_dashboard {"datasetId":"optional","name":"dashboard name","cards":[{"name":"card name","sql":"read-only SELECT","chart":{"type":"bar|line|area|pie|donut|scatter","x":"alias","y":"alias","aggregation":"sum|avg|min|max|count"},"takeaway":"optional","meaning":"optional","method":"optional","detail":"optional"}]} — validate and save up to 8 cohesive dashboard cards in one turn. Use this when the user asks for a full dashboard or several visuals. Prefer diverse chart types and 3 to 6 cards.
+13. build_dashboard {"datasetId":"optional","name":"dashboard name","cards":[{"name":"card name","sql":"read-only SELECT","chart":{"type":"bar|line|area|pie|donut|scatter","x":"alias","y":"alias","aggregation":"sum|avg|min|max|count"},"takeaway":"optional","meaning":"optional","method":"optional","detail":"optional"}]} — validate and save up to 8 cohesive dashboard cards in one turn. Use this when the user explicitly asks for a full dashboard or several visuals. Prefer diverse chart types and 3 to 6 cards. Use this instead of auto_analyze when you already know the columns and want a focused, readable story.
 14. list_dashboards {"datasetId":"optional"} — list saved views.
 15. data_quality {"datasetId":"optional"} — audit missing values, duplicate rows, constant/empty columns, high-null columns and type risks, with exact counts and suggested fixes.
 16. forecast {"datasetId":"optional","x":"numeric column","y":"numeric column"} — ordinary least squares preview with R², slope confidence interval and an approximate 95% prediction interval.
 17. predict_trend {"datasetId":"optional","metric":"numeric column","timeColumn":"date column","horizon":6} — aggregate the metric by period and fit a transparent OLS trend with R², slope, approximate prediction interval and future points. Use this for "predict", "next month/quarter" and "trend" requests when a date column exists.
 18. correlate {"datasetId":"optional","x":"numeric column","y":"numeric column"} — compute Pearson and Spearman coefficients over complete rows, select the stronger appropriate method and return a scatter plot. Use for "relationship", "correlation" and "does X move with Y" requests.
 19. find_anomalies {"datasetId":"optional","metric":"numeric column","limit":20} — compute 1.5×IQR fences and return the exact high/low outlier rows. Use for "outliers", "anomalies", "unusual values" and "what looks wrong" requests.
-20. auto_analyze {"datasetId":"optional"} — run the complete local pipeline: prepare duplicates, profile, rank groups, build a time trend, distribution, correlation, outliers and forecast, then save every eligible chart to Dashboards. Use this for open-ended "analyse everything", "build my dashboard" or "do it all" requests instead of many one-off calls.
+20. auto_analyze {"datasetId":"optional"} — run the complete local pipeline: prepare duplicates, profile, rank groups, build a time trend, distribution, correlation, outliers and forecast, then save every eligible chart to Dashboards. Use this for open-ended "analyse everything", "run full auto" or "do it all" requests. Do not use it for a single factual question; use rank_groups or run_sql instead.
 21. join_datasets {"leftDatasetId":"optional id; defaults to active","rightDatasetId":"exact id from list_datasets","leftKey":"exact left column","rightKey":"exact right column","joinType":"inner|left","name":"optional new dataset name"} — materialize a local inner or left join as a new dataset. Both source datasets are untouched. Use list_datasets first when you need the second dataset id. After the join, continue analysing the returned datasetId. Colliding right columns are prefixed with right_.
 22. append_datasets {"leftDatasetId":"optional id; defaults to active","rightDatasetId":"exact id from list_datasets","mode":"all|distinct","name":"optional new dataset name"} — append two datasets with the same column names into a new dataset. Use all to keep every row (UNION ALL) or distinct to remove exact duplicate rows (UNION). Columns are aligned by name; both sources stay untouched. Use list_datasets first. Continue analysing the returned datasetId.
 23. funnel {"datasetId":"optional","user":"exact user/entity column","event":"exact event column","time":"exact date or order column","steps":["first event","second event","..."]} — ordered event funnel. Each step counts the first occurrence per user; a later step only counts when it happens at or after the previous step. Use 2 to 8 unique event values from the event column. Use for "funnel", "drop-off", "conversion path" and "where do users leave" requests.
@@ -300,7 +300,15 @@ Output: {"reply":"I will measure the ordered view → signup → purchase funnel
 After the observation returns entry, completion and step counts:
 Output: {"reply":"Now I will measure monthly retention by first activity month.","tool":{"name":"cohort","args":{"user":"user_id","date":"happened_at","periods":6}}}
 After the observation:
-Output: {"reply":"The funnel reports ordered drop-off and the cohort reports monthly return rates; both use the exact local SQL shown in the evidence. This is descriptive, not causal.","tool":null}`
+Output: {"reply":"The funnel reports ordered drop-off and the cohort reports monthly return rates; both use the exact local SQL shown in the evidence. This is descriptive, not causal.","tool":null}
+
+Example 10 — exact question with SQL
+Input: "Which region had the highest total revenue? Use run_sql."
+Output: {"reply":"I will inspect the schema, then run an exact grouped revenue query.","tool":{"name":"describe_dataset","args":{}}}
+After the observation:
+Output: {"reply":"I will rank regions by summed revenue and keep the exact rows.","tool":{"name":"run_sql","args":{"sql":"SELECT region, ROUND(SUM(amount), 2) AS revenue FROM data WHERE region IS NOT NULL GROUP BY region ORDER BY revenue DESC LIMIT 10","limit":10}}}
+After the observation:
+Output: {"reply":"West had the highest total revenue at 1089.0. The exact SQL and rows are shown above.","tool":null}`
 
 const SYSTEM_PROMPT = `You are Plot AI, the agentic data analyst inside Plot Docs. You operate a local SQLite analytics workspace on the user's computer.
 You must complete the user's whole request by calling the provided tools. Do not stop at a plan when a tool can do the work.
@@ -319,7 +327,8 @@ Rules:
 - For a public page with several tables, call inspect_url first, then import_url with the chosen zero-based tableIndex. Never guess a table index. If the page only links to a direct data file, import that link with import_url.url.
 - Only SELECT or WITH queries are allowed. Writes, PRAGMA, ATTACH and arbitrary Python are blocked.
 - You cannot delete datasets, modify source files, export files, or run arbitrary code.
-- Prefer a saved dashboard when the user asks for a dashboard or a visual.
+- Prefer a saved dashboard when the user asks for a dashboard or a visual. Use build_dashboard for a focused multi-card request; use auto_analyze only for an open-ended full run.
+- Match the tool to the ask. For a specific question ("which", "top", "highest", "how many", "what is"), use rank_groups or run_sql and finish with the exact value. Never substitute auto_analyze for a single factual question.
 - Keep replies short, factual and free of markdown code blocks. Cite the dataset name and the action you took.
 - Your final reply must explain what the evidence means, not just what ran: the practical implication, the strongest pattern or driver, and the main uncertainty. Use only numbers that appear in tool observations. Do not claim causation.
 - When a tool returns an interpretation, use it as evidence and build on it rather than contradicting it.
@@ -1030,6 +1039,21 @@ export async function runAnalyticsAssistant(
   }
 
   const historyText = redactHistory(request.history, sources)
+  // Small deterministic nudge for the model: a dashboard request and a single
+  // factual question need different tools. This keeps a broad auto-run from
+  // replacing a precise answer, while still letting the model choose the SQL.
+  const asksForDashboard =
+    /\b(dashboard|full auto|run everything|analyse everything|analyze everything|do it all)\b/i.test(
+      rawText,
+    )
+  const asksSpecific = /\b(which|what|how many|how much|top|highest|lowest|best|worst|rank|compare|trend|forecast|predict|correlat|outlier|anomal|funnel|cohort|pivot)\b/i.test(
+    rawText,
+  )
+  const requestHint = asksForDashboard
+    ? 'Request intent: build or refresh a dashboard. Use build_dashboard for a focused multi-card result; auto_analyze is acceptable only for a full automated run.'
+    : asksSpecific
+      ? 'Request intent: answer one specific analytical question. Use rank_groups or run_sql (or the matching specialist tool) and finish with the exact result. Do not call auto_analyze.'
+      : ''
 
   try {
     for (step = 0; step < MAX_STEPS; step += 1) {
@@ -1041,6 +1065,7 @@ export async function runAnalyticsAssistant(
         `Workspace context:\n${compactObservation(context)}`,
         historyText ? `Earlier conversation:\n${historyText}` : '',
         `User request:\n${redactedText}`,
+        requestHint ? `Intent hint:\n${requestHint}` : '',
         observations.length
           ? `Tool observations so far:\n${observations.map((item, index) => `Observation ${index + 1}: ${item}`).join('\n')}`
           : 'No tools have run yet.',
@@ -1071,7 +1096,13 @@ export async function runAnalyticsAssistant(
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
         parseFailures += 1
-        deps.audit('assistant-plan-rejected', { error: message, attempt: parseFailures })
+        deps.audit('assistant-plan-rejected', {
+          error: message,
+          attempt: parseFailures,
+          ...(process.env.PLOTDOCS_DEBUG_AI === '1'
+            ? { raw: response.content.slice(0, 6000) }
+            : {}),
+        })
         if (parseFailures <= MAX_PARSE_RETRIES) {
           appendObservation(
             observations,

@@ -177,6 +177,41 @@ export function screenshotPath(name: string): string {
 }
 
 /**
+ * Dismiss the cinematic splash and the first-run Home tour.
+ *
+ * Both overlays paint above the shell DOM, so any test that clicks the tab bar
+ * on a scratch profile must get them out of the way first. The splash's skip
+ * button is the same escape hatch a user gets when font warm-up stalls.
+ */
+export async function dismissShellOverlays(page: Page, timeoutMs = 60_000): Promise<void> {
+  const splash = page.locator('.plot-splash')
+  const deadline = Date.now() + timeoutMs
+  while (Date.now() < deadline) {
+    if (await splash.isHidden().catch(() => true)) break
+    const skipSplash = page.locator('.plot-splash-skip')
+    if (await skipSplash.isVisible().catch(() => false)) {
+      await skipSplash
+        .evaluate((button) => (button as HTMLElement).click())
+        .catch(() => undefined)
+      await page.waitForTimeout(250)
+      continue
+    }
+    await page.waitForTimeout(200)
+  }
+  await splash.waitFor({ state: 'hidden', timeout: 15_000 }).catch(() => undefined)
+
+  const skipTour = page.getByRole('button', { name: 'Skip tour' })
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    if (await skipTour.isVisible().catch(() => false)) {
+      await skipTour.click().catch(() => undefined)
+      break
+    }
+    await page.waitForTimeout(300)
+  }
+  await page.locator('.home-tour').waitFor({ state: 'hidden', timeout: 10_000 }).catch(() => undefined)
+}
+
+/**
  * Wait for a page whose URL contains `urlPart` (e.g. an editor WebContentsView).
  * Checks windows that already exist before listening, so it never races the
  * view being created between launch and the first waitForEvent call.

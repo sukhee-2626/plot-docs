@@ -1,0 +1,7 @@
+{
+  "version": "1.0.1",
+  "file": "Plot-Docs-1.0.1.exe",
+  "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+  "releaseNotes": "Example manifest. Rename to update.json and point file at your built portable executable.",
+  "publishedAt": "2026-11-08T12:00:00.000Z"
+}
