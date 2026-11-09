@@ -2,11 +2,13 @@
 //
 // The updates center owns two file-backed channels:
 //   /updates       update packages + manifests + status/history
-//   /notifications JSON notification files
+//   /notifications JSON or plain-text notification files
 //
-// It also checks the configured GitHub repository for the latest release. The
-// renderer never supplies paths or download URLs; every action is resolved
-// against state the main process scanned itself.
+// It also checks the configured GitHub repository for the latest release, the
+// portable packages in the repository's /updates folder, and the notification
+// files in the repository's /notifications folder. The renderer never supplies
+// paths or download URLs; every action is resolved against state the main
+// process scanned itself.
 
 export const UPDATES_CENTER_CHANNELS = {
   getState: 'updates-center:get-state',
@@ -80,8 +82,10 @@ export interface InAppNotification {
   date: string
   type: 'info' | 'success' | 'warning' | 'error' | 'update'
   read: boolean
-  /** absolute source path */
+  /** absolute source path, or the GitHub file URL for a remote notification */
   sourceFile: string
+  /** true when the notification came from the configured GitHub repository */
+  remote?: boolean
   createdAt: number
   updatedAt: number
 }

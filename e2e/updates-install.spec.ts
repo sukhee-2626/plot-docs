@@ -73,8 +73,14 @@ test.describe('packaged update install', () => {
       await dismissShellOverlays(page)
       await expect(page.locator('.tab-notification-btn')).toBeVisible()
 
-      await page.locator('.tab-notification-btn').click()
-      await page.getByRole('tab', { name: 'Updates' }).click()
+      // The packaged build must surface a new version with the same popup and
+      // persistent hero as the development build.
+      const updateToast = page.locator('.uc-update-toast')
+      await expect(updateToast).toBeVisible({ timeout: 20_000 })
+      await expect(updateToast).toContainText('Plot Docs v9.9.9 is available')
+      await updateToast.getByRole('button', { name: 'View update' }).click()
+      await expect(page.locator('.uc-update-hero')).toContainText('Update available · v9.9.9')
+      await expect(page.getByRole('tab', { name: 'Updates' })).toHaveAttribute('aria-selected', 'true')
       const card = page.locator('.uc-update-card').filter({ hasText: 'Plot-Docs-9.9.9.exe' })
       await expect(card).toBeVisible({ timeout: 20_000 })
       await expect(card).toContainText('v9.9.9')

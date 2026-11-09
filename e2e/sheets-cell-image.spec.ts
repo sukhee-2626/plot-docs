@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -28,7 +28,7 @@ async function gridOrigin(page: Page): Promise<{ x: number; y: number }> {
 }
 
 function sheetXml(workbook: string): string {
-  return execSync(`unzip -p "${workbook}" xl/worksheets/sheet1.xml`).toString()
+  return unzipText(workbook, 'xl/worksheets/sheet1.xml')
 }
 
 function saveWorkbook(app: Awaited<ReturnType<typeof launchShell>>['app']): Promise<void> {
@@ -108,7 +108,7 @@ test.describe('sheets: picture in cell', () => {
       await expect(() => {
         expect(sheetXml(workbook)).toMatch(/r="A1"[^>]*t="e" vm="1"/)
       }).toPass({ timeout: 20_000 })
-      const listing = execSync(`unzip -l "${workbook}"`).toString()
+      const listing = unzipList(workbook)
       expect(listing).toContain('xl/metadata.xml')
       expect(listing).toContain('xl/richData/rdrichvalue.xml')
       expect(listing).toContain('xl/richData/rdrichvaluestructure.xml')

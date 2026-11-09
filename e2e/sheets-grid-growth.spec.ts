@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -28,7 +28,7 @@ async function waitForWorkbook(page: Page): Promise<void> {
 }
 
 function sheetXml(workbookPath: string): string {
-  return execSync(`unzip -p "${workbookPath}" xl/worksheets/sheet1.xml`).toString()
+  return unzipText(workbookPath, 'xl/worksheets/sheet1.xml')
 }
 
 test.describe('sheets: the grid grows ahead of the viewport', () => {

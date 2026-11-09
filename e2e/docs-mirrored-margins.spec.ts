@@ -3,7 +3,12 @@ import { mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from '
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import JSZip from 'jszip'
-import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
+import {
+  launchShell,
+  closeAndSaveVideo,
+  dismissShellOverlays,
+  waitForPageWithUrl,
+} from './helpers'
 
 /**
  * Layout > Margins > Mirrored (w:mirrorMargins): w:left is the inside margin
@@ -222,6 +227,7 @@ test.describe('docs mirrored margins', () => {
       // the exported PDF opens in its own tab: return to the document (the
       // export closed the preview it opened), then Normal from the dialog clears the shift
       const shellPage = await waitForPageWithUrl(launched.app, 'shell/out')
+      await dismissShellOverlays(shellPage)
       await shellPage.locator('.tab-bar .tab-item', { hasText: 'mirror.docx' }).click()
       await expect(page.locator('.pagination-preview')).toBeHidden()
       await showTab(page, /^Layout$/)

@@ -93,6 +93,11 @@ export async function launchShell(options: LaunchOptions): Promise<LaunchedApp> 
   })
   const page = await app.firstWindow()
   await waitForDocumentReady(app, page)
+  // The cinematic splash and the first-run home tour sit above the app chrome
+  // and otherwise intercept the first click in every feature spec. Tests that
+  // assert the splash/tour themselves can still do so: the overlay is only
+  // dismissed once it is actually on screen.
+  await dismissShellOverlays(page)
   return { app, page, userDataDir }
 }
 
@@ -200,15 +205,18 @@ export async function dismissShellOverlays(page: Page, timeoutMs = 60_000): Prom
   }
   await splash.waitFor({ state: 'hidden', timeout: 15_000 }).catch(() => undefined)
 
-  const skipTour = page.getByRole('button', { name: 'Skip tour' })
-  for (let attempt = 0; attempt < 10; attempt += 1) {
-    if (await skipTour.isVisible().catch(() => false)) {
-      await skipTour.click().catch(() => undefined)
-      break
+  const tour = page.locator('.home-tour')
+  if (await tour.isVisible().catch(() => false)) {
+    const skipTour = page.getByRole('button', { name: 'Skip tour' })
+    for (let attempt = 0; attempt < 10; attempt += 1) {
+      if (await skipTour.isVisible().catch(() => false)) {
+        await skipTour.click().catch(() => undefined)
+        break
+      }
+      await page.waitForTimeout(300)
     }
-    await page.waitForTimeout(300)
+    await tour.waitFor({ state: 'hidden', timeout: 10_000 }).catch(() => undefined)
   }
-  await page.locator('.home-tour').waitFor({ state: 'hidden', timeout: 10_000 }).catch(() => undefined)
 }
 
 /**

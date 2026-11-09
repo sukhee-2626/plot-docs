@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { addZipEntry, unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -29,7 +29,7 @@ async function gridOrigin(page: Page): Promise<{ x: number; y: number }> {
 }
 
 function sheetXml(workbookPath: string): string {
-  return execSync(`unzip -p "${workbookPath}" xl/worksheets/sheet1.xml`).toString()
+  return unzipText(workbookPath, 'xl/worksheets/sheet1.xml')
 }
 
 test.describe('sheets: ribbon batch-1 features', () => {
@@ -194,7 +194,7 @@ const MINIMAL_THEME =
   '</a:fontScheme><a:fmtScheme name="Office"/></a:themeElements></a:theme>'
 
 function archiveEntry(workbookPath: string, entry: string): string {
-  return execSync(`unzip -p "${workbookPath}" ${entry}`).toString()
+  return unzipText(workbookPath, entry)
 }
 
 test.describe('sheets: ribbon batch-3 features', () => {
@@ -203,10 +203,7 @@ test.describe('sheets: ribbon batch-3 features', () => {
     const workbook = join(scratch, 'ribbon-batch3.xlsx')
     await copyFile(FIXTURE, workbook)
     // The generated fixture ships no theme part; the theme engine needs one.
-    execSync(
-      `mkdir -p "${scratch}/xl/theme" && printf '%s' '${MINIMAL_THEME}' > "${scratch}/xl/theme/theme1.xml" ` +
-        `&& cd "${scratch}" && zip -q "${workbook}" xl/theme/theme1.xml`,
-    )
+    addZipEntry(workbook, 'xl/theme/theme1.xml', MINIMAL_THEME)
 
     const launched = await launchShell({
       onboardingSeen: true,

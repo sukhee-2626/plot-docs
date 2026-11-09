@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { existsSync } from 'node:fs'
 import { mkdtemp, readdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -64,7 +64,7 @@ test.describe('sheets: new blank workbook', () => {
         wc?.send('menu:action', 'save')
       })
       await expect(() => {
-        const xml = execSync(`unzip -p "${workbook}" xl/worksheets/sheet1.xml`).toString()
+        const xml = unzipText(workbook, 'xl/worksheets/sheet1.xml')
         expect(xml).toContain('<v>42</v>')
       }).toPass({ timeout: 15_000 })
     } finally {

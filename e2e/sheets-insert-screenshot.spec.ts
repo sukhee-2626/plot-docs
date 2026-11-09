@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -69,7 +69,7 @@ test.describe('sheets: Insert → Screenshot', () => {
         wc?.send('menu:action', 'save')
       })
       await expect(() => {
-        const listing = execSync(`unzip -l "${workbook}"`).toString()
+        const listing = unzipList(workbook)
         expect(listing).toContain('xl/media/')
       }).toPass({ timeout: 20_000 })
     } finally {

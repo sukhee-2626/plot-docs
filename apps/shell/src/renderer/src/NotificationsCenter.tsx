@@ -189,17 +189,19 @@ function NotificationRow({
             <CheckIcon />
           </button>
         ) : null}
-        <button
-          className="uc-icon-btn uc-danger"
-          title="Delete notification"
-          aria-label="Delete notification"
-          onClick={(event) => {
-            event.stopPropagation()
-            onDelete()
-          }}
-        >
-          <TrashIcon />
-        </button>
+        {!notification.remote ? (
+          <button
+            className="uc-icon-btn uc-danger"
+            title="Delete notification"
+            aria-label="Delete notification"
+            onClick={(event) => {
+              event.stopPropagation()
+              onDelete()
+            }}
+          >
+            <TrashIcon />
+          </button>
+        ) : null}
       </div>
     </article>
   )
@@ -368,8 +370,8 @@ function GithubCard({
       <section className="uc-github-card">
         <div className="uc-section-heading">
           <div>
-            <strong>GitHub releases</strong>
-            <span>Automatic release detection</span>
+            <strong>GitHub updates</strong>
+            <span>Releases + repository updates folder</span>
           </div>
           <button className="uc-secondary-btn" onClick={onCheck} disabled={busy !== null}>
             {state.githubChecking ? <Spinner /> : <RefreshIcon />}
@@ -380,7 +382,7 @@ function GithubCard({
           <div className="uc-inline-error">{state.githubError}</div>
         ) : (
           <p className="uc-muted">
-            No release has been found yet. Publish a GitHub release with a portable .exe asset to
+            No update has been found yet. Publish a GitHub release or add a portable .exe to the repository updates folder to
             make updates available here.
           </p>
         )}
@@ -393,7 +395,7 @@ function GithubCard({
     <section className={`uc-github-card${release.newer ? ' has-update' : ''}`}>
       <div className="uc-section-heading">
         <div>
-          <strong>GitHub release v{release.version}</strong>
+          <strong>GitHub update v{release.version}</strong>
           <span>
             {release.newer ? 'New version available' : 'You are up to date'}
             {release.publishedAt ? ` · ${formatDate(release.publishedAt)}` : ''}
@@ -428,7 +430,7 @@ function GithubCard({
         </div>
       ) : (
         <div className="uc-inline-error">
-          This release has no asset for {state.platform}/{state.arch}.
+          This update has no asset for {state.platform}/{state.arch}.
         </div>
       )}
 
@@ -463,7 +465,7 @@ function GithubCard({
           </button>
         ) : null}
         {!release.newer ? (
-          <span className="uc-muted">Plot Docs v{state.currentVersion} is the latest GitHub release.</span>
+          <span className="uc-muted">Plot Docs v{state.currentVersion} is the latest GitHub update.</span>
         ) : null}
         {asset && !asset.installable ? (
           <button className="uc-secondary-btn" onClick={onOpenFolder}>
@@ -474,7 +476,7 @@ function GithubCard({
       </div>
       {release.htmlUrl ? (
         <a className="uc-release-link" href={release.htmlUrl} target="_blank" rel="noreferrer">
-          View release on GitHub
+          View update on GitHub
         </a>
       ) : null}
     </section>
@@ -661,7 +663,7 @@ export function NotificationsCenterPanel({
               <span>
                 {state?.restartRequired
                   ? 'The new executable is installed. Your documents and settings are untouched.'
-                  : 'Review the release, download the portable build, and install when ready.'}
+                  : 'Review the update, download the portable build, and install when ready.'}
               </span>
             </div>
             {state?.restartRequired ? (

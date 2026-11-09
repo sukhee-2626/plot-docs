@@ -19,17 +19,24 @@ import {
   compareVersions,
   formatBytes,
   isAllowedGithubAssetUrl,
+  isInstallablePackageName,
+  isManifestFileName,
+  isPackageFileName,
   isPathInside,
   normalizeVersion,
   notificationContentHash,
   packageId,
   parseGithubRelease,
+  parseNotificationDocument,
+  parseTextNotification,
+  parseUpdateManifest,
   replaceExecutable,
   safeFileName,
   scanNotificationDirectory,
   scanUpdateDirectory,
   sha256File,
   sortPackages,
+  versionFromFileName,
   watchDirectory,
   type NotificationFileState,
 } from './updates-center-core'
@@ -55,6 +62,27 @@ const MAX_DOWNLOAD_BYTES = 4 * 1024 * 1024 * 1024
 const MAX_STATE_BYTES = 1_000_000
 const HISTORY_LIMIT = 100
 const LOG_LIMIT_BYTES = 1_000_000
+const MAX_GITHUB_FOLDER_ENTRIES = 200
+const MAX_GITHUB_NOTIFICATION_FILES = 100
+const MAX_GITHUB_NOTIFICATION_BYTES = 1_000_000
+const MAX_GITHUB_MANIFEST_FILES = 20
+const MAX_GITHUB_MANIFEST_BYTES = 1_000_000
+const MAX_GITHUB_FOLDER_PACKAGES = 50
+
+interface GithubContentEntry {
+  name: string
+  path: string
+  sha: string
+  size: number
+  type: string
+  downloadUrl: string | null
+  htmlUrl: string | null
+}
+
+interface GithubReleaseResult {
+  release: GithubReleaseInfo | null
+  error: string | null
+}
 
 interface InstalledRecord {
   at: number
@@ -200,7 +228,13 @@ function parseNotificationState(raw: unknown): NotificationFileState {
       if (typeof value === 'string') hashes[id] = value
     }
   }
-  return { read, deleted, hashes }
+  const remoteDates: Record<string, string> = {}
+  if (isObject(raw.remoteDates)) {
+    for (const [id, value] of Object.entries(raw.remoteDates)) {
+      if (typeof value === 'string' && !Number.isNaN(Date.parse(value))) remoteDates[id] = value
+    }
+  }
+  return { read, deleted, hashes, remoteDates }
 }
 
 async function readJson(filePath: string): Promise<unknown> {
@@ -315,6 +349,7 @@ class UpdatesCenterService implements UpdatesCenter {
   private notificationState: NotificationFileState = { read: {}, deleted: {}, hashes: {} }
   private readonly runtime = new Map<string, Partial<UpdatePackage>>()
   private readonly synthetic = new Map<string, UpdatePackage>()
+  private remoteNotifications: InAppNotification[] = []
   private readonly watchers: Array<() => void> = []
   private readonly nativeNotifications = new Set<Notification>()
   private startPromise: Promise<void> | null = null
@@ -544,8 +579,19 @@ class UpdatesCenterService implements UpdatesCenter {
         }),
       ),
     )
-    const notifications = notificationLists
-      .flat()
+    const remoteNotifications = this.remoteNotifications
+      .filter((notification) => {
+        const hash = notificationContentHash(notification)
+        return this.notificationState.deleted?.[notification.id] !== hash
+      })
+      .map((notification) => {
+        const hash = notificationContentHash(notification)
+        const read =
+          this.notificationState.read?.[notification.id] === true &&
+          this.notificationState.hashes?.[notification.id] === hash
+        return { ...notification, read: notification.read || read, remote: true }
+      })
+    const notifications = [...notificationLists.flat(), ...remoteNotifications]
       .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
     this.state.notifications = notifications
     this.state.unreadCount = notifications.filter((notification) => !notification.read).length
@@ -672,6 +718,333 @@ class UpdatesCenterService implements UpdatesCenter {
     return this.githubInFlight
   }
 
+  private githubHeaders(accept = 'application/vnd.github+json'): Record<string, string> {
+    const token =
+      process.env.PLOTDOCS_GITHUB_TOKEN ?? process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN
+    return {
+      Accept: accept,
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'Plot-Docs-Updates',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    }
+  }
+
+  private githubRateLimitMessage(response: Response): string {
+    const reset = response.headers.get('x-ratelimit-reset')
+    const resetText = reset ? new Date(Number(reset) * 1000).toLocaleString() : null
+    return resetText
+      ? `GitHub rate limit reached. Try again after ${resetText}.`
+      : 'GitHub rate limit reached. Try again later.'
+  }
+
+  private async fetchGithubContents(
+    path: string,
+    signal: AbortSignal,
+  ): Promise<{ entries: GithubContentEntry[]; error: string | null }> {
+    if (!this.githubRepo) return { entries: [], error: 'GitHub repository is not configured.' }
+    const response = await (this.options.fetchImpl ?? fetch)(
+      `https://api.github.com/repos/${this.githubRepo}/contents/${path}`,
+      { headers: this.githubHeaders(), signal },
+    )
+    if (response.status === 404) return { entries: [], error: null }
+    if (response.status === 403 || response.status === 429) {
+      return { entries: [], error: this.githubRateLimitMessage(response) }
+    }
+    if (!response.ok) {
+      return { entries: [], error: `GitHub ${path} check failed (HTTP ${response.status}).` }
+    }
+    const text = await response.text()
+    if (text.length > 4_000_000) {
+      return { entries: [], error: `GitHub ${path} returned an unexpectedly large payload.` }
+    }
+    let payload: unknown
+    try {
+      payload = JSON.parse(text) as unknown
+    } catch {
+      return { entries: [], error: `GitHub ${path} returned an unreadable payload.` }
+    }
+    if (!Array.isArray(payload)) {
+      return { entries: [], error: `GitHub ${path} did not return a folder.` }
+    }
+    const entries: GithubContentEntry[] = []
+    for (const raw of payload.slice(0, MAX_GITHUB_FOLDER_ENTRIES)) {
+      if (!isObject(raw) || raw.type !== 'file') continue
+      const name = typeof raw.name === 'string' ? raw.name : ''
+      if (!name) continue
+      const size =
+        typeof raw.size === 'number' && Number.isFinite(raw.size) && raw.size >= 0 ? raw.size : 0
+      entries.push({
+        name,
+        path: typeof raw.path === 'string' ? raw.path : `${path}/${name}`,
+        sha: typeof raw.sha === 'string' ? raw.sha : '',
+        size,
+        type: 'file',
+        downloadUrl: typeof raw.download_url === 'string' ? raw.download_url : null,
+        htmlUrl: typeof raw.html_url === 'string' ? raw.html_url : null,
+      })
+    }
+    return { entries, error: null }
+  }
+
+  private async fetchGithubText(
+    entry: GithubContentEntry,
+    signal: AbortSignal,
+    maxBytes: number,
+  ): Promise<{ text: string | null; error: string | null }> {
+    if (entry.size > maxBytes) {
+      return { text: null, error: `${entry.name} is larger than the ${formatBytes(maxBytes)} limit.` }
+    }
+    const direct = entry.downloadUrl
+    const url =
+      direct && isAllowedGithubAssetUrl(direct)
+        ? direct
+        : `https://api.github.com/repos/${this.githubRepo}/contents/${entry.path}`
+    const headers = url.startsWith('https://api.github.com/')
+      ? this.githubHeaders('application/vnd.github.raw')
+      : this.githubHeaders('text/plain')
+    try {
+      const response = await (this.options.fetchImpl ?? fetch)(url, { headers, signal })
+      if (!response.ok) return { text: null, error: `GitHub file check failed (HTTP ${response.status}).` }
+      const text = await response.text()
+      if (text.length > maxBytes) {
+        return { text: null, error: `${entry.name} is larger than the ${formatBytes(maxBytes)} limit.` }
+      }
+      return { text, error: null }
+    } catch (error) {
+      return {
+        text: null,
+        error: error instanceof Error ? error.message : `Could not read ${entry.name}.`,
+      }
+    }
+  }
+
+  private async fetchLatestRelease(signal: AbortSignal): Promise<GithubReleaseResult> {
+    if (!this.githubRepo) {
+      return { release: null, error: 'GitHub repository is not configured.' }
+    }
+    try {
+      const response = await (this.options.fetchImpl ?? fetch)(
+        `https://api.github.com/repos/${this.githubRepo}/releases/latest`,
+        { headers: this.githubHeaders(), signal },
+      )
+      if (response.status === 404) {
+        return {
+          release: null,
+          error: `No published GitHub release was found for ${this.githubRepo} yet.`,
+        }
+      }
+      if (response.status === 403 || response.status === 429) {
+        return { release: null, error: this.githubRateLimitMessage(response) }
+      }
+      if (!response.ok) {
+        return { release: null, error: `GitHub update check failed (HTTP ${response.status}).` }
+      }
+      const text = await response.text()
+      if (text.length > 2_000_000) {
+        return { release: null, error: 'GitHub returned an unexpectedly large release payload.' }
+      }
+      let payload: unknown
+      try {
+        payload = JSON.parse(text) as unknown
+      } catch {
+        return { release: null, error: 'GitHub returned an unreadable release payload.' }
+      }
+      const release = parseGithubRelease(payload, this.currentVersion, this.platform, this.arch)
+      return release
+        ? { release, error: null }
+        : { release: null, error: 'GitHub returned an unsupported release.' }
+    } catch (error) {
+      return {
+        release: null,
+        error:
+          error instanceof Error && error.name === 'AbortError'
+            ? 'GitHub update check timed out. Check your network and try again.'
+            : 'Could not reach GitHub. Check your network and try again.',
+      }
+    }
+  }
+
+  private remoteNotificationDate(key: string): number {
+    this.notificationState.remoteDates = this.notificationState.remoteDates ?? {}
+    const known = this.notificationState.remoteDates[key]
+    if (known) {
+      const parsed = Date.parse(known)
+      if (!Number.isNaN(parsed)) return parsed
+    }
+    const now = this.now()
+    this.notificationState.remoteDates[key] = new Date(now).toISOString()
+    return now
+  }
+
+  private async fetchGithubNotifications(
+    signal: AbortSignal,
+  ): Promise<{ notifications: InAppNotification[]; error: string | null }> {
+    const folder = await this.fetchGithubContents('notifications', signal)
+    if (folder.error && folder.entries.length === 0) {
+      return { notifications: [], error: folder.error }
+    }
+    const files = folder.entries
+      .filter((entry) => {
+        const lower = entry.name.toLowerCase()
+        if (!lower.endsWith('.json') && !lower.endsWith('.txt')) return false
+        if (lower.startsWith('.') || lower === 'state.json' || lower === 'read-state.json') {
+          return false
+        }
+        if (
+          lower.endsWith('.example.json') ||
+          lower.endsWith('.sample.json') ||
+          lower.endsWith('.example.txt') ||
+          lower.endsWith('.sample.txt')
+        ) {
+          return false
+        }
+        return true
+      })
+      .slice(0, MAX_GITHUB_NOTIFICATION_FILES)
+    const results = await Promise.all(
+      files.map(async (entry) => {
+        const fetched = await this.fetchGithubText(
+          entry,
+          signal,
+          MAX_GITHUB_NOTIFICATION_BYTES,
+        )
+        if (!fetched.text) {
+          if (fetched.error) this.log(`remote notification skipped: ${fetched.error}`)
+          return [] as InAppNotification[]
+        }
+        const remoteKey = `github:${entry.path}:${entry.sha || entry.name}`
+        const seenAt = this.remoteNotificationDate(remoteKey)
+        try {
+          const parsed = entry.name.toLowerCase().endsWith('.json')
+            ? parseNotificationDocument(
+                JSON.parse(fetched.text) as unknown,
+                entry.name,
+                seenAt,
+                'github',
+              )
+            : parseTextNotification(
+                fetched.text,
+                entry.name,
+                seenAt,
+                'github',
+                remoteKey,
+              )
+          return parsed.map((notification) => ({
+            ...notification,
+            remote: true,
+            sourceFile: entry.htmlUrl ?? entry.downloadUrl ?? entry.name,
+          }))
+        } catch (error) {
+          this.log(
+            `remote notification ${entry.name} is malformed: ${
+              error instanceof Error ? error.message : String(error)
+            }`,
+          )
+          return [] as InAppNotification[]
+        }
+      }),
+    )
+    return {
+      notifications: results
+        .flat()
+        .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+        .slice(0, 500),
+      error: folder.error,
+    }
+  }
+
+  private async fetchGithubFolderUpdate(
+    signal: AbortSignal,
+  ): Promise<{ update: GithubReleaseInfo | null; error: string | null }> {
+    const folder = await this.fetchGithubContents('updates', signal)
+    if (folder.error && folder.entries.length === 0) {
+      return { update: null, error: folder.error }
+    }
+    const manifests: Array<{ entry: GithubContentEntry; parsed: ReturnType<typeof parseUpdateManifest> }> = []
+    const manifestFiles = folder.entries
+      .filter((entry) => isManifestFileName(entry.name))
+      .slice(0, MAX_GITHUB_MANIFEST_FILES)
+    await Promise.all(
+      manifestFiles.map(async (entry) => {
+        const fetched = await this.fetchGithubText(entry, signal, MAX_GITHUB_MANIFEST_BYTES)
+        if (!fetched.text) return
+        try {
+          manifests.push({
+            entry,
+            parsed: parseUpdateManifest(JSON.parse(fetched.text) as unknown),
+          })
+        } catch {
+          this.log(`remote update manifest ${entry.name} is malformed`)
+        }
+      }),
+    )
+    const packages = folder.entries
+      .filter(
+        (entry) =>
+          isPackageFileName(entry.name) &&
+          Boolean(entry.downloadUrl) &&
+          isAllowedGithubAssetUrl(entry.downloadUrl!),
+      )
+      .slice(0, MAX_GITHUB_FOLDER_PACKAGES)
+    let best: { release: GithubReleaseInfo; installable: boolean } | null = null
+    for (const entry of packages) {
+      const manifest =
+        manifests
+          .flatMap((candidate) => candidate.parsed)
+          .find((candidate) => candidate.file === entry.name) ??
+        manifests.flatMap((candidate) => candidate.parsed).find((candidate) => !candidate.file)
+      const version =
+        normalizeVersion(manifest?.version) ?? versionFromFileName(entry.name)
+      if (!version) continue
+      const installable =
+        this.platform === 'win32'
+          ? isInstallablePackageName(entry.name)
+          : extname(entry.name).toLowerCase() === '.appimage'
+      const release: GithubReleaseInfo = {
+        version,
+        tag: `folder-v${version}`,
+        name: `Plot Docs ${version}`,
+        releaseNotes:
+          manifest?.releaseNotes ??
+          'Published in the GitHub repository updates folder. Review the checksum and signature before installing.',
+        publishedAt: manifest?.publishedAt ?? new Date(this.now()).toISOString(),
+        htmlUrl:
+          entry.htmlUrl ??
+          `https://github.com/${this.githubRepo}/tree/main/updates`,
+        newer: compareVersions(version, this.currentVersion) > 0,
+        asset: {
+          name: entry.name,
+          size: entry.size,
+          downloadUrl: entry.downloadUrl!,
+          sha256: manifest?.sha256 ?? null,
+          installable,
+        },
+      }
+      if (
+        !best ||
+        compareVersions(version, best.release.version) > 0 ||
+        (compareVersions(version, best.release.version) === 0 && installable && !best.installable)
+      ) {
+        best = { release, installable }
+      }
+    }
+    return { update: best?.release ?? null, error: folder.error }
+  }
+
+  private chooseGithubUpdate(
+    release: GithubReleaseInfo | null,
+    folder: GithubReleaseInfo | null,
+  ): GithubReleaseInfo | null {
+    if (!release) return folder
+    if (!folder) return release
+    const comparison = compareVersions(folder.version, release.version)
+    if (comparison > 0) return folder
+    if (comparison < 0) return release
+    if (release.asset?.installable) return release
+    if (folder.asset?.installable) return folder
+    return release
+  }
+
   private async checkGithubInternal(): Promise<UpdatesCenterState> {
     if (!this.githubRepo) {
       this.state.githubChecking = false
@@ -687,63 +1060,29 @@ class UpdatesCenterService implements UpdatesCenter {
     this.githubAbort = controller
     const timeout = setTimeout(() => controller.abort(), GITHUB_REQUEST_TIMEOUT_MS)
     try {
-      const token =
-        process.env.PLOTDOCS_GITHUB_TOKEN ?? process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN
-      const response = await (this.options.fetchImpl ?? fetch)(
-        `https://api.github.com/repos/${this.githubRepo}/releases/latest`,
-        {
-          headers: {
-            Accept: 'application/vnd.github+json',
-            'X-GitHub-Api-Version': '2022-11-28',
-            'User-Agent': 'Plot-Docs-Updates',
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          },
-          signal: controller.signal,
-        },
-      )
+      const [releaseResult, folderResult, notificationResult] = await Promise.all([
+        this.fetchLatestRelease(controller.signal),
+        this.fetchGithubFolderUpdate(controller.signal),
+        this.fetchGithubNotifications(controller.signal),
+      ])
       this.state.lastCheckedAt = this.now()
-      if (response.status === 404) {
-        this.state.github = null
-        this.state.githubError = `No published GitHub release was found for ${this.githubRepo} yet.`
-        return this.snapshot()
-      }
-      if (response.status === 403 || response.status === 429) {
-        const reset = response.headers.get('x-ratelimit-reset')
-        const resetText = reset ? new Date(Number(reset) * 1000).toLocaleString() : null
-        this.state.githubError = resetText
-          ? `GitHub rate limit reached. Try again after ${resetText}.`
-          : 'GitHub rate limit reached. Try again later.'
-        return this.snapshot()
-      }
-      if (!response.ok) {
-        this.state.githubError = `GitHub update check failed (HTTP ${response.status}).`
-        return this.snapshot()
-      }
-      const text = await response.text()
-      if (text.length > 2_000_000) {
-        this.state.githubError = 'GitHub returned an unexpectedly large release payload.'
-        return this.snapshot()
-      }
-      let payload: unknown
-      try {
-        payload = JSON.parse(text) as unknown
-      } catch {
-        this.state.githubError = 'GitHub returned an unreadable release payload.'
-        return this.snapshot()
-      }
-      const release = parseGithubRelease(payload, this.currentVersion, this.platform, this.arch)
-      if (!release) {
-        this.state.githubError = 'GitHub returned an unsupported release.'
-        return this.snapshot()
-      }
-      this.state.github = release
-      this.state.githubError = null
-      if (release.newer) {
+      this.remoteNotifications = notificationResult.notifications
+      await this.writeNotificationState().catch(() => undefined)
+      const chosen = this.chooseGithubUpdate(releaseResult.release, folderResult.update)
+      this.state.github = chosen
+      const errors = [releaseResult.error, folderResult.error, notificationResult.error].filter(
+        (error): error is string => Boolean(error),
+      )
+      this.state.githubError = chosen
+        ? null
+        : errors[0] ?? `No published GitHub update was found for ${this.githubRepo} yet.`
+      if (chosen?.newer) {
         this.nativeNotify(
           'GitHub update available',
-          `${releaseVersionLabel(release)} is available for download.`,
+          `${releaseVersionLabel(chosen)} is available for download.`,
         )
       }
+      await this.refreshInternal()
       return this.snapshot()
     } catch (error) {
       this.state.lastCheckedAt = this.now()
@@ -886,7 +1225,9 @@ class UpdatesCenterService implements UpdatesCenter {
       await rm(partPath, { force: true }).catch(() => undefined)
       const response = await (this.options.fetchImpl ?? fetch)(asset.downloadUrl, {
         headers: {
-          Accept: 'application/octet-stream',
+          Accept: asset.downloadUrl.startsWith('https://api.github.com/')
+            ? 'application/vnd.github.raw'
+            : 'application/octet-stream',
           'User-Agent': 'Plot-Docs-Updates',
           ...(process.env.PLOTDOCS_GITHUB_TOKEN ?? process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN
             ? {
@@ -1279,6 +1620,10 @@ class UpdatesCenterService implements UpdatesCenter {
     await this.start()
     const notification = this.state.notifications.find((item) => item.id === id)
     if (!notification) return this.snapshot()
+    // Remote notifications live in the GitHub repository, not on this machine.
+    // Marking them read is local; deleting the source would require repo write
+    // access and is intentionally not part of the desktop app.
+    if (notification.remote) return this.snapshot()
     const allowed = this.activeNotificationDirs.some((dir) => isPathInside(dir, notification.sourceFile))
     if (!allowed) return this.snapshot()
     this.notificationState.deleted = this.notificationState.deleted ?? {}

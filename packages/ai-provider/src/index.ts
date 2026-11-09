@@ -4,6 +4,7 @@ export type {
   AiCustomModelProfile,
   AiCustomProfile,
   AiCustomProtocol,
+  AiChatOptions,
   AiChatRequest,
   AiChatResponse,
   AiMediaProviderConfig,

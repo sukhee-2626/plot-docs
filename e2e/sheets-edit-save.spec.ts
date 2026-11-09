@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -40,7 +41,7 @@ async function copyActiveCell(page: Page): Promise<string> {
 }
 
 function sheetXml(workbookPath: string): string {
-  return execSync(`unzip -p "${workbookPath}" xl/worksheets/sheet1.xml`).toString()
+  return unzipText(workbookPath, 'xl/worksheets/sheet1.xml')
 }
 
 test.describe('sheets: edit and save an external workbook', () => {

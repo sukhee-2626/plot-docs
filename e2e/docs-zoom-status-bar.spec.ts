@@ -5,7 +5,12 @@
  * toggles from the status bar.
  */
 import { test, expect } from '@playwright/test'
-import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
+import {
+  launchShell,
+  closeAndSaveVideo,
+  dismissShellOverlays,
+  waitForPageWithUrl,
+} from './helpers'
 
 const POLL = { timeout: 15_000, intervals: [250, 500, 1000] }
 
@@ -14,6 +19,7 @@ test('zoom 10–500, zoom dialog, page counter, view buttons and track changes',
   const launched = await launchShell({ onboardingSeen: true, videoDir: 'docs-zoom-status-bar' })
   const { app, page } = launched
   try {
+    await dismissShellOverlays(page)
     await page.locator('.quick-card').first().click()
     const editor = await waitForPageWithUrl(app, '://docs/')
     const docPage = editor.locator('.doc-page').first()

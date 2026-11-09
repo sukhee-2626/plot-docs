@@ -159,36 +159,4 @@ Analytics product page to exist in Plot Docs as local-first equivalents:
 Plot Docs will not copy Zoho literally and will not become cloud-only. The phased plan
 is in `05-analytics-roadmap.md` and `../docs/analytics-parity-roadmap.md`.
 
-## 5. Current priority order
-
-1. Finish and verify the update/notification system.
-2. Fix Codex structured analytics output.
-3. Test analytics with huge data and record real measurements.
-4. Start the Zoho-inspired analytics phases.
-
-## 6. Canonical files
-
-- `../history.txt` — complete handoff and resume record
-- `02-current-status.md` — current state and exact next actions
-- `03-updates-notifications.md` — architecture
-- `04-version-control.md` — Git/GitHub release workflow
-- `05-analytics-roadmap.md` — local-first parity plan
-- `06-test-log.md` — commands, results, failures, fixes
-- `07-release-checklist.md` — release gate
-- `08-resume-prompt.md` — copy-paste prompt for any model
-- `../docs/updates-and-notifications.md` — detailed manual
-- `../docs/version-control-workflow.md` — detailed Git/GitHub guide
-- `../docs/analytics-parity-roadmap.md` — detailed analytics plan
-
-## 7. Hard rules for the next session
-
-- Stay inside Plot Docs.
-- Do not use subagents/agents.
-- Do not delete uncommitted analytics work.
-- Never fabricate analytics results.
-- Never auto-run downloaded installers.
-- Verify checksums; block invalid signatures; require confirmation.
-- Preserve user documents and settings.
-- Do not disable Smart App Control.
-- Keep Plot Docs local-first.
-- No continuous GitHub polling.
+## 5. Current priority orderzoho fetures

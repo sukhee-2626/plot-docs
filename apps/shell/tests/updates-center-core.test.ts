@@ -16,6 +16,7 @@ import {
   normalizeVersion,
   parseGithubRelease,
   parseNotificationDocument,
+  parseTextNotification,
   parseUpdateManifest,
   replaceExecutable,
   safeFileName,
@@ -192,6 +193,65 @@ describe('notifications', () => {
     expect(deleted).toHaveLength(0)
   })
 
+  it('parses plain-text notifications, header blocks, and frontmatter', () => {
+    const plain = parseTextNotification(
+      '# Maintenance tonight\n\nThe workspace will be read-only for 30 minutes.',
+      'not.txt',
+      1_700_000_000_000,
+      'github',
+      'github:not.txt',
+    )
+    expect(plain[0]).toMatchObject({
+      id: 'github:not.txt',
+      title: 'Maintenance tonight',
+      message: 'The workspace will be read-only for 30 minutes.',
+      type: 'info',
+      remote: true,
+    })
+
+    const headers = parseTextNotification(
+      'Title: New release\nType: success\nDate: 2026-11-09T18:00:00Z\n\nPlot Docs 1.0.1 is ready.',
+      'release.txt',
+      1_700_000_000_000,
+      'n0',
+    )
+    expect(headers[0]).toMatchObject({
+      title: 'New release',
+      message: 'Plot Docs 1.0.1 is ready.',
+      type: 'success',
+      date: '2026-11-09T18:00:00.000Z',
+    })
+    expect(headers[0]?.remote).toBeUndefined()
+
+    const frontmatter = parseTextNotification(
+      '---\ntitle: Warning\ntype: warning\n---\nPlease back up your work.',
+      'warning.txt',
+      1_700_000_000_000,
+      'n0',
+    )
+    expect(frontmatter[0]).toMatchObject({
+      title: 'Warning',
+      message: 'Please back up your work.',
+      type: 'warning',
+    })
+    expect(parseTextNotification('   ', 'empty.txt', 0, 'n0')).toHaveLength(0)
+  })
+
+  it('scans .txt notification files from a local folder', async () => {
+    const dir = tempDir()
+    writeFileSync(join(dir, 'not.txt'), 'Hello from a text notification')
+    const notifications = await scanNotificationDirectory({
+      dir,
+      sourceKey: 'n0',
+      state: { read: {}, deleted: {}, hashes: {} },
+    })
+    expect(notifications).toHaveLength(1)
+    expect(notifications[0]).toMatchObject({
+      title: 'Hello from a text notification',
+      sourceFile: join(dir, 'not.txt'),
+    })
+  })
+
   it('watches a folder for a newly written file', async () => {
     const dir = tempDir()
     const seen = new Promise<void>((resolve, reject) => {
@@ -293,6 +353,9 @@ describe('GitHub release parsing', () => {
     ).toBe(true)
     expect(
       isAllowedGithubAssetUrl('https://objects.githubusercontent.com/github-production-release-asset/a.exe'),
+    ).toBe(true)
+    expect(
+      isAllowedGithubAssetUrl('https://api.github.com/repos/o/r/contents/updates/Plot-Docs-1.0.1.exe'),
     ).toBe(true)
     expect(isAllowedGithubAssetUrl('http://github.com/o/r/a.exe')).toBe(false)
     expect(isAllowedGithubAssetUrl('https://evil.example/a.exe')).toBe(false)

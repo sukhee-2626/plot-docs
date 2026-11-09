@@ -404,6 +404,45 @@ describe('Plot AI local automation fallback', () => {
   })
 
 
+  it('accepts the structured toolName/toolArgs plan and requests the JSON schema', async () => {
+    aiState.chat
+      .mockResolvedValueOnce({
+        ok: true,
+        content: JSON.stringify({
+          reply: 'I will list the local datasets.',
+          toolName: 'list_datasets',
+          toolArgs: '{}',
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        content: JSON.stringify({
+          reply: 'One local dataset is available.',
+          toolName: 'none',
+          toolArgs: '{}',
+        }),
+      })
+    const deps = fakeDeps({ settingsPath: configuredSettingsPath() })
+    const reply = await runAnalyticsAssistant(
+      { text: 'What datasets are available?', activeDatasetId: dataset.id },
+      deps,
+    )
+    expect(reply.ok).toBe(true)
+    expect(reply.actions.map((action) => action.tool)).toEqual(['list_datasets'])
+    expect(aiState.chat).toHaveBeenCalledTimes(2)
+    const options = aiState.chat.mock.calls[0]?.[5] as
+      | { responseSchema?: Record<string, unknown>; maxTokens?: number }
+      | undefined
+    expect(options?.maxTokens).toBe(4096)
+    expect(options?.responseSchema).toMatchObject({
+      type: 'object',
+      required: ['reply', 'toolName', 'toolArgs'],
+    })
+    expect(options?.responseSchema?.properties).toMatchObject({
+      toolName: { enum: expect.arrayContaining(['run_sql', 'none']) },
+    })
+  })
+
   it('falls back to the local engine when a configured model call fails', async () => {
     const directory = temporaryDirectory()
     const settingsPath = join(directory, 'ai-settings.json')

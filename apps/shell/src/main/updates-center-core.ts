@@ -73,6 +73,12 @@ export interface NotificationFileState {
   read?: Record<string, boolean>
   deleted?: Record<string, string>
   hashes?: Record<string, string>
+  /**
+   * First-seen ISO date for remote files that do not carry a date. Keeping it
+   * stable prevents an undated GitHub notification from becoming unread again
+   * on every check.
+   */
+  remoteDates?: Record<string, string>
 }
 
 export interface ScanNotificationOptions {
@@ -468,7 +474,101 @@ export function notificationContentHash(notification: InAppNotification): string
   )
 }
 
-/** Scan every .json notification file directly inside the folder. */
+/**
+ * Parse a plain-text notification. This is intentionally forgiving because a
+ * notification is often just a file someone drops into a repository folder.
+ *
+ * Supported forms:
+ *   1. A simple header block:
+ *        Title: Maintenance tonight
+ *        Type: warning
+ *        Date: 2026-11-09T18:00:00Z
+ *
+ *        The workspace will be read-only for 30 minutes.
+ *   2. YAML-style frontmatter delimited by --- lines, with the same keys.
+ *   3. Plain text: the first non-empty line becomes the title and the rest is
+ *      the message. A leading Markdown heading marker is removed.
+ */
+export function parseTextNotification(
+  text: string,
+  fileName: string,
+  mtimeMs: number,
+  sourceKey = 'remote',
+  explicitId?: string,
+): InAppNotification[] {
+  const normalized = text
+    .replace(/^\uFEFF/, '')
+    .replace(/\r\n?/g, '\n')
+    .slice(0, 20_000)
+  if (!normalized.trim()) return []
+
+  const headers: Record<string, string> = {}
+  let body = normalized
+  const frontmatter = /^---\n([\s\S]*?)\n---\n?/.exec(normalized)
+  if (frontmatter) {
+    for (const line of frontmatter[1]!.split('\n')) {
+      const match = /^([A-Za-z][\w-]*):\s*(.*)$/.exec(line.trim())
+      if (match) headers[match[1]!.toLowerCase()] = match[2]!.trim()
+    }
+    body = normalized.slice(frontmatter[0].length)
+  } else {
+    const lines = normalized.split('\n')
+    let index = 0
+    for (; index < lines.length; index += 1) {
+      const line = lines[index]!
+      if (!line.trim()) {
+        index += 1
+        break
+      }
+      const match = /^(title|message|body|type|kind|date|id):\s*(.*)$/i.exec(line.trim())
+      if (!match) break
+      headers[match[1]!.toLowerCase()] = match[2]!.trim()
+    }
+    if (index > 0) body = lines.slice(index).join('\n')
+  }
+
+  let title = headers.title ?? ''
+  let message = headers.message ?? headers.body ?? body
+  if (!title.trim()) {
+    const firstLine = body.split('\n').find((line) => line.trim())
+    if (firstLine) {
+      const clean = firstLine.replace(/^#{1,6}\s+/, '').trim()
+      title = clean.slice(0, 300)
+      const at = body.indexOf(firstLine)
+      message = at >= 0 ? body.slice(at + firstLine.length) : ''
+    } else {
+      title = basename(fileName).replace(/\.[^.]+$/, '') || 'Notification'
+      message = ''
+    }
+  }
+  title = title.trim().slice(0, 300) || 'Notification'
+  message = message.trim().slice(0, 20_000)
+
+  const parsedDate = headers.date ? new Date(headers.date) : new Date(mtimeMs)
+  const date = Number.isNaN(parsedDate.getTime())
+    ? new Date(mtimeMs).toISOString()
+    : parsedDate.toISOString()
+  const type = notificationType(headers.type ?? headers.kind)
+  const id =
+    explicitId ??
+    `${sourceKey}:${basename(fileName)}:${notificationHash(title, message, date, type).slice(0, 16)}`
+  return [
+    {
+      id,
+      title,
+      message,
+      date,
+      type,
+      read: false,
+      sourceFile: fileName,
+      createdAt: mtimeMs,
+      updatedAt: mtimeMs,
+      ...(sourceKey.startsWith('github') ? { remote: true } : {}),
+    },
+  ]
+}
+
+/** Scan every .json or .txt notification file directly inside the folder. */
 export async function scanNotificationDirectory(
   options: ScanNotificationOptions,
 ): Promise<InAppNotification[]> {
@@ -483,16 +583,32 @@ export async function scanNotificationDirectory(
   for (const entry of entries) {
     if (!entry.isFile()) continue
     const lower = entry.name.toLowerCase()
-    if (!lower.endsWith('.json')) continue
+    const isJson = lower.endsWith('.json')
+    const isText = lower.endsWith('.txt')
+    if (!isJson && !isText) continue
     if (lower.startsWith('.') || lower === 'state.json' || lower === 'read-state.json') continue
-    if (lower.endsWith('.example.json') || lower.endsWith('.sample.json')) continue
+    if (
+      lower.endsWith('.example.json') ||
+      lower.endsWith('.sample.json') ||
+      lower.endsWith('.example.txt') ||
+      lower.endsWith('.sample.txt')
+    ) {
+      continue
+    }
     const filePath = join(dir, entry.name)
     let info
     try {
       info = await stat(filePath)
       if (info.size > 1_000_000) continue
       const text = await readFile(filePath, 'utf8')
-      const parsed = parseNotificationDocument(JSON.parse(text) as unknown, entry.name, info.mtimeMs, sourceKey)
+      const parsed = isJson
+        ? parseNotificationDocument(
+            JSON.parse(text) as unknown,
+            entry.name,
+            info.mtimeMs,
+            sourceKey,
+          )
+        : parseTextNotification(text, entry.name, info.mtimeMs, sourceKey)
       for (const notification of parsed) {
         const hash = notificationContentHash(notification)
         const knownHash = state.hashes?.[notification.id]
@@ -627,6 +743,7 @@ export async function cleanupOldExecutables(currentExePath: string): Promise<voi
 
 const GITHUB_DOWNLOAD_HOSTS = new Set([
   'github.com',
+  'api.github.com',
   'objects.githubusercontent.com',
   'github-releases.githubusercontent.com',
   'release-assets.githubusercontent.com',

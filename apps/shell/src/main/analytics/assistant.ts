@@ -150,6 +150,25 @@ const TOOL_NAMES: readonly AnalyticsAssistantTool[] = [
   'auto_analyze',
 ]
 
+/**
+ * Schema for providers that can enforce structured output (Codex app-server).
+ * `toolArgs` is a JSON-encoded object rather than a free-form object so strict
+ * JSON-Schema modes accept it without having to enumerate every tool's args.
+ */
+const ASSISTANT_PLAN_SCHEMA = {
+  type: 'object',
+  properties: {
+    reply: { type: 'string' },
+    toolName: { type: 'string', enum: [...TOOL_NAMES, 'none'] },
+    toolArgs: {
+      type: 'string',
+      description: 'JSON-encoded object of tool arguments; "{}" when the tool takes none.',
+    },
+  },
+  required: ['reply', 'toolName', 'toolArgs'],
+  additionalProperties: false,
+}
+
 const TOOL_TITLES: Record<AnalyticsAssistantTool, string> = {
   inspect_url: 'Inspect web data',
   import_url: 'Import data link',
@@ -338,7 +357,9 @@ Rules:
 Return ONLY one JSON object, no markdown fence, no prose outside it:
 {"reply":"one or two sentences for the user","tool":{"name":"one tool name","args":{...}}}
 When the task is complete and no more tool is needed, return:
-{"reply":"final summary of what was done and what the evidence shows","tool":null}`
+{"reply":"final summary of what was done and what the evidence shows","tool":null}
+If the runtime requires the structured plan schema, use exactly:
+{"reply":"...","toolName":"one tool name or none","toolArgs":"{\"arg\":\"value\"}"}`
 
 function asText(value: unknown): string {
   return typeof value === 'string' ? value : ''
@@ -408,6 +429,15 @@ function parseAgentTurn(text: string): AgentTurn {
   const reply = asText(record.reply).trim()
   let rawTool = record.tool
   let fallbackArgs: unknown = record.args
+
+  // Structured-output form used when the provider enforces a JSON schema:
+  // {"reply":"...","toolName":"run_sql","toolArgs":"{\"sql\":\"...\"}"}
+  if (rawTool === undefined && typeof record.toolName === 'string') {
+    const toolName = record.toolName.trim()
+    if (!toolName || toolName === 'none') return { reply, tool: null }
+    rawTool = { name: toolName, args: record.toolArgs ?? record.args }
+    fallbackArgs = undefined
+  }
 
   // OpenAI-style tool_calls: {"tool_calls":[{"function":{"name":"run_sql","arguments":"{...}"}}]}
   if (rawTool === undefined && Array.isArray(record.tool_calls) && record.tool_calls.length > 0) {
@@ -1074,8 +1104,15 @@ export async function runAnalyticsAssistant(
         .filter(Boolean)
         .join('\n\n')
       const response = await withTimeout(
-        chatForProvider(config.provider, config.config, SYSTEM_PROMPT, prompt),
-        90_000,
+        chatForProvider(config.provider, config.config, SYSTEM_PROMPT, prompt, undefined, {
+          responseSchema: ASSISTANT_PLAN_SCHEMA,
+          responseSchemaName: 'plot_ai_plan',
+          maxTokens: 4096,
+        }),
+        // Codex app-server cold starts can take well over a minute before the
+        // first token. Keep this aligned with the provider watchdog instead of
+        // rejecting a healthy structured plan at 90 seconds.
+        180_000,
       )
       if (!response.ok || !response.content) {
         const failure = response.error ?? 'The AI provider returned no answer.'

@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -105,7 +105,7 @@ test.describe('sheets: Insert → Recommended Charts and Icons', () => {
         wc?.send('menu:action', 'save')
       })
       await expect(() => {
-        const listing = execSync(`unzip -l "${workbook}"`).toString()
+        const listing = unzipList(workbook)
         expect(listing).toContain('xl/media/')
         expect(listing).toContain('xl/charts/')
       }).toPass({ timeout: 20_000 })

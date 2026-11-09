@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS datasets (
   column_count INTEGER NOT NULL,
   quality_score REAL NOT NULL DEFAULT 0,
   duplicate_rows INTEGER NOT NULL DEFAULT 0,
+  duplicate_rows_known INTEGER NOT NULL DEFAULT 1,
+  profile_sampled INTEGER NOT NULL DEFAULT 0,
   missing_cells INTEGER NOT NULL DEFAULT 0,
   warning TEXT,
   backup_available INTEGER NOT NULL DEFAULT 0,
@@ -137,6 +139,10 @@ export interface DatasetProfilePayload {
   /** Present on profiles written by this build; older profiles fall back. */
   rowCount?: number
   columnCount?: number
+  /** False when duplicate detection was skipped for a large dataset. */
+  duplicateRowsKnown?: boolean
+  /** True when distinct/top values came from a bounded sample. */
+  profileSampled?: boolean
 }
 
 interface DatasetRow {

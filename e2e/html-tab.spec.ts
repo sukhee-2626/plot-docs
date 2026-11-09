@@ -2,13 +2,20 @@ import { mkdtemp, readFile, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test, expect } from '@playwright/test'
-import { launchShell, closeAndSaveVideo, waitForPageWithUrl, screenshotPath } from './helpers'
+import {
+  launchShell,
+  closeAndSaveVideo,
+  dismissShellOverlays,
+  waitForPageWithUrl,
+  screenshotPath,
+} from './helpers'
 
 test.describe('html editor', () => {
   test('AI HTML quick card opens an html editor tab in preview view with a ribbon', async () => {
     const launched = await launchShell({ onboardingSeen: true, videoDir: 'new-html-tab' })
     const { app, page } = launched
     try {
+      await dismissShellOverlays(page)
       const card = page.locator('.quick-card', { hasText: 'AI HTML' })
       await expect(card).toHaveCount(1)
       await card.click()
@@ -176,8 +183,12 @@ test.describe('html editor', () => {
       await expect(editorPage.locator('.ribbon-body')).toBeVisible()
       await editorPage.locator('.rb-view', { hasText: /Source/ }).click()
       await editorPage.locator('.source-editor .cm-content').click()
-      await editorPage.keyboard.press('ControlOrMeta+s')
-      await expect(editorPage.locator('.status-save')).toHaveText(/Saved/)
+      // on a cold start the window-level shortcut effect can attach a moment after the
+      // source pane is visible, so retry the shortcut until the save status lands
+      await expect(async () => {
+        await editorPage.keyboard.press('ControlOrMeta+s')
+        await expect(editorPage.locator('.status-save')).toHaveText(/Saved/, { timeout: 1_000 })
+      }).toPass({ timeout: 15_000 })
       expect(await readFile(htmlPath, 'utf8')).toBe(source)
     } finally {
       await closeAndSaveVideo(launched, 'html-identity-save')
@@ -289,17 +300,26 @@ test.describe('html editor', () => {
       // the breadcrumb is a source-side affordance: it only renders in the split and source views
       await expect(editorPage.locator('.crumbs')).toHaveCount(0)
       await editorPage.locator('.ribbon').getByRole('tab', { name: /Split/ }).click()
+      await expect(editorPage.locator('.crumbs-empty')).toBeVisible()
       // click → selection: breadcrumb shows the chain and the source pane selects the element
       await frame.locator('h1#title').click()
       await expect(editorPage.locator('.crumb.current')).toHaveText('h1#title')
       await expect(editorPage.locator('.crumb')).toHaveCount(2)
       const float = editorPage.locator('.hx-float')
       await expect(float.getByRole('button', { name: /Delete element/ })).toBeEnabled()
-      // the split view halves the stage: park the style panel so it does not sit over the page
+      // the split view halves the stage: close the panel with its own X first, then
+      // verify the floating toolbar toggle can reopen it when the panel is out of the way
+      const panel = editorPage.locator('.hx-panel')
       const panelToggle = float.getByRole('button', { name: /Style panel/ })
-      await expect(editorPage.locator('.hx-panel')).toHaveCount(1)
+      await expect(panel).toHaveCount(1)
+      await panel.locator('.hx-panel-close').click()
+      await expect(panel).toHaveCount(0)
       await panelToggle.click()
-      await expect(editorPage.locator('.hx-panel')).toHaveCount(0)
+      await expect(panel).toHaveCount(1)
+      // turn the panel off globally, not just for this element, so selecting the next
+      // preview element does not reopen it over the page in the narrow split view
+      await panelToggle.evaluate((button) => (button as HTMLElement).click())
+      await expect(panel).toHaveCount(0)
       await editorPage.screenshot({ path: screenshotPath('html-inspector-select') })
 
       // breadcrumb click selects the ancestor; body/head/html never appear as crumbs

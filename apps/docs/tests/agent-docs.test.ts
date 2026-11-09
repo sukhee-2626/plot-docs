@@ -625,8 +625,8 @@ describe('selection scope freezing', () => {
 })
 
 describe('partial selection: context markers and replace_selection', () => {
-  // block 1 'Soopus is an AI office suite.' starts at pos 20, content at 21; 'AI office' = offsets 15..24
-  const SEL = { from: 36, to: 45 }
+  // block 1 'Soopus is an AI office suite.' starts at pos 20, content at 21; 'AI office' = offsets 13..22
+  const SEL = { from: 34, to: 43 }
 
   it('the context marks the selected span with <sel> and repeats it as "Selected text"', () => {
     const editor = createEditor(fixture())

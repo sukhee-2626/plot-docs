@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -100,7 +100,7 @@ test.describe('sheets: freeze journal follows undo', () => {
         wc?.send('menu:action', 'save')
       })
       await expect(() => {
-        const xml = execSync(`unzip -p "${workbook}" xl/worksheets/sheet1.xml`).toString()
+        const xml = unzipText(workbook, 'xl/worksheets/sheet1.xml')
         expect(xml).toContain('marker')
         expect(xml).not.toContain('<pane')
       }).toPass({ timeout: 20_000 })
@@ -138,7 +138,7 @@ test.describe('sheets: Data → From Text/CSV', () => {
         wc?.send('menu:action', 'save')
       })
       await expect(() => {
-        const xml = execSync(`unzip -p "${workbook}" xl/worksheets/sheet1.xml`).toString()
+        const xml = unzipText(workbook, 'xl/worksheets/sheet1.xml')
         expect(xml).toContain('Tokyo')
         expect(xml).toContain('<v>37</v>')
       }).toPass({ timeout: 20_000 })

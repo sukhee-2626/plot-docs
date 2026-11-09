@@ -2,6 +2,8 @@
 
 Drop a portable Windows `.exe` (or another package for manual use) in this folder. Plot Docs watches it and shows an update card in the bell panel.
 
+This folder is also published to GitHub. If you push a newer portable executable into the repository's `updates/` folder, every Plot Docs installation that checks GitHub sees the update popup. The app checks GitHub on launch, on **Check**, and on window focus (at most once every 15 minutes); it does not poll continuously.
+
 ## Where this folder is
 
 - **Development:** the repository root `updates/` folder (this folder).
@@ -41,11 +43,30 @@ If no manifest exists, Plot Docs tries to read the version from the file name an
 - The app must be restarted before the new executable runs. Documents and settings are not touched.
 - Smart App Control may still block an unsigned executable at the operating-system level. That is outside the app; use a signed build or make the OS trust decision yourself.
 
-## GitHub releases
+## GitHub releases and the repository updates folder
 
-The app checks `https://api.github.com/repos/sukhee-2626/plot-docs/releases/latest` on launch, on demand, and on window focus (throttled to once every 15 minutes). It does not poll continuously.
+The app checks both of these on launch, on demand, and on window focus (throttled to once every 15 minutes):
 
-Publish a GitHub release whose tag is the version, for example `v1.0.1`, and attach a portable asset such as `Plot-Docs-1.0.1.exe`. Newer GitHub API responses include a `digest` field; when present it is checked as SHA-256. If no digest is published, the panel marks the download unverified and asks for confirmation before install.
+- `https://api.github.com/repos/sukhee-2626/plot-docs/releases/latest`
+- `https://api.github.com/repos/sukhee-2626/plot-docs/contents/updates`
+
+The newer version wins. If both have the same version, a release with a portable asset is preferred; otherwise the folder's portable executable is used.
+
+### Push a new executable to the repository
+
+1. Build the portable executable.
+2. Rename it with the version, for example `Plot-Docs-1.0.1.exe`.
+3. Add or update `update.json` with the version, checksum, and notes (recommended).
+4. Commit and push both files to the `updates/` folder on the default branch.
+5. Users see the update popup on the next GitHub check.
+
+The checksum in `update.json` is verified after download and again before install. Without a checksum, the download is marked unverified and the normal signature/unsigned confirmation rules apply.
+
+### GitHub Release
+
+Publish a release whose tag is the version, for example `v1.0.1`, and attach a portable asset such as `Plot-Docs-1.0.1.exe`. Newer GitHub API responses include a `digest` field; when present it is checked as SHA-256. If no digest is published, the panel marks the download unverified and asks for confirmation before install.
+
+See `docs/github-update-notification-flow.md` for the complete flow and a Mermaid flowchart.
 
 Environment overrides:
 

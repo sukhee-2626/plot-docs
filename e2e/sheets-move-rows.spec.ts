@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -76,7 +76,7 @@ test.describe('sheets: whole-row move', () => {
           wc?.send('menu:action', 'save')
         })
         await expect(() => {
-          const xml = execSync(`unzip -p "${workbook}" xl/worksheets/sheet1.xml`).toString()
+          const xml = unzipText(workbook, 'xl/worksheets/sheet1.xml')
           const order = [...xml.matchAll(/<is><t[^>]*>(one|two|three|four)<\/t><\/is>/g)].map(
             (m) => m[1],
           )

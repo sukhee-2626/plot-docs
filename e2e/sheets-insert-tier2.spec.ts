@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -75,7 +75,7 @@ test.describe('sheets: Insert → Equation and Checkbox', () => {
 
       await saveWorkbook(launched.app)
       await expect(() => {
-        const listing = execSync(`unzip -l "${workbook}"`).toString()
+        const listing = unzipList(workbook)
         expect(listing).toContain('xl/media/')
       }).toPass({ timeout: 20_000 })
     } finally {
@@ -103,7 +103,7 @@ test.describe('sheets: Insert → Equation and Checkbox', () => {
       await expect(async () => {
         await sheets.getByRole('button', { name: 'Checkbox' }).click()
         await saveWorkbook(launched.app)
-        const sheetXml = execSync(`unzip -p "${workbook}" xl/worksheets/sheet1.xml`).toString()
+        const sheetXml = unzipText(workbook, 'xl/worksheets/sheet1.xml')
         expect(sheetXml).toContain('<dataValidation type="list"')
         expect(sheetXml).toContain('<formula1>"1,0"</formula1>')
       }).toPass({ timeout: 30_000 })

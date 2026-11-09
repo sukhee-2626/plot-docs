@@ -4,7 +4,7 @@ import { chatOpenAiCompatible } from './protocols/openai-compatible'
 import { ResponseBodyTooLargeError } from './protocols/shared'
 import { chatCodexAppServer } from './codex-app-server'
 import { getProviderAdapter, type ResolvedEndpoint } from './registry'
-import type { AiChatResponse, AiProviderConfig, AiProviderId } from './types'
+import type { AiChatOptions, AiChatResponse, AiProviderConfig, AiProviderId } from './types'
 import { AI_CHAT_RESPONSE_TIMEOUT_MS, createStreamWatchdog } from './watchdog'
 
 /** route a one-shot (non-streaming, non-tool-calling) chat call by provider id */
@@ -14,6 +14,7 @@ export async function chatForProvider(
   system: string,
   user: string,
   signal?: AbortSignal,
+  options?: AiChatOptions,
 ): Promise<AiChatResponse> {
   // Resolve the endpoint before the watchdog: a config error (unknown
   // provider, missing base URL) reports as a failed reply, not a rejection,
@@ -32,7 +33,7 @@ export async function chatForProvider(
     if (endpoint.model) config = { ...config, model: endpoint.model }
     switch (endpoint.protocol) {
       case 'codex-app-server':
-        return chatCodexAppServer(config, system, user, wd.signal)
+        return chatCodexAppServer(config, system, user, wd.signal, options)
       case 'anthropic':
         return chatAnthropic(wd, config, system, user, endpoint.baseUrl, {
           headers: endpoint.headers,

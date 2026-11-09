@@ -293,6 +293,20 @@ export interface AiChatResponse {
   error?: string
 }
 
+/** Optional structured-output controls for a one-shot chat call. */
+export interface AiChatOptions {
+  /**
+   * JSON Schema the response content must satisfy. Providers with native
+   * structured output (Codex app-server) enforce it; other providers keep the
+   * prompt-only contract and ignore this field.
+   */
+  responseSchema?: Record<string, unknown>
+  /** Human-readable schema name for providers that require one. */
+  responseSchemaName?: string
+  /** Output-token budget for this call. */
+  maxTokens?: number
+}
+
 export interface AiStreamRequest {
   requestId: string
   /** Stable renderer transport id used to retain native provider sessions. */

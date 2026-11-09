@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execSync } from 'node:child_process'
+import { unzipList, unzipText } from './zip-helpers'
 import { copyFile, mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -42,7 +42,7 @@ test('the View tab toggles the sheet grid direction', async () => {
 const FIXTURE = resolve(__dirname, '../apps/sheets/fixtures/generated/compatibility-basic.xlsx')
 
 function sheetXml(workbookPath: string): string {
-  return execSync(`unzip -p "${workbookPath}" xl/worksheets/sheet1.xml`).toString()
+  return unzipText(workbookPath, 'xl/worksheets/sheet1.xml')
 }
 
 /** A save after toggling must carry sheetView/@rightToLeft — the checkbox

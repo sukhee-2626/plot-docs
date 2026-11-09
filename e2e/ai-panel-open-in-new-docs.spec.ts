@@ -1,7 +1,12 @@
 import { test, expect } from '@playwright/test'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
+import {
+  launchShell,
+  closeAndSaveVideo,
+  dismissShellOverlays,
+  waitForPageWithUrl,
+} from './helpers'
 
 /**
  * Settings → General → "Open the AI panel in new documents" (plotdocs#1589), the way the
@@ -33,6 +38,7 @@ test.describe('#1589 the "open the AI panel in new documents" setting', () => {
     const first = await launchShell({ onboardingSeen: true, videoDir: 'ai-panel-1589-on' })
     let userDataDir: string
     try {
+      await dismissShellOverlays(first.page)
       await turnOffOpenInNewDocs(first.page)
       // the write half: the flag has to be on disk, not only in the shell's cache
       const saved = JSON.parse(await readFile(join(first.userDataDir, 'app-settings.json'), 'utf8'))
@@ -44,6 +50,7 @@ test.describe('#1589 the "open the AI panel in new documents" setting', () => {
 
     const restarted = await launchShell({ userDataDir, videoDir: 'ai-panel-1589-new-doc' })
     try {
+      await dismissShellOverlays(restarted.page)
       await expect(restarted.page.locator('.quick-card').first()).toContainText('AI Docs')
       await restarted.page.locator('.quick-card').first().click()
       const editor = await waitForPageWithUrl(restarted.app, '://docs/')
@@ -63,6 +70,7 @@ test.describe('#1589 the "open the AI panel in new documents" setting', () => {
     test.setTimeout(300_000)
     const launched = await launchShell({ onboardingSeen: true, videoDir: 'ai-panel-1589-on-new' })
     try {
+      await dismissShellOverlays(launched.page)
       await expect(launched.page.locator('.quick-card').first()).toContainText('AI Docs')
       await launched.page.locator('.quick-card').first().click()
       const editor = await waitForPageWithUrl(launched.app, '://docs/')

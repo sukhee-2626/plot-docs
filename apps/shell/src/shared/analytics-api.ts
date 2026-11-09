@@ -51,6 +51,12 @@ export interface AnalyticsColumnProfile {
   type: AnalyticsColumnType
   nullCount: number
   distinctCount: number
+  /**
+   * True when distinctCount and topValues came from a bounded sample because
+   * the dataset is too large to scan exactly without blocking the app. The UI
+   * must label these values as sampled rather than exact.
+   */
+  sampled?: boolean
   min: string | number | null
   max: string | number | null
   mean: number | null
@@ -72,6 +78,13 @@ export interface AnalyticsDataset {
   columnCount: number
   qualityScore: number
   duplicateRows: number
+  /**
+   * False when exact duplicate detection was skipped for a large dataset.
+   * duplicateRows is then not an exact zero and the UI must say "not checked".
+   */
+  duplicateRowsKnown?: boolean
+  /** True when distinct counts/top values were computed from a bounded sample. */
+  profileSampled?: boolean
   missingCells: number
   createdAt: number
   updatedAt: number

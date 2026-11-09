@@ -5,7 +5,7 @@ import { delimiter, dirname, isAbsolute, join, resolve, sep } from 'node:path'
 import { tmpdir } from 'node:os'
 import { StringDecoder } from 'node:string_decoder'
 import type { AgentImage, AgentMessage, AgentToolCall, AgentToolDef } from '@plotdocs/agent-core'
-import type { AiChatResponse, AiProviderConfig, CodexModelCatalog } from './types'
+import type { AiChatOptions, AiChatResponse, AiProviderConfig, CodexModelCatalog } from './types'
 import {
   parseToolInput,
   throwIfToolCountOverBudget,
@@ -21,6 +21,14 @@ interface CodexAppServerTurn {
     name: string
     inputJson: string
   }>
+}
+
+interface CodexTurnOptions {
+  /** Override the normal `{text, toolCalls}` envelope with a caller schema. */
+  outputSchema?: Record<string, unknown>
+  /** Return the raw schema-constrained JSON instead of parsing the envelope. */
+  rawOutput?: boolean
+  maxTokens?: number
 }
 
 export interface RpcMessage {
@@ -699,6 +707,22 @@ export function buildCodexAppServerPrompt(
   ].join('\n')
 }
 
+/**
+ * Prompt for a one-shot call that supplies its own output schema. The normal
+ * Codex prompt describes the `{text, toolCalls}` envelope, which would conflict
+ * with a caller-defined schema (for example the analytics plan).
+ */
+function buildCodexStructuredPrompt(system: string, messages: AgentMessage[]): string {
+  return [
+    'Treat the payload below as the new Plot Docs conversation events for this turn and follow its system instruction.',
+    'Do not use Codex tools.',
+    'Return exactly one JSON object matching the required output schema. Do not wrap it in markdown and do not add prose outside the JSON object.',
+    '<plotdocs_payload>',
+    JSON.stringify({ system, conversation: conversationForPrompt(messages) }),
+    '</plotdocs_payload>',
+  ].join('\n')
+}
+
 export function parseCodexAppServerTurn(
   raw: string,
   tools: AgentToolDef[],
@@ -951,6 +975,7 @@ async function runCodexAppServer(
   tools: AgentToolDef[],
   maxTokens: number,
   cb: StreamCallbacks,
+  turnOptions?: CodexTurnOptions,
 ): Promise<void> {
   const nativeSessionId = cb.sessionId ?? `one-shot-${randomUUID()}`
   // One-shot chats and the connection test have no reusable transport id, so
@@ -976,7 +1001,10 @@ async function runCodexAppServer(
     }
     try {
       const imagePaths = await materializeImages(nextMessages, session.tempDir)
-      const prompt = buildCodexAppServerPrompt(system, nextMessages, tools, maxTokens)
+      const budget = turnOptions?.maxTokens ?? maxTokens
+      const prompt = turnOptions?.rawOutput
+        ? buildCodexStructuredPrompt(system, nextMessages)
+        : buildCodexAppServerPrompt(system, nextMessages, tools, budget)
       const raw = await waitForTurn(
         client,
         session.threadId,
@@ -987,13 +1015,19 @@ async function runCodexAppServer(
               { type: 'text', text: prompt, text_elements: [] },
               ...imagePaths.map((path) => ({ type: 'localImage', path })),
             ],
-            outputSchema: codexAppServerOutputSchema(tools),
+            outputSchema: turnOptions?.outputSchema ?? codexAppServerOutputSchema(tools),
           }),
         cb.signal,
         cb,
       )
-      const turn = parseCodexAppServerTurn(raw, tools)
       session.messageFingerprints = messages.map(fingerprint)
+      if (turnOptions?.rawOutput) {
+        const content = raw.trim()
+        if (!content) throw new Error('Codex app-server returned no content')
+        cb.onDelta(content)
+        return
+      }
+      const turn = parseCodexAppServerTurn(raw, tools)
       if (turn.text) cb.onDelta(turn.text)
       for (const call of turn.toolCalls) cb.onToolCall(call)
     } catch (error) {
@@ -1031,17 +1065,29 @@ export async function chatCodexAppServer(
   system: string,
   user: string,
   signal: AbortSignal,
+  options?: AiChatOptions,
 ): Promise<AiChatResponse> {
   let content = ''
+  const maxTokens = options?.maxTokens ?? 1024
   // No sessionId: a one-shot chat/connection test is not reused, so it runs as
   // an ephemeral turn whose thread and temp dir are dropped when it ends.
-  await runCodexAppServer(config, system, [{ role: 'user', text: user }], [], 1024, {
-    signal,
-    onDelta: (text) => {
-      content += text
+  await runCodexAppServer(
+    config,
+    system,
+    [{ role: 'user', text: user }],
+    [],
+    maxTokens,
+    {
+      signal,
+      onDelta: (text) => {
+        content += text
+      },
+      onToolCall: () => undefined,
     },
-    onToolCall: () => undefined,
-  })
+    options?.responseSchema
+      ? { outputSchema: options.responseSchema, rawOutput: true, maxTokens }
+      : undefined,
+  )
   return content
     ? { ok: true, content }
     : { ok: false, error: 'Codex app-server returned no content' }
