@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { execFileSync } from 'node:child_process'
+import { buildZipFromFolder } from './zip-helpers'
 import { mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
@@ -15,9 +15,10 @@ async function buildRubikFixture(): Promise<string> {
     await mkdtemp(join(tmpdir(), 'plotdocs-font-manager-')),
     'font-manager-rubik.pptx',
   )
-  execFileSync('zip', ['-X', '-q', '-r', out, '.'], {
-    cwd: resolve(__dirname, 'assets/font-manager-rubik'),
-  })
+  await buildZipFromFolder(
+    resolve(__dirname, 'assets/font-manager-rubik'),
+    out,
+  )
   return out
 }
 
