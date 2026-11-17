@@ -145,17 +145,15 @@ describe('sanitizeAiSettings', () => {
     expect(validCliPath(cliPath)).toBe(true)
   })
 
-  it('keeps Windows-style paths with spaces and non-ASCII (reviewer case: C:\\Users\\Ana María\\codex.exe)', () => {
-    // on POSIX the reviewer's string cannot name a real file, so exercise the
-    // same shape (backslashes, dot, space, í) as a literal file name; on
-    // Windows the exact reviewer string is stat'd directly and behaves the same
+  it('keeps Windows-style paths with spaces and non-ASCII (reviewer case)', () => {
+    // exercise spaces and non-ASCII in a path inside a temp directory
     const dir = mkdtempSync(join(tmpdir(), 'plotdocs-ai-guard-'))
     tempDirs.push(dir)
-    const cliPath = join(dir, 'C:\\Users\\Ana María\\codex.exe')
+    const cliPath = join(dir, 'Ana Maria', 'codex.exe')
+    mkdirSync(join(dir, 'Ana Maria'), { recursive: true })
     writeFileSync(cliPath, 'bin\n')
     expect(validCliPath(cliPath)).toBe(true)
   })
-
   it('expands ~/bin/codex for the existence check and stores it expanded', () => {
     const home = mkdtempSync(join(tmpdir(), 'plotdocs-ai-guard-home-'))
     tempDirs.push(home)

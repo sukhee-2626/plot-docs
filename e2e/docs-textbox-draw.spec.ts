@@ -4,7 +4,7 @@
  * and Shape Format active; the Home tab has no Editing group on macOS.
  */
 import { test, expect } from '@playwright/test'
-import { launchShell, closeAndSaveVideo, waitForPageWithUrl } from './helpers'
+import { launchShell, closeAndSaveVideo, dismissShellOverlays, waitForPageWithUrl } from './helpers'
 
 const MAC = process.platform === 'darwin'
 const POLL = { timeout: 15_000, intervals: [250, 500, 1000] }
@@ -15,6 +15,7 @@ test('draw text box inserts a box of the dragged size ready to type', async () =
   const launched = await launchShell({ onboardingSeen: true, videoDir: 'docs-textbox-draw' })
   const { app, page } = launched
   try {
+    await dismissShellOverlays(page)
     await page.locator('.quick-card').first().click()
     const editor = await waitForPageWithUrl(app, '://docs/')
     const docPage = editor.locator('.doc-page[contenteditable="true"]')
