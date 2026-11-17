@@ -4092,3 +4092,43 @@ html[data-color-mode='dark'] .analytics-workspace {
     align-items: flex-start;
   }
 }
+
+/* Link/URL import */
+.analytics-link-import {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--an-border);
+  border-radius: 10px;
+  background: var(--an-surface-soft);
+}
+.analytics-link-import.compact {
+  margin: 0 0 10px;
+}
+.analytics-link-import-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+.analytics-link-import-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--an-border);
+  border-radius: 8px;
+  background: var(--an-bg-raised);
+  color: var(--an-text);
+  font: inherit;
+}
+.analytics-link-import-row input:focus {
+  outline: none;
+  border-color: var(--an-accent);
+  box-shadow: 0 0 0 2px var(--an-accent-soft);
+}
+.analytics-link-import small {
+  display: block;
+  margin-top: 6px;
+  color: var(--an-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}

@@ -376,7 +376,16 @@ async function fetchUrlBuffer(rawUrl: string): Promise<FetchedUrl> {
   }
   if (!response) throw sourceError('The data link did not return a response.')
   if (!response.ok) {
-    throw sourceError(`The data link returned HTTP ${response.status}.`)
+    const status = response.status
+    if (status === 401 || status === 403) {
+      throw sourceError(
+        `This data link requires authentication (HTTP ${status}). Plot Docs can only import public links or files you can access directly. Download the file and import it locally, or use a public/shareable link.`,
+      )
+    }
+    if (status === 404) {
+      throw sourceError('The data link was not found (HTTP 404). Check the URL and try again.')
+    }
+    throw sourceError(`The data link could not be imported (HTTP ${status}). Check that the link is public and points to a data file or web page with a table.`)
   }
   const contentType = response.headers.get('content-type') ?? ''
   const declaredHtml =

@@ -1070,6 +1070,8 @@ export function AnalyticsWorkspace({
   const [busy, setBusy] = useState<string | null>(null)
   const [toast, setToast] = useState<{ message: string; tone: 'ok' | 'bad' } | null>(null)
   const [dragging, setDragging] = useState(false)
+  const [linkUrl, setLinkUrl] = useState('')
+  const [linkBusy, setLinkBusy] = useState(false)
   const [sql, setSql] = useState('SELECT * FROM data LIMIT 100')
   const [lastSql, setLastSql] = useState('')
   const [result, setResult] = useState<AnalyticsQueryResult | null>(null)
@@ -1645,6 +1647,32 @@ export function AnalyticsWorkspace({
     }
   }
 
+  async function importFromLink() {
+    if (!api || busy || linkBusy) return
+    const url = linkUrl.trim()
+    if (!url) {
+      notify('Paste a public data link to import.', 'bad')
+      return
+    }
+    setLinkBusy(true)
+    setBusy('import')
+    setError('')
+    try {
+      const dataset = await api.importUrl({ url })
+      await reloadDatasets(dataset.id)
+      setTab('data')
+      setLinkUrl('')
+      notify(`Imported ${dataset.name} (${dataset.rowCount.toLocaleString()} rows).`)
+    } catch (reason) {
+      const message = errorText(reason)
+      setError(message)
+      notify(message || 'Link import failed.', 'bad')
+    } finally {
+      setLinkBusy(false)
+      setBusy(null)
+    }
+  }
+
   async function deleteDataset() {
     if (!api || !detail) return
     if (!window.confirm(`Delete the dataset “${detail.name}” from this device? The source file is not touched.`)) {
@@ -2173,6 +2201,29 @@ export function AnalyticsWorkspace({
                 ))}
                 <small>Up to 100 MB and 250,000 rows in this build.</small>
               </div>
+              <div className="analytics-link-import">
+                <label className="analytics-eyebrow" htmlFor="analytics-link-url-empty">IMPORT FROM LINK</label>
+                <div className="analytics-link-import-row">
+                  <input
+                    id="analytics-link-url-empty"
+                    type="url"
+                    value={linkUrl}
+                    onChange={(e) => setLinkUrl(e.target.value)}
+                    placeholder="https://example.com/data.csv or a page with a table"
+                    onKeyDown={(e) => { if (e.key === 'Enter') void importFromLink() }}
+                    aria-label="Data link URL"
+                  />
+                  <button
+                    className="analytics-btn primary"
+                    onClick={() => void importFromLink()}
+                    disabled={linkBusy || !!busy}
+                    type="button"
+                  >
+                    {linkBusy ? 'Importing…' : 'Import link'}
+                  </button>
+                </div>
+                <small>Imports public CSV, TSV, JSON, XLSX links or scrapes the largest HTML table from a web page. Data is profiled locally after import.</small>
+              </div>
             </div>
             <div className="analytics-hero-visual" aria-hidden="true">
               <div className="analytics-visual-top">
@@ -2239,6 +2290,27 @@ export function AnalyticsWorkspace({
               <button className="analytics-btn small" onClick={() => void importFile()}>
                 Import
               </button>
+            </div>
+            <div className="analytics-link-import compact">
+              <div className="analytics-link-import-row">
+                <input
+                  type="url"
+                  value={linkUrl}
+                  onChange={(e) => setLinkUrl(e.target.value)}
+                  placeholder="Paste a public data link (CSV/JSON/XLSX or web table page)"
+                  onKeyDown={(e) => { if (e.key === 'Enter') void importFromLink() }}
+                  aria-label="Data link URL"
+                />
+                <button
+                  className="analytics-btn small primary"
+                  onClick={() => void importFromLink()}
+                  disabled={linkBusy || !!busy}
+                  type="button"
+                >
+                  {linkBusy ? 'Importing…' : 'Import link'}
+                </button>
+              </div>
+              <small>Public links are fetched and profiled locally. For authenticated sources, download and import the file.</small>
             </div>
             <div className="analytics-dataset-list">
               {datasets.map((dataset) => (
