@@ -361,9 +361,14 @@ export class AiCreditsError extends Error {
 function creditsNoticeText(value: unknown): string | null {
   if (typeof value === 'string') {
     const t = value.toLowerCase()
+    const hasBalanceWord = t.includes('credit') || t.includes('quota')
+    const hasExhausted =
+      t.includes('exhausted') || t.includes('insufficient') || t.includes('out of')
+    const hasTopUp = t.includes('top up') || t.includes('top-up') || t.includes('recharge') || t.includes('purchase more')
     const credits =
       t.includes('plotxyz.ai/plotdocs') ||
-      (t.includes('credit') && (t.includes('exhausted') || t.includes('insufficient')))
+      (hasBalanceWord && (hasExhausted || hasTopUp)) ||
+      (t.includes('pricing') && (hasExhausted || hasTopUp || hasBalanceWord))
     return credits ? value : null
   }
   if (Array.isArray(value) || (value && typeof value === 'object')) {
