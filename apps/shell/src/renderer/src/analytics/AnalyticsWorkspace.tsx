@@ -1072,6 +1072,9 @@ export function AnalyticsWorkspace({
   const [dragging, setDragging] = useState(false)
   const [linkUrl, setLinkUrl] = useState('')
   const [linkBusy, setLinkBusy] = useState(false)
+  const [dbTables, setDbTables] = useState<{ name: string; schema?: string; type: 'table' | 'view' }[]>([])
+  const [dbConnection, setDbConnection] = useState('')
+  const [dbBusy, setDbBusy] = useState(false)
   const [sql, setSql] = useState('SELECT * FROM data LIMIT 100')
   const [lastSql, setLastSql] = useState('')
   const [result, setResult] = useState<AnalyticsQueryResult | null>(null)
@@ -1673,6 +1676,54 @@ export function AnalyticsWorkspace({
     }
   }
 
+  async function pickSqliteDatabase() {
+    if (!api || busy || dbBusy) return
+    setDbBusy(true)
+    setError('')
+    try {
+      const path = await api.pickDatabaseFile()
+      if (!path) return
+      setDbConnection(path)
+      const tables = await api.listDatabaseTables({ kind: 'sqlite', connection: path })
+      setDbTables(tables)
+      if (tables.length === 0) notify('No tables found in that SQLite database.', 'bad')
+    } catch (reason) {
+      const message = errorText(reason)
+      setError(message)
+      notify(message || 'Could not read database tables.', 'bad')
+      setDbTables([])
+      setDbConnection('')
+    } finally {
+      setDbBusy(false)
+    }
+  }
+
+  async function importDatabaseTable(table: string, schema?: string) {
+    if (!api || busy || dbBusy || !dbConnection) return
+    setDbBusy(true)
+    setBusy('import')
+    setError('')
+    try {
+      const dataset = await api.importDatabaseTable({
+        source: { kind: 'sqlite', connection: dbConnection },
+        table,
+        schema,
+      })
+      await reloadDatasets(dataset.id)
+      setTab('data')
+      notify(`Imported ${dataset.name} (${dataset.rowCount.toLocaleString()} rows).`)
+      setDbTables([])
+      setDbConnection('')
+    } catch (reason) {
+      const message = errorText(reason)
+      setError(message)
+      notify(message || 'Database import failed.', 'bad')
+    } finally {
+      setDbBusy(false)
+      setBusy(null)
+    }
+  }
+
   async function deleteDataset() {
     if (!api || !detail) return
     if (!window.confirm(`Delete the dataset “${detail.name}” from this device? The source file is not touched.`)) {
@@ -2201,6 +2252,31 @@ export function AnalyticsWorkspace({
                 ))}
                 <small>Up to 100 MB and 250,000 rows in this build.</small>
               </div>
+              <div className="analytics-db-import">
+                <span className="analytics-eyebrow">IMPORT FROM DATABASE</span>
+                <div className="analytics-link-import-row">
+                  <button className="analytics-btn" onClick={() => void pickSqliteDatabase()} disabled={dbBusy || !!busy} type="button">
+                    {dbBusy ? 'Reading…' : 'Import SQLite database'}
+                  </button>
+                  {dbConnection && dbTables.length > 0 && (
+                    <button className="analytics-btn ghost" onClick={() => { setDbTables([]); setDbConnection('') }} type="button">Clear</button>
+                  )}
+                </div>
+                {dbConnection && <small title={dbConnection}>SQLite: {dbConnection.split(/[\\/]/).pop()}</small>}
+                {dbTables.length > 0 && (
+                  <div className="analytics-db-tables">
+                    <span className="analytics-eyebrow">SELECT A TABLE TO IMPORT</span>
+                    <div className="analytics-db-table-list">
+                      {dbTables.map((t) => (
+                        <button key={`${t.schema ?? ''}.${t.name}`} className="analytics-btn small" onClick={() => void importDatabaseTable(t.name, t.schema)} disabled={dbBusy || !!busy} type="button">
+                          {t.type === 'view' ? 'View' : 'Table'}: {t.schema ? `${t.schema}.` : ''}{t.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <small>Import a local SQLite table as a profiled dataset. Use Plot AI → Database for PostgreSQL/MySQL.</small>
+              </div>
               <div className="analytics-link-import">
                 <label className="analytics-eyebrow" htmlFor="analytics-link-url-empty">IMPORT FROM LINK</label>
                 <div className="analytics-link-import-row">
@@ -2311,6 +2387,32 @@ export function AnalyticsWorkspace({
                 </button>
               </div>
               <small>Public links are fetched and profiled locally. For authenticated sources, download and import the file.</small>
+            </div>
+            <div className="analytics-db-import compact">
+              <div className="analytics-link-import-row">
+                <button className="analytics-btn small" onClick={() => void pickSqliteDatabase()} disabled={dbBusy || !!busy} type="button">
+                  {dbBusy ? 'Reading…' : 'Import SQLite database'}
+                </button>
+                {dbConnection && dbTables.length > 0 && (
+                  <button className="analytics-btn small ghost" onClick={() => { setDbTables([]); setDbConnection('') }} type="button">Clear</button>
+                )}
+              </div>
+              {dbConnection && (
+                <small title={dbConnection}>SQLite: {dbConnection.split(/[\\\\/]/).pop()}</small>
+              )}
+              {dbTables.length > 0 && (
+                <div className="analytics-db-tables">
+                  <span className="analytics-eyebrow">SELECT A TABLE TO IMPORT</span>
+                  <div className="analytics-db-table-list">
+                    {dbTables.map((t) => (
+                      <button key={`${t.schema ?? ''}.${t.name}`} className="analytics-btn small" onClick={() => void importDatabaseTable(t.name, t.schema)} disabled={dbBusy || !!busy} type="button">
+                        {t.type === 'view' ? 'View' : 'Table'}: {t.schema ? `${t.schema}.` : ''}{t.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <small>Pick a local SQLite file to list tables and import one as a profiled dataset. For PostgreSQL/MySQL, use Plot AI → Database.</small>
             </div>
             <div className="analytics-dataset-list">
               {datasets.map((dataset) => (

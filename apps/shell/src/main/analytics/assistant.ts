@@ -819,7 +819,7 @@ export function analyticsAssistantStatus(settingsPath: string): AnalyticsAssista
     return {
       configured: false,
       provider: config.provider,
-      message: config.error,
+      message: `${config.error} Local automation (import, profile, clean, SQL, charts, forecasts, dashboards) works without a cloud model.`,
       localAutomation: true,
       harness: ANALYTICS_HARNESS.version,
       tools: ANALYTICS_HARNESS.tools,

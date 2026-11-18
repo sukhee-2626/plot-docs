@@ -4132,3 +4132,20 @@ html[data-color-mode='dark'] .analytics-workspace {
   font-size: 12px;
   line-height: 1.4;
 }
+
+.analytics-db-import {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--an-border);
+  border-radius: 10px;
+  background: var(--an-surface-soft);
+}
+.analytics-db-import.compact { margin: 0 0 10px; }
+.analytics-db-tables { margin-top: 8px; }
+.analytics-db-table-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.analytics-db-table-list .analytics-btn { text-align: left; }

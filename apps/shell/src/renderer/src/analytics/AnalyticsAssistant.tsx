@@ -57,13 +57,25 @@ const STARTERS: { label: string; hint: string; kind: 'link' | 'database' | 'text
   },
   {
     label: 'Load a CSV, web table or link',
-    hint: 'Paste a public URL',
+    hint: 'Inspect, choose table, profile',
     kind: 'link',
   },
   {
     label: 'Connect a database',
-    hint: 'SQLite, PostgreSQL or MySQL',
+    hint: 'List tables, import, profile',
     kind: 'database',
+  },
+  {
+    label: 'Check data quality',
+    hint: 'Missing, duplicates, outliers',
+    kind: 'text',
+    text: 'Audit the active dataset for data quality: missing values, duplicates, constant/empty columns, type issues and outliers. Show evidence and suggest the safest fixes.',
+  },
+  {
+    label: 'Build a complete dashboard',
+    hint: 'Charts, KPIs, trends, segments',
+    kind: 'text',
+    text: 'Understand the active dataset and build a complete evidence-backed dashboard with the most useful charts and readings (quality, ranking, trend, distribution and relationships when available). Save the cards and explain what they mean.',
   },
   {
     label: 'Profile and clean my data',
@@ -1055,8 +1067,10 @@ export function AnalyticsAssistant({
     }
     addSource(
       source,
-      `Import [source:${id}], profile it, and recommend the most useful analysis.`,
-      label ? `Load ${label}, profile it, and recommend the most useful analysis.` : 'Load this linked data, profile it, and recommend the most useful analysis.',
+      `Inspect [source:${id}] to understand whether it is a direct data file or a web page with tables. If multiple tables exist, choose the most relevant table and import it with the correct tableIndex; otherwise import the direct data file. Then profile the dataset, check data quality, and recommend the most useful analysis with evidence.`,
+      label
+        ? `Load ${label}, inspect tables if needed, profile it, and recommend the most useful analysis.`
+        : 'Load this linked data, inspect tables if needed, profile it, and recommend the most useful analysis.',
     )
   }
 
@@ -1070,8 +1084,8 @@ export function AnalyticsAssistant({
     }
     addSource(
       source,
-      `Inspect [source:${id}], list its tables, import the most relevant table, profile it, and recommend the most useful analysis.`,
-      'Connect this database, import the most relevant table, and recommend the most useful analysis.',
+      `Inspect [source:${id}], list its tables with context, import the most relevant table for analysis, profile it, audit data quality, and recommend the most useful analysis and dashboards.`,
+      'Connect this database, import the most relevant table, profile it, and recommend the most useful analysis.',
     )
   }
 
@@ -1283,8 +1297,8 @@ export function AnalyticsAssistant({
         )}
         {status && !status.configured && (
           <div className="an-assistant-setup local">
-            <strong>Local automation is ready</strong>
-            <span>{status.message ?? 'No AI model is connected. Choose a model in Settings → AI Model.'}</span>
+            <strong>Local AI automation is ready</strong>
+            <span>{status.message ?? 'No cloud model is connected. Local import, profiling, cleaning, SQL, charts, forecasting and dashboards work now. Connect a model in Settings → AI Model for conversational analysis.'}</span>
             <button
               type="button"
               className="an-assistant-setup-run"
